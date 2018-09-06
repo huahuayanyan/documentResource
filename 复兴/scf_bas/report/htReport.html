@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <title>打印窗口</title>
+ <!--    <script src="../../scf_bas/scube_ui/lib/bower_components/jquery-2.0.3.js"></script>  -->
+    <style type="text/css">
+        .btnDiv{
+            margin-top:30px;
+            width:100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<iframe name="htReportFrame" id="htReportFrame" src="" scrolling="auto" frameborder="0" width="100%"></iframe>
+<!-- <div class="btnDiv">
+    <button onclick="htPrint()">打印</button>
+    <button onclick="parent.close()">关闭</button>
+</div> -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        var param = window.reportParam;
+        $.ajax({
+            type:"POST",
+            url:window._HTTP_IP_PORT+"htreport/reportMultiHtml.htm",
+            headers:{
+                Authorization:window.authorization || sessionStorage.getItem("authorization")
+            },
+            data:param?param:{},
+            dataType:"html",
+            success:function(res){
+                document.getElementById("htReportFrame").contentWindow.document.write(res);
+                var parentTable = document.getElementById('htReportFrame').contentWindow.document.getElementsByTagName('table');
+                if(parentTable){
+                    var childTables = parentTable[0].getElementsByTagName('table');
+                    if(childTables){
+                        for(var i=1;i<childTables.length;i++){// 从第二个开始分页
+                            childTables[i].style.cssText='page-break-before: always';
+                        }
+                    }
+                }
+                var frameHeight = $("#htReportFrame").contents().find("body").height()+30;
+                $("#htReportFrame").height(frameHeight);
+            },
+            error: function (res) {
+                alert("报表查看失败！");
+            }
+        });
+
+    });
+    function htPrint(){
+        document.getElementById('htReportFrame').contentWindow.print();
+    }
+</script>
+</body>
+</html>

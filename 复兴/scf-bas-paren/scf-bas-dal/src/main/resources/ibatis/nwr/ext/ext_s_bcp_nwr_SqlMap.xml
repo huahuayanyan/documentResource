@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_S_BCP_NWR" >
+  <resultMap id="BaseResultMap" class="java.util.HashMap" >
+    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+    <result column="BILLCODE" property="billcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="POSTNO" property="postno" jdbcType="CHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="STORAGE_ADDRESS" property="storageAddress" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="DATE" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="STAND_LOSE" property="standLose" jdbcType="VARCHAR" />
+    <result column="STORAGE_COST_END_DATE" property="storageCostEndDate" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="REGISTRATION_NUM" property="registrationNum" jdbcType="VARCHAR" />
+    <result column="KEEPER_NAME" property="keeperName" jdbcType="VARCHAR" />
+    <result column="INSURANCE_NO" property="insuranceNo" jdbcType="VARCHAR" />
+    <result column="BILL_TYPE" property="billType" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="countSBcpMortBill" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(abi.BILLNO)
+    from B_CRR_GNTY_CON tcsi, S_BCP_MORT_BILL_NORMAL abi,B_CRM_BASE_INFO cust 
+    where abi.CUSTCD=cust.CUSTCD
+    and tcsi.CON_ID=abi.SLAVE_CONTNO
+    <isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ abi.CUSTCD = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="cname">
+      <![CDATA[ cust.CNAME like '%'|| #cname:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="keeperName">
+      <![CDATA[ abi.KEEPER_NAME like '%'|| #keeperName:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ abi.SLAVE_CONTNO like '%'|| #slaveContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="billcode">
+      <![CDATA[ abi.BILLCODE like '%'|| #billcode:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate">
+      <![CDATA[ abi.START_DATE >= #startDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endDate">
+      <![CDATA[ abi.END_DATE <= #endDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+      <![CDATA[ abi.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ abi.BILLNO like '%'|| #billno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="billnoList" > 
+        abi.BILLNO  in 
+        <iterate property="billnoList" conjunction="," open="(" close=")" >
+   		 $billnoList[]$
+   		</iterate> 
+    </isNotNull>
+    <isNotNull prepend="and" property="custcdList" > 
+        cust.CUSTCD  in 
+        <iterate property="custcdList" conjunction="," open="(" close=")" >
+   		 $custcdList[]$
+   		</iterate> 
+    </isNotNull>
+  </select>
+  
+  <resultMap id="selectSBcpMortBillResultMap" class="java.util.HashMap" extends = "BaseResultMap">
+    <result column="ISPLEDGE" property="isPledge" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectSBcpMortBill" resultMap="selectSBcpMortBillResultMap" parameterClass="java.util.HashMap" >
+    select abi.*,cust.CNAME  ,(select COUNT(1) from SCF.S_BCP_APPLI_MORT_BILL_NORMAL t where t.BILLCODE = abi.BILLCODE) ispledge
+    from B_CRR_GNTY_CON tcsi, S_BCP_MORT_BILL_NORMAL abi,B_CRM_BASE_INFO cust 
+    where abi.CUSTCD=cust.CUSTCD
+    and tcsi.CON_ID=abi.SLAVE_CONTNO
+    <isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ abi.CUSTCD = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="cname">
+      <![CDATA[ cust.CNAME like '%'|| #cname:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="keeperName">
+      <![CDATA[ abi.KEEPER_NAME like '%'|| #keeperName:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ abi.SLAVE_CONTNO like '%'|| #slaveContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="billcode">
+      <![CDATA[ abi.BILLCODE like '%'|| #billcode:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate">
+      <![CDATA[ abi.START_DATE >= #startDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endDate">
+      <![CDATA[ abi.END_DATE <= #endDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+      <![CDATA[ abi.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ abi.BILLNO like '%'|| #billno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="billnoList" > 
+        abi.BILLNO  in 
+        <iterate property="billnoList" conjunction="," open="(" close=")" >
+   		 $billnoList[]$
+   		</iterate> 
+    </isNotNull>
+    <isNotNull prepend="and" property="custcdList" > 
+        cust.CUSTCD  in 
+        <iterate property="custcdList" conjunction="," open="(" close=")" >
+   		 $custcdList[]$
+   		</iterate> 
+    </isNotNull>
+  </select>
+  
+  <resultMap id="BaseProductResultMap" class="java.util.HashMap" >
+  	<result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 根据仓单类型获取仓单小类 -->
+  <select id="getBillByMidProductId" resultMap="BaseProductResultMap" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpProductBill" >
+    select tpb.PRODUCT_ID from S_BCP_PRODUCT_BILL tpb 
+    where tpb.BILL_TYPE=#billType:VARCHAR#
+  </select>
+  
+  
+  <resultMap id="BaseAppContInfoResultMap" class="java.util.HashMap" >
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="CONT_AMOUNT" property="contAmount" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="VARCHAR" />
+    <result column="VID_PRD_ID" property="vidPrdId" jdbcType="VARCHAR" />
+    <result column="PRTCL_NO" property="prtclNo" jdbcType="VARCHAR" />
+    <result column="PRTCL_BR_NM" property="prtclBrNm" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getAppContInfoBySupplyChainPdId" resultMap="BaseAppContInfoResultMap" parameterClass="java.util.HashMap" >
+    select cb.APP_ID MAST_CONTNO,cs.CON_ID SLAVE_CONTNO,cs.GUT_ID CUSTCD, cs.GUT_NM CNAME, cs.GUT_CURCD CURCD, 
+    		cb.LN_AMT CONT_AMOUNT, cs.VID_PRD_ID, cs.PRTCL_NO, cs.PRTCL_BR_NM
+    from B_CRR_LN_CON cb, B_CRR_GNTY_CON cs
+    where cb.VID_NO = cs.CON_ID
+    <isNotEmpty prepend="and" property="supplyChainPdId">
+      <![CDATA[ cs.VID_PRD_ID = #supplyChainPdId:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="supplyChainPdIdList" > 
+        (cs.VID_PRD_ID  in 
+        <iterate property="supplyChainPdIdList" conjunction="," open="(" close=")" >
+   		 $supplyChainPdIdList[]$
+   		</iterate> 
+   		or cs.VID_PRD_ID is null)
+    </isNotNull>
+    <isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ cs.CON_ID like '%'|| #slaveContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ cb.APP_ID like '%'|| #mastContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ cb.CUST_ID = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+	<!-- <isNotEmpty prepend="and" property="planMoniEnt">
+      <![CDATA[ mci.MONI_OF_CUSTCD = #planMoniEnt:VARCHAR#  ]]>
+	</isNotEmpty> -->
+  </select>
+  <select id="countAppContInfoBySupplyChainPdId" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(cb.APP_ID)
+    from B_CRR_LN_CON cb, B_CRR_GNTY_CON cs
+    where cb.VID_NO = cs.CON_ID
+    <isNotEmpty prepend="and" property="supplyChainPdId">
+      <![CDATA[ cs.VID_PRD_ID = #supplyChainPdId:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="supplyChainPdIdList" > 
+        (cs.VID_PRD_ID  in 
+        <iterate property="supplyChainPdIdList" conjunction="," open="(" close=")" >
+   		 $supplyChainPdIdList[]$
+   		</iterate> 
+   		or cs.VID_PRD_ID is null)
+    </isNotNull>
+    <isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ cs.CON_ID like '%'|| #slaveContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ cb.APP_ID like '%'|| #mastContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ cb.CUST_ID = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+	<!-- <isNotEmpty prepend="and" property="planMoniEnt">
+      <![CDATA[ mci.MONI_OF_CUSTCD = #planMoniEnt:VARCHAR#  ]]>
+	</isNotEmpty> -->
+  </select>
+  
+  <select id="getEffectNormalList" resultMap="S_BCP_MORT_BILL_NORMAL.BaseResultMap" parameterClass="java.util.HashMap" >
+    select abi.* 
+    from B_CRR_GNTY_CON tcsi, S_BCP_MORT_BILL_NORMAL abi,B_CRM_BASE_INFO cust 
+    where abi.CUSTCD = cust.CUSTCD
+    and tcsi.CON_ID = abi.SLAVE_CONTNO
+    and exists( select 1 from B_PBC_MTG_BASE_INFO tmbi where tmbi.BILLNO=abi.BILLNO)
+    <isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ abi.custcd = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="keeperName">
+      <![CDATA[ abi.KEEPER_NAME = #keeperName:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ abi.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="billcode">
+      <![CDATA[ abi.BILLCODE like '%'|| #billcode:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate">
+      <![CDATA[ abi.START_DATE >= #startDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate1">
+      <![CDATA[ abi.START_DATE <= #startDate1:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endDate">
+      <![CDATA[ abi.END_DATE >= #endDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endDate1">
+      <![CDATA[ abi.END_DATE <= #endDate1:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+      <![CDATA[ abi.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ abi.BILLNO = #billno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="billnoList" > 
+        abi.BILLNO  in 
+        <iterate property="billnoList" conjunction="," open="(" close=")" >
+   		 $billnoList[]$
+   		</iterate> 
+    </isNotNull>
+	<isNotEmpty prepend="and" property="flag">
+      <![CDATA[ 1=2  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="custList" > 
+        cust.CUSTCD  in 
+        <iterate property="custList" conjunction="," open="(" close=")" >
+   		 $custList[]$
+   		</iterate> 
+    </isNotNull>
+  </select>
+  <select id="countEffectNormalList" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(abi.BILLNO)
+    from B_CRR_GNTY_CON tcsi, S_BCP_MORT_BILL_NORMAL abi,B_CRM_BASE_INFO cust 
+    where abi.CUSTCD = cust.CUSTCD
+    and tcsi.CON_ID = abi.SLAVE_CONTNO
+    and exists( select 1 from B_PBC_MTG_BASE_INFO tmbi where tmbi.BILLNO=abi.BILLNO)
+    <isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ abi.custcd = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="keeperName">
+      <![CDATA[ abi.KEEPER_NAME = #keeperName:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ abi.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="billcode">
+      <![CDATA[ abi.BILLCODE like '%'|| #billcode:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate">
+      <![CDATA[ abi.START_DATE >= #startDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate1">
+      <![CDATA[ abi.START_DATE <= #startDate1:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endDate">
+      <![CDATA[ abi.END_DATE >= #endDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endDate1">
+      <![CDATA[ abi.END_DATE <= #endDate1:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+      <![CDATA[ abi.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ abi.BILLNO = #billno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="billnoList" > 
+        abi.BILLNO  in 
+        <iterate property="billnoList" conjunction="," open="(" close=")" >
+   		 $billnoList[]$
+   		</iterate> 
+    </isNotNull>
+	<isNotEmpty prepend="and" property="flag">
+      <![CDATA[ 1=2  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="custList" > 
+        cust.CUSTCD  in 
+        <iterate property="custList" conjunction="," open="(" close=")" >
+   		 $custList[]$
+   		</iterate> 
+    </isNotNull>
+  </select>
+  
+  <resultMap id="BaseAppliResultMap" class="com.huateng.scf.sto.nwr.dao.vo.SBcpBillNormalAppVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+    <result column="BILLCODE" property="billcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="POSTNO" property="postno" jdbcType="CHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="STORAGE_ADDRESS" property="storageAddress" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="DATE" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="STAND_LOSE" property="standLose" jdbcType="VARCHAR" />
+    <result column="STORAGE_COST_END_DATE" property="storageCostEndDate" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="REGISTRATION_NUM" property="registrationNum" jdbcType="VARCHAR" />
+    <result column="KEEPER_NAME" property="keeperName" jdbcType="VARCHAR" />
+    <result column="INSURANCE_NO" property="insuranceNo" jdbcType="VARCHAR" />
+    <result column="BILL_TYPE" property="billType" jdbcType="VARCHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getBillnormalListByAppno" resultMap="BaseAppliResultMap" parameterClass="java.util.HashMap" >
+    select tambs.APPNO,tambs.ID,tambs.REASON,tmbs.* 
+    from S_BCP_MORT_BILL_NORMAL tmbs,S_BCP_APPLI_MORT_BILL_NORMAL tambs
+    where tmbs.BILLNO=tambs.BILLNO
+    <isNotEmpty prepend="and" property="appno">
+      <![CDATA[ tambs.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="status">
+      <![CDATA[ tmbs.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="custList" > 
+        tmbs.CUSTCD  in 
+        <iterate property="custList" conjunction="," open="(" close=")" >
+   		 $custList[]$
+   		</iterate> 
+    </isNotNull>
+  </select>
+  <select id="countBillnormalListByAppno" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(tambs.ID) 
+    from S_BCP_MORT_BILL_NORMAL tmbs,S_BCP_APPLI_MORT_BILL_NORMAL tambs
+    where tmbs.BILLNO=tambs.BILLNO
+    <isNotEmpty prepend="and" property="appno">
+      <![CDATA[ tambs.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="status">
+      <![CDATA[ tmbs.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="custList" > 
+        tmbs.CUSTCD  in 
+        <iterate property="custList" conjunction="," open="(" close=")" >
+   		 $custList[]$
+   		</iterate> 
+    </isNotNull>
+  </select>
+  
+  <select id="getAppliBillnormalList" resultMap="BaseAppliResultMap" parameterClass="java.util.HashMap" >
+    select tambs.APPNO,tambs.ID,tambs.REASON,tmbs.* 
+    from S_BCP_MORT_BILL_NORMAL tmbs,S_BCP_APPLI_MORT_BILL_NORMAL tambs
+    where tmbs.BILLNO=tambs.BILLNO
+    <isNotEmpty prepend="and" property="appno">
+      <![CDATA[ tambs.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="status">
+      <![CDATA[ tambs.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  <select id="countAppliBillnormalList" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(tambs.ID) 
+    from S_BCP_MORT_BILL_NORMAL tmbs,S_BCP_APPLI_MORT_BILL_NORMAL tambs
+    where tmbs.BILLNO=tambs.BILLNO
+    <isNotEmpty prepend="and" property="appno">
+      <![CDATA[ tambs.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="status">
+      <![CDATA[ tambs.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="countBillExchangeEnteringListByParam" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(c.BILLNO) 
+    from S_BCP_APPLI_MORT_BILL_NORMAL b ,S_BCP_MORT_BILL_NORMAL c 
+    where b.BILLNO=c.BILLNO
+    <isNotEmpty prepend="and" property="appno">
+      <![CDATA[ b.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+	  <![CDATA[ c.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ b.MAST_CONTNO = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+	  <![CDATA[ b.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  <select id="getBillExchangeEnteringListByParam" resultMap="S_BCP_MORT_BILL_NORMAL.BaseResultMap" parameterClass="java.util.HashMap" >
+    select c.* 
+    from S_BCP_APPLI_MORT_BILL_NORMAL b ,S_BCP_MORT_BILL_NORMAL c 
+    where b.BILLNO=c.BILLNO
+    <isNotEmpty prepend="and" property="appno">
+      <![CDATA[ b.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+	  <![CDATA[ c.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ b.MAST_CONTNO = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+	  <![CDATA[ b.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <resultMap id="BaseAppliMortResultMap" class="com.huateng.scf.sto.nwr.dao.model.SBcpAppliMortBillNormal" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+    <result column="BILLCODE" property="billcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="CHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="POSTNO" property="postno" jdbcType="CHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="STORAGE_ADDRESS" property="storageAddress" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="DATE" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="STAND_LOSE" property="standLose" jdbcType="VARCHAR" />
+    <result column="STORAGE_COST_END_DATE" property="storageCostEndDate" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getBillNormalAppByAppno" resultMap="BaseAppliMortResultMap" parameterClass="java.util.HashMap" >
+    select amb.*
+    from S_BCP_APPLI_MORT_BILL_NORMAL amb, B_PBC_APPLI_BASE_INFO abi
+    where amb.APPNO = abi.APPNO
+    <isNotEmpty prepend="and" property="appno">
+      <![CDATA[ amb.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="businessnoType">
+      <![CDATA[ abi.BUSINESSNO_TYPE = #businessnoType:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="countBillnormalListBySlaveContno" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(abi.BILLNO)
+    from S_BCP_MORT_BILL_NORMAL abi,B_CRM_BASE_INFO cust 
+    where abi.CUSTCD = cust.CUSTCD
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ abi.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+      <![CDATA[ abi.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  <select id="getBillnormalListBySlaveContno" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+    select abi.*,cust.CNAME 
+    from S_BCP_MORT_BILL_NORMAL abi,B_CRM_BASE_INFO cust 
+    where abi.CUSTCD = cust.CUSTCD
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ abi.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+      <![CDATA[ abi.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="countBillNormalDeliverableList" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(abi.BILLNO)
+    from S_BCP_MORT_BILL_NORMAL abi,B_CRM_BASE_INFO cust 
+    where abi.CUSTCD=cust.CUSTCD
+    <isNotEmpty prepend="and" property="flag1">
+      <isNotNull prepend="" property="statusList" > 
+        abi.STATUS in 
+        <iterate property="statusList" conjunction="," open="(" close=")" >
+   		 $statusList[]$
+   		</iterate> 
+      </isNotNull>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="flag2">
+      <isNotNull prepend="" property="statusList" > 
+        abi.STATUS not in 
+        <iterate property="statusList" conjunction="," open="(" close=")" >
+   		 $statusList[]$
+   		</iterate> 
+      </isNotNull>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ abi.SLAVE_CONTNO like '%'|| #slaveContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ abi.CUSTCD = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  <select id="getBillNormalDeliverableList" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+    select abi.*,cust.CNAME 
+    from S_BCP_MORT_BILL_NORMAL abi,B_CRM_BASE_INFO cust 
+    where abi.CUSTCD=cust.CUSTCD
+    <isNotEmpty prepend="and" property="flag1">
+      <isNotNull prepend="" property="statusList" > 
+        abi.STATUS in 
+        <iterate property="statusList" conjunction="," open="(" close=")" >
+   		 $statusList[]$
+   		</iterate> 
+      </isNotNull>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="flag2">
+      <isNotNull prepend="" property="statusList" > 
+        abi.STATUS not in 
+        <iterate property="statusList" conjunction="," open="(" close=")" >
+   		 $statusList[]$
+   		</iterate> 
+      </isNotNull>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ abi.SLAVE_CONTNO like '%'|| #slaveContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ abi.CUSTCD = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <resultMap id="BaseInOutDOResultMap" class="com.huateng.scf.sto.nwr.dao.vo.SBcpBillNormalInOutDO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+    <result column="BILLCODE" property="billcode" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="POSTNO" property="postno" jdbcType="CHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="STORAGE_ADDRESS" property="storageAddress" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="DATE" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="STAND_LOSE" property="standLose" jdbcType="VARCHAR" />
+    <result column="STORAGE_COST_END_DATE" property="storageCostEndDate" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="countNormalBillByPara" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(bnio.ID)
+    from S_BCP_BILL_NORMAL_IN_OUT bnio,B_CRM_BASE_INFO cust 
+    where bnio.CUSTCD=cust.CUSTCD
+    <isNotEmpty prepend="and" property="id">
+      <![CDATA[ bnio.ID = #id:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ bnio.CUSTCD = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ bnio.SLAVE_CONTNO like '%'|| #slaveContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+      <![CDATA[ bnio.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate">
+      <![CDATA[ bnio.START_DATE >= #startDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endDate">
+      <![CDATA[ bnio.END_DATE <= #endDate:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  <select id="getNormalBillByPara" resultMap="BaseInOutDOResultMap" parameterClass="java.util.HashMap" >
+    select bnio.*,cust.CNAME 
+    from S_BCP_BILL_NORMAL_IN_OUT bnio,B_CRM_BASE_INFO cust 
+    where bnio.CUSTCD=cust.CUSTCD
+    <isNotEmpty prepend="and" property="id">
+      <![CDATA[ bnio.ID = #id:VARCHAR#  ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ bnio.CUSTCD = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ bnio.SLAVE_CONTNO like '%'|| #slaveContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+      <![CDATA[ bnio.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate">
+      <![CDATA[ bnio.START_DATE >= #startDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endDate">
+      <![CDATA[ bnio.END_DATE <= #endDate:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+</sqlMap>

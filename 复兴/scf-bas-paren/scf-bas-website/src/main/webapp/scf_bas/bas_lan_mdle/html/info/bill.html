@@ -1,0 +1,31 @@
+
+<!--<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="billNo" name="票据号" ng-model="conditionForm.billNo"></ht-input>
+    <ht-button-group >
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>-->
+<ht-legend>票据信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-column eg-name="appno" zh-name="票据流水号" ></ht-column>
+    <ht-column eg-name="elecFlag" zh-name="电票标志" dictionary="elecFlg"></ht-column>
+    <ht-column eg-name="billNo" zh-name="票据号码" ></ht-column>
+    <ht-column eg-name="amount" zh-name="票面金额" type="currency"></ht-column>
+    <ht-column eg-name="debetId" zh-name="票据借据号" ></ht-column>
+    <ht-column eg-name="billDate" zh-name="票据签发日" type="date"></ht-column>
+    <ht-column eg-name="billEndDate" zh-name="票据到期日" type="date"></ht-column>
+    <ht-column eg-name="drawer" zh-name="出票人名称"></ht-column>
+    <ht-column eg-name="acceptor" zh-name="承兑人名称"></ht-column>
+    <ht-column eg-name="drawerAccount" zh-name="出票人帐号"></ht-column>
+    <ht-column eg-name="receiverName" zh-name="收款人名称"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_FOURPROTOCOL" >
+<select id="getKindsOfSum" resultClass="java.util.HashMap"   parameterClass="java.lang.String" > 
+   select sum(T1.loan_amt) as loanAmt,sum(T1.pledge_amt) as pledgeAmt,sum(T1.amount_in) as amountIn,
+	sum(T1.amount_out) as amountOut,sum(T1.amount_up_out) as amountUpOut 
+	from B_CNT_MPROT_DEAL_INFO T1 where 1=1 
+    <isNotEmpty prepend="AND" property="value">
+      T1.protocol_no = #value#
+    </isNotEmpty>
+</select>
+<select id="getSumPriceByParam" resultClass="java.util.HashMap"   parameterClass="java.lang.String" > 
+    SELECT SUM(mbi.tot_price) as totPrice 
+    FROM B_PBC_MTG_BASE_INFO mbi WHERE mbi.quantity > 0   
+    <isNotEmpty prepend="AND" property="value">
+      mbi.other_protocol_no = #value#
+    </isNotEmpty>
+</select>
+<select id="getFourWareDeliveryAmt" resultClass="java.util.HashMap"   parameterClass="java.lang.String" > 
+    select tmpd.loan_amt  as loanAmt , sum(tlbi.bal_send_amt)  as balSendAmt, sum(tlbi.accu_send_amt)  as accuSendAmt
+    from B_LAN_LNCI_BASE tlbi , B_CNT_MPROT_BASE_INFO tmpb ,B_CNT_MPROT_DEAL_INFO tmpd 
+	where tlbi.protocol_no = tmpb.protocol_no and tmpd.protocol_no = tmpb.protocol_no 
+    <isNotEmpty prepend="AND" property="value">
+      tmpd.protocol_no = #value#
+    </isNotEmpty>
+    group by tmpd.loan_amt
+</select>
+<select id="getFourProtocolTotalLnciAmt" resultClass="java.util.HashMap"   parameterClass="java.lang.String" > 
+    select sum(tlbi.lnci_amt) AS lnciAmt,sum(tlbi.lnci_bal) AS lnciBal,sum(tlbi.bail_amount+tlbi.add_bail_amount) AS bailAddAmt,
+	sum(tlbi.init_cash_eqt_amt+tlbi.add_cash_eqt_amt) AS initAddAmt 
+	from B_LAN_LNCI_BASE tlbi  where 1=1 
+	<isNotEmpty prepend="AND" property="value">
+       tlbi.protocol_no = #value#
+    </isNotEmpty>
+</select>
+
+
+</sqlMap>

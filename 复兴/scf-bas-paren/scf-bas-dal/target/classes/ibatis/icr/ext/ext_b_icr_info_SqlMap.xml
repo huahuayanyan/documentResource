@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_ICR_INFO" >
+<typeAlias alias="BIcrInfo" type="com.huateng.scf.bas.icr.dao.model.BIcrInfo"></typeAlias>
+   <!-- 额度信息列表查询 -->
+   <select id="selectBIcrInfoList" resultClass="BIcrInfo" parameterClass="BIcrInfo" >
+    select T1.CREDIT_NO as creditNo ,T1.custcd,T2.CNAME,NVL(T1.CREDIT_AMOUNT,0) AS creditAmount, NVL(T1.CREDIT_USABLE_AMOUNT,0) AS creditUsableAmount, NVL(T1.PRE_USED_AMOUNT,0) as preUsedAmount
+    ,NVL(T1.USED_AMOUNT,0)as usedAmount,T1.STATUS, T1.START_DATE  as startDate,T1.END_DATE as endDate,T1.APPROVAL_NO AS approvalNo,T1.BRCODE_NAME AS brcodeName,T1.REMARK
+    from B_ICR_INFO T1,B_CRM_BASE_INFO T2
+    <isParameterPresent >
+	    where T1.CUSTCD = T2.CUSTCD
+	    <isNotEmpty prepend="and" property="status">
+	    T1.STATUS=#status:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="custcd">
+	    T1.CUSTCD=#custcd:VARCHAR#
+	    </isNotEmpty>
+      	<isNotEmpty prepend="and" property="cname" >
+        CNAME  like '%'|| #cname:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	<isNotEmpty prepend="and" property="approvalNo" >
+        APPROVAL_NO  like '%'|| #approvalNo:VARCHAR#||'%'    
+      	</isNotEmpty>
+	    <isNotEmpty prepend="and" property="nodeType"> 
+	    T1.NODE_TYPE=#nodeType:VARCHAR#
+	    </isNotEmpty>
+		order by T1.CREDIT_NO DESC
+    </isParameterPresent>
+  </select>
+  <!-- 根据总额度编号查询已领用生效额度 -->
+   <select id="selectDrawInfoListByCreditNo" resultClass="BIcrInfo" parameterClass="BIcrInfo" remapResults="true">
+   select T1.CREDIT_NO AS creditNo,T1.CREDIT_TYPE as creditType  ,T2.CREDIT_NAME as creditName,T1.CURCD,T3.CNAME as otherCname ,NVL(T1.CREDIT_AMOUNT,0)  AS creditAmount
+	,NVL(T1.USED_AMOUNT,0) AS usedAmount,T1.CREDIT_USABLE_AMOUNT AS creditUsableAmount
+	,NVL(T1.PRE_USED_AMOUNT,0) AS preUsedAmount ,NVL(T1.FRZ_AMOUNT,0) AS frzAmount,T1.START_DATE AS startDate,T1.END_DATE AS endDate,t1.STATUS
+    FROM B_ICR_INFO T1,B_ICR_TYPE T2,B_CRM_BASE_INFO T3
+    <isParameterPresent >
+	    where T1.CREDIT_TYPE = T2.CREDIT_TYPE
+		AND T1.OTHER_CUSTCD = T3.CUSTCD
+		<isNotEmpty prepend="and" property="upCreditNo">
+		  <![CDATA[
+		      (T1.UP_CREDIT_NO in (select distinct credit_No from B_ICR_INFO where UP_CREDIT_NO=#upCreditNo:VARCHAR#)
+		     )
+    		]]>
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="status">
+	    T1.STATUS=#status:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="creditClass">
+	    T1.CREDIT_CLASS=#creditClass:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="nodeType"> 
+	    T1.NODE_TYPE=#nodeType:VARCHAR#
+	    </isNotEmpty>
+	   <isNotNull prepend="and" property="upCreditNo" >
+	   </isNotNull>    
+		order by T1.CREDIT_NO DESC
+    </isParameterPresent>
+   </select>
+    <!-- 已领用间接额度查询-->
+   <select id="selectDrawInfoList" resultClass="BIcrInfo" parameterClass="BIcrInfo" remapResults="true">
+   select T1.CREDIT_NO AS creditNo,T1.CREDIT_TYPE as creditType ,T2.CREDIT_NAME as creditName,T1.CURCD,T1.CUSTCD,T3.CNAME,T1.IS_NEED_AUDIT AS isNeedAudit
+    ,NVL(T1.CREDIT_AMOUNT,0)  AS creditAmount,NVL(T1.USED_AMOUNT,0) AS usedAmount,T1.CREDIT_USABLE_AMOUNT AS creditUsableAmount
+	,NVL(T1.PRE_USED_AMOUNT,0) AS preUsedAmount ,NVL(T1.FRZ_AMOUNT,0) AS frzAmount,T1.START_DATE AS startDate,T1.END_DATE AS endDate,t1.STATUS
+	,T1.OTHER_CUSTCD AS  otherCustcd, T4.CNAME AS otherCname,T1.BRCODE_NAME AS brcodeName
+    FROM B_ICR_INFO T1,B_ICR_TYPE T2,B_CRM_BASE_INFO T3,B_CRM_BASE_INFO T4
+    <isParameterPresent >
+	    where T1.CREDIT_TYPE = T2.CREDIT_TYPE
+		AND T1.CUSTCD = T3.CUSTCD
+		AND T1.OTHER_CUSTCD = T4.CUSTCD
+		<isNotEmpty prepend="and" property="creditClass">
+	    T1.CREDIT_CLASS=#creditClass:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="nodeType">
+	    T1.NODE_TYPE=#nodeType:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="cname" >
+         T3.CNAME  like '%'|| #cname:VARCHAR#||'%'    
+      	</isNotEmpty>
+	    <isNotEmpty prepend="and" property="creditType">
+	    T1.CREDIT_TYPE=#creditType:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="creditName" >
+        CREDIT_NAME  like '%'|| #creditName:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	 <isNotEmpty prepend="and" property="brcodeName" >
+         T1.BRCODE_NAME  like '%'|| #brcodeName:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	 <isNotEmpty prepend="and" property="otherCname" >
+         T4.CNAME  like '%'|| #otherCname:VARCHAR#||'%'    
+      	</isNotEmpty>
+	     <isNotEmpty prepend="and" property="creditNo">
+	    T1.CREDIT_NO=#creditNo:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="custcd">
+	    T1.CUSTCD=#custcd:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="otherCustcd">
+	    T1.OTHER_CUSTCD=#otherCustcd:VARCHAR#
+	    </isNotEmpty>
+	    <!-- 分项额度，总额度，领用额度  -->
+	 <!--   <isEqual prepend="and" property="nodeType" compareValue="3">
+	 		
+ 		 <![CDATA[
+			      (T1.CREDIT_NO in (select distinct credit_No from B_ICR_INFO where node_Type=2 )
+			     or T1.CREDIT_NO in  (select distinct UP_CREDIT_NO from B_ICR_INFO where CREDIT_NO=#creditNo:VARCHAR# )
+			     or T1.CREDIT_NO in (select distinct credit_No from B_ICR_INFO where UP_CREDIT_NO=#creditNo:VARCHAR#)
+			     )
+		   		]]>
+	  
+			     
+	    </isEqual>  -->
+		order by T1.CREDIT_NO DESC
+    </isParameterPresent>
+   </select>
+ <!-- 分项额度信息查询 -->
+ <!-- SELECT DISTINCT CREDIT_NO,LISTAGG(BRCODE,',')within GROUP(ORDER BY CREDIT_NO) OVER (PARTITION BY CREDIT_NO)AS  suitBrcode FROM B_ICR_BRCODE_LIST LISTAGG 
+ LISTAGG 是oracle 11g的新特性，10g以下不支持 10g以下需用wmsys.wm_concat-->
+  <select id="selectSubInfoList" resultClass="BIcrInfo" parameterClass="BIcrInfo" remapResults="true">
+    select T1.CREDIT_NO as creditNo ,T1.CREDIT_TYPE as creditType,T2.CREDIT_NAME as creditName,T1.curcd,NVL(T1.CREDIT_AMOUNT,0) AS creditAmount,NVL(T1.CREDIT_USABLE_AMOUNT,0) AS creditUsableAmount
+    ,NVL(T1.USED_AMOUNT,0) AS usedAmount,NVL(T1.FRZ_AMOUNT,0) AS frzAmount,T1.START_DATE AS startDate,T1.END_DATE AS endDate,T3.suitBrcode,T1.REMARK
+    ,T1.UP_CREDIT_NO as upCreditNo,NVL(T4.CREDIT_AMOUNT,0)  AS upCreditAmount,T4.CUSTCD,T5.CNAME,T4.BRCODE
+     from B_ICR_INFO T1
+    LEFT JOIN B_ICR_TYPE T2 ON  T1.CREDIT_TYPE = T2.CREDIT_TYPE
+    LEFT JOIN (SELECT DISTINCT CREDIT_NO,TO_CHAR(wmsys.wm_concat(BRCODE)) AS  suitBrcode FROM B_ICR_BRCODE_LIST  GROUP BY CREDIT_NO)T3  on T1.CREDIT_NO = T3.CREDIT_NO
+    LEFT JOIN B_ICR_INFO T4 ON T1.UP_CREDIT_NO= T4.CREDIT_NO
+    LEFT JOIN B_CRM_BASE_INFO T5 ON T4.CUSTCD =T5.CUSTCD
+    <isParameterPresent >
+	    where 1 = 1
+	    <isNotEmpty prepend="and" property="nodeType">
+	    T1.NODE_TYPE=#nodeType:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="upCreditNo">
+	    T1.UP_CREDIT_NO=#upCreditNo:VARCHAR#
+	    </isNotEmpty>
+	      <isNotEmpty prepend="and" property="status">
+	    T1.STATUS=#status:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="creditClass">
+	    T1.CREDIT_CLASS=#creditClass:VARCHAR#
+	    </isNotEmpty>
+		order by T1.CREDIT_NO DESC
+    </isParameterPresent>
+  </select>
+  
+   <!-- 根据额度编号查询额度信息及上级额度信息 -->
+  <select id="selectInfoOrUpBycreditNo" resultClass="BIcrInfo" parameterClass="BIcrInfo" remapResults="true">
+   select T1.UP_CREDIT_NO AS upcreditNo,T2.CUSTCD,T3.CNAME,T2.CURCD,NVL(T2.CREDIT_AMOUNT,0)  AS upCreditAmount,T2.BRCODE,T1.CREDIT_NO as creditNo ,T1.CREDIT_TYPE as creditType
+    ,T4.CREDIT_NAME as creditName,T1.curcd,NVL(T1.CREDIT_AMOUNT,0) AS creditAmount,T1.CREDIT_USABLE_AMOUNT AS creditUsableAmount,NVL(T1.PRE_USED_AMOUNT,0) AS preUsedAmount
+    ,NVL(T1.USED_AMOUNT,0) AS usedAmount,NVL(T1.FRZ_AMOUNT,0) AS frzAmount,T1.START_DATE AS startDate,T1.END_DATE AS endDate,T5.suitBrcode,T1.REMARK,T1.BRCODE_NAME as brcodeName
+    from B_ICR_INFO T1
+    LEFT JOIN B_ICR_INFO T2 ON T1.UP_CREDIT_NO= T2.CREDIT_NO
+     LEFT JOIN B_CRM_BASE_INFO T3 ON T2.CUSTCD =T3.CUSTCD
+     LEFT JOIN B_ICR_TYPE t4 ON T1.CREDIT_TYPE=T4.CREDIT_TYPE
+     LEFT JOIN (SELECT DISTINCT CREDIT_NO,TO_CHAR(wmsys.wm_concat(BRCODE)) AS  suitBrcode FROM B_ICR_BRCODE_LIST  GROUP BY CREDIT_NO)T5  on T1.CREDIT_NO = T5.CREDIT_NO
+    <isParameterPresent >
+	    where 1=1
+	    <isNotEmpty prepend="and" property="creditNo">
+	    T1.CREDIT_NO=#creditNo:VARCHAR#
+	    </isNotEmpty>
+		order by T1.CREDIT_NO DESC
+    </isParameterPresent>
+  </select>
+  <!-- 根据额度编号更新额度状态和分项额度状态 -->
+    <update id="updateInfoOrUpBycreditNo" parameterClass="BIcrInfo" >
+	   update B_ICR_INFO
+	   set STATUS = #status:CHAR# 
+	   where  CREDIT_NO=#creditNo:VARCHAR#
+	    or  UP_CREDIT_NO=#creditNo:VARCHAR#  
+  	</update>
+ <!-- 间接领用额度 -->
+  <!-- 可以领用间接额度查询-->
+  <select id="findBIcrInfoDrawByPage" resultClass="BIcrInfo" parameterClass="BIcrInfo" remapResults="true">
+   select T1.CUSTCD,T3.CNAME,T1.CREDIT_NO as creditNo ,T1.CREDIT_TYPE as creditType,T2.CREDIT_NAME as creditName,T1.curcd,T1.IS_NEED_AUDIT AS isNeedAudit,NVL(T1.CREDIT_AMOUNT,0) AS creditAmount,NVL(T1.CREDIT_USABLE_AMOUNT,0) AS creditUsableAmount
+    ,nvl(T1.PRE_USED_AMOUNT,0) AS preUsedAmount,NVL(T1.USED_AMOUNT,0) AS usedAmount,T1.START_DATE AS startDate,T1.END_DATE AS endDate
+    from B_ICR_INFO T1,B_ICR_TYPE T2,B_CRM_BASE_INFO T3
+    <isParameterPresent >
+	    where T1.CREDIT_TYPE = T2.CREDIT_TYPE
+	    AND T1.CUSTCD=T3.CUSTCD
+	     <isNotEmpty prepend="and" property="creditClass">
+	    T1.CREDIT_CLASS=#creditClass:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="nodeType">
+	    T1.NODE_TYPE=#nodeType:VARCHAR#
+	    </isNotEmpty>
+	   <isNotEmpty prepend="and" property="status">
+	    T1.STATUS=#status:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="creditType">
+	    T1.CREDIT_TYPE=#creditType:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="creditName" >
+        CREDIT_NAME  like '%'|| #creditName:VARCHAR#||'%'    
+      	</isNotEmpty>
+	    <isNotEmpty prepend="and" property="cname" >
+        CNAME  like '%'|| #cname:VARCHAR#||'%'    
+      	</isNotEmpty>
+		order by T1.CREDIT_NO DESC
+    </isParameterPresent>
+  </select>
+     <!-- 根据额度编号查询额度信息 -->
+  <select id="selectInfoMainBycreditNo" resultClass="BIcrInfo" parameterClass="BIcrInfo" remapResults="true">
+     select T1.CUSTCD,T4.CNAME, T1.CREDIT_NO as creditNo ,T1.UP_CREDIT_NO AS upCreditNo,T1.CREDIT_CLASS AS creditClass,T1.CREDIT_TYPE as creditType,T2.CREDIT_NAME as creditName
+     ,T1.curcd,NVL(T1.CREDIT_AMOUNT,0) AS creditAmount,NVL(T1.CREDIT_USABLE_AMOUNT,0) AS creditUsableAmount,NVL(T1.USED_AMOUNT,0) AS usedAmount
+    ,T1.START_DATE AS startDate,T1.END_DATE AS endDate,T3.suitBrcode,T1.REMARK
+    ,nvl(T1.PRE_USED_AMOUNT,0) AS preUsedAmount,T1.OTHER_CUSTCD AS  otherCustcd,T5.CNAME AS otherCname
+    ,T1.STATUS,T1.NODE_TYPE AS nodeType,T1.BRCODE,T1.BRCODE_NAME AS brcodeName
+    from B_ICR_INFO T1
+    LEFT JOIN B_ICR_TYPE T2 ON  T1.CREDIT_TYPE = T2.CREDIT_TYPE
+    LEFT JOIN (SELECT DISTINCT CREDIT_NO,TO_CHAR(wmsys.wm_concat(BRCODE)) AS  suitBrcode FROM B_ICR_BRCODE_LIST  GROUP BY CREDIT_NO)T3  on T1.CREDIT_NO = T3.CREDIT_NO
+    LEFT JOIN B_CRM_BASE_INFO T4 ON T1.CUSTCD = T4.CUSTCD
+    LEFT JOIN B_CRM_BASE_INFO T5 ON T1.OTHER_CUSTCD = T5.CUSTCD
+    <isParameterPresent >
+	    where 1=1
+	    <isNotEmpty prepend="and" property="creditNo">
+	    T1.CREDIT_NO=#creditNo:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="creditClass">
+	    T1.CREDIT_CLASS=#creditClass:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="nodeType">
+	    T1.NODE_TYPE=#nodeType:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="status">
+	    T1.STATUS=#status:VARCHAR#
+	    </isNotEmpty>
+		order by T1.CREDIT_NO DESC
+    </isParameterPresent>
+  </select>
+  <!-- 间接额度回收 -->
+   <!-- 领用额度额度查询-->
+  <select id="findBIcrInfoRecoverByPage" resultClass="BIcrInfo" parameterClass="BIcrInfo" remapResults="true">
+   select T1.CREDIT_NO as creditNo ,T1.OTHER_CUSTCD as otherCustcd,T4.CNAME AS otherCname,T1.CUSTCD,T3.CNAME,T1.BRCODE_NAME AS  brcodeName,T1.CREDIT_TYPE as creditType,T2.CREDIT_NAME as creditName,T1.curcd,T1.IS_NEED_AUDIT AS isNeedAudit,NVL(T1.CREDIT_AMOUNT,0) AS creditAmount,NVL(T1.CREDIT_USABLE_AMOUNT,0) AS creditUsableAmount
+    ,nvl(T1.PRE_USED_AMOUNT,0) AS preUsedAmount,NVL(T1.USED_AMOUNT,0) AS usedAmount,T1.START_DATE AS startDate,T1.END_DATE AS endDate
+    from B_ICR_INFO T1,B_ICR_TYPE T2,B_CRM_BASE_INFO T3,B_CRM_BASE_INFO T4  
+    <isParameterPresent >
+	   where T1.CREDIT_TYPE = T2.CREDIT_TYPE
+	    AND T1.CUSTCD=T3.CUSTCD
+	    AND T1.OTHER_CUSTCD  = T4.CUSTCD
+	     <isNotEmpty prepend="and" property="creditClass">
+	    T1.CREDIT_CLASS=#creditClass:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="nodeType">
+	    T1.NODE_TYPE=#nodeType:VARCHAR#
+	    </isNotEmpty>
+	   <isNotEmpty prepend="and" property="status">
+	    T1.STATUS=#status:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="cname" >
+         T3.CNAME  like '%'|| #cname:VARCHAR#||'%'    
+      	</isNotEmpty>
+	    <isNotEmpty prepend="and" property="creditType">
+	    T1.CREDIT_TYPE=#creditType:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="creditName" >
+        CREDIT_NAME  like '%'|| #creditName:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	 <isNotEmpty prepend="and" property="brcodeName" >
+         T1.BRCODE_NAME  like '%'|| #brcodeName:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	 <isNotEmpty prepend="and" property="otherCname" >
+         T4.CNAME  like '%'|| #otherCname:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	
+		order by T1.CREDIT_NO DESC
+    </isParameterPresent>
+  </select>
+  
+  <!-- 间接额度使用流水查询 -->
+  <resultMap id="FlowQryResultMap" class="java.util.HashMap" >
+    <result column="CREDIT_NO" property="creditNo" jdbcType="VARCHAR" />
+    <result column="CREDIT_CLASS" property="creditClass" jdbcType="CHAR" />
+    <result column="CREDIT_TYPE" property="creditType" jdbcType="VARCHAR" />
+    <result column="NODE_TYPE" property="nodeType" jdbcType="CHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="CREDIT_AMOUNT" property="creditAmount" jdbcType="DECIMAL" />
+    <result column="CREDIT_USABLE_AMOUNT" property="creditUsableAmount" jdbcType="DECIMAL" />
+    <result column="PRE_USED_AMOUNT" property="preUsedAmount" jdbcType="DECIMAL" />
+    <result column="USED_AMOUNT" property="usedAmount" jdbcType="DECIMAL" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="OTHERCNAME" property="otherCname" jdbcType="VARCHAR" />
+    <result column="CREDIT_NAME" property="creditName" jdbcType="VARCHAR" />
+    <!-- 流水 -->
+    <result column="OPER_TYPE" property="operType" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="COMMON_AMOUNT" property="commonAmount" jdbcType="DECIMAL" />
+  </resultMap>
+   <select id="selectBIcrInfoFlowList" resultMap="FlowQryResultMap" parameterClass="BIcrInfo" remapResults="true">
+    select T1.CREDIT_NO,T2.CREDIT_CLASS,T2.CREDIT_TYPE,T3.CREDIT_NAME,T2.CUSTCD,T4.CNAME,T2.OTHER_CUSTCD,T5.CNAME AS otherCname
+      ,T2.NODE_TYPE,T2.CURCD,NVL(T1.CREDIT_AMOUNT,0) AS CREDIT_AMOUNT ,NVL(T1.CREDIT_USABLE_AMOUNT,0) AS CREDIT_USABLE_AMOUNT,nvl(T1.PRE_USED_AMOUNT,0) AS PRE_USED_AMOUNT
+      ,NVL(T1.USED_AMOUNT,0) AS USED_AMOUNT,TO_CHAR(t1.LAST_UPD_TIME,'yyyymmdd') AS LAST_UPD_TIME,T1.OPER_TYPE,T1.AMOUNT,T1.COMMON_AMOUNT
+      FROM B_ICR_DTL T1,B_ICR_INFO T2,B_ICR_TYPE T3,B_CRM_BASE_INFO T4,B_CRM_BASE_INFO T5
+   
+    <isParameterPresent >
+     <![CDATA[
+       WHERE T1.CREDIT_NO =T2.CREDIT_NO
+      AND T2.CREDIT_TYPE =T3.CREDIT_TYPE
+      AND T2.CUSTCD =T4.CUSTCD
+      AND T2.OTHER_CUSTCD = T5.CUSTCD
+      AND T1.OPER_TYPE<>0 
+    ]]>
+		<isNotEmpty prepend="and" property="creditClass">
+	    T2.CREDIT_CLASS=#creditClass:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="nodeType">
+	    T2.NODE_TYPE=#nodeType:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="cname" >
+         T4.CNAME  like '%'|| #cname:VARCHAR#||'%'    
+      	</isNotEmpty>
+	    <isNotEmpty prepend="and" property="creditType">
+	    T2.CREDIT_TYPE=#creditType:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="creditName" >
+        CREDIT_NAME  like '%'|| #creditName:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	 <isNotEmpty prepend="and" property="brcodeName" >
+         T2.BRCODE_NAME  like '%'|| #brcodeName:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	 <isNotEmpty prepend="and" property="otherCname" >
+         T5.CNAME  like '%'|| #otherCname:VARCHAR#||'%'    
+      	</isNotEmpty>
+	     <isNotEmpty prepend="and" property="creditNo">
+	    T1.CREDIT_NO=#creditNo:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="custcd">
+	    T2.CUSTCD=#custcd:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="otherCustcd">
+	    T2.OTHER_CUSTCD=#otherCustcd:VARCHAR#
+	    </isNotEmpty>
+	    
+     <isNotEmpty prepend="and" property="startDate">
+	    <![CDATA[ TO_CHAR(t1.LAST_UPD_TIME,'yyyymmdd')>=#startDate:VARCHAR#
+	    ]]>
+	   </isNotEmpty>
+	    <isNotEmpty prepend="and" property="endDate">
+	    <![CDATA[ TO_CHAR(t1.LAST_UPD_TIME,'yyyymmdd')<#endDate:VARCHAR#
+	    ]]>
+	   </isNotEmpty>
+    
+		order by T1.CREDIT_NO DESC, T1.TXTIME DESC
+    </isParameterPresent>
+   </select>
+  <!-- 额度检查接口 -->
+  
+     <select id="checkCredit" resultMap="B_ICR_INFO.BaseResultMap" parameterClass="java.util.HashMap" >
+    select 
+       <include refid="B_ICR_INFO.Base_Column_List" />
+       from B_ICR_INFO
+    <isParameterPresent >
+	    where 1=1
+	    <isNotEmpty prepend="and" property="status">
+	    STATUS=#status:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="custcd">
+	    CUSTCD=#custcd:VARCHAR#
+	    </isNotEmpty>
+      
+	    <isNotEmpty prepend="and" property="creditType"> 
+	    CREDIT_TYPE=#creditType:VARCHAR#
+	    </isNotEmpty>
+	    <isNotNull prepend="and" property="otherCustcd"> 
+	    OTHER_CUSTCD=#otherCustcd:VARCHAR#
+	    </isNotNull>
+	    <isNull prepend="and" property="otherCustcd" >
+	     OTHER_CUSTCD is null
+	    </isNull>
+		order by CREDIT_NO DESC
+    </isParameterPresent>
+  </select>
+  
+  <!-- 连表查询额度信息 -->
+  <resultMap id="BaseCreditInfoResultMap" class="java.util.HashMap" >
+    <result column="CREDIT_NO" property="creditNo" jdbcType="VARCHAR" />
+    <result column="CREDIT_CLASS" property="creditClass" jdbcType="CHAR" />
+    <result column="CREDIT_TYPE" property="creditType" jdbcType="VARCHAR" />
+    <result column="NODE_TYPE" property="nodeType" jdbcType="CHAR" />
+    <result column="UP_CREDIT_NO" property="upCreditNo" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="CONTROL_TYPE" property="controlType" jdbcType="CHAR" />
+    <result column="CREDIT_AMOUNT" property="creditAmount" jdbcType="DECIMAL" />
+    <result column="CREDIT_USABLE_AMOUNT" property="creditUsableAmount" jdbcType="DECIMAL" />
+    <result column="PRE_USED_AMOUNT" property="preUsedAmount" jdbcType="DECIMAL" />
+    <result column="USED_AMOUNT" property="usedAmount" jdbcType="DECIMAL" />
+    <result column="FRZ_AMOUNT" property="frzAmount" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="TERM" property="term" jdbcType="CHAR" />
+    <result column="VALID_DATE" property="validDate" jdbcType="CHAR" />
+    <result column="APPROVAL_NO" property="approvalNo" jdbcType="VARCHAR" />
+    <result column="IS_NEED_AUDIT" property="isNeedAudit" jdbcType="CHAR" />
+    <result column="APPROVE_TYPE" property="approveType" jdbcType="CHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="BRCODE_NAME" property="brcodeName" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RELA_TYPE" property="relaType" jdbcType="CHAR" />
+    <result column="BUSINESS_NO" property="businessNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getTblCreditInfoByCreditQryVO" resultMap="BaseCreditInfoResultMap" parameterClass="java.util.HashMap">
+    select tci.*,tcbr.ID,tcbr.RELA_TYPE,tcbr.BUSINESS_NO  
+    from B_ICR_INFO tci, B_ICR_BUSI_REL tcbr
+    <isParameterPresent >
+     <![CDATA[
+      where tci.CREDIT_NO=tcbr.CREDIT_NO
+    ]]>
+		<isNotEmpty prepend="and" property="creditClass">
+	    	tci.CREDIT_CLASS = #creditClass:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="nodeType">
+	    	tci.NODE_TYPE = #nodeType:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="creditType" >
+         	tci.CREDIT_TYPE = #creditType:VARCHAR#    
+      	</isNotEmpty>
+      	<isNotEmpty prepend="and" property="creditNo">
+	    	tci.CREDIT_NO=#creditNo:VARCHAR#
+	    </isNotEmpty>
+      	<isNotEmpty prepend="and" property="custcd">
+	    	tci.CUSTCD=#custcd:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="otherCustcd">
+	    	tci.OTHER_CUSTCD=#otherCustcd:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="status">
+	   	 	tci.STATUS=#status:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="businessNo" >
+        	tcbr.BUSINESS_NO = #businessNo:VARCHAR#   
+      	</isNotEmpty>
+     <isNotEmpty prepend="and" property="startDate">
+	    <![CDATA[ TO_CHAR(tci.START_DATE,'yyyymmdd')>=#startDate:VARCHAR#
+	    ]]>
+	   </isNotEmpty>
+	    <isNotEmpty prepend="and" property="endDate">
+	    <![CDATA[ TO_CHAR(tci.END_DATE,'yyyymmdd')<#endDate:VARCHAR#
+	    ]]>
+	   </isNotEmpty>
+		order by tci.CREDIT_NO desc
+    </isParameterPresent>
+   </select>
+</sqlMap>

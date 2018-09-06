@@ -1,0 +1,23 @@
+<ht-form name="otherform">
+    <ht-legend>表单信息</ht-legend>
+    <ht-input name="监管合同号"  ng-model="otherform.jghth"></ht-input>
+    <ht-input name="监管公司名称" ng-model="otherform.jggsmc"></ht-input>
+    <ht-input name="业务品种" ng-model="otherform.ywpz" reg-exp="UserService.getLogin.userName"></ht-input>
+    <ht-input name="监管合同号"  ng-model="otherform.jghth2"></ht-input>
+    <ht-input name="监管公司名称" ng-model="otherform.jggsmc2"></ht-input>
+    <ht-input name="业务品种" ng-model="otherform.ywpz2" reg-exp="UserService.getLogin.userName"></ht-input>
+    <ht-input name="监管合同号"  ng-model="otherform.jghth3"></ht-input>
+    <ht-input name="监管公司名称" ng-model="otherform.jggsmc3"></ht-input>
+    <ht-input name="业务品种" ng-model="otherform.ywpz3" reg-exp="UserService.getLogin.userName"></ht-input>
+</ht-form>
+<!--<ht-table ht-id="tableDialogId" datasource="datasourceDialog" selected="selectedDialog" docheckbox="true">-->
+    <!--<ht-column eg-name="treeId" zh-name="id号" href="true" type="currency"></ht-column>-->
+    <!--<ht-column eg-name="treeName" zh-name="名称"></ht-column>-->
+    <!--<ht-column eg-name="treeLevel" zh-name="级别"></ht-column>-->
+    <!--<ht-column eg-name="treeParentId" zh-name="上级id"  type="currency"></ht-column>-->
+<!--</ht-table>-->
+<!--<ht-page conf="confDialog"></ht-page>-->
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog">取消</ht-button>
+</ht-button-group>

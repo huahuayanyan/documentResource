@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_PBC_APPLI_BASE_INFO" >
+
+<resultMap id="BCntDebtInfoVOMap" class="com.huateng.scf.bas.cnt.dao.model.BCntDebtInfoVO">
+    <result column="DEBT_CONTNO" property="debtContno" jdbcType="VARCHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="FACT_TYPE" property="factType" jdbcType="VARCHAR" />
+    <result column="FINANCING_TYPE" property="financingType" jdbcType="CHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="CHAR" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="CHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="IS_AUTO_PAY" property="isAutoPay" jdbcType="VARCHAR" />
+    <result column="AUTO_PAY_DAYS" property="autoPayDays" jdbcType="DECIMAL" />
+    <result column="SERVICE_CONTENT" property="serviceContent" jdbcType="VARCHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="CONT_AMOUNT" property="contAmount" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="CONT_STATUS" property="contStatus" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="DECIMAL" />
+    <result column="BAIL_ACCT_NO" property="bailAcctNo" jdbcType="VARCHAR" />
+    <result column="RETURN_ACCOUNT" property="returnAccount" jdbcType="VARCHAR" />
+    <result column="RECOVER_TYPE" property="recoverType" jdbcType="VARCHAR" />
+    <result column="REPAY_PURPOSE" property="repayPurpose" jdbcType="VARCHAR" />
+    <result column="DUE_BALANCE_RULE" property="dueBalanceRule" jdbcType="VARCHAR" />
+    <result column="PAYMENT_VERIFY_RULE" property="paymentVerifyRule" jdbcType="VARCHAR" />
+    <result column="REPARATION_PROT_NO" property="reparationProtNo" jdbcType="VARCHAR" />
+    <result column="LEASE" property="lease" jdbcType="VARCHAR" />
+    <result column="REPURCHASER" property="repurchaser" jdbcType="VARCHAR" />
+    <result column="REPURCHASE_PROT_NO" property="repurchaseProtNo" jdbcType="VARCHAR" />
+    <result column="FACTORING_BRCODE" property="factoringBrcode" jdbcType="VARCHAR" />
+    <result column="REPARATION_TERM" property="reparationTerm" jdbcType="DECIMAL" />
+    <result column="REPARATION_PERCENT" property="reparationPercent" jdbcType="DECIMAL" />
+    <result column="CUMULATIVE_REPARATION_AMT" property="cumulativeReparationAmt" jdbcType="DECIMAL" />
+    <result column="FACT_PATTERN" property="factPattern" jdbcType="VARCHAR" />
+    <result column="COOPERATION_BRCODE" property="cooperationBrcode" jdbcType="VARCHAR" />
+    <result column="RENT_SETTLE_WAY" property="rentSettleWay" jdbcType="CHAR" />
+    <result column="POOL_BAIL_AMT" property="poolBailAmt" jdbcType="DECIMAL" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+    <!-- 添加字段 -->
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="BUYER_CUSTCD" property="buyerCustcd" jdbcType="VARCHAR" />
+    <result column="BUYER_NAME" property="buyerName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="DEBT_NUM" property="debtNum" jdbcType="DECIMAL" />
+  </resultMap>
+  <!-- 根据协议号查询未结束流程的差额退款(担保提货) -->
+  <select id="getBPbcAppInfoByProtocolNo" resultMap="B_PBC_APPLI_BASE_INFO.BaseResultMap" parameterClass="java.util.HashMap" >
+	select
+	<include refid="B_PBC_APPLI_BASE_INFO.Base_Column_List" />
+	from B_PBC_APPLI_BASE_INFO
+
+	<isParameterPresent>
+		where 1=1
+		<isNotEmpty prepend="and" property="appliType">
+			APPLI_TYPE=#appliType:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="processTemplateName">
+			PROCESS_TEMPLATE_NAME=#processTemplateName:VARCHAR#
+		</isNotEmpty>
+		<isNotNull prepend="and" property="appliStatuss">
+			APPLI_STATUS not in
+			<iterate property="appliStatuss" conjunction="," open="(" close=")">
+				$appliStatuss[]$
+			</iterate>
+		</isNotNull>
+		<isNotEmpty prepend="and" property="protocolNo">
+			PROTOCOL_NO=#protocolNo:VARCHAR#
+		</isNotEmpty>
+		order by PROTOCOL_NO DESC
+    </isParameterPresent>
+  </select>
+  <!--根据抵质押合同号查询涉及的申请基本信息 -->
+  <select id="getListBySlaveContno" resultMap="B_PBC_APPLI_BASE_INFO.BaseResultMap" parameterClass="java.util.HashMap" >
+	select
+	<include refid="B_PBC_APPLI_BASE_INFO.Base_Column_List" />
+	from B_PBC_APPLI_BASE_INFO
+
+	<isParameterPresent>
+		where 1=1
+		AND APPLI_STATUS IN ('00','01','02','04')
+		AND (
+		<isNotEmpty     property="slaveContno" >
+       BUSINESSNO = #slaveContno:VARCHAR#
+       </isNotEmpty>
+		<isNotEmpty   prepend="or"  property="slaveContno" >
+       SLAVE_CONTNO = #slaveContno:VARCHAR#
+       </isNotEmpty>
+		   )
+		order by PROTOCOL_NO DESC
+    </isParameterPresent>
+  </select>
+  
+	<select id="queryBCntDebtInfoByContno" resultMap="BCntDebtInfoVOMap" parameterClass="java.util.HashMap" >
+		select DISTINCT T1.* ,T2.CNAME,
+					T3.BUYER_CUSTCD,T3.BUYER_NAME,T4.PRODUCT_NAME,
+					T6.AMOUNT,T6.DEBT_NUM
+		from B_CNT_DEBT_INFO T1,B_CRM_BASE_INFO T2 ,B_CNT_DEBT_EXT_INFO T3,B_PRD_INFO T4, B_PBC_APPLI_BASE_INFO T5, 
+		R_BCP_APPLI_BUSS_INFO T6 
+		<isParameterPresent >	
+			where T1.CUSTCD = T2.CUSTCD
+			AND T1.DEBT_CONTNO =T3.BUSINESS_NO
+			AND T1.SUPPLY_CHAIN_PD_ID =T4.PRODUCT_ID and T5.MAST_CONTNO = T1.DEBT_CONTNO
+			AND T6.APPNO = T5.APPNO AND T6.CUSTCD_BUYER =T3.BUYER_CUSTCD AND T6.CUSTCD_SALLER =T1.CUSTCD    	
+			<isNotEmpty prepend="and" property="appno" >
+				T5.APPNO = #appno:VARCHAR# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="buyerCustcd" >
+				T3.BUYER_CUSTCD = #buyerCustcd:VARCHAR# 
+			</isNotEmpty>
+		</isParameterPresent>
+	</select>	
+	
+	<!-- 应收账款池融资合同项下生效的借据敞口余额汇总 -->
+	<resultMap id="BaseNumberResultMap" class="java.util.HashMap">
+    	<result column="RISK_AMOUNT" property="riskAmount" jdbcType="DECIMAL" />
+    </resultMap>
+	<select id="getFlowRiskAmtByBusinessNo" resultMap="BaseNumberResultMap" parameterClass="java.util.HashMap" >
+		select sum(T2.LNCI_AMT)- sum(T2.BAIL_AMOUNT)- sum(T2.INIT_CASH_EQT_AMT) RISK_AMOUNT
+		from B_PBC_APPLI_BASE_INFO T1, B_LAN_APPLI_LNCI_BASE T2 ,B_CRR_LN_CON T3 
+		where T1.APPNO = T2.APPNO
+		and T3.APP_ID = T2.MAST_CONTNO
+		<isNotEmpty prepend="and" property="appliStatusDtl" >
+			T1.APPLI_STATUS_DTL = #appliStatusDtl:VARCHAR# 
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="businessNo" >
+			T3.VID_NO = #businessNo:VARCHAR#
+		</isNotEmpty>
+	</select>
+	
+	
+  <resultMap id="BaseAppliBaseBillResultMap" class="com.huateng.scf.bas.pbc.dao.vo.AppliBaseBillNormalInfoVO" >
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="PIID" property="piid" jdbcType="VARCHAR" />
+    <result column="APPLI_TYPE" property="appliType" jdbcType="CHAR" />
+    <result column="PROCESS_TEMPLATE_NAME" property="processTemplateName" jdbcType="VARCHAR" />
+    <result column="BUSINESSNO_TYPE" property="businessnoType" jdbcType="CHAR" />
+    <result column="BUSINESSNO" property="businessno" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="AMT" property="amt" jdbcType="DECIMAL" />
+    <result column="START_BRCODE" property="startBrcode" jdbcType="VARCHAR" />
+    <result column="START_TLRCD" property="startTlrcd" jdbcType="VARCHAR" />
+    <result column="STRAT_DATE" property="stratDate" jdbcType="CHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="APPLI_STATUS" property="appliStatus" jdbcType="CHAR" />
+    <result column="APPROVE_BRCODE" property="approveBrcode" jdbcType="VARCHAR" />
+    <result column="APPROVER" property="approver" jdbcType="VARCHAR" />
+    <result column="APPROVE_DATE" property="approveDate" jdbcType="CHAR" />
+    <result column="APPROVE_TIME" property="approveTime" jdbcType="TIMESTAMP" />
+    <result column="WORKFLOW_APPNO" property="workflowAppno" jdbcType="VARCHAR" />
+    <result column="APPLI_STATUS_DTL" property="appliStatusDtl" jdbcType="CHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="APP_DATE" property="appDate" jdbcType="CHAR" />
+    <result column="APP_TLRCD" property="appTlrcd" jdbcType="VARCHAR" />
+    <result column="APP_BRCODE" property="appBrcode" jdbcType="VARCHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="INCOME_APPNO" property="incomeAppno" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="PLEDGE_MODE" property="pledgeMode" jdbcType="CHAR" />
+    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="EBANK_APPNO" property="ebankAppno" jdbcType="VARCHAR" />
+    <result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+    <result column="CHANNEL_FLAG" property="channelFlag" jdbcType="CHAR" />
+    <result column="IS_FLOW_END" property="isFlowEnd" jdbcType="CHAR" />
+    <result column="IFSP_APPNO" property="ifspAppno" jdbcType="VARCHAR" />
+    <result column="IFSP_ORDER_NO" property="ifspOrderNo" jdbcType="VARCHAR" />
+    
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+    <result column="BILLCODE" property="billcode" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="POSTNO" property="postno" jdbcType="CHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="STORAGE_ADDRESS" property="storageAddress" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="DATE" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="STAND_LOSE" property="standLose" jdbcType="VARCHAR" />
+    <result column="STORAGE_COST_END_DATE" property="storageCostEndDate" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getWareMnAddByPara" resultMap="BaseAppliBaseBillResultMap"  parameterClass="java.util.HashMap" >
+      select abi.*, tambs.ID, tambs.BILLNO, tambs.BILLCODE, tambs.ADDRESS, tambs.POSTNO, tambs.WAREHOUSE_ID, 
+       		tambs.STORAGE_ADDRESS, tambs.SIGN_DATE, tambs.PHONE, tambs.FAX, tambs.START_DATE, tambs.END_DATE, 
+       		tambs.STAND_LOSE, tambs.STORAGE_COST_END_DATE, tambs.TLRCD, tambs.STATUS, tambs.REASON
+      from B_PBC_APPLI_BASE_INFO abi, S_BCP_APPLI_MORT_BILL_NORMAL tambs 
+      where abi.APPNO=tambs.APPNO
+      <isNotEmpty prepend="and" property="appno" >
+        abi.APPNO = #appno:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="businessnoType" >
+        abi.BUSINESSNO_TYPE = #businessnoType:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="businessno" >
+        abi.BUSINESSNO like '%' || #businessno:VARCHAR# || '%'
+      </isNotEmpty>
+  </select>
+  <select id="countWareMnAddByPara" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+      select count(abi.APPNO)
+      from B_PBC_APPLI_BASE_INFO abi, S_BCP_APPLI_MORT_BILL_NORMAL tambs 
+      where abi.APPNO=tambs.APPNO
+      <isNotEmpty prepend="and" property="appno" >
+        abi.APPNO = #appno:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="businessnoType" >
+        abi.BUSINESSNO_TYPE = #businessnoType:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="businessno" >
+        abi.BUSINESSNO like '%' || #businessno:VARCHAR# || '%'
+      </isNotEmpty>
+  </select>
+  <!-- 统计业务申请表中各审批状态的条数 -->
+	<resultMap id="countAppliStatusResultMap" class="java.util.HashMap">
+		<result column="COUNTNUM" property="countNum" jdbcType="VARCHAR" />
+		<result column="APPLI_STATUS" property="appliStatus" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 授信额度申请，业务申请出账申请(信贷)的相关记录不在B_PBC_APPLI_BASE_INFO -->
+	<select id="countAppliStatusList" resultMap="countAppliStatusResultMap"
+		parameterClass="java.util.HashMap">
+		select count(*)countnum,APPLI_STATUS from (
+		select APPNO,APPLI_STATUS from B_PBC_APPLI_BASE_INFO
+		UNION
+		select APP_ID ,APP_STAT APPLI_STATUS from B_CRR_LN_APP
+		UNION
+		select APP_ID ,APP_STAT APPLI_STATUS from B_CRR_DUEBILL_APP
+		UNION
+		select APP_CR_ID ,APRV_STAT APPLI_STATUS from SCF.B_DCR_LIN_APP
+		)group by
+		APPLI_STATUS order by APPLI_STATUS
+	</select>
+
+</sqlMap>

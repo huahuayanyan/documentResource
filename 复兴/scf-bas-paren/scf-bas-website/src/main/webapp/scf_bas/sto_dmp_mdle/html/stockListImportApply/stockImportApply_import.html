@@ -1,0 +1,40 @@
+
+<ht-legend colorId="lawngreen">基本信息</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="appno" name="申请编号" ng-model="conditionForm.appno" disable="true"></ht-input>
+    <ht-input ht-id="protocolNo" name="监管合同号" ng-model="conditionForm.protocolNo" disable="true"></ht-input>
+    <ht-input ht-id="slaveContno" name="抵/质押合同号" ng-model="conditionForm.slaveContno" disable="true"></ht-input>
+    <ht-input ht-id="moniCname" name="监管公司名称" ng-model="conditionForm.moniCname" disable="true"></ht-input>
+    <ht-input ht-id="cname" name="出质人名称" ng-model="conditionForm.cname" disable="true"></ht-input>
+    <ht-input ht-id="mortAmount" name="押品总价值" ng-model="conditionForm.mortAmount" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="productName" name="业务品种" ng-model="conditionForm.productName" disable="true"></ht-input>
+    <ht-select ht-id="moniModel" name="货押模式" ng-model="conditionForm.moniModel" dictionary="moniType" disable="true"></ht-select>
+    <ht-input ht-id="lowPriceNew" name="最低控货价值" ng-model="conditionForm.lowPriceNew" disable="true" edit-type="currency"></ht-input>
+    <ht-input ht-id="description" name="备注" ng-model="conditionForm.description"></ht-input>
+</ht-form>
+
+<ht-legend>在库押品列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="startApply" class="btn-primary" hide= {{Write}}>下载Excel模板</ht-button>
+        <ht-button ht-id="startApply" class="btn-primary" hide= {{Write}}>导入</ht-button>
+        <ht-button ht-id="add" class="btn-primary" hide= {{Write}}>新增</ht-button>
+        <ht-button ht-id="modify" class="btn-primary" hide= {{Write}}>修改</ht-button>
+        <ht-button ht-id="delete" class="btn-primary" hide= {{Write}}>删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="mortgageNo" zh-name="押品编号"></ht-column>
+    <ht-column eg-name="mortgageName" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格型号"></ht-column>
+    <ht-column eg-name="manufacturer" zh-name="生产厂商(产地)"></ht-column>
+    <ht-column eg-name="mortgageUnits" zh-name="计量单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="核定价" type="currency"></ht-column>
+    <ht-column eg-name="quantity" zh-name="本日入库数量" type="number"></ht-column>
+    <ht-column eg-name="outQuantity" zh-name="本日出库数量" type="number"></ht-column>
+    <ht-column eg-name="remainQuantity" zh-name="本日结余数" type="number"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide= {{Write}}>保存</ht-button>
+    <ht-button ht-id="submit" class="btn-primary" hide= {{Write}} disable={{submitD}}>提交</ht-button>
+</ht-button-group>

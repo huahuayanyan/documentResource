@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" id="ng-app" lang="en" ng-app="frameModule"  ng-controller="frameController">
+<head>
+    <meta charset="utf-8"/>
+    <title>主页</title>
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache",must-revalidate/>
+    <meta http-equiv="expires" content="0"/>
+    <link rel="stylesheet" href="../../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../css/ace.min.css" />
+    <!--home style-->
+    <link rel="stylesheet" href="../../css/ht-onepage-scroll.css" />
+    <link rel="stylesheet" href="../../css/ngDialog.css" />
+    <link rel="stylesheet" href="../../css/ngDialog-theme-plain.css"/>
+    <link rel="stylesheet" href="../../css/home-tradition.css"/>
+    <link rel="stylesheet" href="../../lib/plugins/panel/style.css" />
+    <link rel="stylesheet" href="../../css/components-green.css" />
+    <link rel="stylesheet" href="../../lib/angular-tree-control/css/tree-control.css"/>
+    <script>
+        if(!!window.ActiveXObject || "ActiveXObject" in window){//判斷ie 包括 ie10 11
+            document.write("<link href='../../css/ie8.css' rel='stylesheet'>"+"<"+"/script>");
+            window.jQuery || document.write("<script src='../../lib/bower_components/jquery-1.10.2.js'>"+"<"+"/script>");
+            window.console = window.console||{log:function(a){}};
+            document.createElement("sidebar-ul");
+            document.createElement("bread-crumb");
+            document.createElement("iframes");
+        }else{
+            window.jQuery || document.write("<script src='../../lib/bower_components/jquery-2.0.3.js'>"+"<"+"/script>");
+        };
+    </script>
+    <!-- fonts -->
+    <link rel="stylesheet" href="../../css/ace-fonts.css" />
+    <link rel="stylesheet" href="../../css/font-awesome.css" />
+</head>
+
+<body class="skin-1" style="padding: 0">
+<div class="navbar navbar-default" id="navbar">
+    <script type="text/javascript">
+        try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a href="#" class="navbar-brand">
+                <small>
+					企业供应链金融平台
+                </small>
+            </a>
+            <div class="navbar-inf">
+                欢迎你：<span style="color: #0d3349" ng-bind="userName"></span>
+                <span ng-if="sysName">&nbsp;|&nbsp;</span>
+                <span ng-bind="sysName"></span>&nbsp;
+                <span ng-bind="myTime"></span>&nbsp;
+            </div>
+        </div>
+        <div class="navbar-header pull-right">
+            <ul class="nav ace-nav">
+<!--
+                <li class="">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <img class="nav-user-photo" src="../../images/my.png">
+                        <span class="user-info">
+									<small>我的</small>
+								</span>
+                    </a>
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="#">
+                                <i class="icon-cog"></i>
+                                设置
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="icon-user"></i>
+                                信息
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+-->
+                <li>
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle" ng-click="loginOut()">
+                        <img class="nav-user-photo" src="../../images/loginout.png"/>
+								<span class="user-info">
+									<small>退出</small>
+								</span>
+                    </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-header -->
+        <div class="navbar-header pull-right">
+            <ul class="nav ace-nav">
+                <li ng-repeat="menu in nav_menu_bars" ng-click="toSideBar(menu,$index)">
+                    <a ng-class="{active:$index==_index}" style="height: 25px;line-height: 25px;display: inline-block;vertical-align: middle">
+                        <i ng-class="menu.iconName" style="vertical-align: middle;"></i>
+                        <span class="menu-text" style="font-size: 14px;" ng-bind="menu.menuName"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.container -->
+</div>
+
+<div class="main-container-inner">
+    <a class="menu-toggler" id="menu-toggler" href="#">
+        <span class="menu-text"></span>
+    </a>
+    <!--左侧伸缩菜单 -->
+    <div class="sidebar" id="sidebar">
+        <script type="text/javascript">
+            try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+        </script>
+        <div id="insidebar" style="overflow: auto;background-color: #2A3644;">
+        <ul class="nav nav-list" id="sidebarList">
+            <sidebar-ul  sidebar="sidebarList"></sidebar-ul>
+        </ul>
+            
+        <div class="sidebar-collapse" id="sidebar-collapse">
+            <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+        </div>
+        </div>
+
+        <script type="text/javascript">
+            try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+        </script>
+    </div>
+    <!--主面板-->
+    <div class="main-content" style="padding-left:10px;background-color: #f5f5f5">
+        <div  class="tabpanel" id="iframeHeadDiv" style="margin-top: -10px;"></div>
+        <bread-crumb></bread-crumb>
+        <div id="iframes" style="margin-top: 6px;">
+            <!--<iframe id="dd" src="../../../test3_module/html/test_module.html" scrolling="no" frameborder="0" style="width: 500px;height: 400px;"></iframe>-->
+            <!--<iframes></iframes>-->
+            <!--<div id="mainIframe"><main-iframe></main-iframe></div>-->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container-inner -->
+<script src="../../config.js"></script>
+<!-- ace scripts -->
+<script src="../../ace-v1.2--bs-v3.0.0/assets/js/uncompressed/ace-elements.js"></script>
+<script src="../../ace-v1.2--bs-v3.0.0/assets/js/uncompressed/ace.js"></script>
+<!-- ace settings handler -->
+<script src="../../lib/bower_components/ace-extra.js"></script>
+
+
+<script src="../../lib/plugins/panel/tabpanel.js"></script>
+<script src="../../lib/bower_components/bootstrap.js"></script>
+<script src="../../lib/bower_components/angular.min.js"></script>
+<script src="../../lib/bower_components/angular-ui-router.js"></script>
+<script src="../../lib/angular-tree-control/angular-tree-control.js"></script>
+<!--<script src="../../lib/angular-file-upload-master/dist/angular-file-upload.min.js"></script>-->
+<script src="../../lib/plugins/jqValidate/jquery.poshytip.js"></script>
+<script src="../../lib/bower_components/ocLazyLoad.min.js"></script>
+<script src="../../lib/bower_components/ngDialog.js"></script>
+<script src='../../lib/plugins/echarts/dist/echarts.min.js'></script>
+<script src="../../lib/bower_components/angular-cookies.min.js"></script>
+<script src="../../lib/plugins/My97DatePicker/WdatePicker.js"></script>
+<script src="../../common_module/js/services/common.js"></script>
+<script src="../../common_module/js/directives/tableHelper.js"></script>
+
+<script src="../js/controllers/frameController.js"></script>
+<script src="../js/frameModule.js"></script>
+<script src="../js/directives/sidebarList.js"></script>
+<script src="../../component_module/js/componentModule.js"></script>
+<script>
+//    window.onresize = function(){
+//        var ifr = $(window).height()-$("#navbar").height()-84;
+//        $('iframe').height(ifr);
+//    }
+</script>
+</body>
+</html>

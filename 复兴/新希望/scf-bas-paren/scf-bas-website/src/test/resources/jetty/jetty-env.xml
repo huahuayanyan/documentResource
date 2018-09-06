@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure id="wac" class="org.mortbay.jetty.webapp.WebAppContext">
+
+	<!-- <New id="dataSourceA" class="org.apache.commons.dbcp.BasicDataSource">
+        <Set name="driverClassName">org.gjt.mm.mysql.Driver</Set>
+		<Set name="url">jdbc:mysql://170.252.200.55:3306/scube_sample?useUnicode=true&amp;characterEncoding=UTF-8</Set>
+		<Set name="username">scube_sample</Set>
+		<Set name="password">scube_sample</Set>
+		<Set name="validationQuery">select 1</Set>
+		<Set name="maxActive">20</Set>
+		<Set name="maxIdle">10</Set>
+		<Set name="maxWait">-1</Set>
+		<Set name="minEvictableIdleTimeMillis">10000</Set>
+		<Set name="timeBetweenEvictionRunsMillis">10000</Set>
+    </New>
+	<New id="app_Datasource" class="org.mortbay.jetty.plus.naming.EnvEntry">
+		<Arg>jdbc/sample</Arg>
+		<Arg>
+			<Ref id="dataSourceA"/>
+		</Arg>
+	</New> -->
+	<!--<New id="dataSourceA" class="org.apache.commons.dbcp.BasicDataSource">
+        <Set name="driverClassName">oracle.jdbc.driver.OracleDriver</Set>
+		<Set name="url">jdbc:oracle:thin:@170.252.200.55:1521:dev</Set>
+		<Set name="username">scf</Set>
+		<Set name="password">scf</Set>
+
+		<Set name="validationQuery">select 1 from dual</Set>
+		<Set name="maxActive">100</Set>
+		<Set name="maxIdle">10</Set>
+		<Set name="maxWait">1000</Set>
+		<Set name="minEvictableIdleTimeMillis">10000</Set>
+		<Set name="timeBetweenEvictionRunsMillis">10000</Set>
+    </New>   -->  
+   <!-- <New id="dataSourceA" class="org.apache.commons.dbcp.BasicDataSource">
+        <Set name="driverClassName">oracle.jdbc.driver.OracleDriver</Set>
+		<Set name="url">jdbc:oracle:thin:@170.252.200.91:1521:sit</Set>
+		<Set name="username">scf</Set>
+		<Set name="password">scf1234</Set>
+
+		<Set name="validationQuery">select 1 from dual</Set>
+		<Set name="maxActive">100</Set>
+		<Set name="maxIdle">10</Set>
+		<Set name="maxWait">1000</Set>
+		<Set name="minEvictableIdleTimeMillis">10000</Set>
+		<Set name="timeBetweenEvictionRunsMillis">10000</Set>
+    </New> -->
+    <New id="dataSourceA" class="org.apache.commons.dbcp.BasicDataSource">
+        <Set name="driverClassName">oracle.jdbc.driver.OracleDriver</Set>
+		<Set name="url">jdbc:oracle:thin:@127.0.0.1:1521:orcl</Set>
+		<Set name="username">DLP</Set>
+		<Set name="password">DLP</Set>
+
+		<Set name="validationQuery">select 1 from dual</Set>
+		<Set name="maxActive">100</Set>
+		<Set name="maxIdle">10</Set>
+		<Set name="maxWait">1000</Set>
+		<Set name="minEvictableIdleTimeMillis">10000</Set>
+		<Set name="timeBetweenEvictionRunsMillis">10000</Set>
+    </New> 
+	<New id="app_Datasource" class="org.mortbay.jetty.plus.naming.EnvEntry">
+		<Arg>jdbc/scf</Arg>
+		<Arg>
+			<Ref id="dataSourceA"/>
+		</Arg>
+	</New>
+</Configure>

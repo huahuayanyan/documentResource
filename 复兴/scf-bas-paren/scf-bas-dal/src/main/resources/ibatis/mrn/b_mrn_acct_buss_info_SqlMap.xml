@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_MRN_ACCT_BUSS_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.mrn.dao.model.BMrnAcctBussInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="BAIL_ACCOUNTNO" property="bailAccountno" jdbcType="VARCHAR" />
+    <result column="BAIL_TYPE" property="bailType" jdbcType="VARCHAR" />
+    <result column="INIT_TYPE" property="initType" jdbcType="CHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="BAIL_RATE" property="bailRate" jdbcType="DECIMAL" />
+    <result column="CONFIRM_STATUS" property="confirmStatus" jdbcType="CHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="BAIL_ACCT_ATTR" property="bailAcctAttr" jdbcType="VARCHAR" />
+    <result column="BAIL_FROZEN_PERCENT" property="bailFrozenPercent" jdbcType="DECIMAL" />
+    <result column="BAIL_FROZEN_AMT" property="bailFrozenAmt" jdbcType="DECIMAL" />
+    <result column="BILL_ID" property="billId" jdbcType="VARCHAR" />
+    <result column="BILL_NO" property="billNo" jdbcType="VARCHAR" />
+    <result column="SUB_ACCT_SEQNO" property="subAcctSeqno" jdbcType="VARCHAR" />
+    <result column="BAIL_FROZEN_NO" property="bailFrozenNo" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CUSTCD, PROTOCOL_NO, MAST_CONTNO, DEBET_NO, BAIL_ACCOUNTNO, BAIL_TYPE, INIT_TYPE, 
+    BAIL_AMOUNT, CURCD, BAIL_RATE, CONFIRM_STATUS, SLAVE_CONTNO, BAIL_ACCT_ATTR, BAIL_FROZEN_PERCENT, 
+    BAIL_FROZEN_AMT, BILL_ID, BILL_NO, SUB_ACCT_SEQNO, BAIL_FROZEN_NO, APPNO, TLRCD, 
+    CRT_TIME, BRCODE, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.mrn.dao.model.BMrnAcctBussInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_MRN_ACCT_BUSS_INFO.Base_Column_List" />
+    from B_MRN_ACCT_BUSS_INFO
+    <isParameterPresent >
+      <include refid="B_MRN_ACCT_BUSS_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.mrn.dao.model.BMrnAcctBussInfo" >
+    select 
+    <include refid="B_MRN_ACCT_BUSS_INFO.Base_Column_List" />
+    from B_MRN_ACCT_BUSS_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <!-- 放款申请审核 -->
+  <select id="selectByAppno" resultMap="BaseResultMap" parameterClass="java.lang.String" >
+    select 
+    <include refid="B_MRN_ACCT_BUSS_INFO.Base_Column_List" />
+    from B_MRN_ACCT_BUSS_INFO
+    where APPNO = #appno:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.mrn.dao.model.BMrnAcctBussInfo" >
+    delete from B_MRN_ACCT_BUSS_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.mrn.dao.model.BMrnAcctBussInfoExample" >
+    delete from B_MRN_ACCT_BUSS_INFO
+    <include refid="B_MRN_ACCT_BUSS_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.mrn.dao.model.BMrnAcctBussInfo" >
+    insert into B_MRN_ACCT_BUSS_INFO (ID, CUSTCD, PROTOCOL_NO, MAST_CONTNO, 
+      DEBET_NO, BAIL_ACCOUNTNO, BAIL_TYPE, INIT_TYPE, 
+      BAIL_AMOUNT, CURCD, BAIL_RATE, CONFIRM_STATUS, SLAVE_CONTNO, 
+      BAIL_ACCT_ATTR, BAIL_FROZEN_PERCENT, BAIL_FROZEN_AMT, BILL_ID, 
+      BILL_NO, SUB_ACCT_SEQNO, BAIL_FROZEN_NO, APPNO, 
+      TLRCD, CRT_TIME, BRCODE, LAST_UPD_TLRCD, 
+      LAST_UPD_TIME, LAST_UPD_BRCODE)
+    values (#id:VARCHAR#, #custcd:VARCHAR#, #protocolNo:VARCHAR#, #mastContno:VARCHAR#, 
+      #debetNo:VARCHAR#, #bailAccountno:VARCHAR#, #bailType:VARCHAR#, #initType:CHAR#, 
+      #bailAmount:DECIMAL#, #curcd:CHAR#, #bailRate:DECIMAL#, #confirmStatus:CHAR#, #slaveContno:VARCHAR#, 
+      #bailAcctAttr:VARCHAR#, #bailFrozenPercent:DECIMAL#, #bailFrozenAmt:DECIMAL#, #billId:VARCHAR#, 
+      #billNo:VARCHAR#, #subAcctSeqno:VARCHAR#, #bailFrozenNo:VARCHAR#, #appno:VARCHAR#, 
+      #tlrcd:VARCHAR#, #crtTime:TIMESTAMP#, #brcode:VARCHAR#, #lastUpdTlrcd:VARCHAR#, 
+      #lastUpdTime:TIMESTAMP#, #lastUpdBrcode:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.mrn.dao.model.BMrnAcctBussInfo" >
+    insert into B_MRN_ACCT_BUSS_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO
+      </isNotNull>
+      <isNotNull prepend="," property="bailAccountno" >
+        BAIL_ACCOUNTNO
+      </isNotNull>
+      <isNotNull prepend="," property="bailType" >
+        BAIL_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="initType" >
+        INIT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        BAIL_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="confirmStatus" >
+        CONFIRM_STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="bailAcctAttr" >
+        BAIL_ACCT_ATTR
+      </isNotNull>
+      <isNotNull prepend="," property="bailFrozenPercent" >
+        BAIL_FROZEN_PERCENT
+      </isNotNull>
+      <isNotNull prepend="," property="bailFrozenAmt" >
+        BAIL_FROZEN_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="billId" >
+        BILL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="billNo" >
+        BILL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="subAcctSeqno" >
+        SUB_ACCT_SEQNO
+      </isNotNull>
+      <isNotNull prepend="," property="bailFrozenNo" >
+        BAIL_FROZEN_NO
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAccountno" >
+        #bailAccountno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailType" >
+        #bailType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="initType" >
+        #initType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        #bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmStatus" >
+        #confirmStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAcctAttr" >
+        #bailAcctAttr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailFrozenPercent" >
+        #bailFrozenPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailFrozenAmt" >
+        #bailFrozenAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="billId" >
+        #billId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billNo" >
+        #billNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="subAcctSeqno" >
+        #subAcctSeqno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailFrozenNo" >
+        #bailFrozenNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.mrn.dao.model.BMrnAcctBussInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_MRN_ACCT_BUSS_INFO
+    <include refid="B_MRN_ACCT_BUSS_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_MRN_ACCT_BUSS_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetNo" >
+        DEBET_NO = #record.debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAccountno" >
+        BAIL_ACCOUNTNO = #record.bailAccountno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailType" >
+        BAIL_TYPE = #record.bailType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.initType" >
+        INIT_TYPE = #record.initType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAmount" >
+        BAIL_AMOUNT = #record.bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailRate" >
+        BAIL_RATE = #record.bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.confirmStatus" >
+        CONFIRM_STATUS = #record.confirmStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAcctAttr" >
+        BAIL_ACCT_ATTR = #record.bailAcctAttr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailFrozenPercent" >
+        BAIL_FROZEN_PERCENT = #record.bailFrozenPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailFrozenAmt" >
+        BAIL_FROZEN_AMT = #record.bailFrozenAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billId" >
+        BILL_ID = #record.billId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billNo" >
+        BILL_NO = #record.billNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.subAcctSeqno" >
+        SUB_ACCT_SEQNO = #record.subAcctSeqno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailFrozenNo" >
+        BAIL_FROZEN_NO = #record.bailFrozenNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crtTime" >
+        CRT_TIME = #record.crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTime" >
+        LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_MRN_ACCT_BUSS_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_MRN_ACCT_BUSS_INFO
+    set ID = #record.id:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      DEBET_NO = #record.debetNo:VARCHAR#,
+      BAIL_ACCOUNTNO = #record.bailAccountno:VARCHAR#,
+      BAIL_TYPE = #record.bailType:VARCHAR#,
+      INIT_TYPE = #record.initType:CHAR#,
+      BAIL_AMOUNT = #record.bailAmount:DECIMAL#,
+      CURCD = #record.curcd:CHAR#,
+      BAIL_RATE = #record.bailRate:DECIMAL#,
+      CONFIRM_STATUS = #record.confirmStatus:CHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      BAIL_ACCT_ATTR = #record.bailAcctAttr:VARCHAR#,
+      BAIL_FROZEN_PERCENT = #record.bailFrozenPercent:DECIMAL#,
+      BAIL_FROZEN_AMT = #record.bailFrozenAmt:DECIMAL#,
+      BILL_ID = #record.billId:VARCHAR#,
+      BILL_NO = #record.billNo:VARCHAR#,
+      SUB_ACCT_SEQNO = #record.subAcctSeqno:VARCHAR#,
+      BAIL_FROZEN_NO = #record.bailFrozenNo:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      CRT_TIME = #record.crtTime:TIMESTAMP#,
+      BRCODE = #record.brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_MRN_ACCT_BUSS_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.mrn.dao.model.BMrnAcctBussInfo" >
+    update B_MRN_ACCT_BUSS_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO = #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAccountno" >
+        BAIL_ACCOUNTNO = #bailAccountno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailType" >
+        BAIL_TYPE = #bailType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="initType" >
+        INIT_TYPE = #initType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT = #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        BAIL_RATE = #bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmStatus" >
+        CONFIRM_STATUS = #confirmStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAcctAttr" >
+        BAIL_ACCT_ATTR = #bailAcctAttr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailFrozenPercent" >
+        BAIL_FROZEN_PERCENT = #bailFrozenPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailFrozenAmt" >
+        BAIL_FROZEN_AMT = #bailFrozenAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="billId" >
+        BILL_ID = #billId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billNo" >
+        BILL_NO = #billNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="subAcctSeqno" >
+        SUB_ACCT_SEQNO = #subAcctSeqno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailFrozenNo" >
+        BAIL_FROZEN_NO = #bailFrozenNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME = #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.mrn.dao.model.BMrnAcctBussInfo" >
+    update B_MRN_ACCT_BUSS_INFO
+    set CUSTCD = #custcd:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      DEBET_NO = #debetNo:VARCHAR#,
+      BAIL_ACCOUNTNO = #bailAccountno:VARCHAR#,
+      BAIL_TYPE = #bailType:VARCHAR#,
+      INIT_TYPE = #initType:CHAR#,
+      BAIL_AMOUNT = #bailAmount:DECIMAL#,
+      CURCD = #curcd:CHAR#,
+      BAIL_RATE = #bailRate:DECIMAL#,
+      CONFIRM_STATUS = #confirmStatus:CHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      BAIL_ACCT_ATTR = #bailAcctAttr:VARCHAR#,
+      BAIL_FROZEN_PERCENT = #bailFrozenPercent:DECIMAL#,
+      BAIL_FROZEN_AMT = #bailFrozenAmt:DECIMAL#,
+      BILL_ID = #billId:VARCHAR#,
+      BILL_NO = #billNo:VARCHAR#,
+      SUB_ACCT_SEQNO = #subAcctSeqno:VARCHAR#,
+      BAIL_FROZEN_NO = #bailFrozenNo:VARCHAR#,
+      APPNO = #appno:VARCHAR#,
+      TLRCD = #tlrcd:VARCHAR#,
+      CRT_TIME = #crtTime:TIMESTAMP#,
+      BRCODE = #brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

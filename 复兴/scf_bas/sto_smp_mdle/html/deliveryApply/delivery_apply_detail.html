@@ -1,0 +1,68 @@
+
+<ht-legend>申请内容</ht-legend>
+<ht-form name="deliver">
+    <ht-input name="出质人名称" ng-model="deliver.cname" disable="true"></ht-input>
+    <ht-input name="监管公司名称" ng-model="deliver.moniCname" disable="true"></ht-input>
+    <ht-input name="抵/质押合同号" ng-model="deliver.slaveContno" disable="true"></ht-input>
+    <ht-input name="监管合同号" ng-model="deliver.protocolNo" disable="true"></ht-input>
+    <ht-select name="业务品种" ng-model="deliver.supplyChainPdId" disable="true" dictionary="vidBusTyp"></ht-select>
+    <ht-select name="货押模式" ng-model="deliver.pledgeMode" disable="true" dictionary="moniType"></ht-select>
+    <ht-input name="押品总价值" ng-model="deliver.mortAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="抵/质押率" ng-model="deliver.ration" disable="true" edit-type="currency"></ht-input>
+
+    <ht-input name="本次可提押品价值" ng-model="deliver.maxDeliverValue" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="敞口余额" ng-model="deliver.debtAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="本次提货申请总金额" ng-model="deliver.deliverValue" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="本次追加保证金总金额" reg-exp="common.require" ng-model="deliver.bailAmount" disable="{{disable}}" edit-type="currency"></ht-input>
+    <ht-text-area name="备注" ng-model="deliver.memo" disable="{{disable}}" style="resize: none"></ht-text-area>
+</ht-form>
+
+<ht-legend>提货押品列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="addmort" class="btn-primary" hide="{{hide}}">新增</ht-button>
+        <ht-button ht-id="editmort" class="btn-primary" hide="{{hide}}">修改</ht-button>
+        <ht-button ht-id="deletemort" class="btn-primary" hide="{{hide}}">删除</ht-button>
+        <ht-button ht-id="viewmort" class="btn-primary" hide="{{morthide}}">押品详情</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="mortgageNo" zh-name="押品编号"></ht-column>
+    <ht-column eg-name="mortgageName" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="mortgageUnits" zh-name="单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="核定单价" type="currency"></ht-column>
+    <ht-column eg-name="quantity" zh-name="数量/重量" type="currency"></ht-column>
+    <ht-column eg-name="balQuantity" zh-name="提货数量/重量" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+<div id="showIdea" style="display: none">
+    <ht-legend>历史审批意见</ht-legend>
+    <ht-table ht-id="tableId" datasource="datasourcetask" selected="selectedtask" docheckbox="true">
+        <ht-column eg-name="taskName" zh-name="任务名称"></ht-column>
+        <ht-column eg-name="taskComment" zh-name="审批意见"></ht-column>
+        <ht-column eg-name="name5" zh-name="处理人"></ht-column>
+        <ht-column eg-name="assignId" zh-name="处理人编号"></ht-column>
+        <ht-column eg-name="dealTime" zh-name="处理时间"></ht-column>
+    </ht-table>
+    <ht-page conf="conftask"></ht-page>
+    <ht-legend>审批意见</ht-legend>
+    <ht-form name="applyDtlForm">
+        <ht-text-area ht-id="taskComment" name="审批意见" height="70" ng-model="applyDtlForm.taskComment"></ht-text-area>
+    </ht-form>
+</div>
+<ht-button-group align="center">
+    <ht-button ht-id="save" hide="{{Write}}" disable="{{WriteDisable}}" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="submit" hide="{{Write}}" disable="{{submitDisable}}" class="btn-primary">提交</ht-button>
+
+    <ht-button ht-id="IssuedSubmit" hide="{{Issued}}" disable="{{IssuedDisable}}" class="btn-primary">同意</ht-button>
+    <ht-button ht-id="IssuedGoBack" hide="{{Issued}}" disable="{{IssuedDisable}}" class="btn-primary">退回</ht-button>
+    <ht-button ht-id="noticePrint" hide="{{Issued}}" disable="{{IssuedDisable}}" class="btn-primary">提货通知书</ht-button>
+
+    <ht-button ht-id="ReceiptSubmit" hide="{{Receipt}}" disable="{{ReceiptDisable}}" class="btn-primary">确认</ht-button>
+
+</ht-button-group>
+
+
+

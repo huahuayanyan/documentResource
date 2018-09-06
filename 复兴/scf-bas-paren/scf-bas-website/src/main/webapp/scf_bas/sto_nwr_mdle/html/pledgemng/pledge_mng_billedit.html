@@ -1,0 +1,22 @@
+
+<ht-form name="billnormal">
+    <ht-input ht-id="appno" name="申请编号" ng-model="billnormal.appno" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="billcode" name="仓单编号" ng-model="billnormal.billcode" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="cname" name="出质人名称" ng-model="billnormal.cname" disable="true"></ht-input>
+    <ht-input ht-id="address" name="联系地址" ng-model="billnormal.address" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="postno" name="邮编" ng-model="billnormal.postno" disable="true"></ht-input>
+    <ht-input ht-id="storageAddress" name="仓库地址" ng-model="billnormal.storageAddress" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="signDate" name="签发日期" ng-model="billnormal.signDate" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="phone" name="经办人电话" ng-model="billnormal.phone" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="fax" name="经办人传真" ng-model="billnormal.fax" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="startDate" name="开具日期" ng-model="billnormal.startDate" reg-exp="common.require"
+              edit-type="date" high-date-id="endDate" disable="true"></ht-input>
+    <ht-input ht-id="endDate" name="截止日期" ng-model="billnormal.endDate" reg-exp="common.require"
+              edit-type="date" lower-date-id="startDate" disable="true"></ht-input>
+    <ht-input ht-id="standLose" name="标准损耗" ng-model="billnormal.standLose" disable="true"></ht-input>
+    <ht-input ht-id="storageCostEndDate" name="存储费用截止日" ng-model="billnormal.storageCostEndDate" disable="true"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="close" class="btn-primary">返回</ht-button>
+</ht-button-group>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="S_BCP_APPLI_WAREHOUSE" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.sto.nwr.dao.model.SBcpAppliWarehouse" >
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="THE_R_P_AMOUNT" property="theRPAmount" jdbcType="DECIMAL" />
+    <result column="RISK_AMOUNT" property="riskAmount" jdbcType="DECIMAL" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="REMOVE_PLEDGE_AMOUNT" property="removePledgeAmount" jdbcType="DECIMAL" />
+    <result column="REMOVE_PLEDGE_HIGHEST_AMOUNT" property="removePledgeHighestAmount" jdbcType="DECIMAL" />
+    <result column="RECEIPT_PLEDGE_AMOUNT" property="receiptPledgeAmount" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    APPNO, THE_R_P_AMOUNT, RISK_AMOUNT, RATION, REMOVE_PLEDGE_AMOUNT, REMOVE_PLEDGE_HIGHEST_AMOUNT, 
+    RECEIPT_PLEDGE_AMOUNT, DESCRIPTION
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpAppliWarehouseExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="S_BCP_APPLI_WAREHOUSE.Base_Column_List" />
+    from S_BCP_APPLI_WAREHOUSE
+    <isParameterPresent >
+      <include refid="S_BCP_APPLI_WAREHOUSE.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpAppliWarehouse" >
+    select 
+    <include refid="S_BCP_APPLI_WAREHOUSE.Base_Column_List" />
+    from S_BCP_APPLI_WAREHOUSE
+    where APPNO = #appno:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpAppliWarehouse" >
+    delete from S_BCP_APPLI_WAREHOUSE
+    where APPNO = #appno:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpAppliWarehouseExample" >
+    delete from S_BCP_APPLI_WAREHOUSE
+    <include refid="S_BCP_APPLI_WAREHOUSE.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpAppliWarehouse" >
+    insert into S_BCP_APPLI_WAREHOUSE (APPNO, THE_R_P_AMOUNT, RISK_AMOUNT, RATION, 
+      REMOVE_PLEDGE_AMOUNT, REMOVE_PLEDGE_HIGHEST_AMOUNT, RECEIPT_PLEDGE_AMOUNT, 
+      DESCRIPTION)
+    values (#appno:VARCHAR#, #theRPAmount:DECIMAL#, #riskAmount:DECIMAL#, #ration:DECIMAL#, 
+      #removePledgeAmount:DECIMAL#, #removePledgeHighestAmount:DECIMAL#, #receiptPledgeAmount:DECIMAL#, 
+      #description:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpAppliWarehouse" >
+    insert into S_BCP_APPLI_WAREHOUSE
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="theRPAmount" >
+        THE_R_P_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmount" >
+        RISK_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        RATION
+      </isNotNull>
+      <isNotNull prepend="," property="removePledgeAmount" >
+        REMOVE_PLEDGE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="removePledgeHighestAmount" >
+        REMOVE_PLEDGE_HIGHEST_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="receiptPledgeAmount" >
+        RECEIPT_PLEDGE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="theRPAmount" >
+        #theRPAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmount" >
+        #riskAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        #ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="removePledgeAmount" >
+        #removePledgeAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="removePledgeHighestAmount" >
+        #removePledgeHighestAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="receiptPledgeAmount" >
+        #receiptPledgeAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        #description:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpAppliWarehouseExample" resultClass="java.lang.Integer" >
+    select count(*) from S_BCP_APPLI_WAREHOUSE
+    <include refid="S_BCP_APPLI_WAREHOUSE.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update S_BCP_APPLI_WAREHOUSE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.theRPAmount" >
+        THE_R_P_AMOUNT = #record.theRPAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.riskAmount" >
+        RISK_AMOUNT = #record.riskAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ration" >
+        RATION = #record.ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.removePledgeAmount" >
+        REMOVE_PLEDGE_AMOUNT = #record.removePledgeAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.removePledgeHighestAmount" >
+        REMOVE_PLEDGE_HIGHEST_AMOUNT = #record.removePledgeHighestAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.receiptPledgeAmount" >
+        RECEIPT_PLEDGE_AMOUNT = #record.receiptPledgeAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.description" >
+        DESCRIPTION = #record.description:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="S_BCP_APPLI_WAREHOUSE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update S_BCP_APPLI_WAREHOUSE
+    set APPNO = #record.appno:VARCHAR#,
+      THE_R_P_AMOUNT = #record.theRPAmount:DECIMAL#,
+      RISK_AMOUNT = #record.riskAmount:DECIMAL#,
+      RATION = #record.ration:DECIMAL#,
+      REMOVE_PLEDGE_AMOUNT = #record.removePledgeAmount:DECIMAL#,
+      REMOVE_PLEDGE_HIGHEST_AMOUNT = #record.removePledgeHighestAmount:DECIMAL#,
+      RECEIPT_PLEDGE_AMOUNT = #record.receiptPledgeAmount:DECIMAL#,
+      DESCRIPTION = #record.description:VARCHAR#
+    <isParameterPresent >
+      <include refid="S_BCP_APPLI_WAREHOUSE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpAppliWarehouse" >
+    update S_BCP_APPLI_WAREHOUSE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="theRPAmount" >
+        THE_R_P_AMOUNT = #theRPAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmount" >
+        RISK_AMOUNT = #riskAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        RATION = #ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="removePledgeAmount" >
+        REMOVE_PLEDGE_AMOUNT = #removePledgeAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="removePledgeHighestAmount" >
+        REMOVE_PLEDGE_HIGHEST_AMOUNT = #removePledgeHighestAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="receiptPledgeAmount" >
+        RECEIPT_PLEDGE_AMOUNT = #receiptPledgeAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION = #description:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where APPNO = #appno:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpAppliWarehouse" >
+    update S_BCP_APPLI_WAREHOUSE
+    set THE_R_P_AMOUNT = #theRPAmount:DECIMAL#,
+      RISK_AMOUNT = #riskAmount:DECIMAL#,
+      RATION = #ration:DECIMAL#,
+      REMOVE_PLEDGE_AMOUNT = #removePledgeAmount:DECIMAL#,
+      REMOVE_PLEDGE_HIGHEST_AMOUNT = #removePledgeHighestAmount:DECIMAL#,
+      RECEIPT_PLEDGE_AMOUNT = #receiptPledgeAmount:DECIMAL#,
+      DESCRIPTION = #description:VARCHAR#
+    where APPNO = #appno:VARCHAR#
+  </update>
+</sqlMap>

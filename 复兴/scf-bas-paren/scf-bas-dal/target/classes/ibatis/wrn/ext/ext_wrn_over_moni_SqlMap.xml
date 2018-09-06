@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_WRN_OVER_MONI" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.wrn.dao.model.OverMoniLimitVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="MONI_CNAME" property="moniCname" jdbcType="VARCHAR" />
+    <result column="LEVELS" property="levels" jdbcType="VARCHAR" />
+    <result column="MONITOR_AREA" property="monitorArea" jdbcType="VARCHAR" />
+    <result column="DETAIL_MONITOR_AREA" property="detailMonitorArea" jdbcType="VARCHAR" />
+    <result column="LIMIT_SUM" property="limitSum" jdbcType="DECIMAL" />
+    <result column="MORT_AMT" property="mortAmt" jdbcType="DECIMAL" />
+    <result column="WARN_DATE" property="warnDate" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <select id="selectBWrnOverMoniByPage" parameterClass="java.util.Map" resultMap="BaseResultMap">
+  	select distinct twdi.*,wbi.warn_date from B_WRN_BASE_INFO wbi,B_WRN_OVER_MONI_INFO twdi
+	where wbi.id = twdi.warn_id
+	<isNotNull property="paramId" prepend="and">
+		wbi.param_id = #paramId:VARCHAR#
+	</isNotNull> 
+	<isNotNull property="moniCname" prepend="and">
+		twdi.moni_cname like '%'||#moniCname:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="startDate" prepend="and">
+		<![CDATA[wbi.warn_date >=  #startDate:VARCHAR#]]>
+	</isNotNull>
+	<isNotNull property="endDate" prepend="and">
+		<![CDATA[wbi.warn_date<=  #endDate:VARCHAR#]]>
+	</isNotNull>
+	<isNotNull property="brcode" prepend="and">
+		<isEqual property="brattr" compareValue="1" >
+			exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi,B_CNT_MPROT_PART_INFO part where tmbi.protocol_no = part.protocol_no and 
+			part.role = '02' and part.custcd = twdi.moni_custcd and tmbi.cooperation_brcode = #brcode:VARCHAR#)
+		</isEqual>
+		<isNotEqual property="brattr" compareValue="1" >
+			exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =wbi.brcode  and parent_brcode = brcode  
+			and affiliation_type = '1')
+		</isNotEqual>
+	</isNotNull>
+  </select>
+  <select id="selectBWrnOverMoniCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	SELECT COUNT(ID) FROM (
+	  	select distinct twdi.*,wbi.warn_date from B_WRN_BASE_INFO wbi,B_WRN_OVER_MONI_INFO twdi
+		where wbi.id = twdi.warn_id
+		<isNotNull property="paramId" prepend="and">
+			wbi.param_id = #paramId:VARCHAR#
+		</isNotNull> 
+		<isNotNull property="moniCname" prepend="and">
+			twdi.moni_cname like '%'||#moniCname:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="startDate" prepend="and">
+			<![CDATA[wbi.warn_date >=  #startDate:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="endDate" prepend="and">
+			<![CDATA[wbi.warn_date<=  #endDate:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="brcode" prepend="and">
+			<isEqual property="brattr" compareValue="1" >
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi,B_CNT_MPROT_PART_INFO part where tmbi.protocol_no = part.protocol_no and 
+				part.role = '02' and part.custcd = twdi.moni_custcd and tmbi.cooperation_brcode = #brcode:VARCHAR#)
+			</isEqual>
+			<isNotEqual property="brattr" compareValue="1" >
+				exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =wbi.brcode  and parent_brcode = #brcode:VARCHAR#  
+				and affiliation_type = '1')
+			</isNotEqual>
+		</isNotNull>
+  	)
+  </select>
+</sqlMap>

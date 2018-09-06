@@ -1,0 +1,34 @@
+
+<ht-legend>任务申请</ht-legend>
+<ht-form name="otherform">
+    <ht-input-extent ht-id="gutNm" name="出质人名称"  extent="gutNmContent"
+                     on-change="gutNmdoextent" ng-model="otherform.gutNm" readonly="false" >
+    </ht-input-extent>
+    <!-- <ht-input-extent ht-id="conId" name="抵/质押合同号" reg-exp="common.require" extent="conIdContent"
+                    on-change="conIddoextent" ng-model="otherform.conId" readonly="false" >
+    </ht-input-extent> -->
+    <ht-button-group>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>查询结果</ht-legend>
+<ht-button-group >
+	    <ht-button ht-id="apply" class="btn-primary" hide="{{view}}">发起申请</ht-button>
+	</ht-button-group>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="conId" zh-name="抵/质押合同号" href="false" docolumn="conId"></ht-column>
+    <ht-column eg-name="gutNm" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="gutVal" zh-name="抵/质押合同总金额" type="currency"></ht-column>
+    <ht-column eg-name="ration" zh-name="抵/质押率(%)"></ht-column>
+    <ht-column eg-name="mortgageAmount" zh-name="押品总价值" type="currency"></ht-column>
+    <ht-column eg-name="lowPriceNew" zh-name="最低控货价值" type="currency"></ht-column>
+    <ht-column eg-name="deliveryAmt" zh-name="可提货金额" type="currency"></ht-column>
+    <ht-column eg-name="strtDt" zh-name="合同生效日" type="date"></ht-column>
+    <ht-column eg-name="endDt" zh-name="合同到期日" type="date"></ht-column>
+    <ht-column eg-name="vidPrdNm" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="prtclNo" zh-name="监管合同号"></ht-column>
+    <ht-column eg-name="prtclBrNm" zh-name="监管公司名称"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

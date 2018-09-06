@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_NTE_NOTICE_MTG" >
+   <select id="findBNteNoticeMtgByAppno" resultMap="B_NTE_NOTICE_MTG.BaseResultMap">
+    select 
+    <include refid="B_NTE_NOTICE_MTG.Base_Column_List" />
+    from B_NTE_NOTICE_MTG
+    where appno = #appno:VARCHAR#
+  </select>
+  <!-- 根据押品编号查询发货通知押品信息 -->
+  <resultMap id="DeliveryNotifyMortMap" class="com.huateng.scf.bas.nte.dao.model.BNteNoticeMtgExt" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FOUR" property="mortgageLevelFour" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FIVE" property="mortgageLevelFive" jdbcType="VARCHAR" />
+    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+    <result column="CONFIRM_PRICE" property="confirmPrice" jdbcType="DECIMAL" />
+    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_TYPE" property="mortgageType" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_ADDRESS" property="warehouseAddress" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+    <result column="WEIGHT_UNITS" property="weightUnits" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="WAREHOUSE" property="warehouse" jdbcType="VARCHAR" />
+    <result column="WEIGHT_ALL" property="weightAll" jdbcType="DECIMAL" />
+    <result column="ENGINE_NO" property="engineNo" jdbcType="VARCHAR" />
+    <result column="CHASSIS_NO" property="chassisNo" jdbcType="VARCHAR" />
+    <result column="CERTIFICATION_NO" property="certificationNo" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="FIX_MORTGAGE_NO" property="fixMortgageNo" jdbcType="VARCHAR" />
+    <result column="JOIN_BATCH" property="joinBatch" jdbcType="CHAR" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="CONFIRM_ACCORDING" property="confirmAccording" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="MANUFACTURER" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR" />
+    <result column="MANUFACTURE_DATE" property="manufactureDate" jdbcType="CHAR" />
+    <result column="BAL_QUANTITY" property="balQuantity" jdbcType="DECIMAL" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="SRC_MORTGAGE_NO" property="srcMortgageNo" jdbcType="VARCHAR" />
+    <result column="PACKAGEW" property="packagew" jdbcType="VARCHAR" />
+    <result column="QUALITY_LEVEL" property="qualityLevel" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+     <result column="DELIVERYNO" property="deliveryNo" jdbcType="VARCHAR" />
+  </resultMap>
+ <select id="getDeliveryNotifyMortList" resultMap="DeliveryNotifyMortMap" parameterClass="java.util.HashMap" >
+	SELECT
+    a.*,
+    b.ext1 as deliveryNo
+FROM
+    B_NTE_NOTICE_MTG a ,
+    B_NTE_NOTICE_BASE b
+
+	
+    <isParameterPresent >
+	WHERE
+    1=1
+AND a.BAL_QUANTITY >0
+AND a.pid = b.id
+AND b.NOTICE_TYPE ='122'
+	
+
+    <isNotEmpty prepend="and" property="mortgageNos" > 
+        a.MORTGAGE_NO  in 
+       <iterate property="mortgageNos" conjunction="," open="(" close=")" >
+   		<![CDATA[ #mortgageNos[]#   ]]> 
+   		</iterate> 
+     </isNotEmpty>
+          <isNotEmpty prepend="and" property="deliveryNos" > 
+        b.ext1  in 
+       <iterate property="deliveryNos" conjunction="," open="(" close=")" >
+   		<![CDATA[ #deliveryNos[]#   ]]> 
+   		</iterate> 
+     </isNotEmpty>
+	order by a.MORTGAGE_NO DESC
+    </isParameterPresent>
+  </select>
+</sqlMap>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_MORTGAGEINOUT">
+
+	<!-- 提货台帐查询 -->
+	<select id="queryMortgageInout" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT msd.slave_Contno,msd.mortgage_Biz_Type,msd.BRCODE,
+		to_date(to_char(msd.last_Upd_Time , 'yyyy-mm-dd'),'yyyy-mm-dd') last_Upd_Time,
+		msd.mortgage_No,msd.vender,msd.mortgage_Model,msd.quantity,msd.confirm_Price,
+		msd.tot_Price,msd.mortgage_Level_Three,msd.mortgage_Level_Two,msd.mortgage_Level_One,cgc.br_cd,
+		cgc.PRTCL_NO, cbi.cname, mpi.cname mpicname ,msd.SUPPLY_CHAIN_PD_ID , b.product_name,
+		msd.ORIGINAL_QUANTITY,mc1.MORTGAGE_NAME one_level,mc2.MORTGAGE_NAME two_level,mc3.MORTGAGE_NAME three_level
+		FROM B_PBC_MTG_STOCK_DTL msd 
+		 join B_CRR_GNTY_CON cgc on msd.slave_Contno = cgc.CON_ID
+		 join B_CNT_MPROT_PART_INFO mpi on mpi.protocol_No = cgc.PRTCL_NO and mpi.ROLE='03'
+		 join B_CRM_BASE_INFO cbi on cgc.gut_id = cbi.custcd
+		 left join B_PRD_INFO b on b.product_id = msd.SUPPLY_CHAIN_PD_ID
+		 LEFT join B_PBC_MTG_CLASS mc1 on mc1.MORTGAGE_CODE = msd.MORTGAGE_LEVEL_ONE
+		 LEFT join B_PBC_MTG_CLASS mc2 on mc2.MORTGAGE_CODE = msd.MORTGAGE_LEVEL_TWO
+		 LEFT join B_PBC_MTG_CLASS mc3 on mc3.MORTGAGE_CODE = msd.MORTGAGE_LEVEL_three
+		WHERE 
+			1=1
+		<isNotEmpty prepend="AND" property="custName">
+			cbi.CNAME like '%$custName$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="slaveContcode">
+			lower(msd.slave_Contno) like '%$slaveContcode$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="productId">
+			msd.SUPPLY_CHAIN_PD_ID = #productId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="bussTypes">
+			msd.mortgage_Biz_Type in
+			<iterate property="bussTypes" conjunction="," open="(" close=")" >
+	   		 	$bussTypes[]$
+	   		</iterate> 
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="dateFrom"> 
+			<![CDATA[ to_char(msd.LAST_UPD_TIME,'yyyymmdd') >= #dateFrom# ]]> 
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="dateTo"> 
+			<![CDATA[ to_char(msd.LAST_UPD_TIME,'yyyymmdd') <= #dateTo# ]]> 
+		</isNotEmpty> 
+		<isNotNull prepend="AND" property="brCode">
+			msd.BRCODE = #brCode#
+		</isNotNull>
+		order by msd.LAST_UPD_TIME desc
+	</select>
+
+</sqlMap>

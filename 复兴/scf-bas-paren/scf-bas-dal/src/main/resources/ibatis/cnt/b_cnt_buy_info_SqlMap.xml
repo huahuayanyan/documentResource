@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_BUY_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfo" >
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTCODE" property="tradeContcode" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="APPLY_DATE" property="applyDate" jdbcType="CHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="TOT_AMT" property="totAmt" jdbcType="DECIMAL" />
+    <result column="AMT" property="amt" jdbcType="DECIMAL" />
+    <result column="REMAIN_AMT" property="remainAmt" jdbcType="DECIMAL" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="POSTCODE" property="postcode" jdbcType="CHAR" />
+    <result column="BANK" property="bank" jdbcType="VARCHAR" />
+    <result column="SEC_CUSTCD" property="secCustcd" jdbcType="VARCHAR" />
+    <result column="SEC_CNAME" property="secCname" jdbcType="VARCHAR" />
+    <result column="SEC_TEL" property="secTel" jdbcType="VARCHAR" />
+    <result column="SEC_ADDRESS" property="secAddress" jdbcType="VARCHAR" />
+    <result column="SEC_BANK" property="secBank" jdbcType="VARCHAR" />
+    <result column="SEC_FAX" property="secFax" jdbcType="VARCHAR" />
+    <result column="SEC_BANK_NAME" property="secBankName" jdbcType="VARCHAR" />
+    <result column="SEC_POSTCODE" property="secPostcode" jdbcType="CHAR" />
+    <result column="BAIL_ACCOUNT" property="bailAccount" jdbcType="VARCHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="BAIL_RATE" property="bailRate" jdbcType="DECIMAL" />
+    <result column="TRANSPORT_TYPE" property="transportType" jdbcType="VARCHAR" />
+    <result column="EFFECTIVE_ADDRESS" property="effectiveAddress" jdbcType="VARCHAR" />
+    <result column="COST_MONEY" property="costMoney" jdbcType="DECIMAL" />
+    <result column="GUATTYPE" property="guattype" jdbcType="VARCHAR" />
+    <result column="TLRNO" property="tlrno" jdbcType="VARCHAR" />
+    <result column="FIR_NAME" property="firName" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="INDUSTRY_ONE" property="industryOne" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_TWO" property="industryTwo" jdbcType="VARCHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="VARCHAR" />
+    <result column="EBANK_APPNO" property="ebankAppno" jdbcType="VARCHAR" />
+    <result column="CHANNEL_FLAG" property="channelFlag" jdbcType="CHAR" />
+    <result column="ACCU_DELI_AMT" property="accuDeliAmt" jdbcType="DECIMAL" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    TRADE_CONTNO, TRADE_CONTCODE, MAST_CONTNO, CUSTCD, APPLY_DATE, START_DATE, END_DATE, 
+    CURCD, TOT_AMT, AMT, REMAIN_AMT, CNAME, TEL, ADDRESS, FAX, POSTCODE, BANK, SEC_CUSTCD, 
+    SEC_CNAME, SEC_TEL, SEC_ADDRESS, SEC_BANK, SEC_FAX, SEC_BANK_NAME, SEC_POSTCODE, 
+    BAIL_ACCOUNT, BAIL_AMOUNT, BAIL_RATE, TRANSPORT_TYPE, EFFECTIVE_ADDRESS, COST_MONEY, 
+    GUATTYPE, TLRNO, FIR_NAME, STATUS, INDUSTRY_ONE, INDUSTRY_TWO, EXT1, MEMO, PROTOCOL_NO, 
+    SUPPLY_CHAIN_PD_ID, EBANK_APPNO, CHANNEL_FLAG, ACCU_DELI_AMT, APPNO, TLRCD, CRT_TIME, 
+    BRCODE, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_BUY_INFO.Base_Column_List" />
+    from B_CNT_BUY_INFO
+    <isParameterPresent >
+      <include refid="B_CNT_BUY_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  
+  <select id="selectContBuyInfoByDebetNo" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+	SELECT T1.* FROM B_CNT_BUY_INFO T1,B_LAN_LNCI_BUY_BIZ T2 WHERE 1=1
+	AND T1.TRADE_CONTNO = T2.TRADE_CONTNO
+	<isNotEmpty prepend="and" property="debetNo" >
+		T2.DEBET_NO = #debetNo:VARCHAR#
+	</isNotEmpty>
+	<isEmpty prepend="and" property="debetNo" >
+		1=2
+	</isEmpty>
+  </select>
+
+  <select id="selectContBuyCountByDebetNo" resultClass="java.lang.Integer" parameterClass="java.util.HashMap" >
+	SELECT count(*) from
+	(SELECT T1.* FROM B_CNT_BUY_INFO T1,B_LAN_LNCI_BUY_BIZ T2 WHERE 1=1
+	AND T1.TRADE_CONTNO = T2.TRADE_CONTNO
+	<isNotEmpty prepend="and" property="debetNo" >
+		T2.DEBET_NO = #debetNo:VARCHAR#
+	</isNotEmpty>
+	<isEmpty prepend="and" property="debetNo" >
+		1=2
+	</isEmpty>)
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfo" >
+    select 
+    <include refid="B_CNT_BUY_INFO.Base_Column_List" />
+    from B_CNT_BUY_INFO
+    where TRADE_CONTNO = #tradeContno:VARCHAR#
+  </select>
+  <select id="selectByProtocolNo" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfo" >
+    select 
+    <include refid="B_CNT_BUY_INFO.Base_Column_List" />
+    from B_CNT_BUY_INFO
+    where PROTOCOL_NO = #protocolNo:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfo" >
+    delete from B_CNT_BUY_INFO
+    where TRADE_CONTNO = #tradeContno:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfoExample" >
+    delete from B_CNT_BUY_INFO
+    <include refid="B_CNT_BUY_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfo" >
+    insert into B_CNT_BUY_INFO (TRADE_CONTNO, TRADE_CONTCODE, MAST_CONTNO, CUSTCD, 
+      APPLY_DATE, START_DATE, END_DATE, CURCD, TOT_AMT, 
+      AMT, REMAIN_AMT, CNAME, TEL, ADDRESS, 
+      FAX, POSTCODE, BANK, SEC_CUSTCD, SEC_CNAME, 
+      SEC_TEL, SEC_ADDRESS, SEC_BANK, SEC_FAX, SEC_BANK_NAME, 
+      SEC_POSTCODE, BAIL_ACCOUNT, BAIL_AMOUNT, BAIL_RATE, 
+      TRANSPORT_TYPE, EFFECTIVE_ADDRESS, COST_MONEY, GUATTYPE, 
+      TLRNO, FIR_NAME, STATUS, INDUSTRY_ONE, INDUSTRY_TWO, 
+      EXT1, MEMO, PROTOCOL_NO, SUPPLY_CHAIN_PD_ID, 
+      EBANK_APPNO, CHANNEL_FLAG, ACCU_DELI_AMT, APPNO, 
+      TLRCD, CRT_TIME, BRCODE, LAST_UPD_TLRCD, 
+      LAST_UPD_TIME, LAST_UPD_BRCODE)
+    values (#tradeContno:VARCHAR#, #tradeContcode:VARCHAR#, #mastContno:VARCHAR#, #custcd:VARCHAR#, 
+      #applyDate:CHAR#, #startDate:CHAR#, #endDate:CHAR#, #curcd:CHAR#, #totAmt:DECIMAL#, 
+      #amt:DECIMAL#, #remainAmt:DECIMAL#, #cname:VARCHAR#, #tel:VARCHAR#, #address:VARCHAR#, 
+      #fax:VARCHAR#, #postcode:CHAR#, #bank:VARCHAR#, #secCustcd:VARCHAR#, #secCname:VARCHAR#, 
+      #secTel:VARCHAR#, #secAddress:VARCHAR#, #secBank:VARCHAR#, #secFax:VARCHAR#, #secBankName:VARCHAR#, 
+      #secPostcode:CHAR#, #bailAccount:VARCHAR#, #bailAmount:DECIMAL#, #bailRate:DECIMAL#, 
+      #transportType:VARCHAR#, #effectiveAddress:VARCHAR#, #costMoney:DECIMAL#, #guattype:VARCHAR#, 
+      #tlrno:VARCHAR#, #firName:VARCHAR#, #status:CHAR#, #industryOne:VARCHAR#, #industryTwo:VARCHAR#, 
+      #ext1:VARCHAR#, #memo:VARCHAR#, #protocolNo:VARCHAR#, #supplyChainPdId:VARCHAR#, 
+      #ebankAppno:VARCHAR#, #channelFlag:CHAR#, #accuDeliAmt:DECIMAL#, #appno:VARCHAR#, 
+      #tlrcd:VARCHAR#, #crtTime:TIMESTAMP#, #brcode:VARCHAR#, #lastUpdTlrcd:VARCHAR#, 
+      #lastUpdTime:TIMESTAMP#, #lastUpdBrcode:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfo" >
+    insert into B_CNT_BUY_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="tradeContno" >
+        TRADE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContcode" >
+        TRADE_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="applyDate" >
+        APPLY_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="totAmt" >
+        TOT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        AMT
+      </isNotNull>
+      <isNotNull prepend="," property="remainAmt" >
+        REMAIN_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="tel" >
+        TEL
+      </isNotNull>
+      <isNotNull prepend="," property="address" >
+        ADDRESS
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        FAX
+      </isNotNull>
+      <isNotNull prepend="," property="postcode" >
+        POSTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="bank" >
+        BANK
+      </isNotNull>
+      <isNotNull prepend="," property="secCustcd" >
+        SEC_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="secCname" >
+        SEC_CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="secTel" >
+        SEC_TEL
+      </isNotNull>
+      <isNotNull prepend="," property="secAddress" >
+        SEC_ADDRESS
+      </isNotNull>
+      <isNotNull prepend="," property="secBank" >
+        SEC_BANK
+      </isNotNull>
+      <isNotNull prepend="," property="secFax" >
+        SEC_FAX
+      </isNotNull>
+      <isNotNull prepend="," property="secBankName" >
+        SEC_BANK_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="secPostcode" >
+        SEC_POSTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="bailAccount" >
+        BAIL_ACCOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        BAIL_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="transportType" >
+        TRANSPORT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="effectiveAddress" >
+        EFFECTIVE_ADDRESS
+      </isNotNull>
+      <isNotNull prepend="," property="costMoney" >
+        COST_MONEY
+      </isNotNull>
+      <isNotNull prepend="," property="guattype" >
+        GUATTYPE
+      </isNotNull>
+      <isNotNull prepend="," property="tlrno" >
+        TLRNO
+      </isNotNull>
+      <isNotNull prepend="," property="firName" >
+        FIR_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="industryOne" >
+        INDUSTRY_ONE
+      </isNotNull>
+      <isNotNull prepend="," property="industryTwo" >
+        INDUSTRY_TWO
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID
+      </isNotNull>
+      <isNotNull prepend="," property="ebankAppno" >
+        EBANK_APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="channelFlag" >
+        CHANNEL_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="accuDeliAmt" >
+        ACCU_DELI_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="tradeContno" >
+        #tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContcode" >
+        #tradeContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyDate" >
+        #applyDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="totAmt" >
+        #totAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        #amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remainAmt" >
+        #remainAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tel" >
+        #tel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="address" >
+        #address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        #fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="postcode" >
+        #postcode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bank" >
+        #bank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secCustcd" >
+        #secCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secCname" >
+        #secCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secTel" >
+        #secTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secAddress" >
+        #secAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secBank" >
+        #secBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secFax" >
+        #secFax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secBankName" >
+        #secBankName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secPostcode" >
+        #secPostcode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAccount" >
+        #bailAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        #bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="transportType" >
+        #transportType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="effectiveAddress" >
+        #effectiveAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costMoney" >
+        #costMoney:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="guattype" >
+        #guattype:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrno" >
+        #tlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="firName" >
+        #firName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryOne" >
+        #industryOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryTwo" >
+        #industryTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        #supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ebankAppno" >
+        #ebankAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="channelFlag" >
+        #channelFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accuDeliAmt" >
+        #accuDeliAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_BUY_INFO
+    <include refid="B_CNT_BUY_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_BUY_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.tradeContno" >
+        TRADE_CONTNO = #record.tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tradeContcode" >
+        TRADE_CONTCODE = #record.tradeContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.applyDate" >
+        APPLY_DATE = #record.applyDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totAmt" >
+        TOT_AMT = #record.totAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amt" >
+        AMT = #record.amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remainAmt" >
+        REMAIN_AMT = #record.remainAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cname" >
+        CNAME = #record.cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tel" >
+        TEL = #record.tel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.address" >
+        ADDRESS = #record.address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fax" >
+        FAX = #record.fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.postcode" >
+        POSTCODE = #record.postcode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bank" >
+        BANK = #record.bank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.secCustcd" >
+        SEC_CUSTCD = #record.secCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.secCname" >
+        SEC_CNAME = #record.secCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.secTel" >
+        SEC_TEL = #record.secTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.secAddress" >
+        SEC_ADDRESS = #record.secAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.secBank" >
+        SEC_BANK = #record.secBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.secFax" >
+        SEC_FAX = #record.secFax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.secBankName" >
+        SEC_BANK_NAME = #record.secBankName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.secPostcode" >
+        SEC_POSTCODE = #record.secPostcode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAccount" >
+        BAIL_ACCOUNT = #record.bailAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAmount" >
+        BAIL_AMOUNT = #record.bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailRate" >
+        BAIL_RATE = #record.bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.transportType" >
+        TRANSPORT_TYPE = #record.transportType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.effectiveAddress" >
+        EFFECTIVE_ADDRESS = #record.effectiveAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costMoney" >
+        COST_MONEY = #record.costMoney:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.guattype" >
+        GUATTYPE = #record.guattype:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrno" >
+        TLRNO = #record.tlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.firName" >
+        FIR_NAME = #record.firName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryOne" >
+        INDUSTRY_ONE = #record.industryOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryTwo" >
+        INDUSTRY_TWO = #record.industryTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1" >
+        EXT1 = #record.ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID = #record.supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ebankAppno" >
+        EBANK_APPNO = #record.ebankAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.channelFlag" >
+        CHANNEL_FLAG = #record.channelFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accuDeliAmt" >
+        ACCU_DELI_AMT = #record.accuDeliAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crtTime" >
+        CRT_TIME = #record.crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTime" >
+        LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_BUY_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_BUY_INFO
+    set TRADE_CONTNO = #record.tradeContno:VARCHAR#,
+      TRADE_CONTCODE = #record.tradeContcode:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      APPLY_DATE = #record.applyDate:CHAR#,
+      START_DATE = #record.startDate:CHAR#,
+      END_DATE = #record.endDate:CHAR#,
+      CURCD = #record.curcd:CHAR#,
+      TOT_AMT = #record.totAmt:DECIMAL#,
+      AMT = #record.amt:DECIMAL#,
+      REMAIN_AMT = #record.remainAmt:DECIMAL#,
+      CNAME = #record.cname:VARCHAR#,
+      TEL = #record.tel:VARCHAR#,
+      ADDRESS = #record.address:VARCHAR#,
+      FAX = #record.fax:VARCHAR#,
+      POSTCODE = #record.postcode:CHAR#,
+      BANK = #record.bank:VARCHAR#,
+      SEC_CUSTCD = #record.secCustcd:VARCHAR#,
+      SEC_CNAME = #record.secCname:VARCHAR#,
+      SEC_TEL = #record.secTel:VARCHAR#,
+      SEC_ADDRESS = #record.secAddress:VARCHAR#,
+      SEC_BANK = #record.secBank:VARCHAR#,
+      SEC_FAX = #record.secFax:VARCHAR#,
+      SEC_BANK_NAME = #record.secBankName:VARCHAR#,
+      SEC_POSTCODE = #record.secPostcode:CHAR#,
+      BAIL_ACCOUNT = #record.bailAccount:VARCHAR#,
+      BAIL_AMOUNT = #record.bailAmount:DECIMAL#,
+      BAIL_RATE = #record.bailRate:DECIMAL#,
+      TRANSPORT_TYPE = #record.transportType:VARCHAR#,
+      EFFECTIVE_ADDRESS = #record.effectiveAddress:VARCHAR#,
+      COST_MONEY = #record.costMoney:DECIMAL#,
+      GUATTYPE = #record.guattype:VARCHAR#,
+      TLRNO = #record.tlrno:VARCHAR#,
+      FIR_NAME = #record.firName:VARCHAR#,
+      STATUS = #record.status:CHAR#,
+      INDUSTRY_ONE = #record.industryOne:VARCHAR#,
+      INDUSTRY_TWO = #record.industryTwo:VARCHAR#,
+      EXT1 = #record.ext1:VARCHAR#,
+      MEMO = #record.memo:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      SUPPLY_CHAIN_PD_ID = #record.supplyChainPdId:VARCHAR#,
+      EBANK_APPNO = #record.ebankAppno:VARCHAR#,
+      CHANNEL_FLAG = #record.channelFlag:CHAR#,
+      ACCU_DELI_AMT = #record.accuDeliAmt:DECIMAL#,
+      APPNO = #record.appno:VARCHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      CRT_TIME = #record.crtTime:TIMESTAMP#,
+      BRCODE = #record.brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CNT_BUY_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfo" >
+    update B_CNT_BUY_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="tradeContcode" >
+        TRADE_CONTCODE = #tradeContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyDate" >
+        APPLY_DATE = #applyDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="totAmt" >
+        TOT_AMT = #totAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        AMT = #amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remainAmt" >
+        REMAIN_AMT = #remainAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME = #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tel" >
+        TEL = #tel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="address" >
+        ADDRESS = #address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        FAX = #fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="postcode" >
+        POSTCODE = #postcode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bank" >
+        BANK = #bank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secCustcd" >
+        SEC_CUSTCD = #secCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secCname" >
+        SEC_CNAME = #secCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secTel" >
+        SEC_TEL = #secTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secAddress" >
+        SEC_ADDRESS = #secAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secBank" >
+        SEC_BANK = #secBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secFax" >
+        SEC_FAX = #secFax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secBankName" >
+        SEC_BANK_NAME = #secBankName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="secPostcode" >
+        SEC_POSTCODE = #secPostcode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAccount" >
+        BAIL_ACCOUNT = #bailAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT = #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        BAIL_RATE = #bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="transportType" >
+        TRANSPORT_TYPE = #transportType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="effectiveAddress" >
+        EFFECTIVE_ADDRESS = #effectiveAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costMoney" >
+        COST_MONEY = #costMoney:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="guattype" >
+        GUATTYPE = #guattype:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrno" >
+        TLRNO = #tlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="firName" >
+        FIR_NAME = #firName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryOne" >
+        INDUSTRY_ONE = #industryOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryTwo" >
+        INDUSTRY_TWO = #industryTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1 = #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ebankAppno" >
+        EBANK_APPNO = #ebankAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="channelFlag" >
+        CHANNEL_FLAG = #channelFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accuDeliAmt" >
+        ACCU_DELI_AMT = #accuDeliAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME = #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where TRADE_CONTNO = #tradeContno:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntBuyInfo" >
+    update B_CNT_BUY_INFO
+    set TRADE_CONTCODE = #tradeContcode:VARCHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      APPLY_DATE = #applyDate:CHAR#,
+      START_DATE = #startDate:CHAR#,
+      END_DATE = #endDate:CHAR#,
+      CURCD = #curcd:CHAR#,
+      TOT_AMT = #totAmt:DECIMAL#,
+      AMT = #amt:DECIMAL#,
+      REMAIN_AMT = #remainAmt:DECIMAL#,
+      CNAME = #cname:VARCHAR#,
+      TEL = #tel:VARCHAR#,
+      ADDRESS = #address:VARCHAR#,
+      FAX = #fax:VARCHAR#,
+      POSTCODE = #postcode:CHAR#,
+      BANK = #bank:VARCHAR#,
+      SEC_CUSTCD = #secCustcd:VARCHAR#,
+      SEC_CNAME = #secCname:VARCHAR#,
+      SEC_TEL = #secTel:VARCHAR#,
+      SEC_ADDRESS = #secAddress:VARCHAR#,
+      SEC_BANK = #secBank:VARCHAR#,
+      SEC_FAX = #secFax:VARCHAR#,
+      SEC_BANK_NAME = #secBankName:VARCHAR#,
+      SEC_POSTCODE = #secPostcode:CHAR#,
+      BAIL_ACCOUNT = #bailAccount:VARCHAR#,
+      BAIL_AMOUNT = #bailAmount:DECIMAL#,
+      BAIL_RATE = #bailRate:DECIMAL#,
+      TRANSPORT_TYPE = #transportType:VARCHAR#,
+      EFFECTIVE_ADDRESS = #effectiveAddress:VARCHAR#,
+      COST_MONEY = #costMoney:DECIMAL#,
+      GUATTYPE = #guattype:VARCHAR#,
+      TLRNO = #tlrno:VARCHAR#,
+      FIR_NAME = #firName:VARCHAR#,
+      STATUS = #status:CHAR#,
+      INDUSTRY_ONE = #industryOne:VARCHAR#,
+      INDUSTRY_TWO = #industryTwo:VARCHAR#,
+      EXT1 = #ext1:VARCHAR#,
+      MEMO = #memo:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR#,
+      EBANK_APPNO = #ebankAppno:VARCHAR#,
+      CHANNEL_FLAG = #channelFlag:CHAR#,
+      ACCU_DELI_AMT = #accuDeliAmt:DECIMAL#,
+      APPNO = #appno:VARCHAR#,
+      TLRCD = #tlrcd:VARCHAR#,
+      CRT_TIME = #crtTime:TIMESTAMP#,
+      BRCODE = #brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+    where TRADE_CONTNO = #tradeContno:VARCHAR#
+  </update>
+</sqlMap>

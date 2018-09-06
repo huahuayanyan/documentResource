@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRM_MONI_ENT_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crm.dao.model.BCrmMoniEntInfo" >
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="MONITORY_TYPE" property="monitoryType" jdbcType="CHAR" />
+    <result column="REG_ADDR" property="regAddr" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="LIMIT_SUM" property="limitSum" jdbcType="DECIMAL" />
+    <result column="LIMIT_SINGLE" property="limitSingle" jdbcType="DECIMAL" />
+    <result column="USERD_LIMIT" property="userdLimit" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="CHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="LEVELS" property="levels" jdbcType="VARCHAR" />
+    <result column="MONITORTYPE" property="monitortype" jdbcType="VARCHAR" />
+    <result column="GROUPED" property="grouped" jdbcType="CHAR" />
+    <result column="GROUPED_MEMBER" property="groupedMember" jdbcType="CHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_ADDR_TYPE" property="warehouseAddrType" jdbcType="VARCHAR" />
+    <result column="CHANNEL_MODE" property="channelMode" jdbcType="CHAR" />
+    <result column="BANK_CORPORATE_MODE" property="bankCorporateMode" jdbcType="VARCHAR" />
+    <result column="CREDIT_TYPE" property="creditType" jdbcType="CHAR" />
+    <result column="MONITOR_AREA" property="monitorArea" jdbcType="CHAR" />
+    <result column="DETAIL_MONITOR_AREA" property="detailMonitorArea" jdbcType="VARCHAR" />
+    <result column="LEVEL_COGNI_DATE" property="levelCogniDate" jdbcType="CHAR" />
+    <result column="LEVEL_END_DATE" property="levelEndDate" jdbcType="CHAR" />
+    <result column="MONITOR_STATUS" property="monitorStatus" jdbcType="CHAR" />
+    <result column="INSPECT_FREQUENCE" property="inspectFrequence" jdbcType="DECIMAL" />
+    <result column="BUSS_CONTROL_FLAG" property="bussControlFlag" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    CUSTCD, MONITORY_TYPE, REG_ADDR, CURCD, LIMIT_SUM, LIMIT_SINGLE, USERD_LIMIT, CREATE_DATE, 
+    DESCRIPTION, LEVELS, MONITORTYPE, GROUPED, GROUPED_MEMBER, PARENT_ID, WAREHOUSE_ADDR_TYPE, 
+    CHANNEL_MODE, BANK_CORPORATE_MODE, CREDIT_TYPE, MONITOR_AREA, DETAIL_MONITOR_AREA, 
+    LEVEL_COGNI_DATE, LEVEL_END_DATE, MONITOR_STATUS, INSPECT_FREQUENCE, BUSS_CONTROL_FLAG, 
+    TLRCD, CRT_TIME, BRCODE, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmMoniEntInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRM_MONI_ENT_INFO.Base_Column_List" />
+    from B_CRM_MONI_ENT_INFO
+    <isParameterPresent >
+      <include refid="B_CRM_MONI_ENT_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  
+  <select id="selectById" resultMap="BaseResultMap" parameterClass="java.lang.String" >
+    select 
+    <include refid="B_CRM_MONI_ENT_INFO.Base_Column_List" />
+    from B_CRM_MONI_ENT_INFO
+    where CUSTCD = #custcd:VARCHAR#
+  </select>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmMoniEntInfoExample" >
+    delete from B_CRM_MONI_ENT_INFO
+    <include refid="B_CRM_MONI_ENT_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmMoniEntInfo" >
+    insert into B_CRM_MONI_ENT_INFO (CUSTCD, MONITORY_TYPE, REG_ADDR, CURCD, LIMIT_SUM, 
+      LIMIT_SINGLE, USERD_LIMIT, CREATE_DATE, DESCRIPTION, 
+      LEVELS, MONITORTYPE, GROUPED, GROUPED_MEMBER, 
+      PARENT_ID, WAREHOUSE_ADDR_TYPE, CHANNEL_MODE, BANK_CORPORATE_MODE, 
+      CREDIT_TYPE, MONITOR_AREA, DETAIL_MONITOR_AREA, LEVEL_COGNI_DATE, 
+      LEVEL_END_DATE, MONITOR_STATUS, INSPECT_FREQUENCE, BUSS_CONTROL_FLAG, 
+      TLRCD, CRT_TIME, BRCODE, LAST_UPD_TLRCD, 
+      LAST_UPD_TIME, LAST_UPD_BRCODE)
+    values (#custcd:VARCHAR#, #monitoryType:CHAR#, #regAddr:VARCHAR#, #curcd:CHAR#, #limitSum:DECIMAL#, 
+      #limitSingle:DECIMAL#, #userdLimit:DECIMAL#, #createDate:CHAR#, #description:VARCHAR#, 
+      #levels:VARCHAR#, #monitortype:VARCHAR#, #grouped:CHAR#, #groupedMember:CHAR#, 
+      #parentId:VARCHAR#, #warehouseAddrType:VARCHAR#, #channelMode:CHAR#, #bankCorporateMode:VARCHAR#, 
+      #creditType:CHAR#, #monitorArea:CHAR#, #detailMonitorArea:VARCHAR#, #levelCogniDate:CHAR#, 
+      #levelEndDate:CHAR#, #monitorStatus:CHAR#, #inspectFrequence:DECIMAL#, #bussControlFlag:CHAR#, 
+      #tlrcd:VARCHAR#, #crtTime:TIMESTAMP#, #brcode:VARCHAR#, #lastUpdTlrcd:VARCHAR#, 
+      #lastUpdTime:TIMESTAMP#, #lastUpdBrcode:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmMoniEntInfo" >
+    insert into B_CRM_MONI_ENT_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="monitoryType" >
+        MONITORY_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="regAddr" >
+        REG_ADDR
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="limitSum" >
+        LIMIT_SUM
+      </isNotNull>
+      <isNotNull prepend="," property="limitSingle" >
+        LIMIT_SINGLE
+      </isNotNull>
+      <isNotNull prepend="," property="userdLimit" >
+        USERD_LIMIT
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        CREATE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION
+      </isNotNull>
+      <isNotNull prepend="," property="levels" >
+        LEVELS
+      </isNotNull>
+      <isNotNull prepend="," property="monitortype" >
+        MONITORTYPE
+      </isNotNull>
+      <isNotNull prepend="," property="grouped" >
+        GROUPED
+      </isNotNull>
+      <isNotNull prepend="," property="groupedMember" >
+        GROUPED_MEMBER
+      </isNotNull>
+      <isNotNull prepend="," property="parentId" >
+        PARENT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddrType" >
+        WAREHOUSE_ADDR_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="channelMode" >
+        CHANNEL_MODE
+      </isNotNull>
+      <isNotNull prepend="," property="bankCorporateMode" >
+        BANK_CORPORATE_MODE
+      </isNotNull>
+      <isNotNull prepend="," property="creditType" >
+        CREDIT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="monitorArea" >
+        MONITOR_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="detailMonitorArea" >
+        DETAIL_MONITOR_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="levelCogniDate" >
+        LEVEL_COGNI_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="levelEndDate" >
+        LEVEL_END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="monitorStatus" >
+        MONITOR_STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="inspectFrequence" >
+        INSPECT_FREQUENCE
+      </isNotNull>
+      <isNotNull prepend="," property="bussControlFlag" >
+        BUSS_CONTROL_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitoryType" >
+        #monitoryType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regAddr" >
+        #regAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="limitSum" >
+        #limitSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="limitSingle" >
+        #limitSingle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="userdLimit" >
+        #userdLimit:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        #createDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        #description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="levels" >
+        #levels:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitortype" >
+        #monitortype:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="grouped" >
+        #grouped:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="groupedMember" >
+        #groupedMember:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="parentId" >
+        #parentId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddrType" >
+        #warehouseAddrType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="channelMode" >
+        #channelMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bankCorporateMode" >
+        #bankCorporateMode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditType" >
+        #creditType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorArea" >
+        #monitorArea:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="detailMonitorArea" >
+        #detailMonitorArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="levelCogniDate" >
+        #levelCogniDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="levelEndDate" >
+        #levelEndDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorStatus" >
+        #monitorStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inspectFrequence" >
+        #inspectFrequence:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussControlFlag" >
+        #bussControlFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmMoniEntInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRM_MONI_ENT_INFO
+    <include refid="B_CRM_MONI_ENT_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRM_MONI_ENT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitoryType" >
+        MONITORY_TYPE = #record.monitoryType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.regAddr" >
+        REG_ADDR = #record.regAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.limitSum" >
+        LIMIT_SUM = #record.limitSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.limitSingle" >
+        LIMIT_SINGLE = #record.limitSingle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.userdLimit" >
+        USERD_LIMIT = #record.userdLimit:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.createDate" >
+        CREATE_DATE = #record.createDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.description" >
+        DESCRIPTION = #record.description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.levels" >
+        LEVELS = #record.levels:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitortype" >
+        MONITORTYPE = #record.monitortype:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.grouped" >
+        GROUPED = #record.grouped:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.groupedMember" >
+        GROUPED_MEMBER = #record.groupedMember:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.parentId" >
+        PARENT_ID = #record.parentId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseAddrType" >
+        WAREHOUSE_ADDR_TYPE = #record.warehouseAddrType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.channelMode" >
+        CHANNEL_MODE = #record.channelMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bankCorporateMode" >
+        BANK_CORPORATE_MODE = #record.bankCorporateMode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditType" >
+        CREDIT_TYPE = #record.creditType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitorArea" >
+        MONITOR_AREA = #record.monitorArea:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.detailMonitorArea" >
+        DETAIL_MONITOR_AREA = #record.detailMonitorArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.levelCogniDate" >
+        LEVEL_COGNI_DATE = #record.levelCogniDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.levelEndDate" >
+        LEVEL_END_DATE = #record.levelEndDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitorStatus" >
+        MONITOR_STATUS = #record.monitorStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inspectFrequence" >
+        INSPECT_FREQUENCE = #record.inspectFrequence:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bussControlFlag" >
+        BUSS_CONTROL_FLAG = #record.bussControlFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crtTime" >
+        CRT_TIME = #record.crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTime" >
+        LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRM_MONI_ENT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRM_MONI_ENT_INFO
+    set CUSTCD = #record.custcd:VARCHAR#,
+      MONITORY_TYPE = #record.monitoryType:CHAR#,
+      REG_ADDR = #record.regAddr:VARCHAR#,
+      CURCD = #record.curcd:CHAR#,
+      LIMIT_SUM = #record.limitSum:DECIMAL#,
+      LIMIT_SINGLE = #record.limitSingle:DECIMAL#,
+      USERD_LIMIT = #record.userdLimit:DECIMAL#,
+      CREATE_DATE = #record.createDate:CHAR#,
+      DESCRIPTION = #record.description:VARCHAR#,
+      LEVELS = #record.levels:VARCHAR#,
+      MONITORTYPE = #record.monitortype:VARCHAR#,
+      GROUPED = #record.grouped:CHAR#,
+      GROUPED_MEMBER = #record.groupedMember:CHAR#,
+      PARENT_ID = #record.parentId:VARCHAR#,
+      WAREHOUSE_ADDR_TYPE = #record.warehouseAddrType:VARCHAR#,
+      CHANNEL_MODE = #record.channelMode:CHAR#,
+      BANK_CORPORATE_MODE = #record.bankCorporateMode:VARCHAR#,
+      CREDIT_TYPE = #record.creditType:CHAR#,
+      MONITOR_AREA = #record.monitorArea:CHAR#,
+      DETAIL_MONITOR_AREA = #record.detailMonitorArea:VARCHAR#,
+      LEVEL_COGNI_DATE = #record.levelCogniDate:CHAR#,
+      LEVEL_END_DATE = #record.levelEndDate:CHAR#,
+      MONITOR_STATUS = #record.monitorStatus:CHAR#,
+      INSPECT_FREQUENCE = #record.inspectFrequence:DECIMAL#,
+      BUSS_CONTROL_FLAG = #record.bussControlFlag:CHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      CRT_TIME = #record.crtTime:TIMESTAMP#,
+      BRCODE = #record.brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRM_MONI_ENT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

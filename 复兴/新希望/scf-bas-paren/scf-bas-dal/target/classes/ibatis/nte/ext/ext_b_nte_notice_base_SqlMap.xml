@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_NTE_NOTICE_BASE" >
+<!-- 通过APPNO和NOTICETYPE查找通知书 -->
+  <select id="findBNteNoticeBaseByAppno" resultMap="B_NTE_NOTICE_BASE.BaseResultMap" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBase" >
+    select 
+    <include refid="B_NTE_NOTICE_BASE.Base_Column_List" />
+    from B_NTE_NOTICE_BASE
+    where  1=2
+     <isNotEmpty prepend="or" property="appno" >
+    APPNO = #appno:VARCHAR#
+    </isNotEmpty>
+     <isNotEmpty prepend="and" property="noticeType" >
+    NOTICE_TYPE = #noticeType:VARCHAR#
+    </isNotEmpty>
+  </select>
+<!-- 根据appno删除对应的通知书-->
+  <delete id="deleteBNteNoticeBaseByAppno" >
+    delete from B_NTE_NOTICE_BASE
+    <isNotEmpty prepend="where" property="appno" >
+    APPNO = #appno:VARCHAR#
+    </isNotEmpty>
+  </delete>
+<resultMap id="DeliveryResultMap" class="com.huateng.scf.bas.nte.dao.model.NoticeQryVO" >
+	<result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OTHER_CUST_NAME" property="otherCustName" jdbcType="VARCHAR" />
+    <result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+    <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="NUM" property="num" jdbcType="VARCHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+    <result column="COMMON_AMT" property="commonAmt" jdbcType="DECIMAL" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="APPLI_DATE" property="appliDate" jdbcType="CHAR" />
+    <result column="DELIVERY_QUANTITY" property="deliveryQuantity" jdbcType="DECIMAL" />
+    <result column="DELIVERY_AMT" property="deliveryAmt" jdbcType="DECIMAL" />
+    <result column="deliveryAppno" property="deliveryAppno" jdbcType="VARCHAR" />
+    <result column="BAL_SEND_AMT" property="balSendAmt" jdbcType="DECIMAL" />
+    <result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+    <result column="BALANCE_AMT" property="balanceAmt" jdbcType="DECIMAL" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+  </resultMap>
+ 
+  <select id="getAdvDeliveryNotifyByParamDao" resultMap="DeliveryResultMap"  parameterClass="java.util.Map" >
+    select 
+    ba.CNAME AS OTHER_CUST_NAME,tnbia.OTHER_CUSTCD ,bb.CNAME AS CUST_NAME ,tnbia.CUSTCD  ,tnbia.NUM ,tnbia.COMMON_DATE ,
+    tnbia.COMMON_AMT ,tnbia.DEBET_ID ,tnbia.APPNO ,
+    
+    tnbib.EXT1 , tnbib.EXT2 , tnbib.APPLI_DATE ,tnbib.DELIVERY_QUANTITY ,tnbib.DELIVERY_AMT ,tnbib.APPNO AS  deliveryAppno,
+    tnbib.ID,tnbib.PROTOCOL_CODE,l.BAL_SEND_AMT AS BALANCE_AMT,
+    l.BAL_SEND_AMT,l.LNCI_AMT
+    
+ 	from B_NTE_NOTICE_BASE tnbia ,
+ 	B_NTE_NOTICE_BASE tnbib , 
+ 	B_LAN_LNCI_BASE l,
+ 	B_CRM_BASE_INFO ba,
+ 	B_CRM_BASE_INFO bb
+ 	
+    
+    where 
+    tnbia.DEBET_NO=tnbib.DEBET_NO
+    AND tnbia.DEBET_NO=l.DEBET_NO
+    AND tnbia.NOTICE_TYPE IN ('77','79') 
+    AND tnbib.NOTICE_TYPE = '122'
+    AND tnbia.STATUS ='01'
+    AND tnbia.OTHER_CUSTCD =ba.CUSTCD
+    AND tnbia.CUSTCD =bb.CUSTCD
+  
+       <isNotEmpty prepend="and" property="ext1" >
+        tnbib.EXT1 like '%'|| #ext1:VARCHAR#||'%'  
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="custName" >
+        bb.CNAME like '%'|| #custName:VARCHAR#||'%'  
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="otherCustName" >
+        ba.CNAME like '%'|| #otherCustName:VARCHAR#||'%'  
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="num" >
+        tnbia.NUM like '%'|| #num:VARCHAR#||'%'
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="bussType" >
+        tnbia.BUSS_TYPE =#bussType:VARCHAR#
+       </isNotEmpty> 
+       <isNotEmpty prepend="and" property="ext2" >
+        tnbib.EXT2 = #ext2:VARCHAR#
+       </isNotEmpty>  
+       
+       <isNotEmpty prepend="and" property="commonDateFrom" >
+         <![CDATA[ tnbia.COMMON_DATE >=#commonDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="commonDateTo" >
+          <![CDATA[tnbia.COMMON_DATE <=#commonDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       
+       <isNotEmpty prepend="and" property="appliDateFrom" >
+         <![CDATA[  tnbib.APPLI_DATE >= #appliDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="appliDateTo" >
+          <![CDATA[ tnbib.APPLI_DATE <= #appliDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+
+    order by tnbib.SIGN_DATE DESC , tnbib.MAST_CONTNO DESC 
+  </select> 
+  <resultMap id="DeliveryResultMap2" class="com.huateng.scf.bas.nte.dao.model.NoticeQryVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NUM" property="num" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+    <result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+    <result column="OTHER_CUST_NAME" property="otherCustName" jdbcType="VARCHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    
+    <result column="LNCI_TYPE" property="lnciType" jdbcType="VARCHAR" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+    <result column="CONFIRM_STATUS" property="confirmStatus" jdbcType="VARCHAR" />
+    <result column="BAL_SEND_AMT" property="balSendAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="getAdvDeliveryNotifyConfirmByParamDao" resultMap="DeliveryResultMap2"  parameterClass="java.util.Map" >
+    select 
+    tnbi.NUM , tnbi.STATUS , tnbi.SIGN_DATE , tnbi.PROTOCOL_CODE , tnbi.DEBET_ID , ba.CNAME AS CUST_NAME , bb.CNAME AS OTHER_CUST_NAME , 
+    tnbi.COMMON_DATE , tnbi.APPNO , tnbi.DEBET_NO , tnbi.CUSTCD  ,  tnbi.OTHER_CUSTCD ,tnbi.TRADE_CONTNO,tnbi.ID,
+    
+    tlbi.LNCI_TYPE ,tlbi.LNCI_AMT ,tlbi.CONFIRM_STATUS ,tlbi.BAL_SEND_AMT  
+    
+ 	from  B_NTE_NOTICE_BASE tnbi ,
+ 	B_LAN_LNCI_BASE tlbi,
+ 	B_CRM_BASE_INFO ba,
+ 	B_CRM_BASE_INFO bb
+ 	
+    
+    where 
+    tnbi.NOTICE_TYPE IN ('77','79') 
+    AND tnbi.DEBET_NO=tlbi.DEBET_NO
+    AND ba.CUSTCD = tnbi.CUSTCD
+    AND bb.CUSTCD = tnbi.OTHER_CUSTCD
+    AND tlbi.CONFIRM_STATUS ='1'
+
+          
+       <isNotEmpty prepend="and" property="appno" >
+        tnbi.APPNO=#appno:VARCHAR#
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="otherCustName" >
+        bb.CNAME like '%'|| #otherCustName:VARCHAR#||'%'  
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="custName" >
+        ba.CNAME like '%'|| #custName:VARCHAR#||'%'  
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="protocolCode" >
+        tnbi.PROTOCOL_CODE like '%'|| #protocolCode:VARCHAR#||'%'
+       </isNotEmpty>             
+       <isNotEmpty prepend="and" property="bussType" >
+        tnbi.BUSS_TYPE = #bussType:VARCHAR#
+       </isNotEmpty> 
+       <isNotEmpty prepend="and" property="num" >
+        tnbi.NUM like '%'|| #num:VARCHAR#||'%'
+       </isNotEmpty>             
+       <isNotEmpty prepend="and" property="debetId" >
+        tnbi.DEBET_ID like '%'|| #debetId:VARCHAR#||'%'
+       </isNotEmpty>             
+       <isNotEmpty prepend="and" property="commonDateFrom" >
+         <![CDATA[ tnbi.COMMON_DATE >= #commonDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="commonDateTo" >
+          <![CDATA[tnbi.COMMON_DATE <= #commonDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+
+    order by tnbi.SIGN_DATE DESC , tnbi.MAST_CONTNO DESC 
+  </select>
+  
+  <select id="countNoticeBaseInfoByNoticeCommonQueryVO" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(distinct nbi.ID) 
+    from B_NTE_NOTICE_BASE nbi,B_CRM_BASE_INFO seller 
+    where nbi.CUSTCD=seller.CUSTCD
+       <isNotEmpty prepend="and" property="flag" >
+        1=2
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="bussType" >
+       	<![CDATA[ nbi.BUSS_TYPE = #bussType:VARCHAR#  ]]>
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="id" >
+       	<![CDATA[ nbi.ID = #id:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="ext1" >
+       	<![CDATA[ nbi.EXT1 = #ext1:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="appno" >
+       	<![CDATA[ nbi.APPNO = #appno:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="num" >
+       	<![CDATA[ nbi.NUM = #num:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="noticeType" >
+       	<![CDATA[ nbi.NOTICE_TYPE = #noticeType:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotNull prepend="and" property="noticeTypeList" > 
+        nbi.NOTICE_TYPE  in 
+        <iterate property="noticeTypeList" conjunction="," open="(" close=")" >
+   		 $noticeTypeList[]$
+   		</iterate> 
+       </isNotNull>
+       <isNotEmpty prepend="and" property="slaveContno" >
+       	<![CDATA[ nbi.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="slaveContcode" >
+       	<![CDATA[ nbi.SLAVE_CONTCODE like '%'|| #slaveContcode:VARCHAR# ||'%' ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="protocolCode" >
+       	<![CDATA[ nbi.PROTOCOL_CODE like '%'|| #protocolCode:VARCHAR# ||'%' ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="monitorProtocolNo" >
+       	<![CDATA[ nbi.MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="custcd" >
+       	<![CDATA[ nbi.CUSTCD = #custcd:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="cname" >
+       	<![CDATA[ seller.CNAME like '%'|| #cname:VARCHAR# ||'%' ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="moniOfCustcd" >
+       	<![CDATA[ nbi.MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="brcode" >
+       	<![CDATA[ nbi.BRCODE = #brcode:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotNull prepend="and" property="brcodeList" > 
+        nbi.BRCODE  in 
+        <iterate property="brcodeList" conjunction="," open="(" close=")" >
+   		 $brcodeList[]$
+   		</iterate> 
+       </isNotNull>
+       <isNotEmpty prepend="and" property="parentBrcode1" >
+       	exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = nbi.BRCODE
+			and PARENT_BRCODE = #parentBrcode1:VARCHAR#
+			and AFFILIATION_TYPE = #affiliationType1:VARCHAR#
+		)
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="status" >
+       	<![CDATA[ nbi.STATUS = #status:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate1" >
+       	<![CDATA[ nbi.SIGN_DATE = #signDate1:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate2" >
+       	<![CDATA[ nbi.SIGN_DATE = #signDate2:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate3" >
+       	<![CDATA[ nbi.SIGN_DATE >= #signDate3:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate4" >
+       	<![CDATA[ nbi.SIGN_DATE <= #signDate4:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate5" >
+       	<![CDATA[ nbi.SIGN_DATE >= #signDate5:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate6" >
+       	<![CDATA[ nbi.SIGN_DATE <= #signDate6:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="commonDate1" >
+       	<![CDATA[ nbi.COMMON_DATE >= #commonDate1:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="commonDate2" >
+       	<![CDATA[ nbi.COMMON_DATE <= #commonDate2:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="cooperationBrcode" >
+       	exists (select 1 from TblContOrderInfo tcdi where tcdi.orderContno=nbi.PROTOCOL_NO
+						and tcdi.cooperationBrcode = #cooperationBrcode:VARCHAR#
+		)
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="parentBrcode2" >
+       	exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = nbi.BRCODE
+			and PARENT_BRCODE = #parentBrcode2:VARCHAR#
+			and AFFILIATION_TYPE = #affiliationType2:VARCHAR#
+		)
+       </isNotEmpty>
+  </select>
+  <select id="getNoticeBaseInfoByNoticeCommonQueryVO" resultMap="B_NTE_NOTICE_BASE.BaseResultMap"  parameterClass="java.util.Map" >
+    select distinct nbi.* 
+    from B_NTE_NOTICE_BASE nbi,B_CRM_BASE_INFO seller 
+    where nbi.CUSTCD=seller.CUSTCD
+       <isNotEmpty prepend="and" property="flag" >
+        1=2
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="bussType" >
+       	<![CDATA[ nbi.BUSS_TYPE = #bussType:VARCHAR#  ]]>
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="id" >
+       	<![CDATA[ nbi.ID = #id:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="ext1" >
+       	<![CDATA[ nbi.EXT1 = #ext1:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="appno" >
+       	<![CDATA[ nbi.APPNO = #appno:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="num" >
+       	<![CDATA[ nbi.NUM = #num:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="noticeType" >
+       	<![CDATA[ nbi.NOTICE_TYPE = #noticeType:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotNull prepend="and" property="noticeTypeList" > 
+        nbi.NOTICE_TYPE  in 
+        <iterate property="noticeTypeList" conjunction="," open="(" close=")" >
+   		 $noticeTypeList[]$
+   		</iterate> 
+       </isNotNull>
+       <isNotEmpty prepend="and" property="slaveContno" >
+       	<![CDATA[ nbi.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="slaveContcode" >
+       	<![CDATA[ nbi.SLAVE_CONTCODE like '%'|| #slaveContcode:VARCHAR# ||'%' ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="protocolCode" >
+       	<![CDATA[ nbi.PROTOCOL_CODE like '%'|| #protocolCode:VARCHAR# ||'%' ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="monitorProtocolNo" >
+       	<![CDATA[ nbi.MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="custcd" >
+       	<![CDATA[ nbi.CUSTCD = #custcd:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="cname" >
+       	<![CDATA[ seller.CNAME like '%'|| #cname:VARCHAR# ||'%' ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="moniOfCustcd" >
+       	<![CDATA[ nbi.MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="brcode" >
+       	<![CDATA[ nbi.BRCODE = #brcode:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotNull prepend="and" property="brcodeList" > 
+        nbi.BRCODE  in 
+        <iterate property="brcodeList" conjunction="," open="(" close=")" >
+   		 $brcodeList[]$
+   		</iterate> 
+       </isNotNull>
+       <isNotEmpty prepend="and" property="parentBrcode1" >
+       	exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = nbi.BRCODE
+			and PARENT_BRCODE = #parentBrcode1:VARCHAR#
+			and AFFILIATION_TYPE = #affiliationType1:VARCHAR#
+		)
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="status" >
+       	<![CDATA[ nbi.STATUS = #status:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate1" >
+       	<![CDATA[ nbi.SIGN_DATE = #signDate1:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate2" >
+       	<![CDATA[ nbi.SIGN_DATE = #signDate2:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate3" >
+       	<![CDATA[ nbi.SIGN_DATE >= #signDate3:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate4" >
+       	<![CDATA[ nbi.SIGN_DATE <= #signDate4:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate5" >
+       	<![CDATA[ nbi.SIGN_DATE >= #signDate5:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="signDate6" >
+       	<![CDATA[ nbi.SIGN_DATE <= #signDate6:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="commonDate1" >
+       	<![CDATA[ nbi.COMMON_DATE >= #commonDate1:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="commonDate2" >
+       	<![CDATA[ nbi.COMMON_DATE <= #commonDate2:VARCHAR#  ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="cooperationBrcode" >
+       	exists (select 1 from TblContOrderInfo tcdi where tcdi.orderContno=nbi.PROTOCOL_NO
+						and tcdi.cooperationBrcode = #cooperationBrcode:VARCHAR#
+		)
+       </isNotEmpty>
+       <isNotEmpty prepend="and" property="parentBrcode2" >
+       	exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = nbi.BRCODE
+			and PARENT_BRCODE = #parentBrcode2:VARCHAR#
+			and AFFILIATION_TYPE = #affiliationType2:VARCHAR#
+		)
+       </isNotEmpty>
+    order by nbi.NUM desc, nbi.NOTICE_TYPE, nbi.SIGN_DATE DESC
+  </select>
+  <resultMap id="DeliveryResultMap3" class="com.huateng.scf.bas.nte.dao.model.NoticeQryVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="NUM" property="num" jdbcType="VARCHAR" />
+    <result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_CHANGE_TYPE" property="mortgageChangeType" jdbcType="CHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="APPLI_DATE" property="appliDate" jdbcType="CHAR" />
+    <result column="MONI_OF_NAME" property="moniOfName" jdbcType="VARCHAR" />
+    <result column="TLRN" property="tlrn" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="COMMON_AMT" property="commonAmt" jdbcType="DECIMAL" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="COMMON_NUM" property="commonNum" jdbcType="VARCHAR" />
+    <result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+    <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+    <result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+    <result column="OTHER_CUST_NAME" property="otherCustName" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_BRCODE" property="depositBrcode" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT1_AMOUNT" property="ext1Amount" jdbcType="DECIMAL" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT2_AMOUNT" property="ext2Amount" jdbcType="DECIMAL" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="BUSS_TYPE_NAME" property="bussTypeName" jdbcType="VARCHAR" />
+    <result column="PAYEE" property="payee" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_BRNAME" property="depositBrname" jdbcType="VARCHAR" />
+    <result column="AMT" property="amt" jdbcType="DECIMAL" />
+    <result column="BALANCE_AMT" property="balanceAmt" jdbcType="DECIMAL" />
+    <result column="PRICE_DROP_RATE" property="priceDropRate" jdbcType="DECIMAL" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    
+  </resultMap>
+  <select id="selectNoticePageByParamForPage" resultMap="DeliveryResultMap3"  parameterClass="java.util.Map" >
+    select 
+ 	note.ID,note.APPNO,note.NUM,note.MONITOR_PROTOCOL_NO,note.PROTOCOL_CODE,
+ 	note.SLAVE_CONTNO,note.SLAVE_CONTCODE,note.CUSTCD,note.MONI_OF_CUSTCD,note.NOTICE_TYPE,
+ 	note.MORTGAGE_CHANGE_TYPE,note.BRCODE,note.APPLI_DATE,note.MONI_OF_NAME,note.TLRN,
+ 	note.STATUS,note.MAST_CONTNO,note.COMMON_AMT,note.ORDER_NO,note.COMMON_NUM,note.BAIL_AMOUNT,
+ 	note.MAST_CONTCODE,cus.CNAME AS CUST_NAME,note.OTHER_CUSTCD,note.OTHER_CUST_NAME,note.ACCOUNT_NAME,
+ 	note.ACCOUNT_NO,note.DEPOSIT_BRCODE,note.TRADE_CONTNO,note.DEBET_NO,note.DEBET_ID,
+ 	note.PROTOCOL_NO,note.SIGN_DATE,note.COMMON_DATE,note.EXT1,note.EXT2,note.EXT1_AMOUNT,note.EXT2_AMOUNT,
+ 	note.BUSS_TYPE,note.PAYEE,note.DEPOSIT_BRNAME,note.AMT,note.BALANCE_AMT,note.PRICE_DROP_RATE,
+ 	prd.PRODUCT_NAME AS BUSS_TYPE_NAME
+ 	
+ 	from  B_NTE_NOTICE_BASE note ,
+ 	B_CRM_BASE_INFO cus,
+ 	B_PRD_INFO prd
+ 
+    where 
+    note.CUSTCD = cus.CUSTCD
+    AND prd.PRODUCT_ID = note.BUSS_TYPE
+   
+   	   <isNotEmpty prepend="and" property="bussType" >
+        note.BUSS_TYPE = #bussType:VARCHAR#
+       </isNotEmpty> 
+       
+   	   <isNotEmpty prepend="and" property="slaveContcode" >
+        note.SLAVE_CONTCODE = #slaveContcode:VARCHAR#
+       </isNotEmpty> 
+       
+       <isNotEmpty prepend="and" property="cname" >
+        cus.CNAME like '%'|| #cname:VARCHAR#||'%' 
+       </isNotEmpty>   
+            
+       <isNotEmpty prepend="and" property="noticeType" >
+        note.NOTICE_TYPE = #noticeType:VARCHAR# 
+       </isNotEmpty>     
+          
+    order by note.APPNO DESC 
+  </select> 
+</sqlMap>

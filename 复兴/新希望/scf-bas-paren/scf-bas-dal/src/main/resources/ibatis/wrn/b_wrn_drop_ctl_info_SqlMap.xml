@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_WRN_DROP_CTL_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.wrn.dao.model.BWrnDropCtlInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="MONI_CNAME" property="moniCname" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="LEAST_MORT_AMT" property="leastMortAmt" jdbcType="DECIMAL" />
+    <result column="MORT_AMT" property="mortAmt" jdbcType="DECIMAL" />
+    <result column="RATIO" property="ratio" jdbcType="DECIMAL" />
+    <result column="CURRENT_RATIO" property="currentRatio" jdbcType="DECIMAL" />
+    <result column="WARN_LINE" property="warnLine" jdbcType="DECIMAL" />
+    <result column="MORT_BALANCE" property="mortBalance" jdbcType="DECIMAL" />
+    <result column="RISK_BAL" property="riskBal" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, SLAVE_CONTNO, SLAVE_CONTCODE, CUSTCD, CNAME, MONI_CUSTCD, MONI_CNAME, 
+    PROTOCOL_NO, LEAST_MORT_AMT, MORT_AMT, RATIO, CURRENT_RATIO, WARN_LINE, MORT_BALANCE, 
+    RISK_BAL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnDropCtlInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_WRN_DROP_CTL_INFO.Base_Column_List" />
+    from B_WRN_DROP_CTL_INFO
+    <isParameterPresent >
+      <include refid="B_WRN_DROP_CTL_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnDropCtlInfo" >
+    select 
+    <include refid="B_WRN_DROP_CTL_INFO.Base_Column_List" />
+    from B_WRN_DROP_CTL_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnDropCtlInfo" >
+    delete from B_WRN_DROP_CTL_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnDropCtlInfoExample" >
+    delete from B_WRN_DROP_CTL_INFO
+    <include refid="B_WRN_DROP_CTL_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnDropCtlInfo" >
+    insert into B_WRN_DROP_CTL_INFO (ID, WARN_ID, SLAVE_CONTNO, SLAVE_CONTCODE, 
+      CUSTCD, CNAME, MONI_CUSTCD, MONI_CNAME, PROTOCOL_NO, 
+      LEAST_MORT_AMT, MORT_AMT, RATIO, CURRENT_RATIO, 
+      WARN_LINE, MORT_BALANCE, RISK_BAL)
+    values (#id:VARCHAR#, #warnId:VARCHAR#, #slaveContno:VARCHAR#, #slaveContcode:VARCHAR#, 
+      #custcd:VARCHAR#, #cname:VARCHAR#, #moniCustcd:VARCHAR#, #moniCname:VARCHAR#, #protocolNo:VARCHAR#, 
+      #leastMortAmt:DECIMAL#, #mortAmt:DECIMAL#, #ratio:DECIMAL#, #currentRatio:DECIMAL#, 
+      #warnLine:DECIMAL#, #mortBalance:DECIMAL#, #riskBal:DECIMAL#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnDropCtlInfo" >
+    insert into B_WRN_DROP_CTL_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        SLAVE_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        MONI_CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="leastMortAmt" >
+        LEAST_MORT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="mortAmt" >
+        MORT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="ratio" >
+        RATIO
+      </isNotNull>
+      <isNotNull prepend="," property="currentRatio" >
+        CURRENT_RATIO
+      </isNotNull>
+      <isNotNull prepend="," property="warnLine" >
+        WARN_LINE
+      </isNotNull>
+      <isNotNull prepend="," property="mortBalance" >
+        MORT_BALANCE
+      </isNotNull>
+      <isNotNull prepend="," property="riskBal" >
+        RISK_BAL
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        #slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        #moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="leastMortAmt" >
+        #leastMortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortAmt" >
+        #mortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ratio" >
+        #ratio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="currentRatio" >
+        #currentRatio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="warnLine" >
+        #warnLine:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortBalance" >
+        #mortBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskBal" >
+        #riskBal:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnDropCtlInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_WRN_DROP_CTL_INFO
+    <include refid="B_WRN_DROP_CTL_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_WRN_DROP_CTL_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnId" >
+        WARN_ID = #record.warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContcode" >
+        SLAVE_CONTCODE = #record.slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cname" >
+        CNAME = #record.cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCustcd" >
+        MONI_CUSTCD = #record.moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCname" >
+        MONI_CNAME = #record.moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.leastMortAmt" >
+        LEAST_MORT_AMT = #record.leastMortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortAmt" >
+        MORT_AMT = #record.mortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ratio" >
+        RATIO = #record.ratio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.currentRatio" >
+        CURRENT_RATIO = #record.currentRatio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnLine" >
+        WARN_LINE = #record.warnLine:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortBalance" >
+        MORT_BALANCE = #record.mortBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.riskBal" >
+        RISK_BAL = #record.riskBal:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_WRN_DROP_CTL_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_WRN_DROP_CTL_INFO
+    set ID = #record.id:VARCHAR#,
+      WARN_ID = #record.warnId:VARCHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      SLAVE_CONTCODE = #record.slaveContcode:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      CNAME = #record.cname:VARCHAR#,
+      MONI_CUSTCD = #record.moniCustcd:VARCHAR#,
+      MONI_CNAME = #record.moniCname:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      LEAST_MORT_AMT = #record.leastMortAmt:DECIMAL#,
+      MORT_AMT = #record.mortAmt:DECIMAL#,
+      RATIO = #record.ratio:DECIMAL#,
+      CURRENT_RATIO = #record.currentRatio:DECIMAL#,
+      WARN_LINE = #record.warnLine:DECIMAL#,
+      MORT_BALANCE = #record.mortBalance:DECIMAL#,
+      RISK_BAL = #record.riskBal:DECIMAL#
+    <isParameterPresent >
+      <include refid="B_WRN_DROP_CTL_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnDropCtlInfo" >
+    update B_WRN_DROP_CTL_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID = #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        SLAVE_CONTCODE = #slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME = #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD = #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        MONI_CNAME = #moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="leastMortAmt" >
+        LEAST_MORT_AMT = #leastMortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortAmt" >
+        MORT_AMT = #mortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ratio" >
+        RATIO = #ratio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="currentRatio" >
+        CURRENT_RATIO = #currentRatio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="warnLine" >
+        WARN_LINE = #warnLine:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortBalance" >
+        MORT_BALANCE = #mortBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskBal" >
+        RISK_BAL = #riskBal:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnDropCtlInfo" >
+    update B_WRN_DROP_CTL_INFO
+    set WARN_ID = #warnId:VARCHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      SLAVE_CONTCODE = #slaveContcode:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      CNAME = #cname:VARCHAR#,
+      MONI_CUSTCD = #moniCustcd:VARCHAR#,
+      MONI_CNAME = #moniCname:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      LEAST_MORT_AMT = #leastMortAmt:DECIMAL#,
+      MORT_AMT = #mortAmt:DECIMAL#,
+      RATIO = #ratio:DECIMAL#,
+      CURRENT_RATIO = #currentRatio:DECIMAL#,
+      WARN_LINE = #warnLine:DECIMAL#,
+      MORT_BALANCE = #mortBalance:DECIMAL#,
+      RISK_BAL = #riskBal:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

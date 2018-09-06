@@ -1,0 +1,98 @@
+.table {
+    border:1px solid #bacae3;
+    line-height:35px;
+    text-align:center;
+    margin-bottom: 0;
+    width: 1049px;
+    table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+}
+.table thead th {
+    background:#ebeff8;
+    font-weight:bolder;
+    text-align:center;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+}
+.table thead th,.table tbody td {border-right:1px solid #dee5f4;}
+.table tbody td{
+    width:100%;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
+}
+.table tbody tr:hover {background:#ebeff8;} /*这个将是鼠标高亮行的背景色*/
+
+.page-list .pagination {
+    float: left;
+}
+.pagination {
+    margin: 0;
+}
+
+.page-list .pagination span {
+    cursor: pointer;
+}
+
+.page-list .pagination .separate span {
+    cursor: default;
+    border-top: none;
+    border-bottom: none;
+}
+
+.page-list .pagination .separate span:hover {
+    background: none;
+}
+
+.page-list .page-total {
+    float: left;
+    margin: 5px 20px 0;
+}
+
+.page-list .page-total input, .page-list .page-total select {
+    height: 26px;
+    border: 1px solid #ddd;
+}
+
+.page-list .page-total input {
+    width: 40px;
+    padding-left: 10px;
+}
+
+.page-list .page-total select {
+    width: 40px;
+}
+.modal-block {
+    display: block;
+}
+span.input-icon {
+    display: inline-block;
+}
+.input-icon {
+    position: relative;
+}
+
+.input-icon>input {
+    padding-left: 24px;
+    padding-right: 6px;
+}
+
+.input-icon>[class*="icon-"] {
+    padding: 0 3px;
+    z-index: 2;
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    left: 3px;
+    line-height: 28px;
+    display: inline-block;
+    color: #909090;
+    font-size: 16px;
+}
+#ifop> a{
+    margin: 0 6px;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+

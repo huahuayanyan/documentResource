@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_SYS_LN_CD" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.sys.dao.model.BSysLnCd" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RATECODE" property="ratecode" jdbcType="VARCHAR" />
+    <result column="RATENAME" property="ratename" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, RATECODE, RATENAME, STATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCdExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_SYS_LN_CD.Base_Column_List" />
+    from B_SYS_LN_CD
+    <isParameterPresent >
+      <include refid="B_SYS_LN_CD.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCd" >
+    select 
+    <include refid="B_SYS_LN_CD.Base_Column_List" />
+    from B_SYS_LN_CD
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCd" >
+    delete from B_SYS_LN_CD
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCdExample" >
+    delete from B_SYS_LN_CD
+    <include refid="B_SYS_LN_CD.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCd" >
+    insert into B_SYS_LN_CD (ID, RATECODE, RATENAME, STATE)
+    values (#id:VARCHAR#, #ratecode:VARCHAR#, #ratename:VARCHAR#, #state:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCd" >
+    insert into B_SYS_LN_CD
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="ratecode" >
+        RATECODE
+      </isNotNull>
+      <isNotNull prepend="," property="ratename" >
+        RATENAME
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        STATE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ratecode" >
+        #ratecode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ratename" >
+        #ratename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        #state:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCdExample" resultClass="java.lang.Integer" >
+    select count(*) from B_SYS_LN_CD
+    <include refid="B_SYS_LN_CD.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_SYS_LN_CD
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ratecode" >
+        RATECODE = #record.ratecode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ratename" >
+        RATENAME = #record.ratename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.state" >
+        STATE = #record.state:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_SYS_LN_CD.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_SYS_LN_CD
+    set ID = #record.id:VARCHAR#,
+      RATECODE = #record.ratecode:VARCHAR#,
+      RATENAME = #record.ratename:VARCHAR#,
+      STATE = #record.state:CHAR#
+    <isParameterPresent >
+      <include refid="B_SYS_LN_CD.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCd" >
+    update B_SYS_LN_CD
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="ratecode" >
+        RATECODE = #ratecode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ratename" >
+        RATENAME = #ratename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        STATE = #state:CHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCd" >
+    update B_SYS_LN_CD
+    set RATECODE = #ratecode:VARCHAR#,
+      RATENAME = #ratename:VARCHAR#,
+      STATE = #state:CHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <!-- 自定义 -->
+  <select id="selectByRatename" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCd" >
+    select 
+    <include refid="B_SYS_LN_CD.Base_Column_List" />
+    from B_SYS_LN_CD
+    where RATENAME = #ratename:VARCHAR#
+  </select>
+  <select id="selectByRatecode" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCd" >
+    select 
+    <include refid="B_SYS_LN_CD.Base_Column_List" />
+    from B_SYS_LN_CD
+    where RATECODE = #ratecode:VARCHAR#
+  </select>
+  <select id="selectByLnCd" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnCd" >
+    select 
+    <include refid="B_SYS_LN_CD.Base_Column_List" />
+    from B_SYS_LN_CD
+    where RATENAME = #ratename:VARCHAR#
+    and RATECODE not in #ratecode:VARCHAR#
+  </select>
+  <resultMap id="CdValResultMap" class="java.util.HashMap" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RATECODE" property="ratecode" jdbcType="VARCHAR" />
+    <result column="RATENAME" property="ratename" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="CHAR" />
+    <result column="VAL_ID" property="valId" jdbcType="VARCHAR" />
+    <result column="RATEID" property="rateid" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="CHAR" />
+    <result column="RATEVAL" property="rateval" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="DATE" />
+    <result column="END_DATE" property="endDate" jdbcType="DATE" />
+    <result column="VAL_STAT" property="valStat" jdbcType="CHAR" />
+    <result column="TERM" property="term" jdbcType="VARCHAR" />
+    <result column="RATEVAL_YEAR" property="ratevalYear" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="selectByExtExample" resultMap="CdValResultMap" parameterClass="java.util.HashMap" >
+    select t.ID, t.RATECODE, t.RATENAME, t.STATE,tt.ID VAL_ID,tt.RATEID,tt.CURCD,tt.UNIT,
+    	tt.RATEVAL,tt.START_DATE,tt.END_DATE,tt.STATE VAL_STAT,tt.TERM,tt.RATEVAL_YEAR
+    from B_SYS_LN_CD t,B_SYS_LN_VAL tt
+    where t.ID=tt.RATEID
+      <isNotEmpty prepend="and" property="ratecode">
+        t.RATECODE  like '%'|| #ratecode:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="ratename">
+        t.RATENAME  like '%'|| #ratename:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="curcd">
+        tt.CURCD = #curcd:VARCHAR#
+      </isNotEmpty>
+   order by t.RATECODE
+  </select>
+  <select id="countByExtExample" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(t.ID) from B_SYS_LN_CD t,B_SYS_LN_VAL tt
+    where t.ID=tt.RATEID
+      <isNotEmpty prepend="and" property="ratecode">
+        t.RATECODE  like '%'|| #ratecode:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="ratename">
+        t.RATENAME  like '%'|| #ratename:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="curcd">
+        tt.CURCD = #curcd:VARCHAR#
+      </isNotEmpty>
+  </select>
+  <!-- <select id="selectLnCdValByRatecode" resultMap="CdValResultMap" parameterClass="java.util.HashMap" >
+    select t.ID, t.RATECODE, t.RATENAME, t.STATE,tt.ID VAL_ID,tt.RATEID,tt.CURCD,tt.UNIT,
+    	tt.RATEVAL,tt.START_DATE,tt.END_DATE,tt.STATE VAL_STAT,tt.TERM,tt.RATEVAL_YEAR
+    from B_SYS_LN_CD t,B_SYS_LN_VAL tt
+    where t.ID=tt.RATEID
+    and t.RATECODE  like '%'|| #ratecode:VARCHAR#||'%'
+  </select> -->
+</sqlMap>

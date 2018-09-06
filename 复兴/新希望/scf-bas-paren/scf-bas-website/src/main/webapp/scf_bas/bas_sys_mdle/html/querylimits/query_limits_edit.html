@@ -1,0 +1,20 @@
+<ht-form name="otherform">
+    <ht-input ht-id="roleName" name="角色名称" disable="{{disableBrId}}"
+              ng-model="otherform.roleName" reg-exp="roleName"></ht-input>
+    <ht-input ht-id="roleNo" name="角色编号" disable="{{disableBrId}}"
+              ng-model="otherform.roleNo" reg-exp="allNumber"></ht-input>
+    <ht-select ht-id="isPublic" name="是否公用" dictionary="checked" disable="{{disableBrId}}"
+              ng-model="otherform.isPublic" reg-exp="common.require"></ht-select>
+    <ht-select ht-id="status" name="角色状态" dictionary="status" reg-exp="common.require"
+               ng-model="otherform.status" disable="{{disableBrId}}"></ht-select>
+    <ht-select ht-id="roleType" name="角色类型" reg-exp="common.require" disable="{{disableBrId}}"
+               dictionary="allRoleType" ng-model="otherform.roleType"></ht-select>
+    <ht-input-extent name='所属机构' ht-id ='treeName' extent='content' on-change="dooextent" checkedHiden="true"
+                     disable="{{disableBrId}}" readonly="{{readonly}}" ng-model='otherform.treeName'></ht-input-extent>
+    <ht-select ht-id="roleModel" name="查询权限模式" reg-exp="common.require" disable="{{disable}}"
+               dictionary="roleModel" ng-model="otherform.roleModel"></ht-select>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}">确定</ht-button>
+    <ht-button ht-id="cancel" class="btn-primary">取消</ht-button>
+</ht-button-group>

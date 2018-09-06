@@ -1,0 +1,27 @@
+
+<ht-form name="lnvalform" columns="1">
+    <ht-panel>
+    <ht-legend>利率种类</ht-legend>
+    <ht-input name="利率代码" reg-exp="common.require" ng-model="lnvalform.ratecode" disable="{{disable}}"></ht-input>
+    <ht-input name="利率名称" reg-exp="common.require" ng-model="lnvalform.ratename" disable="{{disable}}"></ht-input>
+    <ht-select name="状态" reg-exp="common.require" ng-model="lnvalform.state" disable="{{disable}}" dictionary="validState"></ht-select>
+    </ht-panel>
+    <ht-panel>
+    <ht-legend>基准利率</ht-legend>
+    <ht-select name="币种" reg-exp="common.require" ng-model="lnvalform.curcd" dictionary="curcd" disable="{{disableview}}"></ht-select>
+    <!--<ht-input name="利率单位" ng-model="lnvalform.unit" disable="{{disableview}}"></ht-input>-->
+    <ht-input name="基准利率值(%)" reg-exp="common.require" ng-model="lnvalform.rateval" disable="{{disableview}}" edit-type="number"></ht-input>
+    <!--<ht-input name="年利率" ng-model="lnvalform.ratevalYear" disable="{{disableview}}"></ht-input>-->
+    <ht-select name="期限" reg-exp="common.require" ng-model="lnvalform.term" disable="{{disableview}}" dictionary="lnVal"></ht-select>
+    <ht-input ht-id="startDate" name="生效日期" ng-model="lnvalform.startDate" disable="{{disableview}}"
+              edit-type="date" high-date-id="endDate"></ht-input>
+    <ht-input ht-id="endDate" name="失效日期" ng-model="lnvalform.endDate" disable="{{disableview}}"
+              edit-type="date" lower-date-id="startDate"></ht-input>
+    <ht-select name="状态" reg-exp="common.require" ng-model="lnvalform.valStat" disable="{{disableview}}" dictionary="validState"></ht-select>
+    </ht-panel>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

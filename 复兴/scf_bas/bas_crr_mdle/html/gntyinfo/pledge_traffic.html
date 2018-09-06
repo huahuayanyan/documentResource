@@ -1,0 +1,31 @@
+<!--质押-交通工具-->
+<ht-form name="row">
+    <ht-legend>基本信息</ht-legend>
+    <ht-select name="质押物类型" reg-exp="common.require" ng-model="row.gntyTyp" dictionary="GuarantyList" disable="true"></ht-select>
+    <ht-select ht-id="certTyp" name="出质人证件类型" reg-exp="common.require" ng-model="row.certTyp"
+               dictionary="idtype" disable="{{disableview}}"></ht-select>
+    <ht-input name="出质人证件号码" reg-exp="common.require" ng-model="row.certId" disable="{{disableview}}"></ht-input>
+    <ht-input name="出质人名称" reg-exp="common.require" ng-model="row.ownerNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="出质人贷款卡号" reg-exp="common.require" ng-model="row.certLnNo" disable="{{disableview}}"></ht-input>
+    <ht-select name="出质人类型" reg-exp="common.require" ng-model="row.ownerTyp" dictionary="ownerTyp" disable="{{disableview}}"></ht-select>
+    <ht-input name="权证号(车牌号)" reg-exp="common.require" ng-model="row.gntyRid" disable="{{disableview}}"></ht-input>
+    <ht-select name="交通工具类型" reg-exp="common.require" ng-model="row.gntySubTyp" dictionary="trafficTyp" disable="{{disableview}}"></ht-select>
+    <ht-input name="车辆品牌" reg-exp="common.require" ng-model="row.gntyAttr" disable="{{disableview}}"></ht-input>
+    <ht-select name="质押物价值评估方式" reg-exp="common.require" ng-model="row.evalMthd" dictionary="evalMthd" disable="{{disableview}}"></ht-select>
+    <ht-input name="价值评估机构名称" reg-exp="common.require" ng-model="row.evalOrgNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="价值评估时间" reg-exp="common.require" ng-model="row.evalDt" edit-type="date" disable="{{disableview}}"></ht-input>
+    <ht-input name="质押物评估价值(人民币 元)" reg-exp="common.require" ng-model="row.evalNetVal" edit-type="currency" disable="{{disableview}}"></ht-input>
+    <ht-input name="质押物认定价值(人民币 元)" reg-exp="common.require" ng-model="row.confirmVal" edit-type="currency" disable="{{disableview}}"></ht-input>
+    <ht-text-area name="备注" ng-model="row.rem" disable="{{disableview}}"></ht-text-area>
+    <ht-input ht-id="tlrNm" name="登记人" ng-model="row.tlrNm" disable="true"></ht-input>
+    <ht-input ht-id="brNm" name="登记机构" ng-model="row.brNm" disable="true"></ht-input>
+    <ht-input ht-id="inpDt" name="登记日期" ng-model="row.inpDt" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdTlrNm" name="更新人" ng-model="row.lstUpdTlrNm" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdBrNm" name="更新机构" ng-model="row.lstUpdBrNm" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdDt" name="更新日期" ng-model="row.lstUpdDt" disable="true"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{disableconfirm}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

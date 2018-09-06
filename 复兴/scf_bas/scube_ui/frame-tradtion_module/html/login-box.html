@@ -1,0 +1,20 @@
+<div id="login-box" class="login_box">
+    <h1>华腾金融系统</h1>
+    <form>
+        <h2>用户登录</h2>
+        <label class="inline userName">
+            <input type="text" class="username" placeholder="请输入用户名" ng-model="loginForm.userName"/>
+            <img src="../../images/login.png">
+        </label>
+        <label class="inline passWord">
+            <input type="password" class="password" placeholder="请输入密码" ng-model="loginForm.password"/>
+            <img src="../../images/pwd.png">
+        </label>
+        <input type="checkbox" id="remember-pwd" style="margin-right: 14px;"/>
+        <label class="remember-pwd" for="remember-pwd">记住密码</label>
+        <a class="pull-right">忘记密码？</a>
+        <button class="" ng-click="login()">
+            登录
+        </button>
+    </form>
+</div>

@@ -1,0 +1,52 @@
+
+<div id="billCheck">
+    <ht-legend>在押仓单清单列表</ht-legend>
+    <ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+        <ht-button-group>
+            <ht-button ht-id="mngexcg" hide="{{hide}}" class="btn-primary">换出</ht-button>
+        </ht-button-group>
+        <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+        <ht-column eg-name="billType" zh-name="仓单类型" dictionary="billType"></ht-column>
+        <ht-column eg-name="keeperName" zh-name="保管人名称"></ht-column>
+        <ht-column eg-name="startDate" zh-name="开具日期" type="date"></ht-column>
+        <ht-column eg-name="endDate" zh-name="截止日期" type="date"></ht-column>
+        <ht-column eg-name="whReceiptValue" zh-name="仓单价值" type="currency"></ht-column>
+    </ht-table>
+    <ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+</div>
+<ht-legend>换出仓单清单列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasourceexcg" selected="selectedexcg" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="deleteexcg" class="btn-primary" hide="{{hide}}">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="billType" zh-name="仓单类型" dictionary="billType"></ht-column>
+    <ht-column eg-name="keeperName" zh-name="保管人名称"></ht-column>
+    <ht-column eg-name="startDate" zh-name="开具日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="截止日期" type="date"></ht-column>
+    <ht-column eg-name="whReceiptValue" zh-name="仓单价值" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="confexcg" style="height: 50px;padding-top: 5px"></ht-page>
+<ht-button-group align="center">
+    <ht-button ht-id="save" hide="{{Write}}" disable="{{WriteDisable}}" class="btn-primary">保存</ht-button>
+</ht-button-group>
+
+<ht-legend>普通仓单下押品列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasourcemort" selected="selectedmort" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="viewmort" class="btn-primary">押品详情</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="mortgageNo" zh-name="押品编号"></ht-column>
+    <ht-column eg-name="productName" zh-name="货物名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="quantity" zh-name="数量" type="currency"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="销售价格" type="currency"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="confmort" style="height: 50px;padding-top: 5px"></ht-page>
+
+
+
+

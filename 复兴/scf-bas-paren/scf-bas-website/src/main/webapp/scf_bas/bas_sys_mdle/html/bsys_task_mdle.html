@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ------------公共css--------------------- -->
+
+    <script src="../../scube_ui/common/importCs.js"></script>
+
+
+
+    <!-- ------------业务css--------------------- -->
+
+</head>
+
+<body>
+
+<div ui-view>
+
+
+
+</div>
+
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+
+<script src="../../config.js"></script>
+
+
+
+<!-- ------------公共js--------------------- -->
+
+<script src="../../scube_ui/common/myBrowser.js"></script>
+
+<script src="../../scube_ui/common/importJs.js"></script>
+
+
+
+<!-- ------------业务js--------------------- -->
+
+<script src="../js/controllers/bsys_task_controller.js"></script>
+<script src="../js/controllers/bsys_tab_controller.js"></script>
+<script src="../js/controllers/bsys_taskcomment_controller.js"></script>
+
+<!-- 首页 待办任务 -->
+<script src="../js/controllers/bsys_taskmain_controller.js"></script>
+<!--信用评级-->
+<script src="../../bas_crg_mdle/js/evalctrls/crgeval_appr_controller.js"></script>
+<script src="../js/bsys_task_mdle.js"></script>
+<!-- 担保提货收款确认 -->
+<script src="../../adv_tcs_mdle/js/controllers/atcsthreeConfirm/threeConfirmApply_controller.js"></script>
+<!--商业纠纷登记-->
+<script src="../../rec_bcp_mdle/js/dsptreg/dsptRegSbmtView_controller.js"></script>
+<script src="../../rec_bcp_mdle/js/dsptreg/dsptRegApprView_controller.js"></script>
+<!--应收账款转让申请-->
+<script src="../../rec_bcp_mdle/js/appli/tansferConfirm_controller.js"></script>
+<script src="../../rec_bcp_mdle/js/appli/checkTransfer_controller.js"></script>
+<script src="../../rec_bcp_mdle/js/payment/payment_update_controller.js"></script>
+<!--出质入库-->
+<script src="../../bas_pbc_mdle/js/controllers/qualityApply_controller.js"></script>
+<script src="../../bas_pbc_mdle/js/controllers/qualityApplyInfo_controller.js"></script>
+<script src="../../bas_pbc_mdle/js/controllers/mortgageInfo_controller.js"></script>
+<script src="../../bas_pbc_mdle/js/controllers/gntyconInfo_controller.js"></script>
+<script src="../../bas_pbc_mdle/js/controllers/custInfo_controller.js"></script>
+<!-- 应收账款池融资催收 -->
+<script src="../../rec_bcp_mdle/js/debtPoolPress/debtPoolPressDtl_controller.js"></script>
+<!--池融资商纠登记-->
+<script src="../../rec_bcp_mdle/js/pooldsptreg/bcp_base_info_list_controller.js"></script>
+<script src="../../rec_bcp_mdle/js/pooldsptreg/pooldsptInvModf_controller.js"></script>
+<script src="../../rec_bcp_mdle/js/pooldsptreg/pooldsptRegSbmtView_controller.js"></script>
+<script src="../../rec_bcp_mdle/js/dsptreg/dsptRegSbmtView_controller.js"></script>
+<script src="../../rec_bcp_mdle/js/pooldsptreg/pooldsptRegApprView_controller.js"></script>
+<script src="../../rec_bcp_mdle/js/dsptreg/dsptRegApprView_controller.js"></script>
+
+<!--池融资商纠登记解除-->
+<script src="../../rec_bcp_mdle/js/appli/poolDisputeRemove_controller.js"></script>
+<!--融资商纠登记解除-->
+<script src="../../rec_bcp_mdle/js/appli/disputeRemove_controller.js"></script>
+<!--回款专户转账-->
+<script src="../../rec_bcp_mdle/js/poolRePay/poolRePayMain_controller.js"></script>
+<script src="../../rec_bcp_mdle/js/repay/backPayAccountTransfer.js"></script>
+<!--应收账款池融资回款-->
+<script src="../../rec_bcp_mdle/js/paymentpool/paymentpool_update_controller.js"></script>
+<!-- 发票历程信息 -->
+<script src="../../rec_bcp_mdle/js/poolDisputeRemove/bcp_progress_list_controller.js"></script>
+<!-- 应收类减值 -->
+<script src="../../rec_bcp_mdle/js/poolImpairment/poolImpairAdd_controller.js"></script>
+<script src="../../rec_bcp_mdle/js/impairment/impairAdd_controller.js"></script>
+<!--保证金追加申请-->
+<script src="../../bas_mrn_mdle/js/controllers/lncimarginapplytask_controller.js"></script>
+<!--批量调价-->
+<script src="../../adv_fcs_mdle/js/multiPriceAdjust/multiPriceAdjust_Apply_Info_controller.js"></script>
+<!--现货静态批量调价  -->
+<script src="../../sto_smp_mdle/js/multiPriceAdjust/multiPriceAdjust_Apply_Info_controller.js"></script>
+<!--现货动态批量调价  -->
+<script src="../../sto_dmp_mdle/js/multiPriceAdjust/multiPriceAdjust_Apply_Info_controller.js"></script>
+
+<!--应收类配置-应收账款转让-->
+<script src="../../nrec_bcp_mdle/js/debtTransfer/debt_transfer_controller.js"></script>
+<!--应收账款融资流贷放款-->
+<script src="../../nrec_bcp_mdle/js/lanlnci/bcp_lan_edit_controller.js"></script>
+<!--应收账款池融资流贷放款-->
+<script src="../../nrec_bcp_mdle/js/lanlnci/bcp_lan_pooledit_controller.js"></script>
+<!--应收账款融资催收申请-->
+<script src="../../nrec_bcp_mdle/js/debtPress/bcp_press_edit_controller.js"></script>
+<!--应收类商纠登记申请-->
+<script src="../../nrec_bcp_mdle/js/disputeRegister/dispute_register_apply_controller.js"></script>
+<!--应收类商纠登记解除申请-->
+<script src="../../nrec_bcp_mdle/js/disputeRemove/dispute_remove_apply_controller.js"></script>
+<!--应收类核销申请-->
+<script src="../../nrec_bcp_mdle/js/chargeOff/bcp_chargeoff_edit_controller.js"></script>
+<!--应收类配置-现金回款处理-->
+<script src="../../nrec_bcp_mdle/js/repayment/cashpayment/payment_apply_controller.js"></script>
+<!--应收类配置-出池申请-->
+<script src="../../nrec_bcp_mdle/js/buscont/debt_outPool_apply_controller.js"></script>
+<!--应收类配置-入池申请-->
+<script src="../../nrec_bcp_mdle/js/buscont/debt_inPool_apply_controller.js"></script>
+</body>
+
+</html>

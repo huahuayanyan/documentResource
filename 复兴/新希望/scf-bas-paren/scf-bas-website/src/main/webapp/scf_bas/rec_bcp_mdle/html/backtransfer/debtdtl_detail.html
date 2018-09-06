@@ -1,0 +1,23 @@
+
+<ht-form name ="detailForm">
+    <ht-legend>应收账款反转让明细信息</ht-legend>
+    <ht-input name="凭证编号" ng-model="detailForm.billsNo" disable="true"></ht-input>
+    <ht-input name="应收账款登记日期" ng-model="detailForm.insertDate" edit-type="date" disable="true"></ht-input>
+    <ht-input name="应收账款日期" ng-model="detailForm.billsDate" edit-type="date" disable="true"></ht-input>
+    <ht-input name="账龄天数" ng-model="detailForm.aging" disable="true"></ht-input>
+    <ht-input name="到期日" ng-model="detailForm.debtEnd" edit-type="date" disable="true"></ht-input>
+    <ht-input name="最迟付款日" ng-model="detailForm.deadline" edit-type="date" disable="true"></ht-input>
+    <ht-select name="币种" dictionary="curcd" ng-model="detailForm.curcd" disable="true"></ht-select>
+    <ht-input name="有效金额" ng-model="detailForm.billsAmount" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="应收账款余额" ng-model="detailForm.remainingAmount" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="融资比例" ng-model="detailForm.loanPercent" disable="true"></ht-input>
+    <ht-input name="可融资余额" ng-model="detailForm.remainingUseableAmount" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="已减值金额" ng-model="detailForm.otherSum" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="反转让金额" reg-exp="common.require" ng-model="detailForm.billsAmount" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="反转让后应收账款余额"  ng-model="detailForm.otherSum" edit-type="currency" disable="true"></ht-input>
+    <ht-select name="状态" ng-model="detailForm.status" dictionary="debtBussStatus" disable="true"></ht-select>
+    <ht-select name="池状态" ng-model="detailForm.poolFlag" dictionary="poolFlag" hide="{{hidePoolFlag}}" disable="true"></ht-select>
+    <ht-button-group align="center">
+        <ht-button ht-id="closeThisDialog" class="btn-primary" desc-name="返回"></ht-button>
+    </ht-button-group>
+</ht-form>

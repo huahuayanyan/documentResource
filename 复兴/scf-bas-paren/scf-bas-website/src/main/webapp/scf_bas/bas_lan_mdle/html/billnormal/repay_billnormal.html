@@ -1,0 +1,29 @@
+
+<div  style="position:absolute;z-index:12;float:right;top:12px;right:12px;">
+        <ht-button ht-id="back" class="btn-primary" desc-name="返回"></ht-button>
+</div>
+
+<ht-legend>任务基本信息</ht-legend>
+<ht-form name="taskform">
+        <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+        <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+        <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+        <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+</ht-form>
+<ht-tabs>
+        <ht-pane title="放款申请"  ui-sref="{{baseurl}}">
+        </ht-pane>
+        <ht-pane title="仓单清单"  ui-sref="billnormal.mort" >
+        </ht-pane>
+        <ht-pane title="保证金列表"  ui-sref="billnormal.acct">
+        </ht-pane>
+        <ht-pane title="核库信息"  ui-sref="billnormal.stock" >
+        </ht-pane>
+        <ht-pane title="抵质押合同查询"  ui-sref="billnormal.gntycon" >
+        </ht-pane>
+        <ht-pane title="信贷合同"  ui-sref="billnormal.lncon">
+        </ht-pane>
+</ht-tabs>
+
+
+

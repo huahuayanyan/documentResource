@@ -1,0 +1,40 @@
+
+<!----------------- 应收材料----------------------->
+    <ht-legend>应收材料列表</ht-legend>
+    <ht-table ht-id="receMatlTableId" datasource="receMatlDatasource" selected="receMatlSelected" docheckbox="true">
+        <ht-button-group>
+            <ht-button ht-id="receMatlAdd" class="btn-primary">新增</ht-button>
+            <ht-button ht-id="receMatlDelete" class="btn-primary" >删除</ht-button>
+        </ht-button-group>
+        <ht-column eg-name="receMatlName" zh-name="应收材料名称" ></ht-column>
+        <ht-column eg-name="origNum" zh-name="原件份数"></ht-column>
+        <ht-column eg-name="copyOrigNum" zh-name="复印件份数"></ht-column>
+        <ht-column eg-name="receMatlType" zh-name="应收材料类型"  dictionary="receMatlType" ></ht-column>
+    </ht-table>
+<ht-page conf="receMatlConf"></ht-page>
+<!--------------------准入条件---------------------->
+<ht-form name="prdCreditPlyForm">
+    <ht-legend>准入条件</ht-legend>
+    <ht-text-area ht-id="entAcs" name="准入条件" disable={{disable}}   ng-model="prdCreditPlyForm.entAcs"></ht-text-area>
+</ht-form>
+
+<!--------------------业务调查---------------------->
+<ht-legend>业务调查材料列表</ht-legend>
+<ht-table ht-id="bizSurBindTableId" datasource="bizSurBindDatasource" selected="bizSurBindSelected" docheckbox="true">
+    <ht-button-group >
+        <ht-button ht-id="bizSurBindAdd" class="btn-primary" >新增</ht-button>
+        <ht-button ht-id="bizSurBindDelete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="bProdBizSurId" zh-name="业务材料ID"  ></ht-column>
+    <ht-column eg-name="bProdBizSurName" zh-name="材料名称"></ht-column>
+    <ht-column eg-name="matlType" zh-name="材料类型"  dictionary="matlType" ></ht-column>
+</ht-table>
+<ht-page conf="bizSurBindConf"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="former"  class="btn-primary" desc-name="上一步"></ht-button>
+    <ht-button ht-id="next"  class="btn-primary" desc-name="下一步"></ht-button>
+    <ht-button ht-id="complete"  hide="{{hide}}"class="btn-primary" desc-name="完成"></ht-button>
+</ht-button-group>
+
+

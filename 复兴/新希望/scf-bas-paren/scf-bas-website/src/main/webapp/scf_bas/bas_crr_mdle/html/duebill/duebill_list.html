@@ -1,0 +1,39 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="cino" name="出账流水号" ng-model="conditionForm.cino"></ht-input>
+    <ht-input-extent ht-id="custNm" name="客户名称" extent="custcontent" on-change="dooextend"
+                     ng-model="conditionForm.custNm"></ht-input-extent>
+    <ht-input ht-id="isDt"  name="放款日期" ng-model="conditionForm.isDt" edit-type="date"></ht-input>
+    <ht-input ht-id="teDt" name="到期日期" ng-model="conditionForm.teDt" edit-type="date"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>台帐列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="view" class="btn-primary">查看</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="cino" zh-name="台帐流水号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="custNm" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="conNo" zh-name="合同号"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="lnAmt" zh-name="金额" type="currency"></ht-column>
+    <ht-column eg-name="lnStat" zh-name="借据状态" dictionary="lnStat"></ht-column>
+    <ht-column eg-name="tlrNm" zh-name="经办人"></ht-column>
+    <ht-column eg-name="brNm" zh-name="经办机构"></ht-column>
+    <ht-column eg-name="inpDt" zh-name="经办日期"></ht-column>
+</ht-table>
+
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->
+
+
+
+

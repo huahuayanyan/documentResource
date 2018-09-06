@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <style type="text/css">
+        body{
+        //background-color:#f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="height:280px;width:650px"></div>
+<!-- ECharts单文件引入 -->
+<!--   <script src="./js/echarts.js"></script>-->
+<script type="text/javascript" src="../../js/echarts.min.js"></script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts图表
+    var theme={
+
+        color : [
+            '#23bfaa','#9bbb58','#d38483'
+        ]
+
+    };
+    var myChart = echarts.init(document.getElementById('main'),theme);
+    option = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            itemWidth:15, //图例图像宽度 默认20
+            itemHight:10, //图例图像高度 默认14
+            textStyle:{
+                fontSize:8
+            }, //文本标签样式
+            //data:['直接访问', '邮件营销','联盟广告','视频广告','搜索引擎']
+            data:['高级预警', '中级预警','低级预警']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: false},//辅助线开关
+                dataView : {show: false, readOnly: false},//数据视图
+                magicType : {show: false, type: ['line', 'bar', 'stack', 'tiled']},//动态类型切换
+                restore : {show: false}, // 还原
+                saveAsImage : {show: false} //保存为图片
+            }
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                // data : ['周一','周二','周三','周四','周五','周六','周日']
+                data : ['未巡库预警','应收账款到期预警','对账不平预警','价格波动预警','敞口无法覆盖预警'],
+                axisLabel:{
+                    textStyle:{
+                        fontSize:5
+                    }, //文本标签样式
+                    interval:0,//横轴信息全部显示
+                    //rotate:30 //角度
+                }
+
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                boundaryGap: [0, 0.1]
+            }
+        ],
+        series : [
+            {
+                name:'低级预警',
+                type:'bar',
+                stack: '总量',
+                itemStyle : { normal: {label : {show: true}}},//show: false, position: 'insideRight'
+                //data:[320, 302, 301, 334, 390, 330, 320]
+                data:[3, 2, 1, 4, 0]
+            },
+            {
+                name:'中级预警',
+                type:'bar',
+                stack: '总量',
+                itemStyle : { normal: {label : {show: true}}}, //, position: 'insideRight'
+                //data:[120, 132, 101, 134, 90, 230, 210]
+                data:[1, 1, 1, 3, 9]
+            },
+            {
+                name:'高级预警',
+                type:'bar',
+                stack: '总量',
+                barWidth:40,// 柱形宽度
+                barGap:'10%',// 柱间距离，默认为 柱形宽度的30%
+                itemStyle : { normal: {label : {show: true}}},
+                //data:[220, 182, 191, 234, 290, 330, 310]
+                data:[2, 8, 1, 3, 2]
+            }/*,
+            {
+                name:'视频广告',
+                type:'bar',
+                stack: '总量',
+                itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                data:[150, 212, 201, 154, 190, 330, 410]
+            },
+            {
+                name:'搜索引擎',
+                type:'bar',
+                stack: '总量',
+                itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                data:[820, 832, 901, 934, 1290, 1330, 1320]
+            }*/
+        ]
+    };
+
+
+
+    // 为echarts对象加载数据
+    myChart.setOption(option);
+</script>
+</body>

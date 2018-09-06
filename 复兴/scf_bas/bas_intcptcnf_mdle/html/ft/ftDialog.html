@@ -1,0 +1,12 @@
+
+<ht-form name="otherform">
+    <ht-legend>拦截项信息</ht-legend>
+    <ht-input name="拦截项编号" ng-model="otherform.chkItId"     disable="true" ></ht-input>
+    <ht-input name="拦截项描述" ng-model="otherform.rem" reg-exp="common.require"></ht-input>
+    <ht-input name="服务名" ng-model="otherform.clazz" reg-exp="common.require"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

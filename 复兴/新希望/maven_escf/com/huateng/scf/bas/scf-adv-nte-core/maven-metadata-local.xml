@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.huateng.scf.bas</groupId>
+  <artifactId>scf-adv-nte-core</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20171015122106</lastUpdated>
+  </versioning>
+</metadata>

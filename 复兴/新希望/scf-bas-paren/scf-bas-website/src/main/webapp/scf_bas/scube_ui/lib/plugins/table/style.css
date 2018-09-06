@@ -1,0 +1,21 @@
+.table {border:1px solid #bacae3;line-height:35px;text-align:center;}
+.table thead th {background:#ebeff8;font-weight:bolder;text-align:center;}
+.table thead th,.table tbody td {border-right:1px solid #dee5f4;}
+.table thead th.nor,.table tbody td.nor {border-right:0;}
+.table tbody td.text {text-align:right;padding-right:10px;}
+.table tbody tr:hover {background:#ebeff8;} /*这个将是鼠标高亮行的背景色*/
+.table tbody tr td.a {color:#4eb2e1;text-decoration:underline;}
+.table tbody tr td.a:hover {color:#4eb2e1;text-decoration:none;}
+.table tbody tr td.text a {color:#5b6274;text-decoration:none;}
+.table tbody tr td.price {line-height:35px;text-align:right;padding-right:10px;border-top:1px solid #dee5f4;}
+.table a.block {background:#4eb2e1;color:#fff;display:block;text-decoration:none;}
+.tableWRow { background: #f6f7f9;} /*隔行变色*/
+.tableClick {background:#ebeff8;} /*点击后颜色保留*/
+
+/*分页*/
+.page{zoom:1; text-align:right;padding:10px;} 
+.page a{padding:5px 8px;border:1px solid #dedede;margin-right:3px;text-decoration:none;background:#fff;color:#5b6274;} 
+.page a:hover,.page a.hover{color:#fff;background:#4eb2e1;}
+.page_inp{width:48px;height:22px;line-height:22px;border:1px solid #dedede;text-align:center;margin-right:3px;}
+.page a.page_normal{padding:0;border:0;margin:0;background:none;font-weight:bold;}
+.page a.page_normal:hover{color:#5b6274;background:none;}

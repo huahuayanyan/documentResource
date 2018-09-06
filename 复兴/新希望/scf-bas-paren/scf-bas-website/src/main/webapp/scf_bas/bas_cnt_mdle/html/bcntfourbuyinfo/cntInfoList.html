@@ -1,0 +1,40 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="cname" name="买方名称" ng-model="conditionForm.cname"></ht-input>
+    <ht-input ht-id="secCname" name="卖方名称" ng-model="conditionForm.secCname"></ht-input>
+    <ht-input ht-id="tradeContcode"  name="购销合同号" ng-model="conditionForm.tradeContcode"></ht-input>
+    <ht-input ht-id="protocolNo"  name="先票/款后货协议号" ng-model="conditionForm.protocolNo"></ht-input>
+    <ht-button-group>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>购销合同信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="cntAdd" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="cntUpdate" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="cntDelete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="protocolNo" zh-name="先票/款后货协议号"></ht-column>
+    <ht-column eg-name="tradeContcode" zh-name="购销合同号" href="true" docolumn="column_click"></ht-column>
+    <ht-column eg-name="cname" zh-name="买方名称"></ht-column>
+    <ht-column eg-name="secCname" zh-name="卖方名称"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="amt" zh-name="合同金额"  type="currency"></ht-column>
+    <ht-column eg-name="startDate" zh-name="合同生效日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="合同到期日" type="date"></ht-column>
+    <ht-column eg-name="totAmt" zh-name="累计出账金额" type="currency"></ht-column>
+
+<!--    <ht-column eg-name="remark3" zh-name="备注3"></ht-column>-->
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->
+
+
+
+

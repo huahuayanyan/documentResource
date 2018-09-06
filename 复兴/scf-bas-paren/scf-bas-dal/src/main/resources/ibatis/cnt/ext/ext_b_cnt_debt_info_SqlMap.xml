@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_CNT_DEBT_INFO" >
+   <!-- 合同信息列表查询 -->
+    <resultMap id="BcntDetInfoMap" class="com.huateng.scf.bas.cnt.dao.model.DebtContVO">
+    <result column="DEBT_CONTNO" property="debtContno" jdbcType="VARCHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="FACT_TYPE" property="factType" jdbcType="VARCHAR" />
+    <result column="FINANCING_TYPE" property="financingType" jdbcType="CHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="CONT_AMOUNT" property="contAmount" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="CONT_STATUS" property="contStatus" jdbcType="VARCHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="VARCHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="PRODUCTNAME" property="productName" jdbcType="VARCHAR" />
+  </resultMap>
+
+   <select id="selectBCntDebtInfoList" resultMap="BcntDetInfoMap" parameterClass="java.util.HashMap" >
+	select DISTINCT
+		T1.DEBT_CONTNO ,
+		T1.CUSTCD AS custcd, T2.CNAME,
+		T1.MGRNO,
+		T1.SUPPLY_CHAIN_PD_ID,T4.PRODUCT_NAME  productName,
+		T1.CURCD,
+		T1.CONT_AMOUNT,
+		T1.START_DATE,
+		T1.END_DATE ,
+		T1.CONT_STATUS,
+		T1.LOAN_PERCENT,
+		T1.FACT_TYPE,
+		T1.FINANCING_TYPE
+			
+	from B_CNT_DEBT_INFO T1,B_CRM_BASE_INFO T2 ,B_CNT_DEBT_EXT_INFO T3,B_PRD_INFO T4  
+	
+    <isParameterPresent >	
+	   where T1.CUSTCD = T2.CUSTCD
+		AND T1.DEBT_CONTNO =T3.BUSINESS_NO
+		AND T1.SUPPLY_CHAIN_PD_ID =T4.PRODUCT_ID
+	    <isNotEmpty prepend="and" property="financingType">
+	    T1.FINANCING_TYPE=#financingType:CHAR#
+	    </isNotEmpty>
+	   	<isNotNull prepend="and" property="factTypes" > 
+        FACT_TYPE  in 
+        <iterate property="factTypes" conjunction="," open="(" close=")" >
+   		 $factTypes[]$
+   		</iterate> 
+    	 </isNotNull>
+      	<isNotEmpty prepend="and" property="cname" >
+        T2.CNAME  like '%'|| #cname:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	<isNotEmpty prepend="and" property="debtContno" >
+        T1.DEBT_CONTNO  like '%'|| #debtContno:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	<isNotEmpty prepend="and" property="buyerName" >
+        BUYER_NAME  like '%'|| #buyerName:VARCHAR#||'%'    
+      	</isNotEmpty>                       
+	    <isNotEmpty prepend="and" property="contStatus"> 
+	    T1.CONT_STATUS=#contStatus:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="mgrno"> 
+	    T1.MGRNO=#mgrno:VARCHAR#
+	    </isNotEmpty>
+		order by T1.DEBT_CONTNO DESC
+    </isParameterPresent>
+  </select>
+   <select id="selectBCntDebtInfoForDispute" resultMap="BcntDetInfoMap" parameterClass="java.util.HashMap" >
+	select DISTINCT
+		T1.DEBT_CONTNO ,
+		T1.CUSTCD AS custcd, T2.CNAME,
+		T1.MGRNO,
+		T1.SUPPLY_CHAIN_PD_ID,T4.PRODUCT_NAME AS productName,
+		T1.CURCD,
+		T1.CONT_AMOUNT,
+		T1.START_DATE,
+		T1.END_DATE ,
+		T1.CONT_STATUS,
+		T1.LOAN_PERCENT,
+		T1.FACT_TYPE,
+		T1.FINANCING_TYPE
+			
+	from B_CNT_DEBT_INFO T1,B_CRM_BASE_INFO T2 ,B_PRD_INFO T4  
+	
+    <isParameterPresent >	
+	   where T1.CUSTCD = T2.CUSTCD
+		AND T1.SUPPLY_CHAIN_PD_ID =T4.PRODUCT_ID
+	    <isNotEmpty prepend="and" property="creditFlag">
+	    T2.CREDIT_FLAG=#creditFlag:CHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="financingType">
+	    T1.FINANCING_TYPE=#financingType:CHAR#
+	    </isNotEmpty>
+      	<isNotEmpty prepend="and" property="cname" >
+        T2.CNAME  like '%'|| #cname:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	<isNotEmpty prepend="and" property="debtContno" >
+        T1.DEBT_CONTNO  like '%'|| #debtContno:VARCHAR#||'%'    
+      	</isNotEmpty>
+	    <isNotEmpty prepend="and" property="contStatus"> 
+	    T1.CONT_STATUS=#contStatus:VARCHAR#
+	    </isNotEmpty>
+		order by T1.DEBT_CONTNO DESC
+    </isParameterPresent>
+  </select>
+  
+  <!-- 交易对手选择买方客户 （上游是核心客户的） -->
+   <resultMap id="CustBaseInfoMap" class="java.util.HashMap" >
+     <result column="CUSTCD" property="buyerCustcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="buyerName" jdbcType="VARCHAR" />
+    <!-- <result column="CURCD" property="curcd" jdbcType="CHAR" /> -->
+
+  </resultMap>
+  <select id="findCustBaseInfoList" resultMap="CustBaseInfoMap"  parameterClass="java.util.HashMap" >
+    <![CDATA[
+    	SELECT  T1.CUSTCD, T1.CNAME  
+   		from  B_CRM_BASE_INFO T1,B_CRM_UPANDDOWN_REL T2
+    	where T1.CUSTCD = T2.CORE_CUSTCD
+    	
+    ]]>
+     <isNotEmpty prepend="and" property="custcd" >
+      T2.custcd  = #custcd:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="custStatus" >
+      T1.CUST_STATUS  = #custStatus:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="custType" >
+      	T1.CUST_TYPE  = #custType:VARCHAR#  
+      </isNotEmpty>
+       <isNotEmpty prepend="and" property="coreFlag" >
+      	T1.CORE_FLAG  = #coreFlag:VARCHAR#  
+      </isNotEmpty>
+       <isNotEmpty prepend="and" property="commercialFalg" >
+      	T1.COMMERCIAL_FALG  = #commercialFalg:VARCHAR#  
+      </isNotEmpty>
+       <isNotEmpty prepend="and" property="creditFlag" >
+      	T1.CREDIT_FLAG  = #creditFlag:VARCHAR#  
+      </isNotEmpty>
+       <isNotEmpty prepend="and" property="coreRelationFlg" >
+        T2.CORE_RELATION_FLG  = #coreRelationFlg:VARCHAR#      
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="cname" >
+        T1.CNAME  like '%'|| #cname:VARCHAR#||'%'    
+      </isNotEmpty>
+      <isNotNull prepend="and" property="buyerCustcds" > 
+       T1.custcd not in 
+       <iterate property="buyerCustcds" conjunction="," open="(" close=")" >
+   		<![CDATA[ #buyerCustcds[]#   ]]> <!-- 已在列表中的不查询出来 -->
+   		</iterate> 
+      </isNotNull>
+      
+    order by T2.CUSTCD  
+  </select> 
+   <!-- 根据业务品种获得费用相关信息 -->
+   <resultMap id="CostInfoMap" class="java.util.HashMap" >
+   	 <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+   	 <result column="COST_NAME" property="costName" jdbcType="VARCHAR" />
+   	 <result column="COST_CODE" property="costCode" jdbcType="CHAR" />
+   	 <result column="COST_PHASE" property="costPhase" jdbcType="VARCHAR" />
+    <result column="COST_CLASS" property="costClass" jdbcType="CHAR" />
+    <result column="COST_TYPE" property="costType" jdbcType="CHAR" />
+     <result column="CHARGE_TYPE" property="chargeType" jdbcType="CHAR" />
+    <result column="COST_CALC_TYPE" property="costCalcType" jdbcType="CHAR" />
+  </resultMap>
+  <select id="findCostInfoByProduct" resultMap="CostInfoMap"  parameterClass="java.util.HashMap" >
+    <![CDATA[
+    	select T1.PRODUCT_ID,T2.COST_NAME,T1.COST_CODE,T1.COST_PHASE,T2.COST_CLASS, T2.COST_TYPE, T2.CHARGE_TYPE, T2.COST_CALC_TYPE
+    	from  B_PRD_COST_BIND T1,B_BRP_COST_PARAM T2
+		where T1.COST_CODE =T2.COST_CODE
+    ]]>
+      <isNotEmpty prepend="and" property="productId" >
+      PRODUCT_ID  = #productId:VARCHAR#  
+      </isNotEmpty>
+       <isNotEmpty prepend="and" property="costCode" >
+      COST_CODE  = #costCode:VARCHAR#  
+      </isNotEmpty>
+    order by PRODUCT_ID   
+  </select> 
+  <resultMap id="DebtContVOMap" class="com.huateng.scf.bas.cnt.dao.model.DebtContVO">
+    <result column="DEBT_CONTNO" property="debtContno" jdbcType="VARCHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="FACT_TYPE" property="factType" jdbcType="VARCHAR" />
+    <result column="FINANCING_TYPE" property="financingType" jdbcType="CHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="CONT_AMOUNT" property="contAmount" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="CONT_STATUS" property="contStatus" jdbcType="VARCHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="VARCHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" /> 
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="CHAR" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="CHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="IS_AUTO_PAY" property="isAutoPay" jdbcType="VARCHAR" />
+    <result column="AUTO_PAY_DAYS" property="autoPayDays" jdbcType="DECIMAL" />
+    <result column="SERVICE_CONTENT" property="serviceContent" jdbcType="VARCHAR" />
+   	<result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="BAIL_ACCT_NO" property="bailAcctNo" jdbcType="VARCHAR" />
+    <result column="RETURN_ACCOUNT" property="returnAccount" jdbcType="VARCHAR" />
+    <result column="RECOVER_TYPE" property="recoverType" jdbcType="VARCHAR" />
+    <result column="REPAY_PURPOSE" property="repayPurpose" jdbcType="VARCHAR" />
+    <result column="DUE_BALANCE_RULE" property="dueBalanceRule" jdbcType="VARCHAR" />
+    <result column="PAYMENT_VERIFY_RULE" property="paymentVerifyRule" jdbcType="VARCHAR" />
+    <result column="REPARATION_PROT_NO" property="reparationProtNo" jdbcType="VARCHAR" />
+    <result column="LEASE" property="lease" jdbcType="VARCHAR" />
+    <result column="REPURCHASER" property="repurchaser" jdbcType="VARCHAR" />
+    <result column="REPURCHASE_PROT_NO" property="repurchaseProtNo" jdbcType="VARCHAR" />
+    <result column="FACTORING_BRCODE" property="factoringBrcode" jdbcType="VARCHAR" />
+    <result column="REPARATION_TERM" property="reparationTerm" jdbcType="DECIMAL" />
+    <result column="REPARATION_PERCENT" property="reparationPercent" jdbcType="DECIMAL" />
+    <result column="CUMULATIVE_REPARATION_AMT" property="cumulativeReparationAmt" jdbcType="DECIMAL" />
+    <result column="FACT_PATTERN" property="factPattern" jdbcType="VARCHAR" />
+    <result column="COOPERATION_BRCODE" property="cooperationBrcode" jdbcType="VARCHAR" />
+    <result column="RENT_SETTLE_WAY" property="rentSettleWay" jdbcType="CHAR" />
+    <result column="POOL_BAIL_AMT" property="poolBailAmt" jdbcType="DECIMAL" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" /> 
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="PRODUCTNAME" property="productName" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 根据合同编号获得应收账款合同的详情信息 -->
+     <select id="queryBCntDebtInfoByContno" resultMap="DebtContVOMap" parameterClass="java.util.HashMap" >
+	 select 
+		T3.PRODUCT_NAME AS productName,
+		T2.CNAME,
+		T1.DEBT_CONTNO,
+		T1.CUSTCD, 
+		T1.SUPPLY_CHAIN_PD_ID,
+		T1.CURCD ,
+		T1.CONT_AMOUNT,
+		T1.START_DATE,
+		T1.END_DATE,
+		T1.CONT_STATUS,
+		T1.LOAN_PERCENT ,
+		T1.FACT_TYPE,
+		T1.FINANCING_TYPE ,
+		T1.MGRNO,
+		T1.BRCODE,
+		T1.CHARGE_TYPE,
+		T1.NOTICE_TYPE,
+		T1.REMARK ,
+		T1.IS_AUTO_PAY,
+		T1.AUTO_PAY_DAYS,
+		T1.SERVICE_CONTENT,
+		T1.LOAN_WAY,
+		T1.ACCOUNT_NO,
+		T1.BAIL_ACCT_NO,
+		T1.RETURN_ACCOUNT,
+		T1.RECOVER_TYPE,
+		T1.REPAY_PURPOSE,
+		T1.DUE_BALANCE_RULE,
+		T1.PAYMENT_VERIFY_RULE,
+		T1.REPARATION_PROT_NO,
+		T1.LEASE,
+		T1.REPURCHASER,
+		T1.REPURCHASE_PROT_NO,
+		T1.FACTORING_BRCODE,
+		T1.REPARATION_TERM ,
+		T1.REPARATION_PERCENT,
+		T1.CUMULATIVE_REPARATION_AMT,
+		T1.FACT_PATTERN,
+		T1.COOPERATION_BRCODE,
+		T1.RENT_SETTLE_WAY,
+		T1.POOL_BAIL_AMT
+		
+	from B_CNT_DEBT_INFO T1,B_CRM_BASE_INFO T2,B_PRD_INFO T3
+	
+    <isParameterPresent >	
+	   where T1.CUSTCD = T2.CUSTCD
+		AND T1.SUPPLY_CHAIN_PD_ID =T3.PRODUCT_ID
+      	<isNotEmpty prepend="and" property="debtContno" >
+        T1.DEBT_CONTNO = #debtContno:VARCHAR# 
+      	</isNotEmpty>
+		order by T1.DEBT_CONTNO DESC
+    </isParameterPresent>
+  </select>
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crm.dao.model.BCrmBaseInfo" >
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CUSTNO" property="custno" jdbcType="VARCHAR" />
+    <result column="CUST_TYPE" property="custType" jdbcType="CHAR" />
+    <result column="IDTYPE" property="idtype" jdbcType="VARCHAR" />
+    <result column="IDNO" property="idno" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="ENAME" property="ename" jdbcType="VARCHAR" />
+    <result column="ALIAS_NAME" property="aliasName" jdbcType="VARCHAR" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="SOC_CREDIT_NO" property="socCreditNo" jdbcType="VARCHAR" />
+    <result column="LICENSE_NO" property="licenseNo" jdbcType="VARCHAR" />
+    <result column="LICENSE_DATE" property="licenseDate" jdbcType="CHAR" />
+    <result column="OPEN_DATE" property="openDate" jdbcType="CHAR" />
+    <result column="CORE_OPEN_DATE" property="coreOpenDate" jdbcType="CHAR" />
+    <result column="CUST_STATUS" property="custStatus" jdbcType="CHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="CORE_FLAG" property="coreFlag" jdbcType="CHAR" />
+    <result column="MONI_FLAG" property="moniFlag" jdbcType="CHAR" />
+    <result column="FUTURES_FLAG" property="futuresFlag" jdbcType="CHAR" />
+    <result column="FLC_FLAG" property="flcFlag" jdbcType="CHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="CHAR" />
+    <result column="CREDIT_FLAG" property="creditFlag" jdbcType="CHAR" />
+    <result column="BLACK_FLAG" property="blackFlag" jdbcType="CHAR" />
+    <result column="INSURE_FLAG" property="insureFlag" jdbcType="CHAR" />
+    <result column="FACTOR_FLAG" property="factorFlag" jdbcType="CHAR" />
+    <result column="CCMS_CUSTCD" property="ccmsCustcd" jdbcType="VARCHAR" />
+    <result column="IMPORTANT_FLAG" property="importantFlag" jdbcType="CHAR" />
+    <result column="COMMERCIAL_FALG" property="commercialFalg" jdbcType="CHAR" />
+    <result column="OVERSEAS_FLAG" property="overseasFlag" jdbcType="CHAR" />
+    <result column="BANKS_CUST_FLAG" property="banksCustFlag" jdbcType="CHAR" />
+    <result column="EF_BUYER_FLAG" property="efBuyerFlag" jdbcType="CHAR" />
+    <result column="IF_SELLER_FLAG" property="ifSellerFlag" jdbcType="CHAR" />
+    <result column="IS_BANK" property="isBank" jdbcType="CHAR" />
+    <result column="FCI_CODE" property="fciCode" jdbcType="VARCHAR" />
+    <result column="IS_INTL" property="isIntl" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 根据factTy查询应收类合同客户名称 -->
+  	<select id="queryBCrmCustcdByFactType" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+  	<![CDATA[
+  		select DISTINCT T1.*
+   		from  B_CRM_BASE_INFO T1,B_CNT_DEBT_INFO T2
+    ]]>
+    <isParameterPresent >	
+    where T1.CUSTCD = T2.CUSTCD
+     <isNotEmpty prepend="and" property="factType" >
+      T2.FINANCING_TYPE  = #financingType:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="cname" >
+      T1.CNAME like '%'|| #cname:VARCHAR#||'%'   
+      </isNotEmpty>
+      </isParameterPresent>
+    order by T1.CUSTCD  
+    </select> 
+    
+    <select id="selectIfspBCntDebtInfoList" resultMap="DebtContVOMap" parameterClass="java.util.HashMap" >
+	 select 
+		T4.PRODUCT_NAME AS productName,
+		T2.CNAME,
+		T1.DEBT_CONTNO,
+		T1.CUSTCD, 
+		T1.SUPPLY_CHAIN_PD_ID,
+		T1.CURCD ,
+		T1.CONT_AMOUNT,
+		T1.START_DATE,
+		T1.END_DATE,
+		T1.CONT_STATUS,
+		T1.LOAN_PERCENT ,
+		T1.FACT_TYPE,
+		T1.FINANCING_TYPE ,
+		T1.MGRNO,
+		T1.BRCODE,
+		T1.CHARGE_TYPE,
+		T1.NOTICE_TYPE,
+		T1.REMARK ,
+		T1.IS_AUTO_PAY,
+		T1.AUTO_PAY_DAYS,
+		T1.SERVICE_CONTENT,
+		T1.LOAN_WAY,
+		T1.ACCOUNT_NO,
+		T1.BAIL_ACCT_NO,
+		T1.RETURN_ACCOUNT,
+		T1.RECOVER_TYPE,
+		T1.REPAY_PURPOSE,
+		T1.DUE_BALANCE_RULE,
+		T1.PAYMENT_VERIFY_RULE,
+		T1.REPARATION_PROT_NO,
+		T1.LEASE,
+		T1.REPURCHASER,
+		T1.REPURCHASE_PROT_NO,
+		T1.FACTORING_BRCODE,
+		T1.REPARATION_TERM ,
+		T1.REPARATION_PERCENT,
+		T1.CUMULATIVE_REPARATION_AMT,
+		T1.FACT_PATTERN,
+		T1.COOPERATION_BRCODE,
+		T1.RENT_SETTLE_WAY,
+		T1.POOL_BAIL_AMT
+			
+	from B_CNT_DEBT_INFO T1,B_CRM_BASE_INFO T2 ,B_CNT_DEBT_EXT_INFO T3,B_PRD_INFO T4  
+	
+    <isParameterPresent >	
+	   where T1.CUSTCD = T2.CUSTCD
+		AND T1.DEBT_CONTNO =T3.BUSINESS_NO
+		AND T1.SUPPLY_CHAIN_PD_ID =T4.PRODUCT_ID
+	    <isNotEmpty prepend="and" property="financingType">
+	    T1.FINANCING_TYPE=#financingType:CHAR#
+	    </isNotEmpty>
+	   	<isNotNull prepend="and" property="factTypes" > 
+        FACT_TYPE  in 
+        <iterate property="factTypes" conjunction="," open="(" close=")" >
+   		 $factTypes[]$
+   		</iterate> 
+    	 </isNotNull>
+      	<isNotEmpty prepend="and" property="cname" >
+        T2.CNAME  like '%'|| #cname:VARCHAR#||'%'    
+      	</isNotEmpty>
+      	<isNotEmpty prepend="and" property="debtContno" >
+        T1.DEBT_CONTNO=#debtContno:VARCHAR#    
+      	</isNotEmpty>
+      	<isNotEmpty prepend="and" property="buyerName" >
+        BUYER_NAME  like '%'|| #buyerName:VARCHAR#||'%'    
+      	</isNotEmpty>
+	    <isNotEmpty prepend="and" property="contStatus"> 
+	    T1.CONT_STATUS=#contStatus:VARCHAR#
+	    </isNotEmpty>
+	     <isNotEmpty prepend="and" property="custcd"> 
+	    T1.CUSTCD=#custcd:VARCHAR#
+	    </isNotEmpty>
+		order by T1.DEBT_CONTNO DESC
+    </isParameterPresent>
+  </select>
+    
+</sqlMap>

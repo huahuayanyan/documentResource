@@ -1,0 +1,36 @@
+
+<ht-form name="otherform">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input-extent ht-id="cname" name="融资企业" reg-exp="common.require" extent="custcontent"
+                     on-change="dooextend" ng-model="otherform.cname" disable="{{disablesubmit}}"></ht-input-extent>
+    <ht-input-extent ht-id="appno" name="放款编号" reg-exp="common.require" extent="appnocontent"
+                     on-change="appnodooextend" ng-model="otherform.appno" disable="{{disablesubmit}}"></ht-input-extent>
+    <ht-input name="合同编号" reg-exp="common.require" ng-model="otherform.mastContno" disable="true"></ht-input>
+    <ht-input ht-id="lnAmt" name="放款金额" reg-exp="common.require" ng-model="otherform.lnAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="startDate" name="起始日期" reg-exp="common.require" ng-model="otherform.startDate" edit-type="date" disable="{{disable}}"></ht-input>
+    <ht-input name="到期日期" reg-exp="common.require" ng-model="otherform.endDate" edit-type="date" disable="true"></ht-input>
+
+    <ht-input ht-id="actInt" name="利率(%)" ng-model="otherform.actInt" edit-type="currency"
+              reg-exp="common.require" disable="true"></ht-input>
+    <ht-select ht-id="jxPeriod" name="计息周期" ng-model="otherform.jxPeriod" dictionary="rtnIntInvl"
+               reg-exp="common.require" disable="true"></ht-select>
+    <ht-input ht-id="jxDay" name="结息日" ng-model="otherform.jxDay" edit-type="number"
+              reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="yqRate" name="保理逾期罚息率(%日)" ng-model="otherform.yqRate" edit-type="number"
+              reg-exp="common.require" disable="true"></ht-input>
+
+    <ht-input name="收款账号" reg-exp="common.require" ng-model="otherform.accountNo" disable="true"></ht-input>
+    <ht-input name="收款账户名称" ng-model="otherform.accountName" disable="true"></ht-input>
+    <ht-input name="收款账户开户行" ng-model="otherform.accountBank" disable="true"></ht-input>
+
+    <!--<ht-input name="资金提供方账户" reg-exp="common.require" ng-model="otherform.payActNo" disable="true"></ht-input>-->
+    <!--<ht-input name="资金提供方账户名称" ng-model="otherform.payActName" disable="true"></ht-input>-->
+    <!--<ht-input name="资金提供方开户行" ng-model="otherform.payActBank" disable="true"></ht-input>-->
+
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{hide}}">保存</ht-button>
+    <ht-button ht-id="submit" class="btn-primary" hide="{{hide}}">出账确认</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

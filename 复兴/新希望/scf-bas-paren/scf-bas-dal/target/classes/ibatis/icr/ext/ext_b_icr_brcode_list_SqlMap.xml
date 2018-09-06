@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_ICR_BRCODE_LIST" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.icr.dao.model.BIcrBrcodeList" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CREDIT_NO" property="creditNo" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+  </resultMap>
+<!-- 根据额度编号删除额度适用机构关联 -->
+  <delete id="deleteBrcodeListByNo" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrBrcodeList" >
+    delete from B_ICR_BRCODE_LIST
+    <isNotEmpty prepend="where" property="creditNo" >
+    CREDIT_NO = #creditNo:VARCHAR#
+    </isNotEmpty>
+  </delete>
+
+</sqlMap>

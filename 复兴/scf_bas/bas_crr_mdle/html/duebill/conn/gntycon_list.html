@@ -1,0 +1,30 @@
+
+<ht-legend>担保合同列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true" minheit="10px">
+    <ht-column eg-name="conId" zh-name="担保合同流水号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="conTyp" zh-name="担保合同类型" dictionary="gntyConTyp"></ht-column>
+    <ht-column eg-name="gutyTyp" zh-name="担保类型" dictionary="gutTyp"></ht-column>
+    <ht-column eg-name="gutNm" zh-name="担保客户名称"></ht-column>
+    <ht-column eg-name="gutVal" zh-name="担保金额"></ht-column>
+    <ht-column eg-name="conStat" zh-name="状态" dictionary="appTyp"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 40px;padding-top: 1px"></ht-page>
+
+<div id="gntyinfo" style="display: none">
+<ht-legend style="margin-top: 10px">担保物列表</ht-legend>
+<ht-table ht-id="tableIdInfo" datasource="datasourceinfo" selected="selectedinfo" docheckbox="true" minheit="10px">
+    <ht-column eg-name="gntyId" zh-name="担保物编号" href="true" docolumn="columninfo"></ht-column>
+    <ht-column eg-name="gntyTyp" zh-name="担保物类型" dictionary="GuarantyList"></ht-column>
+    <ht-column eg-name="ownerNm" zh-name="权属人名称"></ht-column>
+    <ht-column eg-name="gntyRid" zh-name="权证号"></ht-column>
+</ht-table>
+<ht-page conf="confinfo" style="height: 40px;padding-top: 1px"></ht-page>
+</div>
+<ht-button-group align="center">
+    <ht-button ht-id="view" class="btn-primary">查看</ht-button>
+    <ht-button ht-id="close" class="btn-primary">关闭</ht-button>
+</ht-button-group>
+
+
+
+

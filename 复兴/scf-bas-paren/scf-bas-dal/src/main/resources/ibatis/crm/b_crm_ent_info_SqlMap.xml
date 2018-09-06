@@ -1,0 +1,1021 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRM_ENT_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crm.dao.model.BCrmEntInfo" >
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="LEGAL" property="legal" jdbcType="VARCHAR" />
+    <result column="ENAME" property="ename" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_TYPE" property="enterpriseType" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_TYPE" property="industryType" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_SCOPE" property="enterpriseScope" jdbcType="VARCHAR" />
+    <result column="MAIN_BUSSINESS" property="mainBussiness" jdbcType="VARCHAR" />
+    <result column="CONTACT_ADDR" property="contactAddr" jdbcType="VARCHAR" />
+    <result column="REG_ADDR" property="regAddr" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="CHAR" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="CONTACT_TEL" property="contactTel" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="CREDIT_LEVEL" property="creditLevel" jdbcType="VARCHAR" />
+    <result column="EVALUATE_DATE" property="evaluateDate" jdbcType="CHAR" />
+    <result column="BASE_ACT_BANK" property="baseActBank" jdbcType="VARCHAR" />
+    <result column="BASE_ACTNO" property="baseActno" jdbcType="VARCHAR" />
+    <result column="ACT_BRCODE" property="actBrcode" jdbcType="VARCHAR" />
+    <result column="ACTNO" property="actno" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CUST_TYPE" property="custType" jdbcType="VARCHAR" />
+    <result column="REG_CAPITAL" property="regCapital" jdbcType="DECIMAL" />
+    <result column="CAPITAL" property="capital" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="CUST_ROLE" property="custRole" jdbcType="CHAR" />
+    <result column="BUSINESS_SCOPE" property="businessScope" jdbcType="CHAR" />
+    <result column="INDUSTRY_OUTLOOK" property="industryOutlook" jdbcType="CHAR" />
+    <result column="EMPLOYEE_NUMBER" property="employeeNumber" jdbcType="DECIMAL" />
+    <result column="TURNOVER" property="turnover" jdbcType="DECIMAL" />
+    <result column="BUSINESS_DURATION" property="businessDuration" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_DURATION" property="accountDuration" jdbcType="DECIMAL" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="BOUNDARY" property="boundary" jdbcType="CHAR" />
+    <result column="CUST_LEVEL" property="custLevel" jdbcType="VARCHAR" />
+    <result column="CORE_LEVEL" property="coreLevel" jdbcType="VARCHAR" />
+    <result column="SUPPLY_POSITION" property="supplyPosition" jdbcType="VARCHAR" />
+    <result column="IS_MARKET_CORP" property="isMarketCorp" jdbcType="VARCHAR" />
+    <result column="ESTABLISH_DATE" property="establishDate" jdbcType="CHAR" />
+    <result column="COUN_CODE" property="counCode" jdbcType="CHAR" />
+    <result column="REG_ORG" property="regOrg" jdbcType="VARCHAR" />
+    <result column="STREET" property="street" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="EN_ADDR" property="enAddr" jdbcType="VARCHAR" />
+    <result column="CONTACT_EN_NAME" property="contactEnName" jdbcType="VARCHAR" />
+    <result column="PAY_ROUTE" property="payRoute" jdbcType="VARCHAR" />
+    <result column="SERVICES" property="services" jdbcType="VARCHAR" />
+    <result column="APPENDIX" property="appendix" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="CORE_NETWORK_NAME" property="coreNetworkName" jdbcType="VARCHAR" />
+    <result column="NATIONAL_TAX" property="nationalTax" jdbcType="VARCHAR" />
+    <result column="LAND_TAX" property="landTax" jdbcType="VARCHAR" />
+    <result column="OWN_HOUSE" property="ownHouse" jdbcType="CHAR" />
+    <result column="CREDIT_SCR" property="creditScr" jdbcType="DECIMAL" />
+    <result column="CREDIT_DATE" property="creditDate" jdbcType="CHAR" />
+    <result column="CREDIT_ID" property="creditId" jdbcType="VARCHAR" />
+    <result column="DOWN_FLAG" property="downFlag" jdbcType="CHAR" />
+    <result column="UP_FLAG" property="upFlag" jdbcType="CHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    CUSTCD, ORG_CODE, LEGAL, ENAME, ENTERPRISE_TYPE, INDUSTRY_TYPE, ENTERPRISE_SCOPE, 
+    MAIN_BUSSINESS, CONTACT_ADDR, REG_ADDR, POST_CODE, CONTACT_NAME, CONTACT_TEL, FAX, 
+    CREDIT_LEVEL, EVALUATE_DATE, BASE_ACT_BANK, BASE_ACTNO, ACT_BRCODE, ACTNO, DESCRIPTION, 
+    CUST_TYPE, REG_CAPITAL, CAPITAL, CURCD, CUST_ROLE, BUSINESS_SCOPE, INDUSTRY_OUTLOOK, 
+    EMPLOYEE_NUMBER, TURNOVER, BUSINESS_DURATION, ACCOUNT_DURATION, AREA, BOUNDARY, CUST_LEVEL, 
+    CORE_LEVEL, SUPPLY_POSITION, IS_MARKET_CORP, ESTABLISH_DATE, COUN_CODE, REG_ORG, 
+    STREET, CITY, EN_ADDR, CONTACT_EN_NAME, PAY_ROUTE, SERVICES, APPENDIX, EMAIL, CORE_NETWORK_NAME, 
+    NATIONAL_TAX, LAND_TAX, OWN_HOUSE, CREDIT_SCR, CREDIT_DATE, CREDIT_ID, DOWN_FLAG, 
+    UP_FLAG, PROVINCE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmEntInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRM_ENT_INFO.Base_Column_List" />
+    from B_CRM_ENT_INFO
+    <isParameterPresent >
+      <include refid="B_CRM_ENT_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmEntInfo" >
+    select 
+    <include refid="B_CRM_ENT_INFO.Base_Column_List" />
+    from B_CRM_ENT_INFO
+    where CUSTCD = #custcd:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmEntInfo" >
+    delete from B_CRM_ENT_INFO
+    where CUSTCD = #custcd:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmEntInfoExample" >
+    delete from B_CRM_ENT_INFO
+    <include refid="B_CRM_ENT_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmEntInfo" >
+    insert into B_CRM_ENT_INFO (CUSTCD, ORG_CODE, LEGAL, ENAME, ENTERPRISE_TYPE, 
+      INDUSTRY_TYPE, ENTERPRISE_SCOPE, MAIN_BUSSINESS, CONTACT_ADDR, 
+      REG_ADDR, POST_CODE, CONTACT_NAME, CONTACT_TEL, 
+      FAX, CREDIT_LEVEL, EVALUATE_DATE, BASE_ACT_BANK, 
+      BASE_ACTNO, ACT_BRCODE, ACTNO, DESCRIPTION, 
+      CUST_TYPE, REG_CAPITAL, CAPITAL, CURCD, CUST_ROLE, 
+      BUSINESS_SCOPE, INDUSTRY_OUTLOOK, EMPLOYEE_NUMBER, TURNOVER, 
+      BUSINESS_DURATION, ACCOUNT_DURATION, AREA, BOUNDARY, 
+      CUST_LEVEL, CORE_LEVEL, SUPPLY_POSITION, IS_MARKET_CORP, 
+      ESTABLISH_DATE, COUN_CODE, REG_ORG, STREET, CITY, 
+      EN_ADDR, CONTACT_EN_NAME, PAY_ROUTE, SERVICES, 
+      APPENDIX, EMAIL, CORE_NETWORK_NAME, NATIONAL_TAX, 
+      LAND_TAX, OWN_HOUSE, CREDIT_SCR, CREDIT_DATE, CREDIT_ID, 
+      DOWN_FLAG, UP_FLAG, PROVINCE)
+    values (#custcd:VARCHAR#, #orgCode:VARCHAR#, #legal:VARCHAR#, #ename:VARCHAR#, #enterpriseType:VARCHAR#, 
+      #industryType:VARCHAR#, #enterpriseScope:VARCHAR#, #mainBussiness:VARCHAR#, #contactAddr:VARCHAR#, 
+      #regAddr:VARCHAR#, #postCode:CHAR#, #contactName:VARCHAR#, #contactTel:VARCHAR#, 
+      #fax:VARCHAR#, #creditLevel:VARCHAR#, #evaluateDate:CHAR#, #baseActBank:VARCHAR#, 
+      #baseActno:VARCHAR#, #actBrcode:VARCHAR#, #actno:VARCHAR#, #description:VARCHAR#, 
+      #custType:VARCHAR#, #regCapital:DECIMAL#, #capital:DECIMAL#, #curcd:CHAR#, #custRole:CHAR#, 
+      #businessScope:CHAR#, #industryOutlook:CHAR#, #employeeNumber:DECIMAL#, #turnover:DECIMAL#, 
+      #businessDuration:DECIMAL#, #accountDuration:DECIMAL#, #area:VARCHAR#, #boundary:CHAR#, 
+      #custLevel:VARCHAR#, #coreLevel:VARCHAR#, #supplyPosition:VARCHAR#, #isMarketCorp:VARCHAR#, 
+      #establishDate:CHAR#, #counCode:CHAR#, #regOrg:VARCHAR#, #street:VARCHAR#, #city:VARCHAR#, 
+      #enAddr:VARCHAR#, #contactEnName:VARCHAR#, #payRoute:VARCHAR#, #services:VARCHAR#, 
+      #appendix:VARCHAR#, #email:VARCHAR#, #coreNetworkName:VARCHAR#, #nationalTax:VARCHAR#, 
+      #landTax:VARCHAR#, #ownHouse:CHAR#, #creditScr:DECIMAL#, #creditDate:CHAR#, #creditId:VARCHAR#, 
+      #downFlag:CHAR#, #upFlag:CHAR#, #province:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmEntInfo" >
+    insert into B_CRM_ENT_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="orgCode" >
+        ORG_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="legal" >
+        LEGAL
+      </isNotNull>
+      <isNotNull prepend="," property="ename" >
+        ENAME
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseType" >
+        ENTERPRISE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        INDUSTRY_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseScope" >
+        ENTERPRISE_SCOPE
+      </isNotNull>
+      <isNotNull prepend="," property="mainBussiness" >
+        MAIN_BUSSINESS
+      </isNotNull>
+      <isNotNull prepend="," property="contactAddr" >
+        CONTACT_ADDR
+      </isNotNull>
+      <isNotNull prepend="," property="regAddr" >
+        REG_ADDR
+      </isNotNull>
+      <isNotNull prepend="," property="postCode" >
+        POST_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="contactName" >
+        CONTACT_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="contactTel" >
+        CONTACT_TEL
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        FAX
+      </isNotNull>
+      <isNotNull prepend="," property="creditLevel" >
+        CREDIT_LEVEL
+      </isNotNull>
+      <isNotNull prepend="," property="evaluateDate" >
+        EVALUATE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="baseActBank" >
+        BASE_ACT_BANK
+      </isNotNull>
+      <isNotNull prepend="," property="baseActno" >
+        BASE_ACTNO
+      </isNotNull>
+      <isNotNull prepend="," property="actBrcode" >
+        ACT_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="actno" >
+        ACTNO
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION
+      </isNotNull>
+      <isNotNull prepend="," property="custType" >
+        CUST_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="regCapital" >
+        REG_CAPITAL
+      </isNotNull>
+      <isNotNull prepend="," property="capital" >
+        CAPITAL
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="custRole" >
+        CUST_ROLE
+      </isNotNull>
+      <isNotNull prepend="," property="businessScope" >
+        BUSINESS_SCOPE
+      </isNotNull>
+      <isNotNull prepend="," property="industryOutlook" >
+        INDUSTRY_OUTLOOK
+      </isNotNull>
+      <isNotNull prepend="," property="employeeNumber" >
+        EMPLOYEE_NUMBER
+      </isNotNull>
+      <isNotNull prepend="," property="turnover" >
+        TURNOVER
+      </isNotNull>
+      <isNotNull prepend="," property="businessDuration" >
+        BUSINESS_DURATION
+      </isNotNull>
+      <isNotNull prepend="," property="accountDuration" >
+        ACCOUNT_DURATION
+      </isNotNull>
+      <isNotNull prepend="," property="area" >
+        AREA
+      </isNotNull>
+      <isNotNull prepend="," property="boundary" >
+        BOUNDARY
+      </isNotNull>
+      <isNotNull prepend="," property="custLevel" >
+        CUST_LEVEL
+      </isNotNull>
+      <isNotNull prepend="," property="coreLevel" >
+        CORE_LEVEL
+      </isNotNull>
+      <isNotNull prepend="," property="supplyPosition" >
+        SUPPLY_POSITION
+      </isNotNull>
+      <isNotNull prepend="," property="isMarketCorp" >
+        IS_MARKET_CORP
+      </isNotNull>
+      <isNotNull prepend="," property="establishDate" >
+        ESTABLISH_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="counCode" >
+        COUN_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="regOrg" >
+        REG_ORG
+      </isNotNull>
+      <isNotNull prepend="," property="street" >
+        STREET
+      </isNotNull>
+      <isNotNull prepend="," property="city" >
+        CITY
+      </isNotNull>
+      <isNotNull prepend="," property="enAddr" >
+        EN_ADDR
+      </isNotNull>
+      <isNotNull prepend="," property="contactEnName" >
+        CONTACT_EN_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="payRoute" >
+        PAY_ROUTE
+      </isNotNull>
+      <isNotNull prepend="," property="services" >
+        SERVICES
+      </isNotNull>
+      <isNotNull prepend="," property="appendix" >
+        APPENDIX
+      </isNotNull>
+      <isNotNull prepend="," property="email" >
+        EMAIL
+      </isNotNull>
+      <isNotNull prepend="," property="coreNetworkName" >
+        CORE_NETWORK_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="nationalTax" >
+        NATIONAL_TAX
+      </isNotNull>
+      <isNotNull prepend="," property="landTax" >
+        LAND_TAX
+      </isNotNull>
+      <isNotNull prepend="," property="ownHouse" >
+        OWN_HOUSE
+      </isNotNull>
+      <isNotNull prepend="," property="creditScr" >
+        CREDIT_SCR
+      </isNotNull>
+      <isNotNull prepend="," property="creditDate" >
+        CREDIT_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="creditId" >
+        CREDIT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="downFlag" >
+        DOWN_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="upFlag" >
+        UP_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="province" >
+        PROVINCE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orgCode" >
+        #orgCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="legal" >
+        #legal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ename" >
+        #ename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseType" >
+        #enterpriseType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        #industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseScope" >
+        #enterpriseScope:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mainBussiness" >
+        #mainBussiness:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contactAddr" >
+        #contactAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regAddr" >
+        #regAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="postCode" >
+        #postCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contactName" >
+        #contactName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contactTel" >
+        #contactTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        #fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditLevel" >
+        #creditLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evaluateDate" >
+        #evaluateDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="baseActBank" >
+        #baseActBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="baseActno" >
+        #baseActno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actBrcode" >
+        #actBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actno" >
+        #actno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        #description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custType" >
+        #custType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regCapital" >
+        #regCapital:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="capital" >
+        #capital:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custRole" >
+        #custRole:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessScope" >
+        #businessScope:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryOutlook" >
+        #industryOutlook:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="employeeNumber" >
+        #employeeNumber:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="turnover" >
+        #turnover:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="businessDuration" >
+        #businessDuration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="accountDuration" >
+        #accountDuration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="area" >
+        #area:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="boundary" >
+        #boundary:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custLevel" >
+        #custLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreLevel" >
+        #coreLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyPosition" >
+        #supplyPosition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isMarketCorp" >
+        #isMarketCorp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="establishDate" >
+        #establishDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="counCode" >
+        #counCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regOrg" >
+        #regOrg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="street" >
+        #street:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="city" >
+        #city:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="enAddr" >
+        #enAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contactEnName" >
+        #contactEnName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payRoute" >
+        #payRoute:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="services" >
+        #services:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appendix" >
+        #appendix:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="email" >
+        #email:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreNetworkName" >
+        #coreNetworkName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="nationalTax" >
+        #nationalTax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="landTax" >
+        #landTax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ownHouse" >
+        #ownHouse:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditScr" >
+        #creditScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditDate" >
+        #creditDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditId" >
+        #creditId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="downFlag" >
+        #downFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="upFlag" >
+        #upFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="province" >
+        #province:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmEntInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRM_ENT_INFO
+    <include refid="B_CRM_ENT_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRM_ENT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.orgCode" >
+        ORG_CODE = #record.orgCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.legal" >
+        LEGAL = #record.legal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ename" >
+        ENAME = #record.ename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.enterpriseType" >
+        ENTERPRISE_TYPE = #record.enterpriseType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryType" >
+        INDUSTRY_TYPE = #record.industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.enterpriseScope" >
+        ENTERPRISE_SCOPE = #record.enterpriseScope:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mainBussiness" >
+        MAIN_BUSSINESS = #record.mainBussiness:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contactAddr" >
+        CONTACT_ADDR = #record.contactAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.regAddr" >
+        REG_ADDR = #record.regAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.postCode" >
+        POST_CODE = #record.postCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contactName" >
+        CONTACT_NAME = #record.contactName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contactTel" >
+        CONTACT_TEL = #record.contactTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fax" >
+        FAX = #record.fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditLevel" >
+        CREDIT_LEVEL = #record.creditLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evaluateDate" >
+        EVALUATE_DATE = #record.evaluateDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.baseActBank" >
+        BASE_ACT_BANK = #record.baseActBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.baseActno" >
+        BASE_ACTNO = #record.baseActno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.actBrcode" >
+        ACT_BRCODE = #record.actBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.actno" >
+        ACTNO = #record.actno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.description" >
+        DESCRIPTION = #record.description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custType" >
+        CUST_TYPE = #record.custType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.regCapital" >
+        REG_CAPITAL = #record.regCapital:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.capital" >
+        CAPITAL = #record.capital:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custRole" >
+        CUST_ROLE = #record.custRole:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.businessScope" >
+        BUSINESS_SCOPE = #record.businessScope:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryOutlook" >
+        INDUSTRY_OUTLOOK = #record.industryOutlook:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.employeeNumber" >
+        EMPLOYEE_NUMBER = #record.employeeNumber:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.turnover" >
+        TURNOVER = #record.turnover:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.businessDuration" >
+        BUSINESS_DURATION = #record.businessDuration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accountDuration" >
+        ACCOUNT_DURATION = #record.accountDuration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.area" >
+        AREA = #record.area:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.boundary" >
+        BOUNDARY = #record.boundary:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custLevel" >
+        CUST_LEVEL = #record.custLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coreLevel" >
+        CORE_LEVEL = #record.coreLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.supplyPosition" >
+        SUPPLY_POSITION = #record.supplyPosition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isMarketCorp" >
+        IS_MARKET_CORP = #record.isMarketCorp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.establishDate" >
+        ESTABLISH_DATE = #record.establishDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.counCode" >
+        COUN_CODE = #record.counCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.regOrg" >
+        REG_ORG = #record.regOrg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.street" >
+        STREET = #record.street:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.city" >
+        CITY = #record.city:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.enAddr" >
+        EN_ADDR = #record.enAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contactEnName" >
+        CONTACT_EN_NAME = #record.contactEnName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payRoute" >
+        PAY_ROUTE = #record.payRoute:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.services" >
+        SERVICES = #record.services:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appendix" >
+        APPENDIX = #record.appendix:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.email" >
+        EMAIL = #record.email:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coreNetworkName" >
+        CORE_NETWORK_NAME = #record.coreNetworkName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.nationalTax" >
+        NATIONAL_TAX = #record.nationalTax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.landTax" >
+        LAND_TAX = #record.landTax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ownHouse" >
+        OWN_HOUSE = #record.ownHouse:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditScr" >
+        CREDIT_SCR = #record.creditScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditDate" >
+        CREDIT_DATE = #record.creditDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditId" >
+        CREDIT_ID = #record.creditId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.downFlag" >
+        DOWN_FLAG = #record.downFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.upFlag" >
+        UP_FLAG = #record.upFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.province" >
+        PROVINCE = #record.province:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRM_ENT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRM_ENT_INFO
+    set CUSTCD = #record.custcd:VARCHAR#,
+      ORG_CODE = #record.orgCode:VARCHAR#,
+      LEGAL = #record.legal:VARCHAR#,
+      ENAME = #record.ename:VARCHAR#,
+      ENTERPRISE_TYPE = #record.enterpriseType:VARCHAR#,
+      INDUSTRY_TYPE = #record.industryType:VARCHAR#,
+      ENTERPRISE_SCOPE = #record.enterpriseScope:VARCHAR#,
+      MAIN_BUSSINESS = #record.mainBussiness:VARCHAR#,
+      CONTACT_ADDR = #record.contactAddr:VARCHAR#,
+      REG_ADDR = #record.regAddr:VARCHAR#,
+      POST_CODE = #record.postCode:CHAR#,
+      CONTACT_NAME = #record.contactName:VARCHAR#,
+      CONTACT_TEL = #record.contactTel:VARCHAR#,
+      FAX = #record.fax:VARCHAR#,
+      CREDIT_LEVEL = #record.creditLevel:VARCHAR#,
+      EVALUATE_DATE = #record.evaluateDate:CHAR#,
+      BASE_ACT_BANK = #record.baseActBank:VARCHAR#,
+      BASE_ACTNO = #record.baseActno:VARCHAR#,
+      ACT_BRCODE = #record.actBrcode:VARCHAR#,
+      ACTNO = #record.actno:VARCHAR#,
+      DESCRIPTION = #record.description:VARCHAR#,
+      CUST_TYPE = #record.custType:VARCHAR#,
+      REG_CAPITAL = #record.regCapital:DECIMAL#,
+      CAPITAL = #record.capital:DECIMAL#,
+      CURCD = #record.curcd:CHAR#,
+      CUST_ROLE = #record.custRole:CHAR#,
+      BUSINESS_SCOPE = #record.businessScope:CHAR#,
+      INDUSTRY_OUTLOOK = #record.industryOutlook:CHAR#,
+      EMPLOYEE_NUMBER = #record.employeeNumber:DECIMAL#,
+      TURNOVER = #record.turnover:DECIMAL#,
+      BUSINESS_DURATION = #record.businessDuration:DECIMAL#,
+      ACCOUNT_DURATION = #record.accountDuration:DECIMAL#,
+      AREA = #record.area:VARCHAR#,
+      BOUNDARY = #record.boundary:CHAR#,
+      CUST_LEVEL = #record.custLevel:VARCHAR#,
+      CORE_LEVEL = #record.coreLevel:VARCHAR#,
+      SUPPLY_POSITION = #record.supplyPosition:VARCHAR#,
+      IS_MARKET_CORP = #record.isMarketCorp:VARCHAR#,
+      ESTABLISH_DATE = #record.establishDate:CHAR#,
+      COUN_CODE = #record.counCode:CHAR#,
+      REG_ORG = #record.regOrg:VARCHAR#,
+      STREET = #record.street:VARCHAR#,
+      CITY = #record.city:VARCHAR#,
+      EN_ADDR = #record.enAddr:VARCHAR#,
+      CONTACT_EN_NAME = #record.contactEnName:VARCHAR#,
+      PAY_ROUTE = #record.payRoute:VARCHAR#,
+      SERVICES = #record.services:VARCHAR#,
+      APPENDIX = #record.appendix:VARCHAR#,
+      EMAIL = #record.email:VARCHAR#,
+      CORE_NETWORK_NAME = #record.coreNetworkName:VARCHAR#,
+      NATIONAL_TAX = #record.nationalTax:VARCHAR#,
+      LAND_TAX = #record.landTax:VARCHAR#,
+      OWN_HOUSE = #record.ownHouse:CHAR#,
+      CREDIT_SCR = #record.creditScr:DECIMAL#,
+      CREDIT_DATE = #record.creditDate:CHAR#,
+      CREDIT_ID = #record.creditId:VARCHAR#,
+      DOWN_FLAG = #record.downFlag:CHAR#,
+      UP_FLAG = #record.upFlag:CHAR#,
+      PROVINCE = #record.province:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRM_ENT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmEntInfo" >
+    update B_CRM_ENT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="orgCode" >
+        ORG_CODE = #orgCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="legal" >
+        LEGAL = #legal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ename" >
+        ENAME = #ename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseType" >
+        ENTERPRISE_TYPE = #enterpriseType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        INDUSTRY_TYPE = #industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseScope" >
+        ENTERPRISE_SCOPE = #enterpriseScope:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mainBussiness" >
+        MAIN_BUSSINESS = #mainBussiness:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contactAddr" >
+        CONTACT_ADDR = #contactAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regAddr" >
+        REG_ADDR = #regAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="postCode" >
+        POST_CODE = #postCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contactName" >
+        CONTACT_NAME = #contactName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contactTel" >
+        CONTACT_TEL = #contactTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        FAX = #fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditLevel" >
+        CREDIT_LEVEL = #creditLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evaluateDate" >
+        EVALUATE_DATE = #evaluateDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="baseActBank" >
+        BASE_ACT_BANK = #baseActBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="baseActno" >
+        BASE_ACTNO = #baseActno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actBrcode" >
+        ACT_BRCODE = #actBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actno" >
+        ACTNO = #actno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION = #description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custType" >
+        CUST_TYPE = #custType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regCapital" >
+        REG_CAPITAL = #regCapital:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="capital" >
+        CAPITAL = #capital:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custRole" >
+        CUST_ROLE = #custRole:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessScope" >
+        BUSINESS_SCOPE = #businessScope:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryOutlook" >
+        INDUSTRY_OUTLOOK = #industryOutlook:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="employeeNumber" >
+        EMPLOYEE_NUMBER = #employeeNumber:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="turnover" >
+        TURNOVER = #turnover:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="businessDuration" >
+        BUSINESS_DURATION = #businessDuration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="accountDuration" >
+        ACCOUNT_DURATION = #accountDuration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="area" >
+        AREA = #area:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="boundary" >
+        BOUNDARY = #boundary:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custLevel" >
+        CUST_LEVEL = #custLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreLevel" >
+        CORE_LEVEL = #coreLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyPosition" >
+        SUPPLY_POSITION = #supplyPosition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isMarketCorp" >
+        IS_MARKET_CORP = #isMarketCorp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="establishDate" >
+        ESTABLISH_DATE = #establishDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="counCode" >
+        COUN_CODE = #counCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regOrg" >
+        REG_ORG = #regOrg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="street" >
+        STREET = #street:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="city" >
+        CITY = #city:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="enAddr" >
+        EN_ADDR = #enAddr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contactEnName" >
+        CONTACT_EN_NAME = #contactEnName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payRoute" >
+        PAY_ROUTE = #payRoute:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="services" >
+        SERVICES = #services:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appendix" >
+        APPENDIX = #appendix:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="email" >
+        EMAIL = #email:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreNetworkName" >
+        CORE_NETWORK_NAME = #coreNetworkName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="nationalTax" >
+        NATIONAL_TAX = #nationalTax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="landTax" >
+        LAND_TAX = #landTax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ownHouse" >
+        OWN_HOUSE = #ownHouse:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditScr" >
+        CREDIT_SCR = #creditScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditDate" >
+        CREDIT_DATE = #creditDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditId" >
+        CREDIT_ID = #creditId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="downFlag" >
+        DOWN_FLAG = #downFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="upFlag" >
+        UP_FLAG = #upFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="province" >
+        PROVINCE = #province:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where CUSTCD = #custcd:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmEntInfo" >
+    update B_CRM_ENT_INFO
+    set ORG_CODE = #orgCode:VARCHAR#,
+      LEGAL = #legal:VARCHAR#,
+      ENAME = #ename:VARCHAR#,
+      ENTERPRISE_TYPE = #enterpriseType:VARCHAR#,
+      INDUSTRY_TYPE = #industryType:VARCHAR#,
+      ENTERPRISE_SCOPE = #enterpriseScope:VARCHAR#,
+      MAIN_BUSSINESS = #mainBussiness:VARCHAR#,
+      CONTACT_ADDR = #contactAddr:VARCHAR#,
+      REG_ADDR = #regAddr:VARCHAR#,
+      POST_CODE = #postCode:CHAR#,
+      CONTACT_NAME = #contactName:VARCHAR#,
+      CONTACT_TEL = #contactTel:VARCHAR#,
+      FAX = #fax:VARCHAR#,
+      CREDIT_LEVEL = #creditLevel:VARCHAR#,
+      EVALUATE_DATE = #evaluateDate:CHAR#,
+      BASE_ACT_BANK = #baseActBank:VARCHAR#,
+      BASE_ACTNO = #baseActno:VARCHAR#,
+      ACT_BRCODE = #actBrcode:VARCHAR#,
+      ACTNO = #actno:VARCHAR#,
+      DESCRIPTION = #description:VARCHAR#,
+      CUST_TYPE = #custType:VARCHAR#,
+      REG_CAPITAL = #regCapital:DECIMAL#,
+      CAPITAL = #capital:DECIMAL#,
+      CURCD = #curcd:CHAR#,
+      CUST_ROLE = #custRole:CHAR#,
+      BUSINESS_SCOPE = #businessScope:CHAR#,
+      INDUSTRY_OUTLOOK = #industryOutlook:CHAR#,
+      EMPLOYEE_NUMBER = #employeeNumber:DECIMAL#,
+      TURNOVER = #turnover:DECIMAL#,
+      BUSINESS_DURATION = #businessDuration:DECIMAL#,
+      ACCOUNT_DURATION = #accountDuration:DECIMAL#,
+      AREA = #area:VARCHAR#,
+      BOUNDARY = #boundary:CHAR#,
+      CUST_LEVEL = #custLevel:VARCHAR#,
+      CORE_LEVEL = #coreLevel:VARCHAR#,
+      SUPPLY_POSITION = #supplyPosition:VARCHAR#,
+      IS_MARKET_CORP = #isMarketCorp:VARCHAR#,
+      ESTABLISH_DATE = #establishDate:CHAR#,
+      COUN_CODE = #counCode:CHAR#,
+      REG_ORG = #regOrg:VARCHAR#,
+      STREET = #street:VARCHAR#,
+      CITY = #city:VARCHAR#,
+      EN_ADDR = #enAddr:VARCHAR#,
+      CONTACT_EN_NAME = #contactEnName:VARCHAR#,
+      PAY_ROUTE = #payRoute:VARCHAR#,
+      SERVICES = #services:VARCHAR#,
+      APPENDIX = #appendix:VARCHAR#,
+      EMAIL = #email:VARCHAR#,
+      CORE_NETWORK_NAME = #coreNetworkName:VARCHAR#,
+      NATIONAL_TAX = #nationalTax:VARCHAR#,
+      LAND_TAX = #landTax:VARCHAR#,
+      OWN_HOUSE = #ownHouse:CHAR#,
+      CREDIT_SCR = #creditScr:DECIMAL#,
+      CREDIT_DATE = #creditDate:CHAR#,
+      CREDIT_ID = #creditId:VARCHAR#,
+      DOWN_FLAG = #downFlag:CHAR#,
+      UP_FLAG = #upFlag:CHAR#,
+      PROVINCE = #province:VARCHAR#
+    where CUSTCD = #custcd:VARCHAR#
+  </update>
+</sqlMap>

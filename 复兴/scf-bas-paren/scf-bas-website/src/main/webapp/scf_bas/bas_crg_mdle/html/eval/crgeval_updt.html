@@ -1,0 +1,41 @@
+<ht-legend>评估记录详情</ht-legend>
+<ht-form name="updateform">
+    <ht-panel>
+    <!--custType-->
+    <!--<ht-input name="客户类型" ng-model="updateform.rltTyp"></ht-input>-->
+    <!--custno-->
+    <!--<ht-input name="客户编号" ng-model="updateform.rltId" disable="true"></ht-input>-->
+    <ht-input name="客户名称" ng-model="updateform.cname" disable="true"></ht-input>
+    <ht-input name="会计月份" ht-id="finDt"  ng-model="updateform.finDt" reg-exp="FinMonthValidate"></ht-input>
+    <ht-select  name="评估模型名" ht-id="mdlNm" dictionary="checked" datasource="selectUpdtMdlNms"
+              datatrsoption="value" dataoption="key" ng-model="updateform.mdlNm" on-change="chooseMdlNm"
+              reg-exp="common.require"></ht-select>
+    <!--<ht-input name="评估模型名"  ht-id="mdlNm" ng-model="mdfyform.mdlNm" ></ht-input>-->
+    <ht-input name="评估模型编号" ng-model="updateform.mdlId" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input name="机评得分" ng-model="updateform.evalScr" disable="true">></ht-input>
+    <ht-input name="机评级别" ng-model="updateform.evalRslt" disable="true">></ht-input>
+    <ht-input name="认定得分" ng-model="updateform.cognScr" reg-exp="common.require,credictEvalScore"></ht-input>
+    <ht-input name="认定级别" ng-model="updateform.cognRslt" reg-exp="common.require,credictEvalLeval"></ht-input>
+    <ht-input name="认定有效期" ht-id="eftDt" edit-type="date" ng-model="updateform.eftDt"></ht-input>
+    <ht-input name="认定理由" ng-model="updateform.rem"></ht-input>
+    <ht-select name="有效状态" ng-model="updateform.isVld" datatrsoption="value"  dataoption="key"  dictionary="status" disable="true"></ht-select>
+    <ht-select name="审核状态" ng-model="updateform.stat"  datatrsoption="value"  dataoption="key" dictionary="stat" disable="true"></ht-select>
+
+    </ht-panel>
+
+    <ht-panel>
+        <ht-input  name="评估机构" ht-id="brNm" ng-model="updateform.brNm" disable="true"></ht-input>
+        <ht-input  name="更新机构" ht-id="lstUpdBrNm"  ng-model="updateform.lstUpdBrNm" disable="true"></ht-input>
+        <ht-input  name="评估人" ht-id="tlrNm" ng-model="updateform.tlrNm" disable="true"></ht-input>
+        <ht-input  name="更新人" ht-id="lastUpdTlrNm" ng-model="updateform.lastUpdTlrNm" disable="true"></ht-input>
+        <ht-input  name="评估日期"  ht-id="evalDt"  ng-model="updateform.evalDt" disable="true" edit-type="date"></ht-input>
+        <ht-input  name="更新日期" ht-id="lstUpdDt"  ng-model="updateform.lstUpdDt" disable="true" edit-type="date"></ht-input>
+    </ht-panel>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="updtEval" class="btn-primary">评估</ht-button>
+    <ht-button ht-id="updtSbmt" class="btn-primary">提交</ht-button>
+    <ht-button ht-id="confirmUpdt" class="btn-primary">更新</ht-button>
+    <ht-button ht-id="closeUpdtDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

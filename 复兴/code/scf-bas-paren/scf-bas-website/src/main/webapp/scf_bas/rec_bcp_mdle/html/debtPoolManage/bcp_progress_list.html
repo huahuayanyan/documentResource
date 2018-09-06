@@ -1,0 +1,24 @@
+
+<ht-legend>应收账款历程信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+<!-- bussType要关联 B_BRP_PRD_FACTORING-保理产品参数配置表-->
+    <ht-column eg-name="appno" zh-name="业务编号" ></ht-column>
+    <ht-column eg-name="mastContno" zh-name="业务合同号"  ></ht-column>
+    <ht-column eg-name="bussTypeName" zh-name="业务品种" ></ht-column>
+    <ht-column eg-name="cnameSeller" zh-name="卖方名称" ></ht-column>
+    <ht-column eg-name="cnameBuyer" zh-name="买方名称" ></ht-column>
+    <ht-column eg-name="billsNo" zh-name="凭证编号" ></ht-column>
+    <ht-column eg-name="billsType" zh-name="	凭证类型" dictionary="billsType"></ht-column>
+    <ht-column eg-name="curcd" zh-name="交易币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="money2" zh-name="	交易金额" type="currency"></ht-column>
+    <ht-column eg-name="applyType" zh-name="	交易类型" dictionary="applyType"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>
+
+
+
+

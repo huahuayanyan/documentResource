@@ -1,0 +1,21 @@
+
+<ht-form name ="otherform">
+    <ht-legend>待补偿合同信息</ht-legend>
+    <ht-input ht-id="conId" name="抵/质押合同号" disable="true" ng-model="otherform.conId"></ht-input>
+    <ht-input ht-id="prtclNo" name="监管合同号" disable="true" ng-model="otherform.prtclNo"></ht-input>
+    <ht-input ht-id="gutNm" name="出质人名称" disable="true" ng-model="otherform.gutNm" ></ht-input>
+    <ht-input ht-id="moniCname" name="监管公司名称" disable="true"  ng-model="otherform.moniCname"></ht-input>
+    <ht-input ht-id="vidPrdNm" name="业务品种" disable="true" ng-model="otherform.vidPrdNm" ></ht-input>
+    <ht-input ht-id="ration" name="抵/质押率(%)" edit-type="currency" disable="true" ng-model="otherform.ration" ></ht-input>
+    <ht-input ht-id="mortAmt" name="押品总价值" disable="true" edit-type="currency" ng-model="otherform.mortAmt" ></ht-input>
+    <ht-input ht-id="leastMortAmt" name="当前最低控货价值" disable="true" edit-type="currency" ng-model="otherform.leastMortAmt" ></ht-input>
+    <ht-input ht-id="mortBalance" name="价值差额" disable="true" edit-type="currency" ng-model="otherform.mortBalance" ></ht-input>
+
+    <ht-legend>应补保证金</ht-legend>
+    <ht-input ht-id="bailAmount" name="应补保证金" reg-exp="common.require" edit-type="currency" ng-model="otherform.bailAmount"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

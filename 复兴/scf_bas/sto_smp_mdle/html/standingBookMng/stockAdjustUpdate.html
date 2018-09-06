@@ -1,0 +1,41 @@
+<ht-form name="otherform">
+    <ht-legend>新增库存</ht-legend>
+    <ht-panel>
+        <ht-input name="押品编号"  ng-model="otherform.mortgageNo" disable="true"></ht-input>
+        <ht-input ht-id="mortgageName" name="押品名称" disable="{{disable}}" ng-model="otherform.mortgageName"></ht-input>
+        <ht-input ht-id="mortgageModel" name="规格型号" disable="{{disable}}"  ng-model="otherform.mortgageModel"></ht-input>
+        <ht-select name="单位" id="mortgageUnits" disable="{{disable}}"  ng-model="otherform.mortgageUnits" dictionary="mortgageUnits" ></ht-select>
+        <ht-input ht-id="manufacturer" name="生产厂家" disable="{{disable}}"  ng-model="otherform.manufacturer"></ht-input>
+        <ht-input ht-id="manufactureDate" disable="{{disable}}" edit-type="date" name="出厂日期" disable="{{update}}"  
+                  ng-model="otherform.manufactureDate"></ht-input>
+        
+         <ht-select ht-id="mortgageLevelOne" name="押品一级" disable="{{disable}}" on-change="mortgageLevelOneName" datasource="mortgageLevelOneSource"
+               dataOption="code" dataTrsOption="codeName" disable="{{disable}}" ng-model="otherform.mortgageLevelOne" ></ht-select>
+        <ht-select ht-id="mortgageLevelTwo" name="押品二级" disable="{{disable}}" on-change="mortgageLevelTwoName"  datasource="mortgageLevelTwoSource"
+               dataOption="code" dataTrsOption="codeName" disable="{{disable}}" ng-model="otherform.mortgageLevelTwo" ></ht-select>
+        <ht-select ht-id="mortgageLevelThree" name="押品三级" disable="{{disable}}"   datasource="mortgageLevelThreeSource"
+               dataOption="code" dataTrsOption="codeName" disable="{{disable}}" ng-model="otherform.mortgageLevelThree" ></ht-select>
+        <ht-input ht-id="price" name="买入单价" disable="{{disable}}"  ng-model="otherform.price"></ht-input>
+        <ht-select ht-id="curcd" name="币种" disable="{{disable}}"  ng-model="otherform.curcd" dictionary="curcd" disable="true"></ht-select>
+        <ht-input ht-id="warehouse" name="仓库名称" disable="{{disable}}"  ng-model="otherform.warehouse"></ht-input>
+        <ht-input ht-id="warehouseAddress" name="仓库地址" disable="{{disable}}"  ng-model="otherform.warehouseAddress"></ht-input>
+        <ht-select ht-id="moniWarehouseType" name="监管模式" disable="{{disable}}"  ng-model="otherform.moniWarehouseType" dictionary="monitortype" ></ht-select>
+        <ht-input ht-id="description" name="押品其他描述"  disable="{{disable}}" ng-model="otherform.description"></ht-input>
+        <ht-input ht-id="freightarea" name="货区号" disable="{{disable}}"  ng-model="otherform.freightarea"></ht-input>
+        <ht-input ht-id="freightlot" name="货位号" disable="{{disable}}"  ng-model="otherform.freightlot"></ht-input>
+        <ht-input ht-id="confirmPrice" name="核定单价" disable="{{disable}}"  ng-model="otherform.confirmPrice"></ht-input>
+        <ht-text-area ht-id="confirmAccording" disable="{{disable}}" name="核准依据" ng-model="otherform.confirmAccording" ></ht-text-area>
+        <ht-input ht-id="fixMortgageNo" disable="{{disable}}" name="盯市产品编号"  disable="true" ng-model="otherform.fixMortgageNo"></ht-input>
+		    <ht-button ht-id="bound" disable="{{disable}}" class="btn-primary">绑定市价</ht-button>
+		    <ht-button ht-id="unBound" disable="{{disable}}" class="btn-primary">取消绑定</ht-button>
+        <ht-input ht-id="marketPrice" name="当前市场价" disable="true"  ng-model="otherform.marketPrice"></ht-input>
+        <<ht-select ht-id="joinBatch" name="是否参与核定价格批量调整" disable="{{disable}}"  ng-model="otherform.joinBatch" dictionary="joinBatch"></ht-select>
+        <ht-text-area ht-id="memo" disable="{{disable}}" name="备注" ng-model="otherform.memo" ></ht-text-area>
+        <ht-input ht-id="quantity" name="调整前的库存数量" disable="{{disable}}" ng-model="otherform.quantity"></ht-input>
+        <ht-input ht-id="newQuantity" name="调整后的库存数量" reg-exp="common.require"  ng-model="otherform.newQuantity"></ht-input>
+    </ht-panel>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{view}}">保存</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

@@ -1,0 +1,24 @@
+
+<ht-form name ="conditionForm">
+    <ht-select ht-id="warnLevel"  name="预警级别" dictionary="postLoanwarnLevel" ng-model="conditionForm.warnLevel"></ht-select>
+
+    <ht-button-group>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="false">
+    <ht-column eg-name="cname" zh-name="公司名称" ></ht-column>
+    <ht-column eg-name="warnDate" zh-name="预警日期" type="date" ></ht-column>
+    <ht-column eg-name="result" zh-name="预警级别" dictionary="postLoanwarnLevel" ></ht-column>
+    <ht-column eg-name="subjNm" zh-name="预警指标" ></ht-column>
+    <ht-column eg-name="rpSource" zh-name="财报周期" dictionary="finPdCode"></ht-column>
+    <ht-column eg-name="rptNo" zh-name="财报期次"></ht-column>
+    <ht-column eg-name="remark" zh-name="预警信号"></ht-column>
+
+</ht-table>
+
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

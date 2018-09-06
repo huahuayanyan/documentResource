@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_WRN_NO_DELIVERY" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="CUSTCD_SELLER" property="custcdSeller" jdbcType="VARCHAR" />
+    <result column="CNAME_SELLER" property="cnameSeller" jdbcType="VARCHAR" />
+    <result column="CUSTCD_BUYER" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="CNAME_BUYER" property="cnameBuyer" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="LOAN_AMT" property="loanAmt" jdbcType="DECIMAL" />
+    <result column="LOAN_DATE" property="loanDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="REDEEM_TERM" property="redeemTerm" jdbcType="DECIMAL" />
+    <result column="DUE_REDEEM_DATE" property="dueRedeemDate" jdbcType="CHAR" />
+    <result column="NOTICE_NO" property="noticeNo" jdbcType="VARCHAR" />
+    <result column="RISK_AMT" property="riskAmt" jdbcType="DECIMAL" />
+    <result column="CONFIRM_DATE" property="confirmDate" jdbcType="CHAR" />
+    <result column="DELIVERY_AMT" property="deliveryAmt" jdbcType="DECIMAL" />
+    <result column="BALANCE_AMT" property="balanceAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, CUSTCD_SELLER, CNAME_SELLER, CUSTCD_BUYER, CNAME_BUYER, PROTOCOL_NO, 
+    LOAN_WAY, DEBET_NO, DEBET_ID, CURCD, LOAN_AMT, LOAN_DATE, END_DATE, CONFIRM_STAUS
+  </sql>
+  
+  <select id="selectNoDeliveryWarningList" resultMap="BaseResultMap" parameterClass="java.util.Map" >
+	select twmr.*
+	from B_WRN_MORT_REDEEM_INFO twmr, B_WRN_BASE_INFO twbi
+	where twmr.warn_id = twbi.id
+	<isNotNull property="productId" prepend="and">
+		twbi.product_id = #productId:VARCHAR#
+	</isNotNull>
+	<isNotNull property="cnameBuyer" prepend="and">
+		twmr.cname_buyer is not null AND twmr.cname_buyer like '%'||#cnameBuyer:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="cnameSeller" prepend="and">
+		twmr.cname_seller is not null AND twmr.cname_seller like '%'||#cnameSeller:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="protocolNo" prepend="and">
+		twmr.protocol_no like '%'||#protocolNo:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="startDate" prepend="and">
+		<![CDATA[twbi.warn_date >= #startDate:VARCHAR#]]>
+	</isNotNull>
+	<isNotNull property="endDate" prepend="and">
+		<![CDATA[twbi.warn_date<= #endDate:VARCHAR#]]>
+	</isNotNull>
+	<!-- <isNotNull property="brcode" prepend="and">
+		<isEqual property="brattr"  compareValue="1">
+			exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = twmr.protocol_no 
+		 	and tmbi.cooperation_brcode = #brcode:VARCHAR# )
+		</isEqual>
+		<isNotEqual property="brattr"  compareValue="1">
+			 exists ( select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =twbi.brcode and parent_brcode =
+			 #brcode:VARCHAR# and affiliation_type ='1')
+		</isNotEqual>
+	</isNotNull> -->
+
+  </select>
+  
+  <select id="CountNoDeliveryWarning" resultClass="java.lang.Integer" parameterClass="java.util.Map" >
+	SELECT COUNT(id) FROM(
+	select twmr.*
+	from B_WRN_MORT_REDEEM_INFO twmr, B_WRN_BASE_INFO twbi
+	where twmr.warn_id = twbi.id
+	<isNotNull property="productId" prepend="and">
+		twbi.product_id = #productId:VARCHAR#
+	</isNotNull>
+	<isNotNull property="cnameBuyer" prepend="and">
+		twmr.cname_buyer is not null AND twmr.cname_buyer like '%'||#cnameBuyer:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="cnameSeller" prepend="and">
+		twmr.cname_seller is not null AND twmr.cname_seller like '%'||#cnameSeller:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="protocolNo" prepend="and">
+		twmr.protocol_no like '%'||#protocolNo:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="startDate" prepend="and">
+		<![CDATA[twbi.warn_date >= #startDate:VARCHAR#]]>
+	</isNotNull>
+	<isNotNull property="endDate" prepend="and">
+		<![CDATA[twbi.warn_date<= #endDate:VARCHAR#]]>
+	</isNotNull>
+	<isNotNull property="brcode" prepend="and">
+		<isEqual property="brattr"  compareValue="1">
+			exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = twmr.protocol_no 
+		 	and tmbi.cooperation_brcode = #brcode:VARCHAR# )
+		</isEqual>
+		<isNotEqual property="brattr"  compareValue="1">
+			 exists ( select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =twbi.brcode and parent_brcode =
+			 #brcode:VARCHAR# and affiliation_type ='1')
+		</isNotEqual>
+	</isNotNull>
+	)
+  </select>
+
+
+</sqlMap>

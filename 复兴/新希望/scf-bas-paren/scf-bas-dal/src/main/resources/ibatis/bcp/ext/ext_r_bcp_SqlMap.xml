@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_R_BCP" >
+   <select id="queryAppliBussDetailByAppno" resultMap="R_BCP_APPLI_BUSS_DTL.BaseResultMap" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliBussDtl" >
+   	select * from R_BCP_APPLI_BUSS_DTL
+   	<dynamic prepend="where" >
+      <isNotNull prepend="and" property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+     </dynamic>
+   	order by DEBT_END asc,BILLS_NO
+   </select>
+   
+  <select id="getInvoiceDebtBackAddQry" resultMap="R_BCP_DEBT_BASE_INFO.BaseResultMap"  parameterClass="java.util.HashMap" >
+    select dbi.* from R_BCP_DEBT_BASE_INFO dbi 
+    where 1=1 and ( dbi.STATUS = #status1:VARCHAR# or dbi.STATUS=#status2:VARCHAR# ) 
+     and ( dbi.ISSUE_FLAG = #issueFlag:VARCHAR# or dbi.ISSUE_FLAG is null ) and (dbi.POOL_FLAG = #poolFlag:VARCHAR# or dbi.POOL_FLAG is null )
+     and (dbi.IS_LOCKED is null or dbi.IS_LOCKED != #isLocked:VARCHAR# 
+      <isNotEmpty prepend="or" property="lockAppno" >
+         dbi.LOCK_APPNO = #lockAppno:VARCHAR#  
+      </isNotEmpty>
+         )  and ( dbi.DEBET_NO in (select tlbi.DEBET_ID from B_LAN_LNCI_BASE tlbi where tlbi.DEBET_ID = dbi.DEBET_NO 
+         and tlbi.STATE != #state:VARCHAR# )or dbi.DEBET_NO is null )
+      <isNotEmpty prepend="and" property="mastContno" >
+ 		 dbi.MAST_CONTNO = #mastContno:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="custcdBuyer" >
+         dbi.CUSTCD_BUYER = #custcdBuyer:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="insertDate1" >
+         dbi.INSERT_DATE >= #insertDate1:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="insertDate2" >
+      	 <![CDATA[dbi.INSERT_DATE <= #insertDate1:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="purchaseDate1" >
+         dbi.PURCHASE_DATE >= #purchaseDate1:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="purchaseDate2" >
+         <![CDATA[dbi.PURCHASE_DATE <= #purchaseDate2:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="billsDate1" >
+         dbi.BILLS_DATE >= #billsDate1:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="billsDate2" >
+      	 <![CDATA[dbi.BILLS_DATE <= #billsDate2:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="debtEnd1" >
+         dbi.DEBT_END >= #debtEnd1:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="debtEnd2" >
+      	 <![CDATA[dbi.DEBT_END <= #debtEnd2:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="billsNo" >
+         dbi.BILLS_NO = #billsNo:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="billsType" >
+         dbi.BILLS_TYPE = #billsType:VARCHAR#  
+      </isNotEmpty>
+    order by dbi.BILLS_NO 
+  </select>
+  
+  <resultMap id="BaseRepaymentResultMap" class="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepayment" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="RETURN_ID" property="returnId" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="AMOUNT_OVER" property="amountOver" jdbcType="DECIMAL" />
+    <result column="RETURN_TYPE" property="returnType" jdbcType="CHAR" />
+    <result column="RETURN_METHOD" property="returnMethod" jdbcType="VARCHAR" />
+    <result column="TO_SALLER_AMOUNT" property="toSallerAmount" jdbcType="DECIMAL" />
+    <result column="TO_POOL_AMOUNT" property="toPoolAmount" jdbcType="DECIMAL" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="DEBT_APPNO" property="debtAppno" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="REPAY_INTAMT" property="repayIntamt" jdbcType="DECIMAL" />
+    <result column="REPAY_BALAMT" property="repayBalamt" jdbcType="DECIMAL" />
+    <result column="REPAY_AMOUNT" property="repayAmount" jdbcType="DECIMAL" />
+    <result column="REPAY_DATE" property="repayDate" jdbcType="CHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="PAY_AMOUNT" property="payAmount" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByRBcpAppliRepaymentByAppno" resultMap="BaseRepaymentResultMap" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepayment" >
+    select *
+    from R_BCP_APPLI_REPAYMENT
+    where APPNO = #appno:VARCHAR#
+  </select>
+  
+  <select id="getInvoiceAdd" resultMap="R_BCP_DEBT_BASE_INFO.BaseResultMap"  parameterClass="java.util.HashMap" >
+    select dbi.* from R_BCP_DEBT_BASE_INFO dbi 
+    where 1=1 
+     and dbi.STATUS = #status:VARCHAR#
+     and dbi.LOAN_REMAINING_AMOUNT = #loanRemainingAmount:DECIMAL#
+     and (dbi.POOL_FLAG = #poolFlag:VARCHAR# or dbi.POOL_FLAG is null )
+     and (dbi.ISSUE_FLAG = #issueFlag:VARCHAR# or dbi.ISSUE_FLAG is null ) 
+     and (dbi.IS_LOCKED is null or dbi.IS_LOCKED != #isLocked:VARCHAR# 
+      <isNotEmpty prepend="or" property="lockAppno" >
+         dbi.LOCK_APPNO = #lockAppno:VARCHAR#  
+      </isNotEmpty>
+         )
+      <isNotEmpty prepend="and" property="mastContno" >
+ 		 dbi.MAST_CONTNO = #mastContno:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="custcdBuyer" >
+         dbi.CUSTCD_BUYER = #custcdBuyer:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="insertDate1" >
+         dbi.INSERT_DATE >= #insertDate1:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="insertDate2" >
+      	 <![CDATA[dbi.INSERT_DATE <= #insertDate2:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="purchaseDate1" >
+         dbi.PURCHASE_DATE >= #purchaseDate1:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="purchaseDate2" >
+         <![CDATA[dbi.PURCHASE_DATE <= #purchaseDate2:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="billsDate1" >
+         dbi.BILLS_DATE >= #billsDate1:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="billsDate2" >
+      	 <![CDATA[dbi.BILLS_DATE <= #billsDate2:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="debtEnd1" >
+         dbi.DEBT_END >= #debtEnd1:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="debtEnd2" >
+      	 <![CDATA[dbi.DEBT_END <= #debtEnd2:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="billsAmount1" >
+         dbi.BILLS_AMOUNT >= #billsAmount1:DECIMAL#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="billsAmount2" >
+      	 <![CDATA[dbi.BILLS_AMOUNT <= #billsAmount2:DECIMAL#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="billsNo" >
+         dbi.BILLS_NO = #billsNo:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="billsType" >
+         dbi.BILLS_TYPE = #billsType:VARCHAR#  
+      </isNotEmpty>
+    order by dbi.BILLS_NO 
+  </select>
+  
+  <!-- 保证金转入信息列表查询 -->
+  <resultMap id="BaseAppliBussInfoResultMap" class="java.util.HashMap" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="CUSTCD_BUYER" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="CUSTCD_SALLER" property="custcdSaller" jdbcType="VARCHAR" />
+    <result column="APPLY_TYPE" property="applyType" jdbcType="CHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="INSERT_DATE" property="insertDate" jdbcType="CHAR" />
+    <result column="PURCHASE_DATE" property="purchaseDate" jdbcType="CHAR" />
+    <result column="DEBT_NUM" property="debtNum" jdbcType="DECIMAL" />
+    <result column="TOTAL_DEBT_AMOUNT" property="totalDebtAmount" jdbcType="DECIMAL" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="CHAR" />
+    <result column="FINACING_DISCOUNT_TYPE" property="finacingDiscountType" jdbcType="CHAR" />
+    <result column="FINACING_COST" property="finacingCost" jdbcType="DECIMAL" />
+    <result column="COST" property="cost" jdbcType="DECIMAL" />
+    <result column="HANDLING_FEE" property="handlingFee" jdbcType="DECIMAL" />
+    <result column="REDUCE_AMOUNT" property="reduceAmount" jdbcType="DECIMAL" />
+    <result column="TOTAL_FEE" property="totalFee" jdbcType="DECIMAL" />
+    <result column="TOTAL_REDUCE" property="totalReduce" jdbcType="DECIMAL" />
+    <result column="RECEIVE_AMOUNT" property="receiveAmount" jdbcType="DECIMAL" />
+    <result column="COST_ACCOUNT" property="costAccount" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="PAY_DAY_MONTH" property="payDayMonth" jdbcType="VARCHAR" />
+    <result column="RATE_COLLECT_TYPE" property="rateCollectType" jdbcType="CHAR" />
+    <result column="OVER_DUE_RATE" property="overDueRate" jdbcType="VARCHAR" />
+    <result column="EXECUTE_RATE" property="executeRate" jdbcType="VARCHAR" />
+    <result column="UP_DOWN_PERCENT" property="upDownPercent" jdbcType="VARCHAR" />
+    <result column="UP_DOWN" property="upDown" jdbcType="CHAR" />
+    <result column="BASE_RATE" property="baseRate" jdbcType="VARCHAR" />
+    <result column="RATE_ID" property="rateId" jdbcType="VARCHAR" />
+    <result column="RATE_TYPE" property="rateType" jdbcType="CHAR" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="LOAN_TYPE" property="loanType" jdbcType="VARCHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="BANKNO" property="bankno" jdbcType="VARCHAR" />
+    <result column="BRCODE2" property="brcode2" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="LOAN_DAYS" property="loanDays" jdbcType="VARCHAR" />
+    <result column="BILL_DATE" property="billDate" jdbcType="CHAR" />
+    <result column="BILL_END_DATE" property="billEndDate" jdbcType="CHAR" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="ORDER_AMT" property="orderAmt" jdbcType="DECIMAL" />
+    <result column="BALANCE_ACCOUNT" property="balanceAccount" jdbcType="VARCHAR" />
+    <result column="BAIL_AMT" property="bailAmt" jdbcType="DECIMAL" />
+    <result column="BAIL_ACCOUNT" property="bailAccount" jdbcType="VARCHAR" />
+    <result column="BILL_ACCOUNT" property="billAccount" jdbcType="VARCHAR" />
+    <result column="CORE_ACCOUNT" property="coreAccount" jdbcType="VARCHAR" />
+    <result column="APP_DATE" property="appDate" jdbcType="CHAR" />
+    <result column="APP_LOAN_DATE" property="appLoanDate" jdbcType="CHAR" />
+    <result column="LOAN_DUE_DATE" property="loanDueDate" jdbcType="CHAR" />
+    <result column="RETURN_DATE" property="returnDate" jdbcType="CHAR" />
+    <result column="RETURN_TYPE" property="returnType" jdbcType="CHAR" />
+    <result column="RETURN_METHOD" property="returnMethod" jdbcType="CHAR" />
+    <result column="RETURN_AMOUNT" property="returnAmount" jdbcType="DECIMAL" />
+    <result column="RETURN_INTEREST_AMOUNT" property="returnInterestAmount" jdbcType="DECIMAL" />
+    <result column="RETURN_CAPITAL_AMOUNT" property="returnCapitalAmount" jdbcType="DECIMAL" />
+    <result column="TO_SALLER_AMOUNT" property="toSallerAmount" jdbcType="DECIMAL" />
+    <result column="TO_POOL_AMOUNT" property="toPoolAmount" jdbcType="DECIMAL" />
+    <result column="TO_SALLER_FLAG" property="toSallerFlag" jdbcType="CHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="OTHER_REASON" property="otherReason" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="BAIL_TYPE" property="bailType" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="INIT_TYPE" property="initType" jdbcType="VARCHAR" />
+    <result column="CONFIRM_STATUS" property="confirmStatus" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPT_TIME" property="lastUptTime" jdbcType="TIMESTAMP" />
+    <result column="RETURN_ACCOUNT" property="returnAccount" jdbcType="VARCHAR" />
+    <result column="TOBAIL_AMOUNT" property="tobailAmount" jdbcType="DECIMAL" />
+    <result column="REBATE_AMOUNT" property="rebateAmount" jdbcType="DECIMAL" />
+    <result column="RETURN_ACCOUNT_BALANCE" property="returnAccountBalance" jdbcType="DECIMAL" />
+    <result column="TOTAL_OVER_AMOUNT" property="totalOverAmount" jdbcType="DECIMAL" />
+    <result column="ASSIGN_RULE" property="assignRule" jdbcType="CHAR" />
+    <result column="TRANSACTION_NO" property="transactionNo" jdbcType="VARCHAR" />
+    <result column="REFUND_TERM" property="refundTerm" jdbcType="DECIMAL" />
+    <result column="PAYEE" property="payee" jdbcType="VARCHAR" />
+    <result column="REFUND_ACCT_NO" property="refundAcctNo" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_BANK" property="depositBank" jdbcType="VARCHAR" />
+    <result column="SETTLE_METHOD" property="settleMethod" jdbcType="VARCHAR" />
+    <result column="PAYER" property="payer" jdbcType="VARCHAR" />
+    <result column="PAYER_ACCT_NO" property="payerAcctNo" jdbcType="VARCHAR" />
+    <result column="PAYER_BANK" property="payerBank" jdbcType="VARCHAR" />
+    <result column="TRANSFER_AMT" property="transferAmt" jdbcType="DECIMAL" />
+    <result column="TRANSACTION_DATE" property="transactionDate" jdbcType="CHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="FINACING_END_DATE" property="finacingEndDate" jdbcType="CHAR" />
+    <result column="FINACING_START_DATE" property="finacingStartDate" jdbcType="CHAR" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+    <result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+    <result column="SUB_CONTNO" property="subContno" jdbcType="VARCHAR" />
+    <result column="CNAME_BUYER" property="cnameBuyer" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getBailTransferQuery" resultMap="BaseAppliBussInfoResultMap"  parameterClass="java.util.HashMap" >
+    select po.*,tcbi.CNAME CNAME_BUYER,cbi.APP_ID SUB_CONTNO
+    from R_BCP_APPLI_BUSS_INFO po,B_CRM_BASE_INFO tcbi,B_CRR_LN_CON cbi 
+    where 1=1
+    and po.CUSTCD_BUYER = tcbi.CUSTCD 
+    and po.MAST_CONTNO=cbi.APP_ID
+      <isNotEmpty prepend="and" property="applyType" >
+        po.APPLY_TYPE = #applyType:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="custcdBuyer" >
+        po.CUSTCD_BUYER = #custcdBuyer:VARCHAR#   
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="cname" >
+        tcbi.CNAME like '%'|| #cname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="mastContno" >
+        cbi.APP_ID = #mastContno:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="bailType" >
+        po.BAIL_TYPE = #bailType:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="initType" >
+        po.INIT_TYPE = #initType:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="parentBrcode" >
+        exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = po.BRCODE
+        	and PARENT_BRCODE = #parentBrcode:VARCHAR#
+        	and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+      </isNotEmpty>
+      order by po.APP_DATE desc,po.APPNO desc
+  </select>
+  <!-- 保证金转入信息列表个数查询 -->
+  <select id="countBailTransferQuery" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(po.ID)
+    from R_BCP_APPLI_BUSS_INFO po,B_CRM_BASE_INFO tcbi,B_CRR_LN_CON cbi 
+    where 1=1
+    and po.CUSTCD_BUYER = tcbi.CUSTCD 
+    and po.MAST_CONTNO=cbi.APP_ID
+      <isNotEmpty prepend="and" property="applyType" >
+        po.APPLY_TYPE = #applyType:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="custcdBuyer" >
+        po.CUSTCD_BUYER = #custcdBuyer:VARCHAR#   
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="cname" >
+        tcbi.CNAME like '%'|| #cname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="mastContno" >
+        cbi.APP_ID = #mastContno:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="bailType" >
+        po.BAIL_TYPE = #bailType:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="initType" >
+        po.INIT_TYPE = #initType:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="parentBrcode" >
+        exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = po.BRCODE
+        	and PARENT_BRCODE = #parentBrcode:VARCHAR#
+        	and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+      </isNotEmpty>
+  </select>
+
+  <!-- 费用信息管理列表查询 -->
+  <resultMap id="BaseCostOutResultMap" class="java.util.HashMap" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="APPLY_TYPE" property="applyType" jdbcType="VARCHAR" />
+    <result column="COST_INFO_ID" property="costInfoId" jdbcType="VARCHAR" />
+    <result column="COST_CODE" property="costCode" jdbcType="VARCHAR" />
+    <result column="COST_NAME" property="costName" jdbcType="VARCHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="CHAR" />
+    <result column="COST_CLASS" property="costClass" jdbcType="CHAR" />
+    <result column="COST_TYPE" property="costType" jdbcType="CHAR" />
+    <result column="COST_CALC_TYPE" property="costCalcType" jdbcType="CHAR" />
+    <result column="COST_RATE" property="costRate" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="BUSS_AMT" property="bussAmt" jdbcType="DECIMAL" />
+    <result column="COST_AMT" property="costAmt" jdbcType="DECIMAL" />
+    <result column="REDUCE_AMT" property="reduceAmt" jdbcType="DECIMAL" />
+    <result column="RECEIVE_AMOUNT" property="receiveAmount" jdbcType="DECIMAL" />
+    <result column="COST_ACCOUNT" property="costAccount" jdbcType="VARCHAR" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="TIMESTAMP" />
+    <result column="INSERT_DATE" property="insertDate" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="TOTAL_AMT" property="totalAmt" jdbcType="DECIMAL" />
+    <result column="COST_PHASE" property="costPhase" jdbcType="VARCHAR" />
+    <result column="BUSS_CONTNO" property="bussContno" jdbcType="VARCHAR" />
+    <result column="TX_FLOW_NO" property="txFlowNo" jdbcType="VARCHAR" />
+    <result column="CHARGE_CLASS" property="chargeClass" jdbcType="CHAR" />
+    <result column="SELLER_NM" property="sellerNm" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryTblCostOut" resultMap="BaseCostOutResultMap"  parameterClass="java.util.HashMap" >
+    select tco.*,cust.CNAME SELLER_NM
+    from R_BCP_COST_OUT tco,B_CRM_BASE_INFO cust 
+    where 1=1
+    and tco.CUSTCD = cust.CUSTCD
+      <isNotEmpty prepend="and" property="cname" >
+        cust.CNAME like '%'|| #cname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="commonDate1" >
+        <![CDATA[tco.COMMON_DATE >= #commonDate1:TIMESTAMP#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="commonDate2" >
+        <![CDATA[tco.COMMON_DATE <= #commonDate2:TIMESTAMP#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="bussContno" >
+        tco.BUSS_CONTNO like '%'|| #bussContno:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="chargeClass" >
+        tco.CHARGE_CLASS = #chargeClass:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="parentBrcode" >
+        exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = cust.BRCODE
+        	and PARENT_BRCODE = #parentBrcode:VARCHAR#
+        	and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+      </isNotEmpty>
+      order by tco.ID desc
+  </select>
+  <!-- 费用信息管理列表个数查询 -->
+  <select id="countQueryTblCostOut" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(tco.ID)
+    from R_BCP_COST_OUT tco,B_CRM_BASE_INFO cust 
+    where 1=1
+    and tco.CUSTCD = cust.CUSTCD
+      <isNotEmpty prepend="and" property="cname" >
+        cust.CNAME like '%'|| #cname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="commonDate1" >
+        <![CDATA[tco.COMMON_DATE >= #commonDate1:TIMESTAMP#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="commonDate2" >
+        <![CDATA[tco.COMMON_DATE <= #commonDate2:TIMESTAMP#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="bussContno" >
+        tco.BUSS_CONTNO like '%'|| #bussContno:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="chargeClass" >
+        tco.CHARGE_CLASS = #chargeClass:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="parentBrcode" >
+        exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = cust.BRCODE
+        	and PARENT_BRCODE = #parentBrcode:VARCHAR#
+        	and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+      </isNotEmpty>
+  </select>
+</sqlMap>

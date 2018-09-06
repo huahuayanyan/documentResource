@@ -1,0 +1,29 @@
+<ht-legend>凭证信息</ht-legend>
+<ht-form name="otherform">
+    <ht-input ht-id="billsNo" name="凭证编号" disable="true" ng-model="otherform.billsNo"></ht-input>
+    <ht-input ht-id="purchaseDate" name="应收账款转让日期" disable="true"edit-type="date"ng-model="otherform.purchaseDate" ></ht-input>
+    <ht-input ht-id="billsDate" name="应收账款日期" edit-type="date"disable="true"ng-model="otherform.billsDate"></ht-input>
+    <ht-input ht-id="aging" name="账期" disable="true"ng-model="otherform.aging"></ht-input>
+    <ht-input ht-id="debtEnd" name="到期日" disable="true" edit-type="date"ng-model="otherform.debtEnd"></ht-input>
+    <ht-select ht-id="curcd" name="币种"disable="true" dictionary="curcd" ng-model="otherform.curcd"></ht-select>
+
+    <ht-input ht-id="billsAmount" name="有效金额" disable="true"edit-type="currency" ng-model="otherform.billsAmount"></ht-input>
+    <ht-input ht-id="remainingAmount" name="应收账款余额" disable="true"edit-type="currency"  ng-model="otherform.remainingAmount"></ht-input>
+    <ht-input ht-id="loanPercent" name="融资比例（%）"disable="true" ng-model="otherform.loanPercent"></ht-input>
+    <ht-input ht-id="remainingUseableAmount" name="可融资余额" disable="true"edit-type="currency" ng-model="otherform.remainingUseableAmount"></ht-input>
+
+    <ht-select ht-id="status" name="应收账款状态" disable="true" dictionary="debtBussStatus" ng-model="otherform.status" ></ht-select>
+    <ht-select ht-id="issueFlag" name="争议状态"disable="true" dictionary="issueFlag" ng-model="otherform.issueFlag" ></ht-select>
+    <ht-input ht-id="money" name="争议金额" disable="true"edit-type="currency" ng-model="otherform.money"></ht-input>
+    <ht-select ht-id="issueReason" name="争议原因" disable="true" dictionary="issueReason" ng-model="otherform.issueReason" ></ht-select>
+    <ht-select ht-id="reason" name="争议解决方式" dictionary="issueReasonSolve" ng-model="otherform.reason" on-change="reasonChange"  reg-exp="common.require"></ht-select>
+ <!--   <ht-input ht-id="reason" name="争议解决方式" ng-model="otherform.reason" reg-exp="common.require"></ht-input>-->
+    <ht-text-area ht-id="otherReason" name="其他原因" disable="{{disable}}"  ng-model="otherform.otherReason"></ht-text-area>
+    <ht-text-area ht-id="memo" name="其它解决方式" disable="{{disable}}"  ng-model="otherform.memo"></ht-text-area>
+
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

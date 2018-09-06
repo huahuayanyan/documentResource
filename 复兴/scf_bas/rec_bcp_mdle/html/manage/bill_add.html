@@ -1,0 +1,25 @@
+
+
+
+<ht-form name="billForm">
+    <!--经办机构新增查看的时候只读，修改的时候可以修改。-->
+    <ht-input ht-id="billsNo" name="凭证编号" reg-exp="common.require"
+              ng-model="billForm.billsNo"></ht-input>
+    <ht-input ht-id="billsDate" name="应收账款日期" edit-type="date" reg-exp="common.require"
+              ng-model="billForm.billsDate"></ht-input>
+    <ht-input ht-id="debtEnd" name="应收账款到期日" edit-type="date" reg-exp="common.require" disable="true"
+                     ng-model="billForm.debtEnd"></ht-input>
+    <ht-input ht-id="deadline" name="最迟付款日" disable="true" edit-type="date"  reg-exp="common.require"
+              ng-model="billForm.deadline"></ht-input>
+    <ht-select ht-id="curcd" name="币种"   reg-exp="common.require" disable="true" dictionary="curcd"
+               ng-model="billForm.curcd"></ht-select>
+    <ht-input ht-id="billsAmountView" name="票面金额"   reg-exp="common.require" edit-type="currency"
+              ng-model="billForm.billsAmountView"></ht-input>
+    <ht-input ht-id="billsAmount" name="有效金额"  reg-exp="common.require" edit-type="currency"
+              ng-model="billForm.billsAmount"></ht-input>
+
+    </ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm"  class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"class="btn-primary">取消</ht-button>
+</ht-button-group>

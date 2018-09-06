@@ -1,0 +1,27 @@
+
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true"  minheit="150px">
+    <ht-column eg-name="loanAppno" zh-name="出账流水号"></ht-column>
+    <ht-column eg-name="debetId" zh-name="借据号/承兑协议号"></ht-column>
+    <ht-column eg-name="mastContcode" zh-name="信贷合同号" dictionary="curcd"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="startDate" zh-name="起始日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日期" type="date"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="借据金额" type="currency"></ht-column>
+    <ht-column eg-name="lnciBal" zh-name="借据余额" type="currency"></ht-column>
+    <ht-column eg-name="receivableInt" zh-name="欠息金额" type="currency"></ht-column>
+    <ht-column eg-name="lnciStatus" zh-name="借据状态" dictionary ="lnciStatus"></ht-column>
+    <ht-column eg-name="bailAmount" zh-name="保证金金额" type="currency"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm"  class="btn-primary" desc-name="保存"></ht-button>
+    <ht-button ht-id="cancel"  class="btn-primary" desc-name="返回"></ht-button>
+</ht-button-group>
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_LAN_LNCI_BUY_BIZ" >
+ <select id="queryByCondition" resultMap="B_LAN_LNCI_BUY_BIZ.BaseResultMap" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyBiz" >
+  	select 
+    <include refid="B_LAN_LNCI_BUY_BIZ.Base_Column_List" />
+    from B_LAN_LNCI_BUY_BIZ
+    WHERE 1=1
+    <isNotEmpty prepend="and" property="debetNo">
+	     <![CDATA[DEBET_NO=#debetNo:VARCHAR# ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="tradeContno">
+	     <![CDATA[TRADE_CONTNO=#tradeContno:VARCHAR# ]]>
+	</isNotEmpty>
+  </select>
+</sqlMap>

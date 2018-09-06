@@ -1,0 +1,88 @@
+
+<ht-form name="otherform">
+    <ht-panel>
+    <ht-legend>基本信息</ht-legend>
+    <ht-input name="客户名称" reg-exp="common.require" ng-model="otherform.cname" disable="true"></ht-input>
+    <ht-input name="合同编号" reg-exp="common.require" ng-model="otherform.mastContno" disable="true"></ht-input>
+    <ht-input name="贸易对手" reg-exp="common.require" ng-model="otherform.businessName" disable="true"></ht-input>
+    <ht-select name="业务品种" reg-exp="common.require" ng-model="otherform.supplyChainPdId" dictionary="vidBusTyp" disable="true"></ht-select>
+    <ht-input ht-id="loanPercent" name="融资比例（%）" ng-model="otherform.loanPercent" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input name="申请金额" reg-exp="common.require" ng-model="otherform.lnAmt" edit-type="currency" disable="{{disable}}"></ht-input>
+    <ht-input ht-id="trmMon" name="期限(月)" reg-exp="common.require" ng-model="otherform.trmMon" disable="{{disable}}" edit-type="number"></ht-input>
+    <ht-input ht-id="trmDay" name="期限(日)" reg-exp="common.require" ng-model="otherform.trmDay" disable="{{disable}}" edit-type="number"></ht-input>
+    <ht-input name="收款账号" reg-exp="common.require" ng-model="otherform.accountNo" disable="true"></ht-input>
+    <ht-input name="收款账户名称" ng-model="otherform.accountName" disable="true"></ht-input>
+    <ht-input name="收款账户开户行" ng-model="otherform.accountBank" disable="true"></ht-input>
+    <ht-input-extent name="占用额度编号" reg-exp="common.require" ng-model="otherform.crNo"  disable="{{disable}}"
+                     extent="crNoContent" on-change="crNodooextent" ></ht-input-extent>
+    <ht-input name="核定额度（元）" reg-exp="common.require" ng-model="otherform.totalPrice" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="可用额度（元）" reg-exp="common.require" ng-model="otherform.ableNum" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="放款编号" ng-model="otherform.appno" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="可融资余额" reg-exp="common.require" ng-model="otherform.loanRemainingAmount" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="本次融资金额" reg-exp="common.require" ng-model="otherform.loanAmount" edit-type="currency" disable="true"></ht-input>
+    <ht-select name="状态" reg-exp="common.require" ng-model="otherform.appStat" dictionary="appliStatus" disable="true"></ht-select>
+    <ht-input name="申请时间" reg-exp="common.require" ng-model="otherform.inpDt" edit-type="date" disable="true"></ht-input>
+    </ht-panel>
+    <ht-panel>
+    <ht-legend>费用信息</ht-legend>
+    <!--<ht-input ht-id="feeRate" name="手续/管理费率(%笔)" ng-model="otherform.feeRate" edit-type="number"-->
+              <!--reg-exp="common.require" disable="true"></ht-input>-->
+    <ht-input ht-id="actInt" name="利率(%)" ng-model="otherform.actInt" edit-type="currency"
+              reg-exp="common.require" disable="{{disable}}"></ht-input>
+    <ht-button ht-id="checkIntRate" hide="{{hide}}" class="btn-primary">利率定价</ht-button>
+    <ht-select ht-id="jxPeriod" name="计息周期" ng-model="otherform.jxPeriod" dictionary="rtnIntInvl"
+               reg-exp="common.require" disable="{{disable}}"></ht-select>
+    <ht-input ht-id="jxDay" name="结息日" ng-model="otherform.jxDay" edit-type="number"
+              reg-exp="common.require,rtnDtValidate" disable="{{disable}}"></ht-input>
+    <ht-select ht-id="returnType" name="还款方式"  ng-model="otherform.returnType" dictionary="rtnTyp"
+               reg-exp="common.require" disable="{{disable}}"></ht-select>
+    <ht-input ht-id="yqDay" name="宽限日" ng-model="otherform.yqDay" edit-type="number"
+              reg-exp="common.require" disable="{{disable}}"></ht-input>
+    <ht-input ht-id="yqRate" name="逾期罚息率(%日)" ng-model="otherform.yqRate" edit-type="currency"
+              reg-exp="common.require" disable="{{disable}}"></ht-input>
+    </ht-panel>
+    <ht-panel>
+    <ht-legend>回款信息</ht-legend>
+    <!--<ht-legend>资金信息</ht-legend>-->
+    <ht-input name="回款帐号" reg-exp="common.require" ng-model="otherform.returnAccount" disable="true"></ht-input>
+    <ht-input name="回款帐号名称" ng-model="otherform.returnAccountName" disable="true"></ht-input>
+    <ht-input name="回款帐号开户行" ng-model="otherform.returnAccountBank" disable="true"></ht-input>
+    <!--<ht-input-extent name="资金提供方" reg-exp="common.require" ng-model="otherform.actBrNm" disable="{{disable}}"-->
+                     <!--extent="custcontent" on-change="dooextend"></ht-input-extent>-->
+    <!--<ht-input-extent name="资金提供方账户" reg-exp="common.require" ng-model="otherform.payActNo" disable="{{disablepay}}"-->
+                     <!--extent="accountNoContent" on-change="accountNodooextent"></ht-input-extent>-->
+    <!--<ht-input name="资金提供方账户名称" ng-model="otherform.payActName" disable="true"></ht-input>-->
+    <!--<ht-input name="资金提供方开户行" ng-model="otherform.payActBank" disable="true"></ht-input>-->
+    </ht-panel>
+</ht-form>
+
+<ht-legend>应收账款列表信息</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="adddebt" hide="{{hide}}" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="editdebt" hide="{{hide}}" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="deletedebt" hide="{{hide}}" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="progress"  class="btn-primary">历程</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="cnameBuyer" zh-name="买方名称" ></ht-column>
+    <ht-column eg-name="billsNo" zh-name="凭证编号"></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType"></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="票面金额" type="currency"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingUseableAmount" zh-name="有效余额" type="currency"></ht-column><!--可用融资余额-->
+    <ht-column eg-name="loanAmount" zh-name="本次占用金额" type="currency"></ht-column>
+    <ht-column eg-name="loanRemainingAmount" zh-name="融资余额" type="currency"></ht-column><!--显示占用金额-->
+    <ht-column eg-name="billsDate" zh-name="账款日期" type="date"></ht-column>
+    <ht-column eg-name="aging" zh-name="账期"></ht-column>
+    <ht-column eg-name="gracePeriod" zh-name="宽限期"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日"  type="date"></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同"></ht-column>
+    <ht-column eg-name="status" zh-name="状态" dictionary="debtBussStatus"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{hide}}" disable="{{savedisable}}">保存</ht-button>
+    <ht-button ht-id="submit" class="btn-primary" hide="{{hide}}" disable="{{sumbitdisable}}">提交</ht-button>
+    <ht-button ht-id="back" class="btn-primary" hide="{{hideback}}">返回</ht-button>
+</ht-button-group>

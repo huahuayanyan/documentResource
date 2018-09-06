@@ -1,0 +1,36 @@
+{
+  "validateErrMsg":[
+    {
+      "ruleName":"ROOT.SAMERINFOREQUEST.SPT-1",
+      "errMsg":"参数有误"
+    },
+    {
+      "ruleName":"ROOT.SAMERINFOREQUEST.BILLINFO",
+      "errMsg":"密码不能为空1"
+    },
+    {
+      "ruleName":"ROOT.SAMERINFOREQUEST.BILLINFO.BILLNO",
+      "errMsg":"密码不能为空2"
+    },
+    {
+      "ruleName":"ROOT.SAMERINFOREQUEST.BILLINFO.PAYTIME",
+      "errMsg":"密码不能为空3"
+    },
+    {
+      "ruleName":"ROOT.SAMERINFOREQUEST.BILLINFO.SEX",
+      "errMsg":"密码不能为空4"
+    },
+    {
+      "ruleName":"ROOT.SAMERINFOREQUEST.BILLINFO.PRICE",
+      "errMsg":"密码不能为空5"
+    },
+    {
+      "ruleName":"ROOT.SAMERINFOREQUEST.BILLINFO.ADDRESS",
+      "errMsg":"密码不能为空6"
+    },
+    {
+      "ruleName":"ROOT.SAMERINFOREQUEST.BILLINFO.ADDRESS.PART",
+      "errMsg":"密码不能为空7"
+    }
+  ]
+}

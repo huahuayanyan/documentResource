@@ -1,0 +1,35 @@
+<ht-form name="secondform"  columns="1">
+    <ht-select ht-id="mdlId" name="模型编号" datasource="selectMdlCl" on-change="mdlId_change"  datatrsoption="mdlNm" dataoption="mdlId" ng-model="secondform.mdlId" disable="true"></ht-select><br>
+    <ht-input id="subjNm"  name="科目名称" ng-model="secondform.subjNm" ng-trim="false" reg-exp="common.require"></ht-input>
+    <ht-input-extent name="科目编号" ng-model="secondform.subjId" extent="subjcontent" on-change="dooextend"></ht-input-extent>
+    <ht-select ht-id="edTyp" name="财报科目编辑方式" ng-model="secondform.edTyp" dictionary="edTypCode"
+               on-change="edTyp_change" reg-exp="common.require"></ht-select>
+    <ht-select ht-id="rpSource" name="财报周期" dictionary="finPdCode" ng-model="secondform.rpSource"></ht-select>
+    <ht-input-extent name="检查公式科目选择" ng-model="secondform.chkCode" extent="chkCodecontent" on-change="chkCodedooextend"></ht-input-extent>
+    <ht-input-extent name="计算公式科目选择" ng-model="secondform.calCode" extent="calCodecontent" on-change="calCodedooextend"></ht-input-extent>
+    <ht-button-group style="margin-left: 19%;">
+        <ht-button ht-id="plus">+</ht-button>
+        <ht-button ht-id="minus">-</ht-button>
+        <ht-button ht-id="multiply">*</ht-button>
+        <ht-button ht-id="eliminate">/</ht-button>
+        <ht-button ht-id="left">(</ht-button>
+        <ht-button ht-id="right">)</ht-button>
+        <ht-button ht-id="midLeft">[</ht-button>
+        <ht-button ht-id="midRight">]</ht-button>
+    </ht-button-group>
+    <div  style="position:absolute;z-index:12;left:86%;">
+        <ht-button ht-id="clearChk" class="btn-primary" hide="{{viewhide}}" desc-name="清空"></ht-button>
+    </div>
+    <ht-text-area name="检查公式" disable="true" height="70" hide="false" ng-model="secondform.chkNm"></ht-text-area>
+    <div  style="position:absolute;z-index:12;left:86%;">
+        <ht-button ht-id="clearCal" class="btn-primary" hide="{{viewhide}}" desc-name="清空"></ht-button>
+    </div>
+    <ht-text-area name="计算公式" disable="true" height="70" hide="false" reg-exp="{{chkCodeMust}}" ng-model="secondform.calNm"></ht-text-area>
+
+    <ht-text-area name="备注" disable="{{disable}}" height="70" hide="false" ng-model="secondform.rem"></ht-text-area>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

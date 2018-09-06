@@ -1,0 +1,29 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+
+    <ht-input  ht-id="chkItId" name="拦截项编号" ng-model="conditionForm.chkItId"></ht-input>
+    <ht-input ht-id="rem" name="拦截项描述" ng-model="conditionForm.rem"></ht-input>
+    <ht-button-group>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>拦截配置项列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="chkItId" zh-name="拦截项编号"  href="true" docolumn="column_click"></ht-column>
+    <ht-column eg-name="rem" zh-name="拦截项描述"></ht-column>
+    <ht-column eg-name="clazz" zh-name="服务名"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+
+

@@ -1,0 +1,39 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="mortgageForm">
+    <ht-input ht-id="cname" name="出质人名称" ng-model="mortgage.cname"></ht-input>
+    <ht-input ht-id="moniCname" name="监管公司名称" ng-model="mortgage.moniCname"></ht-input>
+    <ht-input ht-id="slaveContcode" name="抵/质押合同号" ng-model="mortgage.slaveContcode"></ht-input>
+    <ht-select ht-id="mortgageLevelOneName" name="押品一级" on-change="mortgageLevelOneName" datasource="mortgageLevelOneSource" dataOption="code" dataTrsOption="codeName" ng-model="mortgage.mortgageLevelOneName"></ht-select>
+    <ht-select ht-id="mortgageLevelTwoName" name="押品二级" datasource="mortgageLevelTwoSource" dataOption="code" dataTrsOption="codeName" ng-model="mortgage.mortgageLevelTwoName"></ht-select>
+    <ht-input ht-id="mortgageName" name="押品名称" ng-model="mortgage.mortgageName"></ht-input>
+    <ht-select ht-id="suppProductName" name="业务品种" datasource="productSource" dataOption="code" dataTrsOption="codeName" ng-model="mortgage.suppProductName"></ht-select>
+    <ht-select ht-id="monitorType" name="监管模式" dictionary="monitortype" ng-model="mortgage.monitorType"></ht-select>
+    <ht-button-group>
+        <ht-button ht-id="submit" class="btn-primary">查询</ht-button>
+        <ht-button ht-id="reset" class="btn-primary">重置</ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>入库押品信息</ht-legend>
+<ht-button-group>
+    <ht-button ht-id="detail" class="btn-primary">查看</ht-button>
+    <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+    <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+    <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+</ht-button-group>
+<ht-table datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="custName" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="moniOfCustName" zh-name="监管公司名称"></ht-column>
+    <ht-column eg-name="monitorProtocolNo" zh-name="抵/质押合同号"></ht-column>
+    <ht-column eg-name="supplyChainPdIdName" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="mortgageName" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="manufacturer" zh-name="生产厂家"></ht-column>
+    <ht-column eg-name="manufactureDate" zh-name="出厂日期" type="date"></ht-column>
+    <ht-column eg-name="weightAll" zh-name="数量/重量"></ht-column>
+    <ht-column eg-name="originalPrice" zh-name="买入单价"  type="currency"></ht-column>
+    <ht-column eg-name="stockStatus" dictionary="stockStatus" zh-name="状态"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

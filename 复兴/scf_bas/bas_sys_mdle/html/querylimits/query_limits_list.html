@@ -1,0 +1,31 @@
+<ht-table ht-id="jsgl" datasource="datasource" selected="selected" docheckbox="true" dooption="false">
+    <ht-legend>角色管理</ht-legend>
+    <ht-form name="roleInfoform">
+        <ht-input ht-id="roleName" name="角色名称"
+                  ng-model="roleInfoVO.roleName"></ht-input>
+        <ht-input-extent
+                name='所属机构' ht-id ='treeName' extent='content' on-change="dooextent"
+                checkedHiden="true" readonly="{{readonly}}" ng-model='roleInfoVO.treeName'></ht-input-extent>
+        <ht-select ht-id="status" name="角色状态" dictionary="status"
+                   ng-model="roleInfoVO.status"></ht-select>
+        <ht-select ht-id="roleType" name="角色类型" dictionary="allRoleType"
+                   ng-model="roleInfoVO.roleType"></ht-select>
+        <ht-button-group align="left">
+            <ht-button ht-id="submit" desc-name="查询" class="btn-primary"></ht-button>
+            <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+        </ht-button-group>
+    </ht-form>
+    <ht-button-group>
+        <ht-button ht-id="limits" class="btn-primary">权限设置</ht-button>
+        <ht-button ht-id="view" class="btn-primary">查看</ht-button>
+        <ht-button ht-id="fresh" class="btn-primary">刷新</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="roleNo" zh-name="角色编号"></ht-column>
+    <ht-column eg-name="roleName" zh-name="角色名称"></ht-column>
+    <ht-column eg-name="roleType" zh-name="角色类别" dictionary="allRoleType"></ht-column>
+    <ht-column eg-name="status" zh-name="角色状态" dictionary="status"></ht-column>
+    <ht-column eg-name="isPublic" zh-name="是否公用" dictionary="checked"></ht-column>
+    <ht-column eg-name="brName" zh-name="所属机构"></ht-column>
+    <ht-column eg-name="roleModel" zh-name="查询权限" dictionary="roleModel"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

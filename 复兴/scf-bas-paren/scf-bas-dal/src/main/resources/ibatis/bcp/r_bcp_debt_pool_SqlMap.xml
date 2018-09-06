@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="R_BCP_DEBT_POOL" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.rec.bcp.dao.model.RBcpDebtPool" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="CUSTCD_SALLER" property="custcdSaller" jdbcType="VARCHAR" />
+    <result column="CUSTCD_BUYER" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="INSERT_DATE" property="insertDate" jdbcType="CHAR" />
+    <result column="DEBT_NUM" property="debtNum" jdbcType="DECIMAL" />
+    <result column="TOTAL_DEBT_AMOUNT" property="totalDebtAmount" jdbcType="DECIMAL" />
+    <result column="TOTAL_DEBT_REMAIN_AMOUNT" property="totalDebtRemainAmount" jdbcType="DECIMAL" />
+    <result column="TOTAL_CASH_AMOUNT" property="totalCashAmount" jdbcType="DECIMAL" />
+    <result column="POOL_REMAINING_AMOUNT" property="poolRemainingAmount" jdbcType="DECIMAL" />
+    <result column="POOL_USEABLE_AMOUNT" property="poolUseableAmount" jdbcType="DECIMAL" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="CHAR" />
+    <result column="TOTAL_RATE_REMAIN_AMOUNT" property="totalRateRemainAmount" jdbcType="DECIMAL" />
+    <result column="TOTAL_RATE_AMOUNT" property="totalRateAmount" jdbcType="DECIMAL" />
+    <result column="TOTAL_CAPITAL_AMOUNT" property="totalCapitalAmount" jdbcType="DECIMAL" />
+    <result column="REFUND_AMOUNT" property="refundAmount" jdbcType="DECIMAL" />
+    <result column="RETURN_RATE_AMOUNT" property="returnRateAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, MAST_CONTNO, CUSTCD_SALLER, CUSTCD_BUYER, INSERT_DATE, DEBT_NUM, TOTAL_DEBT_AMOUNT, 
+    TOTAL_DEBT_REMAIN_AMOUNT, TOTAL_CASH_AMOUNT, POOL_REMAINING_AMOUNT, POOL_USEABLE_AMOUNT, 
+    BUSS_TYPE, CURCD, MEMO, TOTAL_RATE_REMAIN_AMOUNT, TOTAL_RATE_AMOUNT, TOTAL_CAPITAL_AMOUNT, 
+    REFUND_AMOUNT, RETURN_RATE_AMOUNT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpDebtPoolExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="R_BCP_DEBT_POOL.Base_Column_List" />
+    from R_BCP_DEBT_POOL
+    <isParameterPresent >
+      <include refid="R_BCP_DEBT_POOL.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpDebtPool" >
+    select 
+    <include refid="R_BCP_DEBT_POOL.Base_Column_List" />
+    from R_BCP_DEBT_POOL
+    where ID = #id:VARCHAR#
+  </select>
+  <!-- 池应收账款余额计算 -->
+  <select id="getInpoolInfo" resultMap="BaseResultMap" parameterClass="java.util.Map" >
+    select 
+    <include refid="R_BCP_DEBT_POOL.Base_Column_List" />
+    from R_BCP_DEBT_POOL
+    <isNotEmpty prepend="where" property="mastContno" >
+    	MAST_CONTNO = #mastContno:VACHAR#
+    </isNotEmpty>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpDebtPool" >
+    delete from R_BCP_DEBT_POOL
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpDebtPoolExample" >
+    delete from R_BCP_DEBT_POOL
+    <include refid="R_BCP_DEBT_POOL.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpDebtPool" >
+    insert into R_BCP_DEBT_POOL (ID, MAST_CONTNO, CUSTCD_SALLER, CUSTCD_BUYER, 
+      INSERT_DATE, DEBT_NUM, TOTAL_DEBT_AMOUNT, TOTAL_DEBT_REMAIN_AMOUNT, 
+      TOTAL_CASH_AMOUNT, POOL_REMAINING_AMOUNT, POOL_USEABLE_AMOUNT, 
+      BUSS_TYPE, CURCD, MEMO, TOTAL_RATE_REMAIN_AMOUNT, 
+      TOTAL_RATE_AMOUNT, TOTAL_CAPITAL_AMOUNT, REFUND_AMOUNT, 
+      RETURN_RATE_AMOUNT)
+    values (#id:VARCHAR#, #mastContno:VARCHAR#, #custcdSaller:VARCHAR#, #custcdBuyer:VARCHAR#, 
+      #insertDate:CHAR#, #debtNum:DECIMAL#, #totalDebtAmount:DECIMAL#, #totalDebtRemainAmount:DECIMAL#, 
+      #totalCashAmount:DECIMAL#, #poolRemainingAmount:DECIMAL#, #poolUseableAmount:DECIMAL#, 
+      #bussType:VARCHAR#, #curcd:CHAR#, #memo:CHAR#, #totalRateRemainAmount:DECIMAL#, 
+      #totalRateAmount:DECIMAL#, #totalCapitalAmount:DECIMAL#, #refundAmount:DECIMAL#, 
+      #returnRateAmount:DECIMAL#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpDebtPool" >
+    insert into R_BCP_DEBT_POOL
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSaller" >
+        CUSTCD_SALLER
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        CUSTCD_BUYER
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        INSERT_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="debtNum" >
+        DEBT_NUM
+      </isNotNull>
+      <isNotNull prepend="," property="totalDebtAmount" >
+        TOTAL_DEBT_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="totalDebtRemainAmount" >
+        TOTAL_DEBT_REMAIN_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="totalCashAmount" >
+        TOTAL_CASH_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="poolRemainingAmount" >
+        POOL_REMAINING_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="poolUseableAmount" >
+        POOL_USEABLE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        BUSS_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      <isNotNull prepend="," property="totalRateRemainAmount" >
+        TOTAL_RATE_REMAIN_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="totalRateAmount" >
+        TOTAL_RATE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="totalCapitalAmount" >
+        TOTAL_CAPITAL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="refundAmount" >
+        REFUND_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="returnRateAmount" >
+        RETURN_RATE_AMOUNT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSaller" >
+        #custcdSaller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        #custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        #insertDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debtNum" >
+        #debtNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalDebtAmount" >
+        #totalDebtAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalDebtRemainAmount" >
+        #totalDebtRemainAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalCashAmount" >
+        #totalCashAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="poolRemainingAmount" >
+        #poolRemainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="poolUseableAmount" >
+        #poolUseableAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        #bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="totalRateRemainAmount" >
+        #totalRateRemainAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalRateAmount" >
+        #totalRateAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalCapitalAmount" >
+        #totalCapitalAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="refundAmount" >
+        #refundAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnRateAmount" >
+        #returnRateAmount:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpDebtPoolExample" resultClass="java.lang.Integer" >
+    select count(*) from R_BCP_DEBT_POOL
+    <include refid="R_BCP_DEBT_POOL.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update R_BCP_DEBT_POOL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcdSaller" >
+        CUSTCD_SALLER = #record.custcdSaller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcdBuyer" >
+        CUSTCD_BUYER = #record.custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insertDate" >
+        INSERT_DATE = #record.insertDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debtNum" >
+        DEBT_NUM = #record.debtNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalDebtAmount" >
+        TOTAL_DEBT_AMOUNT = #record.totalDebtAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalDebtRemainAmount" >
+        TOTAL_DEBT_REMAIN_AMOUNT = #record.totalDebtRemainAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalCashAmount" >
+        TOTAL_CASH_AMOUNT = #record.totalCashAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.poolRemainingAmount" >
+        POOL_REMAINING_AMOUNT = #record.poolRemainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.poolUseableAmount" >
+        POOL_USEABLE_AMOUNT = #record.poolUseableAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bussType" >
+        BUSS_TYPE = #record.bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalRateRemainAmount" >
+        TOTAL_RATE_REMAIN_AMOUNT = #record.totalRateRemainAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalRateAmount" >
+        TOTAL_RATE_AMOUNT = #record.totalRateAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalCapitalAmount" >
+        TOTAL_CAPITAL_AMOUNT = #record.totalCapitalAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.refundAmount" >
+        REFUND_AMOUNT = #record.refundAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnRateAmount" >
+        RETURN_RATE_AMOUNT = #record.returnRateAmount:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="R_BCP_DEBT_POOL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update R_BCP_DEBT_POOL
+    set ID = #record.id:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      CUSTCD_SALLER = #record.custcdSaller:VARCHAR#,
+      CUSTCD_BUYER = #record.custcdBuyer:VARCHAR#,
+      INSERT_DATE = #record.insertDate:CHAR#,
+      DEBT_NUM = #record.debtNum:DECIMAL#,
+      TOTAL_DEBT_AMOUNT = #record.totalDebtAmount:DECIMAL#,
+      TOTAL_DEBT_REMAIN_AMOUNT = #record.totalDebtRemainAmount:DECIMAL#,
+      TOTAL_CASH_AMOUNT = #record.totalCashAmount:DECIMAL#,
+      POOL_REMAINING_AMOUNT = #record.poolRemainingAmount:DECIMAL#,
+      POOL_USEABLE_AMOUNT = #record.poolUseableAmount:DECIMAL#,
+      BUSS_TYPE = #record.bussType:VARCHAR#,
+      CURCD = #record.curcd:CHAR#,
+      MEMO = #record.memo:CHAR#,
+      TOTAL_RATE_REMAIN_AMOUNT = #record.totalRateRemainAmount:DECIMAL#,
+      TOTAL_RATE_AMOUNT = #record.totalRateAmount:DECIMAL#,
+      TOTAL_CAPITAL_AMOUNT = #record.totalCapitalAmount:DECIMAL#,
+      REFUND_AMOUNT = #record.refundAmount:DECIMAL#,
+      RETURN_RATE_AMOUNT = #record.returnRateAmount:DECIMAL#
+    <isParameterPresent >
+      <include refid="R_BCP_DEBT_POOL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpDebtPool" >
+    update R_BCP_DEBT_POOL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSaller" >
+        CUSTCD_SALLER = #custcdSaller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        CUSTCD_BUYER = #custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        INSERT_DATE = #insertDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debtNum" >
+        DEBT_NUM = #debtNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalDebtAmount" >
+        TOTAL_DEBT_AMOUNT = #totalDebtAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalDebtRemainAmount" >
+        TOTAL_DEBT_REMAIN_AMOUNT = #totalDebtRemainAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalCashAmount" >
+        TOTAL_CASH_AMOUNT = #totalCashAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="poolRemainingAmount" >
+        POOL_REMAINING_AMOUNT = #poolRemainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="poolUseableAmount" >
+        POOL_USEABLE_AMOUNT = #poolUseableAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        BUSS_TYPE = #bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="totalRateRemainAmount" >
+        TOTAL_RATE_REMAIN_AMOUNT = #totalRateRemainAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalRateAmount" >
+        TOTAL_RATE_AMOUNT = #totalRateAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalCapitalAmount" >
+        TOTAL_CAPITAL_AMOUNT = #totalCapitalAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="refundAmount" >
+        REFUND_AMOUNT = #refundAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnRateAmount" >
+        RETURN_RATE_AMOUNT = #returnRateAmount:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpDebtPool" >
+    update R_BCP_DEBT_POOL
+    set MAST_CONTNO = #mastContno:VARCHAR#,
+      CUSTCD_SALLER = #custcdSaller:VARCHAR#,
+      CUSTCD_BUYER = #custcdBuyer:VARCHAR#,
+      INSERT_DATE = #insertDate:CHAR#,
+      DEBT_NUM = #debtNum:DECIMAL#,
+      TOTAL_DEBT_AMOUNT = #totalDebtAmount:DECIMAL#,
+      TOTAL_DEBT_REMAIN_AMOUNT = #totalDebtRemainAmount:DECIMAL#,
+      TOTAL_CASH_AMOUNT = #totalCashAmount:DECIMAL#,
+      POOL_REMAINING_AMOUNT = #poolRemainingAmount:DECIMAL#,
+      POOL_USEABLE_AMOUNT = #poolUseableAmount:DECIMAL#,
+      BUSS_TYPE = #bussType:VARCHAR#,
+      CURCD = #curcd:CHAR#,
+      MEMO = #memo:CHAR#,
+      TOTAL_RATE_REMAIN_AMOUNT = #totalRateRemainAmount:DECIMAL#,
+      TOTAL_RATE_AMOUNT = #totalRateAmount:DECIMAL#,
+      TOTAL_CAPITAL_AMOUNT = #totalCapitalAmount:DECIMAL#,
+      REFUND_AMOUNT = #refundAmount:DECIMAL#,
+      RETURN_RATE_AMOUNT = #returnRateAmount:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

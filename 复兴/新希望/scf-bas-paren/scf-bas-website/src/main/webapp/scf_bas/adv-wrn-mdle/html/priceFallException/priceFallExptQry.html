@@ -1,0 +1,33 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="cname" name="出质人名称" ng-model="conditionForm.cname"></ht-input>
+    <ht-input ht-id="slaveContCode" name="抵/质押合同号" ng-model="conditionForm.slaveContCode"></ht-input>
+    <br/>
+    <ht-input ht-id="fluctuation1_Q" name="跌幅(%) 从" ng-model="conditionForm.fluctuation1_Q" reg-exp="common."></ht-input>
+    <ht-input ht-id="fluctuation2_Q" name=" 到" ng-model="conditionForm.fluctuation2_Q"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+        <ht-button ht-id="homeBack" class="btn-primary" hide="{{homeBackHide}}" desc-name="返回主页"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>查询结果</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="slaveContcode" zh-name="抵/质押合同号"></ht-column>
+    <ht-column eg-name="protocolNo" zh-name="监管合同号"></ht-column>
+    <ht-column eg-name="moniCname" zh-name="监管公司名称"></ht-column>
+    <ht-column eg-name="cname" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageLevelThreeName" zh-name="押品三级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="marketPrice" zh-name="当前市场价" type="currency"></ht-column>
+    <ht-column eg-name="priceDate" zh-name="价格日期"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="核定单价" type="currency" ></ht-column>
+    <ht-column eg-name="fluctuation" zh-name="跌幅(%)"></ht-column>
+    <ht-column eg-name="custManager" zh-name="客户经理"></ht-column>
+    <ht-column eg-name="brcodeName" zh-name="经办机构"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

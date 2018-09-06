@@ -1,0 +1,10 @@
+<ul>
+    <li class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+        ng-repeat="item in bottom" ng-click="addMark(item)">
+        <div class="row">
+            <img ng-src="{{item.imgName}}" class="img-responsive">
+        </div>
+        <p>{{item.text}}</p>
+    </li>
+    <li class="clearfix"></li>
+</ul>

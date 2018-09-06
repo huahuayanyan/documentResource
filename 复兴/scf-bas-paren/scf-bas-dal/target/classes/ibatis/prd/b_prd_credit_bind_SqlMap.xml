@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PRD_CREDIT_BIND" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.prd.dao.model.BPrdCreditBind" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="CREDIT_TYPE" property="creditType" jdbcType="VARCHAR" />
+    <result column="CREDIT_PHASE" property="creditPhase" jdbcType="CHAR" />
+    <result column="OPR_TYPE" property="oprType" jdbcType="CHAR" />
+    <result column="OPR_FIELD" property="oprField" jdbcType="CHAR" />
+    <result column="OPR_MODE" property="oprMode" jdbcType="CHAR" />
+    <result column="FUN_NO" property="funNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PRODUCT_ID, CREDIT_TYPE, CREDIT_PHASE, OPR_TYPE, OPR_FIELD, OPR_MODE, FUN_NO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditBindExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PRD_CREDIT_BIND.Base_Column_List" />
+    from B_PRD_CREDIT_BIND
+    <isParameterPresent >
+      <include refid="B_PRD_CREDIT_BIND.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditBind" >
+    select 
+    <include refid="B_PRD_CREDIT_BIND.Base_Column_List" />
+    from B_PRD_CREDIT_BIND
+    where ID = #id:VARCHAR#
+  </select>
+  <!-- 应收 -->
+  <select id="selectCreditBind" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditBind" >
+    select 
+    <include refid="B_PRD_CREDIT_BIND.Base_Column_List" />
+    from B_PRD_CREDIT_BIND
+    <isNotEmpty prepend="where" property="productId" >
+    	PRODUCT_ID = #productId:VACHAR#
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="oprMode" >
+    	OPR_MODE = #oprMode:CHAR#
+    </isNotEmpty>	
+    <isNotEmpty prepend="and" property="creditPhase" >
+    	CREDIT_PHASE = #creditPhase:VARCHAR#
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="oprType" >
+    	OPR_TYPE = #oprType:VARCHAR#
+    </isNotEmpty>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditBind" >
+    delete from B_PRD_CREDIT_BIND
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditBindExample" >
+    delete from B_PRD_CREDIT_BIND
+    <include refid="B_PRD_CREDIT_BIND.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditBind" >
+    insert into B_PRD_CREDIT_BIND (ID, PRODUCT_ID, CREDIT_TYPE, CREDIT_PHASE, 
+      OPR_TYPE, OPR_FIELD, OPR_MODE, FUN_NO)
+    values (#id:VARCHAR#, #productId:VARCHAR#, #creditType:VARCHAR#, #creditPhase:CHAR#, 
+      #oprType:CHAR#, #oprField:CHAR#, #oprMode:CHAR#, #funNo:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditBind" >
+    insert into B_PRD_CREDIT_BIND
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="creditType" >
+        CREDIT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="creditPhase" >
+        CREDIT_PHASE
+      </isNotNull>
+      <isNotNull prepend="," property="oprType" >
+        OPR_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="oprField" >
+        OPR_FIELD
+      </isNotNull>
+      <isNotNull prepend="," property="oprMode" >
+        OPR_MODE
+      </isNotNull>
+      <isNotNull prepend="," property="funNo" >
+        FUN_NO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        #productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditType" >
+        #creditType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditPhase" >
+        #creditPhase:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oprType" >
+        #oprType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oprField" >
+        #oprField:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oprMode" >
+        #oprMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="funNo" >
+        #funNo:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditBindExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PRD_CREDIT_BIND
+    <include refid="B_PRD_CREDIT_BIND.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PRD_CREDIT_BIND
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productId" >
+        PRODUCT_ID = #record.productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditType" >
+        CREDIT_TYPE = #record.creditType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditPhase" >
+        CREDIT_PHASE = #record.creditPhase:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oprType" >
+        OPR_TYPE = #record.oprType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oprField" >
+        OPR_FIELD = #record.oprField:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oprMode" >
+        OPR_MODE = #record.oprMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.funNo" >
+        FUN_NO = #record.funNo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PRD_CREDIT_BIND.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PRD_CREDIT_BIND
+    set ID = #record.id:VARCHAR#,
+      PRODUCT_ID = #record.productId:VARCHAR#,
+      CREDIT_TYPE = #record.creditType:VARCHAR#,
+      CREDIT_PHASE = #record.creditPhase:CHAR#,
+      OPR_TYPE = #record.oprType:CHAR#,
+      OPR_FIELD = #record.oprField:CHAR#,
+      OPR_MODE = #record.oprMode:CHAR#,
+      FUN_NO = #record.funNo:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_PRD_CREDIT_BIND.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditBind" >
+    update B_PRD_CREDIT_BIND
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID = #productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditType" >
+        CREDIT_TYPE = #creditType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditPhase" >
+        CREDIT_PHASE = #creditPhase:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oprType" >
+        OPR_TYPE = #oprType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oprField" >
+        OPR_FIELD = #oprField:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oprMode" >
+        OPR_MODE = #oprMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="funNo" >
+        FUN_NO = #funNo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditBind" >
+    update B_PRD_CREDIT_BIND
+    set PRODUCT_ID = #productId:VARCHAR#,
+      CREDIT_TYPE = #creditType:VARCHAR#,
+      CREDIT_PHASE = #creditPhase:CHAR#,
+      OPR_TYPE = #oprType:CHAR#,
+      OPR_FIELD = #oprField:CHAR#,
+      OPR_MODE = #oprMode:CHAR#,
+      FUN_NO = #funNo:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

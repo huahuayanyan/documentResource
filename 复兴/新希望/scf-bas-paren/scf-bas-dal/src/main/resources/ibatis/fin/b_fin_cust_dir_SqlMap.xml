@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_FIN_CUST_DIR" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.fin.dao.model.BFinCustDir" >
+    <result column="FIN_DIR_ID" property="finDirId" jdbcType="VARCHAR" />
+    <result column="FIN_ID" property="finId" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="FIN_SCP" property="finScp" jdbcType="VARCHAR" />
+    <result column="MDL_ID" property="mdlId" jdbcType="VARCHAR" />
+    <result column="FIN_NM" property="finNm" jdbcType="VARCHAR" />
+    <result column="FIN_DT" property="finDt" jdbcType="VARCHAR" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="INPUT_DT" property="inputDt" jdbcType="CHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="CHAR" />
+    <result column="FIN_STAT" property="finStat" jdbcType="VARCHAR" />
+    <result column="FIN_PD" property="finPd" jdbcType="VARCHAR" />
+    <result column="RPT_NO" property="rptNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    FIN_DIR_ID, FIN_ID, CUST_ID, FIN_SCP, MDL_ID, FIN_NM, FIN_DT, TLR_NO, BR_CD, INPUT_DT, 
+    LST_UPD_TLR, LST_UPD_BR_CD, LST_UPD_DT, FIN_STAT, FIN_PD, RPT_NO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDirExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_FIN_CUST_DIR.Base_Column_List" />
+    from B_FIN_CUST_DIR
+    <isParameterPresent >
+      <include refid="B_FIN_CUST_DIR.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDir" >
+    select 
+    <include refid="B_FIN_CUST_DIR.Base_Column_List" />
+    from B_FIN_CUST_DIR
+    where FIN_DIR_ID = #finDirId:VARCHAR#
+  </select>
+    <select id="selectByFinId" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDir" >
+    select 
+    <include refid="B_FIN_CUST_DIR.Base_Column_List" />
+    from B_FIN_CUST_DIR
+    where FIN_ID = #finId:VARCHAR#
+  </select>
+  <select id="selectByMdlId" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDir" >
+    select 
+    <include refid="B_FIN_CUST_DIR.Base_Column_List" />
+    from B_FIN_CUST_DIR
+    where MDL_ID like #mdlId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDir" >
+    delete from B_FIN_CUST_DIR
+    where FIN_DIR_ID = #finDirId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDirExample" >
+    delete from B_FIN_CUST_DIR
+    <include refid="B_FIN_CUST_DIR.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDir" >
+    insert into B_FIN_CUST_DIR (FIN_DIR_ID, FIN_ID, CUST_ID, FIN_SCP, 
+      MDL_ID, FIN_NM, FIN_DT, TLR_NO, BR_CD, 
+      INPUT_DT, LST_UPD_TLR, LST_UPD_BR_CD, LST_UPD_DT, FIN_STAT, 
+      FIN_PD, RPT_NO)
+    values (#finDirId:VARCHAR#, #finId:VARCHAR#, #custId:VARCHAR#, #finScp:VARCHAR#, 
+      #mdlId:VARCHAR#, #finNm:VARCHAR#, #finDt:VARCHAR#, #tlrNo:VARCHAR#, #brCd:VARCHAR#, 
+      #inputDt:CHAR#, #lstUpdTlr:VARCHAR#, #lstUpdBrCd:VARCHAR#, #lstUpdDt:CHAR#, #finStat:VARCHAR#, 
+      #finPd:VARCHAR#, #rptNo:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDir" >
+    insert into B_FIN_CUST_DIR
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="finDirId" >
+        FIN_DIR_ID
+      </isNotNull>
+      <isNotNull prepend="," property="finId" >
+        FIN_ID
+      </isNotNull>
+      <isNotNull prepend="," property="custId" >
+        CUST_ID
+      </isNotNull>
+      <isNotNull prepend="," property="finScp" >
+        FIN_SCP
+      </isNotNull>
+      <isNotNull prepend="," property="mdlId" >
+        MDL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="finNm" >
+        FIN_NM
+      </isNotNull>
+      <isNotNull prepend="," property="finDt" >
+        FIN_DT
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="inputDt" >
+        INPUT_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      <isNotNull prepend="," property="finStat" >
+        FIN_STAT
+      </isNotNull>
+      <isNotNull prepend="," property="finPd" >
+        FIN_PD
+      </isNotNull>
+      <isNotNull prepend="," property="rptNo" >
+        RPT_NO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="finDirId" >
+        #finDirId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finId" >
+        #finId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custId" >
+        #custId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finScp" >
+        #finScp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlId" >
+        #mdlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finNm" >
+        #finNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finDt" >
+        #finDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inputDt" >
+        #inputDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finStat" >
+        #finStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finPd" >
+        #finPd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rptNo" >
+        #rptNo:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDirExample" resultClass="java.lang.Integer" >
+    select count(*) from B_FIN_CUST_DIR
+    <include refid="B_FIN_CUST_DIR.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_FIN_CUST_DIR
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.finDirId" >
+        FIN_DIR_ID = #record.finDirId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.finId" >
+        FIN_ID = #record.finId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custId" >
+        CUST_ID = #record.custId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.finScp" >
+        FIN_SCP = #record.finScp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mdlId" >
+        MDL_ID = #record.mdlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.finNm" >
+        FIN_NM = #record.finNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.finDt" >
+        FIN_DT = #record.finDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNo" >
+        TLR_NO = #record.tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brCd" >
+        BR_CD = #record.brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inputDt" >
+        INPUT_DT = #record.inputDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlr" >
+        LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrCd" >
+        LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdDt" >
+        LST_UPD_DT = #record.lstUpdDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.finStat" >
+        FIN_STAT = #record.finStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.finPd" >
+        FIN_PD = #record.finPd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rptNo" >
+        RPT_NO = #record.rptNo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_FIN_CUST_DIR.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_FIN_CUST_DIR
+    set FIN_DIR_ID = #record.finDirId:VARCHAR#,
+      FIN_ID = #record.finId:VARCHAR#,
+      CUST_ID = #record.custId:VARCHAR#,
+      FIN_SCP = #record.finScp:VARCHAR#,
+      MDL_ID = #record.mdlId:VARCHAR#,
+      FIN_NM = #record.finNm:VARCHAR#,
+      FIN_DT = #record.finDt:VARCHAR#,
+      TLR_NO = #record.tlrNo:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      INPUT_DT = #record.inputDt:CHAR#,
+      LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#,
+      LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#,
+      LST_UPD_DT = #record.lstUpdDt:CHAR#,
+      FIN_STAT = #record.finStat:VARCHAR#,
+      FIN_PD = #record.finPd:VARCHAR#,
+      RPT_NO = #record.rptNo:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_FIN_CUST_DIR.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDir" >
+    update B_FIN_CUST_DIR
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="finId" >
+        FIN_ID = #finId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custId" >
+        CUST_ID = #custId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finScp" >
+        FIN_SCP = #finScp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlId" >
+        MDL_ID = #mdlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finNm" >
+        FIN_NM = #finNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finDt" >
+        FIN_DT = #finDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO = #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD = #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inputDt" >
+        INPUT_DT = #inputDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR = #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT = #lstUpdDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finStat" >
+        FIN_STAT = #finStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finPd" >
+        FIN_PD = #finPd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rptNo" >
+        RPT_NO = #rptNo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where FIN_DIR_ID = #finDirId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDir" >
+    update B_FIN_CUST_DIR
+    set FIN_ID = #finId:VARCHAR#,
+      CUST_ID = #custId:VARCHAR#,
+      FIN_SCP = #finScp:VARCHAR#,
+      MDL_ID = #mdlId:VARCHAR#,
+      FIN_NM = #finNm:VARCHAR#,
+      FIN_DT = #finDt:VARCHAR#,
+      TLR_NO = #tlrNo:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      INPUT_DT = #inputDt:CHAR#,
+      LST_UPD_TLR = #lstUpdTlr:VARCHAR#,
+      LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#,
+      LST_UPD_DT = #lstUpdDt:CHAR#,
+      FIN_STAT = #finStat:VARCHAR#,
+      FIN_PD = #finPd:VARCHAR#,
+      RPT_NO = #rptNo:VARCHAR#
+    where FIN_DIR_ID = #finDirId:VARCHAR#
+  </update>
+  <!-- 自定义 -->
+  <delete id="deleteByFinId" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDir" >
+  	delete B_FIN_CUST_DIR 
+	where FIN_ID = #finId:VARCHAR#
+  </delete>
+</sqlMap>

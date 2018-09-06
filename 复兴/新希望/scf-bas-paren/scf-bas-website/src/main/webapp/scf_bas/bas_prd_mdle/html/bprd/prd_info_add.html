@@ -1,0 +1,21 @@
+
+<ht-form name="otherform">
+    <ht-legend>产品信息</ht-legend>
+    <ht-select ht-id="parentId" name="产品大类" disable="{{disable}}" reg-exp="common.require"
+               datasource="parentId" datatrsoption="productName" dataoption="productId" ng-model="otherform.parentId"></ht-select>
+    <ht-radio ht-id="status" name="状态"  disable="{{disable}}" reg-exp="common.require" dictionary="productStatus" ng-model="otherform.status"></ht-radio>
+    <ht-input ht-id="productId" name="产品代码" disable="{{disable1}}"reg-exp="common.require" ng-model="otherform.productId"></ht-input>
+    <ht-input ht-id="productName" name="产品名称" disable="{{disable}}"reg-exp="common.require" ng-model="otherform.productName"></ht-input>
+    <ht-input ht-id="startDate" name="启用日期"  disable="{{disable}}" edit-type="date" reg-exp="common.require"
+              high-date-id="endDate" ng-model="otherform.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="终止日期"disable="{{disable}}" edit-type="date" reg-exp="common.require"
+              lower-date-id="startDate" ng-model="otherform.endDate"></ht-input>
+    <ht-text-area ht-id="memo" name="产品介绍"  disable="{{disable}}" ng-model="otherform.memo"></ht-text-area>
+</ht-form>
+<!-- 新增的时候必须要完成所有的页面，可以不填一些页面，但是不能直接点击完成按钮，所以，新增的时候，完成按钮直接隐藏。-->
+<ht-button-group class="center">
+    <ht-button ht-id="next"  class="btn-primary" desc-name="下一步"></ht-button>
+    <ht-button ht-id="complete"  hide="{{hide}}" class="btn-primary" desc-name="完成"></ht-button>
+</ht-button-group>
+
+

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_ODS" >
+  <resultMap id="BaseInfoMap" class="com.huateng.scf.ods.dao.model.OCooperPartner" >
+<!--     <result column="ID" property="id" jdbcType="VARCHAR" /> --> 
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="COOP_CUSTCD" property="coopCustcd" jdbcType="VARCHAR" />
+    <result column="COOP_RATE" property="coopRate" jdbcType="DECIMAL" />
+    <result column="BELONG_YEAR" property="belongYear" jdbcType="CHAR" />
+ 
+  </resultMap>
+
+
+ <select id="getCooperPartnerInfoList" resultMap="BaseInfoMap" parameterClass="java.util.HashMap" >
+	SELECT DISTINCT p.CUSTCD, p.TYPE, p.COOP_CUSTCD, p.COOP_RATE, p.BELONG_YEAR FROM ODS_COOPER_PARTNER P
+    <isParameterPresent >
+	where 1=1 
+	<isNotEmpty prepend="and" property="custcd">
+	     <![CDATA[P.CUSTCD=#custcd:VARCHAR# ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="type">
+	     <![CDATA[P.TYPE=#type:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="coopCustcd"> 
+	     <![CDATA[P.COOP_CUSTCD=#coopCustcd:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="belongYear"> 
+	     <![CDATA[P.BELONG_YEAR=#belongYear:VARCHAR#]]>
+	</isNotEmpty>
+	  <isNotNull prepend="and" property="belongYears" > 
+       P.BELONG_YEAR  in 
+       <iterate property="belongYears" conjunction="," open="(" close=")" >
+   		<![CDATA[ #belongYears[]#   ]]> <!-- 查询哪些年份 -->
+   		</iterate> 
+      </isNotNull>
+	order by p.CUSTCD,p.TYPE,p.COOP_CUSTCD DESC,p.BELONG_YEAR ASC
+  </isParameterPresent>
+  </select>
+
+  <resultMap id="coopMOnthMap" class="com.huateng.scf.ods.dao.model.OCooperPartner" >
+    <result column="COOP_CUSTCD" property="coopCustcd" jdbcType="VARCHAR" />
+   <result column="BELONG_MONTH" property="belongMonth" jdbcType="CHAR" />
+    <result column="MONTH_RATE" property="monthRate" jdbcType="DECIMAL" />
+ 
+  </resultMap>
+ <select id="getCooperPartnerMonthList" resultMap="coopMOnthMap" parameterClass="java.util.HashMap" >
+	SELECT p.COOP_CUSTCD,p.BELONG_MONTH,p.MONTH_RATE from ODS_COOPER_PARTNER p
+    <isParameterPresent >
+	where 1=1 
+	<isNotEmpty prepend="and" property="custcd">
+	     <![CDATA[P.CUSTCD=#custcd:VARCHAR# ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="type">
+	     <![CDATA[P.TYPE=#type:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="belongYear"> 
+	     <![CDATA[P.BELONG_YEAR=#belongYear:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="coopCustcd"> 
+	     <![CDATA[P.COOP_CUSTCD=#coopCustcd:VARCHAR#]]>
+	</isNotEmpty>
+	order by p.CUSTCD,p.TYPE,p.COOP_CUSTCD,p.BELONG_MONTH
+  </isParameterPresent>
+  </select>
+
+
+ <resultMap id="projectMap" class="com.huateng.scf.ods.dao.model.OFinaStaAnalysis" >
+   <result column="PROJECT" property="project" jdbcType="VARCHAR" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+     <result column="FINA_TYPE" property="finaType" jdbcType="VARCHAR" />
+  </resultMap>
+ <select id="getProjectAmountList" resultMap="projectMap" parameterClass="java.util.HashMap" >
+	SELECT PROJECT,PROJECT_ID,FINA_TYPE, SUM(AMOUNT) AS AMOUNT from ODS_FINA_STA_ANALYSIS 
+    <isParameterPresent >
+	where 1=1 
+	<isNotEmpty prepend="and" property="type">
+	     <![CDATA[FINA_TYPE=#type:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="sumYearMonth"> 
+	     <![CDATA[ substr(FINA_DATE,0,6)=#sumYearMonth:VARCHAR#]]>
+	</isNotEmpty>
+	GROUP BY PROJECT,PROJECT_ID,FINA_TYPE
+	order by PROJECT
+  </isParameterPresent>
+  </select>
+  
+  <resultMap id="finaTypeMap" class="com.huateng.scf.ods.dao.model.OFinaStaAnalysis" >
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+     <result column="FINA_TYPE" property="finaType" jdbcType="VARCHAR" />
+  </resultMap>
+ <select id="getFinaTypeAmountList" resultMap="finaTypeMap" parameterClass="java.util.HashMap" >
+	SELECT FINA_TYPE, SUM(AMOUNT) AS AMOUNT from ODS_FINA_STA_ANALYSIS 
+    <isParameterPresent >
+	where 1=1 
+	<isNotEmpty prepend="and" property="type">
+	     <![CDATA[FINA_TYPE=#type:VARCHAR#]]>
+	</isNotEmpty>
+	 <isNotNull prepend="and" property="finaTypes" > 
+       FINA_TYPE  in 
+       <iterate property="finaTypes" conjunction="," open="(" close=")" >
+   		<![CDATA[ #finaTypes[]#   ]]> <!-- 查询多种类型 -->
+   		</iterate> 
+      </isNotNull>
+	<isNotEmpty prepend="and" property="sumYearMonth"> 
+	     <![CDATA[ substr(FINA_DATE,0,6)=#sumYearMonth:VARCHAR#]]>
+	</isNotEmpty>
+	GROUP BY FINA_TYPE
+	order by FINA_TYPE
+  </isParameterPresent>
+  </select>
+  
+   <resultMap id="projectDateMap" class="com.huateng.scf.ods.dao.model.OFinaStaAnalysis" >
+   <result column="PROJECT" property="project" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+     <result column="FINA_TYPE" property="finaType" jdbcType="VARCHAR" />
+     <result column="FINA_DATE" property="finaDate" jdbcType="CHAR" />
+  </resultMap>
+ <select id="getProjectDateAmountList" resultMap="projectDateMap" parameterClass="java.util.HashMap" >
+	SELECT PROJECT,FINA_TYPE,FINA_DATE, SUM(AMOUNT) AS AMOUNT from ODS_FINA_STA_ANALYSIS 
+    <isParameterPresent >
+	where 1=1 
+	<isNotEmpty prepend="and" property="type">
+	     <![CDATA[FINA_TYPE=#type:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="sumYearMonth"> 
+	     <![CDATA[ substr(FINA_DATE,0,6)=#sumYearMonth:VARCHAR#]]>
+	</isNotEmpty>
+	GROUP BY PROJECT,FINA_TYPE,FINA_DATE
+	order by PROJECT
+  </isParameterPresent>
+  </select>
+  
+   <resultMap id="projectInfoMap" class="com.huateng.scf.ods.dao.model.OFinaStaAnalysis" >
+   <result column="PROJECT" property="project" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+     <result column="FINA_TYPE" property="finaType" jdbcType="VARCHAR" />
+     <result column="FINA_DATE" property="finaDate" jdbcType="CHAR" />
+      <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+ <select id="getProjectInfoList" resultMap="projectInfoMap" parameterClass="java.util.HashMap" >
+	SELECT PROJECT,FINA_TYPE,FINA_DATE,REMARK, SUM(AMOUNT) AS AMOUNT from ODS_FINA_STA_ANALYSIS 
+    <isParameterPresent >
+	where 1=1 
+	<isNotEmpty prepend="and" property="type">
+	     <![CDATA[FINA_TYPE=#type:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="sumYearMonth"> 
+	     <![CDATA[ substr(FINA_DATE,0,6)=#sumYearMonth:VARCHAR#]]>
+	</isNotEmpty>
+	GROUP BY PROJECT,FINA_TYPE,FINA_DATE,REMARK
+	order by PROJECT
+  </isParameterPresent>
+  </select>
+  
+    <!-- 贷后分析 -->
+    <!-- 统计各客户下的业务和财务指标风险预警 -->
+    <resultMap id="postLoanWarnMap" class="com.huateng.scf.bas.qry.dao.model.PostLoanWarnVO" >
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+     <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="WARNNUM" property="warnNum" jdbcType="DECIMAL" />
+    <result column="POSTLOANWARNTYPE" property="postLoanWarnType" jdbcType="VARCHAR" />
+    </resultMap>
+ <select id="getPostLoanWarnStaList" resultMap="postLoanWarnMap" parameterClass="java.util.HashMap" >
+	SELECT
+	T1.CUSTCD ,
+	MAX(t2.CNAME) AS CNAME,
+	'1' AS postLoanWarnType,
+	COUNT(*) AS WarnNum
+	FROM B_WRN_BASE_INFO T1,B_CRM_BASE_INFO T2
+	WHERE t1.CUSTCD = T2.CUSTCD
+	<isNotEmpty prepend="and" property="cname">
+         <![CDATA[t2.CNAME  like '%'|| #cname:VARCHAR#||'%' ]]>
+	</isNotEmpty>
+	and t1.status='1'
+	GROUP BY t1.CUSTCD
+	UNION
+
+	SELECT
+
+	T2.CUST_ID,
+	MAX(T4.CNAME) AS CNAME ,
+	'2' AS postLoanWarnType,
+	COUNT(*) AS WarnNum
+	FROM
+	B_FIN_CUST_DS T1,B_FIN_CUST_DIR T2,B_FIN_CUST_DS_EXT T3,B_CRM_BASE_INFO T4
+	WHERE T1.FIN_DIR_ID = T2.FIN_DIR_ID
+	AND T1.SERIALNO = T3.SERIALNO
+	AND T2.CUST_ID= T4.CUSTCD
+	AND T3.RESULT in('1','2')
+		<isNotEmpty prepend="and" property="cname">
+         <![CDATA[T4.CNAME  like '%'|| #cname:VARCHAR#||'%' ]]>
+	</isNotEmpty>
+	group BY T2.CUST_ID
+  </select> 
+
+    <!-- 查询客户的业务预警明细列表 -->
+	<resultMap id="bussWarnDtlMap"
+		class="com.huateng.scf.bas.qry.dao.model.PostLoanWarnVO">
+		<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+		<result column="CNAME" property="cname" jdbcType="VARCHAR" />
+		<result column="WARN_LEVEL" property="warnLevel" jdbcType="VARCHAR" />
+		<result column="WARN_DATE" property="warnDate" jdbcType="VARCHAR" />
+		<result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+		<result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+		<result column="WARN_NO" property="warnNo" jdbcType="VARCHAR" />
+		<result column="WARN_NAME" property="warnName" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getPostLoanWarnDtlList" resultMap="bussWarnDtlMap"
+		parameterClass="java.util.HashMap">
+		SELECT
+		T1.WARN_DATE,
+		t1.CUSTCD,
+		T1.warn_level,
+		t1.PRODUCT_ID,
+		t2.warn_no,
+		T2.WARN_NAME
+		,T3.CNAME
+		,t4.PRODUCT_NAME
+		FROM B_WRN_BASE_INFO T1
+		,B_BRP_WARN_PARAM T2
+		,B_CRM_BASE_INFO T3
+		,B_PRD_INFO T4
+		<isParameterPresent>
+			where T1.PARAM_ID =t2.warn_no
+			and T1.CUSTCD = T3.CUSTCD
+			and T1.PRODUCT_ID = T4.PRODUCT_ID
+			<isNotEmpty prepend="and" property="custcd">
+	     <![CDATA[T1.CUSTCD=#custcd:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="warnLevel">
+	     <![CDATA[T1.WARN_LEVEL=#warnLevel:VARCHAR#]]>
+			</isNotEmpty>
+			order by t2.warn_no
+		</isParameterPresent>
+	</select> 
+
+    <!-- 查询客户的财务指标预警明细列表 -->
+	<resultMap id="finWarnDtlMap"
+		class="com.huateng.scf.bas.qry.dao.model.PostLoanWarnVO">
+		<result column="CUST_ID" property="custcd" jdbcType="VARCHAR" />
+		<result column="CNAME" property="cname" jdbcType="VARCHAR" />
+		<result column="WARN_DATE" property="warnDate" jdbcType="VARCHAR" />
+		<result column="SUBJ_ID" property="subjId" jdbcType="VARCHAR" />
+		<result column="SUBJ_NM" property="subjNm" jdbcType="VARCHAR" />
+		<result column="RP_SOURCE" property="rpSource" jdbcType="CHAR" />         
+        <result column="RPT_NO" property="rptNo" jdbcType="VARCHAR" />
+		<result column="RESULT" property="result" jdbcType="VARCHAR" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getPostLoanFinWarnDtlList" resultMap="finWarnDtlMap"
+		parameterClass="java.util.HashMap">
+		SELECT
+		T1.SUBJ_ID,
+		T1.SUBJ_NM,
+		T1.RPT_NO,
+		T1.RP_SOURCE,
+		T2.CUST_ID,
+		t4.RESULT,
+		T4.REMARK,
+		T4.ANALY_DATE  as WARN_DATE,
+		t5.CNAME
+		FROM
+		B_FIN_CUST_DS T1,
+		B_FIN_CUST_DIR T2,
+		B_FIN_CNFG_DEF T3,
+		B_FIN_CUST_DS_EXT T4,
+		B_CRM_BASE_INFO T5
+		
+		<isParameterPresent>
+			WHERE T1.FIN_DIR_ID = T2.FIN_DIR_ID
+		AND T1.SUBJ_ID = T3.SUBJ_ID
+		AND T1.SERIALNO = T4.SERIALNO 
+		AND T2.CUST_ID = T5.CUSTCD
+		AND T4.RESULT in('1','2')
+			<isNotEmpty prepend="and" property="custcd">
+	     <![CDATA[T2.CUST_ID=#custcd:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="warnLevel">
+	     <![CDATA[T4.RESULT=#warnLevel:VARCHAR#]]>
+			</isNotEmpty>
+			order by T1.SUBJ_ID
+		</isParameterPresent>
+	</select> 
+
+  <resultMap id="FundTransferLineMap" class="com.huateng.scf.ods.dao.model.FundTransferVO" >
+    <result column="STARTAREA" property="startArea" jdbcType="VARCHAR" />
+    <result column="STARTAREANM" property="startAreaNm" jdbcType="VARCHAR" />
+     <result column="END_AREA" property="endArea" jdbcType="VARCHAR" />
+    <result column="END_AREANM" property="endAreaNm" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 资金迁徙-地图分布 虚线 -->
+  <select id="queryFundTransferLineList" resultMap="FundTransferLineMap" parameterClass="java.util.HashMap" >
+  <![CDATA[
+	select 
+		c.area as startArea ,c.area_name as startAreaNm,
+		l.END_AREA,l.END_AREANM
+		from ods_top_city c,
+		ods_top_city_LINE l
+		where c.id=l.TOP_CITY_ID
+	 
+	 ]]>
+  </select>
+  
+    <resultMap id="FundTransferRouteMap" class="com.huateng.scf.ods.dao.model.FundTransferVO" >
+    <result column="STARTAREA" property="startArea" jdbcType="VARCHAR" />
+    <result column="STARTAREANM" property="startAreaNm" jdbcType="VARCHAR" />
+     <result column="END_AREA" property="endArea" jdbcType="VARCHAR" />
+    <result column="END_AREANM" property="endAreaNm" jdbcType="VARCHAR" />
+    <result column="AMT" property="amt" jdbcType="DECIMAL" />
+  </resultMap>
+  <!-- 资金迁徙-地图分布 实线路由 -->
+  <select id="queryFundTransferRouteList" resultMap="FundTransferRouteMap" parameterClass="java.util.HashMap" >
+  <![CDATA[
+	select 
+	c.area as startArea ,c.area_name as startAreaNm,
+	r.ROUTE_AREA AS END_AREA,r.ROUTE_AREANM AS END_AREANM,r.AMT
+	from ods_top_city c,
+	ods_top_city_ROUTE r
+	where c.id=r.TOP_CITY_ID
+	 
+	 ]]>
+  </select>
+    <!-- 查询客户的合作类型及其合作伙伴总数 -->
+    <select id="countqueryCoopTypeList" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    	 select count(CUSTCD)from ( select DISTINCT t.CUSTCD,c.cname,t.type, t.COOP_CUSTCD,COOP.CNAME AS COOPNM from  
+           ODS_COOPER_PARTNER t 
+          LEFT JOIN B_CRM_BASE_INFO C  ON  T.CUSTCD = C.CUSTCD
+           LEFT JOIN B_CRM_BASE_INFO COOP ON T.COOP_CUSTCD =COOP.CUSTCD
+    <isParameterPresent >
+	WHERE 1=1
+	<isNotEmpty prepend="and" property="type">
+	     <![CDATA[T.TYPE=#type:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="cname">
+         <![CDATA[C.CNAME  like '%'|| #cname:VARCHAR#||'%' ]]>
+	</isNotEmpty>
+	)
+  </isParameterPresent>
+  </select>
+  
+    <resultMap id="CoopTypeMap" class="com.huateng.scf.ods.dao.model.CooperPartnerInfo" >
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="COOP_CUSTCD" property="coopCustcd" jdbcType="VARCHAR" />
+    <result column="COOPNM" property="coopNm" jdbcType="VARCHAR" />
+ 
+  </resultMap>
+
+
+ <select id="queryCoopTypeList" resultMap="CoopTypeMap" parameterClass="java.util.HashMap" >
+	 select DISTINCT t.CUSTCD,c.cname,t.type, t.COOP_CUSTCD,COOP.CNAME AS COOPNM from  
+           ODS_COOPER_PARTNER t 
+          LEFT JOIN B_CRM_BASE_INFO C  ON  T.CUSTCD = C.CUSTCD
+           LEFT JOIN B_CRM_BASE_INFO COOP ON T.COOP_CUSTCD =COOP.CUSTCD
+    <isParameterPresent >
+	WHERE 1=1
+	<isNotEmpty prepend="and" property="type">
+	     <![CDATA[T.TYPE=#type:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="cname">
+         <![CDATA[C.CNAME  like '%'|| #cname:VARCHAR#||'%' ]]>
+	</isNotEmpty>
+	order by t.CUSTCD,t.TYPE,t.COOP_CUSTCD DESC
+  </isParameterPresent>
+  </select>
+  
+    
+    <resultMap id="CoopTypeDtlMap" class="com.huateng.scf.ods.dao.model.CooperPartnerInfo" >
+    <result column="COOP_RATE" property="coopRate" jdbcType="DECIMAL" />
+    <result column="BELONG_YEAR" property="belongYear" jdbcType="CHAR" />
+    <result column="BELONG_MONTH" property="belongMonth" jdbcType="CHAR" />
+    <result column="MONTH_RATE" property="monthRate" jdbcType="DECIMAL" />
+ 
+  </resultMap>
+
+
+ <select id="queryCoopTypeDtlList" resultMap="CoopTypeDtlMap" parameterClass="java.util.HashMap" >
+	 select DISTINCT t.COOP_RATE,t.BELONG_YEAR, t.BELONG_MONTH,t.MONTH_RATE from  ODS_COOPER_PARTNER t
+    <isParameterPresent >
+	WHERE 1=1
+		<isNotEmpty prepend="and" property="custcd">
+	     <![CDATA[t.CUSTCD=#custcd:VARCHAR# ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="type">
+	     <![CDATA[t.TYPE=#type:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="coopCustcd"> 
+	     <![CDATA[t.COOP_CUSTCD=#coopCustcd:VARCHAR#]]>
+	</isNotEmpty>
+	order by t.BELONG_YEAR desc,t.BELONG_MONTH desc
+  </isParameterPresent>
+  </select>
+</sqlMap>

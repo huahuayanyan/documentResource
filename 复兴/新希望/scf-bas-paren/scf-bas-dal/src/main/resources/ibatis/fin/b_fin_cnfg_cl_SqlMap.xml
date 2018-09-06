@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_FIN_CNFG_CL" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    <result column="MDL_ID" property="mdlId" jdbcType="VARCHAR" />
+    <result column="MDL_NM" property="mdlNm" jdbcType="VARCHAR" />
+    <result column="MDL_CL" property="mdlCl" jdbcType="VARCHAR" />
+    <result column="MDL_TYP" property="mdlTyp" jdbcType="VARCHAR" />
+    <result column="COL" property="col" jdbcType="DECIMAL" />
+    <result column="COTES" property="cotes" jdbcType="DECIMAL" />
+    <result column="DEL_FLG" property="delFlg" jdbcType="CHAR" />
+    <result column="REM" property="rem" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    MDL_ID, MDL_NM, MDL_CL, MDL_TYP, COL, COTES, DEL_FLG, REM
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgClExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_FIN_CNFG_CL.Base_Column_List" />
+    from B_FIN_CNFG_CL
+    <isParameterPresent >
+      <include refid="B_FIN_CNFG_CL.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    select 
+    <include refid="B_FIN_CNFG_CL.Base_Column_List" />
+    from B_FIN_CNFG_CL
+    where MDL_ID = #mdlId:VARCHAR#
+  </select>
+  <select id="selectByMdlNm" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    select 
+    <include refid="B_FIN_CNFG_CL.Base_Column_List" />
+    from B_FIN_CNFG_CL
+    where MDL_NM = #mdlNm:VARCHAR#
+  </select>
+  <select id="selectByMdl" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    select 
+    <include refid="B_FIN_CNFG_CL.Base_Column_List" />
+    from B_FIN_CNFG_CL
+    where MDL_NM = #mdlNm:VARCHAR#
+    and MDL_ID not in #mdlId:VARCHAR#
+  </select>
+  <select id="selectByMdlTyp" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    select 
+    <include refid="B_FIN_CNFG_CL.Base_Column_List" />
+    from B_FIN_CNFG_CL
+    where MDL_CL = #mdlCl:VARCHAR#
+    and MDL_TYP = #mdlTyp:VARCHAR#
+  </select>
+  <select id="selectByMdlTypById" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    select 
+    <include refid="B_FIN_CNFG_CL.Base_Column_List" />
+    from B_FIN_CNFG_CL
+    where MDL_CL = #mdlCl:VARCHAR#
+    and MDL_TYP = #mdlTyp:VARCHAR#
+    and MDL_ID not in #mdlId:VARCHAR#
+  </select>
+  <select id="selectByMldCl" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+	    select 
+	    <include refid="B_FIN_CNFG_CL.Base_Column_List" />
+	    from B_FIN_CNFG_CL
+	    where MDL_CL = #mdlCl:VARCHAR#
+	    order by MDL_TYP ASC
+  </select>
+  
+  <resultMap id="MdlResultMap" class="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    <result column="MDL_ID" property="mdlId" jdbcType="VARCHAR" />
+    <result column="MDL_CL" property="mdlCl" jdbcType="VARCHAR" />
+    <result column="COL" property="col" jdbcType="DECIMAL" />
+    <result column="COTES" property="cotes" jdbcType="DECIMAL" />
+    <result column="DEL_FLG" property="delFlg" jdbcType="CHAR" />
+    <result column="MDL_NM" property="mdlNm" jdbcType="VARCHAR" />
+    <result column="MDL_TYP" property="mdlTyp" jdbcType="VARCHAR" />
+    <result column="FIN_DIR_ID" property="finDirId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectByMldClAndCustId" resultMap="MdlResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+	    select T1.FIN_DIR_ID,T2.*
+	    from B_FIN_CUST_DIR T1,(select * from B_FIN_CNFG_CL where MDL_CL = #mdlCl:VARCHAR#) T2
+	    where T1.FIN_ID = #mdlId:VARCHAR#
+	    and T1.MDL_ID LIKE ('%'||T2.MDL_TYP||'%')
+	    order by T2.MDL_TYP ASC
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    delete from B_FIN_CNFG_CL
+    where MDL_ID = #mdlId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgClExample" >
+    delete from B_FIN_CNFG_CL
+    <include refid="B_FIN_CNFG_CL.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    insert into B_FIN_CNFG_CL (MDL_ID, MDL_NM, MDL_CL, MDL_TYP, COL, COTES, 
+      DEL_FLG, REM)
+    values (#mdlId:VARCHAR#, #mdlNm:VARCHAR#, #mdlCl:VARCHAR#, #mdlTyp:VARCHAR#, #col:DECIMAL#, #cotes:DECIMAL#, 
+      #delFlg:CHAR#, #rem:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    insert into B_FIN_CNFG_CL
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="mdlId" >
+        MDL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="mdlNm" >
+        MDL_NM
+      </isNotNull>
+      <isNotNull prepend="," property="mdlCl" >
+        MDL_CL
+      </isNotNull>
+      <isNotNull prepend="," property="mdlTyp" >
+        MDL_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="col" >
+        COL
+      </isNotNull>
+      <isNotNull prepend="," property="cotes" >
+        COTES
+      </isNotNull>
+      <isNotNull prepend="," property="delFlg" >
+        DEL_FLG
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        REM
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="mdlId" >
+        #mdlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlNm" >
+        #mdlNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlCl" >
+        #mdlCl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlTyp" >
+        #mdlTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="col" >
+        #col:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cotes" >
+        #cotes:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="delFlg" >
+        #delFlg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        #rem:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgClExample" resultClass="java.lang.Integer" >
+    select count(*) from B_FIN_CNFG_CL
+    <include refid="B_FIN_CNFG_CL.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_FIN_CNFG_CL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.mdlId" >
+        MDL_ID = #record.mdlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mdlNm" >
+        MDL_NM = #record.mdlNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mdlCl" >
+        MDL_CL = #record.mdlCl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mdlCl" >
+        MDL_TYP = #record.mdlTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.col" >
+        COL = #record.col:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cotes" >
+        COTES = #record.cotes:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.delFlg" >
+        DEL_FLG = #record.delFlg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rem" >
+        REM = #record.rem:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_FIN_CNFG_CL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_FIN_CNFG_CL
+    set MDL_ID = #record.mdlId:VARCHAR#,
+      MDL_NM = #record.mdlNm:VARCHAR#,
+      MDL_CL = #record.mdlCl:VARCHAR#,
+      MDL_TYP = #record.mdlTyp:VARCHAR#,
+      COL = #record.col:DECIMAL#,
+      COTES = #record.cotes:DECIMAL#,
+      DEL_FLG = #record.delFlg:CHAR#,
+      REM = #record.rem:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_FIN_CNFG_CL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    update B_FIN_CNFG_CL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="mdlNm" >
+        MDL_NM = #mdlNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlCl" >
+        MDL_CL = #mdlCl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlTyp" >
+        MDL_TYP = #mdlTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="col" >
+        COL = #col:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cotes" >
+        COTES = #cotes:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="delFlg" >
+        DEL_FLG = #delFlg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        REM = #rem:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where MDL_ID = #mdlId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCnfgCl" >
+    update B_FIN_CNFG_CL
+    set MDL_NM = #mdlNm:VARCHAR#,
+      MDL_CL = #mdlCl:VARCHAR#,
+      MDL_TYP = #mdlTyp:VARCHAR#,
+      COL = #col:DECIMAL#,
+      COTES = #cotes:DECIMAL#,
+      DEL_FLG = #delFlg:CHAR#,
+      REM = #rem:VARCHAR#
+    where MDL_ID = #mdlId:VARCHAR#
+  </update>
+</sqlMap>

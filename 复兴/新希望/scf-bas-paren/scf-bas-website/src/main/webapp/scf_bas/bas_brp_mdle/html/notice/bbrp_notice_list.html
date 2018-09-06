@@ -1,0 +1,28 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input-extent ht-id="noticeType" name="通知书类型" extent="noticeTypeValContent"
+                     on-change="noticeTypeValdooextent" ng-model="conditionForm.noticeTypeVal">
+    </ht-input-extent>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>通知书列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button class="btn-primary" ht-id="upload">模版上传</ht-button>
+        <ht-button class="btn-primary" ht-id="delete">模版删除</ht-button>
+        <ht-file type="download" option="downloadoption"></ht-file>
+        <!--<ht-button class="btn-primary" ht-id="view">查看</ht-button>-->
+    </ht-button-group>
+    <ht-column eg-name="noticeType" zh-name="通知书类型" dictionary="nteType"></ht-column>
+    <ht-column eg-name="fileName" zh-name="模版名称"></ht-column>
+    <ht-column eg-name="fileExt" zh-name="模版类型"></ht-column>
+    <ht-column eg-name="uploadTlrno" zh-name="操作人"></ht-column>
+    <ht-column eg-name="uploadDate" zh-name="操作时间"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->

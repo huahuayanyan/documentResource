@@ -1,0 +1,18 @@
+<ht-form name="otherform">
+    <ht-legend>定时任务信息</ht-legend>
+
+    <ht-input name="任务编号"  ng-model="otherform.jobId" reg-exp="notNull,common.require" disable="{{disable}}" ></ht-input>
+    <ht-input name="任务名称"  ng-model="otherform.jobName" reg-exp="notNull,common.require"></ht-input>
+    <ht-input name="任务方法名"  ng-model="otherform.jobMethod" reg-exp="notNull,common.require"></ht-input>
+    <ht-input name="下次执行时间"  ng-model="otherform.nextExecTime" ></ht-input>
+    <ht-input name="执行超时时长(分钟)"  ng-model="otherform.execExpireMinute" reg-exp="notNull,common.require"></ht-input>
+    <ht-input name="最大执行次数"  ng-model="otherform.maxExecTimes" reg-exp="notNull,common.require"></ht-input>
+    <ht-input name="任务上下文"  ng-model="otherform.context" reg-exp="notNull"></ht-input>
+    <ht-input name="科龙表达式"  ng-model="otherform.cron" reg-exp="notNull,common.require"></ht-input>
+    <ht-input name="调度策略"  ng-model="otherform.jobStrategy" reg-exp="notNull"></ht-input>
+    <ht-input name=第一次延迟时长  ng-model="otherform.firstExecDelaySeconds" reg-exp="notNull"></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

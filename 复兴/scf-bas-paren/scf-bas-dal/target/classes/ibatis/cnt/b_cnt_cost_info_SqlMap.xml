@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_COST_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.cnt.dao.model.BCntCostInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RELA_TYPE" property="relaType" jdbcType="CHAR" />
+    <result column="RELA_NO" property="relaNo" jdbcType="VARCHAR" />
+    <result column="COST_CODE" property="costCode" jdbcType="CHAR" />
+    <result column="COST_NAME" property="costName" jdbcType="VARCHAR" />
+    <result column="COST_CLASS" property="costClass" jdbcType="CHAR" />
+    <result column="COST_TYPE" property="costType" jdbcType="CHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="CHAR" />
+    <result column="COST_CALC_TYPE" property="costCalcType" jdbcType="CHAR" />
+    <result column="COST_RATE" property="costRate" jdbcType="DECIMAL" />
+    <result column="COST_AMT" property="costAmt" jdbcType="DECIMAL" />
+    <result column="COST_PHASE" property="costPhase" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, RELA_TYPE, RELA_NO, COST_CODE, COST_NAME, COST_CLASS, COST_TYPE, CHARGE_TYPE, 
+    COST_CALC_TYPE, COST_RATE, COST_AMT, COST_PHASE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntCostInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_COST_INFO.Base_Column_List" />
+    from B_CNT_COST_INFO
+    <isParameterPresent >
+      <include refid="B_CNT_COST_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntCostInfo" >
+    select 
+    <include refid="B_CNT_COST_INFO.Base_Column_List" />
+    from B_CNT_COST_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntCostInfo" >
+    delete from B_CNT_COST_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntCostInfoExample" >
+    delete from B_CNT_COST_INFO
+    <include refid="B_CNT_COST_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntCostInfo" >
+    insert into B_CNT_COST_INFO (ID, RELA_TYPE, RELA_NO, COST_CODE, COST_NAME, 
+      COST_CLASS, COST_TYPE, CHARGE_TYPE, COST_CALC_TYPE, COST_RATE, 
+      COST_AMT, COST_PHASE)
+    values (#id:VARCHAR#, #relaType:CHAR#, #relaNo:VARCHAR#, #costCode:CHAR#, #costName:VARCHAR#, 
+      #costClass:CHAR#, #costType:CHAR#, #chargeType:CHAR#, #costCalcType:CHAR#, #costRate:DECIMAL#, 
+      #costAmt:DECIMAL#, #costPhase:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntCostInfo" >
+    insert into B_CNT_COST_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="relaType" >
+        RELA_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="relaNo" >
+        RELA_NO
+      </isNotNull>
+      <isNotNull prepend="," property="costCode" >
+        COST_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="costName" >
+        COST_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="costClass" >
+        COST_CLASS
+      </isNotNull>
+      <isNotNull prepend="," property="costType" >
+        COST_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="chargeType" >
+        CHARGE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="costCalcType" >
+        COST_CALC_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="costRate" >
+        COST_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="costAmt" >
+        COST_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="costPhase" >
+        COST_PHASE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relaType" >
+        #relaType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relaNo" >
+        #relaNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costCode" >
+        #costCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costName" >
+        #costName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costClass" >
+        #costClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costType" >
+        #costType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chargeType" >
+        #chargeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costCalcType" >
+        #costCalcType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costRate" >
+        #costRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="costAmt" >
+        #costAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="costPhase" >
+        #costPhase:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntCostInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_COST_INFO
+    <include refid="B_CNT_COST_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_COST_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.relaType" >
+        RELA_TYPE = #record.relaType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.relaNo" >
+        RELA_NO = #record.relaNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costCode" >
+        COST_CODE = #record.costCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costName" >
+        COST_NAME = #record.costName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costClass" >
+        COST_CLASS = #record.costClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costType" >
+        COST_TYPE = #record.costType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.chargeType" >
+        CHARGE_TYPE = #record.chargeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costCalcType" >
+        COST_CALC_TYPE = #record.costCalcType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costRate" >
+        COST_RATE = #record.costRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costAmt" >
+        COST_AMT = #record.costAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costPhase" >
+        COST_PHASE = #record.costPhase:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_COST_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_COST_INFO
+    set ID = #record.id:VARCHAR#,
+      RELA_TYPE = #record.relaType:CHAR#,
+      RELA_NO = #record.relaNo:VARCHAR#,
+      COST_CODE = #record.costCode:CHAR#,
+      COST_NAME = #record.costName:VARCHAR#,
+      COST_CLASS = #record.costClass:CHAR#,
+      COST_TYPE = #record.costType:CHAR#,
+      CHARGE_TYPE = #record.chargeType:CHAR#,
+      COST_CALC_TYPE = #record.costCalcType:CHAR#,
+      COST_RATE = #record.costRate:DECIMAL#,
+      COST_AMT = #record.costAmt:DECIMAL#,
+      COST_PHASE = #record.costPhase:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CNT_COST_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntCostInfo" >
+    update B_CNT_COST_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="relaType" >
+        RELA_TYPE = #relaType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relaNo" >
+        RELA_NO = #relaNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costCode" >
+        COST_CODE = #costCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costName" >
+        COST_NAME = #costName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costClass" >
+        COST_CLASS = #costClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costType" >
+        COST_TYPE = #costType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chargeType" >
+        CHARGE_TYPE = #chargeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costCalcType" >
+        COST_CALC_TYPE = #costCalcType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costRate" >
+        COST_RATE = #costRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="costAmt" >
+        COST_AMT = #costAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="costPhase" >
+        COST_PHASE = #costPhase:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntCostInfo" >
+    update B_CNT_COST_INFO
+    set RELA_TYPE = #relaType:CHAR#,
+      RELA_NO = #relaNo:VARCHAR#,
+      COST_CODE = #costCode:CHAR#,
+      COST_NAME = #costName:VARCHAR#,
+      COST_CLASS = #costClass:CHAR#,
+      COST_TYPE = #costType:CHAR#,
+      CHARGE_TYPE = #chargeType:CHAR#,
+      COST_CALC_TYPE = #costCalcType:CHAR#,
+      COST_RATE = #costRate:DECIMAL#,
+      COST_AMT = #costAmt:DECIMAL#,
+      COST_PHASE = #costPhase:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

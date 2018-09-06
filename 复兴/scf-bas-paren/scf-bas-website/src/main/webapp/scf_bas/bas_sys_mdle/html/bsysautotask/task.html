@@ -1,0 +1,16 @@
+<ht-legend>供应链定时任务列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+   <!--  <ht-button ht-id="add"      class="btn-primary">新增</ht-button> -->
+    <ht-button ht-id="delete"   class="btn-primary">删除</ht-button>
+  <!--   <ht-button ht-id="update"   class="btn-primary">修改</ht-button> -->
+    <ht-button ht-id="startNow" class="btn-primary">执行</ht-button>
+    <ht-button ht-id="stop"     class="btn-primary">停止</ht-button>
+    <ht-button ht-id="start"    class="btn-primary">启动</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="jobId" zh-name="任务编号"  docolumn="column"></ht-column>
+    <ht-column eg-name="jobName" zh-name="任务名称"></ht-column>
+    <ht-column eg-name="jobMethod" zh-name="任务方法名"></ht-column>
+    <ht-column eg-name="runStatus" zh-name="任务状态"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

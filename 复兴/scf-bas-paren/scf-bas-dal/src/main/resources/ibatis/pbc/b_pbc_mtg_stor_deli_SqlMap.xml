@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PBC_MTG_STOR_DELI" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcMtgStorDeli" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+    <result column="TXDATE" property="txdate" jdbcType="CHAR" />
+    <result column="TXTIME" property="txtime" jdbcType="TIMESTAMP" />
+    <result column="STOR_OR_DELI" property="storOrDeli" jdbcType="CHAR" />
+    <result column="STOR_DELI_BIZ_TYPE" property="storDeliBizType" jdbcType="CHAR" />
+    <result column="MORTGAGE_BIZ_NO" property="mortgageBizNo" jdbcType="DECIMAL" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="CREDITAMT" property="creditamt" jdbcType="DECIMAL" />
+    <result column="STOCKAMT" property="stockamt" jdbcType="DECIMAL" />
+    <result column="RISKAMT" property="riskamt" jdbcType="DECIMAL" />
+    <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" />
+    <result column="FREIGHTAREA" property="freightarea" jdbcType="VARCHAR" />
+    <result column="FREIGHTLOT" property="freightlot" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE" property="warehouse" jdbcType="VARCHAR" />
+    <result column="WEIGHT_UNITS" property="weightUnits" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, OTHER_PROTOCOL_NO, SLAVE_CONTNO, MONITOR_PROTOCOL_NO, TXDATE, TXTIME, 
+    STOR_OR_DELI, STOR_DELI_BIZ_TYPE, MORTGAGE_BIZ_NO, TLRCD, CURCD, PRICE, QUANTITY, 
+    TOT_PRICE, BILLNO, BAIL_AMOUNT, BUSS_TYPE, CREDITAMT, STOCKAMT, RISKAMT, LOW_PRICE_NEW, 
+    FREIGHTAREA, FREIGHTLOT, WAREHOUSE, WEIGHT_UNITS, MORTGAGE_UNITS, BRCODE, EXT1, EXT2, 
+    EXT3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgStorDeliExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PBC_MTG_STOR_DELI.Base_Column_List" />
+    from B_PBC_MTG_STOR_DELI
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_STOR_DELI.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgStorDeli" >
+    select 
+    <include refid="B_PBC_MTG_STOR_DELI.Base_Column_List" />
+    from B_PBC_MTG_STOR_DELI
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgStorDeli" >
+    delete from B_PBC_MTG_STOR_DELI
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgStorDeliExample" >
+    delete from B_PBC_MTG_STOR_DELI
+    <include refid="B_PBC_MTG_STOR_DELI.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgStorDeli" >
+    insert into B_PBC_MTG_STOR_DELI (ID, APPNO, OTHER_PROTOCOL_NO, SLAVE_CONTNO, 
+      MONITOR_PROTOCOL_NO, TXDATE, TXTIME, STOR_OR_DELI, 
+      STOR_DELI_BIZ_TYPE, MORTGAGE_BIZ_NO, TLRCD, CURCD, 
+      PRICE, QUANTITY, TOT_PRICE, BILLNO, BAIL_AMOUNT, 
+      BUSS_TYPE, CREDITAMT, STOCKAMT, RISKAMT, 
+      LOW_PRICE_NEW, FREIGHTAREA, FREIGHTLOT, WAREHOUSE, 
+      WEIGHT_UNITS, MORTGAGE_UNITS, BRCODE, EXT1, 
+      EXT2, EXT3)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #otherProtocolNo:VARCHAR#, #slaveContno:VARCHAR#, 
+      #monitorProtocolNo:VARCHAR#, #txdate:CHAR#, #txtime:TIMESTAMP#, #storOrDeli:CHAR#, 
+      #storDeliBizType:CHAR#, #mortgageBizNo:DECIMAL#, #tlrcd:VARCHAR#, #curcd:CHAR#, 
+      #price:DECIMAL#, #quantity:DECIMAL#, #totPrice:DECIMAL#, #billno:VARCHAR#, #bailAmount:DECIMAL#, 
+      #bussType:VARCHAR#, #creditamt:DECIMAL#, #stockamt:DECIMAL#, #riskamt:DECIMAL#, 
+      #lowPriceNew:DECIMAL#, #freightarea:VARCHAR#, #freightlot:VARCHAR#, #warehouse:VARCHAR#, 
+      #weightUnits:VARCHAR#, #mortgageUnits:VARCHAR#, #brcode:VARCHAR#, #ext1:VARCHAR#, 
+      #ext2:VARCHAR#, #ext3:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgStorDeli" >
+    insert into B_PBC_MTG_STOR_DELI
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        OTHER_PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="txdate" >
+        TXDATE
+      </isNotNull>
+      <isNotNull prepend="," property="txtime" >
+        TXTIME
+      </isNotNull>
+      <isNotNull prepend="," property="storOrDeli" >
+        STOR_OR_DELI
+      </isNotNull>
+      <isNotNull prepend="," property="storDeliBizType" >
+        STOR_DELI_BIZ_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageBizNo" >
+        MORTGAGE_BIZ_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="quantity" >
+        QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        TOT_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="billno" >
+        BILLNO
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        BUSS_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="creditamt" >
+        CREDITAMT
+      </isNotNull>
+      <isNotNull prepend="," property="stockamt" >
+        STOCKAMT
+      </isNotNull>
+      <isNotNull prepend="," property="riskamt" >
+        RISKAMT
+      </isNotNull>
+      <isNotNull prepend="," property="lowPriceNew" >
+        LOW_PRICE_NEW
+      </isNotNull>
+      <isNotNull prepend="," property="freightarea" >
+        FREIGHTAREA
+      </isNotNull>
+      <isNotNull prepend="," property="freightlot" >
+        FREIGHTLOT
+      </isNotNull>
+      <isNotNull prepend="," property="warehouse" >
+        WAREHOUSE
+      </isNotNull>
+      <isNotNull prepend="," property="weightUnits" >
+        WEIGHT_UNITS
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        #otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        #monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txdate" >
+        #txdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txtime" >
+        #txtime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="storOrDeli" >
+        #storOrDeli:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="storDeliBizType" >
+        #storDeliBizType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageBizNo" >
+        #mortgageBizNo:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        #price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="quantity" >
+        #quantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        #totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="billno" >
+        #billno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        #bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditamt" >
+        #creditamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="stockamt" >
+        #stockamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskamt" >
+        #riskamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPriceNew" >
+        #lowPriceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="freightarea" >
+        #freightarea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="freightlot" >
+        #freightlot:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouse" >
+        #warehouse:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="weightUnits" >
+        #weightUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        #mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        #ext3:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgStorDeliExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PBC_MTG_STOR_DELI
+    <include refid="B_PBC_MTG_STOR_DELI.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PBC_MTG_STOR_DELI
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherProtocolNo" >
+        OTHER_PROTOCOL_NO = #record.otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO = #record.monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.txdate" >
+        TXDATE = #record.txdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.txtime" >
+        TXTIME = #record.txtime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.storOrDeli" >
+        STOR_OR_DELI = #record.storOrDeli:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.storDeliBizType" >
+        STOR_DELI_BIZ_TYPE = #record.storDeliBizType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageBizNo" >
+        MORTGAGE_BIZ_NO = #record.mortgageBizNo:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.price" >
+        PRICE = #record.price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.quantity" >
+        QUANTITY = #record.quantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totPrice" >
+        TOT_PRICE = #record.totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billno" >
+        BILLNO = #record.billno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAmount" >
+        BAIL_AMOUNT = #record.bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bussType" >
+        BUSS_TYPE = #record.bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditamt" >
+        CREDITAMT = #record.creditamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stockamt" >
+        STOCKAMT = #record.stockamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.riskamt" >
+        RISKAMT = #record.riskamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lowPriceNew" >
+        LOW_PRICE_NEW = #record.lowPriceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.freightarea" >
+        FREIGHTAREA = #record.freightarea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.freightlot" >
+        FREIGHTLOT = #record.freightlot:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouse" >
+        WAREHOUSE = #record.warehouse:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.weightUnits" >
+        WEIGHT_UNITS = #record.weightUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageUnits" >
+        MORTGAGE_UNITS = #record.mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1" >
+        EXT1 = #record.ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext2" >
+        EXT2 = #record.ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext3" >
+        EXT3 = #record.ext3:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_STOR_DELI.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PBC_MTG_STOR_DELI
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      OTHER_PROTOCOL_NO = #record.otherProtocolNo:VARCHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      MONITOR_PROTOCOL_NO = #record.monitorProtocolNo:VARCHAR#,
+      TXDATE = #record.txdate:CHAR#,
+      TXTIME = #record.txtime:TIMESTAMP#,
+      STOR_OR_DELI = #record.storOrDeli:CHAR#,
+      STOR_DELI_BIZ_TYPE = #record.storDeliBizType:CHAR#,
+      MORTGAGE_BIZ_NO = #record.mortgageBizNo:DECIMAL#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      CURCD = #record.curcd:CHAR#,
+      PRICE = #record.price:DECIMAL#,
+      QUANTITY = #record.quantity:DECIMAL#,
+      TOT_PRICE = #record.totPrice:DECIMAL#,
+      BILLNO = #record.billno:VARCHAR#,
+      BAIL_AMOUNT = #record.bailAmount:DECIMAL#,
+      BUSS_TYPE = #record.bussType:VARCHAR#,
+      CREDITAMT = #record.creditamt:DECIMAL#,
+      STOCKAMT = #record.stockamt:DECIMAL#,
+      RISKAMT = #record.riskamt:DECIMAL#,
+      LOW_PRICE_NEW = #record.lowPriceNew:DECIMAL#,
+      FREIGHTAREA = #record.freightarea:VARCHAR#,
+      FREIGHTLOT = #record.freightlot:VARCHAR#,
+      WAREHOUSE = #record.warehouse:VARCHAR#,
+      WEIGHT_UNITS = #record.weightUnits:VARCHAR#,
+      MORTGAGE_UNITS = #record.mortgageUnits:VARCHAR#,
+      BRCODE = #record.brcode:VARCHAR#,
+      EXT1 = #record.ext1:VARCHAR#,
+      EXT2 = #record.ext2:VARCHAR#,
+      EXT3 = #record.ext3:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_STOR_DELI.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgStorDeli" >
+    update B_PBC_MTG_STOR_DELI
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        OTHER_PROTOCOL_NO = #otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txdate" >
+        TXDATE = #txdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txtime" >
+        TXTIME = #txtime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="storOrDeli" >
+        STOR_OR_DELI = #storOrDeli:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="storDeliBizType" >
+        STOR_DELI_BIZ_TYPE = #storDeliBizType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageBizNo" >
+        MORTGAGE_BIZ_NO = #mortgageBizNo:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        PRICE = #price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="quantity" >
+        QUANTITY = #quantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        TOT_PRICE = #totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="billno" >
+        BILLNO = #billno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT = #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        BUSS_TYPE = #bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditamt" >
+        CREDITAMT = #creditamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="stockamt" >
+        STOCKAMT = #stockamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskamt" >
+        RISKAMT = #riskamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPriceNew" >
+        LOW_PRICE_NEW = #lowPriceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="freightarea" >
+        FREIGHTAREA = #freightarea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="freightlot" >
+        FREIGHTLOT = #freightlot:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouse" >
+        WAREHOUSE = #warehouse:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="weightUnits" >
+        WEIGHT_UNITS = #weightUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS = #mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1 = #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2 = #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3 = #ext3:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgStorDeli" >
+    update B_PBC_MTG_STOR_DELI
+    set APPNO = #appno:VARCHAR#,
+      OTHER_PROTOCOL_NO = #otherProtocolNo:VARCHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#,
+      TXDATE = #txdate:CHAR#,
+      TXTIME = #txtime:TIMESTAMP#,
+      STOR_OR_DELI = #storOrDeli:CHAR#,
+      STOR_DELI_BIZ_TYPE = #storDeliBizType:CHAR#,
+      MORTGAGE_BIZ_NO = #mortgageBizNo:DECIMAL#,
+      TLRCD = #tlrcd:VARCHAR#,
+      CURCD = #curcd:CHAR#,
+      PRICE = #price:DECIMAL#,
+      QUANTITY = #quantity:DECIMAL#,
+      TOT_PRICE = #totPrice:DECIMAL#,
+      BILLNO = #billno:VARCHAR#,
+      BAIL_AMOUNT = #bailAmount:DECIMAL#,
+      BUSS_TYPE = #bussType:VARCHAR#,
+      CREDITAMT = #creditamt:DECIMAL#,
+      STOCKAMT = #stockamt:DECIMAL#,
+      RISKAMT = #riskamt:DECIMAL#,
+      LOW_PRICE_NEW = #lowPriceNew:DECIMAL#,
+      FREIGHTAREA = #freightarea:VARCHAR#,
+      FREIGHTLOT = #freightlot:VARCHAR#,
+      WAREHOUSE = #warehouse:VARCHAR#,
+      WEIGHT_UNITS = #weightUnits:VARCHAR#,
+      MORTGAGE_UNITS = #mortgageUnits:VARCHAR#,
+      BRCODE = #brcode:VARCHAR#,
+      EXT1 = #ext1:VARCHAR#,
+      EXT2 = #ext2:VARCHAR#,
+      EXT3 = #ext3:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

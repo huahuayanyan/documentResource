@@ -1,0 +1,17 @@
+<!--<ht-legend>提货情况</ht-legend>-->
+<ht-table ht-id="tableId" datasource="datasource" selected="selectedSend" docheckbox="true">
+    <ht-column eg-name="num" zh-name="票/款确认函编号"></ht-column>
+    <ht-column eg-name="debetId" zh-name="银承协议号/借据号"></ht-column>
+    <ht-column eg-name="commonDate" zh-name="确认收款日" type="date"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="出账金额" type="currency"></ht-column>
+    <ht-column eg-name="startDate" zh-name="出账日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="出账到期日" type="date"></ht-column>
+    <ht-column eg-name="amountOut" zh-name="累计提货金额" type="currency"></ht-column>
+    <ht-column eg-name="amountIn" zh-name="剩余提货金额" type="currency"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<div class="ngdialogbutton" style="text-align: center;padding:5px 0;border-top: 1px solid #ddd; ">
+    <button  ng-click="closeThisDialog()" class="btn-primary">关闭</button>
+</div>

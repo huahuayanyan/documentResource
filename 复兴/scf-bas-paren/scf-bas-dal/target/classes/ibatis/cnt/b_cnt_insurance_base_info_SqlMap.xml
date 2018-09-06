@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_INSURANCE_BASE_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.cnt.dao.model.BCntInsuranceBaseInfo" >
+    <result column="INSURANCE_NO" property="insuranceNo" jdbcType="VARCHAR" />
+    <result column="INSURANCE_CODE" property="insuranceCode" jdbcType="VARCHAR" />
+    <result column="INSURANCE_TYPE" property="insuranceType" jdbcType="VARCHAR" />
+    <result column="BENEFICIARY" property="beneficiary" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="INSURANCE_NAME" property="insuranceName" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    INSURANCE_NO, INSURANCE_CODE, INSURANCE_TYPE, BENEFICIARY, AMOUNT, START_DATE, END_DATE, 
+    SLAVE_CONTNO, INSURANCE_NAME, MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntInsuranceBaseInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_INSURANCE_BASE_INFO.Base_Column_List" />
+    from B_CNT_INSURANCE_BASE_INFO
+    <isParameterPresent >
+      <include refid="B_CNT_INSURANCE_BASE_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntInsuranceBaseInfo" >
+    select 
+    <include refid="B_CNT_INSURANCE_BASE_INFO.Base_Column_List" />
+    from B_CNT_INSURANCE_BASE_INFO
+    where INSURANCE_NO = #insuranceNo:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntInsuranceBaseInfo" >
+    delete from B_CNT_INSURANCE_BASE_INFO
+    where INSURANCE_NO = #insuranceNo:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntInsuranceBaseInfoExample" >
+    delete from B_CNT_INSURANCE_BASE_INFO
+    <include refid="B_CNT_INSURANCE_BASE_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntInsuranceBaseInfo" >
+    insert into B_CNT_INSURANCE_BASE_INFO (INSURANCE_NO, INSURANCE_CODE, INSURANCE_TYPE, 
+      BENEFICIARY, AMOUNT, START_DATE, END_DATE, SLAVE_CONTNO, 
+      INSURANCE_NAME, MEMO)
+    values (#insuranceNo:VARCHAR#, #insuranceCode:VARCHAR#, #insuranceType:VARCHAR#, 
+      #beneficiary:VARCHAR#, #amount:DECIMAL#, #startDate:CHAR#, #endDate:CHAR#, #slaveContno:VARCHAR#, 
+      #insuranceName:VARCHAR#, #memo:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntInsuranceBaseInfo" >
+    insert into B_CNT_INSURANCE_BASE_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="insuranceNo" >
+        INSURANCE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceCode" >
+        INSURANCE_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceType" >
+        INSURANCE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="beneficiary" >
+        BENEFICIARY
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceName" >
+        INSURANCE_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="insuranceNo" >
+        #insuranceNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceCode" >
+        #insuranceCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceType" >
+        #insuranceType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="beneficiary" >
+        #beneficiary:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        #amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceName" >
+        #insuranceName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntInsuranceBaseInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_INSURANCE_BASE_INFO
+    <include refid="B_CNT_INSURANCE_BASE_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_INSURANCE_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.insuranceNo" >
+        INSURANCE_NO = #record.insuranceNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insuranceCode" >
+        INSURANCE_CODE = #record.insuranceCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insuranceType" >
+        INSURANCE_TYPE = #record.insuranceType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.beneficiary" >
+        BENEFICIARY = #record.beneficiary:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amount" >
+        AMOUNT = #record.amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insuranceName" >
+        INSURANCE_NAME = #record.insuranceName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_INSURANCE_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_INSURANCE_BASE_INFO
+    set INSURANCE_NO = #record.insuranceNo:VARCHAR#,
+      INSURANCE_CODE = #record.insuranceCode:VARCHAR#,
+      INSURANCE_TYPE = #record.insuranceType:VARCHAR#,
+      BENEFICIARY = #record.beneficiary:VARCHAR#,
+      AMOUNT = #record.amount:DECIMAL#,
+      START_DATE = #record.startDate:CHAR#,
+      END_DATE = #record.endDate:CHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      INSURANCE_NAME = #record.insuranceName:VARCHAR#,
+      MEMO = #record.memo:CHAR#
+    <isParameterPresent >
+      <include refid="B_CNT_INSURANCE_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntInsuranceBaseInfo" >
+    update B_CNT_INSURANCE_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="insuranceCode" >
+        INSURANCE_CODE = #insuranceCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceType" >
+        INSURANCE_TYPE = #insuranceType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="beneficiary" >
+        BENEFICIARY = #beneficiary:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        AMOUNT = #amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceName" >
+        INSURANCE_NAME = #insuranceName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:CHAR#
+      </isNotNull>
+    </dynamic>
+    where INSURANCE_NO = #insuranceNo:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntInsuranceBaseInfo" >
+    update B_CNT_INSURANCE_BASE_INFO
+    set INSURANCE_CODE = #insuranceCode:VARCHAR#,
+      INSURANCE_TYPE = #insuranceType:VARCHAR#,
+      BENEFICIARY = #beneficiary:VARCHAR#,
+      AMOUNT = #amount:DECIMAL#,
+      START_DATE = #startDate:CHAR#,
+      END_DATE = #endDate:CHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      INSURANCE_NAME = #insuranceName:VARCHAR#,
+      MEMO = #memo:CHAR#
+    where INSURANCE_NO = #insuranceNo:VARCHAR#
+  </update>
+</sqlMap>

@@ -1,0 +1,14 @@
+
+<ht-form name="billnormal">
+    <ht-legend>仓单信息详情</ht-legend>
+    <ht-input-extent ht-id="cname" name="出质人名称" reg-exp="common.require" extent="custcontent"
+                     on-change="dooextend" ng-model="billnormal.cname" disable="{{disableview}}"></ht-input-extent>
+    <ht-input-extent ht-id="slaveContno" name="抵/质押合同号" reg-exp="common.require" extent="slavecontent"
+                     on-change="slaveextend" ng-model="billnormal.slaveContno" disable="{{disableview}}"></ht-input-extent>
+    <ht-select ht-id="supplyChainPdIdName" name="业务品种" disable="true" datasource="productselect" dataOption="code" dataTrsOption="codeName" ng-model="billnormal.supplyChainPdIdName"></ht-select>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="close" class="btn-primary" hide="{{hideclose}}">关闭</ht-button>
+</ht-button-group>

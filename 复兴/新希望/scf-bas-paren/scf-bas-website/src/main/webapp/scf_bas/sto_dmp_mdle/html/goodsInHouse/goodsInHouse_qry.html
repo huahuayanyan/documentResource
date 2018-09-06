@@ -1,0 +1,45 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="cName" name="出质人名称" ng-model="conditionForm.cName"></ht-input>
+    <ht-input ht-id="moniName" name="监管公司名称" ng-model="conditionForm.moniName"></ht-input>
+    <ht-input ht-id="conId" name="抵/质押合同号" ng-model="conditionForm.conId"></ht-input>
+    <ht-select ht-id="supplyChainPdId" name="业务品种" ng-model="conditionForm.supplyChainPdId"
+        datasource="selectSource" datatrsoption="value" dataoption="key" disable="true"></ht-select>
+    <ht-input-extent ht-id="oneName" name="押品一级" ng-model="conditionForm.oneName"
+        extent="levelOneContent" on-change="levelOnedooextent"></ht-input-extent>
+    <ht-input-extent ht-id="twoName" name="押品二级" ng-model="conditionForm.twoName"
+        extent="levelTwoContent" on-change="levelTwodooextent"></ht-input-extent>
+    <ht-input-extent name='经办机构' ht-id = 'brName' extent='content' on-change="dooextent"
+            checkedHiden="true" ng-model='conditionForm.brName'></ht-input-extent>
+    <ht-select name='监管模式' ht-id ='moniMd' ng-model='conditionForm.moniMd' dictionary="monitortype"></ht-select>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>现货押品库存信息列表</ht-legend>
+
+<ht-button-group class="left">
+    <ht-button ht-id="dtlView" class="btn-primary" desc-name="详情"></ht-button>
+</ht-button-group>
+
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="MONIT_CNAME" zh-name="监管公司名称"></ht-column>
+    <ht-column eg-name="PROTOCOL_NO" zh-name="监管合同号"></ht-column>
+    <ht-column eg-name="CNAME" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="CON_ID" zh-name="抵/质押合同号"></ht-column>
+    <ht-column eg-name="PRODUCT_NAME" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="MORTGAGE_NAME" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="ONE_NAME" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="TWO_NAME" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="THREE_NAME" zh-name="押品三级"></ht-column>
+    <ht-column eg-name="MONI_WAREHOUSE_TYPE" zh-name="监管模式" dictionary="monitortype"></ht-column>
+    <ht-column eg-name="QUANTITY" zh-name="数量/重量"></ht-column>
+    <ht-column eg-name="CONFIRM_PRICE" zh-name="核定单价" type="currency"></ht-column>
+    <ht-column eg-name="TOT_PRICE" zh-name="押品价值" type="currency"></ht-column>
+    <ht-column eg-name="TLR_NM" zh-name="客户经理"></ht-column>
+    <ht-column eg-name="BRNAME" zh-name="经办机构"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

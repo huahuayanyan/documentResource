@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_BRP_WARN_PARAM" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.brp.dao.model.BBrpWarnParam" >
+    <result column="WARN_NO" property="warnNo" jdbcType="VARCHAR" />
+    <result column="WARN_NAME" property="warnName" jdbcType="VARCHAR" />
+    <result column="WARN_TYPE" property="warnType" jdbcType="CHAR" />
+    <result column="SUSPEND_FLAG" property="suspendFlag" jdbcType="CHAR" />
+    <result column="SUSPEND_DAY" property="suspendDay" jdbcType="DECIMAL" />
+    <result column="TARGET_TYPE" property="targetType" jdbcType="CHAR" />
+    <result column="TARGET_BRCLASS" property="targetBrclass" jdbcType="VARCHAR" />
+    <result column="TARGET_ROLEID" property="targetRoleid" jdbcType="DECIMAL" />
+    <result column="PACKAGE_ID" property="packageId" jdbcType="VARCHAR" />
+    <result column="WARN_PROCESS" property="warnProcess" jdbcType="VARCHAR" />
+    <result column="WARN_LEVEL_LOW" property="warnLevelLow" jdbcType="VARCHAR" />
+    <result column="WARN_LEVEL_MIDI" property="warnLevelMidi" jdbcType="VARCHAR" />
+    <result column="WARN_LEVEL_HIGH" property="warnLevelHigh" jdbcType="VARCHAR" />
+    <result column="WARN_BUSS_TYPE" property="warnBussType" jdbcType="CHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="TLRNO" property="tlrno" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    WARN_NO, WARN_NAME, WARN_TYPE, SUSPEND_FLAG, SUSPEND_DAY, TARGET_TYPE, TARGET_BRCLASS, 
+    TARGET_ROLEID, PACKAGE_ID, WARN_PROCESS, WARN_LEVEL_LOW, WARN_LEVEL_MIDI, WARN_LEVEL_HIGH, 
+    WARN_BUSS_TYPE, URL, TLRNO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpWarnParamExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_BRP_WARN_PARAM.Base_Column_List" />
+    from B_BRP_WARN_PARAM
+    <isParameterPresent >
+      <include refid="B_BRP_WARN_PARAM.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpWarnParam" >
+    select 
+    <include refid="B_BRP_WARN_PARAM.Base_Column_List" />
+    from B_BRP_WARN_PARAM
+    where WARN_NO = #warnNo:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpWarnParam" >
+    delete from B_BRP_WARN_PARAM
+    where WARN_NO = #warnNo:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpWarnParamExample" >
+    delete from B_BRP_WARN_PARAM
+    <include refid="B_BRP_WARN_PARAM.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpWarnParam" >
+    insert into B_BRP_WARN_PARAM (WARN_NO, WARN_NAME, WARN_TYPE, SUSPEND_FLAG, 
+      SUSPEND_DAY, TARGET_TYPE, TARGET_BRCLASS, TARGET_ROLEID, 
+      PACKAGE_ID, WARN_PROCESS, WARN_LEVEL_LOW, WARN_LEVEL_MIDI, 
+      WARN_LEVEL_HIGH, WARN_BUSS_TYPE, URL, TLRNO)
+    values (#warnNo:VARCHAR#, #warnName:VARCHAR#, #warnType:CHAR#, #suspendFlag:CHAR#, 
+      #suspendDay:DECIMAL#, #targetType:CHAR#, #targetBrclass:VARCHAR#, #targetRoleid:DECIMAL#, 
+      #packageId:VARCHAR#, #warnProcess:VARCHAR#, #warnLevelLow:VARCHAR#, #warnLevelMidi:VARCHAR#, 
+      #warnLevelHigh:VARCHAR#, #warnBussType:CHAR#, #url:VARCHAR#, #tlrno:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpWarnParam" >
+    insert into B_BRP_WARN_PARAM
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="warnNo" >
+        WARN_NO
+      </isNotNull>
+      <isNotNull prepend="," property="warnName" >
+        WARN_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="warnType" >
+        WARN_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="suspendFlag" >
+        SUSPEND_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="suspendDay" >
+        SUSPEND_DAY
+      </isNotNull>
+      <isNotNull prepend="," property="targetType" >
+        TARGET_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="targetBrclass" >
+        TARGET_BRCLASS
+      </isNotNull>
+      <isNotNull prepend="," property="targetRoleid" >
+        TARGET_ROLEID
+      </isNotNull>
+      <isNotNull prepend="," property="packageId" >
+        PACKAGE_ID
+      </isNotNull>
+      <isNotNull prepend="," property="warnProcess" >
+        WARN_PROCESS
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevelLow" >
+        WARN_LEVEL_LOW
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevelMidi" >
+        WARN_LEVEL_MIDI
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevelHigh" >
+        WARN_LEVEL_HIGH
+      </isNotNull>
+      <isNotNull prepend="," property="warnBussType" >
+        WARN_BUSS_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="url" >
+        URL
+      </isNotNull>
+      <isNotNull prepend="," property="tlrno" >
+        TLRNO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="warnNo" >
+        #warnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnName" >
+        #warnName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnType" >
+        #warnType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="suspendFlag" >
+        #suspendFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="suspendDay" >
+        #suspendDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="targetType" >
+        #targetType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="targetBrclass" >
+        #targetBrclass:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="targetRoleid" >
+        #targetRoleid:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="packageId" >
+        #packageId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnProcess" >
+        #warnProcess:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevelLow" >
+        #warnLevelLow:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevelMidi" >
+        #warnLevelMidi:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevelHigh" >
+        #warnLevelHigh:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnBussType" >
+        #warnBussType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="url" >
+        #url:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrno" >
+        #tlrno:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpWarnParamExample" resultClass="java.lang.Integer" >
+    select count(*) from B_BRP_WARN_PARAM
+    <include refid="B_BRP_WARN_PARAM.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_BRP_WARN_PARAM
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.warnNo" >
+        WARN_NO = #record.warnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnName" >
+        WARN_NAME = #record.warnName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnType" >
+        WARN_TYPE = #record.warnType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.suspendFlag" >
+        SUSPEND_FLAG = #record.suspendFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.suspendDay" >
+        SUSPEND_DAY = #record.suspendDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.targetType" >
+        TARGET_TYPE = #record.targetType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.targetBrclass" >
+        TARGET_BRCLASS = #record.targetBrclass:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.targetRoleid" >
+        TARGET_ROLEID = #record.targetRoleid:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.packageId" >
+        PACKAGE_ID = #record.packageId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnProcess" >
+        WARN_PROCESS = #record.warnProcess:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnLevelLow" >
+        WARN_LEVEL_LOW = #record.warnLevelLow:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnLevelMidi" >
+        WARN_LEVEL_MIDI = #record.warnLevelMidi:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnLevelHigh" >
+        WARN_LEVEL_HIGH = #record.warnLevelHigh:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnBussType" >
+        WARN_BUSS_TYPE = #record.warnBussType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.url" >
+        URL = #record.url:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrno" >
+        TLRNO = #record.tlrno:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_BRP_WARN_PARAM.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_BRP_WARN_PARAM
+    set WARN_NO = #record.warnNo:VARCHAR#,
+      WARN_NAME = #record.warnName:VARCHAR#,
+      WARN_TYPE = #record.warnType:CHAR#,
+      SUSPEND_FLAG = #record.suspendFlag:CHAR#,
+      SUSPEND_DAY = #record.suspendDay:DECIMAL#,
+      TARGET_TYPE = #record.targetType:CHAR#,
+      TARGET_BRCLASS = #record.targetBrclass:VARCHAR#,
+      TARGET_ROLEID = #record.targetRoleid:DECIMAL#,
+      PACKAGE_ID = #record.packageId:VARCHAR#,
+      WARN_PROCESS = #record.warnProcess:VARCHAR#,
+      WARN_LEVEL_LOW = #record.warnLevelLow:VARCHAR#,
+      WARN_LEVEL_MIDI = #record.warnLevelMidi:VARCHAR#,
+      WARN_LEVEL_HIGH = #record.warnLevelHigh:VARCHAR#,
+      WARN_BUSS_TYPE = #record.warnBussType:CHAR#,
+      URL = #record.url:VARCHAR#,
+      TLRNO = #record.tlrno:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_BRP_WARN_PARAM.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpWarnParam" >
+    update B_BRP_WARN_PARAM
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="warnName" >
+        WARN_NAME = #warnName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnType" >
+        WARN_TYPE = #warnType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="suspendFlag" >
+        SUSPEND_FLAG = #suspendFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="suspendDay" >
+        SUSPEND_DAY = #suspendDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="targetType" >
+        TARGET_TYPE = #targetType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="targetBrclass" >
+        TARGET_BRCLASS = #targetBrclass:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="targetRoleid" >
+        TARGET_ROLEID = #targetRoleid:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="packageId" >
+        PACKAGE_ID = #packageId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnProcess" >
+        WARN_PROCESS = #warnProcess:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevelLow" >
+        WARN_LEVEL_LOW = #warnLevelLow:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevelMidi" >
+        WARN_LEVEL_MIDI = #warnLevelMidi:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevelHigh" >
+        WARN_LEVEL_HIGH = #warnLevelHigh:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnBussType" >
+        WARN_BUSS_TYPE = #warnBussType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="url" >
+        URL = #url:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrno" >
+        TLRNO = #tlrno:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where WARN_NO = #warnNo:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpWarnParam" >
+    update B_BRP_WARN_PARAM
+    set WARN_NAME = #warnName:VARCHAR#,
+      WARN_TYPE = #warnType:CHAR#,
+      SUSPEND_FLAG = #suspendFlag:CHAR#,
+      SUSPEND_DAY = #suspendDay:DECIMAL#,
+      TARGET_TYPE = #targetType:CHAR#,
+      TARGET_BRCLASS = #targetBrclass:VARCHAR#,
+      TARGET_ROLEID = #targetRoleid:DECIMAL#,
+      PACKAGE_ID = #packageId:VARCHAR#,
+      WARN_PROCESS = #warnProcess:VARCHAR#,
+      WARN_LEVEL_LOW = #warnLevelLow:VARCHAR#,
+      WARN_LEVEL_MIDI = #warnLevelMidi:VARCHAR#,
+      WARN_LEVEL_HIGH = #warnLevelHigh:VARCHAR#,
+      WARN_BUSS_TYPE = #warnBussType:CHAR#,
+      URL = #url:VARCHAR#,
+      TLRNO = #tlrno:VARCHAR#
+    where WARN_NO = #warnNo:VARCHAR#
+  </update>
+  
+   <resultMap id="WarningInfoMap" class="com.huateng.scf.bas.brp.dao.model.WarnParamVO" >
+    <result column="WARN_NO" property="warnNo" jdbcType="VARCHAR" />
+    <result column="WARN_NAME" property="warnName" jdbcType="VARCHAR" />
+<!--     <result column="WARN_TYPE" property="warnType" jdbcType="CHAR" /> -->
+    <result column="warnLevelH" property="warnLevelH" jdbcType="CHAR" />
+    <result column="warnLevelM" property="warnLevelM" jdbcType="DECIMAL" />
+    <result column="warnLevelL" property="warnLevelL" jdbcType="CHAR" /> 
+    <result column="URL" property="url" jdbcType="VARCHAR" /> 
+     <result column="PRODUCT_ID" property="productId" jdbcType="DECIMAL" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="CHAR" /> 
+  </resultMap>
+
+	<select id="getWarningInfo" resultMap="WarningInfoMap" parameterClass="java.util.HashMap">
+		select a.PRODUCT_ID,max(a.PRODUCT_NAME) as PRODUCT_NAME, a.warn_no
+		,a.WARN_NAME, MAX(A.URL) URL,sum(a.c1) as warnLevelH,sum(a.c2) as
+		warnLevelM,sum(a.c3) as warnLevelL from (
+		SELECT t2.warn_no,
+		max(t2.WARN_NAME) as WARN_NAME, max(t2.URL) as URL,max(t1.PRODUCT_ID) as
+		PRODUCT_ID,max(t3.PRODUCT_NAME) as PRODUCT_NAME,
+		case when t1.warn_level = '1' then count(t2.warn_no) else 0 end c1,
+		case when t1.warn_level = '2' then count(t2.warn_no) else 0 end c2,
+		case when t1.warn_level = '3' then count(t2.warn_no) else 0 end c3
+		from B_WRN_BASE_INFO t1 join B_BRP_WARN_PARAM t2 on t1.param_Id =
+		t2.warn_no
+		left join B_PRD_INFO t3 on t1.PRODUCT_ID = t3.PRODUCT_ID
+		and t1.status='1' group by t2.warn_no,t1.warn_level
+		) a group by a.warn_no,a.WARN_NAME,a.PRODUCT_ID
+		order by a.warn_no
+	</select>
+</sqlMap>

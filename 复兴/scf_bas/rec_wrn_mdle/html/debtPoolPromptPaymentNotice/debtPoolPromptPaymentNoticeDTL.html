@@ -1,0 +1,22 @@
+<ht-form name="otherform">
+    <!--<ht-legend>通知书信息</ht-legend>-->
+    <ht-input ht-id="num" name="通知书编号" ng-model="otherform.num" disable="true"></ht-input>
+    <ht-input ht-id="noticeType" name="通知书类型" ng-model="otherform.noticeType" disable="true"></ht-input>
+    <ht-input ht-id="otherCustName" name="卖方名称" ng-model="otherform.otherCustName" disable="true"></ht-input>
+    <ht-select ht-id="status" name="通知书状态" disable="true" dictionary="noticeStatus"
+               ng-model="otherform.status"></ht-select>
+    <ht-input ht-id="signDate" name="签发日期" ng-model="otherform.signDate" disable="true"
+              edit-type="date"></ht-input>
+    <ht-input ht-id="protocolCode" name="协议号" ng-model="otherform.protocolCode" disable="true" ></ht-input>
+    <ht-input ht-id="debetId" name="借据号" ng-model="otherform.debetId" disable="true"></ht-input>
+    <ht-input ht-id="custName" name="买方名称" ng-model="otherform.custName" disable="true"></ht-input>
+    <ht-input ht-id="otherCustName" name="卖方名称" ng-model="otherform.otherCustName" disable="true"></ht-input>
+    <!--<ht-select ht-id="lnciType" name="出账方式" disable="true" dictionary="loanWay"-->
+               <!--ng-model="otherform.lnciType"></ht-select>-->
+    <!--<ht-input ht-id="lnciAmt"name="出账金额" ng-model="otherform.lnciAmt" disable="true"></ht-input>-->
+    <!--<ht-select ht-id="confirmStatus" name="收款确认状态" disable="true" dictionary="lnciConfirmStatus"-->
+               <!--ng-model="otherform.confirmStatus"></ht-select>-->
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PRD_CREDIT_PLY" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.prd.dao.model.BPrdCreditPly" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ENT_ACS" property="entAcs" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ENT_ACS, PRODUCT_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditPlyExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PRD_CREDIT_PLY.Base_Column_List" />
+    from B_PRD_CREDIT_PLY
+    <isParameterPresent >
+      <include refid="B_PRD_CREDIT_PLY.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditPly" >
+    select 
+    <include refid="B_PRD_CREDIT_PLY.Base_Column_List" />
+    from B_PRD_CREDIT_PLY
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditPly" >
+    delete from B_PRD_CREDIT_PLY
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditPlyExample" >
+    delete from B_PRD_CREDIT_PLY
+    <include refid="B_PRD_CREDIT_PLY.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditPly" >
+    insert into B_PRD_CREDIT_PLY (ID, ENT_ACS, PRODUCT_ID)
+    values (#id:VARCHAR#, #entAcs:VARCHAR#, #productId:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditPly" >
+    insert into B_PRD_CREDIT_PLY
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="entAcs" >
+        ENT_ACS
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entAcs" >
+        #entAcs:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        #productId:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditPlyExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PRD_CREDIT_PLY
+    <include refid="B_PRD_CREDIT_PLY.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PRD_CREDIT_PLY
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.entAcs" >
+        ENT_ACS = #record.entAcs:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productId" >
+        PRODUCT_ID = #record.productId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PRD_CREDIT_PLY.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PRD_CREDIT_PLY
+    set ID = #record.id:VARCHAR#,
+      ENT_ACS = #record.entAcs:VARCHAR#,
+      PRODUCT_ID = #record.productId:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_PRD_CREDIT_PLY.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditPly" >
+    update B_PRD_CREDIT_PLY
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="entAcs" >
+        ENT_ACS = #entAcs:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID = #productId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCreditPly" >
+    update B_PRD_CREDIT_PLY
+    set ENT_ACS = #entAcs:VARCHAR#,
+      PRODUCT_ID = #productId:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

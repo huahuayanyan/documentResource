@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_WRN_FLUC_PRICE" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPriceVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="MONI_CNAME" property="moniCname" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+    <result column="PRICE_DATE" property="priceDate" jdbcType="CHAR" />
+    <result column="ORIGINAL_MARKET_PRICE" property="originalMarketPrice" jdbcType="DECIMAL" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="CONFIRM_PRICE" property="confirmPrice" jdbcType="DECIMAL" />
+    <result column="FLUCTUATION" property="fluctuation" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="WARN_TYPE" property="warnType" jdbcType="CHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, CNAME, CUSTCD, MONI_CNAME, MONI_CUSTCD, MORTGAGE_LEVEL_ONE, MORTGAGE_LEVEL_TWO, 
+    MORTGAGE_LEVEL_THREE, MORTGAGE_UNITS, MORTGAGE_MODEL, PRICE_DATE, ORIGINAL_MARKET_PRICE, 
+    MARKET_PRICE, CONFIRM_PRICE, FLUCTUATION, MORTGAGE_NO, SLAVE_CONTNO, SLAVE_CONTCODE, 
+    PROTOCOL_NO, MAST_CONTNO, WARN_TYPE
+  </sql>
+  
+  <select id="selectPriceFluctuationException" parameterClass ="java.util.Map" resultMap="BaseResultMap">
+  	select twdi.* from B_WRN_MORT_FLUC_PRICE twdi,B_WRN_BASE_INFO twbi 
+  	where twbi.id = twdi.warn_id and twbi.status ='1' and 1=1
+	<isNotNull prepend="and" property="fluctuation1">
+		<![CDATA[ twdi.fluctuation >= #fluctuation1:DECIMAL#]]>
+	</isNotNull>
+	<isNotNull  prepend="and" property="fluctuation2">
+		<![CDATA[ twdi.fluctuation <= #fluctuation2:DECIMAL#]]>
+	</isNotNull>
+	<isNotNull prepend="and" property="paramId">
+		twbi.param_id = #paramId:VARCHAR#
+	</isNotNull>
+	<isNotNull  prepend="and" property="slaveContCode">
+		twdi.slave_contcode like '%'||#slaveContCode:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="cname" prepend="and">
+		twdi.cname like '%'||#cname:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="custcd" prepend="and">
+		twbi.custcd = #custcd:VARCHAR#
+	</isNotNull>
+	<isNotNull property="warnType" prepend="and">
+		twdi.warn_type = #warnType:CHAR#
+	</isNotNull>
+	<isNotEmpty property="brcode">
+		<isEqual property="brattr"  compareValue="1" prepend="and">
+			exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = twdi.protocol_no 
+			and tmbi.cooperation_brcode = #brcode:VARCHAR#)
+		</isEqual>
+		<isNotEqual property="brattr"  compareValue="1" prepend="and">
+			exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =twbi.brcode and 
+			parent_brcode =#brcode：VARCHAR# and affiliation_type = '1')
+		</isNotEqual>
+	</isNotEmpty>
+  </select>
+
+  <select id="countPriceFluctuationException" parameterClass ="java.util.Map" resultClass="java.lang.Integer">
+  	select count(id) from (
+  	select twdi.* from B_WRN_MORT_FLUC_PRICE twdi,B_WRN_BASE_INFO twbi 
+  	where twbi.id = twdi.warn_id and twbi.status ='1' and 1=1
+	<isNotNull prepend="and" property="fluctuation1">
+		<![CDATA[ twdi.fluctuation >= #fluctuation1:DECIMAL#]]>
+	</isNotNull>
+	<isNotNull  prepend="and" property="fluctuation2">
+		<![CDATA[ twdi.fluctuation <= #fluctuation2:DECIMAL#]]>
+	</isNotNull>
+	<isNotNull prepend="and" property="paramId">
+		twbi.param_id = #paramId:VARCHAR#
+	</isNotNull>
+	<isNotNull  prepend="and" property="slaveContCode">
+		twdi.slave_contcode like '%'||#slaveContCode:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="cname" prepend="and">
+		twdi.cname like '%'||#cname:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="custcd" prepend="and">
+		twbi.custcd = #custcd:VARCHAR#
+	</isNotNull>
+	<isNotNull property="warnType" prepend="and">
+		twdi.warn_type = #warnType:CHAR#
+	</isNotNull>
+	<isNotEmpty property="brcode">
+		<isEqual property="brattr"  compareValue="1" prepend="and">
+			exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = twdi.protocol_no 
+			and tmbi.cooperation_brcode = #brcode:VARCHAR#)
+		</isEqual>
+		<isNotEqual property="brattr"  compareValue="1" prepend="and">
+			exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =twbi.brcode and 
+			parent_brcode =#brcode：VARCHAR# and affiliation_type = '1')
+		</isNotEqual>
+	</isNotEmpty>
+  	)
+  </select>
+</sqlMap>

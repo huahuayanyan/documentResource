@@ -1,0 +1,55 @@
+<ht-legend>购销合同基本信息</ht-legend>
+<ht-form name="cntInfoForm">
+
+    <ht-input ht-id="tradeContcode" name="购销合同号"    ng-model="cntInfoForm.tradeContcode" reg-exp="common.require" disable="{{disable}}"></ht-input>
+    <ht-select ht-id="supplyChainPdId"  name="业务品种"  ng-model="cntInfoForm.supplyChainPdId" datatrsoption="value"  dataoption="key"  datasource="supplyChainPdIdSource"
+               reg-exp="common.require" disable="true"></ht-select>
+    <ht-input-extent ht-id="cname" name="买方名称" reg-exp="common.require"  extent="sellerNmContent"
+                     on-change="dooextent" ng-model="cntInfoForm.cname"></ht-input-extent>
+    <ht-input-extent ht-id="protocolNo" name="担保提货协议号" extent="protocolNoContent"
+                     on-change="protocolNoExtent" ng-model="cntInfoForm.protocolNo"></ht-input-extent>
+    <ht-input-extent ht-id="secCname" name="卖方名称" reg-exp="common.require"  extent="coreNmContent"
+                     on-change="coreNmExtent" ng-model="cntInfoForm.secCname" disable="true"></ht-input-extent>
+    <ht-select ht-id="curcd"  name="合同币种"  ng-model="cntInfoForm.curcd" datatrsoption="value"  dataoption="key" dictionary="curcd"
+               reg-exp="common.require" disable="{{disable}}"></ht-select>
+    <ht-input  ht-id="amt"  name="合同金额" ng-model="cntInfoForm.amt"  reg-exp="common.require" edit-type="currency"></ht-input>
+    <ht-input ht-id="totAmt" name="累计出账金额" ng-model="cntInfoForm.totAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="startDate" name="合同生效日" ng-model="cntInfoForm.startDate"   edit-type="date" high-date-id="endDate"
+              disable={{startDate}} reg-exp="common.require"></ht-input>
+    <ht-input ht-id="endDate" name="合同到期日" ng-model="cntInfoForm.endDate"  edit-type="date"  lower-date-id="startDate"
+              disable={{endDate}} reg-exp="common.require"></ht-input>
+    <ht-input ht-id="costMoney"  name="其他费用" ng-model="cntInfoForm.costMoney" edit-type="currency"></ht-input>
+
+</ht-form>
+
+<ht-legend>采购商品信息列表</ht-legend>
+    <ht-button-group>
+        <ht-button ht-id="addMrtg" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="updateMrtg" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="deleteMrtg" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+
+
+ <ht-table  datasource="mprotdatasource" selected="mprotselected" docheckbox="true" >
+  
+   <!--<ht-column  eg-name="mortgageName" zh-name="货物名称" href="true" docolumn="column"></ht-column>-->
+   <ht-column  eg-name="mortgageName" zh-name="货物名称"></ht-column>
+   <ht-column  eg-name="mortgageLevelOneName" zh-name="押品一级" ></ht-column>
+   <ht-column  eg-name="mortgageLevelTwoName" zh-name="押品二级" ></ht-column>
+   <ht-column  eg-name="mortgageModel" zh-name="规格/型号"  ></ht-column>
+   <ht-column  eg-name="mortgageUnits" zh-name="单位"  dictionary="mortgageUnits"></ht-column>
+   <ht-column  eg-name="quantity" zh-name="数量/重量" ></ht-column>
+   <ht-column  eg-name="price" zh-name="单价"   type="currency"></ht-column>
+   <ht-column  eg-name="totPrice" zh-name="总价"  type="currency"></ht-column>
+</ht-table>
+<ht-page conf="mprotConf"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="saveCnt" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="backToList" class="btn-primary">返回</ht-button>
+</ht-button-group>
+
+
+
+
+

@@ -1,0 +1,30 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+<ht-input-extent ht-id="dataTrsVal" name="客户标签" disable="{{disable}}" extent="areaContent"
+          on-change="dooextent" ng-model="conditionForm.dataTrsVal"></ht-input-extent>
+    <ht-button-group class="left">
+        <ht-button ht-id="searchTab"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>客户标签信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="add" hide="{{hide}}" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="delete"  hide="{{hide}}" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="update"  hide="{{hide}}" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="refresh"  hide="{{hide}}" class="btn-primary">客户标签载入</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="custTagType" dictionary="custTagType" zh-name="客户标签"></ht-column>
+    <ht-column eg-name="tagValue" zh-name="标签值"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="confuse" disable="{{disable}}"class="btn-primary">返回</ht-button>
+</ht-button-group>
+
+
+
+
+

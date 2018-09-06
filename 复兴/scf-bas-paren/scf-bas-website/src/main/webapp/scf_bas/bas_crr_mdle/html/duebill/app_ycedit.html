@@ -1,0 +1,42 @@
+
+<ht-form name="otherform">
+    <ht-panel>
+    <ht-legend>基本信息</ht-legend>
+    <ht-input-extent ht-id="custNm" name="客户名称" reg-exp="common.require" extent="custcontent" readonly="true"
+                     on-change="dooextend" ng-model="otherform.custNm" disable="true"></ht-input-extent>
+    <ht-input name="客户号" reg-exp="common.require" ng-model="otherform.custCd" disable="true"></ht-input>
+    <ht-input name="合同号" reg-exp="common.require" ng-model="otherform.appId" disable="true"></ht-input>
+    <ht-input name="业务品种" reg-exp="common.require" ng-model="otherform.prdNm" disable="true"></ht-input>
+    <ht-select name="电票标志" reg-exp="common.require" ng-model="otherform.elecFlg" disable="{{disableview}}" dictionary="elecFlg"></ht-select>
+    <ht-input name="出票人账户" reg-exp="BillCodeValidate" ng-model="otherform.wrtNo" disable="{{disableview}}"></ht-input>
+    <ht-select name="业务币种" reg-exp="common.require" ng-model="otherform.curcd" dictionary="curcd" disable="true"></ht-select>
+    <ht-input ht-id="lnAmt" name="汇票金额" reg-exp="common.require" ng-model="otherform.lnAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="isDt" name="出票日" reg-exp="common.require" ng-model="otherform.isDt"
+              edit-type="date" disable="true" high-date-id="teDt"></ht-input>
+    <ht-input ht-id="teDt" name="到期日" reg-exp="common.require" ng-model="otherform.teDt"
+              edit-type="date" disable="true" lower-date-id="isDt"></ht-input>
+    <ht-select name="占用额度模式" reg-exp="common.require" ng-model="otherform.crMdl" dictionary="checked" on-change="changeCrMdl" disable="true"></ht-select>
+    <ht-input ht-id="crNo" name="额度编号" reg-exp="common.require" ng-model="otherform.crNo" hide="{{hidecrmdl}}" disable="true"></ht-input>
+    </ht-panel>
+    <ht-panel>
+    <ht-legend>其他信息</ht-legend>
+    <ht-input name="手续费率(%)" reg-exp="common.require" ng-model="otherform.feeRat" disable="true"></ht-input>
+    <ht-input name="手续费金额" reg-exp="common.require" ng-model="otherform.feeAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-select name="收费方式" reg-exp="common.require" ng-model="otherform.feeTyp" dictionary="feeTyp" disable="true"></ht-select>
+    <ht-select name="收费周期" reg-exp="common.require" ng-model="otherform.feePd" dictionary="feePd" disable="true"></ht-select>
+    <ht-input-extent ht-id="actBrNm" name="账务机构" extent="brnameContent" on-change="brnameExtent"
+                     reg-exp="common.require" ng-model="otherform.actBrNm" disable="{{disable}}"></ht-input-extent>
+    <ht-input ht-id="tlrNm" name="经办人" ng-model="otherform.tlrNm" disable="true"></ht-input>
+    <ht-input ht-id="brNm" name="经办机构" ng-model="otherform.brNm" disable="true"></ht-input>
+    <ht-input ht-id="inpDt" name="经办日期" ng-model="otherform.inpDt" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdTlrNm" name="更新人" ng-model="otherform.lstUpdTlrNm" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdBrNm" name="更新机构" ng-model="otherform.lstUpdBrNm" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdDt" name="更新日期" ng-model="otherform.lstUpdDt" disable="true"></ht-input>
+    </ht-panel>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <!--<ht-button ht-id="submitfirm" class="btn-primary" hide="{{hidesubmit}}">提交</ht-button>-->
+    <!--<ht-button ht-id="closeThisDialog" class="btn-primary" hide="{{hideback}}">返回</ht-button>-->
+</ht-button-group>

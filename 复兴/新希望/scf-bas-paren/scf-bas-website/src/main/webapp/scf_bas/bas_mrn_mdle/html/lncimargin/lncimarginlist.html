@@ -1,0 +1,29 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="custcd" name="客户号" ng-model="conditionForm.custcd"></ht-input>
+    <ht-input ht-id="debetId" name="借据号/承兑协议号" ng-model="conditionForm.debetId"></ht-input>
+    <ht-input ht-id="mastContCode" name="信贷合同号" ng-model="conditionForm.mastContCode"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="reset"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-legend>借据列表</ht-legend>
+<ht-table ht-id="tableId2" datasource="datasource" selected="selected"    docheckbox="true"  minheit="150px">
+    <ht-column eg-name="loanAppno" zh-name="出账流水号"  ></ht-column>
+    <ht-column eg-name="debetId" zh-name="借据号/承兑协议号" ></ht-column>
+    <ht-column eg-name="custcd" zh-name="客户号" ></ht-column>
+    <ht-column eg-name="mastContcode" zh-name="信贷合同号"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式"   dictionary="loanWay"    ></ht-column>
+    <ht-column eg-name="startDate" zh-name="起始日"  type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日" type="date"></ht-column>   
+    <ht-column eg-name="lnciAmt"   zh-name="借据金额"   type="currency"></ht-column>
+    <ht-column eg-name="lnciBal" zh-name="借据余额"     type="currency"></ht-column>
+     <ht-column eg-name="firstBailRatio" zh-name="初始保证金比例(%)"  ></ht-column>
+     <ht-column eg-name="totBailAmt"   zh-name="保证金金额"   type="currency"></ht-column>
+     <ht-column eg-name=totCashEqualAmt   zh-name="现金等价物金额"   type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="apply" class="btn-primary" >保证金追加冻结申请</ht-button>
+</ht-button-group>

@@ -1,0 +1,40 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="custName" name="出质人名称" ng-model="conditionForm.custName"></ht-input>
+    <ht-input ht-id="slaveContcode" name="抵/质押合同号" ng-model="conditionForm.slaveContcode"></ht-input>
+    <ht-select ht-id="supplyChainPdId" name="业务品种" ng-model="conditionForm.supplyChainPdId"
+              datasource="selectSource" datatrsoption="value" dataoption="key" disable="true"></ht-select>
+    <ht-select ht-id="bussType" name="操作类型" ng-model="conditionForm.bussType" dictionary="mortgageBizType"></ht-select>
+    <ht-input ht-id="dateFrom" name="操作时间 从" ng-model="conditionForm.dateFrom"
+              edit-type="date" ></ht-input>
+    <ht-input ht-id="dateTo" name="操作时间 到" ng-model="conditionForm.dateTo"
+              edit-type="date" ></ht-input>
+    <ht-input-extent name='经办机构' ht-id ='brName' extent='content' on-change="dooextent"
+            checkedHiden="true" ng-model='conditionForm.brName'></ht-input-extent>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>查询押品流水信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="SLAVE_CONTNO" zh-name="抵/质押合同号"></ht-column>
+    <ht-column eg-name="CNAME" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="PRODUCT_NAME" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="MORTGAGE_BIZ_TYPE" zh-name="操作类型" dictionary="mortgageBizType"></ht-column>
+    <ht-column eg-name="ONE_LEVEL" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="TWO_LEVEL" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="THREE_LEVEL" zh-name="押品三级"></ht-column>
+    <ht-column eg-name="QUANTITY" zh-name="数量/重量"></ht-column>
+    <ht-column eg-name="CONFIRM_PRICE" zh-name="核定单价" type="currency"></ht-column>
+    <ht-column eg-name="TOT_PRICE" zh-name="押品总价值" type="currency"></ht-column>
+    <ht-column eg-name="INQUANTITY" zh-name="入库押品数量"></ht-column>
+    <ht-column eg-name="OUTQUANTITY" zh-name="出库押品数量"></ht-column>
+    <ht-column eg-name="LAST_UPD_TIME" zh-name="出入库时间" type="date"></ht-column>
+    <ht-column eg-name="BRNAME" zh-name="经办机构"></ht-column>
+    <ht-column eg-name="LAST_UPD_TIME" zh-name="操作时间" type="date"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->

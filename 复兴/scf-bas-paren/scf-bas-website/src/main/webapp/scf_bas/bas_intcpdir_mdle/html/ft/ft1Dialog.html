@@ -1,0 +1,11 @@
+
+<ht-form name="otherform">
+    <ht-legend>拦截模型信息</ht-legend>
+    <ht-input name="拦截模型ID" ng-model="otherform.mdlId"   reg-exp="common.require"    disable="{{disable}}" ></ht-input>
+    <ht-input name="拦截模型名" ng-model="otherform.mdlNm"   reg-exp="common.require"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

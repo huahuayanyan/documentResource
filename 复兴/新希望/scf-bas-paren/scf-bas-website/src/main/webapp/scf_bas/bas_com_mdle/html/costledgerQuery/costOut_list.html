@@ -1,0 +1,44 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input-extent ht-id="cname" name="客户名称" extent="custcontent" on-change="dooextend"
+                     ng-model="conditionForm.cname"></ht-input-extent>
+    <ht-input name="业务合同号" ng-model="conditionForm.bussContno"></ht-input>
+    <ht-input id="commonDate_from_Q" name="扣收开始日期" ng-model="conditionForm.commonDate_from_Q" edit-type="date"></ht-input>
+    <ht-input id="commonDate_to_Q" name="扣收结束日期" ng-model="conditionForm.commonDate_to_Q" edit-type="date"></ht-input>
+    <ht-select name="收费类型" ng-model="conditionForm.chargeClass_Q" dictionary="chargeClass"></ht-select>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>查询结果</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="false">
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">费用补录</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="sellerNm" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="bussContno" zh-name="业务合同号"></ht-column>
+    <ht-column eg-name="txFlowNo" zh-name="交易流水号"></ht-column>
+    <ht-column eg-name="costName" zh-name="费用名称"></ht-column>
+    <ht-column eg-name="costClass" zh-name="费用收取种类" dictionary="costClass"></ht-column>
+    <ht-column eg-name="costType" zh-name="费用收取方式" dictionary="costType"></ht-column>
+    <ht-column eg-name="chargeType" zh-name="扣取方式" dictionary="costChargeType"></ht-column>
+    <ht-column eg-name="costCalcType" zh-name="计算方式" dictionary="costCalcType"></ht-column>
+    <ht-column eg-name="costRate" zh-name="费用比率(%)" type="currency"></ht-column>
+    <ht-column eg-name="costAmt" zh-name="固定费用" type="currency"></ht-column>
+    <ht-column eg-name="totalAmt" zh-name="费用小计" type="currency"></ht-column>
+    <ht-column eg-name="reduceAmt" zh-name="减免金额" type="currency"></ht-column>
+    <ht-column eg-name="costAccount" zh-name="扣费账号"></ht-column>
+    <ht-column eg-name="receiveAmount" zh-name="实收费用小计" type="currency"></ht-column>
+    <ht-column eg-name="commonDate" zh-name="扣收日期"></ht-column>
+    <ht-column eg-name="chargeClass" zh-name="收费类型" dictionary="chargeClass"></ht-column>
+    <ht-column eg-name="tlrnm" zh-name="客户经理"></ht-column>
+    <ht-column eg-name="brname" zh-name="收费机构"></ht-column>
+</ht-table>
+
+<ht-page conf="conf"></ht-page>
+
+
+
+

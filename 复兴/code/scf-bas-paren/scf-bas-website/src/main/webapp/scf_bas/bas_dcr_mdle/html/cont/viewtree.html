@@ -1,0 +1,15 @@
+<ht-form name="viewTreeForm"  columns="2">
+    <ht-input ht-id="linId" name="额度ID" ng-model="viewTreeForm.linId"   disable="true"  ></ht-input>
+    <ht-select ht-id="linTyp"  name="类型" ng-model="viewTreeForm.linTyp"      dictionary="crdlinTyp"   disable="true"  reg-exp="common.require"></ht-select>
+    <ht-select ht-id="circFlag" name="循环标志" ng-model="viewTreeForm.circFlag"   dictionary="circFlag"   disable="true"   reg-exp="common.require" ></ht-select>
+    <ht-input ht-id="busNm" name="授信品种" ng-model="viewTreeForm.busNm"   reg-exp="common.require"   hide="{{busNmhide}}"   disable="true"  ></ht-input>
+    <ht-select ht-id="busTyp"  name="授信品种"    ng-model="viewTreeForm.busTyp"   dictionary="loanWay"    reg-exp="common.require"    disable="true"  hide="{{busTyphide}}" ></ht-select> 
+ 	<ht-select ht-id="curcd" name="币种"   dictionary="curcd"    disable="true"  ng-model="viewTreeForm.curcd" reg-exp="common.require"></ht-select>   
+    <ht-input ht-id="crAmt" name="额度金额" ng-model="viewTreeForm.crAmt"   edit-type="currency"    disable="true"   reg-exp="common.require"></ht-input>
+     <ht-input ht-id="riskAmt" name="敞口额度" ng-model="viewTreeForm.riskAmt"    edit-type="currency"  hide="true" ></ht-input>
+     <ht-input ht-id="usedNum" name="已用额度" ng-model="viewTreeForm.usedNum"   edit-type="currency"    disable="true"></ht-input>
+     <ht-input ht-id="ableNum" name="可用额度" ng-model="viewTreeForm.ableNum"   edit-type="currency"    disable="true" ></ht-input>     
+</ht-form>
+<ht-button-group align="center">
+    <ht-button ht-id="cancel" desc-name="关闭" class="btn-primary"></ht-button>
+</ht-button-group>

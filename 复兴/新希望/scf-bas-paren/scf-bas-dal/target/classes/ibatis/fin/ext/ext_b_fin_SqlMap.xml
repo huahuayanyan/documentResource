@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_FIN" >
+  <select id="queryMdlList" resultMap="B_FIN_CNFG_CL.BaseResultMap"  parameterClass="java.util.Map" >
+    select *
+    from B_FIN_CNFG_CL  
+   <dynamic prepend="where" >
+      <isNotEmpty prepend="or" property="mdlId" >
+        MDL_ID  like '%'|| #mdlId:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="mdlNm" >
+        MDL_NM  like '%'|| #mdlNm:VARCHAR#||'%'    
+      </isNotEmpty>
+    </dynamic>
+    order by MDL_ID
+  </select> 
+  
+  <resultMap id="BaseSubjResultMap" class="java.util.HashMap" >
+    <result column="SUBJ_ID" property="subjId" jdbcType="VARCHAR" />
+    <result column="SUBJ_NM" property="subjNm" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryBFinCnfgDefSubjByPage" resultMap="BaseSubjResultMap"  parameterClass="java.util.HashMap" >
+    select SUBJ_ID,SUBJ_NM
+    from B_FIN_CNFG_DEF  
+   	where SUBJ_ID is not null
+	  <isNotEmpty prepend="and" property="mdlId" >
+        MDL_ID = #mdlId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="edTyp" >
+        ED_TYP = #edTyp:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="subjId" >
+        (SUBJ_ID  like '%'|| #subjId:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="subjNm" >
+        SUBJ_NM  like '%'|| #subjNm:VARCHAR#||'%')
+      </isNotEmpty>
+    order by SUBJ_ID
+  </select>
+  <select id="countBFinCnfgDefSubjByPage" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(SUBJ_ID)
+    from B_FIN_CNFG_DEF  
+    where SUBJ_ID is not null
+   	  <isNotEmpty prepend="and" property="mdlId" >
+        MDL_ID = #mdlId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="edTyp" >
+        ED_TYP = #edTyp:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="subjId" >
+        (SUBJ_ID  like '%'|| #subjId:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="subjNm" >
+        SUBJ_NM  like '%'|| #subjNm:VARCHAR#||'%')
+      </isNotEmpty>
+  </select>
+</sqlMap>

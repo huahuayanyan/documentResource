@@ -1,0 +1,25 @@
+<ht-form name ="dialogform">
+    <ht-input ht-id="mortgageNo" name="押品编号" disable={{disable}} reg-exp="common.require" ng-model="dialogform.mortgageNo"></ht-input>
+    <ht-input ht-id="mortgageName" name="押品名称" disable={{disable}} reg-exp="common.require" ng-model="dialogform.mortgageName"></ht-input>
+    <ht-input ht-id="mortgageModel" name="规格/型号" disable={{disable}} reg-exp="common.require" ng-model="dialogform.mortgageModel"></ht-input>
+    <ht-input ht-id="manufacturer" name="生产厂家"  disable={{disable}} reg-exp="common.require" ng-model="dialogform.manufacturer"></ht-input>
+    <ht-input ht-id="manufactureDate" name="出厂日期"  disable={{disable}} reg-exp="common.require" edit-type="date" ng-model="dialogform.manufactureDate"></ht-input>
+    <ht-select ht-id="mortgageUnits" name="单位"  disable={{disable}} reg-exp="common.require" dictionary="mortgageUnits" ng-model="dialogform.mortgageUnits"></ht-select>
+    <ht-input ht-id="quantity" name="数量/重量"  disable={{disable}} reg-exp="common.require,common.number" ng-model="dialogform.quantity"></ht-input>
+    <ht-select ht-id="mortgageLevelOne" name="押品一级"  disable={{disable}} reg-exp="common.require" on-change="mortgageLevelOneName" datasource="mortgageLevelOneSource" dataOption="code" dataTrsOption="codeName"  ng-model="dialogform.mortgageLevelOne"></ht-select>
+    <ht-select ht-id="mortgageLevelTwo" name="押品二级"  disable={{disable}} reg-exp="common.require"on-change="mortgageLevelTwoName" datasource="mortgageLevelTwoSource" dataOption="code" dataTrsOption="codeName" ng-model="dialogform.mortgageLevelTwo"></ht-select>
+    <ht-select ht-id="mortgageLevelThree" name="押品三级"  disable={{disable}} datasource="mortgageLevelThreeSource" dataOption="code" dataTrsOption="codeName" ng-model="dialogform.mortgageLevelThree"></ht-select>
+    <ht-input ht-id="description" name="押品其他描述"  disable={{disable}} ng-model="dialogform.description"></ht-input>
+    <ht-input ht-id="warehouse" name="仓库名称"  disable={{disable}}  ng-model="dialogform.warehouse"></ht-input>
+    <ht-input ht-id="warehouseAddress" name="仓库地址"  disable={{disable}} ng-model="dialogform.warehouseAddress"></ht-input>
+    <ht-select ht-id="moniWarehouseType" name="监管模式"  disable={{disable}}  dictionary="monitortype" ng-model="dialogform.moniWarehouseType"></ht-select>
+    <ht-input ht-id="confirmPrice" name="调整前单价"  disable={{disable}} reg-exp="common.require"edit-type="currency" ng-model="dialogform.confirmPrice"></ht-input>
+    <ht-select ht-id="curcd" name="币种" reg-exp="common.require" disable="true" dictionary="curcd" ng-model="dialogform.curcd"></ht-select>
+    <ht-input ht-id="afterConfirmPrice" name="调整后单价"   reg-exp="common.require"edit-type="currency" ng-model="dialogform.afterConfirmPrice"></ht-input>
+	<ht-input ht-id="reason" name="调整原因"   ng-model="dialogform.reason"></ht-input>
+	
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide={{confirm}} class="btn-primary">保存</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

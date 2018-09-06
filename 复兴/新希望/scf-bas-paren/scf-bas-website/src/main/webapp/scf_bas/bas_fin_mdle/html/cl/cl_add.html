@@ -1,0 +1,17 @@
+
+<ht-form name="otherform">
+    <ht-input name="模型编号" reg-exp="mdlIdValidate" ng-model="otherform.mdlId" data-size="6"></ht-input>
+    <ht-input name="模型名称" reg-exp="common.require" ng-model="otherform.mdlNm"></ht-input>
+    <ht-select ht-id="mdlCl" name="模型分类" datasource="selectMdlCl" reg-exp="common.require"
+               datatrsoption="value" dataoption="key" ng-model="otherform.mdlCl"></ht-select>
+    <ht-select ht-id="mdlTyp" reg-exp="common.require" name="模型种类" 
+    		   dictionary="mdlTypCode" ng-model="otherform.mdlTyp"></ht-select>
+    <ht-input name="数据列数" reg-exp="common.require" ng-model="otherform.col" edit-type="number"></ht-input>
+    <ht-input name="栏位" reg-exp="common.require" ng-model="otherform.cotes" edit-type="number"></ht-input>
+    <ht-text-area name="备注" disable="{{disable}}" height="70" hide="false" ng-model="otherform.rem"></ht-text-area>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

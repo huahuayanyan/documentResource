@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- BhLoanCheckList START -->
+        <!--  定义报表生成所类与数据文件分析类，此bean一般情况下不用修改 -->
+	<bean id="BhLoanCheckListReportProcess" class="com.huateng.scf.bas.batch.report.processor.SemsJasperReportProcess" singleton="false">
+		<property name="adapter">
+			<ref local="BhLoanCheckListReportFileAdapter"/>
+		</property>
+	</bean>
+	 <!-- 此bean负责分析数据文件，按照一定格式提取数据-->
+	<bean id="BhLoanCheckListReportFileAdapter" class="com.huateng.scf.bas.batch.report.adapter.SemsReportFileAdapter" singleton="false">
+        <!-- 根据数据文件配置分隔符，程序根据此分隔符解析数据，此例中使用的是”,”作为数据的分隔符 -->
+		<property name="separator">
+			<value>,</value>
+		</property>
+        <!-- 根据数据文件配置报表的结构标志，可以看到，数据文件分为title, head, body, tail几个部分，注意，以上几个”property”不可或缺，而”value”的值可以根据需要修改 -->
+		<property name="title_tag">
+			<value>#TITLE</value>
+		</property>
+		<property name="head_tag">
+			<value>#HEAD</value>
+		</property>
+		<property name="body_tag">
+			<value>#BODY</value>
+		</property>
+		<property name="tail_tag">
+			<value>#TAIL</value>
+		</property>
+		<property name="report">
+			<ref local="BhLoanCheckListReport"/>
+		</property>
+	</bean>
+	<bean id="BhLoanCheckListReport"
+		class="com.huateng.report.bean.impl.BaseReport" singleton="false">
+        <!--  .jxml文件名 -->
+		<property name="id">
+			<value>BhLoanCheckList</value>
+		</property>
+		<property name="name">
+			<value>测试报表</value>
+		</property>
+		<property name="desc">
+			<value>测试报表描述</value>
+		</property>
+		<property name="bodyBeanId">
+			<value>BhLoanCheckList.Body</value>
+		</property>
+		<property name="title">
+			<ref local="BhLoanCheckList.Title" />
+		</property>
+		<property name="head">
+			<ref local="BhLoanCheckList.Head" />
+		</property>
+		<property name="tail">
+			<ref local="BhLoanCheckList.Tail" />
+		</property>
+	</bean>
+	<bean id="BhLoanCheckList.Body"
+		class="com.huateng.report.bean.impl.BaseReportBody"
+		singleton="false">
+		<property name="paramMap">
+			<map>
+                <!-- 注意key名要与.jxml文件中的字段值（下图中Field：$F{paramMap_1}.get(key)中的key）一致 -->
+				<entry key="A1" value="-" />
+				<entry key="A2" value="-" />
+				<entry key="A3" value="-" />
+				<entry key="A4" value="-" />
+			</map>
+		</property>
+	</bean>
+	<bean id="BhLoanCheckList.Title" class="com.huateng.report.bean.impl.BaseReportTitle" singleton="false">
+	    <property name="paramMap">
+			<map></map>
+		</property>
+	</bean>
+	<bean id="BhLoanCheckList.Head"
+		class="com.huateng.report.bean.impl.BaseReportHead"
+		singleton="false">
+		<property name="paramMap">
+			<map>
+                <!-- 注意key名要与.jxml文件中的参数（Parameter）名一致 -->
+				<entry key="sBrcode" value="-" />
+				<entry key="date" value="-" />
+			</map>
+		</property>
+	</bean>
+	<bean id="BhLoanCheckList.Tail"
+		class="com.huateng.report.bean.impl.BaseReportTail"
+		singleton="false">
+		<property name="paramMap">
+			<map>
+                <!-- 注意key名要与.jxml文件中的参数（Parameter）名一致 -->
+				<entry key="name" value="-" />
+				<entry key="tail1" value="-" />
+				<entry key="tail2" value="-" />
+				<entry key="tail3" value="-" />
+				<entry key="tail4" value="-" />
+				<entry key="tail5" value="-" />
+				<entry key="tail6" value="-" />
+			</map>
+		</property>
+	</bean>
+	<!-- BhLoanCheckList END -->
+</beans>

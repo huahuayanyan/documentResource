@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_SYS_REGION" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.sys.dao.model.BSysRegion" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="REGION_CODE" property="regionCode" jdbcType="VARCHAR" />
+    <result column="REGION_NAME" property="regionName" jdbcType="VARCHAR" />
+    <result column="FULL_NAME" property="fullName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, REGION_CODE, REGION_NAME, FULL_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysRegionExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_SYS_REGION.Base_Column_List" />
+    from B_SYS_REGION
+    <isParameterPresent >
+      <include refid="B_SYS_REGION.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysRegion" >
+    select 
+    <include refid="B_SYS_REGION.Base_Column_List" />
+    from B_SYS_REGION
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysRegion" >
+    delete from B_SYS_REGION
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysRegionExample" >
+    delete from B_SYS_REGION
+    <include refid="B_SYS_REGION.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysRegion" >
+    insert into B_SYS_REGION (ID, REGION_CODE, REGION_NAME, FULL_NAME
+      )
+    values (#id:VARCHAR#, #regionCode:VARCHAR#, #regionName:VARCHAR#, #fullName:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysRegion" >
+    insert into B_SYS_REGION
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="regionCode" >
+        REGION_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="regionName" >
+        REGION_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="fullName" >
+        FULL_NAME
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regionCode" >
+        #regionCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regionName" >
+        #regionName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fullName" >
+        #fullName:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysRegionExample" resultClass="java.lang.Integer" >
+    select count(*) from B_SYS_REGION
+    <include refid="B_SYS_REGION.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_SYS_REGION
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.regionCode" >
+        REGION_CODE = #record.regionCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.regionName" >
+        REGION_NAME = #record.regionName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fullName" >
+        FULL_NAME = #record.fullName:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_SYS_REGION.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_SYS_REGION
+    set ID = #record.id:VARCHAR#,
+      REGION_CODE = #record.regionCode:VARCHAR#,
+      REGION_NAME = #record.regionName:VARCHAR#,
+      FULL_NAME = #record.fullName:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_SYS_REGION.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysRegion" >
+    update B_SYS_REGION
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="regionCode" >
+        REGION_CODE = #regionCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regionName" >
+        REGION_NAME = #regionName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fullName" >
+        FULL_NAME = #fullName:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysRegion" >
+    update B_SYS_REGION
+    set REGION_CODE = #regionCode:VARCHAR#,
+      REGION_NAME = #regionName:VARCHAR#,
+      FULL_NAME = #fullName:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

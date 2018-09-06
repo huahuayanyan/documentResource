@@ -1,0 +1,74 @@
+/*全局定义*/
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0}
+body{font-family:"微软雅黑";-webkit-text-size-adjust:100%;background:#fff;color:#333;font-size:14px;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+address,cite,dfn,em,i,var,caption{font-style:normal;}
+ul,ol,li{list-style:none;}
+a,a img,button {cursor:pointer;}
+button,input,select,textarea{font-size:100%;}
+img,input,select,button,textarea{border:0;vertical-align:middle;}
+a:focus,input:focus,button:focus,select:focus,textarea:focus{outline:none;}
+a,a:hover{text-decoration:none;}
+
+h4 {
+    font-size: 15px;
+    font-weight: normal;
+    font-family: "微软雅黑";
+    display: block;
+    cursor: pointer;
+    -webkit-margin-before: 1.33em;
+    -webkit-margin-after: 1.33em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.header.blue {
+    border-bottom-color: #d5e3ef;
+}
+.header {
+    line-height: 28px;
+    margin-bottom: 16px;
+    margin-top: 18px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #CCC;
+}
+.blue {
+    color: #478fca!important;
+}
+.widget-box {
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin: 3px 0;
+    border-bottom: 1px solid #CCC;
+}
+.widget-header {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    position: relative;
+    min-height: 30px;
+    background: #f7f7f7;
+    background-image: -webkit-gradient(linear,left 0,left 100%,from(#fff),to(#eee));
+    background-image: -webkit-linear-gradient(top,#fff,0%,#eee,100%);
+    background-image: -moz-linear-gradient(top,#fff 0,#eee 100%);
+    background-image: linear-gradient(to bottom,#fff 0,#eee 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffeeeeee',GradientType=0);
+    color: #669fc7;
+    border: 1px solid #CCC;
+    border-bottom: 1px solid #DDD;
+    padding-left: 12px;
+}
+.widget-header h5{
+    margin: 10px 0;
+}
+.widget-body {
+    border: 1px solid #CCC;
+    border-top: 0;
+    background-color: #FFF;
+}
+.widget-main {
+    padding: 12px;
+}
+
+

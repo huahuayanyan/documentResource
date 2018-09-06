@@ -1,0 +1,45 @@
+<div class="innerTable" ng-style="minheight" style="min-height: 200px;">
+	<table class="table table-hover">
+		<thead>
+			<tr id="intcplinetableId" class="ui-sortable">
+				<th class="ui-state-disabledd" style="width: 1px"><span>序号</span></th>
+				<th class="ui-state-disabledd" style="width: 35px"><span>拦截项</span></th>
+				<th class="ui-state-disabledd" style="width: 10px"><span>结果</span></th>
+				<th class="ui-state-disabledd" style="width: 60px"><span>描述</span></th>
+			</tr>
+		</thead>
+		<tr ng-repeat="selected  in ds">
+			<td   style="font-size: 12px">{{selected.ord}}</td>
+			<td  style="font-size: 12px" title="{{selected.nm}}">{{selected.nm}}</td>
+			<td>
+				<div ng-switch="selected.stat">
+					<div ng-switch-when="1">
+						<img
+							src="../../scube_ui/lib/plugins/artDialog/skins/icons/warning.png"
+							height="25" width="25" />
+					</div>
+					<div ng-switch-when="2">
+						<img
+							src="../../scube_ui/lib/plugins/artDialog/skins/icons/succeed.png"
+							height="25" width="25" />
+					</div>
+					<div ng-switch-when="3">
+						<img
+							src="../../scube_ui/lib/plugins/artDialog/skins/icons/error.png"
+							height="25" width="25" />
+					</div>
+					<div ng-switch-default>
+						<img
+							src="../../scube_ui/lib/plugins/artDialog/skins/icons/loading.gif"
+							height="20" width="20" />
+					</div>
+				</div>
+			</td>
+			<td style="font-size: 12px;">{{selected.rem}}</td>
+		</tr>
+	</table>
+</div>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="close"  class="btn-primary">取消</ht-button>
+</ht-button-group>

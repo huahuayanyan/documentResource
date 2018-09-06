@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ------------公共css--------------------- -->
+    <script src="../../scube_ui/common/importCs.js"></script>
+    <!-- ------------业务css--------------------- -->
+
+</head>
+<body>
+<div ng-controller="fourDeliveryAppGuideController">
+ <ht-form name="taskform">
+  <ht-legend>任务基本信息</ht-legend>
+    <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+    <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+    <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+    <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+</ht-form>
+    <ht-tabs>
+
+        <ht-pane title="提货申请信息"  ui-sref="fourDeliveryDtl"></ht-pane>
+        <ht-pane title="保证金追加"  ui-sref="fourDeliveryMrninfo"></ht-pane>
+        <ht-pane title="附件上传"  ui-sref="fourDeliveryFileupload"></ht-pane>
+        <ht-pane title="抵/质押合同查询" ui-sref="gntyconInfo"></ht-pane>
+        <ht-pane title="监管合同查询" ui-sref="monitorProtocol"></ht-pane>
+
+    </ht-tabs>
+</div>
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+<script src="../../config.js"></script>
+
+<!-- ------------公共js--------------------- -->
+<script src="../../scube_ui/common/myBrowser.js"></script>
+<script src="../../scube_ui/common/importJs.js"></script>
+
+<script src="../../bas_com_mdle/js/StringUtil.js"></script>
+
+<!-- ------------业务js--------------------- -->
+<script src="../js/afcs_fourDeliveryAppGuide_mdle.js"></script>
+<script src="../js/controllers/afcsfourDelivery/fourDeliveryAppGuide_controller.js"></script>
+<script src="../js/controllers/afcsfourDelivery/fourDeliveryDtl_controller.js"></script>
+<!--保证金追加-->
+<script src="../js/controllers/afcsfourDelivery/fourDelivery_mrn_controller.js"></script>
+<!--附件上传-->
+<script src="../js/controllers/afcsfourDelivery/fourDelivery_fileupload_controller.js"></script>
+<!--监管合同-->
+<script src="../js/controllers/afcsfour/monitorProtocol_controller.js"></script>
+<!--抵质押合同-->
+<script src="../js/controllers/afcsfour/gntyconInfo_controller.js"></script>
+</body>
+</html>
+
+

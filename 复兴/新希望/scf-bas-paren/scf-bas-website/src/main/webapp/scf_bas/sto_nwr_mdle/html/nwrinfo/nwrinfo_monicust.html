@@ -1,0 +1,22 @@
+
+<ht-form name ="protocolDtl">
+    <ht-legend>监管公司详细信息</ht-legend>
+    <ht-input ht-id="custcd" name="监管公司客户号" reg-exp="common.require" disable="true" ng-model="protocolDtl.custcd"></ht-input>
+    <ht-input ht-id="thrName" name="监管公司名称" reg-exp="common.require" disable="true" ng-model="protocolInfo.thrName"></ht-input>
+    <ht-input ht-id="levels" name="监管公司等级" reg-exp="common.require" disable="true" ng-model="protocolDtl.levels"></ht-input>
+    <ht-select ht-id="monitorArea" name="监管区域" reg-exp="common.require" disable="true"  dictionary="monitorArea" ng-model="protocolDtl.monitorArea"></ht-select>
+    <ht-checkbox ht-id="monitortype" name="监管模式" disable="true" dictionary="monitortype" reg-exp="common.require" ng-model="protocolDtl.monitortype"></ht-checkbox>
+    <ht-input ht-id="detailMonitorArea" name="具体监管区域(省/市)" reg-exp="common.require" disable="true" ng-model="protocolDtl.detailMonitorArea"></ht-input>
+    <ht-input ht-id="limitSum" name="监管限额(元)" reg-exp="common.require" disable="true" ng-model="protocolDtl.limitSum" edit-type="currency"></ht-input>
+    <ht-input ht-id="inspectFrequence" name="巡库频率（天）" reg-exp="common.require" disable="true" ng-model="protocolDtl.inspectFrequence"></ht-input>
+    <ht-select ht-id="bussControlFlag" name="业务受理控制" disable="true" dictionary="bussControlFlag" ng-model="protocolDtl.bussControlFlag"></ht-select>
+    <ht-input ht-id="levelCogniDate" name="等级认定日" reg-exp="common.require" disable="true" edit-type="date" ng-model="protocolDtl.levelCogniDate"></ht-input>
+    <ht-input ht-id="levelEndDate" name="等级到期日" reg-exp="common.require" disable="true" edit-type="date" ng-model="protocolDtl.levelEndDate"></ht-input>
+    <ht-select ht-id="grouped" name="是否集团公司" disable="true"  dictionary="grouped" ng-model="protocolDtl.grouped"></ht-select>
+    <ht-select ht-id="groupedMember" name="公司类型" disable="true"  dictionary="checked" ng-model="protocolDtl.groupedMember"></ht-select>
+    <ht-input ht-id="parentName" name="上级监管公司" disable="true" ng-model="protocolDtl.parentName"></ht-input>
+    <ht-select ht-id="monitorStatus" name="合作状态" reg-exp="common.require" disable="true" dictionary="monitorStatus" ng-model="protocolDtl.monitorStatus"></ht-select>
+    <ht-input ht-id="createDate" name="建档日期" reg-exp="common.require" disable="true" edit-type="date" ng-model="protocolDtl.createDate"></ht-input>
+    <ht-select ht-id="creditType" name="总对总标识" disable="true"  dictionary="creditType" ng-model="protocolDtl.creditType"></ht-select>
+    <ht-text-area ht-id="otherDes" name="备注" disable="true" ng-model="protocolDtl.otherDes"></ht-text-area>
+</ht-form>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_WRN_CHECK_STOCK" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.wrn.dao.model.BWanCheckStockVO" >   
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="MONI_CNAME" property="moniCname" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="MORT_AMT" property="mortAmt" jdbcType="DECIMAL" />
+    <result column="CHECK_AMT" property="checkAmt" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="CONFIRM_DATE" property="confirmDate" jdbcType="CHAR" />
+    <result column="CHECK_TYPE" property="checkType" jdbcType="VARCHAR" />
+    <result column="CHECK_RESULT" property="checkResult" jdbcType="VARCHAR" />
+    <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
+    <result column="CUST_MANAGER" property="custManager" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, SLAVE_CONTNO, SLAVE_CONTCODE, CUSTCD, CNAME, MONI_CUSTCD, MONI_CNAME, 
+    PROTOCOL_NO, MORT_AMT, CHECK_AMT, START_DATE, CONFIRM_DATE, CHECK_TYPE, CHECK_RESULT, 
+    CHECK_STATUS
+  </sql>
+  
+    <select id="selectCheckStockWarnByPage" parameterClass="java.util.Map" resultMap="BaseResultMap">
+	    select twct.*,twbi.cust_manager,twbi.product_id,twbi.brcode from B_WRN_BASE_INFO twbi,B_WRN_CHECK_STOCK twct
+		where twbi.id=twct.warn_id and twbi.status='1'
+		<isNotNull property="paramId" prepend="and">
+			twbi.param_id=#paramId:VARCHAR#
+		</isNotNull>
+		<isNotNull property="cname" prepend="and">
+			twct.cname like '%'||#cname:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="slavecontcode" prepend="and">
+			twct.slave_contcode like '%'||#slavecontcode:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="moniCame" prepend="and">
+			twct.moni_cname like '%'||#moniCame:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="checkType" prepend="and">
+			twct.check_type=#checkType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="custcd" prepend="and">
+			twbi.custcd = #custcd:VARCHAR#
+		</isNotNull>
+		<isNotNull property="brcode" prepend="and">
+			<isEqual property="brattr" compareValue="1">
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = twct.protocol_no and tmbi.cooperation_brcode = #brcode:VARCHAR#)					
+			</isEqual>	
+			<isNotEqual property="brattr" compareValue="1">
+				exists ( elect 1 from B_SYS_BCTL_AFFILIATION where child_brcode = twbi.brcode and parent_brcode = #brcode:VARCHAR# and affiliation_type ='1'
+			</isNotEqual>
+		</isNotNull>
+		order by twbi.warn_date desc
+    </select>
+  
+  <select id="selectCheckStockWarnCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  SELECT COUNT(ID) FROM(
+	    select twct.*,twbi.cust_manager,twbi.product_id,twbi.brcode from B_WRN_BASE_INFO twbi,B_WRN_CHECK_STOCK twct
+		where twbi.id=twct.warn_id and twbi.status='1'
+		<isNotNull property="paramId" prepend="and">
+			twbi.param_id=#paramId:VARCHAR#
+		</isNotNull>
+		<isNotNull property="cname" prepend="and">
+			twct.cname like '%'||#cname:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="slavecontcode" prepend="and">
+			twct.slave_contcode like '%'||#slavecontcode:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="moniCame" prepend="and">
+			twct.moni_cname like '%'||#moniCame:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="checkType" prepend="and">
+			twct.check_type=#checkType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="custcd" prepend="and">
+			twbi.custcd = #custcd:VARCHAR#
+		</isNotNull>
+		<isNotNull property="brcode" prepend="and">
+			<isEqual property="brattr" compareValue="1">
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = twct.protocol_no and tmbi.cooperation_brcode = #brcode:VARCHAR#)					
+			</isEqual>	
+			<isNotEqual property="brattr" compareValue="1">
+				exists ( elect 1 from B_SYS_BCTL_AFFILIATION where child_brcode = twbi.brcode and parent_brcode = #brcode:VARCHAR# and affiliation_type ='1'
+			</isNotEqual>
+		</isNotNull>
+		order by twbi.warn_date desc
+  )
+  </select>
+  
+</sqlMap>

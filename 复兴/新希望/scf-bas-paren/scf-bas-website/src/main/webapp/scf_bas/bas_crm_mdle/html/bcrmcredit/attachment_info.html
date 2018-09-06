@@ -1,0 +1,23 @@
+<ht-legend>附件信息列表</ht-legend>
+<ht-form name ="FileForm" >
+    <ht-input ht-id="picName" name="文件名" ng-model="FileForm.picName"></ht-input>
+    <ht-button-group  class="center" >
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-table ht-id="tableId" datasource="datasourceFile" selected="selected" docheckbox="true">
+	    <ht-button-group>
+	        <!-- <ht-legend>进度条</ht-legend>
+			<ht-progress percent="percent"></ht-progress> -->
+		    <ht-file type="upload" option="uploadoption"></ht-file>
+        	<ht-button ht-id="download" class="btn-primary">下载</ht-button>
+			<ht-button ht-id="deleteFile" class="btn-primary">删除</ht-button>
+	    </ht-button-group>
+	    <ht-column eg-name="picId" zh-name="文件流水号"></ht-column>
+	    <ht-column eg-name="picName" zh-name="文件名"></ht-column>
+</ht-table>	
+<!-- <ht-page conf="confFile"></ht-page>-->
+<ht-button-group class="center">
+    <ht-button ht-id="confuse" class="btn-primary">返回</ht-button>
+</ht-button-group>

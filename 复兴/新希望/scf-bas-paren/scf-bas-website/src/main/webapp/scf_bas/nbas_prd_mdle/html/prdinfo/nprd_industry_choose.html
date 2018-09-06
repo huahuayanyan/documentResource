@@ -1,0 +1,27 @@
+<!--行业类型选择页面-->
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="industryCode" name="行业代码" ng-model="conditionForm.industryCode"></ht-input>
+    <ht-input ht-id="industryName"  name="行业名称" ng-model="conditionForm.industryName"></ht-input>
+    <ht-button-group class="center">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>国际行业信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-column eg-name="industryCode" zh-name="行业代码" ></ht-column>
+    <ht-column eg-name="industryName" zh-name="行业名称"  ></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>
+
+
+
+

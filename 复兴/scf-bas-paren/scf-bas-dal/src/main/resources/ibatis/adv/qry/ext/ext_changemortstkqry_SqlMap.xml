@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_CHANGEMORTSTKQRY">
+
+	<!-- 冲正流水查询 -->
+	<select id="queryChangeMort" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT
+		    msd.ID,cgc.PRTCL_NO,cgc.PRTCL_BR_NM,msd.SLAVE_CONTNO,cbi.cname CUSTNAME,b.PRODUCT_NAME,mc1.MORTGAGE_NAME LEVEL_one,
+		    mc2.MORTGAGE_NAME LEVEL_two,msd.ORIGINAL_QUANTITY,msd.STOCK_ADJUST_TYPE,sd2.TXDATE,cgc.TLR_NM,cgc.BR_NM,
+		    sd2.STOR_OR_DELI,msd.QUANTITY,msd.MORTGAGE_NO
+		FROM
+		    B_PBC_MTG_STOCK_DTL msd 
+		    inner join B_PBC_MTG_STOR_DELI sd2 on sd2.id = msd.PID
+		    inner join B_CRR_GNTY_CON cgc on cgc.CON_ID = sd2.SLAVE_CONTNO
+		    inner join B_CRM_BASE_INFO cbi on msd.custcd=cbi.CUSTCD
+		    LEFT JOIN B_PRD_INFO b on b.PRODUCT_ID = msd.SUPPLY_CHAIN_PD_ID
+		    LEFT join B_PBC_MTG_CLASS mc1 on mc1.MORTGAGE_CODE = msd.MORTGAGE_LEVEL_ONE
+		    LEFT join B_PBC_MTG_CLASS mc2 on mc2.MORTGAGE_CODE = msd.MORTGAGE_LEVEL_TWO
+		WHERE
+		     sd2.STOR_DELI_BIZ_TYPE = 12
+		<isNotEmpty prepend="AND" property="slaveContno">
+			lower(msd.slave_Contno) like '%$slaveContno$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="productId">
+			sd2.BUSS_TYPE = #productId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="custNm">
+			cbi.cname like '%$custNm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="dateFrom"> 
+			<![CDATA[ sd2.TXDATE >= #dateFrom# ]]> 
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="dateTo"> 
+			<![CDATA[ sd2.TXDATE <= #dateTo# ]]> 
+		</isNotEmpty> 
+		order by  msd.last_upd_time desc
+	</select>
+
+</sqlMap>

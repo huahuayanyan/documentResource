@@ -1,0 +1,40 @@
+<ht-form name="gntycon">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input name="核心客户号" ng-model="gntycon.gutId" disable="true"></ht-input>
+    <ht-input-extent ht-id="gutNm" name="客户名称" reg-exp="common.require" extent="gutcontent" readonly="true"
+                     on-change="gutextend" ng-model="gntycon.gutNm" disable="true"></ht-input-extent>
+    <ht-input-extent ht-id="vidPrdNm" name="业务品种" extent="productNameContent"
+                     on-change="productNamedooextent" ng-model="gntycon.vidPrdNm" readonly="true" disable="true">
+    </ht-input-extent>
+    <ht-input name="抵/质押合同号" ng-model="gntycon.conId" readonly="true" disable="true"></ht-input>
+    <ht-input name="本次追加保证金总额" reg-exp="common.require" ng-model="gntycon.addBailAmount" edit-type="currency" disable="true"></ht-input>
+</ht-form>
+<ht-legend>融资借据列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true" minheit="10px">
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary" hide="{{saveHide}}">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary" hide="{{saveHide}}">修改</ht-button>
+        <ht-button ht-id="delete" class="btn-primary" hide="{{saveHide}}">删除</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="loanAppno" zh-name="出账流水号"></ht-column>
+    <ht-column eg-name="debetNo" zh-name="借据号/承兑协议号"></ht-column>
+    <ht-column eg-name="mastContno" zh-name="信贷合同号"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="startDate" zh-name="起始日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日期"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="借据金额" type="currency"></ht-column>
+    <ht-column eg-name="lnciBal" zh-name="借据余额" type="currency"></ht-column>
+    <ht-column eg-name="receivableInt" zh-name="欠息总额" type="currency"></ht-column>
+    <ht-column eg-name="lnciStatus" zh-name="借据状态" ></ht-column>
+    <ht-column eg-name="riskAmt" zh-name="敞口余额" type="number"></ht-column>
+    <ht-column eg-name="bailAmount" zh-name="保证金金额" type="currency"></ht-column>
+    <ht-column eg-name="bailAccountno" zh-name="保证金账号"></ht-column>
+    <ht-column eg-name="addBailAmount" zh-name="追加冻结金额" type="currency"></ht-column>
+
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-button-group align="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{saveHide}}">保存</ht-button>
+</ht-button-group>

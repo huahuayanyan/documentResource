@@ -1,0 +1,40 @@
+<ht-legend colorid="lawngreen">额度分配</ht-legend>
+ <ht-panel >
+ <ht-button-group>
+<ht-button ht-id="viewTree" class="btn-primary" desc-name="查看节点"     hide="{{viewhide}}"  ></ht-button>
+<ht-button ht-id="updateTree" class="btn-primary" desc-name="修改节点"   hide="{{updatehide}}" ></ht-button>
+<ht-button ht-id="checkTree" class="btn-primary" desc-name="检查对象详情"></ht-button>
+</ht-button-group>
+ <treecontrol class="tree-classic"     options="treeOptions"  tree-model="treedata"   on-selection="showSelected(node)"   expanded-nodes="expandedNodes" >
+          <span on="node.linTyp" ng-switch="">
+             <span class="glyphicon glyphicon-home" aria-hidden="true" ng-switch-when="0">
+                 <ngCloak>   <a>{{node.busNm}}</a>&nbsp;{{showDictionary("curcd",node.curcd)}}:{{showCurrValue(node.crAmt)}}&nbsp;已用额度:{{showCurrValue(node.usedNum)}}&nbsp;可用额度:{{showCurrValue(node.ableNum)}}  </ngCloak>                            
+             </span>
+             <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-switch-when="1">
+                  <ngCloak><a>{{node.busNm}}</a>&nbsp;{{showDictionary("curcd",node.curcd)}}:{{showCurrValue(node.crAmt)}}&nbsp;已用额度:{{showCurrValue(node.usedNum)}}&nbsp;可用额度:{{showCurrValue(node.ableNum)}}  </ngCloak>                  
+             </span>
+             <span class="glyphicon glyphicon-euro" aria-hidden="true" ng-switch-when="2">
+                 <ngCloak><a>{{showDictionary("loanWay",node.busTyp)}}</a>&nbsp;{{showDictionary("curcd",node.curcd)}}:{{showCurrValue(node.crAmt)}}&nbsp;已用额度:{{showCurrValue(node.usedNum)}}&nbsp;可用额度:{{showCurrValue(node.ableNum)}}    </ngCloak>    
+             </span>
+          
+         </span>
+</treecontrol>
+ </ht-panel>  
+ <style>
+ treecontrol.tree-classic li.tree-expanded i.tree-branch-head {
+    padding: 2px 10px;
+    background: url("../../scube_ui/lib/plugins/tree/images/Minus.gif") no-repeat;
+   
+}
+treecontrol.tree-classic li.tree-collapsed i.tree-branch-head {
+    padding: 2px 10px;
+    background: url("../../scube_ui/lib/plugins/tree/images/Plus.gif") no-repeat;
+}
+
+treecontrol.tree-classic li.tree-leaf i.tree-leaf-head {
+    padding: 2px 10px;
+    background: url("../../scube_ui/lib/plugins/tree/images/Minus.gif") no-repeat;
+}
+
+ </style>
+   

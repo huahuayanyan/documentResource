@@ -1,0 +1,32 @@
+<!--出账方式设置页面-->
+<ht-form name ="baseinfo">
+    <ht-panel>
+        <ht-legend>产品基本信息</ht-legend>
+        <ht-input ht-id="productId"  name="产品代码" ng-model="baseinfo.productId" disable="true"></ht-input>
+        <ht-input ht-id="productName" name="产品名称" ng-model="baseinfo.productName" disable="true"></ht-input>
+    </ht-panel>
+</ht-form>
+
+<ht-form name ="loanwayform">
+    <ht-panel>
+        <ht-legend>出账方式</ht-legend>
+        <!--<ht-checkbox ht-id="loanWay" name="出账方式" disable="{{disable}}" reg-exp="common.require" dictionary="loanWay"-->
+                     <!--ng-model="loanwayform.loanWay"></ht-checkbox>-->
+        <ht-radio ht-id="advGoldPriceFlag" name="预支价金" ng-model="loanwayform.advGoldPriceFlag" disable="{{disable}}" dictionary="productChecked"></ht-radio>
+        <ht-radio ht-id="loansFlag" name="流动资金贷款" ng-model="loanwayform.loansFlag" disable="{{disable}}" dictionary="productChecked"></ht-radio>
+        <ht-radio ht-id="acceptanceFlag" name="银行承兑汇票" ng-model="loanwayform.acceptanceFlag" disable="{{disable}}" dictionary="productChecked"></ht-radio>
+        <ht-radio ht-id="guaranteeLetterFlag" name="融资性保函" ng-model="loanwayform.guaranteeLetterFlag" disable="{{disable}}" dictionary="productChecked"></ht-radio>
+        <ht-radio ht-id="isnfinGuaLetFlag" name="非融资性保函" ng-model="loanwayform.isnfinGuaLetFlag" disable="{{disable}}" dictionary="productChecked"></ht-radio>
+        <ht-radio ht-id="commercialDiscountFlag" name="保贴函" ng-model="loanwayform.commercialDiscountFlag" disable="{{disable}}" dictionary="productChecked"></ht-radio>
+        <ht-radio ht-id="creditrLetterFlag" name="信用证" ng-model="loanwayform.creditrLetterFlag" disable="{{disable}}" dictionary="productChecked"></ht-radio>
+    </ht-panel>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="former" class="btn-primary" desc-name="上一步"></ht-button>
+    <ht-button ht-id="next" class="btn-primary" desc-name="下一步"></ht-button>
+    <ht-button ht-id="complete" class="btn-primary" desc-name="完成"></ht-button>
+</ht-button-group>
+
+
+

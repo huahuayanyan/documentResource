@@ -1,0 +1,45 @@
+环境：
+DEV 环境通过MyCAT 链接
+VIP  10.50.17.18   端口号：8066
+数据库    		用户     				密码 
+iccs_loan  		iccs_loan_cat  		Only4LoanApp!
+iccs_trade 		iccs_trade_cat  	Only4TradeoprApp!
+iccs_account  	iccs_account_cat  	Only4AccountoprApp!
+iccs_scube  	iccs_scube_cat  	Only4ScubeoprApp!
+iccs_toprules  	iccs_toprules_cat   Only4ToprulesoprApp!
+iccs_flowsharp  iccs_flowsharp_cat  Only4FlowsharpoprApp!
+		
+QA 环境通过MyCAT 链接
+VIP  10.50.22.59  端口号  8066
+数据库             用户         密码 
+iccs_loan          loancat      kmZQRQOIJPeRbc_z
+iccs_scube         scubeopr     4VC_BWz2Jk2KHrpY
+
+演示环境数据库 10.50.18.23 
+用户名： loanopr  密码：Pp_Jcl8eGkD4LzTo  
+
+git 		http://10.50.32.21/users/sign_in
+manven私服 http://10.50.32.25:8081/nexus/#welcome
+
+
+disconf 开发环境
+http://10.50.17.19:8080/main.html#
+用户名dev_damin
+密码 admin
+
+
+eureka http://10.50.22.13:8010/,http://10.50.22.15:8010/
+
+
+项目命名规范
+例如 工程名为：demo-code  包名命名要为：com.newhope.demo.code 的前缀
+D:\复兴\code\scf-bas-paren\scf-bas-crm-core\src\main
+D:\复兴\code\scf-bas-paren\scf-bas-api\src\main\java\com\huateng\scf\bas\crm\service
+D:\复兴\code\scf-bas-paren\scf-bas-crm-core\src\main\java\com\huateng\scf\bas\crm\service\impl
+D:\复兴\code\scf-bas-paren\scf-bas-api\src\main\java\com\huateng\scf\bas\crm
+
+
+
+
+
+

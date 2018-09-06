@@ -1,0 +1,23 @@
+
+<ht-form name="otherform" columns="1">
+    <ht-input name="模版编号" reg-exp="common.require,mdlIdValidate" ng-model="otherform.prdId" disable="{{disable}}" ></ht-input>
+    <ht-input name="模版名称" reg-exp="common.require" ng-model="otherform.prdNm" disable="{{disableview}}"></ht-input>
+    <ht-select name="是否表外业务" reg-exp="common.require" ng-model="otherform.stat" dictionary="checked"
+               disable="{{disableview}}" on-change="changeStat"></ht-select>
+    <ht-select name="是否列表显示" reg-exp="common.require" ng-model="otherform.isList" dictionary="checked"
+               disable="{{disableview}}" on-change="changeList"></ht-select>
+    <ht-input name="模版类型" reg-exp="common.require" ng-model="otherform.prdTyp" disable="{{disableview}}" hide="{{hides}}"></ht-input>
+    <ht-select name="业务品种" reg-exp="common.require" ng-model="otherform.loanWay" disable="{{disableview}}" dictionary="loanWay"></ht-select>
+    <ht-input name="显示名称" reg-exp="common.require" ng-model="otherform.titNm" disable="{{disableview}}" hide="{{hides}}"></ht-input>
+    <ht-input name="新增URL" reg-exp="common.require" ng-model="otherform.addUrl" disable="{{disableview}}" hide="{{hides}}"></ht-input>
+    <ht-input name="修改URL" reg-exp="common.require" ng-model="otherform.updUrl" disable="{{disableview}}" hide="{{hides}}"></ht-input>
+    <ht-input name="查找URL" reg-exp="common.require" ng-model="otherform.finUrl" disable="{{disableview}}" hide="{{hides}}"></ht-input>
+    <ht-input name="分页查询URL" reg-exp="common.require" ng-model="otherform.pageUrl" disable="{{disableview}}" hide="{{hidepage}}"></ht-input>
+    <ht-input name="对象参数" reg-exp="common.require" ng-model="otherform.obj" disable="{{disableview}}" hide="{{hides}}"></ht-input>
+    <ht-select name="有效状态" reg-exp="common.require" ng-model="otherform.statu" disable="{{disableview}}" dictionary="validState"></ht-select>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

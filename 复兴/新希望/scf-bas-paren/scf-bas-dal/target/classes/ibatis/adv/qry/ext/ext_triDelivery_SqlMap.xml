@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_TRIDELIVERY" >
+ 
+<!-- 提货台帐查询 -->
+<select id="queryTriDelivery" resultClass="java.util.HashMap"   parameterClass="java.util.HashMap" > 
+select j.CNAME as CUSTCD,e.CNAME as CORECUSTCD, f.CNAME as FOUCD,
+   d.FIRST_BAIL_RATIO,d.START_DATE,d.END_DATE,d.SLAVE_LIMIT,d.LNCI_AMT,	
+   a.RISK_AMT,a.COMMON_AMT,d.DEBET_ID, a.INSERT_DATE,d.MAST_CONTCODE,d.PRODUCT_ID,p.PRODUCT_NAME,a.MGRNO,a.BRCODE    
+ from A_BCP_IMPREST_BUSS_INFO  a,B_NTE_NOTICE_BASE  b,B_LAN_LNCI_BASE d,	
+      B_CNT_MPROT_PART_INFO  e, B_CNT_MPROT_PART_INFO f, B_CNT_MPROT_PART_INFO j,B_PRD_INFO p	
+where 1 = 1
+   and a.APPNO = b.APPNO
+   and d.PRODUCT_ID = p.PRODUCT_ID
+   and a.APPLY_TYPE = '2125'
+   and a.DEBET_NO = d.DEBET_NO
+   and b.PROTOCOL_NO = d.PROTOCOL_NO 
+   and d.PROTOCOL_NO = e.PROTOCOL_NO	and e.ROLE = '04' 
+   and d.PROTOCOL_NO = f.PROTOCOL_NO	and f.ROLE = '05'	
+   and d.PROTOCOL_NO = j.PROTOCOL_NO  	and j.ROLE = '03'	 
+   and b.NOTICE_TYPE = '80'
+   and (b.STATUS = '02'  or b.STATUS ='01'  ) 
+      <isNotEmpty prepend="AND" property="custName">
+      j.CNAME like '%$custName$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="otherCustName">
+      e.CNAME like '%$otherCustName$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="buyBackName">
+      f.CNAME like '%$buyBackName$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="debetId">
+      d.DEBET_ID like '%$debetId$%'
+      </isNotEmpty>
+      <!-- <isNotEmpty prepend="AND" property="brcode">
+      a.BRCODE = #brcode#
+      </isNotEmpty> --> 
+      <isNotNull prepend="and" property="arrBr" >
+		a.BRCODE in  
+	    <iterate conjunction="," open="(" close=")" property="arrBr">
+	 	      #arrBr[]#
+	 	</iterate>
+	  </isNotNull>
+     <isNotEmpty prepend="AND" property="insertDateFrom">
+       <![CDATA[
+      a.INSERT_DATE >= #insertDateFrom# 
+       ]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="insertDateTo">
+        <![CDATA[
+      a.INSERT_DATE <= #insertDateTo# 
+        ]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="startDateFrom">
+       <![CDATA[
+      d.START_DATE >= #startDateFrom# 
+       ]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="startDateTo">
+        <![CDATA[
+      d.START_DATE <= #startDateTo# 
+        ]]>
+      </isNotEmpty>
+     order by a.ID desc
+</select>
+   
+</sqlMap>

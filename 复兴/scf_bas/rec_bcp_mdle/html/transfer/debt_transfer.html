@@ -1,0 +1,75 @@
+<ht-form name="otherformX">
+    <ht-legend>任务基本信息</ht-legend>
+    <ht-input id="ext2" name="流程名称" ng-model="otherformX.ext2" disable="true"></ht-input>
+    <ht-input id="stratDate" name="申请发起时间"ng-model="otherformX.stratDate" edit-type="date" disable="true"></ht-input>
+    <ht-input id="tlrName" name="经办人" ng-model="otherformX.tlrName" disable="true"></ht-input>
+    <ht-input id="brName" name="经办机构"ng-model="otherformX.brName" disable="true"></ht-input>
+</ht-form>
+<ht-form name="otherform">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input ht-id="cnameSeller" name="卖方名称" disable="true" ng-model="otherform.cnameSeller"></ht-input>
+    <ht-input-extent ht-id="cnameBuyer" name="买方名称" extent="buyerContent" on-change="buyerExtent"
+                     reg-exp="common.require" ng-model="otherform.cnameBuyer" disable="{{disable}}"></ht-input-extent>
+    <ht-input ht-id="mastContno" name="业务合同号" disable="true" ng-model="otherform.mastContno"></ht-input>
+    <ht-input ht-id="bussTypeName" name="业务品种" disable="true" ng-model="otherform.bussTypeName"></ht-input>
+    <ht-input ht-id="startDate" name="合同生效日" disable="true" edit-type="date" ng-model="otherform.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="合同到期日" disable="true" edit-type="date" ng-model="otherform.endDate"></ht-input>
+
+    <ht-legend>转让/出质信息</ht-legend>
+    <ht-input ht-id="purchaseDate" name="转让/出质日期" disable="true" edit-type="date" ng-model="otherform.purchaseDate"></ht-input>
+    <ht-input ht-id="debtNum" name="转让/出质总份数" disable ="true"  ng-model="otherform.debtNum"></ht-input>
+    <ht-input ht-id="totalDebtAmount" name="转让/出质总金额" disable ="true" edit-type="currency"
+              ng-model="otherform.totalDebtAmount"></ht-input>
+    <div id =costinfo>
+    <ht-legend>费用信息</ht-legend>
+    <ht-input ht-id="totalFee" name="费用总额" disable="true" edit-type="currency"  ng-model="otherform.totalFee"></ht-input>
+    <ht-input ht-id="totalReduce" name="减免总额" disable ="true" edit-type="currency"
+              ng-model="otherform.totalReduce"></ht-input>
+    <ht-input ht-id="receiveAmount" name="实收费用总额"  disable="true" edit-type="currency" ng-model="otherform.receiveAmount"></ht-input>
+</div>
+</ht-form>
+<div id =costDatasource>
+<ht-legend>费用明细</ht-legend>
+<ht-button-group >
+    <ht-button ht-id="editCost" class="btn-primary">编辑</ht-button>
+</ht-button-group>
+<ht-table ht-id="costTable" datasource="costDatasource" selected="costSelected" docheckbox="true">
+    <ht-column eg-name="costName" zh-name="费用名称" ></ht-column>
+    <ht-column eg-name="costClass" zh-name="费用收取种类" dictionary="costClass" ></ht-column>
+    <ht-column eg-name="costType" zh-name="收取方式" dictionary="costType" ></ht-column>
+    <ht-column eg-name="chargeType" zh-name="扣取方式" dictionary="costChargeType" ></ht-column>
+    <ht-column eg-name="costCalcType" zh-name="计算方式" dictionary="costCalcType"></ht-column>
+    <ht-column eg-name="costRate" zh-name="费用比率(%)" ></ht-column>
+    <ht-column eg-name="costAmt" zh-name="固定费用" type="currency" dictionary="billsType"></ht-column>
+
+    <ht-column eg-name="totalAmt" zh-name="费用小计" type="currency"></ht-column>
+    <ht-column eg-name="reduceAmt" zh-name="减免金额" type="currency"></ht-column>
+    <ht-column eg-name="costAccount" zh-name="扣费账号"></ht-column>
+    <ht-column eg-name="receiveAmount" zh-name="实收费用金额" type="currency"></ht-column>
+    <ht-column eg-name="brname" zh-name="费用收取网点"></ht-column>
+</ht-table>
+<ht-page conf="costConf"></ht-page>
+</div>
+<ht-legend>转让应收账款票据列表</ht-legend>
+<ht-button-group >
+    <ht-button ht-id="addBill" class="btn-primary">新增单据</ht-button>
+    <ht-button ht-id="deleteBill" class="btn-primary">删除单据</ht-button>
+</ht-button-group>
+<ht-table ht-id="bcpTable" datasource="bcpDatasource" selected="bcpSelected" docheckbox="true">
+    <ht-column eg-name="billsNo" zh-name="凭证编号" ></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType" ></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同号" ></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期" type="date"></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="票面金额" type="currency"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="	应收账款余额" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="bcpConf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="commit" disable="true" class="btn-primary">提交</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

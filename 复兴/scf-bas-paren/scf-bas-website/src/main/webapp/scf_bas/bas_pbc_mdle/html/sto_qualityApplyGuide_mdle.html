@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ------------公共css--------------------- -->
+    <script src="../../scube_ui/common/importCs.js"></script>
+    <!-- ------------业务css--------------------- -->
+
+</head>
+<body>
+<div ng-controller="fourPledgeAppGuideController">
+ <ht-form name="taskform">
+  <ht-legend>任务基本信息</ht-legend>
+    <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+    <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+    <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+    <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+</ht-form>
+    <div id="write">
+        <ht-tabs>
+            <ht-pane title="出质入库基本信息" ui-sref="fourPledgeAppdtl"></ht-pane>
+
+            <ht-pane title="抵/质押合同查询" ui-sref="gntyconInfo"></ht-pane>
+
+            <ht-pane title="监管合同查询" ui-sref="monitorProtocol"></ht-pane>
+
+            <ht-pane title="客户信息查询" ui-sref="custInfo"></ht-pane>
+        </ht-tabs>
+    </div>
+    <div id="price">
+        <ht-tabs>
+            <ht-pane title="{{title}}" ui-sref="fourPledgeAppPrice"></ht-pane>
+
+            <ht-pane title="抵/质押合同查询" ui-sref="gntyconInfo"></ht-pane>
+
+            <ht-pane title="监管合同查询" ui-sref="monitorProtocol"></ht-pane>
+
+            <ht-pane title="客户信息查询" ui-sref="custInfo"></ht-pane>
+        </ht-tabs>
+    </div>
+</div>
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+<script src="../../config.js"></script>
+
+<!-- ------------公共js--------------------- -->
+<script src="../../scube_ui/common/myBrowser.js"></script>
+<script src="../../scube_ui/common/importJs.js"></script>
+
+<script src="../../bas_com_mdle/js/StringUtil.js"></script>
+
+<!-- ------------业务js--------------------- -->
+<script src="../js/sto_qualityApplyGuide_mdle.js"></script>
+<script src="../js/qualityApplyXhdt/qualityApplyGuide_controller.js"></script>
+
+<!--<script src="../js/controllers/afcsfourPledge/fourPledgeList_controller.js"></script>-->
+<!-- ------------出质入库信息js--------------------- -->
+<script src="../js/qualityApplyXhdt/qualityApplyDtl_controller.js"></script>
+<!-- ------------核价js--------------------- -->
+<script src="../js/qualityApplyXhdt/qualityApplyPriceDtl_controller.js"></script>
+
+<script src="../js/qualityApplyXhdt/monitorProtocol_controller.js"></script>
+<script src="../js/qualityApplyXhdt/gntyconInfo_controller.js"></script>
+<script src="../js/qualityApplyXhdt/custInfo_controller.js"></script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,33 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="billsNo" name="凭证编号" ng-model="conditionForm.billsNo"></ht-input>
+    <ht-input ht-id="bussContcode" name="商务合同号" ng-model="conditionForm.bussContcode"></ht-input>
+    <ht-input ht-id="startYj" name="预警日期从" ng-model="conditionForm.startYj" edit-type="date"></ht-input>
+    <ht-input ht-id="endYj" name="预警日期到" ng-model="conditionForm.endYj" edit-type="date"></ht-input>
+    <ht-button-group >
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>应收账款到期提示列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="billsNo" zh-name="凭证编号" ></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType"></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同号"></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期" ></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日" ></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日" ></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="账面金额" type="currency"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="应收账款余额" type="currency"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="status" zh-name="状态" dictionary="billStatus"></ht-column>
+    <ht-column eg-name="memo" zh-name="备注" ></ht-column>
+    <ht-column eg-name="warnDate" zh-name="预警日期" ></ht-column>
+    <ht-column eg-name="khjl" zh-name="客户经理" ></ht-column>
+    <ht-column eg-name="jbjg" zh-name="经办机构" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+

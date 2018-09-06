@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_WRN_OVER_MONI_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.wrn.dao.model.BWrnOverMoniInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="MONI_CNAME" property="moniCname" jdbcType="VARCHAR" />
+    <result column="LEVELS" property="levels" jdbcType="VARCHAR" />
+    <result column="MONITOR_AREA" property="monitorArea" jdbcType="VARCHAR" />
+    <result column="DETAIL_MONITOR_AREA" property="detailMonitorArea" jdbcType="VARCHAR" />
+    <result column="LIMIT_SUM" property="limitSum" jdbcType="DECIMAL" />
+    <result column="MORT_AMT" property="mortAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, MONI_CUSTCD, MONI_CNAME, LEVELS, MONITOR_AREA, DETAIL_MONITOR_AREA, 
+    LIMIT_SUM, MORT_AMT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnOverMoniInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_WRN_OVER_MONI_INFO.Base_Column_List" />
+    from B_WRN_OVER_MONI_INFO
+    <isParameterPresent >
+      <include refid="B_WRN_OVER_MONI_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnOverMoniInfo" >
+    select 
+    <include refid="B_WRN_OVER_MONI_INFO.Base_Column_List" />
+    from B_WRN_OVER_MONI_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnOverMoniInfo" >
+    delete from B_WRN_OVER_MONI_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnOverMoniInfoExample" >
+    delete from B_WRN_OVER_MONI_INFO
+    <include refid="B_WRN_OVER_MONI_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnOverMoniInfo" >
+    insert into B_WRN_OVER_MONI_INFO (ID, WARN_ID, MONI_CUSTCD, MONI_CNAME, 
+      LEVELS, MONITOR_AREA, DETAIL_MONITOR_AREA, LIMIT_SUM, 
+      MORT_AMT)
+    values (#id:VARCHAR#, #warnId:VARCHAR#, #moniCustcd:VARCHAR#, #moniCname:VARCHAR#, 
+      #levels:VARCHAR#, #monitorArea:VARCHAR#, #detailMonitorArea:VARCHAR#, #limitSum:DECIMAL#, 
+      #mortAmt:DECIMAL#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnOverMoniInfo" >
+    insert into B_WRN_OVER_MONI_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        MONI_CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="levels" >
+        LEVELS
+      </isNotNull>
+      <isNotNull prepend="," property="monitorArea" >
+        MONITOR_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="detailMonitorArea" >
+        DETAIL_MONITOR_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="limitSum" >
+        LIMIT_SUM
+      </isNotNull>
+      <isNotNull prepend="," property="mortAmt" >
+        MORT_AMT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        #moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="levels" >
+        #levels:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorArea" >
+        #monitorArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="detailMonitorArea" >
+        #detailMonitorArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="limitSum" >
+        #limitSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortAmt" >
+        #mortAmt:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnOverMoniInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_WRN_OVER_MONI_INFO
+    <include refid="B_WRN_OVER_MONI_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_WRN_OVER_MONI_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnId" >
+        WARN_ID = #record.warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCustcd" >
+        MONI_CUSTCD = #record.moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCname" >
+        MONI_CNAME = #record.moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.levels" >
+        LEVELS = #record.levels:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitorArea" >
+        MONITOR_AREA = #record.monitorArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.detailMonitorArea" >
+        DETAIL_MONITOR_AREA = #record.detailMonitorArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.limitSum" >
+        LIMIT_SUM = #record.limitSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortAmt" >
+        MORT_AMT = #record.mortAmt:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_WRN_OVER_MONI_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_WRN_OVER_MONI_INFO
+    set ID = #record.id:VARCHAR#,
+      WARN_ID = #record.warnId:VARCHAR#,
+      MONI_CUSTCD = #record.moniCustcd:VARCHAR#,
+      MONI_CNAME = #record.moniCname:VARCHAR#,
+      LEVELS = #record.levels:VARCHAR#,
+      MONITOR_AREA = #record.monitorArea:VARCHAR#,
+      DETAIL_MONITOR_AREA = #record.detailMonitorArea:VARCHAR#,
+      LIMIT_SUM = #record.limitSum:DECIMAL#,
+      MORT_AMT = #record.mortAmt:DECIMAL#
+    <isParameterPresent >
+      <include refid="B_WRN_OVER_MONI_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnOverMoniInfo" >
+    update B_WRN_OVER_MONI_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID = #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD = #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        MONI_CNAME = #moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="levels" >
+        LEVELS = #levels:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorArea" >
+        MONITOR_AREA = #monitorArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="detailMonitorArea" >
+        DETAIL_MONITOR_AREA = #detailMonitorArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="limitSum" >
+        LIMIT_SUM = #limitSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortAmt" >
+        MORT_AMT = #mortAmt:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnOverMoniInfo" >
+    update B_WRN_OVER_MONI_INFO
+    set WARN_ID = #warnId:VARCHAR#,
+      MONI_CUSTCD = #moniCustcd:VARCHAR#,
+      MONI_CNAME = #moniCname:VARCHAR#,
+      LEVELS = #levels:VARCHAR#,
+      MONITOR_AREA = #monitorArea:VARCHAR#,
+      DETAIL_MONITOR_AREA = #detailMonitorArea:VARCHAR#,
+      LIMIT_SUM = #limitSum:DECIMAL#,
+      MORT_AMT = #mortAmt:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

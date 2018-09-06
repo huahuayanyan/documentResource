@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ODS_TOP_CITY_ROUTE" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.ods.dao.model.OdsTopCityRoute" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TOP_CITY_ID" property="topCityId" jdbcType="VARCHAR" />
+    <result column="ROUTE_AREA" property="routeArea" jdbcType="VARCHAR" />
+    <result column="ROUTE_AREANM" property="routeAreanm" jdbcType="VARCHAR" />
+    <result column="AMT" property="amt" jdbcType="DECIMAL" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TOP_CITY_ID, ROUTE_AREA, ROUTE_AREANM, AMT, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.ods.dao.model.OdsTopCityRouteExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="ODS_TOP_CITY_ROUTE.Base_Column_List" />
+    from ODS_TOP_CITY_ROUTE
+    <isParameterPresent >
+      <include refid="ODS_TOP_CITY_ROUTE.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.ods.dao.model.OdsTopCityRoute" >
+    select 
+    <include refid="ODS_TOP_CITY_ROUTE.Base_Column_List" />
+    from ODS_TOP_CITY_ROUTE
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.ods.dao.model.OdsTopCityRoute" >
+    delete from ODS_TOP_CITY_ROUTE
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.ods.dao.model.OdsTopCityRouteExample" >
+    delete from ODS_TOP_CITY_ROUTE
+    <include refid="ODS_TOP_CITY_ROUTE.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.ods.dao.model.OdsTopCityRoute" >
+    insert into ODS_TOP_CITY_ROUTE (ID, TOP_CITY_ID, ROUTE_AREA, ROUTE_AREANM, 
+      AMT, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+      )
+    values (#id:VARCHAR#, #topCityId:VARCHAR#, #routeArea:VARCHAR#, #routeAreanm:VARCHAR#, 
+      #amt:DECIMAL#, #lastUpdTlrcd:VARCHAR#, #lastUpdTime:TIMESTAMP#, #lastUpdBrcode:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.ods.dao.model.OdsTopCityRoute" >
+    insert into ODS_TOP_CITY_ROUTE
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="topCityId" >
+        TOP_CITY_ID
+      </isNotNull>
+      <isNotNull prepend="," property="routeArea" >
+        ROUTE_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="routeAreanm" >
+        ROUTE_AREANM
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        AMT
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="topCityId" >
+        #topCityId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="routeArea" >
+        #routeArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="routeAreanm" >
+        #routeAreanm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        #amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.ods.dao.model.OdsTopCityRouteExample" resultClass="java.lang.Integer" >
+    select count(*) from ODS_TOP_CITY_ROUTE
+    <include refid="ODS_TOP_CITY_ROUTE.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update ODS_TOP_CITY_ROUTE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.topCityId" >
+        TOP_CITY_ID = #record.topCityId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.routeArea" >
+        ROUTE_AREA = #record.routeArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.routeAreanm" >
+        ROUTE_AREANM = #record.routeAreanm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amt" >
+        AMT = #record.amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTime" >
+        LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="ODS_TOP_CITY_ROUTE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update ODS_TOP_CITY_ROUTE
+    set ID = #record.id:VARCHAR#,
+      TOP_CITY_ID = #record.topCityId:VARCHAR#,
+      ROUTE_AREA = #record.routeArea:VARCHAR#,
+      ROUTE_AREANM = #record.routeAreanm:VARCHAR#,
+      AMT = #record.amt:DECIMAL#,
+      LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+    <isParameterPresent >
+      <include refid="ODS_TOP_CITY_ROUTE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.ods.dao.model.OdsTopCityRoute" >
+    update ODS_TOP_CITY_ROUTE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="topCityId" >
+        TOP_CITY_ID = #topCityId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="routeArea" >
+        ROUTE_AREA = #routeArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="routeAreanm" >
+        ROUTE_AREANM = #routeAreanm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        AMT = #amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.ods.dao.model.OdsTopCityRoute" >
+    update ODS_TOP_CITY_ROUTE
+    set TOP_CITY_ID = #topCityId:VARCHAR#,
+      ROUTE_AREA = #routeArea:VARCHAR#,
+      ROUTE_AREANM = #routeAreanm:VARCHAR#,
+      AMT = #amt:DECIMAL#,
+      LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

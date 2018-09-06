@@ -1,0 +1,19 @@
+    <ht-form name="dialogform">
+        <ht-legend>提货信息</ht-legend>
+        <ht-input name="货物编号" ng-model="dialogform.mortgageNo" disable="true"></ht-input>
+        <ht-input name="货物名称" ng-model="dialogform.mortgageName" disable="true"></ht-input>
+        <ht-select ht-id="mortgageLevelOneName" name="押品一级" datasource="mortgageLevelOneSource" dataoption="code" datatrsoption="codeName" reg-exp="common.require" ng-model="dialogform.mortgageLevelOne" disable="true"></ht-select>
+        <ht-select ht-id="mortgageLevelTwoName" name="押品二级" datasource="mortgageLevelTwoSource" dataoption="code" datatrsoption="codeName" ng-model="dialogform.mortgageLevelTwo" disable="true"></ht-select>
+        <ht-input name="规格/型号" ng-model="dialogform.mortgageModel" disable="true"></ht-input>
+        <ht-select ht-id='mortgageUnits' name="单位" dictionary="mortgageUnits" disable="true" ng-model="dialogform.mortgageUnits"></ht-select>
+        <ht-input ht-id="price" name="核定单价" ng-model="dialogform.price" edit-type="currency"disable="true"></ht-input>
+        <ht-input ht-id="quantity" edit-type="number" name="数量/重量" ng-model="dialogform.quantity" disable="true"></ht-input>
+        <ht-input ht-id="outQuantity" reg-exp="common.require,common.number"  name="提货数量/重量" ng-model="dialogform.outQuantity"></ht-input>
+        <ht-input ht-id="totPrice" name="提货金额" ng-model="dialogform.totPrice" edit-type="currency"  reg-exp="common.require" disable="true"></ht-input>
+        <ht-input ht-id="documentNo"  name="提货凭证号" ng-model="dialogform.documentNo"></ht-input>
+        <ht-text-area ht-id="memo" name="备注" height="70" ng-model="dialogform.memo"></ht-text-area>
+        <ht-button-group class="center">
+            <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+            <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+        </ht-button-group>
+

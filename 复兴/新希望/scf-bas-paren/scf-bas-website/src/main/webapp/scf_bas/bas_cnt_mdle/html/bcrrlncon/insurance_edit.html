@@ -1,0 +1,15 @@
+
+<ht-form name="ins">
+    <ht-input name="保单号" reg-exp="common.require" ng-model="ins.insuranceCode"></ht-input>
+    <ht-input name="保险公司名称" reg-exp="common.require" ng-model="ins.insuranceName"></ht-input>
+    <ht-input name="保险类型" reg-exp="common.require" ng-model="ins.insuranceType"></ht-input>
+    <ht-input name="受益人" reg-exp="common.require" ng-model="ins.beneficiary"></ht-input>
+    <ht-input name="保险金额" reg-exp="common.require" ng-model="ins.amount" edit-type="currency"></ht-input>
+    <ht-input ht-id="startDate" name="保险投保日" reg-exp="common.require" ng-model="ins.startDate" edit-type="date" high-date-id="endDate"></ht-input>
+    <ht-input ht-id="endDate" name="保险到期日" reg-exp="common.require" ng-model="ins.endDate" edit-type="date" lower-date-id="startDate"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="insConfirm" class="btn-primary" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="insCloseDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

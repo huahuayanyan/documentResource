@@ -1,0 +1,23 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+    <ht-input  ht-id="cname" name="融资客户"  ng-model="conditionForm.cname" ></ht-input>
+    <ht-select  ht-id="contStatus" name="合同状态"  ng-model="conditionForm.contStatus" dictionary="contStatus"></ht-select>
+    <ht-input  ht-id="mastContno" name="业务合同号"  ng-model="conditionForm.mastContno"></ht-input>
+    <ht-select ht-id="bussType" name="业务品种"  ng-model="conditionForm.bussType" dictionary="vidBusTyp"></ht-select>
+    <ht-button-group>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>合同列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="mastContno" zh-name="业务合同号" href="true" docolumn="acctdtlcolumn"></ht-column>
+    <ht-column eg-name="cnameSeller" zh-name="融资客户"> </ht-column>
+    <ht-column eg-name="bussType" zh-name="业务品种" dictionary="vidBusTyp"></ht-column>
+    <ht-column eg-name="returnAccount" zh-name="回款专户" "></ht-column>
+    <ht-column eg-name="tlrName" zh-name="客户经理" ></ht-column>
+    <ht-column eg-name="brcodeNm" zh-name="经办机构" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

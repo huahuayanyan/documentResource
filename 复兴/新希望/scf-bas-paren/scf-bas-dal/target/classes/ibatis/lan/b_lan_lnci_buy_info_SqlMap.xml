@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_LAN_LNCI_BUY_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTCODE" property="tradeContcode" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="CONT_AMT" property="contAmt" jdbcType="DECIMAL" />
+    <result column="ACCU_LOAN_AMT" property="accuLoanAmt" jdbcType="DECIMAL" />
+    <result column="LOAN_AMT" property="loanAmt" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, TRADE_CONTNO, TRADE_CONTCODE, START_DATE, END_DATE, CONT_AMT, ACCU_LOAN_AMT, 
+    LOAN_AMT, CREATE_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_LAN_LNCI_BUY_INFO.Base_Column_List" />
+    from B_LAN_LNCI_BUY_INFO
+    <isParameterPresent >
+      <include refid="B_LAN_LNCI_BUY_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyInfo" >
+    select 
+    <include refid="B_LAN_LNCI_BUY_INFO.Base_Column_List" />
+    from B_LAN_LNCI_BUY_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyInfo" >
+    delete from B_LAN_LNCI_BUY_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyInfoExample" >
+    delete from B_LAN_LNCI_BUY_INFO
+    <include refid="B_LAN_LNCI_BUY_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyInfo" >
+    insert into B_LAN_LNCI_BUY_INFO (ID, APPNO, TRADE_CONTNO, TRADE_CONTCODE, 
+      START_DATE, END_DATE, CONT_AMT, ACCU_LOAN_AMT, LOAN_AMT, 
+      CREATE_DATE)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #tradeContno:VARCHAR#, #tradeContcode:VARCHAR#, 
+      #startDate:CHAR#, #endDate:CHAR#, #contAmt:DECIMAL#, #accuLoanAmt:DECIMAL#, #loanAmt:DECIMAL#, 
+      #createDate:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyInfo" >
+    insert into B_LAN_LNCI_BUY_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        TRADE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContcode" >
+        TRADE_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="contAmt" >
+        CONT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="accuLoanAmt" >
+        ACCU_LOAN_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="loanAmt" >
+        LOAN_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        CREATE_DATE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        #tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContcode" >
+        #tradeContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contAmt" >
+        #contAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="accuLoanAmt" >
+        #accuLoanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="loanAmt" >
+        #loanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        #createDate:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_LAN_LNCI_BUY_INFO
+    <include refid="B_LAN_LNCI_BUY_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_LAN_LNCI_BUY_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tradeContno" >
+        TRADE_CONTNO = #record.tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tradeContcode" >
+        TRADE_CONTCODE = #record.tradeContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contAmt" >
+        CONT_AMT = #record.contAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accuLoanAmt" >
+        ACCU_LOAN_AMT = #record.accuLoanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanAmt" >
+        LOAN_AMT = #record.loanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.createDate" >
+        CREATE_DATE = #record.createDate:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_LAN_LNCI_BUY_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_LAN_LNCI_BUY_INFO
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      TRADE_CONTNO = #record.tradeContno:VARCHAR#,
+      TRADE_CONTCODE = #record.tradeContcode:VARCHAR#,
+      START_DATE = #record.startDate:CHAR#,
+      END_DATE = #record.endDate:CHAR#,
+      CONT_AMT = #record.contAmt:DECIMAL#,
+      ACCU_LOAN_AMT = #record.accuLoanAmt:DECIMAL#,
+      LOAN_AMT = #record.loanAmt:DECIMAL#,
+      CREATE_DATE = #record.createDate:CHAR#
+    <isParameterPresent >
+      <include refid="B_LAN_LNCI_BUY_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyInfo" >
+    update B_LAN_LNCI_BUY_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        TRADE_CONTNO = #tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContcode" >
+        TRADE_CONTCODE = #tradeContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contAmt" >
+        CONT_AMT = #contAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="accuLoanAmt" >
+        ACCU_LOAN_AMT = #accuLoanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="loanAmt" >
+        LOAN_AMT = #loanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        CREATE_DATE = #createDate:CHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBuyInfo" >
+    update B_LAN_LNCI_BUY_INFO
+    set APPNO = #appno:VARCHAR#,
+      TRADE_CONTNO = #tradeContno:VARCHAR#,
+      TRADE_CONTCODE = #tradeContcode:VARCHAR#,
+      START_DATE = #startDate:CHAR#,
+      END_DATE = #endDate:CHAR#,
+      CONT_AMT = #contAmt:DECIMAL#,
+      ACCU_LOAN_AMT = #accuLoanAmt:DECIMAL#,
+      LOAN_AMT = #loanAmt:DECIMAL#,
+      CREATE_DATE = #createDate:CHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

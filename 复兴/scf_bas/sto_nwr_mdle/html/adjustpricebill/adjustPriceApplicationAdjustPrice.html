@@ -1,0 +1,74 @@
+<ht-form name="otherform">
+	<ht-legend>申请内容</ht-legend>
+	<ht-input name="申请编号" ng-model="otherform.appno" disable="true"></ht-input>
+	<ht-input name="监管合同号" ng-model="otherform.prtclNo" disable="true"></ht-input>
+	<ht-input name="抵/质押合同号" ng-model="otherform.conId" disable="true"></ht-input>
+	<ht-input name="监管公司名称" ng-model="otherform.prtclBrNm" disable="true"></ht-input>
+	<ht-input name="出质人名称" ng-model="otherform.gutNm" disable="true"></ht-input>
+	<ht-select name="货押模式" ng-model="otherform.moniMd" disable="true" dictionary="moniType"></ht-select>
+	<ht-input name="敞口余额" ng-model="otherform.openAmount" disable="true"></ht-input>
+	<ht-input name="抵/质押率(%)" ng-model="otherform.ration" disable="true"></ht-input>
+	<ht-input name="调整前押品总价值" ng-model="otherform.originalTotPrice" disable="true"></ht-input>
+	<ht-input name="调整后押品总价值" ng-model="otherform.totPrice" disable="true"></ht-input>
+	<ht-input name="最低控货价值" ng-model="otherform.lowPriceNew" disable="true"></ht-input>
+	<ht-input name="备注" ng-model="otherform.memo" ></ht-input>
+</ht-form>
+<ht-legend>质押仓单列表</ht-legend>
+<ht-table ht-id="tableId" datasource="billnormaldatasource" selected="billnormalselected" docheckbox="true" minheit="250px">
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="billType" zh-name="仓单类型" dictionary="billType"></ht-column>
+    <ht-column eg-name="keeperName" zh-name="保管人"></ht-column>
+    <ht-column eg-name="startDate" zh-name="开具日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="截止日期" type="date"></ht-column>
+    <ht-column eg-name="insuranceNo" zh-name="保险单号" ></ht-column>
+    <ht-column eg-name="storageAddress" zh-name="存储地址"></ht-column>
+</ht-table>
+<ht-page conf="billnormalconf"></ht-page>
+<ht-legend>调价押品列表</ht-legend>
+<ht-button-group>
+    <ht-button ht-id="add" class="btn-primary" hide="{{hidetask}}">新增</ht-button>
+    <ht-button ht-id="update" class="btn-primary" hide="{{hidetask}}">调价</ht-button>
+    <ht-button ht-id="delete" class="btn-primary"  hide="{{hidetask}}">删除</ht-button>
+</ht-button-group>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true" minheit="250px">
+    <ht-column eg-name="mortgageNo" zh-name="押品编号"></ht-column>
+    <ht-column eg-name="mortgageName" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="quantity" zh-name="数量/重量" type="number"></ht-column>
+    <ht-column eg-name="mortgageUnits" zh-name="单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="调整前单价" type="currency"></ht-column>
+    <ht-column eg-name="afterConfirmPrice" zh-name="调整后单价" type="currency"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="调整前总价" type="currency"></ht-column>
+    <ht-column eg-name="totChangePrice" zh-name="调整后总价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+<div id="showIdea" style="display: none">
+    <ht-legend>历史审批意见</ht-legend>
+    <ht-table ht-id="tableId" datasource="datasourcetask" selected="selectedtask" docheckbox="true">
+        <ht-column eg-name="taskName" zh-name="任务名称"></ht-column>
+        <ht-column eg-name="taskComment" zh-name="审批意见"></ht-column>
+        <ht-column eg-name="name5" zh-name="处理人"></ht-column>
+        <ht-column eg-name="assignId" zh-name="处理人编号"></ht-column>
+        <ht-column eg-name="dealTime" zh-name="处理时间"></ht-column>
+    </ht-table>
+    <ht-page conf="conftask"></ht-page>
+    <ht-legend>审批意见</ht-legend>
+    <ht-form name="applyDtlForm">
+        <ht-text-area ht-id="taskComment" name="审批意见" height="70" ng-model="applyDtlForm.taskComment"></ht-text-area>
+    </ht-form>
+</div>
+
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" hide="{{hidesave}}"class="btn-primary" disable="{{savedisable}}" >保存</ht-button>
+    <ht-button ht-id="sumbit" hide="{{hidesumbit}}" disable="{{sumbitdisable}}" class="btn-primary" >提交</ht-button>
+    <ht-button ht-id="confirm" hide="{{hideconfirm}}" disable="{{confirmdisable}}" class="btn-primary" >同意</ht-button>
+    <ht-button ht-id="doBack" hide="{{hidedoBack}}" disable="{{doBackdisable}}" class="btn-primary" >退回</ht-button>
+    <ht-button ht-id="viewNotice" hide="{{hideviewNotice}}" disable="{{viewNoticedisable}}" class="btn-primary" >查看通知书</ht-button>
+    <ht-button ht-id="receipt" hide="{{hidereceipt}}" disable="{{ReceiptDisable}}"  class="btn-primary" >回执确认</ht-button>
+    <ht-button ht-id="back"  hide="{{hideback}}" class="btn-primary" >返回</ht-button>
+</ht-button-group>

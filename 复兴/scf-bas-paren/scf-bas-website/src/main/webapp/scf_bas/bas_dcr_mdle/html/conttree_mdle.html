@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- ------------公共css--------------------- -->
+<script src="../../scube_ui/common/importCs.js"></script>
+<!-- ------------业务css--------------------- -->
+
+</head>
+<body>
+	<div ng-controller="conttreeController">
+		 <div style="width: 170px; float: left; position: relative">
+			<ht-autotree option="autotree"></ht-autotree>
+		</div>
+		<div  style="margin-left: 170px; margin-right: 0; margin-top: 0; min-height: 100%; padding: 0">
+			<div style="height: 100%; padding: 3px" ui-view>
+				<!-- --------------------装载dom------------------------------ -->
+			</div>
+		</div>
+	</div>
+	<!-- ------------配置文件js，初始化全局变量--------------------- -->
+	<script src="../../config.js"></script>
+
+	<!-- ------------公共js--------------------- -->
+	<script src="../../scube_ui/common/myBrowser.js"></script>
+	<script src="../../scube_ui/common/importJs.js"></script>
+
+	<!-- ------------业务js--------------------- -->
+	<script src="../js/controllers/conttree_controller.js"></script>
+	<script src="../js/controllers/contindex_controller.js"></script>
+    <script src="../js/controllers/contline_controller.js"></script>
+ 	<script src="../js/conttree_mdle.js"></script> 
+</body>
+</html>
+
+

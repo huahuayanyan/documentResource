@@ -1,0 +1,33 @@
+<ht-legend>任务基本信息</ht-legend>
+<ht-form>
+    <ht-input ht-id="custno" name="核心客户号" disable="true" ng-model="custInfo.custno"></ht-input>
+    <ht-input ht-id="cname" name="客户名称" disable="true" ng-model="custInfo.cname"></ht-input>
+    <ht-input ht-id="ccmsCustcd" name="信贷系统客户号" disable="true" ng-model="custInfo.ccmsCustcd"></ht-input>
+    <ht-input ht-id="orgCode" name="组织机构代码证号" disable="true" ng-model="custInfo.orgCode"></ht-input>
+    <ht-input ht-id="industryTypeName" name="国标行业分类" disable="true" ng-model="custInfo.industryTypeName"></ht-input>
+    <!--<ht-input-extent ht-id="industryType" name="国际行业分类" disable="true" extent="industryTypeContent" on-change="industryTypeExtent"-->
+                     <!--ng-model="custInfo.industryType"></ht-input-extent>-->
+    <ht-select ht-id="enterpriseScope" name="企业规模" disable="true" dictionary="enterpriseScope" ng-model="custInfo.enterpriseScope"></ht-select>
+    <ht-select ht-id="isMarketCorp" name="是否上市公司" disable="true" dictionary="IsMarketCorp" ng-model="custInfo.isMarketCorp"></ht-select>
+    <ht-input ht-id="establishDate" name="企业成立日期" disable="true" ng-model="custInfo.establishDate"></ht-input>
+    <ht-input ht-id="regCapital" name="注册资本" disable="true" ng-model="custInfo.regCapital"></ht-input>
+    <ht-input ht-id="areaName" name="省份、直辖市、自治区" disable="true" ng-model="custInfo.areaName"></ht-input>
+    <ht-input ht-id="tlrName" name="经办人" disable="true" ng-model="custInfo.tlrName"></ht-input>
+    <ht-input ht-id="brName" name="经办机构" disable="true" ng-model="custInfo.brName"></ht-input>
+</ht-form>
+<ht-legend>补录信息</ht-legend>
+<ht-form>
+    <ht-select ht-id="creditFlag" name="是否授信客户" disable="true" dictionary="IsCreditFlag" ng-model="custInfo.creditFlag"></ht-select>
+    <ht-select ht-id="importantFlag" name="是否供应链融资重点客户" disable="true" dictionary="IsImportantFlag" ng-model="custInfo.importantFlag"></ht-select>
+    <ht-select ht-id="coreFlag" name="是否核心厂商" disable="true" dictionary="IsCoreFlag" ng-model="custInfo.coreFlag"></ht-select>
+    <ht-select ht-id="moniFlag" name="是否监管公司" disable="true" dictionary="IsMoniFlag" ng-model="custInfo.moniFlag"></ht-select>
+    <ht-select ht-id="flcFlag" name="是否金融租赁公司" disable="true" dictionary="IsFlcFlag" ng-model="custInfo.flcFlag"></ht-select>
+    <ht-select ht-id="insureFlag" name="是否保险公司" disable="true" dictionary="IsInsureFlag" ng-model="custInfo.insureFlag"></ht-select>
+    <ht-select ht-id="factorFlag" name="是否保理商" disable="true" dictionary="IsFactorFlag" ng-model="custInfo.factorFlag"></ht-select>
+    <ht-select ht-id="commercialFalg" name="是否贸易对手" disable="true" dictionary="IsCommercialFalg" ng-model="custInfo.commercialFalg"></ht-select>
+    <ht-input ht-id="supplyPosition" name="供应链所处地位" disable="true" ng-model="custInfo.supplyPosition"></ht-input>
+    <ht-input ht-id="contactName" name="联系人" disable="true" ng-model="custInfo.contactName"></ht-input>
+    <ht-input ht-id="contactTel" name="电话" disable="true" ng-model="custInfo.contactTel"></ht-input>
+    <ht-input ht-id="fax" name="传真号码" disable="true" ng-model="custInfo.fax"></ht-input>
+    <ht-input ht-id="contactAddr" name="通信地址" disable="true" ng-model="custInfo.contactAddr"></ht-input>
+</ht-form>

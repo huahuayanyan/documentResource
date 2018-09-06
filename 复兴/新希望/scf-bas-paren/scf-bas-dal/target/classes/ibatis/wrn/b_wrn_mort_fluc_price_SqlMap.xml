@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_WRN_MORT_FLUC_PRICE" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPrice" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="MONI_CNAME" property="moniCname" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+    <result column="PRICE_DATE" property="priceDate" jdbcType="CHAR" />
+    <result column="ORIGINAL_MARKET_PRICE" property="originalMarketPrice" jdbcType="DECIMAL" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="CONFIRM_PRICE" property="confirmPrice" jdbcType="DECIMAL" />
+    <result column="FLUCTUATION" property="fluctuation" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="WARN_TYPE" property="warnType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, CNAME, CUSTCD, MONI_CNAME, MONI_CUSTCD, MORTGAGE_LEVEL_ONE, MORTGAGE_LEVEL_TWO, 
+    MORTGAGE_LEVEL_THREE, MORTGAGE_UNITS, MORTGAGE_MODEL, PRICE_DATE, ORIGINAL_MARKET_PRICE, 
+    MARKET_PRICE, CONFIRM_PRICE, FLUCTUATION, MORTGAGE_NO, SLAVE_CONTNO, SLAVE_CONTCODE, 
+    PROTOCOL_NO, MAST_CONTNO, WARN_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPriceExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_WRN_MORT_FLUC_PRICE.Base_Column_List" />
+    from B_WRN_MORT_FLUC_PRICE
+    <isParameterPresent >
+      <include refid="B_WRN_MORT_FLUC_PRICE.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPrice" >
+    select 
+    <include refid="B_WRN_MORT_FLUC_PRICE.Base_Column_List" />
+    from B_WRN_MORT_FLUC_PRICE
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPrice" >
+    delete from B_WRN_MORT_FLUC_PRICE
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPriceExample" >
+    delete from B_WRN_MORT_FLUC_PRICE
+    <include refid="B_WRN_MORT_FLUC_PRICE.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPrice" >
+    insert into B_WRN_MORT_FLUC_PRICE (ID, WARN_ID, CNAME, CUSTCD, MONI_CNAME, 
+      MONI_CUSTCD, MORTGAGE_LEVEL_ONE, MORTGAGE_LEVEL_TWO, MORTGAGE_LEVEL_THREE, 
+      MORTGAGE_UNITS, MORTGAGE_MODEL, PRICE_DATE, ORIGINAL_MARKET_PRICE, 
+      MARKET_PRICE, CONFIRM_PRICE, FLUCTUATION, MORTGAGE_NO, 
+      SLAVE_CONTNO, SLAVE_CONTCODE, PROTOCOL_NO, MAST_CONTNO, 
+      WARN_TYPE)
+    values (#id:VARCHAR#, #warnId:VARCHAR#, #cname:VARCHAR#, #custcd:VARCHAR#, #moniCname:VARCHAR#, 
+      #moniCustcd:VARCHAR#, #mortgageLevelOne:VARCHAR#, #mortgageLevelTwo:VARCHAR#, #mortgageLevelThree:VARCHAR#, 
+      #mortgageUnits:VARCHAR#, #mortgageModel:VARCHAR#, #priceDate:CHAR#, #originalMarketPrice:DECIMAL#, 
+      #marketPrice:DECIMAL#, #confirmPrice:DECIMAL#, #fluctuation:DECIMAL#, #mortgageNo:VARCHAR#, 
+      #slaveContno:VARCHAR#, #slaveContcode:VARCHAR#, #protocolNo:VARCHAR#, #mastContno:VARCHAR#, 
+      #warnType:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPrice" >
+    insert into B_WRN_MORT_FLUC_PRICE
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        MONI_CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        MORTGAGE_MODEL
+      </isNotNull>
+      <isNotNull prepend="," property="priceDate" >
+        PRICE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="originalMarketPrice" >
+        ORIGINAL_MARKET_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="marketPrice" >
+        MARKET_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="confirmPrice" >
+        CONFIRM_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="fluctuation" >
+        FLUCTUATION
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        SLAVE_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="warnType" >
+        WARN_TYPE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        #moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        #mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        #mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        #mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        #mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        #mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceDate" >
+        #priceDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="originalMarketPrice" >
+        #originalMarketPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="marketPrice" >
+        #marketPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmPrice" >
+        #confirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="fluctuation" >
+        #fluctuation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        #slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnType" >
+        #warnType:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPriceExample" resultClass="java.lang.Integer" >
+    select count(*) from B_WRN_MORT_FLUC_PRICE
+    <include refid="B_WRN_MORT_FLUC_PRICE.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_WRN_MORT_FLUC_PRICE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnId" >
+        WARN_ID = #record.warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cname" >
+        CNAME = #record.cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCname" >
+        MONI_CNAME = #record.moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCustcd" >
+        MONI_CUSTCD = #record.moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE = #record.mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO = #record.mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE = #record.mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageUnits" >
+        MORTGAGE_UNITS = #record.mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageModel" >
+        MORTGAGE_MODEL = #record.mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.priceDate" >
+        PRICE_DATE = #record.priceDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.originalMarketPrice" >
+        ORIGINAL_MARKET_PRICE = #record.originalMarketPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.marketPrice" >
+        MARKET_PRICE = #record.marketPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.confirmPrice" >
+        CONFIRM_PRICE = #record.confirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fluctuation" >
+        FLUCTUATION = #record.fluctuation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageNo" >
+        MORTGAGE_NO = #record.mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContcode" >
+        SLAVE_CONTCODE = #record.slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnType" >
+        WARN_TYPE = #record.warnType:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_WRN_MORT_FLUC_PRICE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_WRN_MORT_FLUC_PRICE
+    set ID = #record.id:VARCHAR#,
+      WARN_ID = #record.warnId:VARCHAR#,
+      CNAME = #record.cname:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      MONI_CNAME = #record.moniCname:VARCHAR#,
+      MONI_CUSTCD = #record.moniCustcd:VARCHAR#,
+      MORTGAGE_LEVEL_ONE = #record.mortgageLevelOne:VARCHAR#,
+      MORTGAGE_LEVEL_TWO = #record.mortgageLevelTwo:VARCHAR#,
+      MORTGAGE_LEVEL_THREE = #record.mortgageLevelThree:VARCHAR#,
+      MORTGAGE_UNITS = #record.mortgageUnits:VARCHAR#,
+      MORTGAGE_MODEL = #record.mortgageModel:VARCHAR#,
+      PRICE_DATE = #record.priceDate:CHAR#,
+      ORIGINAL_MARKET_PRICE = #record.originalMarketPrice:DECIMAL#,
+      MARKET_PRICE = #record.marketPrice:DECIMAL#,
+      CONFIRM_PRICE = #record.confirmPrice:DECIMAL#,
+      FLUCTUATION = #record.fluctuation:DECIMAL#,
+      MORTGAGE_NO = #record.mortgageNo:VARCHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      SLAVE_CONTCODE = #record.slaveContcode:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      WARN_TYPE = #record.warnType:CHAR#
+    <isParameterPresent >
+      <include refid="B_WRN_MORT_FLUC_PRICE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPrice" >
+    update B_WRN_MORT_FLUC_PRICE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID = #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME = #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        MONI_CNAME = #moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD = #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS = #mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        MORTGAGE_MODEL = #mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceDate" >
+        PRICE_DATE = #priceDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="originalMarketPrice" >
+        ORIGINAL_MARKET_PRICE = #originalMarketPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="marketPrice" >
+        MARKET_PRICE = #marketPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmPrice" >
+        CONFIRM_PRICE = #confirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="fluctuation" >
+        FLUCTUATION = #fluctuation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO = #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        SLAVE_CONTCODE = #slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnType" >
+        WARN_TYPE = #warnType:CHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanMortFlucPrice" >
+    update B_WRN_MORT_FLUC_PRICE
+    set WARN_ID = #warnId:VARCHAR#,
+      CNAME = #cname:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      MONI_CNAME = #moniCname:VARCHAR#,
+      MONI_CUSTCD = #moniCustcd:VARCHAR#,
+      MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#,
+      MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#,
+      MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#,
+      MORTGAGE_UNITS = #mortgageUnits:VARCHAR#,
+      MORTGAGE_MODEL = #mortgageModel:VARCHAR#,
+      PRICE_DATE = #priceDate:CHAR#,
+      ORIGINAL_MARKET_PRICE = #originalMarketPrice:DECIMAL#,
+      MARKET_PRICE = #marketPrice:DECIMAL#,
+      CONFIRM_PRICE = #confirmPrice:DECIMAL#,
+      FLUCTUATION = #fluctuation:DECIMAL#,
+      MORTGAGE_NO = #mortgageNo:VARCHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      SLAVE_CONTCODE = #slaveContcode:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      WARN_TYPE = #warnType:CHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

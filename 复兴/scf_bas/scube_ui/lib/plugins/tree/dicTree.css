@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* base */
+/*body { */
+	/*color: #000; font-size: 12px; font-family: "宋体","微软雅黑", arial, Times, serif; */
+	/*line-height: 1.25; margin: 0; padding: 0; height: 100%; word-break: break-all;}*/
+
+/* 公共行的样式 */
+.rH { display: none; }
+.pl10 { padding-left: 20px; }
+.commonRow { width:100%;float: left; cursor: pointer; line-height:20px; height: 20px; text-align:left; white-space: nowrap;}
+.commonRow:hover {  color: highlighttext; background-color: #5CACEE; }
+/*.commonRow img { vertical-align: middle; margin-left: 10px;}*/
+.commonRow img { vertical-align: middle;}
+.commonRow input { vertical-align: middle; margin:0px 0px 0px 10px;}
+/* 字体默认样式 */
+.dFC { color:#3098df;}
+/* 行选择后字体变样式 */
+.cFC { color:#FF0000; font-weight:bold;}
+.cFC span { color:#FF0000; font-weight:bold;}
+.commonRow span { padding-left: 5px;}

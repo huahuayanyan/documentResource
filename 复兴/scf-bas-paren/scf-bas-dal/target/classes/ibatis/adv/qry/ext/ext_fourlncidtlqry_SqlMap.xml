@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_FOURLNCIDTLQRY">
+	
+  <resultMap id="BaseResultVOMap" class="com.huateng.scf.bas.lan.dao.model.BLanLnciBaseVO"  extends="B_LAN_LNCI_BASE.BaseResultMap" >
+ 	<result column="TLRNO" property="tlrno" jdbcType="VARCHAR" />
+ 	<result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+ 	<result column="SELLER_CUSTCD" property="sellerCustcd" jdbcType="VARCHAR" />
+   	<result column="CORE_CUSTCD" property="coreCustcd" jdbcType="VARCHAR" />
+   	<result column="SELLER_CNAME" property="sellerCname" jdbcType="VARCHAR" />
+   	<result column="CORE_CNAME" property="coreCname" jdbcType="VARCHAR" />
+   	<result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+   	<result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+  </resultMap>
+	
+	<!-- 借据信息查询 -->
+  <select id="selectFourLnciInfoList" resultMap="BaseResultVOMap" parameterClass ="java.util.HashMap">
+	SELECT T1.TLRNO, T1.BRCODE,T3.CUSTCD SELLER_CUSTCD, T3.CNAME SELLER_CNAME, T4.CUSTCD CORE_CUSTCD, T4.CNAME CORE_CNAME ,T2.*,
+	mbi.PROTOCOL_CODE, p.product_name
+	FROM B_CNT_MPROT_BASE_INFO T1
+		inner join B_LAN_LNCI_BASE T2 on T1.PROTOCOL_NO  = T2.PROTOCOL_NO
+		left join B_CNT_MPROT_BASE_INFO mbi on mbi.PROTOCOL_NO = t1.PROTOCOL_NO
+		left join B_CNT_MPROT_PART_INFO T3 on T1.PROTOCOL_NO = T3.PROTOCOL_NO AND T3.ROLE = '03'
+		left join B_CNT_MPROT_PART_INFO T4 on T1.PROTOCOL_NO = T4.PROTOCOL_NO AND T4.ROLE = '04'
+		left join B_PRD_INFO p on p.product_id = t2.product_id
+    		WHERE  T1.STATE = '1' and T2.STATE = '0' and t1.protocol_Type = '02'
+			<isNotNull prepend="and" property="arrBr" >
+			 T1.BRCODE in 
+		    <iterate conjunction="," open="(" close=")" property="arrBr">
+		 	      #arrBr[]#
+		 	</iterate>
+		 	</isNotNull>
+			<isNotEmpty prepend="and" property="sellerNm" >
+				<![CDATA[T3.CNAME like '%'||#sellerNm:VARCHAR#||'%' ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="coreNm" >
+				<![CDATA[T4.CNAME like '%'||#coreNm:VARCHAR#||'%' ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="protocolCode" >
+				<![CDATA[lower(mbi.PROTOCOL_CODE) like '%'||#protocolCode:VARCHAR#||'%']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="debetId" >
+				<![CDATA[lower(T2.debet_Id) like '%'||#debetId:VARCHAR#||'%']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="tradeContno" >
+				<![CDATA[lower(T2.MAST_CONTNO)  like '%'||#tradeContno:VARCHAR#||'%']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="loanWay" >
+				T2.LNCI_TYPE = #loanWay:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty property="startDate1" prepend="and" >
+				<![CDATA[T2.START_DATE>= #startDate1:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="startDate2" prepend="and">
+				<![CDATA[T2.START_DATE<= #startDate2:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="startDate3"  prepend="and">
+				<![CDATA[T2.END_DATE >= #startDate3:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="startDate4" prepend="and">
+				<![CDATA[T2.END_DATE <= #startDate4:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="amount1"  prepend="and">
+				<![CDATA[T2.AMOUNT_OUT >= #amount1:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="amount2" prepend="and">
+				<![CDATA[T2.AMOUNT_OUT <= #amount2:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="status" >
+				T2.CONFIRM_STATUS = #status:VARCHAR#
+			</isNotEmpty>
+			order by t2.DEBET_ID desc
+  </select>
+  
+  <select id="selectContBuyInfoByDebetNo" resultMap="B_CNT_BUY_INFO.BaseResultMap" parameterClass="java.lang.String" >
+	SELECT T1.TRADE_CONTNO, T1.TRADE_CONTCODE, T1.MAST_CONTNO, T1.CUSTCD, T1.APPLY_DATE, T1.START_DATE, T1.END_DATE, T1.CURCD, 
+	T1.TOT_AMT, T1.AMT, T1.REMAIN_AMT, T1.CNAME, T1.TEL, T1.ADDRESS, T1.FAX, T1.POSTCODE, T1.BANK, T1.SEC_CUSTCD, T1.SEC_CNAME, 
+	T1.SEC_TEL, T1.SEC_ADDRESS, T1.SEC_BANK, T1.SEC_FAX, T1.SEC_BANK_NAME, T1.SEC_POSTCODE, T1.BAIL_ACCOUNT, T1.BAIL_AMOUNT, 
+	T1.BAIL_RATE, T1.TRANSPORT_TYPE, T1.EFFECTIVE_ADDRESS, T1.COST_MONEY, T1.GUATTYPE, T1.TLRNO, T1.FIR_NAME, T1.STATUS, 
+	T1.INDUSTRY_ONE, T1.INDUSTRY_TWO,  t1.EXT1, T1.MEMO, T1.PROTOCOL_NO, T1.SUPPLY_CHAIN_PD_ID, T1.EBANK_APPNO, T1.CHANNEL_FLAG, 
+	T1.ACCU_DELI_AMT, T1.APPNO, T1.TLRCD, T1.CRT_TIME, T1.BRCODE, T1.LAST_UPD_TLRCD, T1.LAST_UPD_TIME, T1.LAST_UPD_BRCODE,
+	p.product_name
+	 FROM B_CNT_BUY_INFO T1
+		inner join B_LAN_LNCI_BUY_biz T2 on T1.TRADE_CONTNO = T2.TRADE_CONTNO
+		left join B_PRD_INFO p on p.product_id = t1.SUPPLY_CHAIN_PD_ID
+	where 1=1
+	<isNotEmpty prepend="and" property="value" >
+		T2.DEBET_NO = #debetNo:VARCHAR#
+	</isNotEmpty>
+	<isEmpty prepend="and" property="value" >
+		1=2
+	</isEmpty>
+  </select>
+
+</sqlMap>

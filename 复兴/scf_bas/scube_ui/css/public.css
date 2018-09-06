@@ -1,0 +1,220 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: #F7F7F7;
+    font-family: 微软雅黑;
+    height: 100%
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.center {
+    text-align: center
+}
+
+.jquery-ui-placeholder {
+    border: 1px dotted orange;
+    background-color: #fff
+}
+
+/*btn css*/
+.btn {
+    border: none;
+    display: inline-block;
+    margin-right: 3px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: none;
+    background-image: none;
+    color: #FFF;
+    border-radius: 2px;
+    cursor: pointer;
+    vertical-align: middle;
+    -webkit-transition: all ease .15s;
+    transition: all ease .15s;
+    position: relative;
+    outline: none;
+    background-color: #abbac3;
+    border-color: #abbac3;
+}
+
+.btn:hover {
+    background-color: #8b9aa3;
+}
+
+.btn-sm {
+    line-height: 1;
+    font-size: 12px;
+    padding: 4px 9px;
+}
+
+.btn-primary {
+    background-color: #2782B0;
+}
+
+.btn-primary:hover {
+    background-color: #1b6aaa;
+}
+
+.ht-button-group {
+    margin: 10px 0px 5px;
+    padding-bottom: 3px
+}
+
+/*input css*/
+textarea, .input,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+    width: 60%;
+    height: 26px;
+    padding-left: 14px;
+    font-weight: normal;
+    background-color: #fff;
+    color: #333333;
+    border: 1px solid #c4c4c4;
+    font-size: 12px;
+}
+
+textarea:hover, .input:hover,
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="datetime"]:hover,
+input[type="datetime-local"]:hover,
+input[type="date"]:hover,
+input[type="month"]:hover,
+input[type="time"]:hover,
+input[type="week"]:hover,
+input[type="number"]:hover,
+input[type="email"]:hover,
+input[type="url"]:hover,
+input[type="search"]:hover,
+input[type="tel"]:hover,
+input[type="color"]:hover,
+textarea:focus, .input:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus {
+    border-color: #8e8e8e;
+}
+
+/*table css*/
+.outTable {
+    width: 100%;
+    font-size: 12px;
+}
+
+.innerTable {
+    overflow-x: auto;
+    /*height: 365px;*/
+    background-color: #fff;
+    border: 1px #dce2e9 solid;
+    -webkit-box-shadow: 3px 3px 3px #ccc;
+    -moz-box-shadow: 3px 3px 3px #ccc;
+    box-shadow: 3px 3px 3px #ccc;
+}
+
+.table {
+    margin-bottom: 0;
+    border: none;
+    /*table-layout: fixed;*/
+}
+
+.table tr:nth-of-type(even) {
+    background-color: #fafafa;
+}
+.table > tbody > tr:hover{
+    background-color: #f5f5f5;
+}
+
+.table > thead > tr > th {
+    background-color: #D6E6F5
+}
+
+.table > thead > tr > th{
+    text-align: left;
+    word-break: keep-all;
+    white-space: nowrap;
+    border-top: none;
+}
+.table > tbody > tr > th, .table > tfoot > tr > th,
+.table > tbody > tr > td, .table > tfoot > tr > td {
+    text-align: left;
+    word-break: keep-all;
+    white-space: nowrap;
+    border-top: none;
+    /*width: 100px;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table > thead > tr > th a, .table > tbody > tr > th a, .table > tfoot > tr > th a {
+    line-height: 1.5rem;
+    color: #4f5f6f;
+    font-weight: bold;
+    cursor: pointer
+}
+
+.table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    line-height: 1rem;
+    color: #333333;
+}
+
+/*focus page*/
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #22c064;
+    border: 1px solid #18a754;
+    color: #fff;
+}
+
+/*green style*/
+.myform input, .myform select {
+    width: 272px;
+    height: 50px;
+    padding: 0 14px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+}
+
+.myform input:focus {
+    border: 2px solid #22c064;
+}
+
+.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
+    background-color: #22c064;
+    color: #fff;
+}

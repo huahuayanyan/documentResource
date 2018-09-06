@@ -1,0 +1,16 @@
+<ht-legend>市价历史查询</ht-legend>
+<ht-table ht-id="" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageThreeName" zh-name="押品三级"></ht-column>
+    <ht-column eg-name="productName" zh-name="产品名称"></ht-column>
+    <ht-column eg-name="mortgageUnits" zh-name="计量单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column eg-name="price" zh-name="市场价格" type="currency"></ht-column>
+    <ht-column eg-name="priceDate" zh-name="价格日期" type="date"></ht-column>
+    <ht-column eg-name="productId" zh-name="盯市编号" ></ht-column>
+    <ht-column eg-name="marketPriceSrc" zh-name="市价来源" dictionary="marketPriceSrc"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="back"  class="btn-primary">返回</ht-button>
+</ht-button-group>

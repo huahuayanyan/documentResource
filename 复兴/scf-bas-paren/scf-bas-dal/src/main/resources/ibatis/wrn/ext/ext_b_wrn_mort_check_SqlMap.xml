@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_WRN_MORT_CHECK" >
+  <resultMap id="ThreeCheckStockWarnVOMap" class="com.huateng.scf.adv.wrn.dao.model.ThreeCheckStockWarnVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="CUSTCD_SELLER" property="custcdSeller" jdbcType="VARCHAR" />
+    <result column="CNAME_SELLER" property="cnameSeller" jdbcType="VARCHAR" />
+    <result column="CUSTCD_BUYER" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="CNAME_BUYER" property="cnameBuyer" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="CONFIRM_DATE" property="confirmDate" jdbcType="CHAR" />
+    <result column="CHECK_TYPE" property="checkType" jdbcType="VARCHAR" />
+    <result column="CHECK_RESULT" property="checkResult" jdbcType="VARCHAR" />
+    <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
+    <result column="WARN_DATE" property="warnDate" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="CUST_MANAGER" property="custManager" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, CUSTCD_SELLER, CNAME_SELLER, CUSTCD_BUYER, CNAME_BUYER, PROTOCOL_NO, 
+    START_DATE, CONFIRM_DATE, CHECK_TYPE, CHECK_RESULT, CHECK_STATUS
+  </sql>
+  
+  <!-- 分页查询发货对账不平预警的列表 -->
+  <select id="selectCheckStockWarnInfo" parameterClass="com.huateng.scf.adv.wrn.dao.model.WarnQryVO" resultMap="ThreeCheckStockWarnVOMap">
+		SELECT tnbi.*, tlbi.WARN_DATE,tlbi.PRODUCT_ID,tlbi.CUST_MANAGER,tlbi.BRCODE FROM B_WRN_BASE_INFO tlbi ,B_WRN_MORT_CHECK_INFO tnbi 
+		WHERE tlbi.id = tnbi.warn_id and 1=1
+  		<isNotNull prepend="and" property="productId_Q" >
+  			tlbi.product_id =#productId_Q:VARCHAR#
+  		</isNotNull>
+  		<isNotNull prepend="and" property="cnameBuyer_Q" >
+  			tnbi.cname_buyer like  '%'||#cnameBuyer_Q:VARCHAR#||'%'
+  		</isNotNull>
+  		<isNotNull prepend="and" property="protocolCode_Q" >
+  			tnbi.protocol_no like '%'||#protocolCode_Q:VARCHAR#||'%'
+  		</isNotNull>
+  		<isNotNull prepend="and" property="checkType_Q" >
+  			tnbi.check_type = #checkType_Q:VARCHAR#
+  		</isNotNull>
+  		<isNotNull prepend="and" property="startDate_Q" >
+			<![CDATA[tlbi.warn_date >= #startDate_Q:VARCHAR#]]>
+  		</isNotNull>
+  		<isNotNull prepend="and" property="endDate_Q" >
+			<![CDATA[tlbi.warn_date<= #endDate_Q:VARCHAR#]]>
+  		</isNotNull>
+  		<isNotNull prepend="and" property="currentDate_Q" >
+			<![CDATA[tlbi.warn_date = #currentDate_Q:VARCHAR#]]>
+  		</isNotNull>	
+  		
+	    <isEqual property="status_Q" compareValue="2" >
+		    <isEqual property="brattr" compareValue="1">
+			    and	exists (select 1 from B_CNT_MPROT_BASE_INFO tcdi where tcdi.protocol_no=tnbi.protocol_no and 
+				tcdi.protocol_type='07'and tcdi.cooperation_brcode = #brcode_Q:VARCHAR#)	
+		    </isEqual>
+			<isNotEqual property="brattr" compareValue="1">						
+				and exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =tlbi.brcode and affiliation_type = '1'
+				and parent_brcode = #brcode_Q:VARCHAR#)	
+			</isNotEqual>	
+	    </isEqual>	
+  </select>
+  
+  <!-- 查询发货对账不平预警的条目数 -->
+  <select id="countCheckStockWarnInfo" parameterClass="com.huateng.scf.adv.wrn.dao.model.WarnQryVO" resultClass="java.lang.Integer">
+  	select count(id) from (
+		SELECT tnbi.*, tlbi.WARN_DATE,tlbi.PRODUCT_ID,tlbi.CUST_MANAGER,tlbi.BRCODE FROM B_WRN_BASE_INFO tlbi ,B_WRN_MORT_CHECK_INFO tnbi 
+		WHERE tlbi.id = tnbi.warn_id and 1=1
+  		<isNotNull prepend="and" property="productId_Q" >
+  			tlbi.product_id =#productId_Q:VARCHAR#
+  		</isNotNull>
+  		<isNotNull prepend="and" property="cnameBuyer_Q" >
+  			tnbi.cname_buyer like  '%'||#cnameBuyer_Q:VARCHAR#||'%'
+  		</isNotNull>
+  		<isNotNull prepend="and" property="protocolCode_Q" >
+  			tnbi.protocol_no = #protocolCode_Q:VARCHAR#
+  		</isNotNull>
+  		<isNotNull prepend="and" property="checkType_Q" >
+  			tnbi.check_type = #checkType_Q:VARCHAR#
+  		</isNotNull>
+  		<isNotNull prepend="and" property="startDate_Q" >
+			<![CDATA[tlbi.warn_date >= #startDate_Q:VARCHAR#]]>
+  		</isNotNull>
+  		<isNotNull prepend="and" property="endDate_Q" >
+			<![CDATA[tlbi.warn_date<= #endDate_Q:VARCHAR#]]>
+  		</isNotNull>
+  		<isNotNull prepend="and" property="currentDate_Q" >
+			<![CDATA[tlbi.warn_date = #currentDate_Q:VARCHAR#]]>
+  		</isNotNull>	
+  		
+	    <isEqual property="status_Q" compareValue="2" >
+		    <isEqual property="brattr" compareValue="1">
+			    and	exists (select 1 from B_CNT_MPROT_BASE_INFO tcdi where tcdi.protocol_no=tnbi.protocol_no and 
+				tcdi.protocol_type='07'and tcdi.cooperation_brcode = #brcode_Q:VARCHAR#)	
+		    </isEqual>
+			<isNotEqual property="brattr" compareValue="1">						
+				and exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =tlbi.brcode and affiliation_type = '1'
+				and parent_brcode = #brcode_Q:VARCHAR#)	
+			</isNotEqual>	
+	    </isEqual>
+  	)
+  </select>
+
+</sqlMap>

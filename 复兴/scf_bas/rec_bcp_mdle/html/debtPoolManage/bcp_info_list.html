@@ -1,0 +1,63 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+    <ht-input ht-id="cnameSeller" name="卖方名称" ng-model="conditionForm.cnameSeller"></ht-input>
+    <ht-input ht-id="cnameBuyer"  name="买方名称"  ng-model="conditionForm.cnameBuyer"></ht-input>
+    <ht-input ht-id="mastContno" name="池合同号" ng-model="conditionForm.mastContno"></ht-input>
+
+    <ht-input-extent ht-id="bussTypeName" name="业务品种"   extent="bussTypeContent" on-change="bussTypedooextent"
+                     ng-model="conditionForm.bussTypeName">
+    </ht-input-extent>
+
+    <ht-input ht-id="billsDateFrom" name="应收账款日期从" edit-type="date" ng-model="conditionForm.billsDateFrom"></ht-input>
+    <ht-input ht-id="billsDateTo"  name="应收账款日期到"  edit-type="date" ng-model="conditionForm.billsDateTo"></ht-input>
+    <ht-input ht-id="debtEndFrom" name="到期日从" edit-type="date" ng-model="conditionForm.debtEndFrom"></ht-input>
+    <ht-input ht-id="debtEndTo"  name="到期日到"  edit-type="date" ng-model="conditionForm.debtEndTo"></ht-input>
+    <ht-select ht-id="billsType"  name="凭证类型" dictionary="billsType" ng-model="conditionForm.billsType"></ht-select>
+    <ht-input ht-id="billsNo" name="凭证编号" ng-model="conditionForm.billsNo"></ht-input>
+    <ht-select ht-id="status"  name="状态" dictionary="debtBussStatus" ng-model="conditionForm.status"></ht-select>
+    <ht-button-group>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>应收账款信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="progress" class="btn-primary">历程信息</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="cnameSeller" zh-name="卖方名称" ></ht-column>
+    <ht-column eg-name="cnameBuyer" zh-name="买方名称"  ></ht-column>
+    <ht-column eg-name="mastContno" zh-name="池合同号"></ht-column>
+    <ht-column eg-name="bussTypeName" zh-name="业务品种" ></ht-column>
+    <ht-column eg-name="billsNo" zh-name="凭证编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType"></ht-column>
+
+    <ht-column eg-name="bussContcode" zh-name="商务合同号"></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期" type="date"></ht-column>
+    <ht-column eg-name="aging" zh-name="账期" ></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日"  type="date"></ht-column>
+    <ht-column eg-name="gracePeriod" zh-name="宽限期" type="number"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+
+    <ht-column eg-name="billsAmountView" zh-name="票面金额" type="currency" ></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额"  type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="应收账款余额" type="currency"></ht-column>
+    <ht-column eg-name="status" zh-name="状态" dictionary="debtBussStatus" ></ht-column>
+    <ht-column eg-name="poolFlag" zh-name="池状态" dictionary="poolflag" ></ht-column>
+    <ht-column eg-name="issueTimes" zh-name="商纠次数" type="number"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+
+
+

@@ -1,0 +1,18 @@
+
+<ht-form name="otherform">
+    <!--hide1是在新增修改的的时候隐藏经办人经办机构 ，只有查看的时候才显示。 hide是在查看的时候隐藏确定按钮-->
+    <ht-legend>客户关联关系</ht-legend>
+    <ht-input ht-id="id" name="id"  hide="true" ng-model="otherform.id"></ht-input>
+    <ht-input ht-id="coreCustcd" name="核心厂商客户号" hide="true"  ng-model="otherform.coreCustcd"></ht-input>
+    <ht-input ht-id="buyerCustcd" name="买方客户号" disable="{{disable}}" reg-exp="common.require" ng-model="otherform.buyerCustcd"></ht-input>
+    <ht-input ht-id="sellerCustcd" name="卖方客户号" disable="{{disable}}" reg-exp="common.require" ng-model="otherform.sellerCustcd"></ht-input>
+    <ht-input ht-id="moniCustcd" name="监管公司客户号" disable="{{disable}}" ng-model="otherform.moniCustcd"></ht-input>
+    <ht-select ht-id="state" name="状态"disable="{{disable}}"  dictionary="custStatus" reg-exp="common.require" ng-model="otherform.state"></ht-select>
+    <ht-select ht-id="relaType" name="客户关联类型"  disable="{{disable}}" dictionary="relaType" ng-model="otherform.relaType"></ht-select>
+    <ht-input ht-id="tlrcd" name="经办人" hide="{{hide1}}" disable="true" ng-model="otherform.tlrcd"></ht-input>
+    <ht-input ht-id="brcode" name="经办机构"  hide="{{hide1}}" disable="true" ng-model="otherform.brcode"></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide}}"class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

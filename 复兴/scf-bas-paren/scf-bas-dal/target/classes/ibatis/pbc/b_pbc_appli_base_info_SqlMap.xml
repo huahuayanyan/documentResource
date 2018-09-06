@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PBC_APPLI_BASE_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfo" >
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="PIID" property="piid" jdbcType="VARCHAR" />
+    <result column="APPLI_TYPE" property="appliType" jdbcType="CHAR" />
+    <result column="PROCESS_TEMPLATE_NAME" property="processTemplateName" jdbcType="VARCHAR" />
+    <result column="BUSINESSNO_TYPE" property="businessnoType" jdbcType="CHAR" />
+    <result column="BUSINESSNO" property="businessno" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="AMT" property="amt" jdbcType="DECIMAL" />
+    <result column="START_BRCODE" property="startBrcode" jdbcType="VARCHAR" />
+    <result column="START_TLRCD" property="startTlrcd" jdbcType="VARCHAR" />
+    <result column="STRAT_DATE" property="stratDate" jdbcType="CHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="APPLI_STATUS" property="appliStatus" jdbcType="CHAR" />
+    <result column="APPROVE_BRCODE" property="approveBrcode" jdbcType="VARCHAR" />
+    <result column="APPROVER" property="approver" jdbcType="VARCHAR" />
+    <result column="APPROVE_DATE" property="approveDate" jdbcType="CHAR" />
+    <result column="APPROVE_TIME" property="approveTime" jdbcType="TIMESTAMP" />
+    <result column="WORKFLOW_APPNO" property="workflowAppno" jdbcType="VARCHAR" />
+    <result column="APPLI_STATUS_DTL" property="appliStatusDtl" jdbcType="CHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="APP_DATE" property="appDate" jdbcType="CHAR" />
+    <result column="APP_TLRCD" property="appTlrcd" jdbcType="VARCHAR" />
+    <result column="APP_BRCODE" property="appBrcode" jdbcType="VARCHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="INCOME_APPNO" property="incomeAppno" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="PLEDGE_MODE" property="pledgeMode" jdbcType="CHAR" />
+    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="EBANK_APPNO" property="ebankAppno" jdbcType="VARCHAR" />
+    <result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+    <result column="CHANNEL_FLAG" property="channelFlag" jdbcType="CHAR" />
+    <result column="IS_FLOW_END" property="isFlowEnd" jdbcType="CHAR" />
+    <result column="IFSP_APPNO" property="ifspAppno" jdbcType="VARCHAR" />
+    <result column="IFSP_ORDER_NO" property="ifspOrderNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    APPNO, PIID, APPLI_TYPE, PROCESS_TEMPLATE_NAME, BUSINESSNO_TYPE, BUSINESSNO, CUSTCD, 
+    AMT, START_BRCODE, START_TLRCD, STRAT_DATE, START_TIME, APPLI_STATUS, APPROVE_BRCODE, 
+    APPROVER, APPROVE_DATE, APPROVE_TIME, WORKFLOW_APPNO, APPLI_STATUS_DTL, CURCD, APP_DATE, 
+    APP_TLRCD, APP_BRCODE, BAIL_AMOUNT, SLAVE_CONTNO, MAST_CONTNO, PROTOCOL_NO, SUPPLY_CHAIN_PD_ID, 
+    MEMO, INCOME_APPNO, MONI_CUSTCD, PLEDGE_MODE, OTHER_PROTOCOL_NO, EXT1, EXT2, EXT3, 
+    EBANK_APPNO, MAST_CONTCODE, CHANNEL_FLAG, IS_FLOW_END, IFSP_APPNO, IFSP_ORDER_NO
+  </sql>
+  <sql id="Base_Column_List1" >
+    a.APPNO, a.PIID, a.APPLI_TYPE, a.PROCESS_TEMPLATE_NAME, a.BUSINESSNO_TYPE, a.BUSINESSNO, a.CUSTCD, 
+    a.AMT, a.START_BRCODE, a.START_TLRCD, a.STRAT_DATE, a.START_TIME, a.APPLI_STATUS, a.APPROVE_BRCODE, 
+    a.APPROVER, a.APPROVE_DATE, a.APPROVE_TIME, a.WORKFLOW_APPNO, a.APPLI_STATUS_DTL, a.CURCD, APP_DATE, 
+    a.APP_TLRCD, a.APP_BRCODE, a.BAIL_AMOUNT, a.SLAVE_CONTNO, a.MAST_CONTNO, a.PROTOCOL_NO, a.SUPPLY_CHAIN_PD_ID, 
+    a.MEMO, a.INCOME_APPNO, a.MONI_CUSTCD, a.PLEDGE_MODE, a.OTHER_PROTOCOL_NO, a.EXT1, a.EXT2, a.EXT3, 
+    a.EBANK_APPNO, a.MAST_CONTCODE, a.CHANNEL_FLAG, a.IS_FLOW_END, a.IFSP_APPNO, a.IFSP_ORDER_NO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PBC_APPLI_BASE_INFO.Base_Column_List" />
+    from B_PBC_APPLI_BASE_INFO
+    <isParameterPresent >
+      <include refid="B_PBC_APPLI_BASE_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfo" >
+    select 
+    <include refid="B_PBC_APPLI_BASE_INFO.Base_Column_List" />
+    from B_PBC_APPLI_BASE_INFO
+    where APPNO = #appno:VARCHAR#
+  </select>
+  <!-- 产品id -->
+  <select id="selectByProductId" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+    select 
+    <include refid="B_PBC_APPLI_BASE_INFO.Base_Column_List" />
+    from B_PBC_APPLI_BASE_INFO 
+    <isParameterPresent >
+	   where 1=1 
+	    <isNotEmpty prepend="and" property="proid" >
+	    	SUPPLY_CHAIN_PD_ID = #proid:VARCHAR#
+	    </isNotEmpty>
+		<isNotEmpty prepend="and" property="proids" >
+	    	SUPPLY_CHAIN_PD_ID IN
+	    	<iterate conjunction="," open="(" close=")" property="proids">
+	    		#proids[]#
+	    	</iterate>
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="processName" >
+	    	PROCESS_TEMPLATE_NAME = #processName:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="cname" >
+	    CUSTCD in (select custcd from B_CRM_BASE_INFO M where M.CNAME like '%' || #cname:VACHAR# || '%')
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="mastContno" >
+	    	MAST_CONTCODE like '%' || #mastContno:VARCHAR# || '%'
+	    </isNotEmpty>	
+	    <isNotEmpty prepend="and" property="debetId" >
+	    	APPNO in(select appno from B_LAN_APPLI_LNCI_BASE where DEBET_ID like '%' || #debetId:VARCHAR# || '%')
+	    </isNotEmpty >
+	    <isNotEmpty prepend="and" property="status" >
+	    	APPLI_STATUS_DTL = #status:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="processNameList" >
+	    	PROCESS_TEMPLATE_NAME IN
+	    	<iterate conjunction="," open="(" close=")" property="processNameList">
+	    		#processNameList[]#
+	    	</iterate>
+	    </isNotEmpty>
+	    order by APPNO desc,START_TIME desc   <!--0003235:按照出账流水号倒序排列  -->
+	</isParameterPresent>    
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfo" >
+    delete from B_PBC_APPLI_BASE_INFO
+    where APPNO = #appno:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfoExample" >
+    delete from B_PBC_APPLI_BASE_INFO
+    <include refid="B_PBC_APPLI_BASE_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfo" >
+    insert into B_PBC_APPLI_BASE_INFO (APPNO, PIID, APPLI_TYPE, PROCESS_TEMPLATE_NAME, 
+      BUSINESSNO_TYPE, BUSINESSNO, CUSTCD, AMT, START_BRCODE, 
+      START_TLRCD, STRAT_DATE, START_TIME, APPLI_STATUS, 
+      APPROVE_BRCODE, APPROVER, APPROVE_DATE, APPROVE_TIME, 
+      WORKFLOW_APPNO, APPLI_STATUS_DTL, CURCD, APP_DATE, APP_TLRCD, 
+      APP_BRCODE, BAIL_AMOUNT, SLAVE_CONTNO, MAST_CONTNO, 
+      PROTOCOL_NO, SUPPLY_CHAIN_PD_ID, MEMO, INCOME_APPNO, 
+      MONI_CUSTCD, PLEDGE_MODE, OTHER_PROTOCOL_NO, EXT1, 
+      EXT2, EXT3, EBANK_APPNO, MAST_CONTCODE, CHANNEL_FLAG, 
+      IS_FLOW_END, IFSP_APPNO, IFSP_ORDER_NO)
+    values (#appno:VARCHAR#, #piid:VARCHAR#, #appliType:CHAR#, #processTemplateName:VARCHAR#, 
+      #businessnoType:CHAR#, #businessno:VARCHAR#, #custcd:VARCHAR#, #amt:DECIMAL#, #startBrcode:VARCHAR#, 
+      #startTlrcd:VARCHAR#, #stratDate:CHAR#, #startTime:TIMESTAMP#, #appliStatus:CHAR#, 
+      #approveBrcode:VARCHAR#, #approver:VARCHAR#, #approveDate:CHAR#, #approveTime:TIMESTAMP#, 
+      #workflowAppno:VARCHAR#, #appliStatusDtl:CHAR#, #curcd:CHAR#, #appDate:CHAR#, #appTlrcd:VARCHAR#, 
+      #appBrcode:VARCHAR#, #bailAmount:DECIMAL#, #slaveContno:VARCHAR#, #mastContno:VARCHAR#, 
+      #protocolNo:VARCHAR#, #supplyChainPdId:CHAR#, #memo:VARCHAR#, #incomeAppno:VARCHAR#, 
+      #moniCustcd:VARCHAR#, #pledgeMode:CHAR#, #otherProtocolNo:VARCHAR#, #ext1:VARCHAR#, 
+      #ext2:VARCHAR#, #ext3:VARCHAR#, #ebankAppno:VARCHAR#, #mastContcode:VARCHAR#, #channelFlag:CHAR#, 
+      #isFlowEnd:CHAR#, #ifspAppno:VARCHAR#, #ifspOrderNo:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfo" >
+    insert into B_PBC_APPLI_BASE_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="piid" >
+        PIID
+      </isNotNull>
+      <isNotNull prepend="," property="appliType" >
+        APPLI_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="processTemplateName" >
+        PROCESS_TEMPLATE_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="businessnoType" >
+        BUSINESSNO_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="businessno" >
+        BUSINESSNO
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        AMT
+      </isNotNull>
+      <isNotNull prepend="," property="startBrcode" >
+        START_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="startTlrcd" >
+        START_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="stratDate" >
+        STRAT_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="startTime" >
+        START_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="appliStatus" >
+        APPLI_STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="approveBrcode" >
+        APPROVE_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="approver" >
+        APPROVER
+      </isNotNull>
+      <isNotNull prepend="," property="approveDate" >
+        APPROVE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="approveTime" >
+        APPROVE_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="workflowAppno" >
+        WORKFLOW_APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="appliStatusDtl" >
+        APPLI_STATUS_DTL
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="appDate" >
+        APP_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="appTlrcd" >
+        APP_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="appBrcode" >
+        APP_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      <isNotNull prepend="," property="incomeAppno" >
+        INCOME_APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="pledgeMode" >
+        PLEDGE_MODE
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        OTHER_PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3
+      </isNotNull>
+      <isNotNull prepend="," property="ebankAppno" >
+        EBANK_APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        MAST_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="channelFlag" >
+        CHANNEL_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="isFlowEnd" >
+        IS_FLOW_END
+      </isNotNull>
+      <isNotNull prepend="," property="ifspAppno" >
+        IFSP_APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="ifspOrderNo" >
+        IFSP_ORDER_NO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="piid" >
+        #piid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appliType" >
+        #appliType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="processTemplateName" >
+        #processTemplateName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessnoType" >
+        #businessnoType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessno" >
+        #businessno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        #amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startBrcode" >
+        #startBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startTlrcd" >
+        #startTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stratDate" >
+        #stratDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startTime" >
+        #startTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="appliStatus" >
+        #appliStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveBrcode" >
+        #approveBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approver" >
+        #approver:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveDate" >
+        #approveDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveTime" >
+        #approveTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="workflowAppno" >
+        #workflowAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appliStatusDtl" >
+        #appliStatusDtl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appDate" >
+        #appDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appTlrcd" >
+        #appTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appBrcode" >
+        #appBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        #supplyChainPdId:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="incomeAppno" >
+        #incomeAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pledgeMode" >
+        #pledgeMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        #otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        #ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ebankAppno" >
+        #ebankAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        #mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="channelFlag" >
+        #channelFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isFlowEnd" >
+        #isFlowEnd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifspAppno" >
+        #ifspAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifspOrderNo" >
+        #ifspOrderNo:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PBC_APPLI_BASE_INFO
+    <include refid="B_PBC_APPLI_BASE_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PBC_APPLI_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.piid" >
+        PIID = #record.piid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appliType" >
+        APPLI_TYPE = #record.appliType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.processTemplateName" >
+        PROCESS_TEMPLATE_NAME = #record.processTemplateName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.businessnoType" >
+        BUSINESSNO_TYPE = #record.businessnoType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.businessno" >
+        BUSINESSNO = #record.businessno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amt" >
+        AMT = #record.amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startBrcode" >
+        START_BRCODE = #record.startBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startTlrcd" >
+        START_TLRCD = #record.startTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stratDate" >
+        STRAT_DATE = #record.stratDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startTime" >
+        START_TIME = #record.startTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appliStatus" >
+        APPLI_STATUS = #record.appliStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.approveBrcode" >
+        APPROVE_BRCODE = #record.approveBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.approver" >
+        APPROVER = #record.approver:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.approveDate" >
+        APPROVE_DATE = #record.approveDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.approveTime" >
+        APPROVE_TIME = #record.approveTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.workflowAppno" >
+        WORKFLOW_APPNO = #record.workflowAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appliStatusDtl" >
+        APPLI_STATUS_DTL = #record.appliStatusDtl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appDate" >
+        APP_DATE = #record.appDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appTlrcd" >
+        APP_TLRCD = #record.appTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appBrcode" >
+        APP_BRCODE = #record.appBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAmount" >
+        BAIL_AMOUNT = #record.bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID = #record.supplyChainPdId:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.incomeAppno" >
+        INCOME_APPNO = #record.incomeAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCustcd" >
+        MONI_CUSTCD = #record.moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pledgeMode" >
+        PLEDGE_MODE = #record.pledgeMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherProtocolNo" >
+        OTHER_PROTOCOL_NO = #record.otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1" >
+        EXT1 = #record.ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext2" >
+        EXT2 = #record.ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext3" >
+        EXT3 = #record.ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ebankAppno" >
+        EBANK_APPNO = #record.ebankAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContcode" >
+        MAST_CONTCODE = #record.mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.channelFlag" >
+        CHANNEL_FLAG = #record.channelFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isFlowEnd" >
+        IS_FLOW_END = #record.isFlowEnd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ifspAppno" >
+        IFSP_APPNO = #record.ifspAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ifspOrderNo" >
+        IFSP_ORDER_NO = #record.ifspOrderNo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PBC_APPLI_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PBC_APPLI_BASE_INFO
+    set APPNO = #record.appno:VARCHAR#,
+      PIID = #record.piid:VARCHAR#,
+      APPLI_TYPE = #record.appliType:CHAR#,
+      PROCESS_TEMPLATE_NAME = #record.processTemplateName:VARCHAR#,
+      BUSINESSNO_TYPE = #record.businessnoType:CHAR#,
+      BUSINESSNO = #record.businessno:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      AMT = #record.amt:DECIMAL#,
+      START_BRCODE = #record.startBrcode:VARCHAR#,
+      START_TLRCD = #record.startTlrcd:VARCHAR#,
+      STRAT_DATE = #record.stratDate:CHAR#,
+      START_TIME = #record.startTime:TIMESTAMP#,
+      APPLI_STATUS = #record.appliStatus:CHAR#,
+      APPROVE_BRCODE = #record.approveBrcode:VARCHAR#,
+      APPROVER = #record.approver:VARCHAR#,
+      APPROVE_DATE = #record.approveDate:CHAR#,
+      APPROVE_TIME = #record.approveTime:TIMESTAMP#,
+      WORKFLOW_APPNO = #record.workflowAppno:VARCHAR#,
+      APPLI_STATUS_DTL = #record.appliStatusDtl:CHAR#,
+      CURCD = #record.curcd:CHAR#,
+      APP_DATE = #record.appDate:CHAR#,
+      APP_TLRCD = #record.appTlrcd:VARCHAR#,
+      APP_BRCODE = #record.appBrcode:VARCHAR#,
+      BAIL_AMOUNT = #record.bailAmount:DECIMAL#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      SUPPLY_CHAIN_PD_ID = #record.supplyChainPdId:CHAR#,
+      MEMO = #record.memo:VARCHAR#,
+      INCOME_APPNO = #record.incomeAppno:VARCHAR#,
+      MONI_CUSTCD = #record.moniCustcd:VARCHAR#,
+      PLEDGE_MODE = #record.pledgeMode:CHAR#,
+      OTHER_PROTOCOL_NO = #record.otherProtocolNo:VARCHAR#,
+      EXT1 = #record.ext1:VARCHAR#,
+      EXT2 = #record.ext2:VARCHAR#,
+      EXT3 = #record.ext3:VARCHAR#,
+      EBANK_APPNO = #record.ebankAppno:VARCHAR#,
+      MAST_CONTCODE = #record.mastContcode:VARCHAR#,
+      CHANNEL_FLAG = #record.channelFlag:CHAR#,
+      IS_FLOW_END = #record.isFlowEnd:CHAR#,
+      IFSP_APPNO = #record.ifspAppno:VARCHAR#,
+      IFSP_ORDER_NO = #record.ifspOrderNo:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_PBC_APPLI_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfo" >
+    update B_PBC_APPLI_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="piid" >
+        PIID = #piid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appliType" >
+        APPLI_TYPE = #appliType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="processTemplateName" >
+        PROCESS_TEMPLATE_NAME = #processTemplateName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessnoType" >
+        BUSINESSNO_TYPE = #businessnoType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessno" >
+        BUSINESSNO = #businessno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        AMT = #amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startBrcode" >
+        START_BRCODE = #startBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startTlrcd" >
+        START_TLRCD = #startTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stratDate" >
+        STRAT_DATE = #stratDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startTime" >
+        START_TIME = #startTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="appliStatus" >
+        APPLI_STATUS = #appliStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveBrcode" >
+        APPROVE_BRCODE = #approveBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approver" >
+        APPROVER = #approver:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveDate" >
+        APPROVE_DATE = #approveDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveTime" >
+        APPROVE_TIME = #approveTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="workflowAppno" >
+        WORKFLOW_APPNO = #workflowAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appliStatusDtl" >
+        APPLI_STATUS_DTL = #appliStatusDtl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appDate" >
+        APP_DATE = #appDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appTlrcd" >
+        APP_TLRCD = #appTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appBrcode" >
+        APP_BRCODE = #appBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT = #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID = #supplyChainPdId:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="incomeAppno" >
+        INCOME_APPNO = #incomeAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD = #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pledgeMode" >
+        PLEDGE_MODE = #pledgeMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        OTHER_PROTOCOL_NO = #otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1 = #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2 = #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3 = #ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ebankAppno" >
+        EBANK_APPNO = #ebankAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        MAST_CONTCODE = #mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="channelFlag" >
+        CHANNEL_FLAG = #channelFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isFlowEnd" >
+        IS_FLOW_END = #isFlowEnd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifspAppno" >
+        IFSP_APPNO = #ifspAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifspOrderNo" >
+        IFSP_ORDER_NO = #ifspOrderNo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where APPNO = #appno:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfo" >
+    update B_PBC_APPLI_BASE_INFO
+    set PIID = #piid:VARCHAR#,
+      APPLI_TYPE = #appliType:CHAR#,
+      PROCESS_TEMPLATE_NAME = #processTemplateName:VARCHAR#,
+      BUSINESSNO_TYPE = #businessnoType:CHAR#,
+      BUSINESSNO = #businessno:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      AMT = #amt:DECIMAL#,
+      START_BRCODE = #startBrcode:VARCHAR#,
+      START_TLRCD = #startTlrcd:VARCHAR#,
+      STRAT_DATE = #stratDate:CHAR#,
+      START_TIME = #startTime:TIMESTAMP#,
+      APPLI_STATUS = #appliStatus:CHAR#,
+      APPROVE_BRCODE = #approveBrcode:VARCHAR#,
+      APPROVER = #approver:VARCHAR#,
+      APPROVE_DATE = #approveDate:CHAR#,
+      APPROVE_TIME = #approveTime:TIMESTAMP#,
+      WORKFLOW_APPNO = #workflowAppno:VARCHAR#,
+      APPLI_STATUS_DTL = #appliStatusDtl:CHAR#,
+      CURCD = #curcd:CHAR#,
+      APP_DATE = #appDate:CHAR#,
+      APP_TLRCD = #appTlrcd:VARCHAR#,
+      APP_BRCODE = #appBrcode:VARCHAR#,
+      BAIL_AMOUNT = #bailAmount:DECIMAL#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      SUPPLY_CHAIN_PD_ID = #supplyChainPdId:CHAR#,
+      MEMO = #memo:VARCHAR#,
+      INCOME_APPNO = #incomeAppno:VARCHAR#,
+      MONI_CUSTCD = #moniCustcd:VARCHAR#,
+      PLEDGE_MODE = #pledgeMode:CHAR#,
+      OTHER_PROTOCOL_NO = #otherProtocolNo:VARCHAR#,
+      EXT1 = #ext1:VARCHAR#,
+      EXT2 = #ext2:VARCHAR#,
+      EXT3 = #ext3:VARCHAR#,
+      EBANK_APPNO = #ebankAppno:VARCHAR#,
+      MAST_CONTCODE = #mastContcode:VARCHAR#,
+      CHANNEL_FLAG = #channelFlag:CHAR#,
+      IS_FLOW_END = #isFlowEnd:CHAR#,
+      IFSP_APPNO = #ifspAppno:VARCHAR#,
+      IFSP_ORDER_NO = #ifspOrderNo:VARCHAR#
+    where APPNO = #appno:VARCHAR#
+  </update>
+  <!-- 放款申请判断借据是否已经处于放款状态 -->
+  <select id="getFkStatus" resultMap="BaseResultMap" parameterClass="java.lang.String" >
+    select 
+    <include refid="B_PBC_APPLI_BASE_INFO.Base_Column_List1" />
+    from B_PBC_APPLI_BASE_INFO a , B_LAN_APPLI_LNCI_BASE b where a.APPNO=b.APPNO
+		and b.PROTOCOL_NO = #protocolno:VARCHAR# and a.STRAT_DATE is not null order by a.STRAT_DATE desc
+  </select>
+  <!-- 通过ifspappno查询申请流水 -->
+   <select id="selectByIfspAppno" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfo" >
+    select 
+    <include refid="B_PBC_APPLI_BASE_INFO.Base_Column_List" />
+    from B_PBC_APPLI_BASE_INFO
+    where IFSP_APPNO = #ifspAppno:VARCHAR#
+  </select>
+</sqlMap>

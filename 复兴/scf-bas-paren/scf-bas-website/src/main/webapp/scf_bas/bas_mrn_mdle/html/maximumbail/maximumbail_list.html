@@ -1,0 +1,27 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input-extent ht-id="gutNm" name="客户名称" extent="custcontent" on-change="dooextend"
+                     ng-model="conditionForm.gutNm"></ht-input-extent>
+    <ht-input-extent ht-id="vidPrdNm" name="供应链产品" extent="productNameContent"
+                     on-change="productNamedooextent" ng-model="conditionForm.vidPrdNm"></ht-input-extent>
+    <ht-input ht-id="prtclNo" name="抵/质押监管协议号" ng-model="conditionForm.prtclNo"></ht-input>
+    <ht-input ht-id="conId" name="质押合同编号" ng-model="conditionForm.conId"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="reset"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-legend>最高额担保合同列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="startApply" class="btn-primary" disable="{{flowsubmitdisable}}">申请发起</ht-button>
+    </ht-button-group>
+
+     <ht-column eg-name="gutNm" zh-name="客户名称" ></ht-column>
+     <ht-column eg-name="vidPrdNm" zh-name="供应链产品"></ht-column>
+     <ht-column eg-name="prtclNo" zh-name="抵/质押监管协议号"></ht-column>
+     <ht-column eg-name="conId"   zh-name="质押合同编号"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+

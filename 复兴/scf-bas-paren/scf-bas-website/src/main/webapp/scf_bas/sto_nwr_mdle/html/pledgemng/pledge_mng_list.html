@@ -1,0 +1,30 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="mastContno" name="主合同号" ng-model="conditionForm.mastContno"></ht-input>
+    <ht-input ht-id="slaveContno" name="质押合同号" ng-model="conditionForm.slaveContno"></ht-input>
+    <ht-input-extent ht-id="cname" name="客户名称" extent="custcontent" on-change="dooextend"
+                     ng-model="conditionForm.cname"></ht-input-extent>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>待选合同列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="applyStart" class="btn-primary">发起申请</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="mastContno" zh-name="信贷合同号"></ht-column>
+    <ht-column eg-name="slaveContno" zh-name="抵/质押合同号"></ht-column>
+    <ht-column eg-name="cname" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="contAmount" zh-name="金额" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+
+
+
+

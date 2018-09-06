@@ -1,0 +1,103 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+	<ht-input name="客户名称"  ng-model="conditionForm.custNm" disable="true"></ht-input>
+	<ht-select ht-id="rpSource" name="财报周期" dictionary="finPdCode"  reg-exp="common.require" ng-model="conditionForm.rpSource"></ht-select>
+	<ht-input ht-id="rptNo" name="报表期次"  reg-exp="common.require" ng-model="conditionForm.rptNo"></ht-input>
+
+	<ht-button-group >
+		<ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+		<ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+	</ht-button-group>
+</ht-form>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+<table   class="table table-bordered table-hover table-condensed"  >
+				<tbody>
+					<tr>
+						<td style="text-align:center;font-weight: bold; background-color: #f8f9fe; width:150px" >
+						<pre>序号</pre>
+						</td>
+						<td ng-repeat="rhead in rheads" style="text-align:center;font-weight: bold;background-color: #f8f9fe;{{rhead.style}}">
+							<pre>{{rhead.name}}</pre>
+						</td>
+						<td style="text-align:center;font-weight: bold; background-color: #f8f9fe; width:150px" >
+						<pre>分析结果</pre>
+						</td>
+					</tr>	
+			
+					<tr ng-repeat="bFinCustDs in bFinCustDsList" align="center">
+						 <td>
+							<pre>{{$index+1}}</pre>
+						</td>
+
+						<td align="left">
+							<div ng-if="bFinCustDs.edTyp=='3'" >
+						      <pre  style="font-weight: bold;color: #fd8484;" >{{bFinCustDs.subjNm}}</pre>
+							</div>
+							<div ng-if="bFinCustDs.edTyp!='3'" >
+								<pre>{{bFinCustDs.subjNm}}</pre>
+							</div>
+						</td>
+
+						<td>
+							{{bFinCustDs.colVal1Str}}
+
+						</td>
+						<td  ng-if="otherform.col>1" >
+							{{bFinCustDs.colVal2Str}}
+
+						</td>
+
+						    <td ng-if="otherform.cotes>=2" >
+								<pre>{{bFinCustDs.child.subjNm}}</pre>
+							</td>
+							<td ng-if="otherform.cotes>=2" >
+								{{bFinCustDs.child.colVal1Str}}
+							</td>
+							<td   ng-if="otherform.cotes>=2&&otherform.col>1" >
+
+								{{bFinCustDs.child.colVal2Str}}
+
+							</td>
+							 <td>
+							<pre>{{bFinCustDs.remark}}</pre>
+						</td>
+					</tr>
+					</tbody>
+			</table>
+		</div>
+	</div>
+	<!--<span style="color: red;font-size: 10px;">双击数字编辑，单击项目名称取消编辑状态</span>-->
+</div>
+
+<style>
+	pre {
+		display: block;
+		padding: 0px;
+		margin: 0 0 0px;
+		word-break: break-all;
+		word-wrap: break-word;
+		white-space: pre;
+		/*white-space: pre-wrap;*/
+		border: 0;
+		background-color: transparent;
+		font-size: 13px;
+		line-height: 20px;
+	}
+	.table {
+		margin-bottom: 0;
+		border: 1px #dddddd solid;
+	}
+</style>
+
+<!--
+<ht-button-group class="center">
+    &lt;!&ndash;<ht-button ht-id="calCheck" class="btn-primary" disable="{{flowsubmitdisable}}">计算</ht-button>&ndash;&gt;
+    <ht-button ht-id="save" class="btn-primary" disable="{{flowsubmitdisable}}">临时保存</ht-button>
+    <ht-button ht-id="confirm" class="btn-primary" disable="{{flowsubmitdisable}}">保存</ht-button>
+    <ht-button ht-id="analy" class="btn-primary">财务指标分析</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>-->

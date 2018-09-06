@@ -1,0 +1,54 @@
+<ht-form name="threeProtocolForm">
+  <!--  <ht-legend>任务基本信息</ht-legend>
+    <ht-input id="flowName" name="流程名称" ng-model="threeProtocolForm.flowName" disable="true"></ht-input>
+    <ht-input id="startTime" name="申请发起时间"ng-model="threeProtocolForm.startTime" disable="true"></ht-input>
+    <ht-input id="startTlrName" name="经办人" ng-model="threeProtocolForm.startTlrName" disable="true"></ht-input>
+    <ht-input id="startBrName" name="经办机构"ng-model="threeProtocolForm.startBrName" disable="true"></ht-input>
+-->
+    <ht-legend>基本信息</ht-legend>
+    <ht-input ht-id="protocolNo" name="担保提货协议号" ng-model="threeProtocolForm.protocolNo" disable="true"></ht-input>
+    <ht-select ht-id="productId" name="业务品种" disable="true" reg-exp="common.require" ng-model="threeProtocolForm.productId" dictionary="productId"
+    	datasource="productSource" datatrsoption="productName" dataoption="productId"></ht-select>
+    <ht-input-extent ht-id="sellerNm" name="买方名称" reg-exp="common.require"  extent="sellerNmContent" disable="true"
+         on-change="dooextent" ng-model="threeProtocolForm.sellerNm">
+    </ht-input-extent>
+    <ht-checkbox ht-id="loanWay" name="出账方式" ng-model="threeProtocolForm.loanWay" dictionary="loanWay">
+    </ht-checkbox>
+    <ht-input ht-id="startDate" edit-type="date"
+              name="协议生效日"
+              high-date-id="endDate"
+              reg-exp="common.require"
+              ng-model="threeProtocolForm.startDate"></ht-input>
+    <ht-input ht-id="endDate" edit-type="date"
+              name="协议到期日"
+              lower-date-id="startDate"
+              reg-exp="common.require"
+              ng-model="threeProtocolForm.endDate"></ht-input>
+    <ht-select ht-id="threeProtocolStatus" name="协议状态" disable="true" reg-exp="common.require" ng-model="threeProtocolForm.state" dictionary="threeProtocolStatus"></ht-select>
+    <ht-input-extent ht-id="cooperationBrcodeNm" name="合作机构"   extent="cooperationBrcodeNmContent" disable="{{cooperationBrcodeNmDisable}}"
+         on-change="cooperationBrcodeNmExtent" ng-model="threeProtocolForm.cooperationBrcodeNm">
+    </ht-input-extent>
+    <ht-input ht-id="tlrName" name="客户经理" ng-model="threeProtocolForm.tlrName" disable="true"></ht-input>
+    <ht-select ht-id="inputorgname" name="经办机构" reg-exp="common.require"
+               datasource="selectbrcode" datatrsoption="brName" dataoption="brNo"
+               ng-model="threeProtocolForm.brcode" disable="{{brcodeDisable}}" ></ht-select>
+    <ht-legend>参与方信息</ht-legend>
+    <ht-input-extent ht-id="coreNm" name="卖方名称" reg-exp="common.require"  extent="coreNmContent" disable="true"
+                     on-change="coreNmExtent" ng-model="threeProtocolForm.coreNm">
+    </ht-input-extent>
+    <ht-input ht-id="otherCustName" name="其他参与方" ng-model="threeProtocolForm.otherCustName"></ht-input>
+    <ht-input-extent ht-id="fouName" name="承担方名称" reg-exp="common.require"  extent="fouNameContent" disable="{{fouNameDisable}}"
+                     on-change="fouNameExtent" ng-model="threeProtocolForm.fouName">
+    </ht-input-extent>
+    <ht-checkbox ht-id="dutyAssumeType" name="卖方责任承担方式" ng-model="threeProtocolForm.dutyAssumeType" dictionary="dutyAssumeType">
+    </ht-checkbox>
+    <ht-legend>提货信息</ht-legend>
+    <ht-input ht-id="firstBailRatio" name="初始保证金比例(%)" reg-exp="common.require" ng-model="threeProtocolForm.firstBailRatio"></ht-input>
+    <ht-select ht-id="firstBailType" name="首比保证金提货模式" reg-exp="common.require" ng-model="threeProtocolForm.firstBailType" dictionary="firstBailType"></ht-select>
+    <ht-legend>备注</ht-legend>
+    <ht-text-area ht-id="otherDes" name="备注" height="70" hide="false" ng-model="threeProtocolForm.otherDes">
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" >保存</ht-button>
+    <ht-button ht-id="back"  class="btn-primary" >返回</ht-button>
+</ht-button-group>

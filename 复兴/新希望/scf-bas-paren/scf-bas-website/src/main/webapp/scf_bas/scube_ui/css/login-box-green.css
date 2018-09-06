@@ -1,0 +1,211 @@
+html,body{
+    height:100%;
+    *overflow:hidden;/*消除横向滚动条*/
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.login-header,.login-main,.login-footer{
+    width:100%;
+    position: absolute;
+}
+.login-header{
+    background: #fff;
+    top:0;
+    padding: 25px 79px;
+}
+.login-title{
+    font-size: 22px;
+    margin-left: 17px;
+    color: #727272;
+}
+.login-footer{
+    height:61px;
+    background: #fff;
+    bottom: 0;
+}
+.login-copyright{
+    line-height: 61px;
+    font-size: 16px;
+    color: #B1ACAC;
+    float: right;
+    margin-right: 111px;
+}
+.login-box-head{
+    font-size: 20px;
+    margin: 50px 0;
+}
+#login-box .userName,#login-box .passWord,#login-box .brManagerNo{
+    width:90%;
+    margin-bottom: 29px;
+}
+#login-box h1,#login-box h2{
+    font-family: 微软雅黑;
+}
+#login-box h2{
+    font-size: 17px;
+}
+#login-box form a{
+    text-decoration: none;
+}
+#login-box .inline input{
+    text-indent: 40px;
+}
+#login-box .inline input{
+    background-color: transparent;
+    color: #fff;
+}
+.login-main.position-center #login-box .inline input{
+    background-color: transparent;
+    color: #3199cd;
+}
+#login-box .inline input,#login-box form button{
+    width:100%;
+    /*line-height: 30px;*/
+    font-size: 18px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 5px !important;
+    outline: none;
+}
+#login-box .inline input:focus{
+    border: 1px solid #2782B0;
+}
+#login-box label{
+    position: relative;
+}
+#login-box form button{
+    border: none;
+    background-color: #2782B0;
+    color: #fff;
+    line-height: 42px;
+    font-size: 16px;
+    width:90%;
+}
+.skin{
+    position: absolute;
+    right: 35px;
+    top: 35px;
+    width:30px;
+    height:30px;
+    border: none;
+    background:url("../images/change-skin.png") no-repeat center;
+}
+/*-----------------------------------*/
+.login-main.position-top{
+    background: url("../images/login-bg-16.png") no-repeat;
+    background-size: cover;
+    top:104px;
+    bottom: 61px;
+    height: auto;
+}
+.login-main.position-center{
+    background: url("../images/login-bg2-16.png") no-repeat;
+    background-size: cover;
+    top:104px;
+    bottom: 61px;
+    height: auto;
+}
+
+.login-main.position-top #login-box{
+    font-family: 微软雅黑;
+    width: 336px;
+    position: absolute;
+    right: 10%;
+    z-index: 1;
+    padding: 0px 18px 45px;
+    text-align: center;
+    top:0;
+    color: #fff;
+    background-color: rgba(0,0,0,0.2);
+    /*兼容ie8 rgba()*/
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33000000,endColorstr=#33000000);
+}
+.login-main.position-center #login-box{
+    font-family: 微软雅黑;
+    width: 336px;
+    position: absolute;
+    right: 10%;
+    z-index: 1;
+    padding: 0px 18px 45px;
+    text-align: center;
+    top: 22%;
+    color: #666;
+    background: url("../images/ellipse-1-24.png");
+    background-size:contain ;
+}
+.login-main.position-top .login-line{
+    background-color: transparent;
+}
+.login-main.position-center .login-line{
+    background: url("../images/ellipse-3.png") no-repeat top center;
+    height: 8px;
+    width: 500px;
+    position: absolute;
+    top: 0;
+    right: -47px;
+}
+
+.login-main.position-top #login-box .login-box-head:before{
+    content: url("../images/line-18.png");
+    position: absolute;
+    left: -5px;
+    top: 44px;
+    width: 100px;
+}
+.login-main.position-top #login-box .login-box-head:after{
+    content: url("../images/line-18-2.png");
+    width: 100px;
+    position: absolute;
+    right: 25px;
+    top: 44px;
+}
+.login-main.position-center #login-box .login-box-head:before{
+    content: url("../images/1-login_17.png");
+    position: absolute;
+    left: -5px;
+    top: 44px;
+    width: 100px;
+}
+.login-main.position-center #login-box .login-box-head:after{
+    content: url("../images/1-login_14.png");
+    width: 100px;
+    position: absolute;
+    right: 5px;
+    top: 44px;
+}
+.login-main.position-top #login-box .userName:before{
+    content: url("../images/1-login2_03.png");
+    position: absolute;
+    top:9px;
+    left: 12px;
+}
+.login-main.position-center #login-box .userName:before{
+    content: url("../images/1-login_21.png");
+    position: absolute;
+    top:6px;
+    left: 12px;
+}
+.login-main.position-top #login-box .passWord:before{
+    content: url("../images/1-login2_06.png");
+    position: absolute;
+    top:9px;
+    left: 12px;
+}
+.login-main.position-center #login-box .passWord:before{
+    content: url("../images/1-login_24.png");
+    position: absolute;
+    top:6px;
+    left: 12px;
+}
+.login-main.position-top #login-box form button {
+    background-color: #3199cd;
+}
+.login-main.position-top #login-box .phColor{
+    color: #999;
+}
+/*-------------------------------------------*/
+.remember-pwd{  padding-left: 34px;  cursor: pointer;  background: url('../images/box_checkboxes.png') no-repeat left top;  }
+#remember-pwd{  margin: 3px 3px 0 5px;  display: none;  }
+.remember-pwd.checked {  background-position: left bottom;  }

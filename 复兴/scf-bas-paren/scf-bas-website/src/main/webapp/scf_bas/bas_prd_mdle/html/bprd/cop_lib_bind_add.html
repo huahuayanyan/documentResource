@@ -1,0 +1,29 @@
+<ht-form name="otherform">
+    <ht-input ht-id="productId" name="产品ID" disable="true" reg-exp="common.require"ng-model="otherform.productId"></ht-input>
+    <ht-input ht-id="copOrder" name="顺序" reg-exp="common.require" ng-model="otherform.copOrder"></ht-input>
+</ht-form>
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="copName" name="组件名称" ng-model="conditionForm.copName"></ht-input>
+    <ht-select ht-id="copType" name="组件类型" dictionary="copType" ng-model="conditionForm.copType"></ht-select>
+    <ht-select ht-id="status" name="状态" dictionary="productStatus" ng-model="conditionForm.status"></ht-select>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="清空"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>组件信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="copName" zh-name="组件名称" ></ht-column>
+    <ht-column eg-name="copType" zh-name="组件类型" dictionary="copType" ></ht-column>
+    <ht-column eg-name="status" zh-name="状态" dictionary="productStatus"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>
+
+

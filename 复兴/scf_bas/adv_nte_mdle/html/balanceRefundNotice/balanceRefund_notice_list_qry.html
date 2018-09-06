@@ -1,0 +1,51 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="cname" name="买方名称" ng-model="conditionForm.cname"></ht-input>
+    <ht-input ht-id="coreName_Q" name="卖方名称" ng-model="conditionForm.coreName_Q"></ht-input><br>
+    <ht-input ht-id="moneyFrom_Q" name="差额退款金额 从" ng-model="conditionForm.moneyFrom_Q"
+              edit-type="currency"></ht-input>
+    <ht-input ht-id="moneyTo_Q" name="差额退款金额 到" ng-model="conditionForm.moneyTo_Q" edit-type="currency"></ht-input><br>
+    <ht-select ht-id="productId_Q" name="业务品种" disable="true" ng-model="conditionForm.productId_Q"
+               datasource="productSource" dataOption="key" dataTrsOption="value"  ></ht-select>
+    <ht-select ht-id="noticeType_Q" name="通知书类型" disable="true" ng-model="conditionForm.noticeType_Q"
+               datasource="selectSource" datatrsoption="value" dataoption="key"></ht-select>
+    <br/>
+    <ht-select ht-id="noticeStatus_Q" name="通知书状态"  ng-model="conditionForm.noticeStatus_Q"
+               dictionary="noticeStatus"></ht-select>
+    <ht-input-extent name='经办机构' ht-id ='brname_Q' extent='content' on-change="dooextent"
+            checkedHiden="true" readonly="true" ng-model='conditionForm.brname_Q'></ht-input-extent>
+    <br/>
+    <ht-input ht-id="signDate1_Q" high-date-id="signDate2_Q" name="签发日期 从" ng-model="conditionForm.signDate1_Q"
+              edit-type="date"></ht-input>
+    <ht-input ht-id="signDate2_Q" lower-date-id="signDate1_Q" name="签发日期 到" ng-model="conditionForm.signDate2_Q"
+              edit-type="date"></ht-input>
+    <br/>
+    <ht-input ht-id="commonDate1_Q" high-date-id="commonDate2_Q" name="回执日期 从" ng-model="conditionForm.commonDate1_Q"
+              edit-type="date"></ht-input>
+    <ht-input ht-id="commonDate2_Q" lower-date-id="commonDate1_Q" name="回执日期 到" ng-model="conditionForm.commonDate2_Q"
+              edit-type="date"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>差额退款通知书列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button class="btn-primary" ht-id="view">查看</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="num" zh-name="通知书编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="noticeType" zh-name="通知书类型" dictionary="nteType"   ></ht-column>
+    <ht-column eg-name="status" zh-name="通知书状态" dictionary="noticeStatus"></ht-column>
+    <ht-column eg-name="signDate" zh-name="签发日期" type="date"></ht-column>
+    <ht-column eg-name="protocolNo" zh-name="协议编号"></ht-column>
+    <ht-column eg-name="custName" zh-name="买方名称"></ht-column>
+    <ht-column eg-name="coreName" zh-name="卖方名称"></ht-column>
+    <ht-column eg-name="commonAmt" zh-name="差额退款金额" type="currency"></ht-column>
+    <ht-column eg-name="commonDate" zh-name="回执日期" type="date"></ht-column>
+
+    <ht-column eg-name="tlrName" zh-name="客户经理"></ht-column>
+    <ht-column eg-name="brName" zh-name="经办机构"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

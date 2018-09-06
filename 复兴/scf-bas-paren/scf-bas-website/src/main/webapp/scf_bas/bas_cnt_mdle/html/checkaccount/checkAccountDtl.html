@@ -1,0 +1,35 @@
+<ht-form name="baseInfo" columns="2">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input  ht-id="otherProtocolNo" name="监管合同号"  ng-model="baseInfo.otherProtocolNo" disable="true"></ht-input>
+    <ht-input  ht-id="prtclBrNm" name="监管公司名称"  ng-model="baseInfo.prtclBrNm" disable="true"></ht-input>
+    <ht-input  ht-id="slaveContno" name="抵/质押合同号"  ng-model="baseInfo.slaveContno" disable="true"></ht-input>
+    <ht-input  ht-id="cname" name="出质人名称"  ng-model="baseInfo.cname" disable="true"></ht-input>
+    <ht-input  ht-id="checkStockDate" edit-type="date" name="对账发起日" disable="true" ng-model="baseInfo.checkStockDate"></ht-input>
+    <ht-select id="checkStockResults"  name="对账结果" on-change="result_change" disable="{{disable}}" dictionary="checkResult"  reg-exp="common.require" ng-model="baseInfo.checkStockResults"></ht-select>
+   	<ht-input  ht-id="mortgageTotAmount" name="押品总价值"  ng-model="baseInfo.mortgageTotAmount" disable="true"></ht-input>
+    <ht-input  ht-id="currentCreditAmt" name="对账金额" disable="{{disableResult}}"  ng-model="baseInfo.currentCreditAmt" reg-exp="{{require}}"></ht-input>
+    <ht-input  ht-id="tlrNm" name="对账负责人" disable="true" ng-model="baseInfo.tlrNm" disable="true"></ht-input>
+    <ht-input  ht-id="brNm" name="对账机构" disable="true" ng-model="baseInfo.brNm" disable="true"></ht-input>
+    <ht-input  ht-id="moniPrincipal" name="监管方对账负责人" disable="{{disable}}" ng-model="baseInfo.moniPrincipal" ></ht-input>
+    <ht-select id="status" name="处理状态" disable="true" dictionary="checkStatus"  ng-model="baseInfo.status" ></ht-select>
+    <ht-input  ht-id="reason" name="对账不平原因" disable="{{disableResult}}" ng-model="baseInfo.reason" reg-exp="{{require}}" ></ht-input>
+</ht-form>
+<ht-legend>库存对账清单</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="MORTGAGE_NAME" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="MORTGAGELEVELONENAME" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="MORTGAGELEVELTWONAME" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="MANUFACTURE_DATE" zh-name="出厂日期" type="date"></ht-column>
+    <ht-column eg-name="QUANTITY" zh-name="数量/质量" ></ht-column>
+    <ht-column eg-name="MORTGAGE_MODEL" zh-name="规格/型号" ></ht-column>
+    <ht-column eg-name="CONFIRM_PRICE" zh-name="核定单价" ></ht-column>
+    <ht-column eg-name="CURCD" zh-name="币种"  dictionary="curcd"></ht-column>
+    <ht-column eg-name="TOT_PRICE" zh-name="总价" type="currency"></ht-column>
+    <ht-column eg-name="WAREHOUSE" zh-name="仓库名称" ></ht-column>
+    <ht-column eg-name="WAREHOUSE_ADDRESS" zh-name="仓库地址" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center"  >
+    <ht-button class="btn-primary" ht-id="save" hide="{{hideSave}}">保存</ht-button>
+    <ht-button class="btn-primary" ht-id="return">返回</ht-button>
+</ht-button-group>

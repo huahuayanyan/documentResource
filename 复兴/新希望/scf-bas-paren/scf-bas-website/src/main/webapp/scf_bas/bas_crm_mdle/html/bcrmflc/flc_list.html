@@ -1,0 +1,38 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+    <ht-input ht-id="cname_Q"  name="金融租赁公司名称" ng-model="conditionForm.cname_Q"></ht-input>
+    <ht-input ht-id="custno_Q" name="核心客户号" ng-model="conditionForm.custno_Q"></ht-input>
+    <ht-select ht-id="custStatus_Q" name="客户状态" dictionary="custStatus"  ng-model="conditionForm.custStatus_Q"></ht-select>
+    <!--<ht-input ht-id="coreFlag" name="是否是核心厂商" hide="true" ng-model="conditionForm.coreFlag"></ht-input>class="center" -->
+
+    <ht-button-group >
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>金融租赁公司列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="custcd" zh-name="客户号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="custno" zh-name="核心客户号"></ht-column>
+    <ht-column eg-name="cname" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="orgCode" zh-name="组织机构代码"></ht-column>
+    <ht-column eg-name="industryTypeName" zh-name="国标行业分类"></ht-column>
+    <ht-column eg-name="regAddr" zh-name="地址"></ht-column>
+    <ht-column eg-name="custStatus" zh-name="状态" dictionary="custStatus"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+
+

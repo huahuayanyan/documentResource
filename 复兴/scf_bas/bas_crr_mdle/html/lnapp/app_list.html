@@ -1,0 +1,46 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="appId" name="业务流水号" ng-model="conditionForm.appId"></ht-input>
+    <ht-input-extent ht-id="custNm" name="客户名称" extent="custcontent" on-change="dooextend"
+                     ng-model="conditionForm.custNm"></ht-input-extent>
+    <!--<ht-input ht-id="prdNm"  name="业务品种" ng-model="conditionForm.prdNm"></ht-input>
+    <ht-select ht-id="lnNat" name="贷款性质" ng-model="conditionForm.lnNat" dictionary="lnNat"></ht-select>-->
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>业务申请列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="subapp" class="btn-primary" disable="{{flowsubmitdisable}}">提交</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="appId" zh-name="业务流水号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="custNm" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="prdNm" zh-name="业务品种"></ht-column>
+    <!--<ht-column eg-name="prdCl" zh-name="产品分类"></ht-column>
+    <ht-column eg-name="lnTyp" zh-name="发生类型"></ht-column>-->
+    <!--<ht-column eg-name="lnNat" zh-name="贷款性质" dictionary="lnNat"></ht-column>-->
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <!--<ht-column eg-name="exchgRt" zh-name="汇率"></ht-column>-->
+    <ht-column eg-name="lnAmt" zh-name="金额" type="currency"></ht-column>
+    <!--<ht-column eg-name="lnStrtDt" zh-name="贷款起始日" type="date"></ht-column>
+    <ht-column eg-name="lnEndDt" zh-name="贷款到期日" type="date"></ht-column>-->
+    <ht-column eg-name="appStat" zh-name="申请状态" dictionary="appliStatus"></ht-column>
+    <ht-column  eg-name="tlrNm" zh-name="经办人"></ht-column>
+    <ht-column  eg-name="brNm" zh-name="经办机构"></ht-column>
+    <ht-column  eg-name="inpDt" zh-name="经办日期"></ht-column>
+</ht-table>
+
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->
+
+
+
+

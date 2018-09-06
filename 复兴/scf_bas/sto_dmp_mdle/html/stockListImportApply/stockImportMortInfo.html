@@ -1,0 +1,19 @@
+<ht-form name ="mortgageInfo">
+    <ht-input ht-id="mortgageNo" name="押品编号"disable=true  ng-model="mortgageInfo.mortgageNo"></ht-input>
+    <ht-input ht-id="mortgageName" name="押品名称"disable=true  ng-model="mortgageInfo.mortgageName"></ht-input>
+    <ht-input ht-id="mortgageLevelOneName" name="押品一级"  disable=true   ng-model="mortgageInfo.mortgageLevelOneName"></ht-input>
+    <ht-input ht-id="mortgageLevelTwoName" name="押品二级"  disable=true  ng-model="mortgageInfo.mortgageLevelTwoName"></ht-input>
+    <ht-input ht-id="mortgageLevelThreeName" name="押品三级"  disable=true  ng-model="mortgageInfo.mortgageLevelThreeName"></ht-input>
+    <ht-input ht-id="description" name="押品其他描述" disable=true ng-model="mortgageInfo.description"></ht-input>
+    <ht-input ht-id="manufacturer" name="生产厂商(产地)" disable=true  ng-model="mortgageInfo.manufacturer"></ht-input>
+    <ht-input ht-id="mortgageModel" name="规格/型号"disable=true  ng-model="mortgageInfo.mortgageModel"></ht-input>
+    <ht-select ht-id="mortgageUnits" name="计量单位" disable=true  dictionary="mortgageUnits" ng-model="mortgageInfo.mortgageUnits"></ht-select>
+    <ht-input ht-id="nowQuantity" name="数量/重量" disable=true  ng-model="mortgageInfo.nowQuantity"></ht-input>
+    <ht-input ht-id="quantity" name="本日入库数量" reg-exp="IsNotNull"  ng-model="mortgageInfo.quantity"></ht-input>
+    <ht-input ht-id="outQuantity" name="本日出库数量" reg-exp="IsNotNull" ng-model="mortgageInfo.outQuantity"></ht-input>
+    <ht-input ht-id="remainQuantity" name="本日结余数" reg-exp="IsNotNull" ng-model="mortgageInfo.remainQuantity"></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide={{confirm}} class="btn-primary">保存</ht-button>
+    <ht-button ht-id="cancel" class="btn-primary">返回</ht-button>
+</ht-button-group>

@@ -1,0 +1,44 @@
+<ht-legend>提示框控件</ht-legend>
+<ht-button class="btn-primary"  ht-id="button2" desc-name="成功提示框"></ht-button>
+<ht-button class="btn-primary"  ht-id="button3" desc-name="失败提示框"></ht-button>
+<ht-button class="btn-primary"  ht-id="button4" desc-name="警告提示框"></ht-button>
+<ht-button class="btn-primary"  ht-id="button5" desc-name="信息提示框"></ht-button>
+<ht-button class="btn-primary"  ht-id="button6" desc-name="确认提示框"></ht-button>
+<br/>
+<ht-legend>按钮组</ht-legend>
+<ht-button-group>
+    <ht-button class="btn-primary" ht-id="button" desc-name="原始按钮"></ht-button>
+    <ht-button>按钮</ht-button>
+    <ht-button  ht-id="button7" disable="true" desc-name="禁用按钮"></ht-button>
+</ht-button-group>
+<br/>
+<ht-legend>菜单</ht-legend>
+<ht-menu  ht-id="menu1"
+         name="按钮式下拉"
+         datasource="menu"
+         selected-menu="selectedMenu">
+</ht-menu>
+<ht-legend>面板</ht-legend>
+<div class="col-sm-4">
+    <ht-panel  ht-id="panel0">
+        这里写内容
+    </ht-panel>
+</div>
+<div class="col-sm-4">
+    <ht-panel ht-id="panel1" type="panel-info" title="这是面板标题">
+        <ht-menu ht-id="menu2" name="按钮式下拉"
+                 datasource="menu" selected-menu="selectedMenu">
+        </ht-menu>
+    </ht-panel>
+</div>
+<div class="col-sm-4">
+    <ht-panel ht-id="panel2" type="panel-warning" title="这是面板标题" footer="这是脚注">
+        <table class="table"style="width: 100%;">
+            <tr><th style="text-align: center">姓名</th>
+                <th style="text-align: center">年龄</th>
+                <th style="text-align: center">性别</th></tr>
+            <tr><td>小明</td><td>4</td><td>男</td></tr>
+            <tr><td>小红</td><td>32</td><td>女</td></tr>
+        </table>
+    </ht-panel>
+</div>

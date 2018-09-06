@@ -1,0 +1,44 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input-extent ht-id="cname" name="融资企业" extent="custcontent"
+                     on-change="dooextend" ng-model="conditionForm.cname"></ht-input-extent>
+    <ht-input-extent ht-id="moniCname" name="贸易对手" extent="busiContent" on-change="busiExtent"
+                     ng-model="conditionForm.moniCname"></ht-input-extent>
+    <ht-input ht-id="mastContno" name="业务合同号" ng-model="conditionForm.mastContno"></ht-input>
+    <ht-input ht-id="appno" name="申请号" ng-model="conditionForm.appno"></ht-input>
+    <ht-select ht-id="supplyChainPdId" name="业务品种"   datasource="productselect" datatrsoption="codeName" dataoption="code"
+                     ng-model="conditionForm.supplyChainPdId">
+    </ht-select>
+    <ht-select ht-id="appliStatus"  name="申请状态" dictionary="appliStatus" ng-model="conditionForm.appliStatus"></ht-select>
+    <ht-button-group align="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>应收账款反转让申请列表</ht-legend>
+<ht-button-group>
+    <ht-button ht-id="add" class="btn-primary">申请反转让</ht-button>
+    <ht-button ht-id="edit" class="btn-primary">修改</ht-button>
+    <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    <ht-button ht-id="submitApply" class="btn-primary" disable="{{flowsubmitdisable}}">提交</ht-button>
+    <ht-button ht-id="view" class="btn-primary">查看</ht-button>
+    <ht-button ht-id="showProcess" class="btn-primary">查看流程轨迹图</ht-button>
+</ht-button-group>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="appno" zh-name="申请号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="appDate" zh-name="申请日期"  type="date"></ht-column>
+    <ht-column eg-name="cname" zh-name="融资企业" ></ht-column>
+    <ht-column eg-name="moniCname" zh-name="贸易对手"  ></ht-column>
+    <ht-column eg-name="mastContno" zh-name="业务合同"></ht-column>
+    <ht-column eg-name="supplyChainPdId" zh-name="业务品种" dictionary="vidBusTyp"></ht-column>
+    <ht-column eg-name="amt" zh-name="反转让/解押总金额" type="currency" ></ht-column>
+    <ht-column eg-name="appliStatus" zh-name="申请状态"  dictionary="appliStatus"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+
+
+

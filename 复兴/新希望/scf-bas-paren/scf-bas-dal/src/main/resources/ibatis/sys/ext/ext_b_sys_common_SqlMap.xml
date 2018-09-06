@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_SYS_COMMON">
+	<!-- 业务品种筛选 -->
+	<resultMap id="businessTypeResultMap" class="java.util.HashMap">
+		<result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+		<result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+		<result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+		<result column="PRODUCT_TYPE" property="productType" jdbcType="CHAR" />
+	</resultMap>
+	<select id="selectBusinessTypeList" resultMap="businessTypeResultMap"
+		parameterClass="java.util.HashMap">
+		select PRODUCT_ID,PRODUCT_NAME,PARENT_ID,PRODUCT_TYPE
+		from B_PRD_INFO
+		<dynamic prepend="where">
+			<isNotEmpty prepend="or" property="productId">
+				PRODUCT_ID like '%'|| #productId:VARCHAR#||'%'
+			</isNotEmpty>
+			<isNotEmpty prepend="or" property="productName">
+				PRODUCT_NAME like '%'|| #productName:VARCHAR#||'%'
+			</isNotEmpty>
+		</dynamic>
+		order by PRODUCT_ID
+	</select>
+	<!-- 账户筛选(结算账号,回款保证金账号,回款专户) -->
+	<resultMap id="accountNoResultMap" class="java.util.HashMap">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+		<result column="ACCOUNT_TYPE" property="accountType" jdbcType="CHAR" />
+		<result column="CURCD" property="curcd" jdbcType="CHAR" />
+		<result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+		<result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectAccountNoList" resultMap="accountNoResultMap"
+		parameterClass="java.util.HashMap">
+		select ID,CUSTCD,ACCOUNT_TYPE,CURCD,ACCOUNT_NO,ACCOUNT_NAME
+		from B_ACC_ACCOUNT_INFO
+		<dynamic prepend="where">
+			<isNotEmpty prepend="or" property="status">
+				STATUS = #status:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="custcd">
+				CUSTCD = #custcd:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="curcd">
+				CURCD = #curcd:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="accountType">
+				ACCOUNT_TYPE = #accountType:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="accountNo">
+				ACCOUNT_NO like '%'|| #accountNo:VARCHAR#||'%'
+			</isNotEmpty>
+		</dynamic>
+		order by ID
+	</select>
+</sqlMap>

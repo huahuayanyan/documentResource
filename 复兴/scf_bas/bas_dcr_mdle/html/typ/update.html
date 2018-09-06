@@ -1,0 +1,11 @@
+<ht-form name="updateForm">
+    <ht-input ht-id="crId" name="额度类型编号" ng-model="updateForm.crId"  disable="true"></ht-input>
+    <ht-input ht-id="crNm" name="额度类型名称" ng-model="updateForm.crNm"  reg-exp="common.require"></ht-input>
+    <ht-input ht-id="chkExpr" name="额度判断类名" ng-model="updateForm.chkExpr" reg-exp="common.require"></ht-input>
+    <ht-select  ht-id="circFlag"  name="循环标志"  ng-model="updateForm.circFlag"  dictionary="circFlag"   reg-exp="common.require"></ht-select>
+    <ht-select  ht-id="stat"  name="生效标志"  ng-model="updateForm.stat"  dictionary="validState"   reg-exp="common.require"></ht-select>  
+</ht-form>
+<ht-button-group align="center">
+    <ht-button ht-id="confirm" desc-name="确认" class="btn-primary"></ht-button>
+    <ht-button ht-id="cancel" desc-name="取消" class="btn-primary"></ht-button>
+</ht-button-group>

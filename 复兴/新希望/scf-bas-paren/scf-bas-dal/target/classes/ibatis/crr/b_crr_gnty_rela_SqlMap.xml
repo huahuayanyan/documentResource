@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRR_GNTY_RELA" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrGntyRela" >
+    <result column="RLT_TYP" property="rltTyp" jdbcType="VARCHAR" />
+    <result column="RLT_NO" property="rltNo" jdbcType="VARCHAR" />
+    <result column="CON_NO" property="conNo" jdbcType="VARCHAR" />
+    <result column="SERIALNO" property="serialno" jdbcType="VARCHAR" />
+    <result column="CHANNEL" property="channel" jdbcType="VARCHAR" />
+    <result column="STAT" property="stat" jdbcType="VARCHAR" />
+    <result column="OTH_GNTY_RID" property="othGntyRid" jdbcType="VARCHAR" />
+    <result column="GNTY_SUM" property="gntySum" jdbcType="VARCHAR" />
+    <result column="DES" property="des" jdbcType="VARCHAR" />
+    <result column="PAY_ORD" property="payOrd" jdbcType="VARCHAR" />
+    <result column="TYP" property="typ" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    RLT_TYP, RLT_NO, CON_NO, SERIALNO, CHANNEL, STAT, OTH_GNTY_RID, GNTY_SUM, DES, PAY_ORD, 
+    TYP
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRelaExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRR_GNTY_RELA.Base_Column_List" />
+    from B_CRR_GNTY_RELA
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_RELA.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRelaKey" >
+    select 
+    <include refid="B_CRR_GNTY_RELA.Base_Column_List" />
+    from B_CRR_GNTY_RELA
+    where RLT_TYP = #rltTyp:VARCHAR#
+      and RLT_NO = #rltNo:VARCHAR#
+      and CON_NO = #conNo:VARCHAR#
+      and SERIALNO = #serialno:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRelaKey" >
+    delete from B_CRR_GNTY_RELA
+    where RLT_TYP = #rltTyp:VARCHAR#
+      and RLT_NO = #rltNo:VARCHAR#
+      and CON_NO = #conNo:VARCHAR#
+      and SERIALNO = #serialno:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRelaExample" >
+    delete from B_CRR_GNTY_RELA
+    <include refid="B_CRR_GNTY_RELA.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRela" >
+    insert into B_CRR_GNTY_RELA (RLT_TYP, RLT_NO, CON_NO, SERIALNO, CHANNEL, 
+      STAT, OTH_GNTY_RID, GNTY_SUM, DES, PAY_ORD, 
+      TYP)
+    values (#rltTyp:VARCHAR#, #rltNo:VARCHAR#, #conNo:VARCHAR#, #serialno:VARCHAR#, #channel:VARCHAR#, 
+      #stat:VARCHAR#, #othGntyRid:VARCHAR#, #gntySum:VARCHAR#, #des:VARCHAR#, #payOrd:VARCHAR#, 
+      #typ:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRela" >
+    insert into B_CRR_GNTY_RELA
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="rltTyp" >
+        RLT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="rltNo" >
+        RLT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="conNo" >
+        CON_NO
+      </isNotNull>
+      <isNotNull prepend="," property="serialno" >
+        SERIALNO
+      </isNotNull>
+      <isNotNull prepend="," property="channel" >
+        CHANNEL
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        STAT
+      </isNotNull>
+      <isNotNull prepend="," property="othGntyRid" >
+        OTH_GNTY_RID
+      </isNotNull>
+      <isNotNull prepend="," property="gntySum" >
+        GNTY_SUM
+      </isNotNull>
+      <isNotNull prepend="," property="des" >
+        DES
+      </isNotNull>
+      <isNotNull prepend="," property="payOrd" >
+        PAY_ORD
+      </isNotNull>
+      <isNotNull prepend="," property="typ" >
+        TYP
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="rltTyp" >
+        #rltTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rltNo" >
+        #rltNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="conNo" >
+        #conNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="serialno" >
+        #serialno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="channel" >
+        #channel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        #stat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="othGntyRid" >
+        #othGntyRid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntySum" >
+        #gntySum:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="des" >
+        #des:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payOrd" >
+        #payOrd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="typ" >
+        #typ:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRelaExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRR_GNTY_RELA
+    <include refid="B_CRR_GNTY_RELA.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRR_GNTY_RELA
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.rltTyp" >
+        RLT_TYP = #record.rltTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rltNo" >
+        RLT_NO = #record.rltNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.conNo" >
+        CON_NO = #record.conNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.serialno" >
+        SERIALNO = #record.serialno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.channel" >
+        CHANNEL = #record.channel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stat" >
+        STAT = #record.stat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.othGntyRid" >
+        OTH_GNTY_RID = #record.othGntyRid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntySum" >
+        GNTY_SUM = #record.gntySum:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.des" >
+        DES = #record.des:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payOrd" >
+        PAY_ORD = #record.payOrd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.typ" >
+        TYP = #record.typ:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_RELA.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRR_GNTY_RELA
+    set RLT_TYP = #record.rltTyp:VARCHAR#,
+      RLT_NO = #record.rltNo:VARCHAR#,
+      CON_NO = #record.conNo:VARCHAR#,
+      SERIALNO = #record.serialno:VARCHAR#,
+      CHANNEL = #record.channel:VARCHAR#,
+      STAT = #record.stat:VARCHAR#,
+      OTH_GNTY_RID = #record.othGntyRid:VARCHAR#,
+      GNTY_SUM = #record.gntySum:VARCHAR#,
+      DES = #record.des:VARCHAR#,
+      PAY_ORD = #record.payOrd:VARCHAR#,
+      TYP = #record.typ:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_RELA.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRela" >
+    update B_CRR_GNTY_RELA
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="channel" >
+        CHANNEL = #channel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        STAT = #stat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="othGntyRid" >
+        OTH_GNTY_RID = #othGntyRid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntySum" >
+        GNTY_SUM = #gntySum:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="des" >
+        DES = #des:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payOrd" >
+        PAY_ORD = #payOrd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="typ" >
+        TYP = #typ:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where RLT_TYP = #rltTyp:VARCHAR#
+      and RLT_NO = #rltNo:VARCHAR#
+      and CON_NO = #conNo:VARCHAR#
+      and SERIALNO = #serialno:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRela" >
+    update B_CRR_GNTY_RELA
+    set CHANNEL = #channel:VARCHAR#,
+      STAT = #stat:VARCHAR#,
+      OTH_GNTY_RID = #othGntyRid:VARCHAR#,
+      GNTY_SUM = #gntySum:VARCHAR#,
+      DES = #des:VARCHAR#,
+      PAY_ORD = #payOrd:VARCHAR#,
+      TYP = #typ:VARCHAR#
+    where RLT_TYP = #rltTyp:VARCHAR#
+      and RLT_NO = #rltNo:VARCHAR#
+      and CON_NO = #conNo:VARCHAR#
+      and SERIALNO = #serialno:VARCHAR#
+  </update>
+  <!-- 自定义 -->
+  <select id="selectByRltNo" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRelaKey" >
+    select 
+    <include refid="B_CRR_GNTY_RELA.Base_Column_List" />
+    from B_CRR_GNTY_RELA
+    where RLT_NO = #rltNo:VARCHAR#
+  </select>
+  <select id="selectBySerialno" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRelaKey" >
+    select 
+    <include refid="B_CRR_GNTY_RELA.Base_Column_List" />
+    from B_CRR_GNTY_RELA
+    where SERIALNO = #serialno:VARCHAR#
+  </select>
+  <delete id="deleteByRltNo" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRelaKey" >
+    delete from B_CRR_GNTY_RELA
+    where RLT_NO = #rltNo:VARCHAR#
+  </delete>
+  <delete id="deleteBySerialno" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyRelaKey" >
+    delete from B_CRR_GNTY_RELA
+    where SERIALNO = #serialno:VARCHAR#
+  </delete>
+</sqlMap>

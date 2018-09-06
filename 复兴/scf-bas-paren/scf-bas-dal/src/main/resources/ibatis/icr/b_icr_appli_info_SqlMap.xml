@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_ICR_APPLI_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="CREDIT_CLASS" property="creditClass" jdbcType="CHAR" />
+    <result column="CREDIT_TYPE" property="creditType" jdbcType="VARCHAR" />
+    <result column="NODE_TYPE" property="nodeType" jdbcType="CHAR" />
+    <result column="CREDIT_NO" property="creditNo" jdbcType="VARCHAR" />
+    <result column="UP_CREDIT_NO" property="upCreditNo" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="CONTROL_TYPE" property="controlType" jdbcType="CHAR" />
+    <result column="CREDIT_AMOUNT" property="creditAmount" jdbcType="DECIMAL" />
+    <result column="CREDIT_USABLE_AMOUNT" property="creditUsableAmount" jdbcType="DECIMAL" />
+    <result column="PRE_USED_AMOUNT" property="preUsedAmount" jdbcType="DECIMAL" />
+    <result column="USED_AMOUNT" property="usedAmount" jdbcType="DECIMAL" />
+    <result column="FRZ_AMOUNT" property="frzAmount" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="APPROVAL_NO" property="approvalNo" jdbcType="VARCHAR" />
+    <result column="IS_NEED_AUDIT" property="isNeedAudit" jdbcType="CHAR" />
+    <result column="APPROVE_TYPE" property="approveType" jdbcType="CHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, CREDIT_CLASS, CREDIT_TYPE, NODE_TYPE, CREDIT_NO, UP_CREDIT_NO, CUSTCD, 
+    OTHER_CUSTCD, CURCD, CONTROL_TYPE, CREDIT_AMOUNT, CREDIT_USABLE_AMOUNT, PRE_USED_AMOUNT, 
+    USED_AMOUNT, FRZ_AMOUNT, STATUS, START_DATE, END_DATE, APPROVAL_NO, IS_NEED_AUDIT, 
+    APPROVE_TYPE, REMARK, TLRCD, CRT_TIME, BRCODE, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_ICR_APPLI_INFO.Base_Column_List" />
+    from B_ICR_APPLI_INFO
+    <isParameterPresent >
+      <include refid="B_ICR_APPLI_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfo" >
+    select 
+    <include refid="B_ICR_APPLI_INFO.Base_Column_List" />
+    from B_ICR_APPLI_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfo" >
+    delete from B_ICR_APPLI_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfoExample" >
+    delete from B_ICR_APPLI_INFO
+    <include refid="B_ICR_APPLI_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfo" >
+    insert into B_ICR_APPLI_INFO (ID, APPNO, CREDIT_CLASS, CREDIT_TYPE, 
+      NODE_TYPE, CREDIT_NO, UP_CREDIT_NO, CUSTCD, OTHER_CUSTCD, 
+      CURCD, CONTROL_TYPE, CREDIT_AMOUNT, CREDIT_USABLE_AMOUNT, 
+      PRE_USED_AMOUNT, USED_AMOUNT, FRZ_AMOUNT, STATUS, 
+      START_DATE, END_DATE, APPROVAL_NO, IS_NEED_AUDIT, APPROVE_TYPE, 
+      REMARK, TLRCD, CRT_TIME, BRCODE, LAST_UPD_TLRCD, 
+      LAST_UPD_TIME, LAST_UPD_BRCODE)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #creditClass:CHAR#, #creditType:VARCHAR#, 
+      #nodeType:CHAR#, #creditNo:VARCHAR#, #upCreditNo:VARCHAR#, #custcd:VARCHAR#, #otherCustcd:VARCHAR#, 
+      #curcd:CHAR#, #controlType:CHAR#, #creditAmount:DECIMAL#, #creditUsableAmount:DECIMAL#, 
+      #preUsedAmount:DECIMAL#, #usedAmount:DECIMAL#, #frzAmount:DECIMAL#, #status:CHAR#, 
+      #startDate:CHAR#, #endDate:CHAR#, #approvalNo:VARCHAR#, #isNeedAudit:CHAR#, #approveType:CHAR#, 
+      #remark:VARCHAR#, #tlrcd:VARCHAR#, #crtTime:TIMESTAMP#, #brcode:VARCHAR#, #lastUpdTlrcd:VARCHAR#, 
+      #lastUpdTime:TIMESTAMP#, #lastUpdBrcode:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfo" >
+    insert into B_ICR_APPLI_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="creditClass" >
+        CREDIT_CLASS
+      </isNotNull>
+      <isNotNull prepend="," property="creditType" >
+        CREDIT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="nodeType" >
+        NODE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="creditNo" >
+        CREDIT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="upCreditNo" >
+        UP_CREDIT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustcd" >
+        OTHER_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="controlType" >
+        CONTROL_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="creditAmount" >
+        CREDIT_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="creditUsableAmount" >
+        CREDIT_USABLE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="preUsedAmount" >
+        PRE_USED_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="usedAmount" >
+        USED_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="frzAmount" >
+        FRZ_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="approvalNo" >
+        APPROVAL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="isNeedAudit" >
+        IS_NEED_AUDIT
+      </isNotNull>
+      <isNotNull prepend="," property="approveType" >
+        APPROVE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        REMARK
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditClass" >
+        #creditClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditType" >
+        #creditType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="nodeType" >
+        #nodeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditNo" >
+        #creditNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="upCreditNo" >
+        #upCreditNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustcd" >
+        #otherCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="controlType" >
+        #controlType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditAmount" >
+        #creditAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditUsableAmount" >
+        #creditUsableAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="preUsedAmount" >
+        #preUsedAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="usedAmount" >
+        #usedAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="frzAmount" >
+        #frzAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approvalNo" >
+        #approvalNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isNeedAudit" >
+        #isNeedAudit:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveType" >
+        #approveType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        #remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_ICR_APPLI_INFO
+    <include refid="B_ICR_APPLI_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_ICR_APPLI_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditClass" >
+        CREDIT_CLASS = #record.creditClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditType" >
+        CREDIT_TYPE = #record.creditType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.nodeType" >
+        NODE_TYPE = #record.nodeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditNo" >
+        CREDIT_NO = #record.creditNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.upCreditNo" >
+        UP_CREDIT_NO = #record.upCreditNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherCustcd" >
+        OTHER_CUSTCD = #record.otherCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.controlType" >
+        CONTROL_TYPE = #record.controlType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditAmount" >
+        CREDIT_AMOUNT = #record.creditAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditUsableAmount" >
+        CREDIT_USABLE_AMOUNT = #record.creditUsableAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.preUsedAmount" >
+        PRE_USED_AMOUNT = #record.preUsedAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.usedAmount" >
+        USED_AMOUNT = #record.usedAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.frzAmount" >
+        FRZ_AMOUNT = #record.frzAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.approvalNo" >
+        APPROVAL_NO = #record.approvalNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isNeedAudit" >
+        IS_NEED_AUDIT = #record.isNeedAudit:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.approveType" >
+        APPROVE_TYPE = #record.approveType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remark" >
+        REMARK = #record.remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crtTime" >
+        CRT_TIME = #record.crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTime" >
+        LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_ICR_APPLI_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_ICR_APPLI_INFO
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      CREDIT_CLASS = #record.creditClass:CHAR#,
+      CREDIT_TYPE = #record.creditType:VARCHAR#,
+      NODE_TYPE = #record.nodeType:CHAR#,
+      CREDIT_NO = #record.creditNo:VARCHAR#,
+      UP_CREDIT_NO = #record.upCreditNo:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      OTHER_CUSTCD = #record.otherCustcd:VARCHAR#,
+      CURCD = #record.curcd:CHAR#,
+      CONTROL_TYPE = #record.controlType:CHAR#,
+      CREDIT_AMOUNT = #record.creditAmount:DECIMAL#,
+      CREDIT_USABLE_AMOUNT = #record.creditUsableAmount:DECIMAL#,
+      PRE_USED_AMOUNT = #record.preUsedAmount:DECIMAL#,
+      USED_AMOUNT = #record.usedAmount:DECIMAL#,
+      FRZ_AMOUNT = #record.frzAmount:DECIMAL#,
+      STATUS = #record.status:CHAR#,
+      START_DATE = #record.startDate:CHAR#,
+      END_DATE = #record.endDate:CHAR#,
+      APPROVAL_NO = #record.approvalNo:VARCHAR#,
+      IS_NEED_AUDIT = #record.isNeedAudit:CHAR#,
+      APPROVE_TYPE = #record.approveType:CHAR#,
+      REMARK = #record.remark:VARCHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      CRT_TIME = #record.crtTime:TIMESTAMP#,
+      BRCODE = #record.brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_ICR_APPLI_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfo" >
+    update B_ICR_APPLI_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditClass" >
+        CREDIT_CLASS = #creditClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditType" >
+        CREDIT_TYPE = #creditType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="nodeType" >
+        NODE_TYPE = #nodeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditNo" >
+        CREDIT_NO = #creditNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="upCreditNo" >
+        UP_CREDIT_NO = #upCreditNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustcd" >
+        OTHER_CUSTCD = #otherCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="controlType" >
+        CONTROL_TYPE = #controlType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditAmount" >
+        CREDIT_AMOUNT = #creditAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditUsableAmount" >
+        CREDIT_USABLE_AMOUNT = #creditUsableAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="preUsedAmount" >
+        PRE_USED_AMOUNT = #preUsedAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="usedAmount" >
+        USED_AMOUNT = #usedAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="frzAmount" >
+        FRZ_AMOUNT = #frzAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approvalNo" >
+        APPROVAL_NO = #approvalNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isNeedAudit" >
+        IS_NEED_AUDIT = #isNeedAudit:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveType" >
+        APPROVE_TYPE = #approveType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        REMARK = #remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME = #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfo" >
+    update B_ICR_APPLI_INFO
+    set APPNO = #appno:VARCHAR#,
+      CREDIT_CLASS = #creditClass:CHAR#,
+      CREDIT_TYPE = #creditType:VARCHAR#,
+      NODE_TYPE = #nodeType:CHAR#,
+      CREDIT_NO = #creditNo:VARCHAR#,
+      UP_CREDIT_NO = #upCreditNo:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      OTHER_CUSTCD = #otherCustcd:VARCHAR#,
+      CURCD = #curcd:CHAR#,
+      CONTROL_TYPE = #controlType:CHAR#,
+      CREDIT_AMOUNT = #creditAmount:DECIMAL#,
+      CREDIT_USABLE_AMOUNT = #creditUsableAmount:DECIMAL#,
+      PRE_USED_AMOUNT = #preUsedAmount:DECIMAL#,
+      USED_AMOUNT = #usedAmount:DECIMAL#,
+      FRZ_AMOUNT = #frzAmount:DECIMAL#,
+      STATUS = #status:CHAR#,
+      START_DATE = #startDate:CHAR#,
+      END_DATE = #endDate:CHAR#,
+      APPROVAL_NO = #approvalNo:VARCHAR#,
+      IS_NEED_AUDIT = #isNeedAudit:CHAR#,
+      APPROVE_TYPE = #approveType:CHAR#,
+      REMARK = #remark:VARCHAR#,
+      TLRCD = #tlrcd:VARCHAR#,
+      CRT_TIME = #crtTime:TIMESTAMP#,
+      BRCODE = #brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

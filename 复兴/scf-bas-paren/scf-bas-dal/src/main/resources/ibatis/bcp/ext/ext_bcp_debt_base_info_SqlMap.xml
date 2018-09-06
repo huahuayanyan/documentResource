@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_R_BCP_DEBT_BASE_INFO" >
+ <resultMap id="DebtBillsInfoVOMap" class="com.huateng.scf.rec.bcp.dao.model.DebtBillsInfoVO">
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="CNAME_SELLER" property="cnameSeller" jdbcType="VARCHAR" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="RETURN_ACCOUNT" property="returnAccount" jdbcType="VARCHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD_SALLER" property="custcdSaller" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrNo" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  
+   <resultMap id="BillsNoMap" class="com.huateng.scf.rec.bcp.dao.model.RBcpDebtBaseInfo" >
+    <result column="BILLS_NO" property="billsNo" jdbcType="VARCHAR" />
+   </resultMap> 
+  <select id="findCancelRBcpDebtBaseInfoPage" resultMap="R_BCP_DEBT_BASE_INFO.BaseResultMap"  parameterClass="java.util.Map" >
+    select
+   <include refid="R_BCP_DEBT_BASE_INFO.Base_Column_List" />
+    from R_BCP_DEBT_BASE_INFO  where 
+         (STATUS='02'  or    STATUS='04' )
+        and  (ISSUE_FLAG='0'   or  ISSUE_FLAG is null)
+        and 
+         (IS_LOCKED is null or  IS_LOCKED!='1'
+       <isNotEmpty prepend="or" property="appno" >
+       LOCK_APPNO = #appno:VARCHAR#
+       </isNotEmpty>
+          )
+          
+       <isNotEmpty prepend="and" property="mastContno" >
+        MAST_CONTNO=#mastContno:VARCHAR#
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="custcdBuyer" >
+        CUSTCD_BUYER=#custcdBuyer:VARCHAR#
+       </isNotEmpty>             
+       <isNotEmpty prepend="and" property="billsDateFrom" >
+         <![CDATA[  BILLS_DATE>=#billsDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsDateTo" >
+          <![CDATA[BILLS_DATE<=#billsDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndFrom" >
+         <![CDATA[  DEBT_END>=#debtEndFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndTo" >
+          <![CDATA[ DEBT_END<=#debtEndTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsType" >
+            BILLS_TYPE=#billsType:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsNo" >
+            BILLS_NO=#billsNo:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="custcdSaller" >
+            CUSTCD_SALLER=#custcdSaller:VARCHAR#
+       </isNotEmpty> 
+       <isNotEmpty prepend="and" property="loanWay" >
+            (LOAN_WAY=#custcdSaller:VARCHAR#  or  LOAN_WAY  is null   )
+       </isNotEmpty> 
+       
+
+    order by DEBT_END asc,LOAN_END_DATE  asc ,BILLS_NO
+  </select> 
+  
+  <!-- 查询未核销的应收账款 -->
+  <select id="queryValidDebtBaseInfo" resultMap="R_BCP_DEBT_BASE_INFO.BaseResultMap"  parameterClass="java.util.Map" >
+    select
+   <include refid="R_BCP_DEBT_BASE_INFO.Base_Column_List" />
+    from R_BCP_DEBT_BASE_INFO  
+    where  1=1
+    
+       <isNotEmpty prepend="and" property="mastContno" >
+        	MAST_CONTNO=#mastContno:VARCHAR#
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="status" >
+        	STATUS=#status:VARCHAR#
+        </isNotEmpty>      
+    order by DEBT_END asc,LOAN_END_DATE  asc ,MAST_CONTNO
+  </select> 
+<!-- 催收待添加发票查询 -->
+    <select id="getDebtInvoiceInfoPressing" resultMap="R_BCP_DEBT_BASE_INFO.BaseResultMap"  parameterClass="java.util.Map" >
+    select
+   <include refid="R_BCP_DEBT_BASE_INFO.Base_Column_List" />
+    from R_BCP_DEBT_BASE_INFO  where 
+         STATUS  in ('02','04')
+         
+        and  (ISSUE_FLAG='0'   or  ISSUE_FLAG is null)
+        and 
+         (IS_LOCKED is null or  IS_LOCKED!='1'
+       <isNotEmpty prepend="or" property="lockAppno" >
+       LOCK_APPNO = #lockAppno:VARCHAR#
+       </isNotEmpty>
+          )
+       <!-- 催收方式: 1.提示付款，2 催收 -->
+       <isEqual prepend="and" property="pressMode" compareValue="1">
+ 		<isNotEmpty property="debtEnd" >
+	 		<![CDATA[
+				  DEBT_END>=#debtEnd:VARCHAR#
+			 ]]>
+ 		</isNotEmpty>
+ 		
+	   </isEqual>
+	   <isEqual prepend="and" property="pressMode" compareValue="2">
+ 		<isNotEmpty property="debtEnd" >
+	 		<![CDATA[
+				  DEBT_END<#debtEnd:VARCHAR#
+			 ]]>
+		 </isNotEmpty>
+	   </isEqual>
+	    
+       <isNotEmpty prepend="and" property="mastContno" >
+        MAST_CONTNO=#mastContno:VARCHAR#
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="custcdBuyer" >
+        CUSTCD_BUYER=#custcdBuyer:VARCHAR#
+       </isNotEmpty>    
+       <isNotEmpty prepend="and" property="custcdSaller" >
+            CUSTCD_SALLER=#custcdSaller:VARCHAR#
+       </isNotEmpty> 
+        <isNotEmpty prepend="and" property="insertDateFrom" >
+         <![CDATA[ INSERT_DATE>=#insertDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="insertDateTo" >
+          <![CDATA[ INSERT_DATE<=#insertDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+                
+       <isNotEmpty prepend="and" property="billsDateFrom" >
+         <![CDATA[  BILLS_DATE>=#billsDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsDateTo" >
+          <![CDATA[BILLS_DATE<=#billsDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndFrom" >
+         <![CDATA[  DEBT_END>=#debtEndFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndTo" >
+          <![CDATA[ DEBT_END<=#debtEndTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsNo" >
+            BILLS_NO=#billsNo:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsType" >
+            BILLS_TYPE=#billsType:VARCHAR#
+       </isNotEmpty>  
+    order by DEBT_END asc,LOAN_END_DATE  asc ,BILLS_NO
+  </select>
+   
+  <!-- 应收账款列表信息查询 -->
+    <select id="getInvoiceOut" resultMap="R_BCP_DEBT_BASE_INFO.BaseResultMap"  parameterClass="java.util.Map" >
+    select
+   <include refid="R_BCP_DEBT_BASE_INFO.Base_Column_List" />
+    from R_BCP_DEBT_BASE_INFO  
+    where 1=1
+     and   STATUS = #status:VARCHAR#
+     and LOAN_REMAINING_AMOUNT = #loanRemainingAmount:DECIMAL#
+     and (POOL_FLAG = #poolFlag:VARCHAR# or POOL_FLAG is null )
+     and (ISSUE_FLAG = #issueFlag:VARCHAR# or ISSUE_FLAG is null ) 
+     and (IS_LOCKED is null or IS_LOCKED != #isLocked:VARCHAR# 
+       <isNotEmpty prepend="or" property="lockAppno" >
+       LOCK_APPNO = #lockAppno:VARCHAR#
+       </isNotEmpty>
+          )
+       <isNotEmpty prepend="and" property="mastContno" >
+        MAST_CONTNO=#mastContno:VARCHAR#
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="custcdBuyer" >
+        CUSTCD_BUYER=#custcdBuyer:VARCHAR#
+       </isNotEmpty>    
+       <isNotEmpty prepend="and" property="custcdSaller" >
+            CUSTCD_SALLER=#custcdSaller:VARCHAR#
+       </isNotEmpty> 
+        <isNotEmpty prepend="and" property="insertDateFrom" >
+         <![CDATA[ INSERT_DATE>=#insertDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="insertDateTo" >
+          <![CDATA[ INSERT_DATE<=#insertDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+         <isNotEmpty prepend="and" property="purchaseDateFrom" >
+         <![CDATA[ PURCHASE_DATE>=#purchaseDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="purchaseDateTo" >
+          <![CDATA[ PURCHASE_DATE<=#purchaseDateTo:VARCHAR# ]]>
+       </isNotEmpty>      
+       <isNotEmpty prepend="and" property="billsDateFrom" >
+         <![CDATA[  BILLS_DATE>=#billsDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsDateTo" >
+          <![CDATA[BILLS_DATE<=#billsDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndFrom" >
+         <![CDATA[  DEBT_END>=#debtEndFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndTo" >
+          <![CDATA[ DEBT_END<=#debtEndTo:VARCHAR# ]]>
+       </isNotEmpty>
+         <isNotEmpty prepend="and" property="billsAmountFrom" >
+         <![CDATA[  BILLS_AMOUNT>=#billsAmountFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsAmountTo" >
+          <![CDATA[ BILLS_AMOUNT<=#billsAmountTo:VARCHAR# ]]>
+       </isNotEmpty>    
+       <isNotEmpty prepend="and" property="billsNo" >
+            BILLS_NO=#billsNo:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsType" >
+            BILLS_TYPE=#billsType:VARCHAR#
+       </isNotEmpty>  
+    order by DEBT_END asc,LOAN_END_DATE  asc ,BILLS_NO
+  </select>
+	<!-- 回款专户入账查询 -->
+  <select id="getDebtBackActImpInfoQuery" resultMap="DebtBillsInfoVOMap"  parameterClass="java.util.Map" >
+	SELECT DISTINCT dbi.mast_contno MAST_CONTNO,dbi.cname_seller CNAME_SELLER,dbi.buss_type BUSS_TYPE,
+	tbpd.return_account RETURN_ACCOUNT,tbpd.mgrno MGRNO,tbpd.brcode BRCODE,dbi.custcd_saller CUSTCD_SALLER,
+	tbpd.tlrcd TLRCD 
+	FROM R_BCP_DEBT_BASE_INFO dbi JOIN B_CNT_DEBT_INFO tbpd ON dbi.mast_contno = tbpd.debt_contno where 1=1
+	       <isNotEmpty prepend="and" property="custcdSaller_Q" >        
+              dbi.CNAME_SELLER  like '%'|| #custcdSaller_Q:VARCHAR#||'%'  
+      	   </isNotEmpty> 
+	       <isNotEmpty prepend="and" property="mastContno" >
+              dbi.MAST_CONTNO = #mastContno:VARCHAR# 
+      	   </isNotEmpty> 
+	       <isNotEmpty prepend="and" property="contStatus_Q" >
+              tbpd.CONT_STATUS = #contStatus_Q:VARCHAR#
+      	   </isNotEmpty> 
+	       <isNotEmpty prepend="and" property="bussType_Q" >
+              dbi.BUSS_TYPE=#bussType_Q:VARCHAR#
+      	   </isNotEmpty> 
+	       <isNotEmpty prepend="and" property="factType_Q" >
+	       	<isEqual property="factType_Q" compareValue ="1">
+              tbpd.FACT_TYPE in ("1","2","6")
+            </isEqual>   
+	       	<isEqual property="factType_Q" compareValue ="2">
+              tbpd.FACT_TYPE in ("7","8","9")
+            </isEqual>   
+           	<isEqual property="factType_Q" compareValue ="3">
+              tbpd.FACT_TYPE = "3"
+            </isEqual>  
+	       	<isEqual property="factType_Q" compareValue ="4">
+              tbpd.FACT_TYPE = "4"
+            </isEqual>   
+	       	<isEqual property="factType_Q" compareValue ="5">
+              tbpd.FACT_TYPE = "5"
+            </isEqual>   
+      	   </isNotEmpty> 
+      	   <isNotNull prepend="and" property="bussTypeList" >
+      	   		 dbi.BUSS_TYPE  in 
+	   			<iterate conjunction="," open="(" close=")" property="bussTypeList">
+	 	      		#bussTypeList[]#
+	 			</iterate>
+      	   </isNotNull>
+<!-- 	       <isNotEmpty prepend="and" property="flag" >
+			<isEqual property="flag" compareValue ="01">
+              <isNotEmpty prepend="and" property="tlrno" >
+              	tbpd.mgrno =#tlrno:VARCHAR# 
+              </isNotEmpty>
+           	</isEqual>   
+      	   </isNotEmpty>  -->
+  </select> 
+  
+	<!-- 回款专户入账数目查询 -->
+  <select id="getDebtBackActImpInfoQueryCount" resultClass="java.lang.Integer"  parameterClass="java.util.Map" >
+	SELECT 
+	COUNT(MAST_CONTNO) FROM
+	(SELECT DISTINCT dbi.mast_contno MAST_CONTNO,dbi.cname_seller CNAME_SELLER,dbi.buss_type BUSS_TYPE,
+		tbpd.return_account RETURN_ACCOUNT,tbpd.mgrno MGRNO,tbpd.brcode BRCODE,dbi.custcd_saller CUSTCD_SALLER,
+		tbpd.tlrcd TLRCD  
+		FROM R_BCP_DEBT_BASE_INFO dbi JOIN B_CNT_DEBT_INFO tbpd ON dbi.mast_contno = tbpd.debt_contno where 1=1
+		   <isNotEmpty prepend="and" property="custcdSaller_Q" >        
+              dbi.CNAME_SELLER  like '%'|| #custcdSaller_Q:VARCHAR#||'%'  
+      	   </isNotEmpty> 
+	       <isNotEmpty prepend="and" property="mastContno" >
+              dbi.MAST_CONTNO = #mastContno:VARCHAR# 
+      	   </isNotEmpty> 
+	       <isNotEmpty prepend="and" property="contStatus_Q" >
+              tbpd.cont_Status = #contStatus_Q:VARCHAR#
+      	   </isNotEmpty> 
+	       <isNotEmpty prepend="and" property="bussType_Q" >
+              dbi.BUSS_TYPE=#bussType_Q:VARCHAR#
+      	   </isNotEmpty> 
+      	   <isNotEmpty prepend="and" property="factType_Q" >
+		       	<isEqual property="factType_Q" compareValue ="1">
+	              tbpd.FACT_TYPE in ("1","2","6")
+	            </isEqual>   
+		       	<isEqual property="factType_Q" compareValue ="2">
+	              tbpd.FACT_TYPE in ("7","8","9")
+	            </isEqual>   
+	           	<isEqual property="factType_Q" compareValue ="3">
+	              tbpd.FACT_TYPE = "3"
+	            </isEqual>  
+		       	<isEqual property="factType_Q" compareValue ="4">
+	              tbpd.FACT_TYPE = "4"
+	            </isEqual>   
+		       	<isEqual property="factType_Q" compareValue ="5">
+	              tbpd.FACT_TYPE = "5"
+	            </isEqual>   
+            </isNotEmpty>
+             <isNotNull prepend="and" property="bussTypeList" >
+      	   		 dbi.BUSS_TYPE  in 
+	   			<iterate conjunction="," open="(" close=")" property="bussTypeList">
+	 	      		#bussTypeList[]#
+	 			</iterate>
+      	   </isNotNull>
+	)
+  </select> 
+  
+   <resultMap id="DebtInfoByPersonMap" class="com.huateng.scf.rec.bcp.dao.model.DebtBillsInfoVO">
+    <result column="cname_buyer" property="cnameBuyer" jdbcType="VARCHAR" />
+    <result column="cname_seller" property="cnameSeller" jdbcType="VARCHAR" />
+    <result column="bills_no" property="billsNo" jdbcType="VARCHAR" />
+    <result column="buss_contcode" property="bussContcode" jdbcType="VARCHAR" />
+    <result column="bills_type" property="billsType" jdbcType="VARCHAR" />
+    <result column="bills_date" property="billsDate" jdbcType="VARCHAR" />
+    <result column="debt_end" property="debtEnd" jdbcType="VARCHAR" />
+    <result column="deadline" property="deadline" jdbcType="VARCHAR" />
+    <result column="bills_amount_view" property="billsAmountView" jdbcType="DECIMAL" />
+    <result column="bills_amount" property="billsAmount" jdbcType="DECIMAL" />
+    <result column="remaining_amount" property="remainingAmount" jdbcType="DECIMAL" />
+    <result column="debet_no" property="debetNo" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="VARCHAR" />
+    <result column="end_date" property="endDate" jdbcType="VARCHAR" />
+    <result column="lnci_bal" property="lnciBal" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="mgrno" property="mgrno" jdbcType="VARCHAR" />
+    <result column="brcode" property="brcode" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="debet_id" property="debetId" jdbcType="VARCHAR" />
+    <result column="issue_times" property="issueTimes" jdbcType="DECIMAL" />
+    <result column="pool_flag" property="poolFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 应收账款查询 -->
+  <select id="selectDebtInfoByPerson" resultMap="DebtInfoByPersonMap"  parameterClass="java.util.Map" >
+	select dbi.cname_buyer,dbi.cname_seller,dbi.bills_no,dbi.buss_contcode,dbi.bills_type,dbi.bills_date,dbi.debt_end,
+	dbi.deadline,dbi.bills_amount_view,dbi.bills_amount,dbi.remaining_amount,dbi.debet_no,lbi.start_date,lbi.end_date,
+	lbi.lnci_bal,dbi.status,tbpd.mgrno,tbpd.brcode,dbi.id,lbi.debet_id,dbi.issue_times,dbi.pool_flag
+	from R_BCP_DEBT_BASE_INFO dbi
+	left join B_CNT_DEBT_INFO tbpd on dbi.mast_contno = tbpd.debt_contno
+	left join B_LAN_LNCI_BASE lbi on dbi.debet_no = lbi.debet_no
+	where dbi.status !='00' and 1 = 1  
+		    <isNotEmpty prepend="and" property="custcdSaller_Q" > 
+				dbi.cname_Seller like '%'|| #custcdSaller_Q:VARCHAR#||'%'  
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="custcdBuyer_Q" > 
+				dbi.cname_buyer like '%'|| #custcdBuyer_Q:VARCHAR#||'%'  
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="mastContno" > 
+				dbi.mast_Contno = #mastContno:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="bussType_Q" > 
+				dbi.buss_type = #bussType_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="billsType_Q" > 
+				dbi.bills_type = #billsType_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="billsNo_Q" > 
+				dbi.bills_No = #billsNo_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="start_Q" > 
+			<![CDATA[ dbi.bills_Date >= to_date(#start_Q:VARCHAR#,'YYYY-MM-DD')]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="end_Q" > 
+		    <![CDATA[ dbi.bills_Date <= to_date(#end_Q:VARCHAR#,'YYYY-MM-DD')]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="debtEnd_from_Q" > 
+		    <![CDATA[ dbi.debt_End >= to_date(#debtEnd_from_Q:VARCHAR#,'YYYY-MM-DD')]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="debtEnd_to_Q" > 
+		    <![CDATA[ dbi.debt_End <= to_date(#debtEnd_to_Q:VARCHAR#,'YYYY-MM-DD')]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="status_Q" > 
+				dbi.status =#status_Q:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="LoanWay_Q" > 
+				dbi.loan_way = #LoanWay_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="brcode" > 
+				tbpd.brcode = #brcode:VARCHAR#
+			</isNotEmpty>
+
+	       <isNotEmpty prepend="and" property="factType_Q" >
+	       	<isEqual property="factType_Q" compareValue ="1">
+              tbpd.FACT_TYPE in ("1","2","6")
+            </isEqual>   
+	       	<isEqual property="factType_Q" compareValue ="2">
+              tbpd.FACT_TYPE in ("7","8","9")
+            </isEqual>   
+           	<isEqual property="factType_Q" compareValue ="3">
+              tbpd.FACT_TYPE = "3"
+            </isEqual>  
+	       	<isEqual property="factType_Q" compareValue ="4">
+              tbpd.FACT_TYPE = "4"
+            </isEqual>   
+	       	<isEqual property="factType_Q" compareValue ="5">
+              tbpd.FACT_TYPE = "5"
+            </isEqual>   
+      	   </isNotEmpty> 
+  </select> 
+  
+  <!-- 应收账款条数目查询 -->
+  <select id="selectDebtInfoByPersonCount" resultClass="java.lang.Integer"  parameterClass="java.util.Map" >
+	SELECT 
+	COUNT(buss_contcode) FROM
+	(select dbi.cname_buyer,dbi.cname_seller,dbi.bills_no,dbi.buss_contcode,dbi.bills_type,dbi.bills_date,dbi.debt_end,
+	dbi.deadline,dbi.bills_amount_view,dbi.bills_amount,dbi.remaining_amount,dbi.debet_no,lbi.start_date,lbi.end_date,
+	lbi.lnci_bal,dbi.status,tbpd.mgrno,tbpd.brcode,dbi.id,lbi.debet_id,dbi.issue_times,dbi.pool_flag
+	from R_BCP_DEBT_BASE_INFO dbi
+	left join B_CNT_DEBT_INFO tbpd on dbi.mast_contno = tbpd.debt_contno
+	left join B_LAN_LNCI_BASE lbi on dbi.debet_no = lbi.debet_no
+	where dbi.status !='00' and 1 = 1  
+		    <isNotEmpty prepend="and" property="custcdSaller_Q" > 
+				dbi.cname_Seller like '%'|| #custcdSaller_Q:VARCHAR#||'%'  
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="custcdBuyer_Q" > 
+				dbi.cname_buyer like '%'|| #custcdBuyer_Q:VARCHAR#||'%'  
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="mastContno" > 
+				dbi.mast_Contno = #mastContno:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="bussType_Q" > 
+				dbi.buss_type = #bussType_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="billsType_Q" > 
+				dbi.bills_type = #billsType_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="billsNo_Q" > 
+				dbi.bills_No = #billsNo_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="start_Q" > 
+			<![CDATA[ dbi.bills_Date >= #start_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="end_Q" > 
+		    <![CDATA[ dbi.bills_Date <= #end_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="debtEnd_from_Q" > 
+		    <![CDATA[ dbi.debt_End>= #debtEnd_from_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="debtEnd_to_Q" > 
+		    <![CDATA[ dbi.debt_End <= #debtEnd_to_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="status_Q" > 
+				dbi.status =#status_Q:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="LoanWay_Q" > 
+				dbi.loan_way = #LoanWay_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="brcode" > 
+				tbpd.brcode = #brcode:VARCHAR#
+			</isNotEmpty>
+
+	       <isNotEmpty prepend="and" property="factType_Q" >
+	       	<isEqual property="factType_Q" compareValue ="1">
+              tbpd.FACT_TYPE in ("1","2","6")
+            </isEqual>   
+	       	<isEqual property="factType_Q" compareValue ="2">
+              tbpd.FACT_TYPE in ("7","8","9")
+            </isEqual>   
+           	<isEqual property="factType_Q" compareValue ="3">
+              tbpd.FACT_TYPE = "3"
+            </isEqual>  
+	       	<isEqual property="factType_Q" compareValue ="4">
+              tbpd.FACT_TYPE = "4"
+            </isEqual>   
+	       	<isEqual property="factType_Q" compareValue ="5">
+              tbpd.FACT_TYPE = "5"
+            </isEqual>   
+      	   </isNotEmpty> 
+	)
+  </select> 
+   
+   <!-- 核销申请发票添加查询 -->
+  <select id="getInvoiceChargeOffAddQry" resultMap="R_BCP_DEBT_BASE_INFO.BaseResultMap"  parameterClass="java.util.Map" >
+    select
+   <include refid="R_BCP_DEBT_BASE_INFO.Base_Column_List" />
+    from R_BCP_DEBT_BASE_INFO  where 
+         (STATUS='02'  or    STATUS='04' )
+        and  (ISSUE_FLAG='0'   or  ISSUE_FLAG is null)
+        and 
+         (IS_LOCKED is null or  IS_LOCKED!='1'
+       <isNotEmpty prepend="or" property="appno" >
+       LOCK_APPNO = #appno:VARCHAR#
+       </isNotEmpty>
+          )
+          
+       <isNotEmpty prepend="and" property="mastContno" >
+        MAST_CONTNO=#mastContno:VARCHAR#
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="custcdBuyer" >
+        CUSTCD_BUYER=#custcdBuyer:VARCHAR#
+       </isNotEmpty>             
+       <isNotEmpty prepend="and" property="billsDateFrom" >
+         <![CDATA[  BILLS_DATE>=#billsDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsDateTo" >
+          <![CDATA[BILLS_DATE<=#billsDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndFrom" >
+         <![CDATA[  DEBT_END>=#debtEndFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndTo" >
+          <![CDATA[ DEBT_END<=#debtEndTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsType" >
+            BILLS_TYPE=#billsType:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsNo" >
+            BILLS_NO=#billsNo:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="custcdSaller" >
+            CUSTCD_SALLER=#custcdSaller:VARCHAR#
+       </isNotEmpty> 
+       <isNotEmpty prepend="and" property="loanWay" >
+            (LOAN_WAY=#custcdSaller:VARCHAR#  or  LOAN_WAY  is null   )
+       </isNotEmpty> 
+       
+
+    order by DEBT_END asc,LOAN_END_DATE  asc ,BILLS_NO
+  </select> 
+  <!-- 应收账款转让页面添加单据查询-->
+    <select id="getDebtInvoiceInfoTransfer" resultMap="R_BCP_DEBT_BASE_INFO.BaseResultMap"  parameterClass="java.util.Map" >
+    select
+   <include refid="R_BCP_DEBT_BASE_INFO.Base_Column_List" />
+    from R_BCP_DEBT_BASE_INFO  where 
+         STATUS  ='01'
+         
+        and  (FLAW_FLAG='0'   or  FLAW_FLAG is null)
+        and 
+         (IS_LOCKED is null or  IS_LOCKED!='1'
+       <isNotEmpty prepend="or" property="lockAppno" >
+       LOCK_APPNO = #lockAppno:VARCHAR#
+       </isNotEmpty>
+          )
+          
+          <isNotEmpty prepend="and" property="billsNoList" > 
+        BILLS_NO  NOT in 
+        <iterate property="billsNoList" conjunction="," open="(" close=")" >
+   		 $billsNoList[]$ 
+   		</iterate> 
+    	 </isNotEmpty>
+          
+       <isNotEmpty prepend="and" property="mastContno" >
+        MAST_CONTNO=#mastContno:VARCHAR#
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="custcdBuyer" >
+        CUSTCD_BUYER=#custcdBuyer:VARCHAR#
+       </isNotEmpty>    
+       <isNotEmpty prepend="and" property="custcdSaller" >
+            CUSTCD_SALLER=#custcdSaller:VARCHAR#
+       </isNotEmpty> 
+        <isNotEmpty prepend="and" property="insertDateFrom" >
+         <![CDATA[ INSERT_DATE>=#insertDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="insertDateTo" >
+          <![CDATA[ INSERT_DATE<=#insertDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+                
+       <isNotEmpty prepend="and" property="billsDateFrom" >
+         <![CDATA[  BILLS_DATE>=#billsDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsDateTo" >
+          <![CDATA[BILLS_DATE<=#billsDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndFrom" >
+         <![CDATA[  DEBT_END>=#debtEndFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndTo" >
+          <![CDATA[ DEBT_END<=#debtEndTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="factType" >
+            FACT_TYPE=#factType:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsNo" >
+            BILLS_NO=#billsNo:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsType" >
+            BILLS_TYPE=#billsType:VARCHAR#
+       </isNotEmpty>  
+    order by INSERT_DATE DESC, MAST_CONTNO DESC
+  </select>
+  <!-- 应收账款商纠登记页面添加单据查询-->
+    <select id="getDebtInvoiceInfoRegister" resultMap="R_BCP_DEBT_BASE_INFO.BaseResultMap"  parameterClass="java.util.Map" >
+    select
+   <include refid="R_BCP_DEBT_BASE_INFO.Base_Column_List" />
+    from R_BCP_DEBT_BASE_INFO  where 
+         (STATUS='02'  or    STATUS='04' )
+        and  (ISSUE_FLAG='0'   or  ISSUE_FLAG is null)
+        and 
+         (IS_LOCKED is null or  IS_LOCKED!='1'
+       <isNotEmpty prepend="or" property="lockAppno" >
+       LOCK_APPNO = #lockAppno:VARCHAR#
+       </isNotEmpty>
+          )
+          
+        <isNotEmpty prepend="and" property="billsNoList" > 
+        BILLS_NO  NOT in 
+        <iterate property="billsNoList" conjunction="," open="(" close=")" >
+   		 $billsNoList[]$ 
+   		</iterate> 
+    	 </isNotEmpty>
+    	 
+       <isNotEmpty prepend="and" property="mastContno" >
+        MAST_CONTNO=#mastContno:VARCHAR#
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="custcdBuyer" >
+        CUSTCD_BUYER=#custcdBuyer:VARCHAR#
+       </isNotEmpty>    
+       <isNotEmpty prepend="and" property="custcdSaller" >
+            CUSTCD_SALLER=#custcdSaller:VARCHAR#
+       </isNotEmpty> 
+        <isNotEmpty prepend="and" property="insertDateFrom" >
+         <![CDATA[ INSERT_DATE>=#insertDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="insertDateTo" >
+          <![CDATA[ INSERT_DATE<=#insertDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+                
+       <isNotEmpty prepend="and" property="billsDateFrom" >
+         <![CDATA[  BILLS_DATE>=#billsDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsDateTo" >
+          <![CDATA[BILLS_DATE<=#billsDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndFrom" >
+         <![CDATA[  DEBT_END>=#debtEndFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndTo" >
+          <![CDATA[ DEBT_END<=#debtEndTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="factType" >
+            FACT_TYPE=#factType:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsNo" >
+            BILLS_NO=#billsNo:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="poolFlag" >
+            POOL_FLAG=#poolFlag:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsType" >
+            BILLS_TYPE=#billsType:VARCHAR#
+       </isNotEmpty>  
+    order by INSERT_DATE DESC, MAST_CONTNO DESC
+  </select>
+  <!-- 应收账款商纠解除页面添加单据查询-->
+    <select id="getDebtInvoiceInfoRemove" resultMap="R_BCP_DEBT_BASE_INFO.BaseResultMap"  parameterClass="java.util.Map" >
+    select
+   <include refid="R_BCP_DEBT_BASE_INFO.Base_Column_List" />
+    from R_BCP_DEBT_BASE_INFO  where 
+         (STATUS='02'  or    STATUS='04' )
+        and  ISSUE_FLAG='1'  
+        and 
+         (IS_LOCKED is null or  IS_LOCKED!='1'
+       <isNotEmpty prepend="or" property="lockAppno" >
+       LOCK_APPNO = #lockAppno:VARCHAR#
+       </isNotEmpty>
+          )
+          
+          <isNotEmpty prepend="and" property="billsNoList" > 
+        BILLS_NO  NOT in 
+        <iterate property="billsNoList" conjunction="," open="(" close=")" >
+   		 $billsNoList[]$ 
+   		</iterate> 
+    	 </isNotEmpty>
+          
+       <isNotEmpty prepend="and" property="mastContno" >
+        MAST_CONTNO=#mastContno:VARCHAR#
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="custcdBuyer" >
+        CUSTCD_BUYER=#custcdBuyer:VARCHAR#
+       </isNotEmpty>    
+       <isNotEmpty prepend="and" property="custcdSaller" >
+            CUSTCD_SALLER=#custcdSaller:VARCHAR#
+       </isNotEmpty> 
+        <isNotEmpty prepend="and" property="insertDateFrom" >
+         <![CDATA[ INSERT_DATE>=#insertDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="insertDateTo" >
+          <![CDATA[ INSERT_DATE<=#insertDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+                
+       <isNotEmpty prepend="and" property="billsDateFrom" >
+         <![CDATA[  BILLS_DATE>=#billsDateFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsDateTo" >
+          <![CDATA[BILLS_DATE<=#billsDateTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndFrom" >
+         <![CDATA[  DEBT_END>=#debtEndFrom:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="debtEndTo" >
+          <![CDATA[ DEBT_END<=#debtEndTo:VARCHAR# ]]>
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="factType" >
+            FACT_TYPE=#factType:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsNo" >
+            BILLS_NO=#billsNo:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="poolFlag" >
+            POOL_FLAG=#poolFlag:VARCHAR#
+       </isNotEmpty>  
+       <isNotEmpty prepend="and" property="billsType" >
+            BILLS_TYPE=#billsType:VARCHAR#
+       </isNotEmpty>  
+    order by INSERT_DATE DESC, MAST_CONTNO DESC
+  </select>
+</sqlMap>

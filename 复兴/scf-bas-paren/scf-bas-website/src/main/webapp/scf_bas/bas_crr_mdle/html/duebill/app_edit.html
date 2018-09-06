@@ -1,0 +1,55 @@
+
+<ht-form name="otherform">
+    <ht-panel>
+    <ht-legend>基本信息</ht-legend>
+    <ht-input name="客户名称" reg-exp="common.require" ng-model="otherform.custNm" disable="true"></ht-input>
+    <ht-input name="客户号" reg-exp="common.require" ng-model="otherform.custCd" disable="true"></ht-input>
+    <ht-input name="合同号" reg-exp="common.require" ng-model="otherform.appId" disable="true"></ht-input>
+    <ht-input name="业务品种" reg-exp="common.require" ng-model="otherform.prdNm" disable="true"></ht-input>
+    <!--<ht-input name="结算账号" reg-exp="BillCodeValidate" ng-model="otherform.lnNo" disable="{{disable}}"></ht-input>-->
+
+        <ht-input-extent ht-id="lnNo" name="结算账号" reg-exp="common.require"  extent="accountNoContent" disable="{{disable}}"
+                         on-change="accountNodooextent" ng-model="otherform.lnNo" readonly="true">
+        </ht-input-extent>
+
+    <ht-input ht-id="lnAmt" name="出账金额" reg-exp="common.require" ng-model="otherform.lnAmt" edit-type="currency" disable="{{disable}}"></ht-input>
+    <ht-select name="币种" reg-exp="common.require" ng-model="otherform.curcd" dictionary="curcd" disable="true"></ht-select>
+    <ht-input ht-id="isDt" name="起息日" reg-exp="common.require" ng-model="otherform.isDt" edit-type="date"
+              disable="true" high-date-id="teDt"></ht-input>
+    <ht-input ht-id="teDt" name="到期日" reg-exp="common.require" ng-model="otherform.teDt" edit-type="date" disable="true"></ht-input>
+    <ht-input name="期限(月)" ng-model="otherform.trmMon" disable="true"></ht-input>
+    <ht-input name="期限(日)" ng-model="otherform.trmDay" disable="true"></ht-input>
+    <ht-select name="占用额度模式" reg-exp="common.require" ng-model="otherform.crMdl" dictionary="checked" on-change="changeCrMdl" disable="true"></ht-select>
+    <ht-input ht-id="crNo" name="额度编号" reg-exp="common.require" ng-model="otherform.crNo" hide="{{hidecrmdl}}" disable="true"></ht-input>
+    </ht-panel>
+    <ht-panel>
+    <ht-legend>利率信息</ht-legend>
+    <ht-input name="利率代码" reg-exp="common.require" ng-model="otherform.intId" disable="true"></ht-input>
+    <ht-input name="基准利率(%)" reg-exp="common.require" ng-model="otherform.basInt" disable="true"></ht-input>
+    <ht-select name="利率浮动方式" reg-exp="common.require" ng-model="otherform.intFltTyp" dictionary="intFltTyp" disable="true"></ht-select>
+    <ht-input name="执行利率(%)" reg-exp="common.require" ng-model="otherform.actInt" disable="true"></ht-input>
+    <ht-select name="计息周期" reg-exp="common.require" ng-model="otherform.rtnIntInvl" dictionary="rtnIntInvl" disable="{{disable}}"></ht-select>
+    <ht-select name="还款方式" reg-exp="common.require" ng-model="otherform.rtnTyp" disable="true" dictionary="rtnTyp"></ht-select>
+    <ht-select name="利率调整方式" reg-exp="common.require" ng-model="otherform.intAdj" dictionary="intAdj" disable="true"></ht-select>
+    <ht-input name="利率调整日期" reg-exp="common.require" ng-model="otherform.intAdjDt" edit-type="date" disable="true" hide="{{hideadj}}"></ht-input>
+    </ht-panel>
+    <ht-panel>
+    <ht-legend>其他信息</ht-legend>
+    <ht-select name="逾期计息方式" reg-exp="common.require" ng-model="otherform.ovdRatTyp" dictionary="ovdRatTyp" disable="{{disable}}"></ht-select>
+    <ht-select name="记复息标志" reg-exp="common.require" ng-model="otherform.isComint" dictionary="isComint" disable="{{disable}}"></ht-select>
+    <ht-input-extent ht-id="actBrNm" name="账务机构" extent="brnameContent" on-change="brnameExtent"
+                     reg-exp="common.require" ng-model="otherform.actBrNm" disable="{{disable}}"></ht-input-extent>
+    <ht-input ht-id="tlrNm" name="经办人" ng-model="otherform.tlrNm" disable="true"></ht-input>
+    <ht-input ht-id="brNm" name="经办机构" ng-model="otherform.brNm" disable="true"></ht-input>
+    <ht-input ht-id="inpDt" name="经办日期" ng-model="otherform.inpDt" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdTlrNm" name="更新人" ng-model="otherform.lstUpdTlrNm" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdBrNm" name="更新机构" ng-model="otherform.lstUpdBrNm" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdDt" name="更新日期" ng-model="otherform.lstUpdDt" disable="true"></ht-input>
+    </ht-panel>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{flowsubmitdisable}}">保存</ht-button>
+    <!--<ht-button ht-id="submitfirm" class="btn-primary" hide="{{hidesubmit}}">提交</ht-button>-->
+    <!--<ht-button ht-id="closeThisDialog" class="btn-primary" hide="{{hideback}}">返回</ht-button>-->
+</ht-button-group>

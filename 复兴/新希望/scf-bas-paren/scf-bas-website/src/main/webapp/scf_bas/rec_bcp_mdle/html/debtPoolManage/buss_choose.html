@@ -1,0 +1,22 @@
+
+
+
+<ht-form name="otherform">
+    <!--经办机构新增查看的时候只读，修改的时候可以修改。-->
+    <ht-input-extent ht-id="cnameSeller" name="卖方名称" extent="sellerContent" on-change="sellerExtent"
+                     reg-exp="common.require" ng-model="otherform.cnameSeller"></ht-input-extent>
+
+    <ht-input-extent ht-id="mastContno" name="池合同号" extent="debtContnoContent" on-change="debtContnoExtent"
+                     reg-exp="common.require" ng-model="otherform.mastContno"></ht-input-extent>
+
+    <ht-input-extent ht-id="cnameBuyer" name="买方名称" extent="buyerContent" on-change="buyerExtent"
+                     reg-exp="common.require" ng-model="otherform.cnameBuyer"></ht-input-extent>
+
+    <ht-input ht-id="bussTypeName" name="业务品种" disable="true" ng-model="otherform.bussTypeName"></ht-input>
+    <ht-select ht-id="billsType" name="凭证类型" dictionary="billsType" reg-exp="common.require" ng-model="otherform.billsType"></ht-select>
+
+    </ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm"  class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"class="btn-primary">取消</ht-button>
+</ht-button-group>

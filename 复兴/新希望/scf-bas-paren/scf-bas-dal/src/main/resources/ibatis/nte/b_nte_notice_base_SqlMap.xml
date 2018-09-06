@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_NTE_NOTICE_BASE" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.nte.dao.model.BNteNoticeBase" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="NUM" property="num" jdbcType="VARCHAR" />
+    <result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_CHANGE_TYPE" property="mortgageChangeType" jdbcType="CHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="MONI_OF_DATE" property="moniOfDate" jdbcType="CHAR" />
+    <result column="APPLI_DATE" property="appliDate" jdbcType="CHAR" />
+    <result column="MONI_OF_NAME" property="moniOfName" jdbcType="VARCHAR" />
+    <result column="TLRN" property="tlrn" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="PLEDGE_MODE" property="pledgeMode" jdbcType="CHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="COMMON_AMT" property="commonAmt" jdbcType="DECIMAL" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="COMMON_NUM" property="commonNum" jdbcType="VARCHAR" />
+    <result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+    <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+    <result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+    <result column="OTHER_CUST_NAME" property="otherCustName" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_BRCODE" property="depositBrcode" jdbcType="VARCHAR" />
+    <result column="RATIO" property="ratio" jdbcType="DECIMAL" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+    <result column="EXT1_AMOUNT" property="ext1Amount" jdbcType="DECIMAL" />
+    <result column="EXT2_AMOUNT" property="ext2Amount" jdbcType="DECIMAL" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="PAYEE" property="payee" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_BRNAME" property="depositBrname" jdbcType="VARCHAR" />
+    <result column="LINKMAN" property="linkman" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="TONS" property="tons" jdbcType="DECIMAL" />
+    <result column="AMT" property="amt" jdbcType="DECIMAL" />
+    <result column="DELIVERY_QUANTITY" property="deliveryQuantity" jdbcType="DECIMAL" />
+    <result column="DELIVERY_AMT" property="deliveryAmt" jdbcType="DECIMAL" />
+    <result column="BALANCE_AMT" property="balanceAmt" jdbcType="DECIMAL" />
+    <result column="PRICE_DROP_RATE" property="priceDropRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, NUM, MONITOR_PROTOCOL_NO, PROTOCOL_CODE, SLAVE_CONTNO, SLAVE_CONTCODE, 
+    CUSTCD, MONI_OF_CUSTCD, NOTICE_TYPE, MORTGAGE_CHANGE_TYPE, BRCODE, MONI_OF_DATE, 
+    APPLI_DATE, MONI_OF_NAME, TLRN, STATUS, BAIL_AMOUNT, PLEDGE_MODE, MAST_CONTNO, COMMON_AMT, 
+    ORDER_NO, COMMON_NUM, MAST_CONTCODE, CUST_NAME, OTHER_CUSTCD, OTHER_CUST_NAME, ACCOUNT_NAME, 
+    ACCOUNT_NO, DEPOSIT_BRCODE, RATIO, TRADE_CONTNO, DEBET_NO, DEBET_ID, PROTOCOL_NO, 
+    SIGN_DATE, COMMON_DATE, EXT1_AMOUNT, EXT2_AMOUNT, EXT1, EXT2, BUSS_TYPE, PAYEE, REMARK, 
+    DEPOSIT_BRNAME, LINKMAN, TELEPHONE, FAX, TONS, AMT, DELIVERY_QUANTITY, DELIVERY_AMT, 
+    BALANCE_AMT, PRICE_DROP_RATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBaseExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_NTE_NOTICE_BASE.Base_Column_List" />
+    from B_NTE_NOTICE_BASE
+    <isParameterPresent >
+      <include refid="B_NTE_NOTICE_BASE.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBase" >
+    select 
+    <include refid="B_NTE_NOTICE_BASE.Base_Column_List" />
+    from B_NTE_NOTICE_BASE
+    where ID = #id:VARCHAR#
+  </select>
+  <!-- 通知书查询 -->
+  <select id="queryNteBaseInfo" resultMap="BaseResultMap" parameterClass="java.util.Map" >
+    select 
+    <include refid="B_NTE_NOTICE_BASE.Base_Column_List" />
+    from B_NTE_NOTICE_BASE
+    where SIGN_DATE is not null
+	<isNotEmpty prepend="and" property="sallerName" >
+    	CUSTCD in(select CUSTCD from B_CRM_BASE_INFO M where <![CDATA[M.CNAME like '%' || #sallerName# || '%']]>)
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="mastContno" >
+		MAST_CONTNO = #mastContno:VARCHAR#
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="bussType" >
+		BUSS_TYPE = #bussType:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="noticeType" >
+		NOTICE_TYPE = #noticeType:VARCHAR#
+	</isNotEmpty>
+	<isNotNull prepend="and" property="noticeTypes" >
+		NOTICE_TYPE in 
+	    <iterate conjunction="," open="(" close=")" property="noticeTypes">
+	 	      #noticeTypes[]#
+	 	</iterate>
+	</isNotNull>
+	<isNotEmpty prepend="and" property="status" >
+		STATUS = #status:VARCHAR#
+	</isNotEmpty>		    
+	<isNotEmpty prepend="and" property="brcode" >
+		BRCODE = #brcode:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startQf" >
+		<![CDATA[SIGN_DATE >= #startQf:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endQf" >
+		<![CDATA[SIGN_DATE <= #endQf:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startHz" >
+		<![CDATA[COMMON_DATE >= #startHz:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endHz" >
+		<![CDATA[COMMON_DATE <= #endHz:VARCHAR#]]>
+	</isNotEmpty>
+	order by SIGN_DATE desc
+  </select>
+  <!-- 根据查询条件查询数据 -->
+  <select id="selectByCondition" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBase" >
+    select 
+    <include refid="B_NTE_NOTICE_BASE.Base_Column_List" />
+    from B_NTE_NOTICE_BASE
+    <isNotEmpty prepend="where" property="appno" >
+    	APPNO = #appno:VACHAR#
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="noticeType" >
+    	NOTICE_TYPE = #noticeType:VACHAR#
+    </isNotEmpty>	
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBase" >
+    delete from B_NTE_NOTICE_BASE
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBaseExample" >
+    delete from B_NTE_NOTICE_BASE
+    <include refid="B_NTE_NOTICE_BASE.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBase" >
+    insert into B_NTE_NOTICE_BASE (ID, APPNO, NUM, MONITOR_PROTOCOL_NO, 
+      PROTOCOL_CODE, SLAVE_CONTNO, SLAVE_CONTCODE, CUSTCD, 
+      MONI_OF_CUSTCD, NOTICE_TYPE, MORTGAGE_CHANGE_TYPE, BRCODE, 
+      MONI_OF_DATE, APPLI_DATE, MONI_OF_NAME, TLRN, STATUS, 
+      BAIL_AMOUNT, PLEDGE_MODE, MAST_CONTNO, COMMON_AMT, 
+      ORDER_NO, COMMON_NUM, MAST_CONTCODE, CUST_NAME, 
+      OTHER_CUSTCD, OTHER_CUST_NAME, ACCOUNT_NAME, ACCOUNT_NO, 
+      DEPOSIT_BRCODE, RATIO, TRADE_CONTNO, DEBET_NO, 
+      DEBET_ID, PROTOCOL_NO, SIGN_DATE, COMMON_DATE, EXT1_AMOUNT, 
+      EXT2_AMOUNT, EXT1, EXT2, BUSS_TYPE, PAYEE, 
+      REMARK, DEPOSIT_BRNAME, LINKMAN, TELEPHONE, 
+      FAX, TONS, AMT, DELIVERY_QUANTITY, DELIVERY_AMT, 
+      BALANCE_AMT, PRICE_DROP_RATE)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #num:VARCHAR#, #monitorProtocolNo:VARCHAR#, 
+      #protocolCode:VARCHAR#, #slaveContno:VARCHAR#, #slaveContcode:VARCHAR#, #custcd:VARCHAR#, 
+      #moniOfCustcd:VARCHAR#, #noticeType:VARCHAR#, #mortgageChangeType:CHAR#, #brcode:VARCHAR#, 
+      #moniOfDate:CHAR#, #appliDate:CHAR#, #moniOfName:VARCHAR#, #tlrn:VARCHAR#, #status:CHAR#, 
+      #bailAmount:DECIMAL#, #pledgeMode:CHAR#, #mastContno:VARCHAR#, #commonAmt:DECIMAL#, 
+      #orderNo:VARCHAR#, #commonNum:VARCHAR#, #mastContcode:VARCHAR#, #custName:VARCHAR#, 
+      #otherCustcd:VARCHAR#, #otherCustName:VARCHAR#, #accountName:VARCHAR#, #accountNo:VARCHAR#, 
+      #depositBrcode:VARCHAR#, #ratio:DECIMAL#, #tradeContno:VARCHAR#, #debetNo:VARCHAR#, 
+      #debetId:VARCHAR#, #protocolNo:VARCHAR#, #signDate:CHAR#, #commonDate:CHAR#, #ext1Amount:DECIMAL#, 
+      #ext2Amount:DECIMAL#, #ext1:VARCHAR#, #ext2:VARCHAR#, #bussType:VARCHAR#, #payee:VARCHAR#, 
+      #remark:VARCHAR#, #depositBrname:VARCHAR#, #linkman:VARCHAR#, #telephone:VARCHAR#, 
+      #fax:VARCHAR#, #tons:DECIMAL#, #amt:DECIMAL#, #deliveryQuantity:DECIMAL#, #deliveryAmt:DECIMAL#, 
+      #balanceAmt:DECIMAL#, #priceDropRate:DECIMAL#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBase" >
+    insert into B_NTE_NOTICE_BASE
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="num" >
+        NUM
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="protocolCode" >
+        PROTOCOL_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        SLAVE_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        MONI_OF_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        NOTICE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageChangeType" >
+        MORTGAGE_CHANGE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfDate" >
+        MONI_OF_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="appliDate" >
+        APPLI_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfName" >
+        MONI_OF_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="tlrn" >
+        TLRN
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="pledgeMode" >
+        PLEDGE_MODE
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="commonAmt" >
+        COMMON_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="orderNo" >
+        ORDER_NO
+      </isNotNull>
+      <isNotNull prepend="," property="commonNum" >
+        COMMON_NUM
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        MAST_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="custName" >
+        CUST_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustcd" >
+        OTHER_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustName" >
+        OTHER_CUST_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="accountName" >
+        ACCOUNT_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="depositBrcode" >
+        DEPOSIT_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="ratio" >
+        RATIO
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        TRADE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        DEBET_ID
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="signDate" >
+        SIGN_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="commonDate" >
+        COMMON_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="ext1Amount" >
+        EXT1_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="ext2Amount" >
+        EXT2_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        BUSS_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="payee" >
+        PAYEE
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        REMARK
+      </isNotNull>
+      <isNotNull prepend="," property="depositBrname" >
+        DEPOSIT_BRNAME
+      </isNotNull>
+      <isNotNull prepend="," property="linkman" >
+        LINKMAN
+      </isNotNull>
+      <isNotNull prepend="," property="telephone" >
+        TELEPHONE
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        FAX
+      </isNotNull>
+      <isNotNull prepend="," property="tons" >
+        TONS
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        AMT
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryQuantity" >
+        DELIVERY_QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmt" >
+        DELIVERY_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="balanceAmt" >
+        BALANCE_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="priceDropRate" >
+        PRICE_DROP_RATE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="num" >
+        #num:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        #monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolCode" >
+        #protocolCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        #slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        #moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        #noticeType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageChangeType" >
+        #mortgageChangeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfDate" >
+        #moniOfDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appliDate" >
+        #appliDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfName" >
+        #moniOfName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrn" >
+        #tlrn:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="pledgeMode" >
+        #pledgeMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commonAmt" >
+        #commonAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="orderNo" >
+        #orderNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commonNum" >
+        #commonNum:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        #mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custName" >
+        #custName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustcd" >
+        #otherCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustName" >
+        #otherCustName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountName" >
+        #accountName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="depositBrcode" >
+        #depositBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ratio" >
+        #ratio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        #tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        #debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="signDate" >
+        #signDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commonDate" >
+        #commonDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1Amount" >
+        #ext1Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2Amount" >
+        #ext2Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        #bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payee" >
+        #payee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        #remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="depositBrname" >
+        #depositBrname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="linkman" >
+        #linkman:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="telephone" >
+        #telephone:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        #fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tons" >
+        #tons:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        #amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryQuantity" >
+        #deliveryQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmt" >
+        #deliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="balanceAmt" >
+        #balanceAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="priceDropRate" >
+        #priceDropRate:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBaseExample" resultClass="java.lang.Integer" >
+    select count(*) from B_NTE_NOTICE_BASE
+    <include refid="B_NTE_NOTICE_BASE.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_NTE_NOTICE_BASE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.num" >
+        NUM = #record.num:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO = #record.monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolCode" >
+        PROTOCOL_CODE = #record.protocolCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContcode" >
+        SLAVE_CONTCODE = #record.slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniOfCustcd" >
+        MONI_OF_CUSTCD = #record.moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.noticeType" >
+        NOTICE_TYPE = #record.noticeType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageChangeType" >
+        MORTGAGE_CHANGE_TYPE = #record.mortgageChangeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniOfDate" >
+        MONI_OF_DATE = #record.moniOfDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appliDate" >
+        APPLI_DATE = #record.appliDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniOfName" >
+        MONI_OF_NAME = #record.moniOfName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrn" >
+        TLRN = #record.tlrn:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAmount" >
+        BAIL_AMOUNT = #record.bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pledgeMode" >
+        PLEDGE_MODE = #record.pledgeMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.commonAmt" >
+        COMMON_AMT = #record.commonAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.orderNo" >
+        ORDER_NO = #record.orderNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.commonNum" >
+        COMMON_NUM = #record.commonNum:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContcode" >
+        MAST_CONTCODE = #record.mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custName" >
+        CUST_NAME = #record.custName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherCustcd" >
+        OTHER_CUSTCD = #record.otherCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherCustName" >
+        OTHER_CUST_NAME = #record.otherCustName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accountName" >
+        ACCOUNT_NAME = #record.accountName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accountNo" >
+        ACCOUNT_NO = #record.accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.depositBrcode" >
+        DEPOSIT_BRCODE = #record.depositBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ratio" >
+        RATIO = #record.ratio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tradeContno" >
+        TRADE_CONTNO = #record.tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetNo" >
+        DEBET_NO = #record.debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetId" >
+        DEBET_ID = #record.debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.signDate" >
+        SIGN_DATE = #record.signDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.commonDate" >
+        COMMON_DATE = #record.commonDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1Amount" >
+        EXT1_AMOUNT = #record.ext1Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext2Amount" >
+        EXT2_AMOUNT = #record.ext2Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1" >
+        EXT1 = #record.ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext2" >
+        EXT2 = #record.ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bussType" >
+        BUSS_TYPE = #record.bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payee" >
+        PAYEE = #record.payee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remark" >
+        REMARK = #record.remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.depositBrname" >
+        DEPOSIT_BRNAME = #record.depositBrname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.linkman" >
+        LINKMAN = #record.linkman:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.telephone" >
+        TELEPHONE = #record.telephone:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fax" >
+        FAX = #record.fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tons" >
+        TONS = #record.tons:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amt" >
+        AMT = #record.amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deliveryQuantity" >
+        DELIVERY_QUANTITY = #record.deliveryQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deliveryAmt" >
+        DELIVERY_AMT = #record.deliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.balanceAmt" >
+        BALANCE_AMT = #record.balanceAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.priceDropRate" >
+        PRICE_DROP_RATE = #record.priceDropRate:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_NTE_NOTICE_BASE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_NTE_NOTICE_BASE
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      NUM = #record.num:VARCHAR#,
+      MONITOR_PROTOCOL_NO = #record.monitorProtocolNo:VARCHAR#,
+      PROTOCOL_CODE = #record.protocolCode:VARCHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      SLAVE_CONTCODE = #record.slaveContcode:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      MONI_OF_CUSTCD = #record.moniOfCustcd:VARCHAR#,
+      NOTICE_TYPE = #record.noticeType:VARCHAR#,
+      MORTGAGE_CHANGE_TYPE = #record.mortgageChangeType:CHAR#,
+      BRCODE = #record.brcode:VARCHAR#,
+      MONI_OF_DATE = #record.moniOfDate:CHAR#,
+      APPLI_DATE = #record.appliDate:CHAR#,
+      MONI_OF_NAME = #record.moniOfName:VARCHAR#,
+      TLRN = #record.tlrn:VARCHAR#,
+      STATUS = #record.status:CHAR#,
+      BAIL_AMOUNT = #record.bailAmount:DECIMAL#,
+      PLEDGE_MODE = #record.pledgeMode:CHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      COMMON_AMT = #record.commonAmt:DECIMAL#,
+      ORDER_NO = #record.orderNo:VARCHAR#,
+      COMMON_NUM = #record.commonNum:VARCHAR#,
+      MAST_CONTCODE = #record.mastContcode:VARCHAR#,
+      CUST_NAME = #record.custName:VARCHAR#,
+      OTHER_CUSTCD = #record.otherCustcd:VARCHAR#,
+      OTHER_CUST_NAME = #record.otherCustName:VARCHAR#,
+      ACCOUNT_NAME = #record.accountName:VARCHAR#,
+      ACCOUNT_NO = #record.accountNo:VARCHAR#,
+      DEPOSIT_BRCODE = #record.depositBrcode:VARCHAR#,
+      RATIO = #record.ratio:DECIMAL#,
+      TRADE_CONTNO = #record.tradeContno:VARCHAR#,
+      DEBET_NO = #record.debetNo:VARCHAR#,
+      DEBET_ID = #record.debetId:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      SIGN_DATE = #record.signDate:CHAR#,
+      COMMON_DATE = #record.commonDate:CHAR#,
+      EXT1_AMOUNT = #record.ext1Amount:DECIMAL#,
+      EXT2_AMOUNT = #record.ext2Amount:DECIMAL#,
+      EXT1 = #record.ext1:VARCHAR#,
+      EXT2 = #record.ext2:VARCHAR#,
+      BUSS_TYPE = #record.bussType:VARCHAR#,
+      PAYEE = #record.payee:VARCHAR#,
+      REMARK = #record.remark:VARCHAR#,
+      DEPOSIT_BRNAME = #record.depositBrname:VARCHAR#,
+      LINKMAN = #record.linkman:VARCHAR#,
+      TELEPHONE = #record.telephone:VARCHAR#,
+      FAX = #record.fax:VARCHAR#,
+      TONS = #record.tons:DECIMAL#,
+      AMT = #record.amt:DECIMAL#,
+      DELIVERY_QUANTITY = #record.deliveryQuantity:DECIMAL#,
+      DELIVERY_AMT = #record.deliveryAmt:DECIMAL#,
+      BALANCE_AMT = #record.balanceAmt:DECIMAL#,
+      PRICE_DROP_RATE = #record.priceDropRate:DECIMAL#
+    <isParameterPresent >
+      <include refid="B_NTE_NOTICE_BASE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBase" >
+    update B_NTE_NOTICE_BASE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="num" >
+        NUM = #num:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolCode" >
+        PROTOCOL_CODE = #protocolCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        SLAVE_CONTCODE = #slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        NOTICE_TYPE = #noticeType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageChangeType" >
+        MORTGAGE_CHANGE_TYPE = #mortgageChangeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfDate" >
+        MONI_OF_DATE = #moniOfDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appliDate" >
+        APPLI_DATE = #appliDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfName" >
+        MONI_OF_NAME = #moniOfName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrn" >
+        TLRN = #tlrn:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT = #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="pledgeMode" >
+        PLEDGE_MODE = #pledgeMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commonAmt" >
+        COMMON_AMT = #commonAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="orderNo" >
+        ORDER_NO = #orderNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commonNum" >
+        COMMON_NUM = #commonNum:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        MAST_CONTCODE = #mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custName" >
+        CUST_NAME = #custName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustcd" >
+        OTHER_CUSTCD = #otherCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustName" >
+        OTHER_CUST_NAME = #otherCustName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountName" >
+        ACCOUNT_NAME = #accountName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO = #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="depositBrcode" >
+        DEPOSIT_BRCODE = #depositBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ratio" >
+        RATIO = #ratio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        TRADE_CONTNO = #tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO = #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        DEBET_ID = #debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="signDate" >
+        SIGN_DATE = #signDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commonDate" >
+        COMMON_DATE = #commonDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1Amount" >
+        EXT1_AMOUNT = #ext1Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2Amount" >
+        EXT2_AMOUNT = #ext2Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1 = #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2 = #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        BUSS_TYPE = #bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payee" >
+        PAYEE = #payee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        REMARK = #remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="depositBrname" >
+        DEPOSIT_BRNAME = #depositBrname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="linkman" >
+        LINKMAN = #linkman:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="telephone" >
+        TELEPHONE = #telephone:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        FAX = #fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tons" >
+        TONS = #tons:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="amt" >
+        AMT = #amt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryQuantity" >
+        DELIVERY_QUANTITY = #deliveryQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmt" >
+        DELIVERY_AMT = #deliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="balanceAmt" >
+        BALANCE_AMT = #balanceAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="priceDropRate" >
+        PRICE_DROP_RATE = #priceDropRate:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBase" >
+    update B_NTE_NOTICE_BASE
+    set APPNO = #appno:VARCHAR#,
+      NUM = #num:VARCHAR#,
+      MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#,
+      PROTOCOL_CODE = #protocolCode:VARCHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      SLAVE_CONTCODE = #slaveContcode:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#,
+      NOTICE_TYPE = #noticeType:VARCHAR#,
+      MORTGAGE_CHANGE_TYPE = #mortgageChangeType:CHAR#,
+      BRCODE = #brcode:VARCHAR#,
+      MONI_OF_DATE = #moniOfDate:CHAR#,
+      APPLI_DATE = #appliDate:CHAR#,
+      MONI_OF_NAME = #moniOfName:VARCHAR#,
+      TLRN = #tlrn:VARCHAR#,
+      STATUS = #status:CHAR#,
+      BAIL_AMOUNT = #bailAmount:DECIMAL#,
+      PLEDGE_MODE = #pledgeMode:CHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      COMMON_AMT = #commonAmt:DECIMAL#,
+      ORDER_NO = #orderNo:VARCHAR#,
+      COMMON_NUM = #commonNum:VARCHAR#,
+      MAST_CONTCODE = #mastContcode:VARCHAR#,
+      CUST_NAME = #custName:VARCHAR#,
+      OTHER_CUSTCD = #otherCustcd:VARCHAR#,
+      OTHER_CUST_NAME = #otherCustName:VARCHAR#,
+      ACCOUNT_NAME = #accountName:VARCHAR#,
+      ACCOUNT_NO = #accountNo:VARCHAR#,
+      DEPOSIT_BRCODE = #depositBrcode:VARCHAR#,
+      RATIO = #ratio:DECIMAL#,
+      TRADE_CONTNO = #tradeContno:VARCHAR#,
+      DEBET_NO = #debetNo:VARCHAR#,
+      DEBET_ID = #debetId:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      SIGN_DATE = #signDate:CHAR#,
+      COMMON_DATE = #commonDate:CHAR#,
+      EXT1_AMOUNT = #ext1Amount:DECIMAL#,
+      EXT2_AMOUNT = #ext2Amount:DECIMAL#,
+      EXT1 = #ext1:VARCHAR#,
+      EXT2 = #ext2:VARCHAR#,
+      BUSS_TYPE = #bussType:VARCHAR#,
+      PAYEE = #payee:VARCHAR#,
+      REMARK = #remark:VARCHAR#,
+      DEPOSIT_BRNAME = #depositBrname:VARCHAR#,
+      LINKMAN = #linkman:VARCHAR#,
+      TELEPHONE = #telephone:VARCHAR#,
+      FAX = #fax:VARCHAR#,
+      TONS = #tons:DECIMAL#,
+      AMT = #amt:DECIMAL#,
+      DELIVERY_QUANTITY = #deliveryQuantity:DECIMAL#,
+      DELIVERY_AMT = #deliveryAmt:DECIMAL#,
+      BALANCE_AMT = #balanceAmt:DECIMAL#,
+      PRICE_DROP_RATE = #priceDropRate:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

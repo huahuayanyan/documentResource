@@ -1,0 +1,24 @@
+<!--质押-->
+<ht-form name="row">
+    <ht-legend>基本信息</ht-legend>
+    <ht-select name="合同类型" reg-exp="common.require" ng-model="row.conTyp" dictionary="gntyConTyp" disable="true"></ht-select>
+    <ht-select name="担保类型" reg-exp="common.require" ng-model="row.gutyTyp" dictionary="gutTyp" disable="true"></ht-select>
+    <ht-input-extent ht-id="gutNm" name="出质人名称" reg-exp="common.require" extent="gutcontent"
+                     on-change="gutextend" ng-model="row.gutNm" disable="{{disableview}}"></ht-input-extent>
+    <ht-select ht-id="gcrtTyp" name="出质人证件类型" reg-exp="common.require" ng-model="row.gcrtTyp"
+               dictionary="idtype" disable="{{disableview}}"></ht-select>
+    <ht-input name="出质人证件号码" reg-exp="common.require" ng-model="row.gcrtId" disable="{{disableview}}"></ht-input>
+    <ht-input name="出质人贷款卡编号" reg-exp="common.require" ng-model="row.lnNo" disable="{{disableview}}"></ht-input>
+    <ht-select name="币种" reg-exp="common.require" ng-model="row.gutCurcd" dictionary="curcd" disable="{{disableview}}"></ht-select>
+    <ht-input name="担保总金额" reg-exp="common.require" ng-model="row.gutVal" edit-type="currency" disable="{{disableview}}"></ht-input>
+        <ht-input ht-id="strtDt" name="生效日" reg-exp="common.require" ng-model="row.strtDt" edit-type="date"
+                  disable="{{disable}}" high-date-id="endDt" hide="{{hideCon}}"></ht-input>
+        <ht-input ht-id="endDt" name="到期日" reg-exp="common.require" ng-model="row.endDt" edit-type="date"
+                  disable="{{disable}}" lower-date-id="strtDt" hide="{{hideCon}}"></ht-input>
+    <ht-text-area name="其它特别约定" ng-model="row.othDscrb" disable="{{disableview}}"></ht-text-area>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">关闭</ht-button>
+</ht-button-group>

@@ -1,0 +1,26 @@
+<div id="login-box" class="login_box">
+    <form>
+        <div class="login-line"></div>
+        <div class="login-box-head">
+            <span>用户登录</span>
+        </div>
+        <label class="inline brManagerNo">
+            <input type="text" class="brmanagerNo" placeholder="请输入一级机构编号"
+                   ng-model="loginForm.brManagerNo"/>
+        </label>
+        <label class="inline userName">
+            <input type="text" class="username" placeholder="请输入用户名"
+                   ng-model="loginForm.tlrNo"/>
+        </label>
+        <label class="inline passWord">
+            <input type="text" id="pass_tex" class="password" placeholder="请输入密码"
+                   ng-model="loginForm.password"/>
+            <input type="password" id="pass" autocomplete="off" class="password" placeholder="请输入密码"
+                   ng-model="loginForm.password"  style="display: none"/>
+        </label>
+        <input type="checkbox" id="remember-pwd" style="margin-right: 14px;"/>
+        <button class="" ng-click="login()">
+            登&nbsp;&nbsp;录
+        </button>
+    </form>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_ICR_APPLI_INFO" >
+ <typeAlias alias="BIcrAppliInfo" type="com.huateng.scf.bas.icr.dao.model.BIcrAppliInfo"></typeAlias>
+  <!-- 根据额度编号更新额度申请信息状态和分项额度申请信息状态 -->
+    <update id="updateAppliInfoOrUpBycreditNo" parameterClass="BIcrAppliInfo" >
+	   update B_ICR_APPLI_INFO
+	   set STATUS = #status:CHAR# 
+	   where  CREDIT_NO=#creditNo:VARCHAR#
+	    or  UP_CREDIT_NO=#creditNo:VARCHAR#  
+  	</update> 
+  	<!-- 根据额度编号查询额度申请信息 -->
+  	 <select id="selectBIcrAppliInfoBycreditNo" resultMap="B_ICR_APPLI_INFO.BaseResultMap" parameterClass="BIcrAppliInfo">
+	 	  select 
+	   <include refid="B_ICR_APPLI_INFO.Base_Column_List" />
+	 	 from B_ICR_APPLI_INFO a where a.CREDIT_NO = #creditNo:VARCHAR#
+  </select>
+</sqlMap>

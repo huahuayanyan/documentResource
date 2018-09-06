@@ -1,0 +1,12 @@
+
+<ht-legend>任务基本信息</ht-legend>
+<ht-form name="taskform">
+    <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+    <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+    <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+    <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+</ht-form>
+<ht-tabs>
+    <ht-pane title="保证金转出申请信息" ui-sref="transferOutApply.edit">
+    </ht-pane>
+</ht-tabs>

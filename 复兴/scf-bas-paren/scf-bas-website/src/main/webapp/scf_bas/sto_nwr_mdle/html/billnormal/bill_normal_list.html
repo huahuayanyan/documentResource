@@ -1,0 +1,40 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="billcode" name="仓单编号" ng-model="conditionForm.billcode"></ht-input>
+    <ht-input ht-id="slaveContno" name="抵/质押合同号" ng-model="conditionForm.slaveContno"></ht-input>
+    <ht-input ht-id="cname" name="出质人名称" ng-model="conditionForm.cname"></ht-input>
+    <ht-input ht-id="keeperName" name="保管人名称" ng-model="conditionForm.keeperName"></ht-input>
+    <ht-input ht-id="startDate" name="开具日期" ng-model="conditionForm.startDate" edit-type="date"></ht-input>
+    <ht-input ht-id="endDate" name="截止日期" ng-model="conditionForm.endDate" edit-type="date"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>仓单信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="view" class="btn-primary">查看</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="mortlist" class="btn-primary">押品清单维护</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="slaveContno" zh-name="抵/质押合同号"></ht-column>
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="billType" zh-name="仓单类型" dictionary="billType"></ht-column>
+    <ht-column eg-name="cname" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="keeperName" zh-name="保管人名称"></ht-column>
+    <ht-column eg-name="startDate" zh-name="开具日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="截止日期" type="date"></ht-column>
+    <ht-column eg-name="insuranceNo" zh-name="保险单号"></ht-column>
+    <ht-column eg-name="address" zh-name="仓库地址"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+
+
+
+

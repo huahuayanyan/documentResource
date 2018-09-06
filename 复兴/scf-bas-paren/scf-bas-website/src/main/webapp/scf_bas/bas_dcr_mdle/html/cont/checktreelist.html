@@ -1,0 +1,13 @@
+<div style="width: 150px; float: left;">
+
+ <treecontrol class="tree-classic"     options="treeOptions"  tree-model="treedata"   on-selection="showSelectedNode(node)" >
+{{node.typId?showTypIdNm(node.typId):''}}
+</treecontrol>
+ </div>   
+<div  style="margin-left: 150px;margin-top: 30px;">
+    <ht-table  datasource="detaildatasource" selected="detailselected" docheckbox="true"  minheit="150px">
+    <ht-column  eg-name="rltVl" zh-name="限定数值"    type="currency" ></ht-column> 
+    <ht-column  eg-name="rltNm" zh-name="限定字典值"   dictionary="{{rltTypDictionary}}" ></ht-column>    
+   </ht-table>
+
+</div>

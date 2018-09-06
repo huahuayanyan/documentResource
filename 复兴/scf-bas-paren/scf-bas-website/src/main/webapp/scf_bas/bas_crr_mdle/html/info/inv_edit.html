@@ -1,0 +1,26 @@
+
+<ht-form name="bCrrInvInfo">
+    <!--<ht-select name="关联类型" reg-exp="common.require" ng-model="bCrrInvInfo.relaTyp" disable="{{disable}}" dictionary="rtlTyp" disable="{{disableview}}"></ht-select>
+    <ht-input name="关联编号" reg-exp="common.require" ng-model="bCrrInvInfo.relaNo" disable="true" hide="{{hide}}" disable="{{disableview}}"></ht-input>-->
+    <ht-input name="发票号码" reg-exp="common.require" ng-model="bCrrInvInfo.invNo" disable="{{disableview}}"></ht-input>
+    <ht-select name="发票币种" reg-exp="common.require" ng-model="bCrrInvInfo.invCurcd" dictionary="curcd" disable="{{disableview}}"></ht-select>
+    <ht-input name="买方代码" reg-exp="common.require" ng-model="bCrrInvInfo.prchId" disable="{{disableview}}"></ht-input>
+    <ht-input name="买方名称" reg-exp="common.require" ng-model="bCrrInvInfo.prchNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="卖方代码" reg-exp="common.require" ng-model="bCrrInvInfo.sellId" disable="{{disableview}}"></ht-input>
+    <ht-input name="卖方名称" reg-exp="common.require" ng-model="bCrrInvInfo.sellNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="开票日期" reg-exp="common.require" ng-model="bCrrInvInfo.invDt" edit-type="date" disable="{{disableview}}"></ht-input>
+    <ht-input name="金额" reg-exp="common.require" ng-model="bCrrInvInfo.invSum" edit-type="currency" disable="{{disableview}}"></ht-input>
+    <ht-select name="贸易方式" reg-exp="common.require" ng-model="bCrrInvInfo.trdTyp" dictionary="busTypCd" disable="{{disableview}}"></ht-select>
+    <ht-text-area name="贸易产品" reg-exp="common.require" ng-model="bCrrInvInfo.trdPrd" disable="{{disableview}}"></ht-text-area>
+    <!--<ht-input ht-id="tlrNm" name="经办人" ng-model="bCrrInvInfo.tlrNm" disable="true"></ht-input>
+    <ht-input ht-id="brNm" name="经办机构" ng-model="bCrrInvInfo.brNm" disable="true"></ht-input>
+    <ht-input ht-id="inpDt" name="经办日期" ng-model="bCrrInvInfo.inpDt" disable="true" edit-type="date"></ht-input>
+    <ht-input ht-id="lstUpdTlrNm" name="更新人" ng-model="bCrrInvInfo.lstUpdTlrNm" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdBrNm" name="更新机构" ng-model="bCrrInvInfo.lstUpdBrNm" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdDt" name="更新日期" ng-model="bCrrInvInfo.lstUpdDt" disable="true" edit-type="date"></ht-input>-->
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{disableconfirm}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary" hide="{{hideback}}">返回</ht-button>
+</ht-button-group>

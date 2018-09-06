@@ -1,0 +1,16 @@
+<ht-legend colorId="lawngreen">监管合同查询</ht-legend>
+<ht-form name ="protocolForm">
+    <ht-input ht-id="protocolCode" name="监管合同号" disable="true" ng-model="protocolForm.protocolCode"></ht-input>
+    <ht-select ht-id="productId" name="业务品种" reg-exp="common.require" disable="true" on-change="productId" datasource="productSource" dataOption="code" dataTrsOption="codeName" ng-model="protocolForm.productId"></ht-select>
+    <ht-select ht-id="moniType" name="货押模式" disable="true" dictionary="moniType" ng-model="protocolForm.moniType"></ht-select>
+    <ht-select ht-id="curcdNm" name="币种" disable="true" dictionary="curcd" ng-model="protocolForm.curcdNm"></ht-select>
+    <ht-input ht-id="secName" name="出质人名称" reg-exp="common.require" disable="true" ng-model="protocolForm.secName"></ht-input>
+    <ht-input ht-id="thrName" name="监管公司名称" reg-exp="common.require" disable="true"ng-model="protocolForm.thrName"></ht-input>
+    <ht-input ht-id="startDate" name="合同生效日" reg-exp="common.require" disable="true" edit-type="date" ng-model="protocolForm.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="合同到期日" reg-exp="common.require" disable="true" edit-type="date" ng-model="protocolForm.endDate"></ht-input>
+    <ht-select ht-id="sellOffFlag" name="是否签订委托变卖协议" reg-exp="common.require" disable="true" dictionary="sellOffFlag" ng-model="protocolForm.sellOffFlag"></ht-select>
+    <ht-select ht-id="isPledge" name="是否抵押" disable="true" dictionary="isPledge" ng-model="protocolForm.isPledge"></ht-select>
+    <ht-select ht-id="state" name="合同状态" disable="true" dictionary="contraceState" ng-model="protocolForm.state"></ht-select>
+    <ht-input ht-id="cooperationBrcodeNm" name="合作机构" disable="true" ng-model="protocolForm.cooperationBrcodeNm"></ht-input>
+    <ht-input ht-id="tlrName" name="客户经理" reg-exp="common.require" disable="true" ng-model="protocolForm.tlrName"></ht-input>
+    <ht-input ht-id="brcodeNm" name="经办机构" disable="true" ng-model="protocolForm.brcodeNm"></ht-input>

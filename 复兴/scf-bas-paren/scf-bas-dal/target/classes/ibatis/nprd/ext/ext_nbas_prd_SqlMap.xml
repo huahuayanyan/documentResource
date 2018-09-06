@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_NBAS_PRD" >
+  <resultMap id="BaseFileInfoResultMap" class="com.huateng.scf.nbas.prd.dao.domodel.BPrdFileInfoDO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="CONT_CODE" property="contCode" jdbcType="VARCHAR" />
+    <result column="CONT_NAME" property="contName" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="EXT4" property="ext4" jdbcType="VARCHAR" />
+    <result column="EXT5" property="ext5" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="countBPrdFileInfoByPage" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(info.ID)
+    from B_PRD_FILE_INFO info,B_BRP_FILE_PARAM md
+   	where info.CONT_CODE = md.CONT_CODE
+	<isNotEmpty prepend="and" property="productId">
+      <![CDATA[ info.PRODUCT_ID = #productId:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  <select id="findBPrdFileInfoByPage" resultMap="BaseFileInfoResultMap" parameterClass="java.util.HashMap" >
+    select info.*,md.CONT_NAME
+    from B_PRD_FILE_INFO info,B_BRP_FILE_PARAM md
+   	where info.CONT_CODE = md.CONT_CODE
+	<isNotEmpty prepend="and" property="productId">
+      <![CDATA[ info.PRODUCT_ID = #productId:VARCHAR#  ]]>
+	</isNotEmpty>
+	order by info.CRT_TIME desc
+  </select>
+  
+  <!-- 根据业务品种及费用收取阶段获得费用相关信息 -->
+  <resultMap id="BaseResultMap" class="com.huateng.scf.nbas.prd.dao.domodel.BPrdCostInfoDO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="COST_CODE" property="costCode" jdbcType="CHAR" />
+    <result column="COST_NAME" property="costName" jdbcType="VARCHAR" />
+    <result column="COST_CLASS" property="costClass" jdbcType="CHAR" />
+    <result column="COST_TYPE" property="costType" jdbcType="CHAR" />
+    <result column="COST_CALC_TYPE" property="costCalcType" jdbcType="CHAR" />
+    <result column="MIN_RATE" property="minRate" jdbcType="DECIMAL" />
+    <result column="MAX_RATE" property="maxRate" jdbcType="DECIMAL" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="CHAR" />
+    <result column="COST_DESC" property="costDesc" jdbcType="VARCHAR" />
+    <result column="COST_PHASE" property="costPhase" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryProductCost" resultMap="BaseResultMap"  parameterClass="java.util.HashMap" >
+    select param.*,bind.PRODUCT_ID,bind.COST_PHASE
+    from B_BRP_COST_PARAM param,B_PRD_COST_BIND bind
+   	where param.COST_CODE = bind.COST_CODE
+	<isNotEmpty prepend="and" property="productId">
+      <![CDATA[ bind.PRODUCT_ID = #productId:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="costPhase">
+      <![CDATA[ bind.COST_PHASE = #costPhase:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select> 
+</sqlMap>

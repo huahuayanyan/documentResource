@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.huateng</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<properties>
+		<toprules.scube.version>2.5.9-SNAPSHOT</toprules.scube.version>
+		<toprules.version>2.5.9</toprules.version>
+		<scube.version>1.0.1-SNAPSHOT</scube.version>
+		<!-- <drools.version>5.5.0.Final</drools.version> -->
+		<drools.all.version>5.5.1.ht</drools.all.version>
+		<clover.licenseLocation>../license</clover.licenseLocation>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<groupId>com.huateng.toprules</groupId>
+	<artifactId>toprules-scube-api</artifactId>
+	<version>${toprules.scube.version}</version>
+	<name>toprules-scube-api</name>
+	<description>toprules-scube-api</description>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<!-- -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+				<configuration>
+					<charset>UTF-8</charset>
+					<docencoding>UTF-8</docencoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.huateng.scube</groupId>
+			<artifactId>scube-client-core</artifactId>
+			<version>${scube.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.huateng.toprules</groupId>
+			<artifactId>toprules-common</artifactId>
+			<version>${toprules.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.huateng.toprules</groupId>
+			<artifactId>drools-all</artifactId>
+			<version>${drools.all.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
+			<version>1.6.1</version> <scope>compile</scope> </dependency> -->
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+	</dependencies>
+</project>

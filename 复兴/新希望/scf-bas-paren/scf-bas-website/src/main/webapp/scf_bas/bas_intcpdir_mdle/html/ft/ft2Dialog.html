@@ -1,0 +1,33 @@
+
+<ht-form name="thirdform">
+    <ht-legend>拦截模型信息</ht-legend>
+    <ht-input name="拦截模型ID" disable="true"  ng-model="thirdform.mdlId" reg-exp="common.require"  ></ht-input>
+    <ht-input name="拦截模型名" ng-model="thirdform.mdlNm" reg-exp="common.require"  ></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">关闭</ht-button>
+</ht-button-group>
+
+<ht-legend>拦截方案列表</ht-legend>
+
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="addNew" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="deleteNew" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="updateNew" class="btn-primary">修改</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="chkPlId" zh-name="拦截方案ID"></ht-column>
+    <ht-column eg-name="chkItId" zh-name="拦截项编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="nm" zh-name="拦截项名"></ht-column>
+    <ht-column eg-name="mdlId" zh-name="拦截模型ID"></ht-column>
+    <ht-column eg-name="ord" zh-name="排序号"></ht-column>
+    <ht-column eg-name="deal" zh-name="处理方式"  dictionary="dealStat" ></ht-column>
+    <ht-column eg-name="stat" zh-name="启用标志"  dictionary="intStat" ></ht-column>
+
+</ht-table>
+
+<ht-page conf="confDialog"></ht-page>

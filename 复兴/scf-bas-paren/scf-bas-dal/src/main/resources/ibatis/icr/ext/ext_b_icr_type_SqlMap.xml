@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_ICR_TYPE" >
+ <typeAlias alias="BIcrType" type="com.huateng.scf.bas.icr.dao.model.BIcrType"></typeAlias>
+ <!--  ext -->
+  <!-- 批量删除 -->
+    <delete id="batchDelete" parameterClass="java.util.List" >
+   	delete from  B_ICR_TYPE where  id  in
+	<iterate conjunction="," open="(" close=")" >
+   		 #idList[]#
+   	</iterate> 
+   </delete> 
+   <!-- 分项额度筛选 -->
+  <select id="selectBIcrType" resultClass="BIcrType" parameterClass="BIcrType" >
+    select CREDIT_TYPE as creditType ,CREDIT_NAME as creditName
+    from B_ICR_TYPE
+    <dynamic prepend="where" >
+      <isNotEmpty prepend="or" property="creditType" >
+        CREDIT_TYPE  like '%'|| #creditType:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="creditName" >
+        CREDIT_NAME  like '%'|| #creditName:VARCHAR#||'%'    
+      </isNotEmpty>
+       <isNotEmpty prepend="and" property="creditClass" >
+        CREDIT_CLASS  = #creditClass:VARCHAR#  
+      </isNotEmpty>
+    </dynamic>
+    order by CREDIT_TYPE  
+  </select>
+   <select id="findBIcrTypeByBIcrType" resultClass="BIcrType" parameterClass="BIcrType" >
+    select *
+    from B_ICR_TYPE
+    <dynamic prepend="where" >
+       <isNotEmpty prepend="or" property="creditClass" >
+        CREDIT_CLASS  = #creditClass:VARCHAR#  
+      </isNotEmpty>
+       <isNotEmpty prepend="and" property="creditType" >
+        CREDIT_TYPE   = #creditType:VARCHAR#  
+      </isNotEmpty>
+    </dynamic>
+    order by CREDIT_TYPE  
+  </select>
+</sqlMap>
+

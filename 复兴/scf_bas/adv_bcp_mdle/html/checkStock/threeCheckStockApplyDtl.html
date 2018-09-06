@@ -1,0 +1,34 @@
+<ht-form name="baseInfo" columns="2">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input  ht-id="protocolNo" name="担保提货协议号"  ng-model="baseInfo.protocolNo" disable="true"></ht-input>
+    <ht-input  ht-id="custname" name="买方名称"  ng-model="baseInfo.custname" disable="true"></ht-input>
+    <ht-input  ht-id="upcustname" name="卖方名称"  ng-model="baseInfo.upcustname" disable="true"></ht-input>
+    <ht-input  ht-id="checkDate" edit-type="date" name="对账发起日" disable="true" ng-model="baseInfo.checkDate"></ht-input>
+    <ht-select id="result"  name="对账结果" on-change="result_change" disable="{{disable}}" dictionary="checkResult"  reg-exp="common.require" ng-model="baseInfo.result"></ht-select>
+    <ht-input  ht-id="remark" name="对账不平原因" disable="{{disable}}" ng-model="baseInfo.remark" reg-exp="{{require}}" ></ht-input>
+    <ht-input  ht-id="tlrname" name="对账负责人" disable="true" ng-model="baseInfo.tlrname"></ht-input>
+    <ht-input  ht-id="checkBrCodeName" name="对账发起机构" disable="true" ng-model="baseInfo.checkBrCodeName"></ht-input>
+    <ht-input  ht-id="sellerChecker" name="卖方对账负责人" disable="{{disable}}"  ng-model="baseInfo.sellerChecker"></ht-input>
+    <ht-select id="status" name="处理状态" disable="true" dictionary="checkStatus"  ng-model="baseInfo.status" ></ht-select>
+    <ht-input  ht-id="lnciAmtSum" name="收到款项总计"  ng-model="baseInfo.lnciAmtSum" disable="true" edit-type="currency"></ht-input>
+    <ht-input  ht-id="amountOutSum" name="累计提货总计"  ng-model="baseInfo.amountOutSum" disable="true" edit-type="currency"></ht-input>
+    <ht-input  ht-id="amountInSum" name="剩余提货总计"  ng-model="baseInfo.amountInSum" disable="true" edit-type="currency"></ht-input>
+</ht-form>
+<ht-legend>提货情况</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="num" zh-name="票/款确认函编号"></ht-column>
+    <ht-column eg-name="debetId" zh-name="银承协议号/借据号"></ht-column>
+    <ht-column eg-name="commonDate" zh-name="确认收款日" type="date"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="出账金额" type="currency"></ht-column>
+    <ht-column eg-name="startDate" zh-name="出账日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="出账到期日" type="date"></ht-column>
+    <ht-column eg-name="amountOut" zh-name="累计提货金额" type="currency"></ht-column>
+    <ht-column eg-name="amountIn" zh-name="剩余提货金额" type="currency"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center"  >
+    <ht-button class="btn-primary" ht-id="save" hide="{{hideSave}}">保存</ht-button>
+    <ht-button class="btn-primary" ht-id="return">返回</ht-button>
+</ht-button-group>

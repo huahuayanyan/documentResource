@@ -1,0 +1,18 @@
+
+<ht-legend>押品列表</ht-legend>
+<ht-table datasource="datasource" selected="selected" docheckbox="true" minheit="10px">
+    <ht-column  eg-name="tradeContno" zh-name="购销合同编号" ></ht-column>
+    <ht-column  eg-name="mortgageName" zh-name="押品名称" ></ht-column>
+    <ht-column  eg-name="mortgageLevelOneNm" zh-name="押品一级" ></ht-column>
+    <ht-column  eg-name="mortgageLevelTwoNm" zh-name="押品二级" ></ht-column>
+    <ht-column  eg-name="mortgageModel" zh-name="规格型号" ></ht-column>
+    <ht-column  eg-name="mortgageUnits" zh-name="计量单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column  eg-name="quantity" zh-name="数量/重量" ></ht-column>
+    <ht-column  eg-name="price" zh-name="货物单价" type="currency" ></ht-column>
+
+</ht-table>
+<ht-page conf="conf" style="height: 40px;padding-top: 1px"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_CRR_DUEBILL_APP" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrDuebillApp" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="APP_STAT" property="appStat" jdbcType="VARCHAR" />
+    <result column="LN_NO" property="lnNo" jdbcType="VARCHAR" />
+    <result column="CUST_CD" property="custCd" jdbcType="VARCHAR" />
+    <result column="CUST_NM" property="custNm" jdbcType="VARCHAR" />
+    <result column="ACT_BR_CD" property="actBrCd" jdbcType="VARCHAR" />
+    <result column="PRD_ID" property="prdId" jdbcType="VARCHAR" />
+    <result column="PRD_NM" property="prdNm" jdbcType="VARCHAR" />
+    <result column="IS_DT" property="isDt" jdbcType="VARCHAR" />
+    <result column="TE_DT" property="teDt" jdbcType="VARCHAR" />
+    <result column="TRM_CTL_TYP" property="trmCtlTyp" jdbcType="VARCHAR" />
+    <result column="TRM" property="trm" jdbcType="VARCHAR" />
+    <result column="TRM_YEAR" property="trmYear" jdbcType="DECIMAL" />
+    <result column="TRM_MON" property="trmMon" jdbcType="DECIMAL" />
+    <result column="TRM_DAY" property="trmDay" jdbcType="DECIMAL" />
+    <result column="TRM_RGE" property="trmRge" jdbcType="VARCHAR" />
+    <result column="PER_ADJ_EQL" property="perAdjEql" jdbcType="DECIMAL" />
+    <result column="LN_AMT" property="lnAmt" jdbcType="DECIMAL" />
+    <result column="RTN_TYP" property="rtnTyp" jdbcType="VARCHAR" />
+    <result column="RTN_INVL" property="rtnInvl" jdbcType="VARCHAR" />
+    <result column="RTN_INT_INVL" property="rtnIntInvl" jdbcType="VARCHAR" />
+    <result column="RTN_PD" property="rtnPd" jdbcType="DECIMAL" />
+    <result column="NON_EQL_MD" property="nonEqlMd" jdbcType="VARCHAR" />
+    <result column="NON_EQL_AMT" property="nonEqlAmt" jdbcType="DECIMAL" />
+    <result column="RTN_MD" property="rtnMd" jdbcType="VARCHAR" />
+    <result column="RTN_NO" property="rtnNo" jdbcType="VARCHAR" />
+    <result column="RTN_ACT_NO" property="rtnActNo" jdbcType="VARCHAR" />
+    <result column="RTN_DT_TYP" property="rtnDtTyp" jdbcType="VARCHAR" />
+    <result column="RTN_DT" property="rtnDt" jdbcType="CHAR" />
+    <result column="PHS_FLG" property="phsFlg" jdbcType="VARCHAR" />
+    <result column="PHS_NO" property="phsNo" jdbcType="DECIMAL" />
+    <result column="INT_ADJ" property="intAdj" jdbcType="VARCHAR" />
+    <result column="INT_ADJ_DT" property="intAdjDt" jdbcType="VARCHAR" />
+    <result column="INT_CD" property="intCd" jdbcType="CHAR" />
+    <result column="BAS_INT" property="basInt" jdbcType="DECIMAL" />
+    <result column="RAT_DT" property="ratDt" jdbcType="VARCHAR" />
+    <result column="FLT_INT" property="fltInt" jdbcType="DECIMAL" />
+    <result column="FLT_INT_VAL" property="fltIntVal" jdbcType="DECIMAL" />
+    <result column="ACT_INT" property="actInt" jdbcType="DECIMAL" />
+    <result column="PFLT_INT_OPT" property="pfltIntOpt" jdbcType="VARCHAR" />
+    <result column="PFLT_CD" property="pfltCd" jdbcType="CHAR" />
+    <result column="PFLT_FLT" property="pfltFlt" jdbcType="DECIMAL" />
+    <result column="PFLT_INT" property="pfltInt" jdbcType="DECIMAL" />
+    <result column="MISP_PFLT_OPT" property="mispPfltOpt" jdbcType="VARCHAR" />
+    <result column="MISP_PFLT_CD" property="mispPfltCd" jdbcType="CHAR" />
+    <result column="MISP_PFLT_FLT" property="mispPfltFlt" jdbcType="DECIMAL" />
+    <result column="MISP_PFLT_INT" property="mispPfltInt" jdbcType="DECIMAL" />
+    <result column="OVD_RAT_TYP" property="ovdRatTyp" jdbcType="VARCHAR" />
+    <result column="IS_COMINT" property="isComint" jdbcType="VARCHAR" />
+    <result column="PAY_DRCT" property="payDrct" jdbcType="VARCHAR" />
+    <result column="PAY_MD" property="payMd" jdbcType="VARCHAR" />
+    <result column="PAY_CD_NO" property="payCdNo" jdbcType="VARCHAR" />
+    <result column="PAY_ACT_NO" property="payActNo" jdbcType="VARCHAR" />
+    <result column="BAIL_ACT_NO" property="bailActNo" jdbcType="VARCHAR" />
+    <result column="BAIL_RAT" property="bailRat" jdbcType="DECIMAL" />
+    <result column="BAIL_AMT" property="bailAmt" jdbcType="DECIMAL" />
+    <result column="FEE_TYP" property="feeTyp" jdbcType="VARCHAR" />
+    <result column="FEE_AMT" property="feeAmt" jdbcType="DECIMAL" />
+    <result column="FEE_RAT" property="feeRat" jdbcType="DECIMAL" />
+    <result column="FEE_PD" property="feePd" jdbcType="VARCHAR" />
+    <result column="RTN_NO2" property="rtnNo2" jdbcType="VARCHAR" />
+    <result column="INT_FLT_TYP" property="intFltTyp" jdbcType="VARCHAR" />
+    <result column="PFLT_INT_MD" property="pfltIntMd" jdbcType="VARCHAR" />
+    <result column="PFLT_INT_AMT" property="pfltIntAmt" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="WRT_NO" property="wrtNo" jdbcType="VARCHAR" />
+    <result column="CR_MDL" property="crMdl" jdbcType="CHAR" />
+    <result column="CR_AMT" property="crAmt" jdbcType="DECIMAL" />
+    <result column="CR_NO" property="crNo" jdbcType="VARCHAR" />
+    <result column="BC_CR_ID" property="bcCrId" jdbcType="VARCHAR" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="INDRCT_CRDT" property="indrctCrdt" jdbcType="VARCHAR" />
+    <result column="CRDT_CUST_CD" property="crdtCustCd" jdbcType="VARCHAR" />
+    <result column="CRDT_CUST_NM" property="crdtCustNm" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="CHAR" />
+    <result column="ELEC_FLG" property="elecFlg" jdbcType="CHAR" />
+    <result column="IFSP_APPNO" property="ifspAppno" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, APP_ID, APP_STAT, LN_NO, CUST_CD, CUST_NM, ACT_BR_CD, PRD_ID, PRD_NM, IS_DT, 
+    TE_DT, TRM_CTL_TYP, TRM, TRM_YEAR, TRM_MON, TRM_DAY, TRM_RGE, PER_ADJ_EQL, LN_AMT, 
+    RTN_TYP, RTN_INVL, RTN_INT_INVL, RTN_PD, NON_EQL_MD, NON_EQL_AMT, RTN_MD, RTN_NO, 
+    RTN_ACT_NO, RTN_DT_TYP, RTN_DT, PHS_FLG, PHS_NO, INT_ADJ, INT_ADJ_DT, INT_CD, BAS_INT, 
+    RAT_DT, FLT_INT, FLT_INT_VAL, ACT_INT, PFLT_INT_OPT, PFLT_CD, PFLT_FLT, PFLT_INT, 
+    MISP_PFLT_OPT, MISP_PFLT_CD, MISP_PFLT_FLT, MISP_PFLT_INT, OVD_RAT_TYP, IS_COMINT, 
+    PAY_DRCT, PAY_MD, PAY_CD_NO, PAY_ACT_NO, BAIL_ACT_NO, BAIL_RAT, BAIL_AMT, FEE_TYP, 
+    FEE_AMT, FEE_RAT, FEE_PD, RTN_NO2, INT_FLT_TYP, PFLT_INT_MD, PFLT_INT_AMT, CURCD, 
+    WRT_NO, CR_MDL, CR_AMT, CR_NO, BC_CR_ID, TLR_NO, TLR_NM, BR_CD, BR_NM, INP_DT, LST_UPD_TLR, 
+    LST_UPD_TLR_NM, LST_UPD_BR_CD, LST_UPD_BR_NM, LST_UPD_DT, INDRCT_CRDT, CRDT_CUST_CD, 
+    CRDT_CUST_NM, FLAG, ELEC_FLG,IFSP_APPNO
+  </sql>
+ 
+  <select id="selectByIfspAppno" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrDuebillApp" >
+    select 
+    <include refid="EXT_B_CRR_DUEBILL_APP.Base_Column_List" />
+    from B_CRR_DUEBILL_APP
+    where IFSP_APPNO = #ifspAppno:VARCHAR#
+  </select>
+  
+   <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrDuebillApp" >
+    insert into B_CRR_DUEBILL_APP
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appId" >
+        APP_ID
+      </isNotNull>
+      <isNotNull prepend="," property="appStat" >
+        APP_STAT
+      </isNotNull>
+      <isNotNull prepend="," property="lnNo" >
+        LN_NO
+      </isNotNull>
+      <isNotNull prepend="," property="custCd" >
+        CUST_CD
+      </isNotNull>
+      <isNotNull prepend="," property="custNm" >
+        CUST_NM
+      </isNotNull>
+      <isNotNull prepend="," property="actBrCd" >
+        ACT_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="prdId" >
+        PRD_ID
+      </isNotNull>
+      <isNotNull prepend="," property="prdNm" >
+        PRD_NM
+      </isNotNull>
+      <isNotNull prepend="," property="isDt" >
+        IS_DT
+      </isNotNull>
+      <isNotNull prepend="," property="teDt" >
+        TE_DT
+      </isNotNull>
+      <isNotNull prepend="," property="trmCtlTyp" >
+        TRM_CTL_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="trm" >
+        TRM
+      </isNotNull>
+      <isNotNull prepend="," property="trmYear" >
+        TRM_YEAR
+      </isNotNull>
+      <isNotNull prepend="," property="trmMon" >
+        TRM_MON
+      </isNotNull>
+      <isNotNull prepend="," property="trmDay" >
+        TRM_DAY
+      </isNotNull>
+      <isNotNull prepend="," property="trmRge" >
+        TRM_RGE
+      </isNotNull>
+      <isNotNull prepend="," property="perAdjEql" >
+        PER_ADJ_EQL
+      </isNotNull>
+      <isNotNull prepend="," property="lnAmt" >
+        LN_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="rtnTyp" >
+        RTN_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="rtnInvl" >
+        RTN_INVL
+      </isNotNull>
+      <isNotNull prepend="," property="rtnIntInvl" >
+        RTN_INT_INVL
+      </isNotNull>
+      <isNotNull prepend="," property="rtnPd" >
+        RTN_PD
+      </isNotNull>
+      <isNotNull prepend="," property="nonEqlMd" >
+        NON_EQL_MD
+      </isNotNull>
+      <isNotNull prepend="," property="nonEqlAmt" >
+        NON_EQL_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="rtnMd" >
+        RTN_MD
+      </isNotNull>
+      <isNotNull prepend="," property="rtnNo" >
+        RTN_NO
+      </isNotNull>
+      <isNotNull prepend="," property="rtnActNo" >
+        RTN_ACT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="rtnDtTyp" >
+        RTN_DT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="rtnDt" >
+        RTN_DT
+      </isNotNull>
+      <isNotNull prepend="," property="phsFlg" >
+        PHS_FLG
+      </isNotNull>
+      <isNotNull prepend="," property="phsNo" >
+        PHS_NO
+      </isNotNull>
+      <isNotNull prepend="," property="intAdj" >
+        INT_ADJ
+      </isNotNull>
+      <isNotNull prepend="," property="intAdjDt" >
+        INT_ADJ_DT
+      </isNotNull>
+      <isNotNull prepend="," property="intCd" >
+        INT_CD
+      </isNotNull>
+      <isNotNull prepend="," property="basInt" >
+        BAS_INT
+      </isNotNull>
+      <isNotNull prepend="," property="ratDt" >
+        RAT_DT
+      </isNotNull>
+      <isNotNull prepend="," property="fltInt" >
+        FLT_INT
+      </isNotNull>
+      <isNotNull prepend="," property="fltIntVal" >
+        FLT_INT_VAL
+      </isNotNull>
+      <isNotNull prepend="," property="actInt" >
+        ACT_INT
+      </isNotNull>
+      <isNotNull prepend="," property="pfltIntOpt" >
+        PFLT_INT_OPT
+      </isNotNull>
+      <isNotNull prepend="," property="pfltCd" >
+        PFLT_CD
+      </isNotNull>
+      <isNotNull prepend="," property="pfltFlt" >
+        PFLT_FLT
+      </isNotNull>
+      <isNotNull prepend="," property="pfltInt" >
+        PFLT_INT
+      </isNotNull>
+      <isNotNull prepend="," property="mispPfltOpt" >
+        MISP_PFLT_OPT
+      </isNotNull>
+      <isNotNull prepend="," property="mispPfltCd" >
+        MISP_PFLT_CD
+      </isNotNull>
+      <isNotNull prepend="," property="mispPfltFlt" >
+        MISP_PFLT_FLT
+      </isNotNull>
+      <isNotNull prepend="," property="mispPfltInt" >
+        MISP_PFLT_INT
+      </isNotNull>
+      <isNotNull prepend="," property="ovdRatTyp" >
+        OVD_RAT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="isComint" >
+        IS_COMINT
+      </isNotNull>
+      <isNotNull prepend="," property="payDrct" >
+        PAY_DRCT
+      </isNotNull>
+      <isNotNull prepend="," property="payMd" >
+        PAY_MD
+      </isNotNull>
+      <isNotNull prepend="," property="payCdNo" >
+        PAY_CD_NO
+      </isNotNull>
+      <isNotNull prepend="," property="payActNo" >
+        PAY_ACT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="bailActNo" >
+        BAIL_ACT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="bailRat" >
+        BAIL_RAT
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmt" >
+        BAIL_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="feeTyp" >
+        FEE_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="feeAmt" >
+        FEE_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="feeRat" >
+        FEE_RAT
+      </isNotNull>
+      <isNotNull prepend="," property="feePd" >
+        FEE_PD
+      </isNotNull>
+      <isNotNull prepend="," property="rtnNo2" >
+        RTN_NO2
+      </isNotNull>
+      <isNotNull prepend="," property="intFltTyp" >
+        INT_FLT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="pfltIntMd" >
+        PFLT_INT_MD
+      </isNotNull>
+      <isNotNull prepend="," property="pfltIntAmt" >
+        PFLT_INT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="wrtNo" >
+        WRT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="crMdl" >
+        CR_MDL
+      </isNotNull>
+      <isNotNull prepend="," property="crAmt" >
+        CR_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="crNo" >
+        CR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="bcCrId" >
+        BC_CR_ID
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      <isNotNull prepend="," property="indrctCrdt" >
+        INDRCT_CRDT
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCustCd" >
+        CRDT_CUST_CD
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCustNm" >
+        CRDT_CUST_NM
+      </isNotNull>
+      <isNotNull prepend="," property="flag" >
+        FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="elecFlg" >
+        ELEC_FLG
+      </isNotNull>
+       <isNotNull prepend="," property="ifspAppno" >
+        IFSP_APPNO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appId" >
+        #appId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appStat" >
+        #appStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lnNo" >
+        #lnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custCd" >
+        #custCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custNm" >
+        #custNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actBrCd" >
+        #actBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prdId" >
+        #prdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prdNm" >
+        #prdNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isDt" >
+        #isDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="teDt" >
+        #teDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trmCtlTyp" >
+        #trmCtlTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trm" >
+        #trm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trmYear" >
+        #trmYear:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="trmMon" >
+        #trmMon:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="trmDay" >
+        #trmDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="trmRge" >
+        #trmRge:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="perAdjEql" >
+        #perAdjEql:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnAmt" >
+        #lnAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rtnTyp" >
+        #rtnTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rtnInvl" >
+        #rtnInvl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rtnIntInvl" >
+        #rtnIntInvl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rtnPd" >
+        #rtnPd:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="nonEqlMd" >
+        #nonEqlMd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="nonEqlAmt" >
+        #nonEqlAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rtnMd" >
+        #rtnMd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rtnNo" >
+        #rtnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rtnActNo" >
+        #rtnActNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rtnDtTyp" >
+        #rtnDtTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rtnDt" >
+        #rtnDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="phsFlg" >
+        #phsFlg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="phsNo" >
+        #phsNo:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="intAdj" >
+        #intAdj:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="intAdjDt" >
+        #intAdjDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="intCd" >
+        #intCd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="basInt" >
+        #basInt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ratDt" >
+        #ratDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fltInt" >
+        #fltInt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="fltIntVal" >
+        #fltIntVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="actInt" >
+        #actInt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="pfltIntOpt" >
+        #pfltIntOpt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pfltCd" >
+        #pfltCd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pfltFlt" >
+        #pfltFlt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="pfltInt" >
+        #pfltInt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mispPfltOpt" >
+        #mispPfltOpt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mispPfltCd" >
+        #mispPfltCd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mispPfltFlt" >
+        #mispPfltFlt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mispPfltInt" >
+        #mispPfltInt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ovdRatTyp" >
+        #ovdRatTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isComint" >
+        #isComint:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payDrct" >
+        #payDrct:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payMd" >
+        #payMd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payCdNo" >
+        #payCdNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payActNo" >
+        #payActNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailActNo" >
+        #bailActNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailRat" >
+        #bailRat:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmt" >
+        #bailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="feeTyp" >
+        #feeTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="feeAmt" >
+        #feeAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="feeRat" >
+        #feeRat:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="feePd" >
+        #feePd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rtnNo2" >
+        #rtnNo2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="intFltTyp" >
+        #intFltTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pfltIntMd" >
+        #pfltIntMd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pfltIntAmt" >
+        #pfltIntAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="wrtNo" >
+        #wrtNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crMdl" >
+        #crMdl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crAmt" >
+        #crAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="crNo" >
+        #crNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bcCrId" >
+        #bcCrId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="indrctCrdt" >
+        #indrctCrdt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCustCd" >
+        #crdtCustCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCustNm" >
+        #crdtCustNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flag" >
+        #flag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="elecFlg" >
+        #elecFlg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifspAppno" >
+        #ifspAppno:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+</sqlMap>

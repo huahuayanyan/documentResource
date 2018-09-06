@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_A_TCS_THREE_GUABUYBACK" >
+	<resultMap id="ThreeBalanceRefundLnciVOMap"
+	class="com.huateng.scf.adv.tcs.dao.model.ThreeBalanceRefundLnciVO">
+	<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+	<result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+	<result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+	<result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+	<result column="LNCI_TYPE" property="lnciType" jdbcType="CHAR" />
+	<result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+	<result column="START_DATE" property="startDate" jdbcType="CHAR" />
+	<result column="END_DATE" property="endDate" jdbcType="CHAR" />
+	<result column="CURCD" property="curcd" jdbcType="CHAR" />
+	<!-- <result column="BUSINESSOPENAMOUNT" property="businessOpenAmount" jdbcType="DECIMAL" /> -->
+	<result column="AMOUNT_IN" property="amountIn" jdbcType="DECIMAL" />
+	<result column="AMOUNT_OUT" property="amountOut" jdbcType="DECIMAL" />
+	
+	<result column="NUM" property="num" jdbcType="DECIMAL" />
+	<result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+	<result column="LNCI_STATUS" property="lnciStatus" jdbcType="CHAR" />
+	<result column="LNCI_BAL" property="lnciBal" jdbcType="DECIMAL" />
+	<result column="FIVELEVEL" property="fivelevel" jdbcType="CHAR" />
+	<result column="LOAN_TYPE" property="loanType" jdbcType="VARCHAR" />
+	<result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+	<result column="RATE" property="rate" jdbcType="DECIMAL" />
+	<result column="CONFIRM_STATUS" property="confirmStatus" jdbcType="CHAR" />
+	<result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+	<result column="AMOUNT_UP_OUT" property="amountUpOut" jdbcType="DECIMAL" />
+	<result column="FIRST_BAIL_RATIO" property="firstBailRatio" jdbcType="DECIMAL" />
+	<result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+	<result column="ADD_BAIL_AMOUNT" property="addBailAmount" jdbcType="DECIMAL" />
+	<result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+	<result column="SLAVE_LIMIT" property="slaveLimit" jdbcType="VARCHAR" />
+	<result column="IS_LOCKED" property="isLocked" jdbcType="CHAR" />
+	<result column="LOCK_APPNO" property="lockAppno" jdbcType="VARCHAR" />
+	<result column="ADD_CASH_EQT_AMT" property="addCashEqtAmt" jdbcType="DECIMAL" />
+	<result column="INIT_CASH_EQT_AMT" property="initCashEqtAmt" jdbcType="DECIMAL" />
+	<!-- <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" /> -->
+	<result column="ACCU_SEND_AMT" property="accuSendAmt" jdbcType="DECIMAL" />
+	<result column="BAL_SEND_AMT" property="balSendAmt" jdbcType="DECIMAL" />
+</resultMap>
+    <select id="getBalRefundLnciByProtocolNo" resultMap="ThreeBalanceRefundLnciVOMap" parameterClass="java.util.HashMap" >
+	SELECT
+    T1.APPNO,
+    T1.DEBET_NO,
+    T1.DEBET_ID,
+    T2.NUM,
+    T1.COMMON_DATE,
+    T1.LNCI_TYPE,
+    T1.LNCI_AMT,
+    T1.START_DATE,
+    T1.END_DATE,
+    T1.CURCD,
+    NVL(T1.AMOUNT_OUT,0) AS AMOUNT_OUT,
+    NVL(T1.AMOUNT_IN,0)  AS AMOUNT_IN,
+    T1.MAST_CONTNO,
+    T1.LNCI_STATUS,
+    NVL(T1.LNCI_BAL,0) AS LNCI_BAL,
+    T1.FIVELEVEL,
+    T1.LOAN_TYPE,
+    T1.MGRNO,
+    NVL(T1.RATE,0) AS RATE,
+    T1.CONFIRM_STATUS,
+    NVL(T1.BAIL_AMOUNT,0)      AS BAIL_AMOUNT,
+    NVL(T1.AMOUNT_UP_OUT,0)    AS AMOUNT_UP_OUT,
+    NVL(T1.FIRST_BAIL_RATIO,0) AS FIRST_BAIL_RATIO,
+    T1.PROTOCOL_NO,
+    NVL(T1.ADD_BAIL_AMOUNT,0) AS ADD_BAIL_AMOUNT,
+    T1.SLAVE_CONTNO,
+    T1.SLAVE_LIMIT,
+    T1.IS_LOCKED,
+    T1.LOCK_APPNO,
+    NVL(T1.ADD_CASH_EQT_AMT,0)  AS ADD_CASH_EQT_AMT,
+    NVL(T1.INIT_CASH_EQT_AMT,0) AS INIT_CASH_EQT_AMT,
+
+    NVL(T1.ACCU_SEND_AMT,0) AS ACCU_SEND_AMT,
+    NVL(T1.BAL_SEND_AMT,0)  AS BAL_SEND_AMT
+    FROM
+    B_LAN_LNCI_BASE T1,
+    B_NTE_NOTICE_BASE T2
+    <isParameterPresent >
+	where T1.DEBET_NO = T2.DEBET_NO
+	 <![CDATA[AND T1.AMOUNT_IN>0]]>
+	<isNotEmpty prepend="and" property="protocolNo">
+	 <![CDATA[T1.PROTOCOL_NO = #protocolNo:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="state">
+			<![CDATA[T1.state=#state:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isSettle">
+		<![CDATA[T1.IS_SETTLE=#isSettle:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+			<![CDATA[T2.STATUS=#status:VARCHAR#]]>
+	</isNotEmpty>
+		<isNotNull prepend="and" property="noticeTypes">
+			T2.NOTICE_TYPE in
+			<iterate property="noticeTypes" conjunction="," open="(" close=")">
+				$noticeTypes[]$
+			</iterate>
+		</isNotNull>
+	order by T1.DEBET_NO DESC
+    </isParameterPresent>
+  </select>
+ <!-- 根据申请编号查询差额退款基本信息 -->
+ <resultMap id="ThreeBalanceRefundVOMap" class="com.huateng.scf.adv.tcs.dao.model.ThreeBalanceRefundVO">
+	<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+	<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+	<result column="SELLERNM" property="sellerNm" jdbcType="VARCHAR" />
+	<result column="CORECUSTCD" property="coreCustcd" jdbcType="VARCHAR" />
+	<result column="CORENM" property="coreNm" jdbcType="VARCHAR" />
+	<result column="FOUCD" property="fouCd" jdbcType="VARCHAR" />
+	<result column="FOUNAME" property="fouName" jdbcType="VARCHAR" />
+	<result column="BAILACCOUNT" property="bailAccount" jdbcType="VARCHAR" />
+	<result column="START_DATE" property="startDate" jdbcType="CHAR" />
+	<result column="END_DATE" property="endDate" jdbcType="CHAR" />
+	<result column="FIRST_BAIL_RATIO" property="firstBailRatio" jdbcType="DECIMAL" />
+	<result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+	<result column="ADD_BAIL_AMOUNT" property="addBailAmount" jdbcType="DECIMAL" />
+	<result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+	<result column="PAYEE" property="payee" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_BANK" property="depositBank" jdbcType="VARCHAR" />
+    <result column="PAYBACK_REASON" property="paybackReason" jdbcType="VARCHAR" />
+ 	<result column="REFUND_TERM" property="refundTerm" jdbcType="VARCHAR" />
+    <result column="REFUND_ACCT_NO" property="refundAcctNo" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+  </resultMap>
+    <select id="getThreeBalanceRefundByAppno" resultMap="ThreeBalanceRefundVOMap" parameterClass="java.util.HashMap" >
+	SELECT
+    a.custcd,
+    a.cname  sellerNm,
+    b.custcd coreCustcd,
+    b.cname  coreNm,
+    c.custcd fouCd,
+    c.cname  fouName ,
+    a.BAIL_ACTNO as bailAccount,
+    T1.protocol_no ,
+    T1.product_id ,
+    T1.start_Date ,
+    T1.end_Date ,
+    T2.FIRST_BAIL_RATIO ,
+    T3.appno ,
+    T3.ADD_BAIL_AMT  as ADD_BAIL_AMOUNT ,
+    T3.PAYBACK_TERM    AS REFUND_TERM ,
+    T3.PAYBACK_ACCT_NO AS REFUND_ACCT_NO ,
+    T3.COMMON_AMT      AS amount ,
+    T3.PAYEE ,
+    T3.DEPOSIT_BANK ,
+    T3.PAYBACK_REASON ,
+    T4.BAIL_AMOUNT
+   FROM
+    B_CNT_MPROT_BASE_INFO T1,
+    B_CNT_MPROT_DEAL_INFO T2,
+    A_BCP_APPLI_IMPREST_BUSS T3,
+    B_PBC_APPLI_BASE_INFO T4,
+    B_CNT_MPROT_PART_INFO a,
+    B_CNT_MPROT_PART_INFO b,
+    B_CNT_MPROT_PART_INFO c
+    <isParameterPresent >
+	WHERE T1.PROTOCOL_NO = T2.PROTOCOL_NO
+	AND T1.PROTOCOL_NO = T4.BUSINESSNO
+	AND T3.APPNO= T4.APPNO
+	AND T1.PROTOCOL_NO = A.PROTOCOL_NO
+	AND T1.PROTOCOL_NO = B.PROTOCOL_NO
+	AND T1.PROTOCOL_NO = C.PROTOCOL_NO
+	<isNotNull prepend="AND" property="roleCredit" >
+        <![CDATA[a.role=#roleCredit#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleCore" >
+        <![CDATA[b.role=#roleCore#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleBackcore" >
+        <![CDATA[c.role=#roleBackcore#]]>
+    </isNotNull>
+	<isNotEmpty prepend="and" property="appno">
+	 <![CDATA[T3.APPNO = #appno:VARCHAR#]]>
+	</isNotEmpty>
+	order by T1.PROTOCOL_NO DESC
+    </isParameterPresent>
+  </select>
+  <!-- 差额退款根据申请编号查询借据列表 -->
+      <select id="getInvoiceBuybackAppliByAppno" resultMap="ThreeBalanceRefundLnciVOMap" parameterClass="java.util.HashMap" >
+	SELECT
+       T1.APPNO,
+    T1.DEBET_NO,
+    T1.DEBET_ID,
+    T2.NUM,
+    T1.COMMON_DATE,
+    T1.LNCI_TYPE,
+    T1.LNCI_AMT,
+    T1.START_DATE,
+    T1.END_DATE,
+    T1.CURCD,
+    NVL(T1.AMOUNT_OUT,0) AS AMOUNT_OUT,
+    NVL(T1.AMOUNT_IN,0)  AS AMOUNT_IN,
+    T1.MAST_CONTNO,
+    T1.LNCI_STATUS,
+    NVL(T1.LNCI_BAL,0) AS LNCI_BAL,
+    T1.FIVELEVEL,
+    T1.LOAN_TYPE,
+    T1.MGRNO,
+    NVL(T1.RATE,0) AS RATE,
+    T1.CONFIRM_STATUS,
+    NVL(T1.BAIL_AMOUNT,0)      AS BAIL_AMOUNT,
+    NVL(T1.AMOUNT_UP_OUT,0)    AS AMOUNT_UP_OUT,
+    NVL(T1.FIRST_BAIL_RATIO,0) AS FIRST_BAIL_RATIO,
+    T1.PROTOCOL_NO,
+    NVL(T1.ADD_BAIL_AMOUNT,0) AS ADD_BAIL_AMOUNT,
+    T1.SLAVE_CONTNO,
+    T1.SLAVE_LIMIT,
+    T1.IS_LOCKED,
+    T1.LOCK_APPNO,
+    NVL(T1.ADD_CASH_EQT_AMT,0)  AS ADD_CASH_EQT_AMT,
+    NVL(T1.INIT_CASH_EQT_AMT,0) AS INIT_CASH_EQT_AMT,
+
+    NVL(T1.ACCU_SEND_AMT,0) AS ACCU_SEND_AMT,
+    NVL(T1.BAL_SEND_AMT,0)  AS BAL_SEND_AMT
+    FROM B_LAN_LNCI_BASE T1,
+    	B_LAN_APPLI_LNCI_BASE T2
+    
+    <isParameterPresent >
+	where T1.DEBET_NO = T2.DEBET_NO
+	<isNotEmpty prepend="and" property="appno">
+	 <![CDATA[T2.APPNO = #appno:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+		<![CDATA[T1.LNCI_STATUS=#status:VARCHAR#]]>
+	</isNotEmpty>
+	order by T1.DEBET_NO DESC
+    </isParameterPresent>
+  </select>
+</sqlMap>

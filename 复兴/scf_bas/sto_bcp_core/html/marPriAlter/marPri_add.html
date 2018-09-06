@@ -1,0 +1,23 @@
+<ht-legend colorId="lawngreen">市场价格</ht-legend>
+<ht-form name="otherForm">
+    <!--<ht-select ht-id="mortgageLevelOneName" name="押品一级" ng-model="otherForm.mortgageLevelOneName" disable="{{disable}}"></ht-select>-->
+    <ht-input-extent ht-id="mortgageLevelOneName" name="押品一级" extent="levelOneContent" on-change="levelOneDoExtent"
+                     ng-model="otherForm.mortgageLevelOneName" reg-exp="common.require" disable="{{disable}}"></ht-input-extent>
+    <!--<ht-select ht-id="mortgageLevelTwoName" name="押品二级" ng-model="otherForm.mortgageLevelTwoName" disable="{{disable}}"></ht-select>-->
+    <ht-input-extent hi-id="mortgageLevelTwoName" name="押品二级" extent="levelTwoContent" on-change="levelTwoDoExtend"
+                     ng-model="otherForm.mortgageLevelTwoName" reg-exp="common.require" disable="{{disable}}"></ht-input-extent>
+    <!--<ht-select ht-id="mortgageLevelThreeName" name="押品三级" ng-model="otherForm.mortgageLevelThreeName" disable="{{disable}}"></ht-select>-->
+    <ht-input-extent ht-id="mortgageThreeName" name="押品三级"  extent="levelThreeContent" on-change="levelThreeDoExtend"
+                     ng-model="otherForm.mortgageThreeName" reg-exp="common.require" disable="{{disable}}"></ht-input-extent>
+
+    <ht-input ht-id="productName" name="产品名称" ng-model="otherForm.productName" disable="{{disable}}" reg-exp="common.require"></ht-input>
+    <ht-select ht-id="mortgageUnits" name="计量单位" ng-model="otherForm.mortgageUnits" dictionary="mortgageUnits" disable="{{disable}}"></ht-select>
+    <ht-input ht-id="price" name="市场价格" ng-model="otherForm.price" disable="{{disable1}}" edit-type="currency" reg-exp="common.require"></ht-input>
+    <ht-input ht-id="upDownPrice" name="涨跌" ng-model="otherForm.upDownPrice" disable="{{disable1}}"  reg-exp="common.require,common.numberValidate"></ht-input>
+    <ht-input ht-id="priceDate" name="价格日期" ng-model="otherForm.priceDate" disable="{{disable1}}" edit-type="date" reg-exp="common.require"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="closeDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

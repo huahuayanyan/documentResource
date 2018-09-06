@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_ICR_PRD_BIND" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.icr.dao.model.BIcrPrdBind" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CREDIT_TYPE" property="creditType" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+  </resultMap>
+
+<!-- 根据额度种类删除额度与产品的绑定关系 -->
+  <delete id="deleteBIcrPrdBindByCreditType" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrPrdBind" >
+    delete from B_ICR_PRD_BIND
+    <isNotEmpty prepend="where" property="creditType" >
+    CREDIT_TYPE = #creditType:VARCHAR#
+    </isNotEmpty>
+   
+  </delete>
+</sqlMap>

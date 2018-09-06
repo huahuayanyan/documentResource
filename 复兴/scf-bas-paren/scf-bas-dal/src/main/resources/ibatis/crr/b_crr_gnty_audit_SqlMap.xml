@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRR_GNTY_AUDIT" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrGntyAudit" >
+    <result column="SERIALNO" property="serialno" jdbcType="VARCHAR" />
+    <result column="GNTY_ID" property="gntyId" jdbcType="VARCHAR" />
+    <result column="GNTY_NM" property="gntyNm" jdbcType="VARCHAR" />
+    <result column="GNTY_TYP" property="gntyTyp" jdbcType="VARCHAR" />
+    <result column="GNTY_STAT" property="gntyStat" jdbcType="VARCHAR" />
+    <result column="HOLD_DT" property="holdDt" jdbcType="VARCHAR" />
+    <result column="LOST_DT" property="lostDt" jdbcType="VARCHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="PLAN_RN_DT" property="planRnDt" jdbcType="VARCHAR" />
+    <result column="FACT_RN_DT" property="factRnDt" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="TLR" property="tlr" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    SERIALNO, GNTY_ID, GNTY_NM, GNTY_TYP, GNTY_STAT, HOLD_DT, LOST_DT, REASON, PLAN_RN_DT, 
+    FACT_RN_DT, BR_CD, TLR, INP_DT, LST_UPD_DT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyAuditExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRR_GNTY_AUDIT.Base_Column_List" />
+    from B_CRR_GNTY_AUDIT
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_AUDIT.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyAudit" >
+    select 
+    <include refid="B_CRR_GNTY_AUDIT.Base_Column_List" />
+    from B_CRR_GNTY_AUDIT
+    where SERIALNO = #serialno:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyAudit" >
+    delete from B_CRR_GNTY_AUDIT
+    where SERIALNO = #serialno:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyAuditExample" >
+    delete from B_CRR_GNTY_AUDIT
+    <include refid="B_CRR_GNTY_AUDIT.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyAudit" >
+    insert into B_CRR_GNTY_AUDIT (SERIALNO, GNTY_ID, GNTY_NM, GNTY_TYP, 
+      GNTY_STAT, HOLD_DT, LOST_DT, REASON, PLAN_RN_DT, 
+      FACT_RN_DT, BR_CD, TLR, INP_DT, LST_UPD_DT
+      )
+    values (#serialno:VARCHAR#, #gntyId:VARCHAR#, #gntyNm:VARCHAR#, #gntyTyp:VARCHAR#, 
+      #gntyStat:VARCHAR#, #holdDt:VARCHAR#, #lostDt:VARCHAR#, #reason:VARCHAR#, #planRnDt:VARCHAR#, 
+      #factRnDt:VARCHAR#, #brCd:VARCHAR#, #tlr:VARCHAR#, #inpDt:VARCHAR#, #lstUpdDt:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyAudit" >
+    insert into B_CRR_GNTY_AUDIT
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="serialno" >
+        SERIALNO
+      </isNotNull>
+      <isNotNull prepend="," property="gntyId" >
+        GNTY_ID
+      </isNotNull>
+      <isNotNull prepend="," property="gntyNm" >
+        GNTY_NM
+      </isNotNull>
+      <isNotNull prepend="," property="gntyTyp" >
+        GNTY_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="gntyStat" >
+        GNTY_STAT
+      </isNotNull>
+      <isNotNull prepend="," property="holdDt" >
+        HOLD_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lostDt" >
+        LOST_DT
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        REASON
+      </isNotNull>
+      <isNotNull prepend="," property="planRnDt" >
+        PLAN_RN_DT
+      </isNotNull>
+      <isNotNull prepend="," property="factRnDt" >
+        FACT_RN_DT
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="tlr" >
+        TLR
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="serialno" >
+        #serialno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyId" >
+        #gntyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyNm" >
+        #gntyNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyTyp" >
+        #gntyTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyStat" >
+        #gntyStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="holdDt" >
+        #holdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lostDt" >
+        #lostDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        #reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="planRnDt" >
+        #planRnDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="factRnDt" >
+        #factRnDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlr" >
+        #tlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyAuditExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRR_GNTY_AUDIT
+    <include refid="B_CRR_GNTY_AUDIT.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRR_GNTY_AUDIT
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.serialno" >
+        SERIALNO = #record.serialno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyId" >
+        GNTY_ID = #record.gntyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyNm" >
+        GNTY_NM = #record.gntyNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyTyp" >
+        GNTY_TYP = #record.gntyTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyStat" >
+        GNTY_STAT = #record.gntyStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.holdDt" >
+        HOLD_DT = #record.holdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lostDt" >
+        LOST_DT = #record.lostDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reason" >
+        REASON = #record.reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.planRnDt" >
+        PLAN_RN_DT = #record.planRnDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.factRnDt" >
+        FACT_RN_DT = #record.factRnDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brCd" >
+        BR_CD = #record.brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlr" >
+        TLR = #record.tlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inpDt" >
+        INP_DT = #record.inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdDt" >
+        LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_AUDIT.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRR_GNTY_AUDIT
+    set SERIALNO = #record.serialno:VARCHAR#,
+      GNTY_ID = #record.gntyId:VARCHAR#,
+      GNTY_NM = #record.gntyNm:VARCHAR#,
+      GNTY_TYP = #record.gntyTyp:VARCHAR#,
+      GNTY_STAT = #record.gntyStat:VARCHAR#,
+      HOLD_DT = #record.holdDt:VARCHAR#,
+      LOST_DT = #record.lostDt:VARCHAR#,
+      REASON = #record.reason:VARCHAR#,
+      PLAN_RN_DT = #record.planRnDt:VARCHAR#,
+      FACT_RN_DT = #record.factRnDt:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      TLR = #record.tlr:VARCHAR#,
+      INP_DT = #record.inpDt:VARCHAR#,
+      LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_AUDIT.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyAudit" >
+    update B_CRR_GNTY_AUDIT
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="gntyId" >
+        GNTY_ID = #gntyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyNm" >
+        GNTY_NM = #gntyNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyTyp" >
+        GNTY_TYP = #gntyTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyStat" >
+        GNTY_STAT = #gntyStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="holdDt" >
+        HOLD_DT = #holdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lostDt" >
+        LOST_DT = #lostDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        REASON = #reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="planRnDt" >
+        PLAN_RN_DT = #planRnDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="factRnDt" >
+        FACT_RN_DT = #factRnDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD = #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlr" >
+        TLR = #tlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT = #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT = #lstUpdDt:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where SERIALNO = #serialno:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyAudit" >
+    update B_CRR_GNTY_AUDIT
+    set GNTY_ID = #gntyId:VARCHAR#,
+      GNTY_NM = #gntyNm:VARCHAR#,
+      GNTY_TYP = #gntyTyp:VARCHAR#,
+      GNTY_STAT = #gntyStat:VARCHAR#,
+      HOLD_DT = #holdDt:VARCHAR#,
+      LOST_DT = #lostDt:VARCHAR#,
+      REASON = #reason:VARCHAR#,
+      PLAN_RN_DT = #planRnDt:VARCHAR#,
+      FACT_RN_DT = #factRnDt:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      TLR = #tlr:VARCHAR#,
+      INP_DT = #inpDt:VARCHAR#,
+      LST_UPD_DT = #lstUpdDt:VARCHAR#
+    where SERIALNO = #serialno:VARCHAR#
+  </update>
+</sqlMap>

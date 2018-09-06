@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_R_BCP_DEBT_POOL" >
+ <!-- 根据合同号判断额度融资池是否存在 -->
+  <select id="checkPoolIsExist" resultMap="R_BCP_DEBT_POOL.BaseResultMap">
+    select 
+    <include refid="R_BCP_DEBT_POOL.Base_Column_List" />
+    from R_BCP_DEBT_POOL
+    where MAST_CONTNO = #mastContno:VARCHAR#
+  </select>
+
+  <!--根据合同代码查询折让发票池 -->
+  <select id="queryDebtPollByMastContno" resultMap="R_BCP_DEBT_POOL.BaseResultMap">
+	select tdbi.* from R_BCP_DEBT_POOL tdbi 
+	<isParameterPresent>
+		where  1=1
+		<isNotEmpty prepend="and" property="mastContno" >
+			tdbi.MAST_CONTNO=#mastContno:VARCHAR#  
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="custcdSaller" >
+			tdbi.CUSTCD_SALLER=#custcdSaller:VARCHAR#  
+		</isNotEmpty>
+	</isParameterPresent>
+
+  </select>
+</sqlMap>

@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRG_EVAL_REC" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crg.dao.model.BCrgEvalRec" >
+    <result column="EVAL_ID" property="evalId" jdbcType="VARCHAR" />
+    <result column="RLT_TYP" property="rltTyp" jdbcType="VARCHAR" />
+    <result column="RLT_ID" property="rltId" jdbcType="VARCHAR" />
+    <result column="FIN_DT" property="finDt" jdbcType="VARCHAR" />
+    <result column="MDL_ID" property="mdlId" jdbcType="VARCHAR" />
+    <result column="MDL_NM" property="mdlNm" jdbcType="VARCHAR" />
+    <result column="EVAL_DT" property="evalDt" jdbcType="CHAR" />
+    <result column="EVAL_SCR" property="evalScr" jdbcType="DECIMAL" />
+    <result column="EVAL_RSLT" property="evalRslt" jdbcType="VARCHAR" />
+    <result column="COGN_SCR" property="cognScr" jdbcType="DECIMAL" />
+    <result column="COGN_RSLT" property="cognRslt" jdbcType="VARCHAR" />
+    <result column="EFT_DT" property="eftDt" jdbcType="VARCHAR" />
+    <result column="REM" property="rem" jdbcType="VARCHAR" />
+    <result column="IS_VLD" property="isVld" jdbcType="CHAR" />
+    <result column="STAT" property="stat" jdbcType="VARCHAR" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLR" property="lastUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="CHAR" />
+    <result column="PROCESS_ID" property="processId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" class="com.huateng.scf.bas.crg.dao.model.BCrgEvalRec" extends="B_CRG_EVAL_REC.BaseResultMap" >
+    <result column="CARD_RES" property="cardRes" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    EVAL_ID, RLT_TYP, RLT_ID, FIN_DT, MDL_ID, MDL_NM, EVAL_DT, EVAL_SCR, EVAL_RSLT, COGN_SCR, 
+    COGN_RSLT, EFT_DT, REM, IS_VLD, STAT, TLR_NO, BR_CD, LAST_UPD_TLR, LST_UPD_BR_CD, 
+    LST_UPD_DT, PROCESS_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    CARD_RES
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRecExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRG_EVAL_REC.Base_Column_List" />
+    ,
+    <include refid="B_CRG_EVAL_REC.Blob_Column_List" />
+    from B_CRG_EVAL_REC
+    <isParameterPresent >
+      <include refid="B_CRG_EVAL_REC.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRecExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRG_EVAL_REC.Base_Column_List" />
+    from B_CRG_EVAL_REC
+    <isParameterPresent >
+      <include refid="B_CRG_EVAL_REC.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRec" >
+    select 
+    <include refid="B_CRG_EVAL_REC.Base_Column_List" />
+    ,
+    <include refid="B_CRG_EVAL_REC.Blob_Column_List" />
+    from B_CRG_EVAL_REC
+    where EVAL_ID = #evalId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRec" >
+    delete from B_CRG_EVAL_REC
+    where EVAL_ID = #evalId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRecExample" >
+    delete from B_CRG_EVAL_REC
+    <include refid="B_CRG_EVAL_REC.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRec" >
+    insert into B_CRG_EVAL_REC (EVAL_ID, RLT_TYP, RLT_ID, FIN_DT, MDL_ID, 
+      MDL_NM, EVAL_DT, EVAL_SCR, EVAL_RSLT, COGN_SCR, 
+      COGN_RSLT, EFT_DT, REM, IS_VLD, STAT, 
+      TLR_NO, BR_CD, LAST_UPD_TLR, LST_UPD_BR_CD, LST_UPD_DT, 
+      PROCESS_ID, CARD_RES)
+    values (#evalId:VARCHAR#, #rltTyp:VARCHAR#, #rltId:VARCHAR#, #finDt:VARCHAR#, #mdlId:VARCHAR#, 
+      #mdlNm:VARCHAR#, #evalDt:CHAR#, #evalScr:DECIMAL#, #evalRslt:VARCHAR#, #cognScr:DECIMAL#, 
+      #cognRslt:VARCHAR#, #eftDt:VARCHAR#, #rem:VARCHAR#, #isVld:CHAR#, #stat:VARCHAR#, 
+      #tlrNo:VARCHAR#, #brCd:VARCHAR#, #lastUpdTlr:VARCHAR#, #lstUpdBrCd:VARCHAR#, #lstUpdDt:CHAR#, 
+      #processId:VARCHAR#, #cardRes:CLOB#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRec" >
+    insert into B_CRG_EVAL_REC
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="evalId" >
+        EVAL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="rltTyp" >
+        RLT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="rltId" >
+        RLT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="finDt" >
+        FIN_DT
+      </isNotNull>
+      <isNotNull prepend="," property="mdlId" >
+        MDL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="mdlNm" >
+        MDL_NM
+      </isNotNull>
+      <isNotNull prepend="," property="evalDt" >
+        EVAL_DT
+      </isNotNull>
+      <isNotNull prepend="," property="evalScr" >
+        EVAL_SCR
+      </isNotNull>
+      <isNotNull prepend="," property="evalRslt" >
+        EVAL_RSLT
+      </isNotNull>
+      <isNotNull prepend="," property="cognScr" >
+        COGN_SCR
+      </isNotNull>
+      <isNotNull prepend="," property="cognRslt" >
+        COGN_RSLT
+      </isNotNull>
+      <isNotNull prepend="," property="eftDt" >
+        EFT_DT
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        REM
+      </isNotNull>
+      <isNotNull prepend="," property="isVld" >
+        IS_VLD
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        STAT
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlr" >
+        LAST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      <isNotNull prepend="," property="processId" >
+        PROCESS_ID
+      </isNotNull>
+      <isNotNull prepend="," property="cardRes" >
+        CARD_RES
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="evalId" >
+        #evalId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rltTyp" >
+        #rltTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rltId" >
+        #rltId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finDt" >
+        #finDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlId" >
+        #mdlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlNm" >
+        #mdlNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalDt" >
+        #evalDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalScr" >
+        #evalScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="evalRslt" >
+        #evalRslt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cognScr" >
+        #cognScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cognRslt" >
+        #cognRslt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="eftDt" >
+        #eftDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        #rem:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isVld" >
+        #isVld:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        #stat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlr" >
+        #lastUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="processId" >
+        #processId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cardRes" >
+        #cardRes:CLOB#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRecExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRG_EVAL_REC
+    <include refid="B_CRG_EVAL_REC.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRG_EVAL_REC
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.evalId" >
+        EVAL_ID = #record.evalId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rltTyp" >
+        RLT_TYP = #record.rltTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rltId" >
+        RLT_ID = #record.rltId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.finDt" >
+        FIN_DT = #record.finDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mdlId" >
+        MDL_ID = #record.mdlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mdlNm" >
+        MDL_NM = #record.mdlNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evalDt" >
+        EVAL_DT = #record.evalDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evalScr" >
+        EVAL_SCR = #record.evalScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evalRslt" >
+        EVAL_RSLT = #record.evalRslt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cognScr" >
+        COGN_SCR = #record.cognScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cognRslt" >
+        COGN_RSLT = #record.cognRslt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.eftDt" >
+        EFT_DT = #record.eftDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rem" >
+        REM = #record.rem:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isVld" >
+        IS_VLD = #record.isVld:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stat" >
+        STAT = #record.stat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNo" >
+        TLR_NO = #record.tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brCd" >
+        BR_CD = #record.brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlr" >
+        LAST_UPD_TLR = #record.lastUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrCd" >
+        LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdDt" >
+        LST_UPD_DT = #record.lstUpdDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.processId" >
+        PROCESS_ID = #record.processId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cardRes" >
+        CARD_RES = #record.cardRes:CLOB#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRG_EVAL_REC.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExampleWithBLOBs" >
+    update B_CRG_EVAL_REC
+    set EVAL_ID = #record.evalId:VARCHAR#,
+      RLT_TYP = #record.rltTyp:VARCHAR#,
+      RLT_ID = #record.rltId:VARCHAR#,
+      FIN_DT = #record.finDt:VARCHAR#,
+      MDL_ID = #record.mdlId:VARCHAR#,
+      MDL_NM = #record.mdlNm:VARCHAR#,
+      EVAL_DT = #record.evalDt:CHAR#,
+      EVAL_SCR = #record.evalScr:DECIMAL#,
+      EVAL_RSLT = #record.evalRslt:VARCHAR#,
+      COGN_SCR = #record.cognScr:DECIMAL#,
+      COGN_RSLT = #record.cognRslt:VARCHAR#,
+      EFT_DT = #record.eftDt:VARCHAR#,
+      REM = #record.rem:VARCHAR#,
+      IS_VLD = #record.isVld:CHAR#,
+      STAT = #record.stat:VARCHAR#,
+      TLR_NO = #record.tlrNo:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      LAST_UPD_TLR = #record.lastUpdTlr:VARCHAR#,
+      LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#,
+      LST_UPD_DT = #record.lstUpdDt:CHAR#,
+      PROCESS_ID = #record.processId:VARCHAR#,
+      CARD_RES = #record.cardRes:CLOB#
+    <isParameterPresent >
+      <include refid="B_CRG_EVAL_REC.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRG_EVAL_REC
+    set EVAL_ID = #record.evalId:VARCHAR#,
+      RLT_TYP = #record.rltTyp:VARCHAR#,
+      RLT_ID = #record.rltId:VARCHAR#,
+      FIN_DT = #record.finDt:VARCHAR#,
+      MDL_ID = #record.mdlId:VARCHAR#,
+      MDL_NM = #record.mdlNm:VARCHAR#,
+      EVAL_DT = #record.evalDt:CHAR#,
+      EVAL_SCR = #record.evalScr:DECIMAL#,
+      EVAL_RSLT = #record.evalRslt:VARCHAR#,
+      COGN_SCR = #record.cognScr:DECIMAL#,
+      COGN_RSLT = #record.cognRslt:VARCHAR#,
+      EFT_DT = #record.eftDt:VARCHAR#,
+      REM = #record.rem:VARCHAR#,
+      IS_VLD = #record.isVld:CHAR#,
+      STAT = #record.stat:VARCHAR#,
+      TLR_NO = #record.tlrNo:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      LAST_UPD_TLR = #record.lastUpdTlr:VARCHAR#,
+      LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#,
+      LST_UPD_DT = #record.lstUpdDt:CHAR#,
+      PROCESS_ID = #record.processId:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRG_EVAL_REC.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRec" >
+    update B_CRG_EVAL_REC
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="rltTyp" >
+        RLT_TYP = #rltTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rltId" >
+        RLT_ID = #rltId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finDt" >
+        FIN_DT = #finDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlId" >
+        MDL_ID = #mdlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlNm" >
+        MDL_NM = #mdlNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalDt" >
+        EVAL_DT = #evalDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalScr" >
+        EVAL_SCR = #evalScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="evalRslt" >
+        EVAL_RSLT = #evalRslt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cognScr" >
+        COGN_SCR = #cognScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cognRslt" >
+        COGN_RSLT = #cognRslt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="eftDt" >
+        EFT_DT = #eftDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        REM = #rem:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isVld" >
+        IS_VLD = #isVld:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        STAT = #stat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO = #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD = #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlr" >
+        LAST_UPD_TLR = #lastUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT = #lstUpdDt:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="processId" >
+        PROCESS_ID = #processId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cardRes" >
+        CARD_RES = #cardRes:CLOB#
+      </isNotNull>
+    </dynamic>
+    where EVAL_ID = #evalId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRec" >
+    update B_CRG_EVAL_REC
+    set RLT_TYP = #rltTyp:VARCHAR#,
+      RLT_ID = #rltId:VARCHAR#,
+      FIN_DT = #finDt:VARCHAR#,
+      MDL_ID = #mdlId:VARCHAR#,
+      MDL_NM = #mdlNm:VARCHAR#,
+      EVAL_DT = #evalDt:CHAR#,
+      EVAL_SCR = #evalScr:DECIMAL#,
+      EVAL_RSLT = #evalRslt:VARCHAR#,
+      COGN_SCR = #cognScr:DECIMAL#,
+      COGN_RSLT = #cognRslt:VARCHAR#,
+      EFT_DT = #eftDt:VARCHAR#,
+      REM = #rem:VARCHAR#,
+      IS_VLD = #isVld:CHAR#,
+      STAT = #stat:VARCHAR#,
+      TLR_NO = #tlrNo:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      LAST_UPD_TLR = #lastUpdTlr:VARCHAR#,
+      LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#,
+      LST_UPD_DT = #lstUpdDt:CHAR#,
+      PROCESS_ID = #processId:VARCHAR#,
+      CARD_RES = #cardRes:CLOB#
+    where EVAL_ID = #evalId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRec" >
+    update B_CRG_EVAL_REC
+    set RLT_TYP = #rltTyp:VARCHAR#,
+      RLT_ID = #rltId:VARCHAR#,
+      FIN_DT = #finDt:VARCHAR#,
+      MDL_ID = #mdlId:VARCHAR#,
+      MDL_NM = #mdlNm:VARCHAR#,
+      EVAL_DT = #evalDt:CHAR#,
+      EVAL_SCR = #evalScr:DECIMAL#,
+      EVAL_RSLT = #evalRslt:VARCHAR#,
+      COGN_SCR = #cognScr:DECIMAL#,
+      COGN_RSLT = #cognRslt:VARCHAR#,
+      EFT_DT = #eftDt:VARCHAR#,
+      REM = #rem:VARCHAR#,
+      IS_VLD = #isVld:CHAR#,
+      STAT = #stat:VARCHAR#,
+      TLR_NO = #tlrNo:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      LAST_UPD_TLR = #lastUpdTlr:VARCHAR#,
+      LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#,
+      LST_UPD_DT = #lstUpdDt:CHAR#,
+      PROCESS_ID = #processId:VARCHAR#,
+      CARD_RES = #cardRes:CLOB#
+    where EVAL_ID = #evalId:VARCHAR#
+  </update>
+  <select id="selectByProcessId" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalRec" >
+    select 
+    <include refid="B_CRG_EVAL_REC.Base_Column_List" />
+    from B_CRG_EVAL_REC
+    where PROCESS_ID = #processId:VARCHAR#
+  </select>
+</sqlMap>

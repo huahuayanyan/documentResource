@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_BUY_MPROT_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.cnt.dao.model.BCntMprotInfo" >
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FOUR" property="mortgageLevelFour" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="PLEDGED_AMOUNT" property="pledgedAmount" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="BAL_AMOUNT" property="balAmount" jdbcType="DECIMAL" />
+    <result column="BAL_QUANTITY" property="balQuantity" jdbcType="DECIMAL" />
+    <result column="CERTIFICATION_NO" property="certificationNo" jdbcType="VARCHAR" />
+    <result column="CHASSIS_NO" property="chassisNo" jdbcType="VARCHAR" />
+    <result column="MANUFACTURER" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="MANUFACTURE_DATE" property="manufactureDate" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    MORTGAGE_NO, TRADE_CONTNO, PROTOCOL_NO, MORTGAGE_NAME, MORTGAGE_LEVEL_ONE, MORTGAGE_LEVEL_TWO, 
+    MORTGAGE_LEVEL_THREE, MORTGAGE_LEVEL_FOUR, MORTGAGE_MODEL, QUANTITY, PRICE, TOT_PRICE, 
+    MORTGAGE_UNITS, PLEDGED_AMOUNT, CURCD, BAL_AMOUNT, BAL_QUANTITY, CERTIFICATION_NO, 
+    CHASSIS_NO, MANUFACTURER, MANUFACTURE_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_BUY_MPROT_INFO.Base_Column_List" />
+    from B_CNT_BUY_MPROT_INFO
+    <isParameterPresent >
+      <include refid="B_CNT_BUY_MPROT_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotInfo" >
+    select 
+    <include refid="B_CNT_BUY_MPROT_INFO.Base_Column_List" />
+    from B_CNT_BUY_MPROT_INFO
+    where MORTGAGE_NO = #mortgageNo:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotInfo" >
+    delete from B_CNT_BUY_MPROT_INFO
+    where MORTGAGE_NO = #mortgageNo:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotInfoExample" >
+    delete from B_CNT_BUY_MPROT_INFO
+    <include refid="B_CNT_BUY_MPROT_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotInfo" >
+    insert into B_CNT_BUY_MPROT_INFO (MORTGAGE_NO, TRADE_CONTNO, PROTOCOL_NO, MORTGAGE_NAME, 
+      MORTGAGE_LEVEL_ONE, MORTGAGE_LEVEL_TWO, MORTGAGE_LEVEL_THREE, 
+      MORTGAGE_LEVEL_FOUR, MORTGAGE_MODEL, QUANTITY, PRICE, 
+      TOT_PRICE, MORTGAGE_UNITS, PLEDGED_AMOUNT, CURCD, 
+      BAL_AMOUNT, BAL_QUANTITY, CERTIFICATION_NO, CHASSIS_NO, 
+      MANUFACTURER, MANUFACTURE_DATE)
+    values (#mortgageNo:VARCHAR#, #tradeContno:VARCHAR#, #protocolNo:VARCHAR#, #mortgageName:VARCHAR#, 
+      #mortgageLevelOne:VARCHAR#, #mortgageLevelTwo:VARCHAR#, #mortgageLevelThree:VARCHAR#, 
+      #mortgageLevelFour:VARCHAR#, #mortgageModel:VARCHAR#, #quantity:DECIMAL#, #price:DECIMAL#, 
+      #totPrice:DECIMAL#, #mortgageUnits:VARCHAR#, #pledgedAmount:DECIMAL#, #curcd:CHAR#, 
+      #balAmount:DECIMAL#, #balQuantity:DECIMAL#, #certificationNo:VARCHAR#, #chassisNo:VARCHAR#, 
+      #manufacturer:VARCHAR#, #manufactureDate:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotInfo" >
+    insert into B_CNT_BUY_MPROT_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        TRADE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageName" >
+        MORTGAGE_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFour" >
+        MORTGAGE_LEVEL_FOUR
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        MORTGAGE_MODEL
+      </isNotNull>
+      <isNotNull prepend="," property="quantity" >
+        QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        TOT_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS
+      </isNotNull>
+      <isNotNull prepend="," property="pledgedAmount" >
+        PLEDGED_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="balAmount" >
+        BAL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="balQuantity" >
+        BAL_QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="certificationNo" >
+        CERTIFICATION_NO
+      </isNotNull>
+      <isNotNull prepend="," property="chassisNo" >
+        CHASSIS_NO
+      </isNotNull>
+      <isNotNull prepend="," property="manufacturer" >
+        MANUFACTURER
+      </isNotNull>
+      <isNotNull prepend="," property="manufactureDate" >
+        MANUFACTURE_DATE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="mortgageNo" >
+        #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        #tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageName" >
+        #mortgageName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        #mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        #mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        #mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFour" >
+        #mortgageLevelFour:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        #mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="quantity" >
+        #quantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        #price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        #totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        #mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pledgedAmount" >
+        #pledgedAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="balAmount" >
+        #balAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="balQuantity" >
+        #balQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="certificationNo" >
+        #certificationNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chassisNo" >
+        #chassisNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="manufacturer" >
+        #manufacturer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="manufactureDate" >
+        #manufactureDate:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_BUY_MPROT_INFO
+    <include refid="B_CNT_BUY_MPROT_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_BUY_MPROT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.mortgageNo" >
+        MORTGAGE_NO = #record.mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tradeContno" >
+        TRADE_CONTNO = #record.tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageName" >
+        MORTGAGE_NAME = #record.mortgageName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE = #record.mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO = #record.mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE = #record.mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelFour" >
+        MORTGAGE_LEVEL_FOUR = #record.mortgageLevelFour:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageModel" >
+        MORTGAGE_MODEL = #record.mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.quantity" >
+        QUANTITY = #record.quantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.price" >
+        PRICE = #record.price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totPrice" >
+        TOT_PRICE = #record.totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageUnits" >
+        MORTGAGE_UNITS = #record.mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pledgedAmount" >
+        PLEDGED_AMOUNT = #record.pledgedAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.balAmount" >
+        BAL_AMOUNT = #record.balAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.balQuantity" >
+        BAL_QUANTITY = #record.balQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.certificationNo" >
+        CERTIFICATION_NO = #record.certificationNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.chassisNo" >
+        CHASSIS_NO = #record.chassisNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.manufacturer" >
+        MANUFACTURER = #record.manufacturer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.manufactureDate" >
+        MANUFACTURE_DATE = #record.manufactureDate:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_BUY_MPROT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_BUY_MPROT_INFO
+    set MORTGAGE_NO = #record.mortgageNo:VARCHAR#,
+      TRADE_CONTNO = #record.tradeContno:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      MORTGAGE_NAME = #record.mortgageName:VARCHAR#,
+      MORTGAGE_LEVEL_ONE = #record.mortgageLevelOne:VARCHAR#,
+      MORTGAGE_LEVEL_TWO = #record.mortgageLevelTwo:VARCHAR#,
+      MORTGAGE_LEVEL_THREE = #record.mortgageLevelThree:VARCHAR#,
+      MORTGAGE_LEVEL_FOUR = #record.mortgageLevelFour:VARCHAR#,
+      MORTGAGE_MODEL = #record.mortgageModel:VARCHAR#,
+      QUANTITY = #record.quantity:DECIMAL#,
+      PRICE = #record.price:DECIMAL#,
+      TOT_PRICE = #record.totPrice:DECIMAL#,
+      MORTGAGE_UNITS = #record.mortgageUnits:VARCHAR#,
+      PLEDGED_AMOUNT = #record.pledgedAmount:DECIMAL#,
+      CURCD = #record.curcd:CHAR#,
+      BAL_AMOUNT = #record.balAmount:DECIMAL#,
+      BAL_QUANTITY = #record.balQuantity:DECIMAL#,
+      CERTIFICATION_NO = #record.certificationNo:VARCHAR#,
+      CHASSIS_NO = #record.chassisNo:VARCHAR#,
+      MANUFACTURER = #record.manufacturer:VARCHAR#,
+      MANUFACTURE_DATE = #record.manufactureDate:CHAR#
+    <isParameterPresent >
+      <include refid="B_CNT_BUY_MPROT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotInfo" >
+    update B_CNT_BUY_MPROT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="tradeContno" >
+        TRADE_CONTNO = #tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageName" >
+        MORTGAGE_NAME = #mortgageName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFour" >
+        MORTGAGE_LEVEL_FOUR = #mortgageLevelFour:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        MORTGAGE_MODEL = #mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="quantity" >
+        QUANTITY = #quantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        PRICE = #price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        TOT_PRICE = #totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS = #mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pledgedAmount" >
+        PLEDGED_AMOUNT = #pledgedAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="balAmount" >
+        BAL_AMOUNT = #balAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="balQuantity" >
+        BAL_QUANTITY = #balQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="certificationNo" >
+        CERTIFICATION_NO = #certificationNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chassisNo" >
+        CHASSIS_NO = #chassisNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="manufacturer" >
+        MANUFACTURER = #manufacturer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="manufactureDate" >
+        MANUFACTURE_DATE = #manufactureDate:CHAR#
+      </isNotNull>
+    </dynamic>
+    where MORTGAGE_NO = #mortgageNo:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotInfo" >
+    update B_CNT_BUY_MPROT_INFO
+    set TRADE_CONTNO = #tradeContno:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      MORTGAGE_NAME = #mortgageName:VARCHAR#,
+      MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#,
+      MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#,
+      MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#,
+      MORTGAGE_LEVEL_FOUR = #mortgageLevelFour:VARCHAR#,
+      MORTGAGE_MODEL = #mortgageModel:VARCHAR#,
+      QUANTITY = #quantity:DECIMAL#,
+      PRICE = #price:DECIMAL#,
+      TOT_PRICE = #totPrice:DECIMAL#,
+      MORTGAGE_UNITS = #mortgageUnits:VARCHAR#,
+      PLEDGED_AMOUNT = #pledgedAmount:DECIMAL#,
+      CURCD = #curcd:CHAR#,
+      BAL_AMOUNT = #balAmount:DECIMAL#,
+      BAL_QUANTITY = #balQuantity:DECIMAL#,
+      CERTIFICATION_NO = #certificationNo:VARCHAR#,
+      CHASSIS_NO = #chassisNo:VARCHAR#,
+      MANUFACTURER = #manufacturer:VARCHAR#,
+      MANUFACTURE_DATE = #manufactureDate:CHAR#
+    where MORTGAGE_NO = #mortgageNo:VARCHAR#
+  </update>
+</sqlMap>

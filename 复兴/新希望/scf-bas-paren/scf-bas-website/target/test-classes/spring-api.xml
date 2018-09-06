@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ Copyright 2009-2016 Weibo, Inc. ~ ~ Licensed under the Apache License, 
+	Version 2.0 (the "License"); ~ you may not use this file except in compliance 
+	with the License. ~ You may obtain a copy of the License at ~ ~ http://www.apache.org/licenses/LICENSE-2.0 
+	~ ~ Unless required by applicable law or agreed to in writing, software ~ 
+	distributed under the License is distributed on an "AS IS" BASIS, ~ WITHOUT 
+	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. ~ See the 
+	License for the specific language governing permissions and ~ limitations 
+	under the License. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>file:/apps/config/scfbas-app/config.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- scube rpc 客户端配置 -->
+	<bean class="com.huateng.scube.common.ScubeClientConfig" init-method="init">
+		<property name="application" value="${scube.application}"/>
+		<!-- <property name="address" value="${scube.registries.address}"/> -->
+		<property name="address" value="${scube.server.address}"/>
+		<property name="requestTimeout" value="${scube.client.requestTimeout}"/>
+	</bean>
+	<!-- MQ配置 -->
+	<bean class="com.huateng.scube.common.ScubeMqConfig">
+		<property name="mqType" value="${mq.profile}"/>
+		<property name="url" value="${mq.activeMQ.url}"/>
+		<property name="userName" value="${mq.activeMQ.userName}"/>
+		<property name="password" value="${mq.activeMQ.password}"/>
+	</bean>
+
+	<!-- scube客户端 demo -->
+	<bean id="orgUserService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.appDemo.service.OrgUserService</value>
+		</property>
+	</bean>
+	<bean id="testService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.test.service.TestService</value>
+		</property>
+	</bean>
+
+	<!-- 数据字典client -->
+	<bean id="bdDataDictService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.data.service.BdDataDictService</value>
+		</property>
+	</bean>
+	<!-- MQ服务Client -->
+	<bean id="mqService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.appDemo.service.MqService</value>
+		</property>
+	</bean>
+	<!-- 数据字典工具类  init-method="initData" -->
+	<bean class="com.huateng.data.util.BDDataUtil"/>
+	
+	<!-- scfContractService -->
+ 	<bean id="scfContractService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.appDemo.service.ScfContractService</value>
+		</property>
+	</bean>
+
+</beans>

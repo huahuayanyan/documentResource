@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PBC_MTG_CHK_STOCK_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcMtgChkStockInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="CHECK_STOCK_DATE" property="checkStockDate" jdbcType="CHAR" />
+    <result column="CHECK_STOCK_TIME" property="checkStockTime" jdbcType="TIMESTAMP" />
+    <result column="CHECK_STOCK_TLRCD" property="checkStockTlrcd" jdbcType="VARCHAR" />
+    <result column="CHECK_STOCK_TYPE" property="checkStockType" jdbcType="CHAR" />
+    <result column="CHECK_STOCK_WAY" property="checkStockWay" jdbcType="CHAR" />
+    <result column="CHECK_STOCK_RESULTS" property="checkStockResults" jdbcType="CHAR" />
+    <result column="RECORD_TLRCD" property="recordTlrcd" jdbcType="VARCHAR" />
+    <result column="RECORD_BRCODE" property="recordBrcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="POWER_CHECK_TYPE" property="powerCheckType" jdbcType="CHAR" />
+    <result column="POWER_CHECK_FAILDES" property="powerCheckFaildes" jdbcType="VARCHAR" />
+    <result column="POWER_CHECK_OTHERDES" property="powerCheckOtherdes" jdbcType="VARCHAR" />
+    <result column="CHECK_ADDRESS_TYPE" property="checkAddressType" jdbcType="CHAR" />
+    <result column="CHECK_ADDRESS_FAILDES" property="checkAddressFaildes" jdbcType="VARCHAR" />
+    <result column="CHECK_NEED_TYPE" property="checkNeedType" jdbcType="CHAR" />
+    <result column="CHECK_METHOD_TYPE" property="checkMethodType" jdbcType="CHAR" />
+    <result column="CHECK_METHOD_DATA" property="checkMethodData" jdbcType="DECIMAL" />
+    <result column="CHECK_RESULT_TYPE" property="checkResultType" jdbcType="CHAR" />
+    <result column="CHECK_RESULT_FAILDES" property="checkResultFaildes" jdbcType="VARCHAR" />
+    <result column="CHECK_REPORT_NO" property="checkReportNo" jdbcType="VARCHAR" />
+    <result column="CURRENT_CREDIT_AMT" property="currentCreditAmt" jdbcType="DECIMAL" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="CHECK_LOW_PRICE_TYPE" property="checkLowPriceType" jdbcType="CHAR" />
+    <result column="INVOICE_FLAG" property="invoiceFlag" jdbcType="CHAR" />
+    <result column="NOTICE_NO" property="noticeNo" jdbcType="VARCHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="ADVICEID" property="adviceid" jdbcType="VARCHAR" />
+    <result column="APPLYID" property="applyid" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_NAME" property="warehouseName" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="MONI_PRINCIPAL" property="moniPrincipal" jdbcType="VARCHAR" />
+    <result column="CHECK_STOCK_CONFIRM_DATE" property="checkStockConfirmDate" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OTHER_PROTOCOL_NO, SLAVE_CONTNO, CHECK_STOCK_DATE, CHECK_STOCK_TIME, CHECK_STOCK_TLRCD, 
+    CHECK_STOCK_TYPE, CHECK_STOCK_WAY, CHECK_STOCK_RESULTS, RECORD_TLRCD, RECORD_BRCODE, 
+    CUSTCD, WAREHOUSE_ID, MONI_OF_CUSTCD, STATUS, MAST_CONTNO, POWER_CHECK_TYPE, POWER_CHECK_FAILDES, 
+    POWER_CHECK_OTHERDES, CHECK_ADDRESS_TYPE, CHECK_ADDRESS_FAILDES, CHECK_NEED_TYPE, 
+    CHECK_METHOD_TYPE, CHECK_METHOD_DATA, CHECK_RESULT_TYPE, CHECK_RESULT_FAILDES, CHECK_REPORT_NO, 
+    CURRENT_CREDIT_AMT, RATION, CHECK_LOW_PRICE_TYPE, INVOICE_FLAG, NOTICE_NO, REASON, 
+    ADVICEID, APPLYID, PROTOCOL_NO, WAREHOUSE_NAME, APPNO, MONI_PRINCIPAL, CHECK_STOCK_CONFIRM_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgChkStockInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PBC_MTG_CHK_STOCK_INFO.Base_Column_List" />
+    from B_PBC_MTG_CHK_STOCK_INFO
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_CHK_STOCK_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgChkStockInfo" >
+    select 
+    <include refid="B_PBC_MTG_CHK_STOCK_INFO.Base_Column_List" />
+    from B_PBC_MTG_CHK_STOCK_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgChkStockInfo" >
+    delete from B_PBC_MTG_CHK_STOCK_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgChkStockInfoExample" >
+    delete from B_PBC_MTG_CHK_STOCK_INFO
+    <include refid="B_PBC_MTG_CHK_STOCK_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgChkStockInfo" >
+    insert into B_PBC_MTG_CHK_STOCK_INFO (ID, OTHER_PROTOCOL_NO, SLAVE_CONTNO, CHECK_STOCK_DATE, 
+      CHECK_STOCK_TIME, CHECK_STOCK_TLRCD, CHECK_STOCK_TYPE, CHECK_STOCK_WAY, 
+      CHECK_STOCK_RESULTS, RECORD_TLRCD, RECORD_BRCODE, CUSTCD, 
+      WAREHOUSE_ID, MONI_OF_CUSTCD, STATUS, MAST_CONTNO, 
+      POWER_CHECK_TYPE, POWER_CHECK_FAILDES, POWER_CHECK_OTHERDES, 
+      CHECK_ADDRESS_TYPE, CHECK_ADDRESS_FAILDES, CHECK_NEED_TYPE, CHECK_METHOD_TYPE, 
+      CHECK_METHOD_DATA, CHECK_RESULT_TYPE, CHECK_RESULT_FAILDES, 
+      CHECK_REPORT_NO, CURRENT_CREDIT_AMT, RATION, CHECK_LOW_PRICE_TYPE, 
+      INVOICE_FLAG, NOTICE_NO, REASON, ADVICEID, APPLYID, 
+      PROTOCOL_NO, WAREHOUSE_NAME, APPNO, MONI_PRINCIPAL, 
+      CHECK_STOCK_CONFIRM_DATE)
+    values (#id:VARCHAR#, #otherProtocolNo:VARCHAR#, #slaveContno:VARCHAR#, #checkStockDate:CHAR#, 
+      #checkStockTime:TIMESTAMP#, #checkStockTlrcd:VARCHAR#, #checkStockType:CHAR#, #checkStockWay:CHAR#, 
+      #checkStockResults:CHAR#, #recordTlrcd:VARCHAR#, #recordBrcode:VARCHAR#, #custcd:VARCHAR#, 
+      #warehouseId:VARCHAR#, #moniOfCustcd:VARCHAR#, #status:CHAR#, #mastContno:VARCHAR#, 
+      #powerCheckType:CHAR#, #powerCheckFaildes:VARCHAR#, #powerCheckOtherdes:VARCHAR#, 
+      #checkAddressType:CHAR#, #checkAddressFaildes:VARCHAR#, #checkNeedType:CHAR#, #checkMethodType:CHAR#, 
+      #checkMethodData:DECIMAL#, #checkResultType:CHAR#, #checkResultFaildes:VARCHAR#, 
+      #checkReportNo:VARCHAR#, #currentCreditAmt:DECIMAL#, #ration:DECIMAL#, #checkLowPriceType:CHAR#, 
+      #invoiceFlag:CHAR#, #noticeNo:VARCHAR#, #reason:VARCHAR#, #adviceid:VARCHAR#, #applyid:VARCHAR#, 
+      #protocolNo:VARCHAR#, #warehouseName:VARCHAR#, #appno:VARCHAR#, #moniPrincipal:VARCHAR#, 
+      #checkStockConfirmDate:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgChkStockInfo" >
+    insert into B_PBC_MTG_CHK_STOCK_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        OTHER_PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockDate" >
+        CHECK_STOCK_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockTime" >
+        CHECK_STOCK_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockTlrcd" >
+        CHECK_STOCK_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockType" >
+        CHECK_STOCK_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockWay" >
+        CHECK_STOCK_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockResults" >
+        CHECK_STOCK_RESULTS
+      </isNotNull>
+      <isNotNull prepend="," property="recordTlrcd" >
+        RECORD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="recordBrcode" >
+        RECORD_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseId" >
+        WAREHOUSE_ID
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        MONI_OF_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="powerCheckType" >
+        POWER_CHECK_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="powerCheckFaildes" >
+        POWER_CHECK_FAILDES
+      </isNotNull>
+      <isNotNull prepend="," property="powerCheckOtherdes" >
+        POWER_CHECK_OTHERDES
+      </isNotNull>
+      <isNotNull prepend="," property="checkAddressType" >
+        CHECK_ADDRESS_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="checkAddressFaildes" >
+        CHECK_ADDRESS_FAILDES
+      </isNotNull>
+      <isNotNull prepend="," property="checkNeedType" >
+        CHECK_NEED_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="checkMethodType" >
+        CHECK_METHOD_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="checkMethodData" >
+        CHECK_METHOD_DATA
+      </isNotNull>
+      <isNotNull prepend="," property="checkResultType" >
+        CHECK_RESULT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="checkResultFaildes" >
+        CHECK_RESULT_FAILDES
+      </isNotNull>
+      <isNotNull prepend="," property="checkReportNo" >
+        CHECK_REPORT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="currentCreditAmt" >
+        CURRENT_CREDIT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        RATION
+      </isNotNull>
+      <isNotNull prepend="," property="checkLowPriceType" >
+        CHECK_LOW_PRICE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="invoiceFlag" >
+        INVOICE_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="noticeNo" >
+        NOTICE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        REASON
+      </isNotNull>
+      <isNotNull prepend="," property="adviceid" >
+        ADVICEID
+      </isNotNull>
+      <isNotNull prepend="," property="applyid" >
+        APPLYID
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseName" >
+        WAREHOUSE_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="moniPrincipal" >
+        MONI_PRINCIPAL
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockConfirmDate" >
+        CHECK_STOCK_CONFIRM_DATE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        #otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockDate" >
+        #checkStockDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockTime" >
+        #checkStockTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockTlrcd" >
+        #checkStockTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockType" >
+        #checkStockType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockWay" >
+        #checkStockWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockResults" >
+        #checkStockResults:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="recordTlrcd" >
+        #recordTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="recordBrcode" >
+        #recordBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseId" >
+        #warehouseId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        #moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="powerCheckType" >
+        #powerCheckType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="powerCheckFaildes" >
+        #powerCheckFaildes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="powerCheckOtherdes" >
+        #powerCheckOtherdes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkAddressType" >
+        #checkAddressType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkAddressFaildes" >
+        #checkAddressFaildes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkNeedType" >
+        #checkNeedType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkMethodType" >
+        #checkMethodType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkMethodData" >
+        #checkMethodData:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="checkResultType" >
+        #checkResultType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkResultFaildes" >
+        #checkResultFaildes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkReportNo" >
+        #checkReportNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="currentCreditAmt" >
+        #currentCreditAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        #ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="checkLowPriceType" >
+        #checkLowPriceType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="invoiceFlag" >
+        #invoiceFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeNo" >
+        #noticeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        #reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="adviceid" >
+        #adviceid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyid" >
+        #applyid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseName" >
+        #warehouseName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniPrincipal" >
+        #moniPrincipal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockConfirmDate" >
+        #checkStockConfirmDate:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgChkStockInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PBC_MTG_CHK_STOCK_INFO
+    <include refid="B_PBC_MTG_CHK_STOCK_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PBC_MTG_CHK_STOCK_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherProtocolNo" >
+        OTHER_PROTOCOL_NO = #record.otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkStockDate" >
+        CHECK_STOCK_DATE = #record.checkStockDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkStockTime" >
+        CHECK_STOCK_TIME = #record.checkStockTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkStockTlrcd" >
+        CHECK_STOCK_TLRCD = #record.checkStockTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkStockType" >
+        CHECK_STOCK_TYPE = #record.checkStockType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkStockWay" >
+        CHECK_STOCK_WAY = #record.checkStockWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkStockResults" >
+        CHECK_STOCK_RESULTS = #record.checkStockResults:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.recordTlrcd" >
+        RECORD_TLRCD = #record.recordTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.recordBrcode" >
+        RECORD_BRCODE = #record.recordBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseId" >
+        WAREHOUSE_ID = #record.warehouseId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniOfCustcd" >
+        MONI_OF_CUSTCD = #record.moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.powerCheckType" >
+        POWER_CHECK_TYPE = #record.powerCheckType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.powerCheckFaildes" >
+        POWER_CHECK_FAILDES = #record.powerCheckFaildes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.powerCheckOtherdes" >
+        POWER_CHECK_OTHERDES = #record.powerCheckOtherdes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkAddressType" >
+        CHECK_ADDRESS_TYPE = #record.checkAddressType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkAddressFaildes" >
+        CHECK_ADDRESS_FAILDES = #record.checkAddressFaildes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkNeedType" >
+        CHECK_NEED_TYPE = #record.checkNeedType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkMethodType" >
+        CHECK_METHOD_TYPE = #record.checkMethodType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkMethodData" >
+        CHECK_METHOD_DATA = #record.checkMethodData:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkResultType" >
+        CHECK_RESULT_TYPE = #record.checkResultType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkResultFaildes" >
+        CHECK_RESULT_FAILDES = #record.checkResultFaildes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkReportNo" >
+        CHECK_REPORT_NO = #record.checkReportNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.currentCreditAmt" >
+        CURRENT_CREDIT_AMT = #record.currentCreditAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ration" >
+        RATION = #record.ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkLowPriceType" >
+        CHECK_LOW_PRICE_TYPE = #record.checkLowPriceType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.invoiceFlag" >
+        INVOICE_FLAG = #record.invoiceFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.noticeNo" >
+        NOTICE_NO = #record.noticeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reason" >
+        REASON = #record.reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.adviceid" >
+        ADVICEID = #record.adviceid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.applyid" >
+        APPLYID = #record.applyid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseName" >
+        WAREHOUSE_NAME = #record.warehouseName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniPrincipal" >
+        MONI_PRINCIPAL = #record.moniPrincipal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkStockConfirmDate" >
+        CHECK_STOCK_CONFIRM_DATE = #record.checkStockConfirmDate:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_CHK_STOCK_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PBC_MTG_CHK_STOCK_INFO
+    set ID = #record.id:VARCHAR#,
+      OTHER_PROTOCOL_NO = #record.otherProtocolNo:VARCHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      CHECK_STOCK_DATE = #record.checkStockDate:CHAR#,
+      CHECK_STOCK_TIME = #record.checkStockTime:TIMESTAMP#,
+      CHECK_STOCK_TLRCD = #record.checkStockTlrcd:VARCHAR#,
+      CHECK_STOCK_TYPE = #record.checkStockType:CHAR#,
+      CHECK_STOCK_WAY = #record.checkStockWay:CHAR#,
+      CHECK_STOCK_RESULTS = #record.checkStockResults:CHAR#,
+      RECORD_TLRCD = #record.recordTlrcd:VARCHAR#,
+      RECORD_BRCODE = #record.recordBrcode:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      WAREHOUSE_ID = #record.warehouseId:VARCHAR#,
+      MONI_OF_CUSTCD = #record.moniOfCustcd:VARCHAR#,
+      STATUS = #record.status:CHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      POWER_CHECK_TYPE = #record.powerCheckType:CHAR#,
+      POWER_CHECK_FAILDES = #record.powerCheckFaildes:VARCHAR#,
+      POWER_CHECK_OTHERDES = #record.powerCheckOtherdes:VARCHAR#,
+      CHECK_ADDRESS_TYPE = #record.checkAddressType:CHAR#,
+      CHECK_ADDRESS_FAILDES = #record.checkAddressFaildes:VARCHAR#,
+      CHECK_NEED_TYPE = #record.checkNeedType:CHAR#,
+      CHECK_METHOD_TYPE = #record.checkMethodType:CHAR#,
+      CHECK_METHOD_DATA = #record.checkMethodData:DECIMAL#,
+      CHECK_RESULT_TYPE = #record.checkResultType:CHAR#,
+      CHECK_RESULT_FAILDES = #record.checkResultFaildes:VARCHAR#,
+      CHECK_REPORT_NO = #record.checkReportNo:VARCHAR#,
+      CURRENT_CREDIT_AMT = #record.currentCreditAmt:DECIMAL#,
+      RATION = #record.ration:DECIMAL#,
+      CHECK_LOW_PRICE_TYPE = #record.checkLowPriceType:CHAR#,
+      INVOICE_FLAG = #record.invoiceFlag:CHAR#,
+      NOTICE_NO = #record.noticeNo:VARCHAR#,
+      REASON = #record.reason:VARCHAR#,
+      ADVICEID = #record.adviceid:VARCHAR#,
+      APPLYID = #record.applyid:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      WAREHOUSE_NAME = #record.warehouseName:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      MONI_PRINCIPAL = #record.moniPrincipal:VARCHAR#,
+      CHECK_STOCK_CONFIRM_DATE = #record.checkStockConfirmDate:CHAR#
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_CHK_STOCK_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgChkStockInfo" >
+    update B_PBC_MTG_CHK_STOCK_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="otherProtocolNo" >
+        OTHER_PROTOCOL_NO = #otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockDate" >
+        CHECK_STOCK_DATE = #checkStockDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockTime" >
+        CHECK_STOCK_TIME = #checkStockTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockTlrcd" >
+        CHECK_STOCK_TLRCD = #checkStockTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockType" >
+        CHECK_STOCK_TYPE = #checkStockType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockWay" >
+        CHECK_STOCK_WAY = #checkStockWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockResults" >
+        CHECK_STOCK_RESULTS = #checkStockResults:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="recordTlrcd" >
+        RECORD_TLRCD = #recordTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="recordBrcode" >
+        RECORD_BRCODE = #recordBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseId" >
+        WAREHOUSE_ID = #warehouseId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="powerCheckType" >
+        POWER_CHECK_TYPE = #powerCheckType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="powerCheckFaildes" >
+        POWER_CHECK_FAILDES = #powerCheckFaildes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="powerCheckOtherdes" >
+        POWER_CHECK_OTHERDES = #powerCheckOtherdes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkAddressType" >
+        CHECK_ADDRESS_TYPE = #checkAddressType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkAddressFaildes" >
+        CHECK_ADDRESS_FAILDES = #checkAddressFaildes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkNeedType" >
+        CHECK_NEED_TYPE = #checkNeedType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkMethodType" >
+        CHECK_METHOD_TYPE = #checkMethodType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkMethodData" >
+        CHECK_METHOD_DATA = #checkMethodData:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="checkResultType" >
+        CHECK_RESULT_TYPE = #checkResultType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkResultFaildes" >
+        CHECK_RESULT_FAILDES = #checkResultFaildes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkReportNo" >
+        CHECK_REPORT_NO = #checkReportNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="currentCreditAmt" >
+        CURRENT_CREDIT_AMT = #currentCreditAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        RATION = #ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="checkLowPriceType" >
+        CHECK_LOW_PRICE_TYPE = #checkLowPriceType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="invoiceFlag" >
+        INVOICE_FLAG = #invoiceFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeNo" >
+        NOTICE_NO = #noticeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        REASON = #reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="adviceid" >
+        ADVICEID = #adviceid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyid" >
+        APPLYID = #applyid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseName" >
+        WAREHOUSE_NAME = #warehouseName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniPrincipal" >
+        MONI_PRINCIPAL = #moniPrincipal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStockConfirmDate" >
+        CHECK_STOCK_CONFIRM_DATE = #checkStockConfirmDate:CHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgChkStockInfo" >
+    update B_PBC_MTG_CHK_STOCK_INFO
+    set OTHER_PROTOCOL_NO = #otherProtocolNo:VARCHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      CHECK_STOCK_DATE = #checkStockDate:CHAR#,
+      CHECK_STOCK_TIME = #checkStockTime:TIMESTAMP#,
+      CHECK_STOCK_TLRCD = #checkStockTlrcd:VARCHAR#,
+      CHECK_STOCK_TYPE = #checkStockType:CHAR#,
+      CHECK_STOCK_WAY = #checkStockWay:CHAR#,
+      CHECK_STOCK_RESULTS = #checkStockResults:CHAR#,
+      RECORD_TLRCD = #recordTlrcd:VARCHAR#,
+      RECORD_BRCODE = #recordBrcode:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      WAREHOUSE_ID = #warehouseId:VARCHAR#,
+      MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#,
+      STATUS = #status:CHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      POWER_CHECK_TYPE = #powerCheckType:CHAR#,
+      POWER_CHECK_FAILDES = #powerCheckFaildes:VARCHAR#,
+      POWER_CHECK_OTHERDES = #powerCheckOtherdes:VARCHAR#,
+      CHECK_ADDRESS_TYPE = #checkAddressType:CHAR#,
+      CHECK_ADDRESS_FAILDES = #checkAddressFaildes:VARCHAR#,
+      CHECK_NEED_TYPE = #checkNeedType:CHAR#,
+      CHECK_METHOD_TYPE = #checkMethodType:CHAR#,
+      CHECK_METHOD_DATA = #checkMethodData:DECIMAL#,
+      CHECK_RESULT_TYPE = #checkResultType:CHAR#,
+      CHECK_RESULT_FAILDES = #checkResultFaildes:VARCHAR#,
+      CHECK_REPORT_NO = #checkReportNo:VARCHAR#,
+      CURRENT_CREDIT_AMT = #currentCreditAmt:DECIMAL#,
+      RATION = #ration:DECIMAL#,
+      CHECK_LOW_PRICE_TYPE = #checkLowPriceType:CHAR#,
+      INVOICE_FLAG = #invoiceFlag:CHAR#,
+      NOTICE_NO = #noticeNo:VARCHAR#,
+      REASON = #reason:VARCHAR#,
+      ADVICEID = #adviceid:VARCHAR#,
+      APPLYID = #applyid:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      WAREHOUSE_NAME = #warehouseName:VARCHAR#,
+      APPNO = #appno:VARCHAR#,
+      MONI_PRINCIPAL = #moniPrincipal:VARCHAR#,
+      CHECK_STOCK_CONFIRM_DATE = #checkStockConfirmDate:CHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

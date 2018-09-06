@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_NTE_NOTICE_BILL" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.nte.dao.model.BNteNoticeBill" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="BILL_ID" property="billId" jdbcType="VARCHAR" />
+    <result column="LOAN_DAYS" property="loanDays" jdbcType="VARCHAR" />
+    <result column="BILL_NO" property="billNo" jdbcType="VARCHAR" />
+    <result column="INSERT_DATE" property="insertDate" jdbcType="CHAR" />
+    <result column="BILL_DATE" property="billDate" jdbcType="CHAR" />
+    <result column="BILL_END_DATE" property="billEndDate" jdbcType="CHAR" />
+    <result column="APPLY_DATE" property="applyDate" jdbcType="CHAR" />
+    <result column="EXT_DATE" property="extDate" jdbcType="CHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="EXT1_AMOUNT" property="ext1Amount" jdbcType="DECIMAL" />
+    <result column="EXT2_AMOUNT" property="ext2Amount" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="LADINGNO" property="ladingno" jdbcType="VARCHAR" />
+    <result column="PACKINGNO" property="packingno" jdbcType="VARCHAR" />
+    <result column="BILL_TYPE" property="billType" jdbcType="CHAR" />
+    <result column="BILLS_MESC" property="billsMesc" jdbcType="VARCHAR" />
+    <result column="DRAWER" property="drawer" jdbcType="VARCHAR" />
+    <result column="PAYEE" property="payee" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, BILL_ID, LOAN_DAYS, BILL_NO, INSERT_DATE, BILL_DATE, BILL_END_DATE, APPLY_DATE, 
+    EXT_DATE, AMOUNT, EXT1_AMOUNT, EXT2_AMOUNT, STATUS, TLRCD, BRCODE, EXT1, EXT2, EXT3, 
+    MEMO, LADINGNO, PACKINGNO, BILL_TYPE, BILLS_MESC, DRAWER, PAYEE, PID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBillExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_NTE_NOTICE_BILL.Base_Column_List" />
+    from B_NTE_NOTICE_BILL
+    <isParameterPresent >
+      <include refid="B_NTE_NOTICE_BILL.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBill" >
+    select 
+    <include refid="B_NTE_NOTICE_BILL.Base_Column_List" />
+    from B_NTE_NOTICE_BILL
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBill" >
+    delete from B_NTE_NOTICE_BILL
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBillExample" >
+    delete from B_NTE_NOTICE_BILL
+    <include refid="B_NTE_NOTICE_BILL.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBill" >
+    insert into B_NTE_NOTICE_BILL (ID, APPNO, BILL_ID, LOAN_DAYS, BILL_NO, 
+      INSERT_DATE, BILL_DATE, BILL_END_DATE, APPLY_DATE, EXT_DATE, 
+      AMOUNT, EXT1_AMOUNT, EXT2_AMOUNT, STATUS, TLRCD, 
+      BRCODE, EXT1, EXT2, EXT3, MEMO, 
+      LADINGNO, PACKINGNO, BILL_TYPE, BILLS_MESC, 
+      DRAWER, PAYEE, PID)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #billId:VARCHAR#, #loanDays:VARCHAR#, #billNo:VARCHAR#, 
+      #insertDate:CHAR#, #billDate:CHAR#, #billEndDate:CHAR#, #applyDate:CHAR#, #extDate:CHAR#, 
+      #amount:DECIMAL#, #ext1Amount:DECIMAL#, #ext2Amount:DECIMAL#, #status:CHAR#, #tlrcd:VARCHAR#, 
+      #brcode:VARCHAR#, #ext1:VARCHAR#, #ext2:VARCHAR#, #ext3:VARCHAR#, #memo:VARCHAR#, 
+      #ladingno:VARCHAR#, #packingno:VARCHAR#, #billType:CHAR#, #billsMesc:VARCHAR#, 
+      #drawer:VARCHAR#, #payee:VARCHAR#, #pid:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBill" >
+    insert into B_NTE_NOTICE_BILL
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="billId" >
+        BILL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="loanDays" >
+        LOAN_DAYS
+      </isNotNull>
+      <isNotNull prepend="," property="billNo" >
+        BILL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        INSERT_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="billDate" >
+        BILL_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="billEndDate" >
+        BILL_END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="applyDate" >
+        APPLY_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="extDate" >
+        EXT_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="ext1Amount" >
+        EXT1_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="ext2Amount" >
+        EXT2_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      <isNotNull prepend="," property="ladingno" >
+        LADINGNO
+      </isNotNull>
+      <isNotNull prepend="," property="packingno" >
+        PACKINGNO
+      </isNotNull>
+      <isNotNull prepend="," property="billType" >
+        BILL_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="billsMesc" >
+        BILLS_MESC
+      </isNotNull>
+      <isNotNull prepend="," property="drawer" >
+        DRAWER
+      </isNotNull>
+      <isNotNull prepend="," property="payee" >
+        PAYEE
+      </isNotNull>
+      <isNotNull prepend="," property="pid" >
+        PID
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billId" >
+        #billId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanDays" >
+        #loanDays:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billNo" >
+        #billNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        #insertDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billDate" >
+        #billDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billEndDate" >
+        #billEndDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyDate" >
+        #applyDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="extDate" >
+        #extDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        #amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1Amount" >
+        #ext1Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2Amount" >
+        #ext2Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        #ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ladingno" >
+        #ladingno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="packingno" >
+        #packingno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billType" >
+        #billType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsMesc" >
+        #billsMesc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="drawer" >
+        #drawer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payee" >
+        #payee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pid" >
+        #pid:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBillExample" resultClass="java.lang.Integer" >
+    select count(*) from B_NTE_NOTICE_BILL
+    <include refid="B_NTE_NOTICE_BILL.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_NTE_NOTICE_BILL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billId" >
+        BILL_ID = #record.billId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanDays" >
+        LOAN_DAYS = #record.loanDays:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billNo" >
+        BILL_NO = #record.billNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insertDate" >
+        INSERT_DATE = #record.insertDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billDate" >
+        BILL_DATE = #record.billDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billEndDate" >
+        BILL_END_DATE = #record.billEndDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.applyDate" >
+        APPLY_DATE = #record.applyDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.extDate" >
+        EXT_DATE = #record.extDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amount" >
+        AMOUNT = #record.amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1Amount" >
+        EXT1_AMOUNT = #record.ext1Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext2Amount" >
+        EXT2_AMOUNT = #record.ext2Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1" >
+        EXT1 = #record.ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext2" >
+        EXT2 = #record.ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext3" >
+        EXT3 = #record.ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ladingno" >
+        LADINGNO = #record.ladingno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.packingno" >
+        PACKINGNO = #record.packingno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billType" >
+        BILL_TYPE = #record.billType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billsMesc" >
+        BILLS_MESC = #record.billsMesc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.drawer" >
+        DRAWER = #record.drawer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payee" >
+        PAYEE = #record.payee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pid" >
+        PID = #record.pid:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_NTE_NOTICE_BILL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_NTE_NOTICE_BILL
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      BILL_ID = #record.billId:VARCHAR#,
+      LOAN_DAYS = #record.loanDays:VARCHAR#,
+      BILL_NO = #record.billNo:VARCHAR#,
+      INSERT_DATE = #record.insertDate:CHAR#,
+      BILL_DATE = #record.billDate:CHAR#,
+      BILL_END_DATE = #record.billEndDate:CHAR#,
+      APPLY_DATE = #record.applyDate:CHAR#,
+      EXT_DATE = #record.extDate:CHAR#,
+      AMOUNT = #record.amount:DECIMAL#,
+      EXT1_AMOUNT = #record.ext1Amount:DECIMAL#,
+      EXT2_AMOUNT = #record.ext2Amount:DECIMAL#,
+      STATUS = #record.status:CHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      BRCODE = #record.brcode:VARCHAR#,
+      EXT1 = #record.ext1:VARCHAR#,
+      EXT2 = #record.ext2:VARCHAR#,
+      EXT3 = #record.ext3:VARCHAR#,
+      MEMO = #record.memo:VARCHAR#,
+      LADINGNO = #record.ladingno:VARCHAR#,
+      PACKINGNO = #record.packingno:VARCHAR#,
+      BILL_TYPE = #record.billType:CHAR#,
+      BILLS_MESC = #record.billsMesc:VARCHAR#,
+      DRAWER = #record.drawer:VARCHAR#,
+      PAYEE = #record.payee:VARCHAR#,
+      PID = #record.pid:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_NTE_NOTICE_BILL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBill" >
+    update B_NTE_NOTICE_BILL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billId" >
+        BILL_ID = #billId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanDays" >
+        LOAN_DAYS = #loanDays:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billNo" >
+        BILL_NO = #billNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        INSERT_DATE = #insertDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billDate" >
+        BILL_DATE = #billDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billEndDate" >
+        BILL_END_DATE = #billEndDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyDate" >
+        APPLY_DATE = #applyDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="extDate" >
+        EXT_DATE = #extDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        AMOUNT = #amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1Amount" >
+        EXT1_AMOUNT = #ext1Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2Amount" >
+        EXT2_AMOUNT = #ext2Amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1 = #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2 = #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3 = #ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ladingno" >
+        LADINGNO = #ladingno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="packingno" >
+        PACKINGNO = #packingno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billType" >
+        BILL_TYPE = #billType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsMesc" >
+        BILLS_MESC = #billsMesc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="drawer" >
+        DRAWER = #drawer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payee" >
+        PAYEE = #payee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pid" >
+        PID = #pid:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeBill" >
+    update B_NTE_NOTICE_BILL
+    set APPNO = #appno:VARCHAR#,
+      BILL_ID = #billId:VARCHAR#,
+      LOAN_DAYS = #loanDays:VARCHAR#,
+      BILL_NO = #billNo:VARCHAR#,
+      INSERT_DATE = #insertDate:CHAR#,
+      BILL_DATE = #billDate:CHAR#,
+      BILL_END_DATE = #billEndDate:CHAR#,
+      APPLY_DATE = #applyDate:CHAR#,
+      EXT_DATE = #extDate:CHAR#,
+      AMOUNT = #amount:DECIMAL#,
+      EXT1_AMOUNT = #ext1Amount:DECIMAL#,
+      EXT2_AMOUNT = #ext2Amount:DECIMAL#,
+      STATUS = #status:CHAR#,
+      TLRCD = #tlrcd:VARCHAR#,
+      BRCODE = #brcode:VARCHAR#,
+      EXT1 = #ext1:VARCHAR#,
+      EXT2 = #ext2:VARCHAR#,
+      EXT3 = #ext3:VARCHAR#,
+      MEMO = #memo:VARCHAR#,
+      LADINGNO = #ladingno:VARCHAR#,
+      PACKINGNO = #packingno:VARCHAR#,
+      BILL_TYPE = #billType:CHAR#,
+      BILLS_MESC = #billsMesc:VARCHAR#,
+      DRAWER = #drawer:VARCHAR#,
+      PAYEE = #payee:VARCHAR#,
+      PID = #pid:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

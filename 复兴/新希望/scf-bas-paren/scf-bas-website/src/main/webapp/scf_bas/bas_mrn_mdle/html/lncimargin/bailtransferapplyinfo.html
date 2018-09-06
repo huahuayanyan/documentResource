@@ -1,0 +1,39 @@
+<ht-legend>主合同信息</ht-legend>
+<ht-form name="continfoform">
+      <ht-input ht-id="custId" name="客户号"      disable="true"    ng-model="continfoform.custId"></ht-input>
+     <ht-input ht-id="appId" name="信贷合同号"     disable="true"     ng-model="continfoform.appId"></ht-input>
+     <ht-select ht-id="curcd"   name="币种" dictionary="curcd" disable="true" ng-model="continfoform.curcd"></ht-select>
+      <ht-input ht-id="lnAmt" name="合同金额" ng-model="continfoform.lnAmt" edit-type="currency"  disable="true"></ht-input>
+  </ht-form>
+ <ht-legend>保证金及现金等价物列表信息</ht-legend> 
+<ht-table ht-id="tableId1" datasource="baildatasource" selected="bailselected"    minheit="150px">
+     <ht-column eg-name="bailType" zh-name="类型"   dictionary="bailType" ></ht-column>
+     <ht-column eg-name="initType" zh-name="质押类型"   dictionary="initType"  ></ht-column>
+     <ht-column eg-name="bailAccountno" zh-name="保证金及现金等价物账号"  ></ht-column>
+     <ht-column eg-name="debetNo" zh-name="关联借据号/银承协议号" ></ht-column>
+      <ht-column eg-name="bailAmount"   zh-name="保证金及现金等价物金额"   type="currency"></ht-column>   
+     <ht-column eg-name="bailRate"   zh-name="质押率(%)" ></ht-column>
+     <ht-column eg-name="gageAmount"   zh-name="质押物价值"   type="currency"></ht-column>
+</ht-table>
+<ht-page conf="bailconf"></ht-page> 
+<ht-legend>选择借据</ht-legend>
+<ht-table ht-id="tableId2" datasource="loandatasource"  docheckbox="true"    selected="loanselected"    minheit="150px">
+     <ht-column eg-name="debetId" zh-name="借据号/承兑协议号" ></ht-column>
+     <ht-column eg-name="custcd" zh-name="客户号" ></ht-column>
+     <ht-column eg-name="mastContcode" zh-name="信贷合同号"  ></ht-column>
+     <ht-column eg-name="bailAmount"   zh-name="初始现金及其等价物价值"   type="currency"></ht-column>
+      <ht-column eg-name="addBailAmount"   zh-name="追加现金及其等价物价值"   type="currency"></ht-column>
+</ht-table>
+<ht-page conf="loanconf"></ht-page> 
+  <ht-legend>保证金转入信息</ht-legend>
+  <ht-form name="updateForm">
+    <ht-input-extent ht-id="bailAccountno" name="保证金账号" extent="bailAcctNoContent"  reg-exp="common.require"   on-change="bailAcctNodooextent" ng-model="updateForm.bailAccountno"></ht-input-extent>
+     <ht-input ht-id="bailAmount"  name="转入金额"     reg-exp="common.require"   ng-model="updateForm.bailAmount" edit-type="currency" ></ht-input>
+     <ht-input ht-id="npsBailAmount" name="核心保证金余额"    reg-exp="common.require"     ng-model="updateForm.npsBailAmount" edit-type="currency" ></ht-input>
+  </ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" >保存</ht-button>
+    <ht-button ht-id="back" class="btn-primary" >返回</ht-button>
+</ht-button-group>
+

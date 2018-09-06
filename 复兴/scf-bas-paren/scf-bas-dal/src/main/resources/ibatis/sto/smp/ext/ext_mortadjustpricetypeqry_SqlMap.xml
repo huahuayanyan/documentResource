@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_MORTADJUSTPRICETYPEQRY">
+
+	<!-- 押品调价查询 -->
+	<select id="selectByPage" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT
+		    mbi.MORTGAGE_NO, mbi.custcd, mbi.SLAVE_CONTNO, mbi.MORTGAGE_LEVEL_ONE, mbi.MORTGAGE_LEVEL_TWO, mbi.MORTGAGE_LEVEL_THREE, 
+		    mph.PRICE_OLD, mph.PRICE_NEW, mph.PRICE_WAY, mph.txdate, mbi.MONITOR_PROTOCOL_NO, cgc.BR_CD,cbi.CNAME,cb2.CNAME custname,
+		    b1.MORTGAGE_NAME LEVEL_one, b2.MORTGAGE_NAME LEVEL_two, b3.MORTGAGE_NAME LEVEL_three,cgc.TLR_NO
+		FROM
+		    B_PBC_MTG_PRICE_HIS mph
+		    join B_PBC_MTG_BASE_INFO mbi on mph.MORTGAGE_NO = mbi.MORTGAGE_NO
+		    JOIN B_CRR_GNTY_CON cgc on mbi.SLAVE_CONTNO = cgc.CON_ID
+		    left JOIN B_CNT_MPROT_PART_INFO mpi on mpi.PROTOCOL_NO = mbi.MONITOR_PROTOCOL_NO and mpi.role = '02'
+		    left JOIN B_CRM_BASE_INFO cbi on mpi.CUSTCD = cbi.CUSTCD
+		    left JOIN B_CRM_BASE_INFO cb2 on mbi.custcd = cb2.CUSTCD
+		    LEFT JOIN B_PBC_MTG_CLASS b1 on b1.MORTGAGE_CODE = mbi.MORTGAGE_LEVEL_ONE
+		    LEFT JOIN B_PBC_MTG_CLASS b2 on b2.MORTGAGE_CODE = mbi.MORTGAGE_LEVEL_TWO
+		    LEFT JOIN B_PBC_MTG_CLASS b3 on b3.MORTGAGE_CODE = mbi.MORTGAGE_LEVEL_THREE
+		where 1=1
+		<isNotEmpty prepend="AND" property="custNm">
+			cb2.cname like '%$custNm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="slaveContno">
+			lower(mbi.SLAVE_CONTNO) like '%$slaveContno$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="One">
+			mbi.MORTGAGE_LEVEL_ONE = #One#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="Two">
+			mbi.MORTGAGE_LEVEL_two = #Two#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="Three">
+			mbi.MORTGAGE_LEVEL_Three = #Three#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="priceWay">
+			mph.PRICE_WAY = #priceWay#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="dateFrom"> 
+			<![CDATA[ mph.TXDATE >= #dateFrom# ]]> 
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="dateTo"> 
+			<![CDATA[ mph.TXDATE <= #dateTo# ]]>
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="brCode"> 
+			cgc.BR_CD = #brCode#
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="productId"> 
+			cgc.VID_PRD_ID = #productId#
+		</isNotEmpty> 
+		order by cgc.CON_ID desc
+	</select>
+
+</sqlMap>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0   http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.huateng</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>com.huateng.base.dynamicForm</groupId>
+	<artifactId>dynamicForm-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>${project.artifactId} v${project.version}</name>
+	<packaging>pom</packaging>
+	<modules>
+		<module>dynamicForm-api</module>
+		<module>dynamicForm-dal</module>
+		<module>dynamicForm-core</module>
+		<module>dynamicForm-website</module>
+	</modules>
+	<!-- <build> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+		<artifactId>maven-compiler-plugin</artifactId> <version>2.3.2</version> <configuration> 
+		<source>1.6</source> <target>1.6</target> <encoding>UTF-8</encoding> </configuration> 
+		</plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
+		<configuration> <testFailureIgnore>true</testFailureIgnore> </configuration> 
+		</plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-deploy-plugin</artifactId> 
+		<version>2.7</version> </plugin> </plugins> </build> -->
+
+	<properties>
+		<junit.version>4.8.1</junit.version>
+		<slf4j.api.version>1.6.4</slf4j.api.version>
+		<spring.version>3.1.4.RELEASE</spring.version>
+		<javax.servlet.api>2.5</javax.servlet.api>
+		<javax.jsp.api>2.1</javax.jsp.api>
+		<c3p0.version>0.9.5-pre9</c3p0.version>
+		<scube.version>1.0.1-SNAPSHOT</scube.version>
+		<cache.version>1.0.0-SNAPSHOT</cache.version>
+		<com.mysql.jdbc>5.1.6</com.mysql.jdbc>
+		<ibatis.sqlmap.version>2.3.4.726</ibatis.sqlmap.version>
+		<mybatis.version>3.4.0</mybatis.version>
+		<mybatis.spring.version>1.3.0</mybatis.spring.version>
+		<xercesImpl.version>2.9.1</xercesImpl.version>
+		<velocity.version>1.5</velocity.version>
+		<velocity.tools.version>1.4</velocity.tools.version>
+		<commons-lang3.version>3.4</commons-lang3.version>
+		<commons-beanutils.version>1.8.3</commons-beanutils.version>
+		<BUILD_VERSION>${maven.build.timestamp}</BUILD_VERSION>
+		<build.time>${maven.build.timestamp}</build.time>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.huateng.base.dynamicForm</groupId>
+				<artifactId>dynamicForm-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.base.dynamicForm</groupId>
+				<artifactId>dynamicForm-dal</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.base.dynamicForm</groupId>
+				<artifactId>dynamicForm-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.base.dynamicForm</groupId>
+				<artifactId>dynamicForm-website</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.huateng.scube</groupId>
+				<artifactId>scube-client-core</artifactId>
+				<version>${scube.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.scube</groupId>
+				<artifactId>scube-service-core</artifactId>
+				<version>${scube.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.scube</groupId>
+				<artifactId>scube-service-api</artifactId>
+				<version>${scube.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.base</groupId>
+				<artifactId>cache-memcached</artifactId>
+				<version>${cache.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>1.8.7</version>
+			</dependency>
+			<dependency>
+				<groupId>xerces</groupId>
+				<artifactId>xercesImpl</artifactId>
+				<version>${xercesImpl.version}</version>
+			</dependency>
+			<!-- javax -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${javax.servlet.api}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${javax.jsp.api}</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- commons -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.base</groupId>
+				<artifactId>database-base</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons-beanutils.version}</version>
+			</dependency>
+			<!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jms</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<!-- logger -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.base.logTrace</groupId>
+				<artifactId>logTrace-logback</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>1.1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>1.3.1</version>
+			</dependency>
+			<!-- ibatis -->
+			<dependency>
+				<groupId>org.apache.ibatis</groupId>
+				<artifactId>ibatis-sqlmap</artifactId>
+				<version>${ibatis.sqlmap.version}</version>
+			</dependency>
+			<!-- <dependency> <groupId>org.mybatis</groupId> <artifactId>mybatis-spring</artifactId> 
+				<version>${mybatis.spring.version}</version> </dependency> <dependency> <groupId>org.mybatis</groupId> 
+				<artifactId>mybatis</artifactId> <version>${mybatis.version}</version> </dependency> -->
+			<!-- mysql -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${com.mysql.jdbc}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- datasource -->
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>1.4</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- test -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>1.9.0</version>
+				<type>jar</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.1.41</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-pool</groupId>
+				<artifactId>commons-pool</artifactId>
+				<version>1.6</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

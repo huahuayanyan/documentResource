@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="S_BCP_PRODUCT_BILL" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.sto.nwr.dao.model.SBcpProductBill" >
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="BILL_TYPE" property="billType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    PRODUCT_ID, BILL_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpProductBillExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="S_BCP_PRODUCT_BILL.Base_Column_List" />
+    from S_BCP_PRODUCT_BILL
+    <isParameterPresent >
+      <include refid="S_BCP_PRODUCT_BILL.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpProductBill" >
+    select 
+    <include refid="S_BCP_PRODUCT_BILL.Base_Column_List" />
+    from S_BCP_PRODUCT_BILL
+    where PRODUCT_ID = #productId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpProductBill" >
+    delete from S_BCP_PRODUCT_BILL
+    where PRODUCT_ID = #productId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpProductBillExample" >
+    delete from S_BCP_PRODUCT_BILL
+    <include refid="S_BCP_PRODUCT_BILL.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpProductBill" >
+    insert into S_BCP_PRODUCT_BILL (PRODUCT_ID, BILL_TYPE)
+    values (#productId:VARCHAR#, #billType:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpProductBill" >
+    insert into S_BCP_PRODUCT_BILL
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="billType" >
+        BILL_TYPE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="productId" >
+        #productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billType" >
+        #billType:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpProductBillExample" resultClass="java.lang.Integer" >
+    select count(*) from S_BCP_PRODUCT_BILL
+    <include refid="S_BCP_PRODUCT_BILL.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update S_BCP_PRODUCT_BILL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.productId" >
+        PRODUCT_ID = #record.productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billType" >
+        BILL_TYPE = #record.billType:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="S_BCP_PRODUCT_BILL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update S_BCP_PRODUCT_BILL
+    set PRODUCT_ID = #record.productId:VARCHAR#,
+      BILL_TYPE = #record.billType:CHAR#
+    <isParameterPresent >
+      <include refid="S_BCP_PRODUCT_BILL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpProductBill" >
+    update S_BCP_PRODUCT_BILL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="billType" >
+        BILL_TYPE = #billType:CHAR#
+      </isNotNull>
+    </dynamic>
+    where PRODUCT_ID = #productId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.sto.nwr.dao.model.SBcpProductBill" >
+    update S_BCP_PRODUCT_BILL
+    set BILL_TYPE = #billType:CHAR#
+    where PRODUCT_ID = #productId:VARCHAR#
+  </update>
+</sqlMap>

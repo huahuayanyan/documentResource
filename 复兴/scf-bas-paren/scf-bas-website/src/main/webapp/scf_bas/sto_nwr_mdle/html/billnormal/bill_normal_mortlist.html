@@ -1,0 +1,45 @@
+<ht-legend colorId="lawngreen">押品清单维护页面</ht-legend>
+<ht-form name ="billnormal">
+    <ht-legend colorId="lawngreen">普通仓单信息</ht-legend>
+    <ht-input ht-id="billcode" name="仓单编号" ng-model="billnormal.billcode" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="cname" name="出质人名称" ng-model="billnormal.cname" disable="true"></ht-input>
+    <ht-input ht-id="address" name="联系地址" ng-model="billnormal.address" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="postno" name="邮编" ng-model="billnormal.postno" reg-exp="common.require,CodeValidate" disable="true"></ht-input>
+    <ht-input ht-id="storageAddress" name="存储地址" ng-model="billnormal.storageAddress" reg-exp="common.require" disable="true"></ht-input>
+    <ht-select ht-id="billType" name="仓单类型" ng-model="billnormal.billType" reg-exp="common.require" dictionary="billType" disable="true"></ht-select>
+    <ht-input ht-id="signDate" name="签发日期" ng-model="billnormal.signDate" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="phone" name="经办人电话" ng-model="billnormal.phone" reg-exp="telephoneNumber" disable="true"></ht-input>
+    <ht-input ht-id="fax" name="经办人传真" ng-model="billnormal.fax" reg-exp="common.require,fax" disable="true"></ht-input>
+    <ht-input ht-id="startDate" name="开具日期" ng-model="billnormal.startDate" reg-exp="common.require"
+              edit-type="date" high-date-id="endDate" disable="true"></ht-input>
+    <ht-input ht-id="endDate" name="截止日期" ng-model="billnormal.endDate" reg-exp="common.require"
+              edit-type="date" lower-date-id="startDate" disable="true"></ht-input>
+    <ht-input ht-id="standLose" name="标准损耗" ng-model="billnormal.standLose" disable="true"></ht-input>
+    <ht-input ht-id="storageCostEndDate" name="存储费用截止日" ng-model="billnormal.storageCostEndDate" edit-type="date" disable="true"></ht-input>
+</ht-form>
+
+<ht-legend>仓单下押品列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary" hide="{{hide}}">新增</ht-button>
+        <ht-button ht-id="edit" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="view" class="btn-primary">查看</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="mortgageNo" zh-name="押品编号"></ht-column>
+    <ht-column eg-name="productName" zh-name="货物名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="quantity" zh-name="数量" type="currency"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="最近交割结算价" type="currency"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="back"  class="btn-primary" desc-name="返回"></ht-button>
+</ht-button-group>
+
+
+
+

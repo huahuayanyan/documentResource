@@ -1,0 +1,16 @@
+
+<ht-form name="otherform">
+    <ht-legend>组件基本信息</ht-legend>
+    <ht-input ht-id="flowName" name="流程组件名称" disable="{{disable}}"reg-exp="common.require"  ng-model="otherform.flowName"></ht-input>
+    <ht-input ht-id="flownamecn" name="流程组件中文名称" disable="{{disable}}"reg-exp="common.require"  ng-model="otherform.flownamecn"></ht-input>
+    <ht-input ht-id="flowCopId" name="流程组件ID" disable="{{disable}}" reg-exp="common.require"  ng-model="otherform.flowCopId"></ht-input>
+    <ht-input ht-id="packageId" name="所属包ID" disable="{{disable}}"reg-exp="common.require"  ng-model="otherform.packageId"></ht-input>
+    <ht-radio ht-id="status" name="状态"  disable="{{disable}}" reg-exp="common.require" dictionary="productStatus" ng-model="otherform.status"></ht-radio>
+   </ht-form>
+<!-- hide1，当查看的时候，确定键隐藏。-->
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide1}}" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"class="btn-primary">取消</ht-button>
+</ht-button-group>
+
+

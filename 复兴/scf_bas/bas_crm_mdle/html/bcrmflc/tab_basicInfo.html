@@ -1,0 +1,34 @@
+<ht-form name="otherform">
+    <ht-panel>
+    <ht-legend>基本信息</ht-legend>
+    <ht-input ht-id="custno" name="核心客户号"  disable ="true"  ng-model="otherform.custno"></ht-input>
+    <ht-input ht-id="cname" name="客户名称"disable="{{disable}}" reg-exp="common.require" ng-model="otherform.cname"></ht-input>
+    <ht-input ht-id="ccmsCustcd" name="信贷系统客户号"  disable="true" ng-model="otherform.ccmsCustcd"></ht-input>
+    <ht-input ht-id="orgCode" name="组织机构代码"  disable="true" reg-exp="common.require,OrgCodeValidate" ng-model="otherform.orgCode"></ht-input>
+    <ht-input-extent ht-id="industryTypeName" name="国标行业分类" disable="{{disable}}" extent="industryTypeContent" on-change="industryTypeExtent"
+                     ng-model="otherform.industryTypeName"></ht-input-extent>
+    <ht-select ht-id="enterpriseScope" name="企业规模" disable="{{disable}}" dictionary="enterpriseScope" ng-model="otherform.enterpriseScope"></ht-select>
+    <ht-radio ht-id="isMarketCorp" name="是否上市公司" disable="{{disable}}" dictionary="checked" data-value="true" ng-model="otherform.isMarketCorp"></ht-radio>
+    <ht-input ht-id="establishDate" name="企业成立日期" disable="{{disable}}" edit-type="date" ng-model="otherform.establishDate"></ht-input>
+    <ht-input ht-id="regCapital" name="注册资本" disable="{{disable}}" edit-type="currency" ng-model="otherform.regCapital"></ht-input>
+    <ht-input-extent ht-id="area" name="省份、直辖市、自治区" disable="{{disable}}" extent="areaContent"
+                     on-change="areaExtent" ng-model="otherform.area"></ht-input-extent>
+    <ht-input ht-id="tlrName" name="经办人"  disable="true" ng-model="otherform.tlrName"></ht-input>
+    <ht-input ht-id="brName" name="经办机构"  disable="true" ng-model="otherform.brName"></ht-input>
+    </ht-panel>
+
+    <ht-panel>
+    <ht-legend>补录信息</ht-legend>
+    <ht-radio ht-id="flcFlag" name="是否为金融租赁公司" reg-exp="common.require" dictionary="checked" disable="true" ng-model="otherform.flcFlag"></ht-radio>
+    <ht-input ht-id="ename" name="客户英文名"  reg-exp="common.english"  disable="{{disable}}" ng-model="otherform.ename"></ht-input>
+    <ht-input ht-id="contactName" name="联系人"disable="{{disable}}" ng-model="otherform.contactName"></ht-input>
+    <ht-input ht-id="contactTel" name="电话" reg-exp="common.telephoneNumber" disable="{{disable}}" ng-model="otherform.contactTel"></ht-input>
+    <ht-input ht-id="fax" name="传真号码"  disable="{{disable}}" ng-model="otherform.fax"></ht-input>
+    <ht-input ht-id="regAddr" name="注册地址" disable="{{disable}}" ng-model="otherform.regAddr"></ht-input>
+    </ht-panel>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide1}}"class="btn-primary">确定</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+    <!--没有取消了，只有返回！<ht-button ht-id="closeThisDialog">取消</ht-button>-->
+</ht-button-group>

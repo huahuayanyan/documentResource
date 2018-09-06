@@ -1,0 +1,45 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input-extent ht-id="sallerName" name="融资企业" extent="custcontent"
+                     on-change="dooextend" ng-model="conditionForm.sallerName"></ht-input-extent>
+    <ht-input ht-id="mastContno" name="业务合同号" ng-model="conditionForm.mastContno"></ht-input>
+    <ht-select ht-id="bussType" name="业务品种"   datasource="productselect" datatrsoption="codeName" dataoption="code"
+               ng-model="conditionForm.bussType">
+    </ht-select>
+    <ht-select ht-id="noticeType" name="通知书类型" ng-model="conditionForm.noticeType"
+               datasource="noticeTypeDataSrc" dataOption="nteKey" dataTrsOption="nteVal"></ht-select>
+    <ht-select ht-id="noticeStatus" name="通知书状态" ng-model="conditionForm.noticeStatus" dictionary="noticeStatus"></ht-select>
+    <!--<ht-input ht-id="brCode" name="经办机构" ng-model="conditionForm.brCode" ></ht-input>-->
+    <ht-input-extent
+            name='经办机构' ht-id ='treeName' extent='content' on-change="dooextent"
+            checkedHiden="true" readonly="true" ng-model='conditionForm.treeName'></ht-input-extent>
+    <ht-input ht-id="startQf" name="签发日期从"  high-date-id="endQf"  ng-model="conditionForm.startQf" edit-type="date"></ht-input>
+    <ht-input ht-id="endQf" name="签发日期到"  lower-date-id="startQf"  ng-model="conditionForm.endQf" edit-type="date"></ht-input>
+    <ht-input ht-id="startHz" name="回执日期从"  high-date-id="endHz"  ng-model="conditionForm.startHz" edit-type="date"></ht-input>
+    <ht-input ht-id="endHz" name="回执日期到" lower-date-id="startHz" ng-model="conditionForm.endHz" edit-type="date"></ht-input>
+    <ht-button-group >
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>应收账款转让/出质通知书列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button class="btn-primary" ht-id="view">查看</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="num" zh-name="通知书编号" href="true" docolumn="column" ></ht-column>
+    <ht-column eg-name="noticeType" zh-name="通知书类型" dictionary="nteType"></ht-column>
+    <ht-column eg-name="status" zh-name="通知书状态" dictionary="noticeStatus"></ht-column>
+   <!-- <ht-column eg-name="signDate" zh-name="签发日期" type="date"></ht-column>-->
+    <ht-column eg-name="commonDate" zh-name="回执日期" type="date"></ht-column>
+    <ht-column eg-name="mastContno" zh-name="业务合同号" ></ht-column>
+    <ht-column eg-name="custName" zh-name="融资客户" ></ht-column>
+    <ht-column eg-name="otherCustName" zh-name="贸易对手" ></ht-column>
+    <ht-column eg-name="commonAmt" zh-name="转让/出质总金额" type="currency"></ht-column>
+    <ht-column eg-name="khjl" zh-name="客户经理" ></ht-column>
+    <ht-column eg-name="jbjg" zh-name="经办机构" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+

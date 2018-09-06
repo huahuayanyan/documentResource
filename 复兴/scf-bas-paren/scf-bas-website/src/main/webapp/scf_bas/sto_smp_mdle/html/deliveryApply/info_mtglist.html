@@ -1,0 +1,17 @@
+<ht-legend colorId="lawngreen">提货列表</ht-legend>
+<ht-table ht-id="tableId" selected="selected" datasource="datasource" docheckbox="true">
+    <ht-column eg-name="mortgageNo" zh-name="押品编号"></ht-column>
+    <ht-column eg-name="mortgageName" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="mortgageUnits" dictionary="mortgageUnits" zh-name="单位"></ht-column>
+    <ht-column eg-name="quantity" zh-name="重量/数量"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="核定单价" type="currency"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="cancel" class="btn-primary">关闭</ht-button>
+</ht-button-group>

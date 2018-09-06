@@ -1,0 +1,44 @@
+
+<ht-form name="otherform">
+    <ht-legend>基本信息</ht-legend>
+    <ht-panel>
+        <ht-input name="卖方名称"  ng-model="otherform.otherCustName" disable="true"></ht-input>
+        <ht-input name="买方名称"  ng-model="otherform.custName" disable="true"></ht-input>
+
+        <ht-input name="先票/款后货协议号"  ng-model="otherform.protocolCode" disable="true"></ht-input>
+        <ht-input name="收款确认函编号"  ng-model="otherform.num" disable="true"></ht-input>
+        <ht-input ht-id="commonDate" edit-type="date" name="收款确认日" disable="true" ng-model="otherform.commonDate"></ht-input>
+
+        <ht-input name="收款金额"  ng-model="otherform.lnciAmt" edit-type="currency"  disable="true"></ht-input>
+        <ht-input name="借据号/承兑协议号"  ng-model="otherform.debetId" disable="true"></ht-input>
+        <ht-input name="剩余发货金额"  ng-model="otherform.balanceAmt" edit-type="currency"  disable="true"></ht-input>
+        <ht-input name="发货通知编号"  reg-exp="common.require" ng-model="otherform.ext1" disable="{{view}}"></ht-input>
+        <ht-input ht-id="appliDate" edit-type="date"reg-exp="common.require" name="发货日" disable="{{view}}" ng-model="otherform.appliDate"></ht-input>
+        <ht-input name="本次发货数量"  ng-model="otherform.deliveryQuantity" disable="true"></ht-input>
+        <ht-input name="本次发货总价值"  edit-type="currency" ng-model="otherform.deliveryAmt" disable="true"></ht-input>
+    </ht-panel>
+</ht-form>
+<ht-legend>发货明细信息</ht-legend>
+<ht-table datasource="datasource" selected="selected" docheckbox="true" minheit="10px">
+    <ht-button-group>
+        <ht-button ht-id="doAdd" class="btn-primary" hide="{{view}}">新增</ht-button>
+        <ht-button ht-id="doUpdate" class="btn-primary" hide="{{view}}">修改</ht-button>
+        <ht-button ht-id="doDelete" class="btn-primary" hide="{{view}}">删除</ht-button>
+    </ht-button-group>
+    <ht-column  eg-name="mortgageName" zh-name="货品名称" ></ht-column>
+    <ht-column  eg-name="mortgageLevelOneNm" zh-name="货品一级" ></ht-column>
+    <ht-column  eg-name="mortgageLevelTwoNm" zh-name="货品二级" ></ht-column>
+    <ht-column  eg-name="mortgageModel" zh-name="规格/型号" ></ht-column>
+    <ht-column  eg-name="manufactureDate" zh-name="出厂日期" type="date" ></ht-column>
+    <ht-column  eg-name="manufacturer" zh-name="生产厂家"></ht-column>
+    <ht-column  eg-name="mortgageUnits" zh-name="单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column  eg-name="quantity" zh-name="数量/重量"  ></ht-column>
+    <ht-column  eg-name="price" zh-name="买入单价" type="currency" ></ht-column>
+    <ht-column  eg-name="deliveryAmt" zh-name="发货金额" type="currency" ></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 40px;padding-top: 1px"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{view}}">保存</ht-button>
+    <ht-button ht-id="saveAndSubmit" class="btn-primary" hide="{{view}}">保存并提交</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

@@ -1,0 +1,37 @@
+
+<ht-form name="bCrrLgInfo">
+    <ht-input name="保函号码" reg-exp="common.require" ng-model="bCrrLgInfo.lgNo" disable="{{disableview}}"></ht-input>
+    <ht-input name="保函类型" reg-exp="common.require" ng-model="bCrrLgInfo.lgTyp" disable="{{disableview}}"></ht-input>
+    <ht-input name="开立银行" reg-exp="common.require" ng-model="bCrrLgInfo.iseBak" disable="{{disableview}}"></ht-input>
+    <ht-input name="申请人" reg-exp="common.require" ng-model="bCrrLgInfo.aplat" disable="{{disableview}}"></ht-input>
+    <ht-input name="受益人" reg-exp="common.require" ng-model="bCrrLgInfo.bnfcy" disable="{{disableview}}"></ht-input>
+    <ht-select name="币种" reg-exp="common.require" ng-model="bCrrLgInfo.lgCurcd" dictionary="curcd" disable="{{disableview}}"></ht-select>
+    <ht-input name="金额" reg-exp="common.require" ng-model="bCrrLgInfo.lgSum" edit-type="currency" disable="{{disableview}}"></ht-input>
+    <ht-input ht-id="wrtDt" name="开立日期" reg-exp="common.require" ng-model="bCrrLgInfo.wrtDt" edit-type="date"
+              disable="{{disableview}}"></ht-input>
+    <ht-input ht-id="mtrDt" name="到期日期" reg-exp="common.require" ng-model="bCrrLgInfo.mtrDt" edit-type="date"
+              disable="{{disableview}}" lower-date-id="wrtDt"></ht-input>
+    <ht-input name="期限" reg-exp="common.require" ng-model="bCrrLgInfo.trm" disable="true"></ht-input>
+    <ht-text-area name="用途" reg-exp="common.require" ng-model="bCrrLgInfo.purPos" disable="{{disableview}}"></ht-text-area>
+</ht-form>
+
+<ht-button-group>
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{disableconfirm}}">确定</ht-button>
+</ht-button-group>
+
+<ht-legend style="margin-top: 10px">保证金列表</ht-legend>
+<ht-table ht-id="tableIdInfo" datasource="datasourceinfo" selected="selectedinfo" docheckbox="true" minheit="10px">
+
+    <ht-button-group>
+        <ht-button ht-id="addinfo" class="btn-primary" hide="{{hide}}">新增</ht-button>
+        <ht-button ht-id="updateinfo" class="btn-primary" hide="{{hide}}">修改</ht-button>
+        <ht-button ht-id="deleteinfo" class="btn-primary" hide="{{hide}}">删除</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="accountNo" zh-name="保证金帐号" href="true" docolumn="columninfo"></ht-column>
+    <ht-column eg-name="amount" zh-name="保证金金额" type="currency"></ht-column>
+    <ht-column eg-name="bailFrozenAmt" zh-name="冻结金额" type="currency"></ht-column>
+    <ht-column eg-name="accountName" zh-name="保证金账号名称"></ht-column>
+    <ht-column eg-name="actBrNm" zh-name="开户机构" ></ht-column>
+</ht-table>
+<ht-page conf="confinfo" style="height: 40px;padding-top: 1px"></ht-page>

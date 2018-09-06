@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0   http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<properties>
+		<flowsharp.core.version>1.6-SNAPSHOT</flowsharp.core.version>
+		<flowsharp.api.version>1.6-SNAPSHOT</flowsharp.api.version>
+		<scube.version>2.2.0-SNAPSHOT</scube.version>
+		<authority.version>2.5.0-SNAPSHOT</authority.version>
+	</properties>
+	
+	<distributionManagement>
+		<repository>
+			<id>release</id>
+			<url>http://170.252.200.67:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>http://170.252.200.67:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<groupId>com.huateng.flowsharp</groupId>
+	<artifactId>flowsharp-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>flowsharp-parent</name>
+	<packaging>pom</packaging>
+	<modules>
+ 		<!-- <module>flowsharp-reflexService</module> -->
+		<module>flowsharp-api</module>
+ 		<!-- <module>flowsharp-exception</module> -->
+		<!-- <module>ApproveRoute</module> -->
+		<!-- <module>flowsharp-core</module> -->
+		<!-- <module>flowsharp-website</module> -->
+	</modules>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.huateng.flowsharp</groupId>
+				<artifactId>flowsharp-api</artifactId>
+				<version>${flowsharp.api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.flowsharp</groupId>
+				<artifactId>flowsharp-core</artifactId>
+				<version>${flowsharp.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.flowsharp</groupId>
+				<artifactId>ApproveRoute</artifactId>
+				<version>1.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.flowsharp</groupId>
+				<artifactId>flowsharp-exception</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.huateng.flowsharp</groupId>
+				<artifactId>flowsharp-reflexService</artifactId>
+				<version>1.0.1-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

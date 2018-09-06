@@ -1,0 +1,89 @@
+
+<ht-legend>申请内容</ht-legend>
+<ht-form name="baseinfo">
+    <ht-input name="仓单总价值" ng-model="baseinfo.receiptPledgeAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="质押率（%）" ng-model="baseinfo.ration" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="风险敞口" ng-model="baseinfo.riskAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="仓单质押总价值" ng-model="baseinfo.theRPAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="可解押仓单最高价值" ng-model="baseinfo.removePledgeHighestAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="解押仓单总价值" ng-model="baseinfo.removePledgeAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-text-area name="解除质押原因" ng-model="baseinfo.memo" style="resize:none" disable="{{disable}}"></ht-text-area>
+</ht-form>
+
+<div id="billCheck">
+    <ht-legend>在押仓单列表</ht-legend>
+    <ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+        <ht-button-group>
+            <ht-button ht-id="offmng" class="btn-primary">解押</ht-button>
+        </ht-button-group>
+        <ht-column eg-name="billcode" zh-name="仓单编号" href="true" docolumn="columnbill"></ht-column>
+        <ht-column eg-name="billType" zh-name="仓单类型" dictionary="billType"></ht-column>
+        <ht-column eg-name="keeperName" zh-name="保管人名称"></ht-column>
+        <ht-column eg-name="startDate" zh-name="开具日期" type="date"></ht-column>
+        <ht-column eg-name="endDate" zh-name="截止日期" type="date"></ht-column>
+        <ht-column eg-name="whReceiptValue" zh-name="仓单价值" type="currency"></ht-column>
+    </ht-table>
+    <ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+</div>
+<ht-legend>预解除质押仓单列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasourceoff" selected="selectedoff" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="deleteoff" class="btn-primary" hide="{{hide}}">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="billcode" zh-name="仓单编号" href="true" docolumn="columnoff"></ht-column>
+    <ht-column eg-name="billType" zh-name="仓单类型" dictionary="billType"></ht-column>
+    <ht-column eg-name="keeperName" zh-name="保管人名称"></ht-column>
+    <ht-column eg-name="startDate" zh-name="开具日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="截止日期" type="date"></ht-column>
+    <ht-column eg-name="whReceiptValue" zh-name="仓单价值" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="confoff" style="height: 50px;padding-top: 5px"></ht-page>
+<ht-button-group align="center">
+    <ht-button ht-id="save" hide="{{Write}}" disable="{{WriteDisable}}" class="btn-primary">保存</ht-button>
+</ht-button-group>
+
+<ht-legend>普通仓单下押品列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasourcemort" selected="selectedmort" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="viewmort" class="btn-primary">押品详情</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="mortgageNo" zh-name="押品编号" href="{{href}}" docolumn="column"></ht-column>
+    <ht-column eg-name="productName" zh-name="货物名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="quantity" zh-name="数量" type="currency"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="销售价格" type="currency"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="confmort" style="height: 50px;padding-top: 5px"></ht-page>
+
+<div id="showIdea" style="display: none">
+    <ht-legend>历史审批意见</ht-legend>
+    <ht-table ht-id="tableId" datasource="datasourcetask" selected="selectedtask" docheckbox="true">
+        <ht-column eg-name="taskName" zh-name="任务名称"></ht-column>
+        <ht-column eg-name="taskComment" zh-name="审批意见"></ht-column>
+        <ht-column eg-name="name5" zh-name="处理人"></ht-column>
+        <ht-column eg-name="assignId" zh-name="处理人编号"></ht-column>
+        <ht-column eg-name="dealTime" zh-name="处理时间"></ht-column>
+    </ht-table>
+    <ht-page conf="conftask"></ht-page>
+    <ht-legend>审批意见</ht-legend>
+    <ht-form name="applyDtlForm">
+        <ht-text-area ht-id="taskComment" name="审批意见" height="70" ng-model="applyDtlForm.taskComment"></ht-text-area>
+    </ht-form>
+</div>
+<ht-button-group align="center">
+    <ht-button ht-id="submit" hide="{{Write}}" disable="{{submitDisable}}" class="btn-primary">提交申请</ht-button>
+
+    <ht-button ht-id="reviewSubmit" hide="{{Review}}" disable="{{ReviewDisable}}" class="btn-primary">提交</ht-button>
+
+    <ht-button ht-id="checkSubmit" hide="{{Check}}" disable="{{CheckDisable}}" class="btn-primary">确定</ht-button>
+
+    <ht-button ht-id="confirmSubmit" hide="{{Confirm}}" disable="{{ConfirmDisable}}" class="btn-primary">确定</ht-button>
+
+    <ht-button ht-id="BackToModify" hide="{{BackToModify}}" disable="{{taskDisable}}" class="btn-primary">退回</ht-button>
+</ht-button-group>
+
+
+

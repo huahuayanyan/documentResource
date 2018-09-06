@@ -1,0 +1,41 @@
+
+<ht-legend>基本信息</ht-legend>
+<ht-form name="acctinfo">
+    <ht-input name="核心客户号" ng-model="acctinfo.custno" disable="true"></ht-input>
+    <ht-input name="客户名称" ng-model="acctinfo.cname" disable="true"></ht-input>
+    <ht-select name="业务品种" ng-model="acctinfo.supplyChainPdId" disable="true" dictionary="vidBusTyp"></ht-select>
+    <ht-input name="抵/质押合同号" ng-model="acctinfo.slaveContno" disable="true"></ht-input>
+    <ht-input name="本次追加保证金总额" ng-model="acctinfo.addBailAmount" reg-exp="common.require" disable="{{addDisable}}" edit-type="currency"></ht-input>
+    <ht-button ht-id="assign" class="btn-primary" hide="{{hide}}" desc-name="自动分配"></ht-button>
+</ht-form>
+
+<ht-legend>融资借据列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary" hide="{{hide}}">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary" hide="{{hide}}">修改</ht-button>
+        <ht-button ht-id="delete" class="btn-primary" hide="{{hide}}">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="loanAppno" zh-name="出账流水号"></ht-column>
+    <ht-column eg-name="debetId" zh-name="借据号/承兑协议号"></ht-column>
+    <ht-column eg-name="mastContcode" zh-name="信贷合同号"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="startDate" zh-name="起始日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="借据金额" type="currency"></ht-column>
+    <ht-column eg-name="lnciBal" zh-name="借据余额" type="currency"></ht-column>
+    <ht-column eg-name="receivableInt" zh-name="欠息总额" type="currency"></ht-column>
+    <ht-column eg-name="lnciStatus" zh-name="借据状态" dictionary="lnciStatus"></ht-column>
+    <ht-column eg-name="riskAmt" zh-name="敞口余额" type="currency"></ht-column>
+    <ht-column eg-name="bailAmount" zh-name="保证金金额" type="currency"></ht-column>
+    <ht-column eg-name="bailAccount" zh-name="保证金账号"></ht-column>
+    <ht-column eg-name="addBailAmount" zh-name="追加冻结金额" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-button-group align="center">
+    <ht-button ht-id="save" hide="{{hide}}" class="btn-primary">保存</ht-button>
+</ht-button-group>
+
+
+

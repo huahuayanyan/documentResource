@@ -1,0 +1,14 @@
+
+<ht-form name="secondform">
+    <ht-input name="保证金账号" reg-exp="common.require" ng-model="secondform.accountNo" disable="{{disableview}}"></ht-input>
+    <ht-input name="保证金账号名称" reg-exp="common.require" ng-model="secondform.accountName" disable="{{disableview}}"></ht-input>
+    <ht-input name="保证金金额" reg-exp="common.require" ng-model="secondform.amount" disable="{{disableview}}" edit-type="currency"></ht-input>
+    <ht-input name="冻结金额" reg-exp="common.require" ng-model="secondform.bailFrozenAmt" edit-type="currency" disable="{{disableview}}"></ht-input>
+    <ht-input-extent ht-id="actBrNm" name="开户机构" extent="brnameContent" on-change="brnameExtent"
+                     reg-exp="common.require" ng-model="secondform.actBrNm" disable="{{disableview}}"></ht-input-extent>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{disableconfirm}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary" hide="{{hideback}}">返回</ht-button>
+</ht-button-group>

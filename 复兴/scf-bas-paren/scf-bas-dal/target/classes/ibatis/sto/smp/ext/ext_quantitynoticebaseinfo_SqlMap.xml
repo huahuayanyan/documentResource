@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_QUANTITYNOTICEBASEINFO">
+
+	<!-- 押品调价查询 -->
+	<select id="selectByPage" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT DISTINCT
+		    nbi.NUM,nbi.NOTICE_TYPE,nbi.STATUS,nbi.SIGN_DATE,nbi.COMMON_DATE,nbi.SLAVE_CONTNO,nbi.PROTOCOL_NO,cbi2.CNAME,
+		    cbi.CNAME MONI_OF_NAME,p.PRODUCT_NAME,cgc.TLR_NO,cgc.BR_CD,nbi.MONITOR_PROTOCOL_NO, nbi.appno
+		FROM
+		    B_NTE_NOTICE_BASE nbi
+		    JOIN B_CRR_GNTY_CON cgc on nbi.slave_Contno =cgc.CON_ID
+		    left join B_CRM_BASE_INFO cbi on cbi.custcd =nbi.MONI_OF_CUSTCD
+		    left join B_CRM_BASE_INFO cbi2 on cbi2.custcd =cgc.GUT_ID
+		    LEFT join B_PRD_INFO p on p.PRODUCT_ID = cgc.VID_PRD_ID
+		WHERE
+		        nbi.SIGN_DATE IS NOT NULL
+		<isNotEmpty prepend="AND" property="custName">
+			cbi2.cname like '%$custName$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="slaveContno">
+			lower(nbi.SLAVE_CONTNO) like '%$slaveContno$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="noticeType">
+			nbi.NOTICE_TYPE = #noticeType#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="status">
+			nbi.status = #status#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="dateFrom"> 
+			<![CDATA[ nbi.SIGN_DATE >= #dateFrom# ]]> 
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="dateTo"> 
+			<![CDATA[ nbi.SIGN_DATE <= #dateTo# ]]>
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="cDateFrom"> 
+			<![CDATA[ nbi.COMMON_DATE >= #cDateFrom# ]]> 
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="cDateTo"> 
+			<![CDATA[ nbi.COMMON_DATE <= #cDateTo# ]]>
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="brCode"> 
+			cgc.BR_CD = #brCode#
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="productId"> 
+			cgc.VID_PRD_ID = #productId#
+		</isNotEmpty> 
+		ORDER BY
+		    nbi.SLAVE_CONTNO,
+		    nbi.num DESC,
+		    nbi.sign_Date DESC
+	</select>
+
+</sqlMap>

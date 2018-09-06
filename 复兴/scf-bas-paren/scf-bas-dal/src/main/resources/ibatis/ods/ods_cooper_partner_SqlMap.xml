@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ODS_COOPER_PARTNER" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.ods.dao.model.OCooperPartner" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="COOP_CUSTCD" property="coopCustcd" jdbcType="VARCHAR" />
+    <result column="COOP_RATE" property="coopRate" jdbcType="DECIMAL" />
+    <result column="BELONG_YEAR" property="belongYear" jdbcType="CHAR" />
+    <result column="BELONG_MONTH" property="belongMonth" jdbcType="CHAR" />
+    <result column="MONTH_RATE" property="monthRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CUSTCD, TYPE, COOP_CUSTCD, COOP_RATE, BELONG_YEAR, BELONG_MONTH, MONTH_RATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.ods.dao.model.OCooperPartnerExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="ODS_COOPER_PARTNER.Base_Column_List" />
+    from ODS_COOPER_PARTNER
+    <isParameterPresent >
+      <include refid="ODS_COOPER_PARTNER.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.ods.dao.model.OCooperPartner" >
+    select 
+    <include refid="ODS_COOPER_PARTNER.Base_Column_List" />
+    from ODS_COOPER_PARTNER
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.ods.dao.model.OCooperPartner" >
+    delete from ODS_COOPER_PARTNER
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.ods.dao.model.OCooperPartnerExample" >
+    delete from ODS_COOPER_PARTNER
+    <include refid="ODS_COOPER_PARTNER.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.ods.dao.model.OCooperPartner" >
+    insert into ODS_COOPER_PARTNER (ID, CUSTCD, TYPE, COOP_CUSTCD, COOP_RATE, 
+      BELONG_YEAR, BELONG_MONTH, MONTH_RATE)
+    values (#id:VARCHAR#, #custcd:VARCHAR#, #type:VARCHAR#, #coopCustcd:VARCHAR#, #coopRate:DECIMAL#, 
+      #belongYear:CHAR#, #belongMonth:CHAR#, #monthRate:DECIMAL#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.ods.dao.model.OCooperPartner" >
+    insert into ODS_COOPER_PARTNER
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="coopCustcd" >
+        COOP_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="coopRate" >
+        COOP_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="belongYear" >
+        BELONG_YEAR
+      </isNotNull>
+      <isNotNull prepend="," property="belongMonth" >
+        BELONG_MONTH
+      </isNotNull>
+      <isNotNull prepend="," property="monthRate" >
+        MONTH_RATE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        #type:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coopCustcd" >
+        #coopCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coopRate" >
+        #coopRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="belongYear" >
+        #belongYear:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="belongMonth" >
+        #belongMonth:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monthRate" >
+        #monthRate:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.ods.dao.model.OCooperPartnerExample" resultClass="java.lang.Integer" >
+    select count(*) from ODS_COOPER_PARTNER
+    <include refid="ODS_COOPER_PARTNER.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update ODS_COOPER_PARTNER
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.type" >
+        TYPE = #record.type:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coopCustcd" >
+        COOP_CUSTCD = #record.coopCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coopRate" >
+        COOP_RATE = #record.coopRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.belongYear" >
+        BELONG_YEAR = #record.belongYear:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.belongMonth" >
+        BELONG_MONTH = #record.belongMonth:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monthRate" >
+        MONTH_RATE = #record.monthRate:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="ODS_COOPER_PARTNER.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update ODS_COOPER_PARTNER
+    set ID = #record.id:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      TYPE = #record.type:VARCHAR#,
+      COOP_CUSTCD = #record.coopCustcd:VARCHAR#,
+      COOP_RATE = #record.coopRate:DECIMAL#,
+      BELONG_YEAR = #record.belongYear:CHAR#,
+      BELONG_MONTH = #record.belongMonth:CHAR#,
+      MONTH_RATE = #record.monthRate:DECIMAL#
+    <isParameterPresent >
+      <include refid="ODS_COOPER_PARTNER.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.ods.dao.model.OCooperPartner" >
+    update ODS_COOPER_PARTNER
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        TYPE = #type:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coopCustcd" >
+        COOP_CUSTCD = #coopCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coopRate" >
+        COOP_RATE = #coopRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="belongYear" >
+        BELONG_YEAR = #belongYear:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="belongMonth" >
+        BELONG_MONTH = #belongMonth:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monthRate" >
+        MONTH_RATE = #monthRate:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.ods.dao.model.OCooperPartner" >
+    update ODS_COOPER_PARTNER
+    set CUSTCD = #custcd:VARCHAR#,
+      TYPE = #type:VARCHAR#,
+      COOP_CUSTCD = #coopCustcd:VARCHAR#,
+      COOP_RATE = #coopRate:DECIMAL#,
+      BELONG_YEAR = #belongYear:CHAR#,
+      BELONG_MONTH = #belongMonth:CHAR#,
+      MONTH_RATE = #monthRate:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

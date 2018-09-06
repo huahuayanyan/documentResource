@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMapConfig PUBLIC
+    "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings useStatementNamespaces="true" enhancementEnabled="true" lazyLoadingEnabled="true" />
+	<typeAlias alias="String" type="java.lang.String" />
+	<typeAlias alias="Long" type="java.lang.Long" />
+	<typeAlias alias="Integer" type="java.lang.Integer" />
+
+	<!-- base begin -->
+	<!-- 间接额度管理 -->
+	<sqlMap resource="ibatis/icr/b_icr_appli_brcode_list_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/b_icr_appli_chg_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/b_icr_appli_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/b_icr_brcode_list_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/b_icr_busi_rel_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/b_icr_dtl_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/b_icr_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/b_icr_prd_bind_SqlMap.xml" /> 
+	<sqlMap resource="ibatis/icr/b_icr_type_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/ext/ext_b_icr_type_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/ext/ext_b_icr_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/ext/ext_b_icr_appli_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/ext/ext_b_icr_appli_brcode_list_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/ext/ext_b_icr_brcode_list_SqlMap.xml" />
+	<sqlMap resource="ibatis/icr/ext/ext_b_icr_prd_bind_SqlMap.xml" />
+	<!-- 应收账款合同管理 -->
+	<sqlMap resource="ibatis/cnt/b_cnt_debt_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/b_cnt_debt_ext_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/b_cnt_cost_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/ext/ext_b_cnt_debt_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/ext/ext_b_cnt_debt_ext_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/ext/ext_b_cnt_cost_info_SqlMap.xml" />
+	
+	<!--CRM -->
+	<sqlMap resource="ibatis/crm/b_crm_anal_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_base_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_ent_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_moni_ent_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_moni_eva_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_relation_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_upanddown_rel_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_insure_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_customer_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_contacts_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_tag_cloud_SqlMap.xml" />
+	<sqlMap resource="ibatis/crm/b_crm_tag_cloud_rel_SqlMap.xml" />
+	<!-- 客户财务信息 -->
+	<sqlMap resource="ibatis/fin/b_fin_cnfg_subj_SqlMap.xml"/>
+	<sqlMap resource="ibatis/fin/b_fin_cnfg_cl_SqlMap.xml"/>
+	<sqlMap resource="ibatis/fin/b_fin_cnfg_def_SqlMap.xml"/>
+	<sqlMap resource="ibatis/fin/b_fin_cust_SqlMap.xml"/>
+	<sqlMap resource="ibatis/fin/b_fin_cust_dir_SqlMap.xml"/>
+	<sqlMap resource="ibatis/fin/b_fin_cust_ds_SqlMap.xml"/>
+	<sqlMap resource="ibatis/fin/b_fin_cust_ds_ext_SqlMap.xml"/>
+	<sqlMap resource="ibatis/fin/ext/ext_b_fin_SqlMap.xml"/>
+	
+	<!-- 系统管理 -->
+	<sqlMap resource="ibatis/sys/b_sys_chk_cnfg_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_chk_dir_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_chk_pl_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_chk_rec_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_serial_no_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_flow_url_rel_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_apply_dtl_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_global_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_common_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_ln_cd_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_ln_val_SqlMap.xml" />
+	<sqlMap resource="ibatis/sys/b_sys_acct_bctl_SqlMap.xml" />
+		<sqlMap resource="ibatis/sys/ext/ext_b_sys_common_SqlMap.xml" />
+	<!-- 地区信息 -->
+	<sqlMap resource="ibatis/sys/b_sys_region_SqlMap.xml" />
+	
+	<!-- 信用评级 -->
+	<sqlMap resource="ibatis/crg/b_crg_eval_rec_SqlMap.xml" />
+	<sqlMap resource="ibatis/crg/b_crg_eval_dtl_SqlMap.xml" />
+	
+	<!-- 授信管理 -->
+	<sqlMap resource="ibatis/crr/b_crr_inv_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_bill_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_lc_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_eqpt_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_lg_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_ln_app_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_ln_app_rela_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_gnty_con_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_gnty_rela_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_gnty_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_gnty_audit_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_gnty_chg_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_ln_con_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_ln_con_rela_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_duebill_app_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_duebill_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/b_crr_prd_md_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/ext/ext_b_crr_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/ext/ext_b_crr_gnty_con_SqlMap.xml"/>
+	<sqlMap resource="ibatis/crr/ext/ext_b_crr_duebill_app_SqlMap.xml"/>
+	
+	<!-- 保证金 -->
+	<sqlMap resource="ibatis/mrn/b_mrn_appli_acct_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/mrn/b_mrn_acct_buss_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/mrn/ext/ext_b_mrn_SqlMap.xml"/>
+	<!-- 预付款业务、保证金及现金等价物业务/预付款业务流水表 -->
+	<sqlMap resource="ibatis/mrn/b_mrn_buss_info_SqlMap.xml"/>
+	
+	<!-- 授信额度管理 -->
+	<sqlMap resource="ibatis/dcr/b_dcr_chk_detail_SqlMap.xml" />
+    <sqlMap resource="ibatis/dcr/b_dcr_chk_dir_SqlMap.xml" />
+    <sqlMap resource="ibatis/dcr/b_dcr_lin_app_SqlMap.xml" />
+    <sqlMap resource="ibatis/dcr/b_dcr_lin_cnfg_SqlMap.xml" />
+    <sqlMap resource="ibatis/dcr/b_dcr_lin_SqlMap.xml" />
+    <sqlMap resource="ibatis/dcr/b_dcr_lin_typ_SqlMap.xml" />
+    <sqlMap resource="ibatis/dcr/ext/ext_dcr_SqlMap.xml" />    
+    <sqlMap resource="ibatis/dcr/b_dcr_lin_inf_SqlMap.xml" />	
+    <!-- BRP -->   
+    <sqlMap resource="ibatis/brp/b_brp_industry_types_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/brp/b_brp_cost_param_SqlMap.xml"/>
+    <sqlMap resource="ibatis/brp/b_brp_notice_model_SqlMap.xml"/>
+    <sqlMap resource="ibatis/brp/b_brp_warn_param_SqlMap.xml"/>
+    <sqlMap resource="ibatis/brp/b_brp_prd_factoring_SqlMap.xml"/>
+    <sqlMap resource="ibatis/brp/b_brp_page_param_package_SqlMap.xml"/>
+    <sqlMap resource="ibatis/brp/b_brp_fin_param_SqlMap.xml"/>
+    
+
+    <!-- 产品管理 -->
+    <sqlMap resource="ibatis/prd/b_prd_info_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/prd/b_prd_bcop_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/prd/b_prd_wkflow_cop_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/prd/b_prd_cop_lib_SqlMap.xml" /> 
+     
+    <sqlMap resource="ibatis/prd/b_prd_base_info_SqlMap.xml" />
+    <sqlMap resource="ibatis/prd/b_prd_cost_bind_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/prd/b_prd_warn_bind_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/prd/b_prd_credit_bind_SqlMap.xml" />  
+    <sqlMap resource="ibatis/prd/b_prd_credit_ply_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/prd/b_prd_industry_type_SqlMap.xml" /> 
+    
+    <sqlMap resource="ibatis/prd/b_prd_biz_sur_bind_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/prd/b_prd_biz_sur_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/prd/b_prd_cop_lib_bind_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/prd/b_prd_rece_matl_bind_SqlMap.xml" /> 
+    <sqlMap resource="ibatis/prd/b_prd_rece_matl_SqlMap.xml" /> 
+    
+    <sqlMap resource="ibatis/prd/b_prd_mort_SqlMap.xml" /> 
+    
+	<!-- 账户管理 -->   
+    <sqlMap resource="ibatis/acc/b_acc_account_info_SqlMap.xml" /> 
+    <!-- 担保提货协议 -->
+	<sqlMap resource="ibatis/cnt/b_cnt_mprot_base_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/b_cnt_mprot_deal_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/b_cnt_mprot_chg_his_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/b_cnt_mprot_part_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/b_cnt_mprot_cm_info_SqlMap.xml" />
+	<!-- 监管合同 -->
+	<sqlMap resource="ibatis/cnt/b_cnt_mprot_base_info_ext_SqlMap.xml" />
+	<!-- 购销合同管理 -->
+	<sqlMap resource="ibatis/cnt/b_cnt_buy_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/ext/ext_b_cnt_buy_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/b_cnt_buy_mprot_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/cnt/ext/ext_b_cnt_mprot_part_info_SqlMap.xml" />
+	<!-- 放款管理 -->
+	<sqlMap resource="ibatis/lan/b_lan_appli_bill_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/lan/b_lan_lnci_base_SqlMap.xml" />
+	<sqlMap resource="ibatis/lan/b_lan_bill_base_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/lan/b_lan_appli_lnci_base_SqlMap.xml" />
+	<sqlMap resource="ibatis/lan/b_lan_lnci_buy_biz_SqlMap.xml" />
+	<sqlMap resource="ibatis/lan/b_lan_lnci_buy_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/lan/ext/ext_b_lan_bill_base_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/lan/ext/ext_b_lan_lnci_base_SqlMap.xml" />
+	<sqlMap resource="ibatis/lan/ext/ext_b_lan_appli_lnci_base_SqlMap.xml" />
+	<sqlMap resource="ibatis/lan/ext/ext_b_lan_mtg_loan_SqlMap.xml" />
+	
+
+	<!-- 入库押品管理 -->
+	<sqlMap resource="ibatis/pbc/b_pbc_appli_mtg_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/pbc/b_pbc_mtg_class_SqlMap.xml" />
+	<sqlMap resource="ibatis/pbc/ext/ext_b_pbc_mtg_class_SqlMap.xml" />
+	<sqlMap resource="ibatis/pbc/b_pbc_mtg_base_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/pbc/ext/b_pbc_mtg_base_info_ext_SqlMap.xml" />
+	<sqlMap resource="ibatis/pbc/b_pbc_appli_base_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/pbc/b_pbc_whse_inspect_SqlMap.xml" />
+	<!--押品变更流水信息表  -->
+	<sqlMap resource="ibatis/pbc/b_pbc_mtg_stor_deli_SqlMap.xml" />
+	<sqlMap resource="ibatis/pbc/ext/ext_b_pbc_mtg_stor_deli_SqlMap.xml" />
+	<!-- 押品信息变更明细表 -->
+	<sqlMap resource="ibatis/pbc/b_pbc_mtg_stock_dtl_SqlMap.xml" />
+	<sqlMap resource="ibatis/pbc/ext/ext_b_pbc_mtg_stock_dtl_SqlMap.xml" />
+
+	<!-- 通知书bnte -->
+	<sqlMap resource="ibatis/nte/b_nte_notice_base_SqlMap.xml" />
+	<sqlMap resource="ibatis/nte/b_nte_notice_bill_SqlMap.xml" />
+	<sqlMap resource="ibatis/nte/b_nte_notice_mtg_SqlMap.xml" />
+	<sqlMap resource="ibatis/nte/b_nte_notice_lnci_SqlMap.xml" />
+	<sqlMap resource="ibatis/nte/ext/ext_b_nte_notice_base_SqlMap.xml" />
+	<sqlMap resource="ibatis/nte/ext/ext_b_nte_notice_bill_SqlMap.xml" />
+	<sqlMap resource="ibatis/nte/ext/ext_b_nte_notice_mtg_SqlMap.xml" />
+	
+	<sqlMap resource="ibatis/nte/b_nte_notice_qry_vo_SqlMap.xml" />
+
+	<!--先票款后货 收款确认通知书查询  -->
+	<sqlMap resource="ibatis/nte/ext/ext_b_adv_nte_notice_SqlMap.xml" />
+	
+	<!-- 预付类 begin -->	
+	<sqlMap resource="ibatis/adv/bcp/a_bcp_appli_imprest_buss_SqlMap.xml" />
+	<sqlMap resource="ibatis/adv/bcp/a_bcp_imprest_buss_info_SqlMap.xml" />
+	
+	<sqlMap resource="ibatis/pbc/ext/ext_b_pbc_appli_base_info_SqlMap.xml" />
+	<sqlMap resource="ibatis/pbc/ext/ext_b_pbc_appli_mtg_info_SqlMap.xml" />
+	
+	
+	<!-- 担保提货-收款确认 -->
+	<sqlMap resource="ibatis/adv/tcs/ext_a_tcs_three_confirm_SqlMap.xml" />
+	<!-- 担保提货-差额退款 -->
+	<sqlMap resource="ibatis/adv/tcs/ext_a_tcs_three_guabuyback_SqlMap.xml" />
+	<sqlMap resource="ibatis/adv/bcp/ext/ext_a_bcp_appli_imprest_buss_SqlMap.xml" />
+	<!-- 担保提货-提货申请 -->
+	<sqlMap resource="ibatis/adv/tcs/ext_a_tcs_three_delivery_SqlMap.xml" />
+	<sqlMap resource="ibatis/lan/ext/ex_b_lan_lnci_buy_biz_SqlMap.xml" />
+		<!-- 先票款后货 -->
+	<sqlMap resource="ibatis/adv/fcs/ext/ext_a_fcs_SqlMap.xml"/>
+	
+	
+	<!-- 预付类 end -->
+	<!-- 应收类 -->
+	<!-- 应收类应收账款 --> 
+	<sqlMap resource="ibatis/bcp/r_bcp_debt_base_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/bcp/r_bcp_debt_buss_dtl_SqlMap.xml"/>
+	<sqlMap resource="ibatis/bcp/r_bcp_debt_buss_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/bcp/r_bcp_appli_buss_dtl_SqlMap.xml"/>
+	<sqlMap resource="ibatis/bcp/r_bcp_appli_buss_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/bcp/r_bcp_appli_cost_out_SqlMap.xml"/>
+	<sqlMap resource="ibatis/bcp/r_bcp_cost_out_SqlMap.xml"/>
+	<sqlMap resource="ibatis/bcp/ext/ext_bcp_debt_base_info_SqlMap.xml"/>
+    <sqlMap resource="ibatis/bcp/ext/ext_bcp_appli_buss_dtl_SqlMap.xml"/>
+    <sqlMap resource="ibatis/bcp/r_bcp_appli_repayment_SqlMap.xml"/>
+    <sqlMap resource="ibatis/bcp/r_bcp_debt_pool_SqlMap.xml"/>
+     <sqlMap resource="ibatis/bcp/ext/ext_r_bcp_debt_pool_SqlMap.xml"/>
+	<!-- /应收类 -->
+	
+	<!-- 质押合同保险单信息表 -->
+	<sqlMap resource="ibatis/cnt/b_cnt_insurance_base_info_SqlMap.xml"/>
+	<!-- 质押合同押品类别关联关系表 -->
+	<sqlMap resource="ibatis/cnt/b_cnt_slave_mtg_rel_SqlMap.xml"/>
+	<!-- 监管下限调整申请表 -->
+	<sqlMap resource="ibatis/bcp/s_bcp_appli_lower_price_SqlMap.xml"/>
+	<sqlMap resource="ibatis/bcp/ext/dmp_ext_SqlMap.xml"/>
+	
+
+	<!-- 发货对账 -->
+	<sqlMap resource="ibatis/adv/bcp/a_bcp_more_dvy_chk_stock_SqlMap.xml"/>
+	<sqlMap resource="ibatis/adv/bcp/a_bcp_more_dvy_chk_stock_dtl_SqlMap.xml"/>
+	<sqlMap resource="ibatis/adv/bcp/ext/ext_checkStock_SqlMap.xml"/>
+	
+
+	<!-- 监管协议最低价值变更历史表 -->
+	<sqlMap resource="ibatis/cnt/b_cnt_mprot_cm_price_his_SqlMap.xml"/>
+	<!-- 分支行产品授权信息表 -->
+	<sqlMap resource="ibatis/prd/b_prd_branch_auth_SqlMap.xml"/>
+	
+	<sqlMap resource="ibatis/lan/ext/ext_b_lan_SqlMap.xml"/>
+	<sqlMap resource="ibatis/bcp/ext/ext_r_bcp_SqlMap.xml"/>
+	<!-- 应收账款池综合台帐 -->
+	<sqlMap resource="ibatis/rec/qry/ext/ext_qry_debtPoolGenerateQuerySqlMap.xml"/>
+	<!-- 预警提示 -->
+	<sqlMap resource="ibatis/wrn/b_wrn_base_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/b_wrn_debt_pdo_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/b_wrn_risk_of_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/ext/ext_b_wrn_SqlMap.xml"/>
+	
+	<sqlMap resource="ibatis/wrn/b_wrn_check_stock_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/ext/ext_b_wrn_check_stock_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/b_wrn_mort_check_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/ext/ext_b_wrn_mort_check_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/b_wrn_mort_fluc_price_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/ext/ext_b_wrn_fluc_price_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/b_wrn_drop_ctl_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/ext/ext_b_wrn_drop_ctl_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/ext/ext_b_wrn_unpatrol_store_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/ext/ext_b_wrn_lnci_confirm_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/ext/ext_b_wrn_no_delivery_SqlMap.xml"/>
+	<sqlMap resource="ibatis/wrn/ext/ext_wrn_over_moni_SqlMap.xml"/>
+	
+	<!-- 应收账款提示付款通知书 -->
+	<sqlMap resource="ibatis/rec/wrn/ext/ext_promptPaymentNoticeQry_SqlMap.xml"/>
+	
+	<!-- 应收账款查询 -->
+	<sqlMap resource="ibatis/rec/qry/ext/ext_qry_pooldbtdQuery_SqlMap.xml"/>
+	
+	<!-- 提货台帐查询 -->
+	<sqlMap resource="ibatis/adv/qry/ext/ext_triDelivery_SqlMap.xml"/>
+	
+	<!-- 台帐综合查询 -->
+	<sqlMap resource="ibatis/adv/qry/ext/ext_threeWareColligate_SqlMap.xml"/>
+	<sqlMap resource="ibatis/adv/qry/ext/ext_franchiserProtocolMng_SqlMap.xml"/>
+	
+	<!-- 手工市价维护 -->
+	<sqlMap resource="ibatis/pbc/b_pbc_mtg_mkt_price_his_SqlMap.xml"/>
+	<sqlMap resource="ibatis/pbc/b_pbc_mtg_mkt_price_SqlMap.xml"/>
+	<sqlMap resource="ibatis/pbc/ext/ext_b_pbc_mtg_mkt_price_SqlMap.xml"/>
+	
+	<!-- 押品流水查询 -->
+	<sqlMap resource="ibatis/adv/qry/ext/ext_mortgageInout_SqlMap.xml"/>
+	
+	<!-- 冲正流水查询 -->
+	<sqlMap resource="ibatis/adv/qry/ext/ext_changemortstkqry_SqlMap.xml"/>
+	
+	<!-- 仓单产品参数扩展表 -->
+	<sqlMap resource="ibatis/nwr/s_bcp_product_bill_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nwr/s_bcp_mort_bill_normal_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nwr/ext/ext_s_bcp_nwr_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nwr/s_bcp_appli_mort_bill_normal_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nwr/s_bcp_appli_warehouse_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nwr/s_bcp_bill_normal_in_out_SqlMap.xml"/>
+	
+	<sqlMap resource="ibatis/adv/qry/ext/ext_fourProtocol_SqlMap.xml"/>
+	
+	<!-- 核库管理 -->
+	<sqlMap resource="ibatis/adv/fcs/ext/ext_mortgageChkStockMng_SqlMap.xml"/>
+	
+	<!-- 库存冲正-->
+	<sqlMap resource="ibatis/cnt/ext/ext_b_cnt_b_crr_gnty_con_SqlMap.xml"/>
+	
+	<!-- 巡库管理 -->
+	<sqlMap resource="ibatis/adv/fcs/ext/ext_inspectWhseMng_SqlMap.xml"/>
+	<sqlMap resource="ibatis/adv/fcs/b_pbc_mtg_chk_stock_dtl_SqlMap.xml"/>
+	
+	<!-- 核库巡库押品明细信息表 -->
+	<sqlMap resource="ibatis/pbc/b_pbc_mtg_chk_stock_info_SqlMap.xml"/>
+	
+	<!-- 借据信息查询 -->
+	<sqlMap resource="ibatis/adv/qry/ext/ext_fourlncidtlqry_SqlMap.xml"/>
+	
+	<!-- 订单融资业务申请流水表 -->
+	<sqlMap resource="ibatis/pbc/b_pbc_appli_order_buss_info_SqlMap.xml"/>
+	<!-- 对账管理 -->
+	<sqlMap resource="ibatis/pbc/ext/ext_b_pbc_mtg_chk_stock_info_SqlMap.xml"/>
+	<!-- 库存现货查询 -->
+	<sqlMap resource="ibatis/adv/qry/ext/ext_goodsinhouseqry_SqlMap.xml"/>
+	<!-- 押品调价查询 -->
+	<sqlMap resource="ibatis/sto/smp/ext/ext_mortadjustpricetypeqry_SqlMap.xml"/>
+	<!-- 质物价格确定/调整通知书 -->
+	<sqlMap resource="ibatis/sto/smp/ext/ext_quantitynoticebaseinfo_SqlMap.xml"/>
+	<!-- 押品历史表-->
+	<sqlMap resource="ibatis/pbc/ibatis/B_PBC_MTG_PRICE_HIS_SqlMap.xml"/>
+	<!-- 核价基本信息表 -->
+	<sqlMap resource="ibatis/nwr/B_PBC_PRICING_BASE_INFO_SqlMap.xml"/>
+	<!-- 核价质押品信息表-->
+	<sqlMap resource="ibatis/nwr/B_PBC_PRICING_MTG_SqlMap.xml"/>
+	
+	<!-- 数据存储相关begin -->
+	<sqlMap resource="ibatis/ods/ods_crm_tag_SqlMap.xml"/>
+	<sqlMap resource="ibatis/ods/ods_cooper_partner_SqlMap.xml"/>
+	<sqlMap resource="ibatis/ods/ods_crm_info_analysis_SqlMap.xml"/>
+	<sqlMap resource="ibatis/ods/ods_top_city_SqlMap.xml"/> 
+		<sqlMap resource="ibatis/ods/ext/ext_ods_SqlMap.xml"/> 
+	<!-- 数据存储相关end -->
+	<!-- 应收类配置版 -->
+	<sqlMap resource="ibatis/nbcp/b_cnt_bcp_appli_base_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/b_cnt_bcp_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/b_cnt_bcp_ext_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/b_cnt_insurance_cont_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/r_bcp_duebill_app_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/r_bcp_duebill_register_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/ext/ext_nrec_bcp_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/r_bcp_debt_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/ext/ext_nrec_buss_qry_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/ext/ext_r_bcp_debt_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/ext/ext_nrec_notice_qry_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/ext/ext_nrec_payment_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nbcp/ext/ext_nrec_warn_debtpdo_SqlMap.xml"/>
+	<!-- 角色查询权限 -->
+	<sqlMap resource="ibatis/sys/b_sys_query_limits_SqlMap.xml"/>
+	
+	<!-- 产品配置	start -->
+	<sqlMap resource="ibatis/nprd/b_prd_flow_SqlMap.xml"/>
+	<sqlMap resource="ibatis/brp/b_prd_file_param_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nprd/b_prd_file_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nprd/ext/ext_nbas_prd_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nprd/b_prd_print_info_SqlMap.xml"/>
+	<sqlMap resource="ibatis/nprd/b_prd_chkdir_info_SqlMap.xml"/>
+	<!-- 产品配置	end -->
+	
+	<!-- 文件上传信息 -->
+	<sqlMap resource="ibatis/sys/b_sys_upload_file_SqlMap.xml"/>
+	
+	<!-- 信息发布 -->
+	<sqlMap resource="ibatis/sys/b_sys_info_publish_mng_SqlMap.xml"/>
+	
+</sqlMapConfig>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="com.huateng.ebank.batch.common.BatchUtil"
+		class="com.huateng.ebank.batch.common.ConfigMap">
+		<property name="configMap">
+			<map>
+				<!-- used in BatchUtil.getGlobalInfo 修改时字段顺序不能错，以DB2为准-->
+
+				<entry key="Globalinfo">
+				    <value>Select BHDATE,TBSDY,LBHDATE,STATUS from GLOBALINFO where id=?</value>
+				</entry>
+				<!-- used in BatchUtil.writeDBLog -->
+				<entry key="UpDateBhprocLog">
+				     <value>Update BH_PROC_LOG Set STATUS=?,END_TIME=?,TIMESTAMPS=?,ERR_MSG=?,DESC1=? where bhdate=? and jobno =? and step =? and sub_step =? </value>
+				</entry>
+
+
+				<entry key="InsertBhprocLog">
+				     <value>Insert into BH_PROC_LOG (BHDATE, JOBNO, STEP, SUB_STEP, PROCESS_FUNCTION, PROCESSID, START_TIME, END_TIME,ACE_SWITCH_STA,STATUS, TIMESTAMPS,ERR_MSG,DESC1) VALUES(?,?,?,?,?,0,?,null,?,?,?,?,?)</value>
+				</entry>
+
+				<!-- 根据核算日切需要，更新一标志位所用 -->
+				<entry key="AceUpDateBhprocLog">
+				     <value>Update BH_PROC_LOG Set STATUS=?,END_TIME=?,TIMESTAMPS=?,ERR_MSG=?,DESC1=? ,ACE_SWITCH_STA=?  where bhdate=? and jobno =? and step =? and sub_step =? </value>
+				</entry>
+
+
+				<entry key="AceInsertBhprocLog">
+				     <value>Insert into BH_PROC_LOG (BHDATE, JOBNO, STEP, SUB_STEP, PROCESS_FUNCTION, PROCESSID, START_TIME, END_TIME,ACE_SWITCH_STA,STATUS, TIMESTAMPS,ERR_MSG,DESC1) VALUES(?,?,?,?,?,0,?,null,?,?,?,?,?)</value>
+				</entry>
+
+                 <!--根据不同维度对客户进行统计分析结果-->
+                <entry key="AllClientAanlyse">
+                     <value>
+                      insert into GD.CLIENT_ANALYSE (report_date, brcode, parameter, value, customer_count, Grant_count,save_count,
+			          Grant_amount, lnamt, Loan_lnbal, Loan_count, Peri_amount,Peri_count,Int_income, Rcv_int, Subrcv_int, Inner_rcv_int,Ill_loan_count, Ill_loan_bal)
+			          values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                     </value>
+                </entry>
+
+                <entry key="homeMonthIncome">
+                     <value>
+                      select HIGH_LIMIT, LOW_LIMIT, DATA_NO from DATA_DIC
+                      where DATA_TYPE_NO =?  and LIMIT_FLAG = '1' order by id
+                     </value>
+                </entry>
+
+                <entry key="clientAnalyseView">
+                     <value>
+                      select
+                      contractno,trm_class,custcd,brcode,lnid,lntype,status,isdate,tedate,term_type,term,term_range,totperi,peri_amt
+                      ,lnamt,lnbal,ovdbal,rtn_type,rtn_interval,rtn_actno,clr_mode,clr_class,long_owe_date,ovd_days_stat,trsf_date
+                      ,tot_ovd_times,ovd_peri,max_ovd_peri,rtnseq,payint,paypint,ovdint,ovdpint,rcvint,rcvpint,rcvcint,rcvcpint
+                      ,bpayint,bpaypint,paycint,paycpint,sex,birth_date,marriage,hukou_type,edu_level,trade,indv_income,family_income
+                      ,cust_type,branch_brcode,idtype,idno,open_brcode,open_day,finance_no,income_no,infract_no,credit_no,etotamt,elanmt,elnbal
+                      from  CLIENT_ANALYSE_VIEW  where abln_branch_brcode=?
+                     </value>
+                </entry>
+
+
+                <entry key="insertTracedtl">
+                      <value>
+                      INSERT INTO TRACEDTL(
+                      CONTRACTNO,BRCODE,TADATE,TXDATE,TRACER,OVDBAL,OVDINT,OVDPINT,OVDDAYS,START_PERI,DUN_MODE,PROCESS_FLAG
+                      ,PROCESS_FEE,PROCESS_RESULT,DUN_CONTACTER,DUN_REASON,COMMENT,TIMESTAMPS,MISCFLGS,MISC
+                      ,LAST_UPD_TLR,LAST_UPD_FUNC,LAST_UPD_DATE
+                      )VALUES
+                      (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,null,?,null,null,null,?)
+                      </value>
+                </entry>
+
+				<!-- used in GeneralControl.intBrcodeToString 机构转型格式化  -->
+				<!-- 对机构号进行格式化“000000”或是“000000000” -->
+				<entry key="brodeFormate">
+				    <value>000000</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="com.huateng.ebank.batch.control.GeneralControl"
+		class="com.huateng.ebank.batch.common.ConfigMap">
+		<property name="configMap">
+			<map>
+			    <!-- 根据不同的数据库写相应的正确的sql脚本 -->
+				<!-- used in GeneralControl.writeCtlDBLog -->
+				<entry key="UpBhprocStatus">
+					<value>update bh_proc_status set run_status = ?, step = ?, end_time = ? where bhdate = ? and jobno = ?</value>
+				</entry>
+				<!-- used in GeneralControl.insertBhProcStatus -->
+                <entry key="InSertBhprocStatus">
+				   <value>insert into BH_PROC_STATUS (BHDATE, JOBNO, STEP, SUB_STEP, PROCESS_FUNCTION,PROCESSID, START_TIME, END_TIME,ERROR_STACK, SUB_FLAG,RUN_STATUS,TIMESTAMPS,BRANCHLIST,DESC1,DESC2) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</value>
+                </entry>
+                <!-- used in GeneralControl.initMonitorAndWorkQueue -->
+                <entry key="SelectBhprocStepBctl">
+                    <value>Select  s.step, s.sub_step,s.suspend,s.maxproc, s.runtime,s.sub_flag,
+                        s.process_function,s.process_param,s.process_tlrno,s.DESC1,s.DESC2,s.REPORT_FLAG,s.ACE_SWITCH_FLAG
+                        from BH_PROC_STEP as s
+                       where s.jobno =?  and s.step >=? and s.sub_flag !=?	and s.temp_flag !=?
+                       union
+                       Select s.step,cast(b.BRCODE as Integer) as sub_step, s.suspend,s.maxproc, s.runtime,s.sub_flag,
+                       s.process_function,s.process_param,s.process_tlrno,s.DESC1,s.DESC2,s.REPORT_FLAG,s.ACE_SWITCH_FLAG
+                       from BH_PROC_STEP as s,
+                       BCTL as b
+                       where  (b.BRCODE = b.BLN_BRANCH_BRCODE and b.brclass =? and b.DELETE_FLAG =?  and s.jobno =?  and s.step >=?
+                       and s.temp_flag !=?  and s.sub_flag =?)
+                       order by step,sub_step
+				   </value>
+                </entry>
+
+                <!-- used in GeneralControl.initSingleMonitorAndWorkQueue -->
+                <entry key="SingelSelectBhprocStepBctl">
+                    <value>Select  s.step, s.sub_step,s.suspend,s.maxproc, s.runtime,s.sub_flag,
+                    s.process_function,s.process_param,s.process_tlrno,s.DESC1,s.DESC2,s.REPORT_FLAG,s.ACE_SWITCH_FLAG
+                    from BH_PROC_STEP as s
+                    where s.jobno =? and s.step = ? and s.sub_step=? and s.sub_flag !=?
+                    union
+                    Select s.step,cast(b.BRCODE as Integer) as sub_step, s.suspend,s.maxproc, s.runtime,s.sub_flag,
+                    s.process_function,s.process_param,s.process_tlrno,s.DESC1,s.DESC2,s.REPORT_FLAG,s.ACE_SWITCH_FLAG
+                    from BH_PROC_STEP as s,
+                    BCTL as b
+                    where  (b.BRCODE = b.BLN_BRANCH_BRCODE and b.brclass =? and b.DELETE_FLAG =?
+                    and s.jobno = ?  and s.step = ? and s.sub_step= ? and s.sub_flag =?)
+                   order by step,sub_step
+				   </value>
+                </entry>
+
+				<!-- used in GeneralControl.warnDBLog -->
+				<entry key="InsertBhWarningLog">
+					<value>insert into bh_warning_log(txdate, jobno, step, sub_step, contractno, peri, msg, line, timestamps) values(?, ?, ?, ?, ?, ?, ?, ?, ?)</value>
+				</entry>
+				<!--为考虑有表分区而用，现在只适用到表分区一条记录不会影响各行总控  -->
+				<entry key="SelectBhPartitionBctl">
+				    <value>
+				    select a.BRCODE BRCODE,b.PARTITION_GROUP PARTITION_GROUP from
+                     (select distinct(bln_branch_brcode) BRCODE
+                    from BCTL where <![CDATA[  BCTL.bln_branch_brcode <>'']]>) a,BH_PARTITION b
+                    where a.BRCODE>=b.PARTITION_S and  <![CDATA[ a.BRCODE <= b.PARTITION_E ]]>
+				    </value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="com.huateng.ebank.batch.frame.BatchTemplet"
+	      class="com.huateng.ebank.batch.common.ConfigMap">
+	   <property name="configMap">
+	       <map>
+	           <!--  -->
+	           <entry key="">
+	               <value>
+	               </value>
+	           </entry>
+
+	       </map>
+	   </property>
+
+	</bean>
+
+	<bean id="com.huateng.ebank.batch.entry.PLSwitchDay"
+		class="com.huateng.ebank.batch.common.ConfigMap">
+		<property name="configMap">
+			<map>
+				<!-- used in PLSwitchDay.doSwitchDay -->
+
+				<entry key="UpdateGlobalinfo">
+					<value>update globalinfo set tbsdy = ?, bhdate = ?, lbhdate = ?, status = ? where id = ?</value>
+				</entry>
+
+			</map>
+		</property>
+	</bean>
+	<bean id="com.huateng.ebank.batch.upd.BhClearBeforeProc"
+		class="com.huateng.ebank.batch.common.ConfigMap">
+		<property name="configMap">
+			<map>
+				<entry key="DeleteTableDataByBhdate">
+					<list>
+						<!-- 此处定义需要根据批量日清理数据的库表清单 -->
+						<!-- 执行SQL为：delete from tablename where bhdate != ? -->
+						<value>bh_proc_log</value>
+						<value>bh_proc</value>
+						<value>bh_proc_status</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+	    </bean>
+
+	 <bean id="com.huateng.ebank.batch.statistics.BhPersonalBadLoanTab"
+		class="com.huateng.ebank.batch.common.ConfigMap">
+		<property name="configMap">
+			<map>
+			    <!-- 根据不同的数据库写相应的正确的sql脚本 -->
+				<entry key="BhPersonalBadLoanTabzh">
+					<value><![CDATA[
+					select case when lntype in ('001','003','004','005','006','007','008','009','011') then '购房贷款'
+                                when lntype in ('013') then '汽车贷款'
+                                when lntype in ('000') then '助学贷款'
+								when lntype in ('019') then '消费贷款'
+								when lntype in ('018') then '质押贷款'
+								when lntype in ('021') then '其他贷款'
+								when lntype in ('022','999') then '授信贷款'
+								when lntype in ('020') then '生产经营贷款' end dkzl,
+					round(sum(case when @1 then lnbal end )/ 10000,2)ncdkye,
+					sum(case when @2 then ln_count end )ncdkhs,
+					round(sum(case when @3 then lnbal end )/ 10000,2)qmdkye,
+					sum(case when @4 then ln_count end )qmdkhs,
+					round(sum(case when @5 and ovd_days_stat< '10' then lnbal end )/ 10000,2)yqynnye,
+					sum(case when @6 and ovd_days_stat< '10' then ln_count end )yqynnhs,
+					round(sum(case when @7 and ovd_days_stat= '10' then lnbal end )/ 10000,2)yqynsye,
+					sum(case when @8 and ovd_days_stat='10' then ln_count end )yqynshs
+					from ln_ovd_struct_analyse
+					group by 1 ]]>
+                    </value>
+				</entry>
+
+				<entry key="BhPersonalBadLoanTabzszh">
+					<value><![CDATA[
+					select case when lntype in ('001','003','004','005','006','007','008','009','011') then '购房贷款'
+                                when lntype in ('013') then '汽车贷款'
+                                when lntype in ('000') then '助学贷款'
+								when lntype in ('019') then '消费贷款'
+								when lntype in ('018') then '质押贷款'
+								when lntype in ('021') then '其他贷款'
+								when lntype in ('022','999') then '授信贷款'
+								when lntype in ('020') then '生产经营贷款' end dkzl,
+					round(sum(case when @1 then lnbal end )/ 10000,2)ncdkye,
+					sum(case when @2 then ln_count end )ncdkhs,
+					round(sum(case when @3 then lnbal end )/ 10000,2)qmdkye,
+					sum(case when @4 then ln_count end )qmdkhs,
+					round(sum(case when @5 and ovd_days_stat< '10' then lnbal end )/ 10000,2)yqynnye,
+					sum(case when @6 and ovd_days_stat< '10' then ln_count end )yqynnhs,
+					round(sum(case when @7 and ovd_days_stat= '10' then lnbal end )/ 10000,2)yqynsye,
+					sum(case when @8 and ovd_days_stat='10' then ln_count end )yqynshs
+					from bctl b left join ln_ovd_struct_analyse a on a.brcode=b.brcode
+					where  b.bln_manage_brcode in(select brcode from bctl where bln_manage_brcode='@9'
+					and status='1')
+					group by 1 ]]>
+                    </value>
+				</entry>
+
+			</map>
+		</property>
+	</bean>
+
+
+	 <bean id="com.huateng.ebank.batch.statistics.BhLoanRepaymentTab"
+		class="com.huateng.ebank.batch.common.ConfigMap">
+		<property name="configMap">
+			<map>
+			    <!-- 根据不同的数据库写相应的正确的sql脚本 -->
+				<entry key="BhLoanRepaymentTabzh">
+					<value><![CDATA[
+					select case  when lntype in ('001','003','004','005','006','007','008','009','011') then '购房贷款'
+							when lntype in ('013') then '汽车贷款'
+							when lntype in ('000') then '助学贷款'
+							when lntype in ('019') then '消费贷款'
+							when lntype in ('018') then '质押贷款'
+							when lntype in ('021') then '其他贷款'
+							when lntype in ('022','999') then '授信贷款'
+							when lntype in ('020') then '生产经营贷款' end dkzl,
+							sum(case when a.trm_class in('0','1','2','3') then a.lnbal end )tqhkje,
+							sum(case when a.trm_class in('0','1','2','3') then a.ln_count end )tqhkhs,
+							sum(case when a.trm_class='4' and  a.close_type='2' then a.lnbal end )zcjqje,
+							sum(case when a.trm_class='4' and  a.close_type='2' then a.ln_count end )zcjqhs,
+							sum(case when a.trm_class='4' and  a.close_type='3' then a.lnbal end )yqjqje,
+							sum(case when a.trm_class='4' and  a.close_type='3' then a.ln_count end )yqjqhs,
+							sum(case when a.trm_class='4' and  a.close_type='1' then a.lnbal end )tqjqje,
+							sum(case when a.trm_class='4' and  a.close_type='1' then a.ln_count end )tqjqhs,
+							sum(case when a.trm_class='4' and  a.close_type in('1','2','3') then a.lnbal end )qbjqje,
+							sum(case when a.trm_class='4' and  a.close_type in('1','2','3') then a.ln_count end )qbjqhs
+							from ln_loan_repayment_cs a
+							where @1
+
+							group by 1 ]]>
+                    </value>
+				</entry>
+
+				<entry key="BhLoanRepaymentTabzszh">
+					<value><![CDATA[
+					select case  when lntype in ('001','003','004','005','006','007','008','009','011') then '购房贷款'
+						when lntype in ('013') then '汽车贷款'
+						when lntype in ('000') then '助学贷款'
+						when lntype in ('019') then '消费贷款'
+						when lntype in ('018') then '质押贷款'
+						when lntype in ('021') then '其他贷款'
+						when lntype in ('022','999') then '授信贷款'
+						when lntype in ('020') then '生产经营贷款' end dkzl,
+						sum(case when a.trm_class in('0','1','2','3') then a.lnbal end )tqhkje,
+						sum(case when a.trm_class in('0','1','2','3') then a.ln_count end )tqhkhs,
+						sum(case when a.trm_class='4' and  a.close_type='2' then a.lnbal end )zcjqje,
+						sum(case when a.trm_class='4' and  a.close_type='2' then a.ln_count end )zcjqhs,
+						sum(case when a.trm_class='4' and  a.close_type='3' then a.lnbal end )yqjqje,
+						sum(case when a.trm_class='4' and  a.close_type='3' then a.ln_count end )yqjqhs,
+						sum(case when a.trm_class='4' and  a.close_type='1' then a.lnbal end )tqjqje,
+						sum(case when a.trm_class='4' and  a.close_type='1' then a.ln_count end )tqjqhs,
+						sum(case when a.trm_class='4' and  a.close_type in('1','2','3') then a.lnbal end )qbjqje,
+						sum(case when a.trm_class='4' and  a.close_type in('1','2','3') then a.ln_count end )qbjqhs
+						from ln_loan_repayment_cs a ,bctl b where a.brcode=b.brcode
+						and  b.bln_manage_brcode in(select brcode from bctl where bln_manage_brcode='@1' and status='1')
+						and @2
+
+						group by 1 ]]>
+                    </value>
+				</entry>
+
+			</map>
+		</property>
+	</bean>
+
+</beans>

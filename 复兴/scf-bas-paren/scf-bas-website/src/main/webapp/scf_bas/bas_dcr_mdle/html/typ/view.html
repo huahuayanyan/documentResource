@@ -1,0 +1,10 @@
+<ht-form name="viewForm">
+    <ht-input ht-id="crId" name="额度类型编号" ng-model="viewForm.crId"  disable="true"></ht-input>
+    <ht-input ht-id="crNm" name="额度类型名称" ng-model="viewForm.crNm"  disable="true"></ht-input>
+    <ht-input ht-id="chkExpr" name="额度判断类名" ng-model="viewForm.chkExpr" disable="true"></ht-input>
+    <ht-select  ht-id="circFlag"  name="循环标志"  ng-model="viewForm.circFlag"  dictionary="circFlag"  disable="true"></ht-select>
+    <ht-select  ht-id="stat"  name="生效标志"  ng-model="viewForm.stat"  dictionary="validState"   disable="true"></ht-select>  
+</ht-form>
+<ht-button-group align="center">
+    <ht-button ht-id="cancel" desc-name="关闭" class="btn-primary"></ht-button>
+</ht-button-group>

@@ -1,0 +1,7 @@
+<div  style="position:absolute;z-index:12;float:right;top:12px;right:12px;">
+	<ht-button ht-id="back"  class="btn-primary"   desc-name="返回"></ht-button>
+</div>
+<ht-tabs position="left">
+	<ht-pane title="{{x.mdlNm}}"  ui-sref="custFin.view" ng-repeat="x in finform" params="x.param">
+	</ht-pane>
+</ht-tabs>

@@ -1,0 +1,39 @@
+
+<ht-form name="otherform">
+    <ht-panel>
+    <ht-legend>合同信息</ht-legend>
+    <ht-input name="客户名称" ng-model="otherform.custNm" disable="true"></ht-input>
+    <ht-input name="业务合同号" ng-model="otherform.vidNo" disable="true"></ht-input>
+    <ht-input name="额度协议流水号" ng-model="otherform.creditProtNo" disable="true"></ht-input>
+    <ht-input name="信贷合同号" ng-model="otherform.appId" disable="true"></ht-input>
+    <ht-select name="业务品种" ng-model="otherform.vidBusiTyp" dictionary="vidBusTyp" disable="true"></ht-select>
+    <ht-select name="出账方式" ng-model="otherform.loanWay" dictionary="loanWay" disable="true"></ht-select>
+    <ht-select name="币种" ng-model="otherform.curcd" dictionary="curcd" disable="true"></ht-select>
+    <ht-input name="授信总金额" ng-model="otherform.fixInt" edit-type="currency" dictionary="checked" disable="true"></ht-input>
+    <ht-input name="授信可用金额" ng-model="otherform.crAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="最低保证金比例" ng-model="otherform.dog" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="信贷合同金额" ng-model="otherform.lnAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-select name="是否循环使用" ng-model="otherform.controlType"  disable="true" dictionary="circFlag"></ht-select>
+    <ht-input ht-id="lnStrtDt" name="合同生效日" ng-model="otherform.lnStrtDt"
+              disable="true" edit-type="date"></ht-input>
+    <ht-input ht-id="lnEndDt" name="合同到期日" ng-model="otherform.lnEndDt"
+              disable="true" edit-type="date"></ht-input>
+    <ht-input name="逾期罚息浮动比率(%)" ng-model="otherform.pfltFlt"  disable="true"></ht-input>
+    <ht-input name="总金额" ng-model="otherform.lnAmt" edit-type="currency" disable="true"></ht-input>
+    <!--<ht-input name="垫款类型" ng-model="otherform.lnAmt"  disable="true"></ht-input>
+    <ht-input name="终结类型" ng-model="otherform.lnAmt"  disable="true"></ht-input>
+    <ht-input name="终结日期" ng-model="otherform.lnAmt"  disable="true"></ht-input>-->
+    <ht-input name="客户经理" ng-model="otherform.tlrNm"  disable="true"></ht-input>
+    <ht-input name="经办机构" ng-model="otherform.brNm"  disable="true"></ht-input>
+    </ht-panel>
+    <div id="intcd" style="display: none">
+    <ht-panel>
+    <ht-legend>利率信息</ht-legend>
+        <ht-input name="利率代码" reg-exp="common.require" ng-model="otherform.intCd" disable="true"></ht-input>
+        <ht-input name="基准年利率(%)" reg-exp="common.require" ng-model="otherform.basInt" disable="true" edit-type="number"></ht-input>
+        <ht-select name="利率浮动方式" reg-exp="common.require" ng-model="otherform.intFltTyp"
+                   dictionary="intFltTyp" disable="true" on-change="changeFltTyp"></ht-select>
+        <ht-input ht-id="fltIntRt" name="浮动利率(%)" reg-exp="common.require" ng-model="otherform.fltIntRt" disable="true" edit-type="number"></ht-input>
+    </ht-panel>
+    </div>
+</ht-form>

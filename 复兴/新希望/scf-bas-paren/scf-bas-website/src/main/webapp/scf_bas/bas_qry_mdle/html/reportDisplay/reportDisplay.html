@@ -1,0 +1,38 @@
+<!-- <div style="width: 100%;">
+    <div style="float: left;width: 20%;background-color: #ffffff;height: 800px;">
+        <ht-legend colorId="lawngreen" style="background-color: inherit">报表管理</ht-legend>
+     <ht-autotree option="autotree"></ht-autotree>
+    </div>
+    <div style="float: left;width: 1%;height: 800px">
+    </div>
+    <div style="float: left;width: 78%;background-color: #ffffff;height: 800px;"> -->
+        <ht-legend colorId="lawngreen">查询条件</ht-legend>
+        <ht-form name="conditionForm">
+            <ht-input ht-id="fileName" name="模版名称" ng-model="conditionForm.fileName"></ht-input>
+            <ht-button-group class="left">
+                <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+                <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+            </ht-button-group>
+        </ht-form>
+      <!--    <div id="report" style="display: none"> 
+           <iframe frameborder="0" width="100%" style="height: 900px; display: inline;"
+                    src="../../notice/htReportWindow.html">
+            </iframe>
+         </div> -->
+
+        <ht-legend>报表列表</ht-legend>
+        <ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+            <ht-button-group>
+                <ht-button class="btn-primary" ht-id="view">查看</ht-button>
+            </ht-button-group>
+            <ht-column eg-name="noticeType" zh-name="报表类型" dictionary="nteType"></ht-column>
+            <ht-column eg-name="fileName" zh-name="报表名称"></ht-column>
+            <!-- <ht-column eg-name="fileExt" zh-name="模版类型"></ht-column> -->
+            <ht-column eg-name="uploadTlrno" zh-name="操作人"></ht-column>
+            <ht-column eg-name="uploadDate" zh-name="操作时间"></ht-column>
+        </ht-table>
+        <ht-page conf="conf"></ht-page>
+<!--     </div>
+</div> -->
+
+

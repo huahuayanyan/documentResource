@@ -1,0 +1,36 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="custName_Q" name="出质人名称" ng-model="conditionForm.custName_Q"></ht-input>
+    <ht-input ht-id="slaveContcode_Q" name="抵/质押合同号" ng-model="conditionForm.slaveContcode_Q"></ht-input>
+    <br/>
+    <ht-input ht-id="moniCname_Q" name="监管公司名称" ng-model="conditionForm.moniCname_Q"></ht-input>
+    <span/>
+    <ht-input ht-id="startDate_Q" name="预警日期 从" ng-model="conditionForm.startDate_Q" edit-type="date"
+            high-date-id="endDate_Q"></ht-input>
+    <ht-input ht-id="endDate_Q" name=" 到" ng-model="conditionForm.endDate_Q" edit-type="date"
+              lower-date-id="startDate_Q"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+        <ht-button ht-id="homeBack" class="btn-primary" hide="{{homeBackHide}}" desc-name="返回主页"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>跌破警戒线预警</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="slaveContcode" zh-name="抵/质押合同号"></ht-column>
+    <ht-column eg-name="protocolNo" zh-name="监管合同号"></ht-column>
+    <ht-column eg-name="cname" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="moniCname" zh-name="监管公司名称"></ht-column>
+    <ht-column eg-name="productNm" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="riskBal" zh-name="敞口余额" type="currency"></ht-column>
+    <ht-column eg-name="mortAmt" zh-name="押品总价值" type="currency"></ht-column>
+    <ht-column eg-name="warnLine" zh-name="市值抵/质押率警戒线" type="currency"></ht-column>
+    <ht-column eg-name="currentRatio" zh-name="当前市值抵/质押率"></ht-column>
+    <ht-column eg-name="ratio" zh-name="抵/质押率(%)"></ht-column>
+    <ht-column eg-name="warnDate" zh-name="预警日期"></ht-column>
+    <ht-column eg-name="mgrNm" zh-name="客户经理" ></ht-column>
+    <ht-column eg-name="brcodeNm" zh-name="经办机构"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

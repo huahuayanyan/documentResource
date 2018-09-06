@@ -1,0 +1,18 @@
+<!--<div  style="position:absolute;z-index:12;float:right;top:12px;right:12px;">
+    <ht-button ht-id="back" class="btn-primary" desc-name="返回"></ht-button>
+</div>-->
+<ht-form name="taskform">
+  <ht-legend>任务基本信息</ht-legend>
+    <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+    <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+    <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+    <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+</ht-form>
+<div>
+    <ht-tabs>
+        <ht-pane title="收款确认信息"  ui-sref="fourConfirmApply.dtl">
+        </ht-pane>
+        <ht-pane title="先票款后货协议"  ui-sref="fourConfirmApply.fourProtocol">
+        </ht-pane>
+    </ht-tabs>
+</div>

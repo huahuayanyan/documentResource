@@ -1,0 +1,30 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="cname" name="客户名称" ng-model="conditionForm.cname"></ht-input>
+    <ht-input ht-id="mastContcode" name="信贷合同号" ng-model="conditionForm.mastContcode"></ht-input>
+    <ht-input ht-id="debetId" name="借据号/承兑协议号" ng-model="conditionForm.debetId"></ht-input>
+    <ht-select ht-id="appliStatusDtl" name="审批状态" ng-model="conditionForm.appliStatusDtl" dictionary="statusDtl"></ht-select>
+    <ht-button-group >
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>放款列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="appno" zh-name="出账流水号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="debetId" zh-name="借据号/承兑协议号" ></ht-column>
+    <ht-column eg-name="mastContcode" zh-name="信贷合同号" ></ht-column>
+    <ht-column eg-name="slaveContcode" zh-name="业务合同号" ></ht-column>
+    <ht-column eg-name="productName" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="cname" zh-name="客户名称" ></ht-column>
+    <ht-column eg-name="contAmount" zh-name="信贷合同金额" type="currency"></ht-column>
+    <ht-column eg-name="riskAmt" zh-name="信贷合同总敞口" type="currency"></ht-column>
+    <ht-column eg-name="avaliableRiskAmt" zh-name="信贷合同可用金额" type="currency"></ht-column>
+    <ht-column eg-name="loanWay" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="出账金额" type="currency"></ht-column>
+    <ht-column eg-name="appliStatusDtl" zh-name="审批状态" dictionary="statusDtl"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+

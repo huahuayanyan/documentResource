@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ------------公共css--------------------- -->
+    <script src="../../scube_ui/common/importCs.js"></script>
+    <!-- ------------业务css--------------------- -->
+
+</head>
+<body>
+<div ng-controller="CheckTransferController">
+    <ht-form name="otherform">
+        <ht-legend>任务基本信息</ht-legend>
+        <ht-input id="ext2" name="流程名称" ng-model="otherform.ext2" disable="true"></ht-input>
+        <ht-input id="stratDate" name="申请发起时间"ng-model="otherform.stratDate" edit-type="date" disable="true"></ht-input>
+        <ht-input id="tlrName" name="经办人" ng-model="otherform.tlrName" disable="true"></ht-input>
+        <ht-input id="brName" name="经办机构"ng-model="otherform.brName" disable="true"></ht-input>
+    </ht-form>
+    <ht-tabs>
+        <ht-pane title="应收账款转让信息"  ui-sref="checkTransferApply">
+        </ht-pane>
+    </ht-tabs>
+</div>
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+<script src="../../config.js"></script>
+
+<!-- ------------公共js--------------------- -->
+<script src="../../scube_ui/common/myBrowser.js"></script>
+<script src="../../scube_ui/common/importJs.js"></script>
+
+<!-- ------------业务js--------------------- -->
+<script src="../js/appli/checkTransfer_controller.js"></script>
+<script src="../js/appli/checkTransferApply_controller.js"></script>
+<script src="../js/appli/bcpBaseInfo_controller.js"></script>
+<script src="../js/rbcp_check_transfer_mdle.js"></script>
+
+</body>
+</html>

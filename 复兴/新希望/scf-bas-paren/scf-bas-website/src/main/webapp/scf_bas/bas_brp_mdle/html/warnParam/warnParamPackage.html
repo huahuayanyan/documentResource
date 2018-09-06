@@ -1,0 +1,10 @@
+<ht-form name="warnParamForm">
+    <ht-legend>预警参数设置分类</ht-legend>
+    <ht-input ht-id="name" reg-exp="common.require" name="名称" ng-model="warnParamForm.name"></ht-input>
+    <ht-input ht-id="remark" name="备注" ng-model="warnParamForm.remark"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

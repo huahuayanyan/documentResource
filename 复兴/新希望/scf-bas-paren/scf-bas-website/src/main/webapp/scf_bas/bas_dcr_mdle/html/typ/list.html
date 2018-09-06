@@ -1,0 +1,24 @@
+    <ht-legend colorId="lawngreen">查询条件</ht-legend>
+    <ht-form name ="conditionForm">
+        <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+        <ht-input ht-id="crId" name="额度类型编号" ng-model="conditionForm.crId"></ht-input>
+        <ht-input ht-id="crNm"  name="额度类型名称" ng-model="conditionForm.crNm"></ht-input>
+        <ht-button-group align="left">
+             <ht-button ht-id="submit" class="btn-primary"  desc-name="查询" ></ht-button>
+             <ht-button ht-id="reset"  class="btn-primary" desc-name="重置"></ht-button>  
+         </ht-button-group>
+    </ht-form>
+
+    <ht-legend colorId="orangered">额度类型列表</ht-legend>
+    <ht-button-group>
+         <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+         <ht-button ht-id="update" class="btn-primary">修改</ht-button>     
+         <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+    <ht-table  datasource="datasource" selected="selected" docheckbox="true" >
+    <ht-column eg-name="crId" zh-name="额度类型编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="crNm" zh-name="额度类型名称"></ht-column>
+    <ht-column   dictionary="circFlag" eg-name="circFlag" zh-name="循环标志"></ht-column>
+    <ht-column   dictionary="validState" eg-name="stat" zh-name="生效标志"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

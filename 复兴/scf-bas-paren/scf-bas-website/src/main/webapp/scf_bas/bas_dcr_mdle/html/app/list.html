@@ -1,0 +1,33 @@
+    <ht-legend colorId="lawngreen">查询条件</ht-legend>
+    <ht-form name ="conditionForm">
+        <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+        <ht-input  name="授信申请流水号" ng-model="conditionForm.appCrId"></ht-input>
+        <ht-input  name="客户名称" ng-model="conditionForm.custNm"></ht-input>
+        <ht-button-group align="left">
+             <ht-button ht-id="submit" class="btn-primary"  desc-name="查询" ></ht-button>
+             <ht-button ht-id="reset"  class="btn-primary" desc-name="重置"></ht-button>  
+         </ht-button-group>
+    </ht-form>
+
+    <ht-legend colorId="orangered">授信额度申请列表</ht-legend>
+    <ht-button-group>
+         <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+         <ht-button ht-id="update" class="btn-primary">修改</ht-button>     
+         <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+          <ht-button ht-id="flowsubmit" class="btn-primary"   disable="{{flowsubmitdisable}}" >提交</ht-button>
+    </ht-button-group>
+    <ht-table  datasource="datasource" selected="selected" docheckbox="true" >
+    <ht-column  eg-name="appCrId" zh-name="授信申请流水号" href="true" docolumn="column"></ht-column>
+    <ht-column  eg-name="crNm" zh-name="授信类型"></ht-column>
+    <ht-column  eg-name="custId" zh-name="客户编号"></ht-column> 
+    <ht-column  eg-name="custNm" zh-name="客户名称"></ht-column>
+    <ht-column  eg-name="curcd" zh-name="币种"   dictionary="curcd" ></ht-column>    
+    <ht-column  eg-name="crAmt" zh-name="额度金额"   type="currency"></ht-column>
+    <ht-column  eg-name="aprvStat " zh-name="审批状态"   dictionary="stat" ></ht-column>    
+    <ht-column  eg-name="tlrNm" zh-name="经办人" ></ht-column>        
+     <ht-column  eg-name="brNm" zh-name="经办机构" ></ht-column>            
+     <ht-column  eg-name="inputDt" zh-name="经办日期"   type="date"></ht-column>        
+            
+    
+</ht-table>
+<ht-page conf="conf"></ht-page>

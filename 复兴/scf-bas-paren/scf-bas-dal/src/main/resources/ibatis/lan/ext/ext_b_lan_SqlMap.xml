@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_LAN" >
+  <!-- 敞口余额计算使用 -->
+  <resultMap id="BaseLnciAmtMap" class="java.util.HashMap" >
+ 	<result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="queryLnciAmt" resultMap="BaseLnciAmtMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfo" >
+     select sum(t2.LNCI_AMT) LNCI_AMT
+    	from B_PBC_APPLI_BASE_INFO t1,B_LAN_APPLI_LNCI_BASE t2
+     	where t1.APPNO=t2.APPNO
+     		and t1.APPLI_STATUS_DTL = #appliStatusDtl:VARCHAR#
+     		and t2.SLAVE_CONTNO = #slaveContno:VARCHAR# 
+  </select>
+  <!-- 敞口余额计算时使用 -->
+  <resultMap id="BaseSumMap" class="java.util.HashMap" >
+ 	<result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+ 	<result column="LNCI_BAL" property="lnciBal" jdbcType="DECIMAL" />
+ 	<result column="AMOUNT_IN" property="amountIn" jdbcType="DECIMAL" />
+    <result column="AMOUNT_OUT" property="amountOut" jdbcType="DECIMAL" />
+    <result column="AMOUNT_UP_OUT" property="amountUpOut" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="querySum" resultMap="BaseSumMap" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBase" >
+    select sum(t1.LNCI_AMT) LNCI_AMT,sum(t1.LNCI_BAL) LNCI_BAL,sum(t1.AMOUNT_IN) AMOUNT_IN,sum(t1.AMOUNT_OUT) AMOUNT_OUT,sum(t1.AMOUNT_UP_OUT) AMOUNT_UP_OUT
+    from B_LAN_LNCI_BASE t1
+     where t1.MAST_CONTNO in (select SERIALNO from B_CRR_LN_CON_RELA where RLT_NO = #slaveContno:VARCHAR#)
+     <!-- and t1.STATE = #state:VARCHAR#
+     and t1.IS_SETTLE = #isSettle:VARCHAR# -->
+  </select>
+  <!-- 根据借据号或者质押合同查询保证金及现金等价物金额 -->
+  <resultMap id="BaseAmountMap" class="java.util.HashMap" >
+ 	<result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+ 	<result column="ADD_BAIL_AMOUNT" property="addBailAmount" jdbcType="DECIMAL" />
+ 	<result column="INIT_CASH_EQT_AMT" property="initCashEqtAmt" jdbcType="DECIMAL" />
+    <result column="ADD_CASH_EQT_AMT" property="addCashEqtAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="queryAmountByDebetNo" resultMap="BaseAmountMap" parameterClass="com.huateng.scf.bas.lan.dao.model.BLanLnciBase" >
+    select sum(T1.BAIL_AMOUNT) BAIL_AMOUNT,sum(T1.ADD_BAIL_AMOUNT) ADD_BAIL_AMOUNT,sum(T1.INIT_CASH_EQT_AMT) INIT_CASH_EQT_AMT,sum(T1.ADD_CASH_EQT_AMT) ADD_CASH_EQT_AMT
+    from B_LAN_LNCI_BASE t1
+     where 1=1
+        <isNotNull prepend="and" property="slaveContno" >
+          t1.MAST_CONTNO in (select SERIALNO from B_CRR_LN_CON_RELA where RLT_NO = #slaveContno:VARCHAR#)
+        </isNotNull>
+     <!-- and t1.STATE = #state:VARCHAR# -->
+     <isNotNull prepend="and" property="debetNo" >
+        t1.DEBET_NO = #debetNo:VARCHAR#
+      </isNotNull>
+  </select>
+  <!-- 统计流程中的保证金及现金等价物汇总信息 -->
+  <resultMap id="BaseFlowBailMap" class="java.util.HashMap" >
+ 	<result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+ 	<result column="INIT_CASH_EQT_AMT" property="initCashEqtAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="queryFlowBailInfoByBussinessNo" resultMap="BaseFlowBailMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliBaseInfo" >
+  <!--   select sum(T2.BAIL_AMOUNT) BAIL_AMOUNT,sum(T2.INIT_CASH_EQT_AMT) INIT_CASH_EQT_AMT
+    from B_PBC_APPLI_BASE_INFO t1,B_LAN_APPLI_LNCI_BASE t2
+     where t2.DEBET_NO in (select t3.DEBET_NO from B_PBC_APPLI_BASE_INFO t1,B_MRN_APPLI_ACCT_INFO t3 where t1.APPNO = t3.APPNO)
+     and T2.MAST_CONTCODE in (select SERIALNO from B_CRR_LN_CON_RELA where RLT_NO = #slaveContno:VARCHAR#) -->
+     <!-- and t1.APPLI_STATUS_DTL = #appliStatusDtl:VARCHAR# -->
+     
+      select sum(T2.BAIL_AMOUNT) BAIL_AMOUNT,sum(T2.INIT_CASH_EQT_AMT) INIT_CASH_EQT_AMT
+    from B_PBC_APPLI_BASE_INFO t1,B_LAN_APPLI_LNCI_BASE t2 where 
+    t1.APPNO=t2.APPNO and  t2.SLAVE_CONTNO = #slaveContno:VARCHAR# 
+    and t1.APPLI_STATUS_DTL = #appliStatusDtl:VARCHAR#
+    
+  </select>
+  
+  <!-- 现金等价物质押使用 -->
+  <resultMap id="BaseCalSumCash" class="java.util.HashMap" >
+ 	<result column="CAL_SUM" property="calSum" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="queryCalSumCashAndBailByMastContno" resultMap="BaseCalSumCash" parameterClass="java.util.HashMap" >
+    select nvl(sum(nvl(T1.BAIL_AMOUNT,0)+nvl(T1.ADD_BAIL_AMOUNT,0)+nvl(T1.INIT_CASH_EQT_AMT,0)+nvl(T1.ADD_CASH_EQT_AMT,0)),0) CAL_SUM
+    from B_LAN_LNCI_BASE T1, B_CRR_LN_CON T2 
+    where 1=1 
+    and T1.MAST_CONTNO = T2.APP_ID 
+    and T1.STATE != #state:VARCHAR#
+    <isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ T2.APP_ID = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="getLnciBaseInfo" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass="java.util.HashMap" >
+    select tli.* 
+    from B_LAN_LNCI_BASE tli,B_CRR_LN_CON tcbi 
+    where 1=1 
+    and tli.MAST_CONTNO = tcbi.APP_ID
+    <isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ tcbi.APP_ID = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ tcbi.CUST_ID = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetNo">
+      <![CDATA[ tli.DEBET_NO = #debetNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetId">
+      <![CDATA[ tli.DEBET_ID = #debetId:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="state">
+      <![CDATA[ tli.STATE != #state:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isSettle">
+      <![CDATA[ tli.IS_SETTLE = #isSettle:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isLocked">
+      (<![CDATA[ tli.IS_LOCKED != #isLocked:VARCHAR#  ]]> or tli.IS_LOCKED is null)
+	</isNotEmpty>
+	order by tli.DEBET_NO asc
+  </select>
+  
+  <select id="getAppliLnciBaseInfo" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass="java.util.HashMap" >
+    select tli.* from B_LAN_LNCI_BASE tli ,R_BCP_APPLI_BUSS_DTL tabd 
+    where 1=1
+    and tabd.DEBET_NO=tli.DEBET_NO
+    <isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ tli.MAST_CONTNO = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="subContno">
+      <![CDATA[ tli.APPNO = #subContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetNo">
+      <![CDATA[ tli.DEBET_NO = #debetNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="appno">
+      <![CDATA[ tabd.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetId">
+      <![CDATA[ tli.DEBET_ID like '%'||#debetId:VARCHAR#||'%'  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="lnciStatus">
+      <![CDATA[ tli.LNCI_STATUS = #lnciStatus:VARCHAR#  ]]>
+	</isNotEmpty>
+	order by tli.DEBET_NO asc
+  </select>
+  <select id="countAppliLnciBaseInfo" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(tli.DEBET_NO) 
+    from B_LAN_LNCI_BASE tli ,R_BCP_APPLI_BUSS_DTL tabd 
+    where 1=1
+    and tabd.DEBET_NO=tli.DEBET_NO
+    <isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ tli.MAST_CONTNO = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="subContno">
+      <![CDATA[ tli.APPNO = #subContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetNo">
+      <![CDATA[ tli.DEBET_NO = #debetNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="appno">
+      <![CDATA[ tabd.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetId">
+      <![CDATA[ tli.DEBET_ID != #debetId:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="lnciStatus">
+      <![CDATA[ tli.LNCI_STATUS = #lnciStatus:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+
+	<resultMap id="LoanApplyListVOMap"
+		class="com.huateng.scf.bas.lan.dao.model.LoanApplyListVO">
+		<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+		<result column="INCOME_APPNO" property="incomeAppno" jdbcType="VARCHAR" />
+		<result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+   	 	<result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+		<result column="APPLI_STATUS_DTL" property="appliStatusDtl" jdbcType="CHAR" />
+		<result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+		<result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+		<result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="VARCHAR" />
+		<result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+		<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    	<result column="CNAME" property="cname" jdbcType="VARCHAR" />
+		<result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+		<result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+		<result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+		<result column="HAS_INDIRECT_CREDIT" property="hasIndirectCredit" jdbcType="VARCHAR" />
+		<result column="CREDIT_CUSTCD" property="creditCustcd" jdbcType="VARCHAR" />
+    	<result column="PIID" property="piid" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getLoanApplyList" resultMap="LoanApplyListVOMap" parameterClass="java.util.HashMap">
+		SELECT
+		T1.APPNO,
+		T1.INCOME_APPNO,
+		T1.PIID,
+		T2.MAST_CONTCODE,
+		T2.MAST_CONTNO,
+		T1.APPLI_STATUS_DTL,
+		T2.DEBET_NO,
+		T2.DEBET_ID,
+		T1.SUPPLY_CHAIN_PD_ID ,
+		T3.PRODUCT_NAME,
+		T1.CUSTCD ,
+		C1.CNAME,
+		T2.LNCI_TYPE AS LOAN_WAY,
+		nvl(T2.LNCI_AMT,0) as LNCI_AMT ,
+		T1.PROTOCOL_NO,
+		T2.CREDIT_CUSTCD,
+		T2.HAS_INDIRECT_CREDIT
+		FROM
+		B_PBC_APPLI_BASE_INFO T1,
+		B_LAN_APPLI_LNCI_BASE T2,
+		B_PRD_INFO T3,
+		B_CRM_BASE_INFO C1
+
+		<isParameterPresent>
+			where T1.appno=T2.appno
+			AND T1.SUPPLY_CHAIN_PD_ID = T3.PRODUCT_ID
+			AND t1.CUSTCD = C1.CUSTCD
+			<isNotEmpty prepend="and" property="appno">
+	     <![CDATA[T1.appno=#appno:VARCHAR# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mastContcode">
+	     <![CDATA[ T2.MAST_CONTCODE like '%'||#mastContcode:VARCHAR#||'%'  ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="debetId">
+      <![CDATA[ T2.DEBET_ID like '%'||#debetId:VARCHAR#||'%'  ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cname">
+      <![CDATA[ C1.CNAME like '%'||#cname:VARCHAR#||'%'  ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="appliStatusDtl">
+	     <![CDATA[T1.APPLI_STATUS_DTL=#appliStatusDtl:VARCHAR# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="supplyChainPdId">
+	     <![CDATA[T1.SUPPLY_CHAIN_PD_ID=#supplyChainPdId:VARCHAR# ]]>
+			</isNotEmpty>
+			order by T1.APPNO DESC,START_TIME desc
+		</isParameterPresent>
+	</select>
+	
+	<resultMap id="LnciAmountResultMap" class="com.huateng.scf.bas.lan.dao.model.BLanLnciBase">
+		<result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+		<result column="LNCI_BAL" property="lnciBal" jdbcType="DECIMAL" />
+		<result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+		<result column="ADD_BAIL_AMOUNT" property="addBailAmount" jdbcType="DECIMAL" />
+		<result column="ADD_CASH_EQT_AMT" property="addCashEqtAmt" jdbcType="DECIMAL" />
+		<result column="INIT_CASH_EQT_AMT" property="initCashEqtAmt" jdbcType="DECIMAL" />
+	</resultMap>
+	<select id="getDebetAmtOfSum" resultMap="LnciAmountResultMap" parameterClass="java.util.HashMap">
+		SELECT
+		NVL(SUM(NVL(T1.LNCI_AMT,0)),0) AS LNCI_AMT ,
+		NVL(SUM(NVL(T1.LNCI_BAL,0)),0) AS LNCI_BAL,
+		NVL(SUM(NVL(T1.BAIL_AMOUNT,0)),0) AS BAIL_AMOUNT,
+		NVL(SUM(NVL(T1.ADD_BAIL_AMOUNT,0)),0) AS ADD_BAIL_AMOUNT,
+		NVL(SUM(NVL(T1.INIT_CASH_EQT_AMT,0)),0) AS INIT_CASH_EQT_AMT,
+		NVL(SUM(NVL(T1.ADD_CASH_EQT_AMT,0)),0) AS ADD_CASH_EQT_AMT
+		FROM
+		SCF.B_LAN_LNCI_BASE T1
+		where 1=1
+		<isNotEmpty prepend="and" property="state">
+      <![CDATA[ T1.STATE != #state:VARCHAR#  ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="isSettle">
+      <![CDATA[ T1.IS_SETTLE = #isSettle:VARCHAR#  ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="protocolNo">
+      <![CDATA[ T1.PROTOCOL_NO = #protocolNo:VARCHAR#  ]]>
+		</isNotEmpty>
+	</select>
+  
+	<resultMap id="BaseAppliLnciResultMap" class="java.util.HashMap" >
+	    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+	    <result column="LNCI_BAL" property="lnciBal" jdbcType="DECIMAL" />
+	    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+	    <result column="ADD_BAIL_AMOUNT" property="addBailAmount" jdbcType="DECIMAL" />
+	    <result column="ADD_CASH_EQT_AMT" property="addCashEqtAmt" jdbcType="DECIMAL" />
+	    <result column="INIT_CASH_EQT_AMT" property="initCashEqtAmt" jdbcType="DECIMAL" />
+  	</resultMap>
+	<select id="getLnciSumByParam" resultMap="BaseAppliLnciResultMap" parameterClass="java.util.HashMap" >
+    select coalesce(sum(mbi.BAIL_AMOUNT),0) BAIL_AMOUNT,coalesce(sum(mbi.ADD_BAIL_AMOUNT),0) ADD_BAIL_AMOUNT,coalesce(sum(mbi.ADD_CASH_EQT_AMT),0) ADD_CASH_EQT_AMT,
+    	coalesce(sum(mbi.INIT_CASH_EQT_AMT),0) INIT_CASH_EQT_AMT, coalesce(sum(mbi.LNCI_BAL),0) LNCI_BAL,coalesce(sum(mbi.LNCI_AMT),0) LNCI_AMT 
+	from B_lan_lnci_base mbi 
+	where 1=1
+	<isNotEmpty prepend="and" property="state">
+      <![CDATA[ mbi.STATE != #state:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ mbi.MAST_CONTNO = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="countBillNomalLoanApplyList" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    	select count(tabi.APPNO)
+		from B_PBC_APPLI_BASE_INFO  tabi, B_LAN_APPLI_LNCI_BASE tali,
+			B_PRD_INFO prdi, B_CRM_BASE_INFO crmi
+		<isParameterPresent>
+			where tabi.APPNO = tali.APPNO
+			and tabi.SUPPLY_CHAIN_PD_ID = prdi.PRODUCT_ID
+			and tabi.CUSTCD = crmi.CUSTCD
+			<isNotEmpty prepend="and" property="appno">
+	     		<![CDATA[ tabi.APPNO = #appno:VARCHAR# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mastContcode">
+	     		<![CDATA[ tali.MAST_CONTCODE like '%'||#mastContcode:VARCHAR#||'%'  ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="debetId">
+     			<![CDATA[ tali.DEBET_ID like '%'||#debetId:VARCHAR#||'%'  ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="appliStatusDtl">
+	     		<![CDATA[ tabi.APPLI_STATUS_DTL=#appliStatusDtl:VARCHAR# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cname">
+				<![CDATA[ crmi.CNAME like '%'||#cname:VARCHAR#||'%' ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="supplyChainPdId">
+	     		<![CDATA[tabi.SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mgrno">
+	     		<![CDATA[crmi.MGRNO = #mgrno:VARCHAR# ]]>
+			</isNotEmpty>
+			order by tabi.APPNO desc, tabi.START_TIME desc
+		</isParameterPresent>
+  </select>
+  <select id="getBillNomalLoanApplyList" resultMap="LoanApplyListVOMap" parameterClass="java.util.HashMap">
+		select tabi.APPNO, tabi.INCOME_APPNO,tali.MAST_CONTCODE,tabi.APPLI_STATUS_DTL,tali.DEBET_ID,tali.DEBET_NO,
+			tabi.SUPPLY_CHAIN_PD_ID ,tabi.CUSTCD ,tali.LNCI_TYPE LOAN_WAY, tali.LNCI_AMT,tabi.PROTOCOL_NO,
+			tali.CREDIT_CUSTCD,tali.HAS_INDIRECT_CREDIT,crmi.CNAME,prdi.PRODUCT_NAME,tabi.PIID,tali.MAST_CONTNO
+		from B_PBC_APPLI_BASE_INFO  tabi, B_LAN_APPLI_LNCI_BASE tali,
+			B_PRD_INFO prdi, B_CRM_BASE_INFO crmi
+		<isParameterPresent>
+			where tabi.APPNO = tali.APPNO
+			and tabi.SUPPLY_CHAIN_PD_ID = prdi.PRODUCT_ID
+			and tabi.CUSTCD = crmi.CUSTCD
+			<isNotEmpty prepend="and" property="appno">
+	     		<![CDATA[ tabi.APPNO = #appno:VARCHAR# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mastContcode">
+	     		<![CDATA[ tali.MAST_CONTCODE like '%'||#mastContcode:VARCHAR#||'%'  ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="debetId">
+     			<![CDATA[ tali.DEBET_ID like '%'||#debetId:VARCHAR#||'%'  ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="appliStatusDtl">
+	     		<![CDATA[ tabi.APPLI_STATUS_DTL=#appliStatusDtl:VARCHAR# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="cname">
+				<![CDATA[ crmi.CNAME like '%'||#cname:VARCHAR#||'%' ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="supplyChainPdId">
+	     		<![CDATA[tabi.SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mgrno">
+	     		<![CDATA[crmi.MGRNO = #mgrno:VARCHAR# ]]>
+			</isNotEmpty>
+			order by tabi.APPNO desc, tabi.START_TIME desc
+		</isParameterPresent>
+	</select>
+	
+  <resultMap id="BaseLnciAmtResultMap" class="java.util.HashMap" >
+	    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="getBillNormalLoanAmt" resultMap="BaseLnciAmtResultMap" parameterClass="java.util.HashMap" >
+    select coalesce(sum(lnci.LNCI_AMT),0) LNCI_AMT
+	from B_LAN_LNCI_BASE lnci,S_BCP_APPLI_MORT_BILL_NORMAL appBill 
+	where lnci.APPNO = appBill.APPNO
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ appBill.BILLNO = #billno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  
+  <resultMap id="BaseChkStockResultMap" class="com.huateng.scf.bas.pbc.dao.vo.BillMortgageChkStockDO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="CHECK_STOCK_DATE" property="checkStockDate" jdbcType="CHAR" />
+    <result column="CHECK_STOCK_TIME" property="checkStockTime" jdbcType="TIMESTAMP" />
+    <result column="CHECK_STOCK_TLRCD" property="checkStockTlrcd" jdbcType="VARCHAR" />
+    <result column="CHECK_STOCK_TYPE" property="checkStockType" jdbcType="CHAR" />
+    <result column="CHECK_STOCK_WAY" property="checkStockWay" jdbcType="CHAR" />
+    <result column="CHECK_STOCK_RESULTS" property="checkStockResults" jdbcType="CHAR" />
+    <result column="RECORD_TLRCD" property="recordTlrcd" jdbcType="VARCHAR" />
+    <result column="RECORD_BRCODE" property="recordBrcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="POWER_CHECK_TYPE" property="powerCheckType" jdbcType="CHAR" />
+    <result column="POWER_CHECK_FAILDES" property="powerCheckFaildes" jdbcType="VARCHAR" />
+    <result column="POWER_CHECK_OTHERDES" property="powerCheckOtherdes" jdbcType="VARCHAR" />
+    <result column="CHECK_ADDRESS_TYPE" property="checkAddressType" jdbcType="CHAR" />
+    <result column="CHECK_ADDRESS_FAILDES" property="checkAddressFaildes" jdbcType="VARCHAR" />
+    <result column="CHECK_NEED_TYPE" property="checkNeedType" jdbcType="CHAR" />
+    <result column="CHECK_METHOD_TYPE" property="checkMethodType" jdbcType="CHAR" />
+    <result column="CHECK_METHOD_DATA" property="checkMethodData" jdbcType="DECIMAL" />
+    <result column="CHECK_RESULT_TYPE" property="checkResultType" jdbcType="CHAR" />
+    <result column="CHECK_RESULT_FAILDES" property="checkResultFaildes" jdbcType="VARCHAR" />
+    <result column="CHECK_REPORT_NO" property="checkReportNo" jdbcType="VARCHAR" />
+    <result column="CURRENT_CREDIT_AMT" property="currentCreditAmt" jdbcType="DECIMAL" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="CHECK_LOW_PRICE_TYPE" property="checkLowPriceType" jdbcType="CHAR" />
+    <result column="INVOICE_FLAG" property="invoiceFlag" jdbcType="CHAR" />
+    <result column="NOTICE_NO" property="noticeNo" jdbcType="VARCHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="ADVICEID" property="adviceid" jdbcType="VARCHAR" />
+    <result column="APPLYID" property="applyid" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_NAME" property="warehouseName" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="MONI_PRINCIPAL" property="moniPrincipal" jdbcType="VARCHAR" />
+    <result column="CHECK_STOCK_CONFIRM_DATE" property="checkStockConfirmDate" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="MONI_WAREHOUSE_TYPE" property="moniWarehouseType" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_TYPE" property="warehouseType" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="countBillNormalAppChkStockInfo" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(distinct slave.CON_ID)
+	from B_CRR_GNTY_CON slave,B_CNT_MPROT_CM_INFO portcm ,B_PBC_MTG_CHK_STOCK_INFO chk,B_PBC_MTG_CHK_STOCK_DTL dtl 
+        ,B_PBC_MTG_BASE_INFO mort ,S_BCP_APPLI_MORT_BILL_NORMAL bill 
+	where slave.PRTCL_NO = portcm.PROTOCOL_NO 
+	and chk.SLAVE_CONTNO = slave.CON_ID
+	and dtl.TBL_ID = chk.ID
+	and mort.MORTGAGE_NO = dtl.MORTGAGE_NO
+	and mort.BILLNO = bill.BILLNO
+	<isNotEmpty prepend="and" property="appno">
+      <![CDATA[ bill.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ slave.CON_ID = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  <select id="getBillNormalAppChkStockInfo" resultMap="BaseChkStockResultMap" parameterClass="java.util.HashMap" >
+    select distinct slave.CON_ID as SLAVE_CONTNO,slave.GUT_ID CUSTCD,slave.VID_PRD_ID as PRODUCT_ID, slave.TLR_NO as MGRNO,
+        portcm.MONI_OF_CUSTCD,portcm.MONI_WAREHOUSE_TYPE,portcm.WAREHOUSE_TYPE, 
+        
+        chk.ID, chk.OTHER_PROTOCOL_NO, chk.CHECK_STOCK_DATE, chk.CHECK_STOCK_TIME, chk.CHECK_STOCK_TLRCD, 
+    	chk.CHECK_STOCK_TYPE, chk.CHECK_STOCK_WAY, chk.CHECK_STOCK_RESULTS, chk.RECORD_TLRCD, chk.RECORD_BRCODE, 
+    	chk.WAREHOUSE_ID, chk.STATUS, chk.MAST_CONTNO, chk.POWER_CHECK_TYPE, chk.POWER_CHECK_FAILDES, 
+    	chk.POWER_CHECK_OTHERDES, chk.CHECK_ADDRESS_TYPE, chk.CHECK_ADDRESS_FAILDES, chk.CHECK_NEED_TYPE, 
+    	chk.CHECK_METHOD_TYPE, chk.CHECK_METHOD_DATA, chk.CHECK_RESULT_TYPE, chk.CHECK_RESULT_FAILDES, chk.CHECK_REPORT_NO, 
+    	chk.CURRENT_CREDIT_AMT, chk.RATION, chk.CHECK_LOW_PRICE_TYPE, chk.INVOICE_FLAG, chk.NOTICE_NO, chk.REASON, 
+    	chk.ADVICEID, chk.APPLYID, chk.PROTOCOL_NO, chk.WAREHOUSE_NAME, chk.APPNO, chk.MONI_PRINCIPAL, chk.CHECK_STOCK_CONFIRM_DATE
+	from B_CRR_GNTY_CON slave,B_CNT_MPROT_CM_INFO portcm ,B_PBC_MTG_CHK_STOCK_INFO chk,B_PBC_MTG_CHK_STOCK_DTL dtl 
+        ,B_PBC_MTG_BASE_INFO mort ,S_BCP_APPLI_MORT_BILL_NORMAL bill 
+	where slave.PRTCL_NO = portcm.PROTOCOL_NO 
+	and chk.SLAVE_CONTNO = slave.CON_ID
+	and dtl.TBL_ID = chk.ID
+	and mort.MORTGAGE_NO = dtl.MORTGAGE_NO
+	and mort.BILLNO = bill.BILLNO
+	<isNotEmpty prepend="and" property="appno">
+      <![CDATA[ bill.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ slave.CON_ID = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="getTblLnciBaseInfoByBussAppNo" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass="java.util.HashMap" >
+    select tlbi.* from B_MRN_APPLI_ACCT_INFO taci ,B_LAN_LNCI_BASE tlbi
+    where taci.DEBET_NO = tlbi.DEBET_NO 
+	<isNotEmpty prepend="and" property="appno">
+      <![CDATA[ taci.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	order by  tlbi.END_DATE asc, tlbi.DEBET_ID asc
+  </select>
+  
+  <!-- 根据质押合同号查询借据列表 -->
+  <select id="countDebetList" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(tlbi.DEBET_NO)
+    from B_LAN_LNCI_BASE tlbi,B_CRR_LN_CON ti
+	where TLBI.MAST_CONTNO = ti.APP_ID
+	<isNotEmpty prepend="and" property="businessNo">
+      <![CDATA[ ti.VID_NO = #businessNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetNo">
+      <![CDATA[ tlbi.DEBET_NO = #debetNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="debetNoList" > 
+        tlbi.DEBET_NO in 
+        <iterate property="debetNoList" conjunction="," open="(" close=")" >
+   		 $debetNoList[]$
+   		</iterate> 
+    </isNotNull>
+    <isNotEmpty prepend="and" property="state">
+      <![CDATA[ tlbi.STATE = #state:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isSettle">
+      <![CDATA[ tlbi.IS_SETTLE = #isSettle:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+   <!-- 现金回款借据查询 -->
+  <select id="findBLanListForPay" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass="java.util.HashMap" >
+    select distinct tlbi.*
+    from B_LAN_LNCI_BASE tlbi
+	where tlbi.STATE != '1'
+	and tlbi.IS_SETTLE ='0'
+	and (tlbi.LNCI_TYPE !='2' or tlbi.LNCI_TYPE is null)
+	and 
+         (tlbi.IS_LOCKED is null or  tlbi.IS_LOCKED!='1'
+       <isNotEmpty prepend="or" property="lockAppno" >
+       tlbi.LOCK_APPNO = #lockAppno:VARCHAR#
+       </isNotEmpty>
+          )
+	<isNotEmpty prepend="and" property="bussContno">
+      <![CDATA[ tlbi.MAST_CONTNO = #bussContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetId">
+      <![CDATA[ tlbi.DEBET_ID like '%'||#debetId:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="loanAppno">
+      <![CDATA[ tlbi.LOAN_APPNO like '%'||#loanAppno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate">
+      <![CDATA[ tlbi.START_DATE = #startDate:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endDateFrom">
+      <![CDATA[ tlbi.END_DATE  >= #endDateFrom:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endDateTo">
+      <![CDATA[ tlbi.END_DATE <= #endDateTo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="debetIdList" > 
+        tlbi.DEBET_ID not in 
+        <iterate property="debetIdList" conjunction="," open="(" close=")" >
+   		 $debetIdList[]$
+   		</iterate> 
+    </isNotNull>
+	order by tlbi.END_DATE asc
+  </select>
+  
+ <select id="getDebetList" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass="java.util.HashMap" >
+    select tlbi.*
+    from B_LAN_LNCI_BASE tlbi,B_CRR_LN_CON ti
+	where TLBI.MAST_CONTNO = ti.APP_ID
+	<isNotEmpty prepend="and" property="businessNo">
+      <![CDATA[ ti.VID_NO = #businessNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetNo">
+      <![CDATA[ tlbi.DEBET_NO = #debetNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="debetNoList" > 
+        tlbi.DEBET_NO in 
+        <iterate property="debetNoList" conjunction="," open="(" close=")" >
+   		 $debetNoList[]$
+   		</iterate> 
+    </isNotNull>
+    <isNotEmpty prepend="and" property="state">
+      <![CDATA[ tlbi.STATE = #state:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isSettle">
+      <![CDATA[ tlbi.IS_SETTLE = #isSettle:VARCHAR#  ]]>
+	</isNotEmpty>
+	order by tlbi.END_DATE asc, tlbi.DEBET_NO asc
+  </select>
+  
+  <select id="queryLnciAmtBySlaveContno" resultMap="BaseLnciAmtResultMap" parameterClass="java.util.HashMap" >
+    select coalesce(sum(lnci.LNCI_AMT),0) LNCI_AMT
+	from B_LAN_LNCI_BASE lnci
+	where 1=1
+	<isNotEmpty prepend="and" property="state">
+      <![CDATA[ lnci.STATE != #state:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ lnci.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <!-- 根据合同号查询流程中的借据敞口余额汇总 -->
+  <select id="getFlowRiskAmtByMastContno" resultClass="java.util.HashMap" parameterClass="java.util.HashMap" >
+    select sum(nvl(T2.LNCI_AMT,0)) - sum(nvl(T2.BAIL_AMOUNT,0)) - sum(nvl(T2.INIT_CASH_EQT_AMT,0)) AS AMT 
+    from B_PBC_APPLI_BASE_INFO T1, B_LAN_APPLI_LNCI_BASE T2
+    where T1.APPNO = T2.APPNO 
+    and T3.MAST_CONTNO = T2.MAST_CONTNO
+    <isNotNull prepend="and" property="appliStatusDtl" > 
+        T1.APPLI_STATUS_DTL not in 
+        <iterate property="appliStatusDtl" conjunction="," open="(" close=")" >
+   		 $appliStatusDtl[]$
+   		</iterate> 
+    </isNotNull>
+    <isNotEmpty prepend="and" property="mastContno" >
+    	T2.MAST_CONTNO = #mastContno:VARCHAR#
+    </isNotEmpty>
+  </select>
+  
+  <!-- 统计流程中的借据金额 -->
+  <select id="getFlowKindsOfSumByMastContno" resultMap="BaseLnciAmtMap" parameterClass="java.util.HashMap" >
+    select sum(nvl(T2.LNCI_AMT,0)) as LNCI_AMT
+	from B_PBC_APPLI_BASE_INFO T1, B_LAN_APPLI_LNCI_BASE T2 
+	where T1.APPNO = T2.APPNO
+	<isNotNull prepend="and" property="appliStatusDtl" > 
+        T1.APPLI_STATUS_DTL not in 
+        <iterate property="appliStatusDtl" conjunction="," open="(" close=")" >
+   		 $appliStatusDtl[]$
+   		</iterate> 
+    </isNotNull>
+    <isNotEmpty prepend="and" property="mastContno" >
+    	T2.MAST_CONTNO = #mastContno:VARCHAR#
+    </isNotEmpty>
+  </select>
+</sqlMap>

@@ -1,0 +1,19 @@
+<ht-legend>抵质押合同信息</ht-legend>
+<ht-form>
+    <!--<ht-input ht-id="conId" name="抵/质押合同内部编号" ng-model="gntyconInfo.secName"></ht-input>-->
+    <ht-input ht-id="prtclNo" name="监管合同号" disable="true" ng-model="gntyconInfo.prtclNo"></ht-input>
+    <ht-select ht-id="productId" name="业务品种" disable="true" datasource="productSource" dataOption="code" dataTrsOption="codeName"  ng-model="gntyconInfo.productId"></ht-select>
+    <ht-input ht-id="thrName" name="监管公司名称" disable="true" ng-model="gntyconInfo.thrName"></ht-input>
+    <ht-input ht-id="ration" name="抵/质押率(%)" disable="true" ng-model="gntyconInfo.ration"></ht-input>
+    <ht-input ht-id="guardRat" name="市值抵/质押率警戒线(%)" disable="true" ng-model="gntyconInfo.guardRat"></ht-input>
+    <ht-input ht-id="conId" name="抵/质押合同号" disable="true" ng-model="gntyconInfo.conId"></ht-input>
+    <ht-input ht-id="secName" name="出质人名称" disable="true" ng-model="gntyconInfo.secName"></ht-input>
+    <ht-select ht-id="gutyTyp" name="担保类型" disable="true" dictionary="gutTyp" ng-model="gntyconInfo.gutyTyp"></ht-select>
+    <ht-select ht-id="conStat" name="状态" disable="true" dictionary="contraceState" ng-model="gntyconInfo.conStat"></ht-select>
+    <ht-select ht-id="gutCurcd" name="币种" disable="true" dictionary="curcd" ng-model="gntyconInfo.gutCurcd"></ht-select>
+    <ht-input ht-id="gutVal" name="合同金额" disable="true" edit-type="currency" ng-model="gntyconInfo.gutVal"></ht-input>
+    <ht-input ht-id="startDate" name="合同生效日" disable="true" edit-type="date" ng-model="gntyconInfo.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="合同到期日" disable="true" edit-type="date" ng-model="gntyconInfo.endDate"></ht-input>
+    <ht-input ht-id="tlrName" name="客户经理" disable="true" ng-model="gntyconInfo.tlrName"></ht-input>
+    <ht-input ht-id="brcodeNm" name="经办机构" disable="true" ng-model="gntyconInfo.brcodeNm"></ht-input>
+</ht-form>

@@ -1,0 +1,74 @@
+<ht-form name="otherform">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input ht-id="custcd" name="客户号"  disable="true" ng-model="otherform.custcd"></ht-input>
+    <ht-input ht-id="cname" name="客户名称"disable="{{disable}}" reg-exp="common.require" ng-model="otherform.cname"></ht-input>
+  
+    <ht-select ht-id="idtype" name="证件类型" disable="{{disable}}" reg-exp="common.require" dictionary="idtype" ng-model="otherform.idtype"></ht-select>
+    <ht-input ht-id="idno" name="证件号码"  disable="{{disable}}" reg-exp="common.require" ng-model="otherform.idno"></ht-input>
+    
+    <ht-input ht-id="establishDate" name="注册日期" disable="{{disable}}" edit-type="date" reg-exp="common.require" ng-model="otherform.establishDate"></ht-input> 
+    <ht-input ht-id="regCapital" name="注册资本" disable="{{disable}}" reg-exp="common.require"   edit-type="currency"  ng-model="otherform.regCapital"></ht-input>
+    
+    <ht-input-extent ht-id="provinceName" name="省" disable="{{disable}}" extent="areaContent_one"
+          on-change="dooextent_one" ng-model="otherform.provinceName"></ht-input-extent>
+    <ht-input-extent ht-id="cityName" name="市" disable="{{disable}}" extent="areaContent_two"
+          on-change="dooextent_two" ng-model="otherform.cityName"></ht-input-extent>       
+    <ht-input-extent ht-id="areaName" name="区(县)" disable="{{disable}}" extent="areaContent_three"
+          on-change="dooextent_three" ng-model="otherform.areaName"></ht-input-extent>
+    <ht-input ht-id="regAddr" name="注册地址" disable="{{disable}}"  ng-model="otherform.regAddr"></ht-input>
+   <!--  <ht-input ht-id="enAddr" name="实际经营地址" disable="{{disable}}"  ng-model="otherform.enAddr"></ht-input> -->
+       
+    <ht-select ht-id="enterpriseScope" name="企业规模" disable="{{disable}}" dictionary="enterpriseScope" ng-model="otherform.enterpriseScope"></ht-select>
+   
+    <ht-radio ht-id="upFlag" name="是否上游客户" disable="{{disable}}" dictionary="checked" ng-model="otherform.upFlag"></ht-radio>
+    <ht-radio ht-id="downFlag" name="是否下游客户" disable="{{disable}}" dictionary="checked" ng-model="otherform.downFlag"></ht-radio>
+    
+    <ht-radio ht-id="isMarketCorp" name="是否上市公司" disable="{{disable}}" dictionary="checked" ng-model="otherform.isMarketCorp"></ht-radio>
+
+    <ht-input-extent ht-id="industryTypeName" name="所属行业" disable="{{disable}}" extent="industryTypeContent" on-change="industryTypeExtent"
+                     ng-model="otherform.industryTypeName"></ht-input-extent>
+<!--  <ht-input ht-id="enterpriseType" name="企业类型"   ng-model="otherform.enterpriseType"></ht-input>
+ -->       
+    <ht-input ht-id="baseActBank" name="基本账户开户行"  disable="{{disable}}"  ng-model="otherform.baseActBank"></ht-input>
+    <ht-input ht-id="baseActno" name="基本账户账号"    disable="{{disable}}" ng-model="otherform.baseActno"></ht-input>
+      
+    <ht-input ht-id="nationalTax" name="税收编号(国税)"  disable="{{disable}}"  ng-model="otherform.nationalTax"></ht-input>
+    <ht-input ht-id="landTax" name="税收编号(地税)"   disable="{{disable}}"  ng-model="otherform.landTax"></ht-input>
+     
+                      
+    <ht-input ht-id="contactTel" name="公司电话"   disable="{{disable}}" ng-model="otherform.contactTel"></ht-input>
+    <ht-radio ht-id="ownHouse" name="是否自有房产" disable="{{disable}}"  reg-exp="common.require" dictionary="checked"  ng-model="otherform.ownHouse"></ht-radio>
+ 
+    <ht-input ht-id="fax" name="传真号" disable="{{disable}}" ng-model="otherform.fax"></ht-input>
+    <ht-input ht-id="postCode" name="邮编" disable="{{disable}}"  ng-model="otherform.postCode"></ht-input>
+     
+    <ht-input ht-id="creditDate"  name="评级日期"  hide="{{hide2}}" disable="{{disable}}"  edit-type="date" ng-model="otherform.creditDate"></ht-input>
+    <ht-input ht-id="creditLevel" name="信用评级"  hide="{{hide2}}" disable="{{disable}}" ng-model="otherform.creditLevel"></ht-input>
+    <ht-input ht-id="creditScr"   name="评级得分"  hide="{{hide2}}" disable="{{disable}}" ng-model="otherform.creditScr"></ht-input>
+    
+    <ht-input ht-id="tlrName" name="经办人"  disable="true" ng-model="otherform.tlrName"></ht-input>
+    <ht-input ht-id="brName" name="经办机构"  disable="true" ng-model="otherform.brName"></ht-input>
+ 
+</ht-form>
+<div  id="contactinfo">
+	<ht-legend>联系人信息</ht-legend>
+	<ht-table ht-id="tableId" datasource="datasourceCon" selected="selected" docheckbox="true">	
+	    <ht-button-group>
+	        <ht-button ht-id="cntAdd" hide="{{hide1}}" class="btn-primary">新增</ht-button>
+	        <ht-button ht-id="cntDelete" hide="{{hide1}}" class="btn-primary">删除</ht-button>
+	        <ht-button ht-id="cntUpdate" hide="{{hide1}}" class="btn-primary">修改</ht-button>
+	    </ht-button-group>	
+	    <ht-column eg-name="name" zh-name="联系人名称"  docolumn="column"></ht-column>
+	    <ht-column eg-name="mobile" zh-name="手机号" ></ht-column>
+	    <ht-column eg-name="contactTel" zh-name="电话"></ht-column>
+	    <ht-column eg-name="email" zh-name="邮箱" ></ht-column>
+	    <ht-column eg-name="idtype" zh-name="证件类型" dictionary="idtype"></ht-column>
+	    <ht-column eg-name="idno" zh-name="证件号码"></ht-column>
+	</ht-table>
+	<ht-page conf="conf"></ht-page>
+</div>	
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide1}}"class="btn-primary">保存</ht-button>
+    <ht-button ht-id="confuse" class="btn-primary">返回</ht-button>
+</ht-button-group>
+

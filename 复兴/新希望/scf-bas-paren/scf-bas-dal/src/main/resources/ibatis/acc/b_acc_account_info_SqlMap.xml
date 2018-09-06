@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_ACC_ACCOUNT_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.acc.dao.model.BAccAccountInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_TYPE" property="accountType" jdbcType="CHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+    <result column="ACCOUNT" property="account" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="MY_BANK_ACC_FLG" property="myBankAccFlg" jdbcType="CHAR" />
+    <result column="OPEN_ACC_BANK_NM" property="openAccBankNm" jdbcType="VARCHAR" />
+    <result column="OPEN_ACC_BANK_NO" property="openAccBankNo" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CUSTCD, ACCOUNT_TYPE, CURCD, ACCOUNT_NO, ACCOUNT_NAME, ACCOUNT, STATUS, MGRNO, 
+    MY_BANK_ACC_FLG, OPEN_ACC_BANK_NM, OPEN_ACC_BANK_NO, TLRCD, CRT_TIME, BRCODE, LAST_UPD_TLRCD, 
+    LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.acc.dao.model.BAccAccountInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_ACC_ACCOUNT_INFO.Base_Column_List" />
+    from B_ACC_ACCOUNT_INFO
+    <isParameterPresent >
+      <include refid="B_ACC_ACCOUNT_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.acc.dao.model.BAccAccountInfo" >
+    select 
+    <include refid="B_ACC_ACCOUNT_INFO.Base_Column_List" />
+    from B_ACC_ACCOUNT_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.acc.dao.model.BAccAccountInfo" >
+    delete from B_ACC_ACCOUNT_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.acc.dao.model.BAccAccountInfoExample" >
+    delete from B_ACC_ACCOUNT_INFO
+    <include refid="B_ACC_ACCOUNT_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.acc.dao.model.BAccAccountInfo" >
+    insert into B_ACC_ACCOUNT_INFO (ID, CUSTCD, ACCOUNT_TYPE, CURCD, ACCOUNT_NO, 
+      ACCOUNT_NAME, ACCOUNT, STATUS, MGRNO, MY_BANK_ACC_FLG, 
+      OPEN_ACC_BANK_NM, OPEN_ACC_BANK_NO, TLRCD, CRT_TIME, 
+      BRCODE, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+      )
+    values (#id:VARCHAR#, #custcd:VARCHAR#, #accountType:CHAR#, #curcd:CHAR#, #accountNo:VARCHAR#, 
+      #accountName:VARCHAR#, #account:DECIMAL#, #status:CHAR#, #mgrno:VARCHAR#, #myBankAccFlg:CHAR#, 
+      #openAccBankNm:VARCHAR#, #openAccBankNo:VARCHAR#, #tlrcd:VARCHAR#, #crtTime:TIMESTAMP#, 
+      #brcode:VARCHAR#, #lastUpdTlrcd:VARCHAR#, #lastUpdTime:TIMESTAMP#, #lastUpdBrcode:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.acc.dao.model.BAccAccountInfo" >
+    insert into B_ACC_ACCOUNT_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="accountType" >
+        ACCOUNT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="accountName" >
+        ACCOUNT_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="account" >
+        ACCOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        MGRNO
+      </isNotNull>
+      <isNotNull prepend="," property="myBankAccFlg" >
+        MY_BANK_ACC_FLG
+      </isNotNull>
+      <isNotNull prepend="," property="openAccBankNm" >
+        OPEN_ACC_BANK_NM
+      </isNotNull>
+      <isNotNull prepend="," property="openAccBankNo" >
+        OPEN_ACC_BANK_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountType" >
+        #accountType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountName" >
+        #accountName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="account" >
+        #account:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        #mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="myBankAccFlg" >
+        #myBankAccFlg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="openAccBankNm" >
+        #openAccBankNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="openAccBankNo" >
+        #openAccBankNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.acc.dao.model.BAccAccountInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_ACC_ACCOUNT_INFO
+    <include refid="B_ACC_ACCOUNT_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_ACC_ACCOUNT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accountType" >
+        ACCOUNT_TYPE = #record.accountType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accountNo" >
+        ACCOUNT_NO = #record.accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accountName" >
+        ACCOUNT_NAME = #record.accountName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.account" >
+        ACCOUNT = #record.account:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mgrno" >
+        MGRNO = #record.mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.myBankAccFlg" >
+        MY_BANK_ACC_FLG = #record.myBankAccFlg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.openAccBankNm" >
+        OPEN_ACC_BANK_NM = #record.openAccBankNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.openAccBankNo" >
+        OPEN_ACC_BANK_NO = #record.openAccBankNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crtTime" >
+        CRT_TIME = #record.crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTime" >
+        LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_ACC_ACCOUNT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_ACC_ACCOUNT_INFO
+    set ID = #record.id:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      ACCOUNT_TYPE = #record.accountType:CHAR#,
+      CURCD = #record.curcd:CHAR#,
+      ACCOUNT_NO = #record.accountNo:VARCHAR#,
+      ACCOUNT_NAME = #record.accountName:VARCHAR#,
+      ACCOUNT = #record.account:DECIMAL#,
+      STATUS = #record.status:CHAR#,
+      MGRNO = #record.mgrno:VARCHAR#,
+      MY_BANK_ACC_FLG = #record.myBankAccFlg:CHAR#,
+      OPEN_ACC_BANK_NM = #record.openAccBankNm:VARCHAR#,
+      OPEN_ACC_BANK_NO = #record.openAccBankNo:VARCHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      CRT_TIME = #record.crtTime:TIMESTAMP#,
+      BRCODE = #record.brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_ACC_ACCOUNT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.acc.dao.model.BAccAccountInfo" >
+    update B_ACC_ACCOUNT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountType" >
+        ACCOUNT_TYPE = #accountType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO = #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountName" >
+        ACCOUNT_NAME = #accountName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="account" >
+        ACCOUNT = #account:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        MGRNO = #mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="myBankAccFlg" >
+        MY_BANK_ACC_FLG = #myBankAccFlg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="openAccBankNm" >
+        OPEN_ACC_BANK_NM = #openAccBankNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="openAccBankNo" >
+        OPEN_ACC_BANK_NO = #openAccBankNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME = #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.acc.dao.model.BAccAccountInfo" >
+    update B_ACC_ACCOUNT_INFO
+    set CUSTCD = #custcd:VARCHAR#,
+      ACCOUNT_TYPE = #accountType:CHAR#,
+      CURCD = #curcd:CHAR#,
+      ACCOUNT_NO = #accountNo:VARCHAR#,
+      ACCOUNT_NAME = #accountName:VARCHAR#,
+      ACCOUNT = #account:DECIMAL#,
+      STATUS = #status:CHAR#,
+      MGRNO = #mgrno:VARCHAR#,
+      MY_BANK_ACC_FLG = #myBankAccFlg:CHAR#,
+      OPEN_ACC_BANK_NM = #openAccBankNm:VARCHAR#,
+      OPEN_ACC_BANK_NO = #openAccBankNo:VARCHAR#,
+      TLRCD = #tlrcd:VARCHAR#,
+      CRT_TIME = #crtTime:TIMESTAMP#,
+      BRCODE = #brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <!-- 批量删除 -->
+    <delete id="batchDelete" parameterClass="java.util.List" >
+   	delete from  B_ACC_ACCOUNT_INFO where  id  in
+	<iterate conjunction="," open="(" close=")" >
+   		 #idList2[]#
+   	</iterate> 
+   </delete> 
+</sqlMap>

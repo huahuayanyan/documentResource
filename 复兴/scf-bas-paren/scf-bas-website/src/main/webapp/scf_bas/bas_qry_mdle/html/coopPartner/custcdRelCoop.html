@@ -1,0 +1,27 @@
+
+<ht-form name="otherform">
+   <ht-input-extent ht-id="cname" name="客户名称" reg-exp="common.require"  extent="cnameContent" 
+                     on-change="cnamedooextent" ng-model="otherform.cname">
+   </ht-input-extent>
+    
+ 	<ht-input-extent ht-id="coopNm" name="合作客户名称" reg-exp="common.require"  extent="coopNmContent"
+                     on-change="coopNmdooextent" ng-model="otherform.coopNm">
+   </ht-input-extent>
+
+    <ht-select name="合作类型" reg-exp="common.require" ng-model="otherform.type" dictionary="coopType"
+              disable ="true" on-change=""></ht-select>
+   
+</ht-form>
+<ht-legend>关联合作伙伴信息</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-column eg-name="belongYear" zh-name="所属年份"></ht-column>
+    <ht-column eg-name="belongMonth" zh-name="所属月份"></ht-column>
+    <ht-column eg-name="coopRate" zh-name="合作占比"></ht-column>
+     <ht-column eg-name="monthRate" zh-name="月比率"></ht-column>
+</ht-table>
+<!-- <ht-page conf="conf"></ht-page> -->
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

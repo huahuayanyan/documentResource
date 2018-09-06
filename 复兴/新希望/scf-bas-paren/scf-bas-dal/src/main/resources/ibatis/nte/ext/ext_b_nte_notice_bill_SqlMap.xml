@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_NTE_NOTICE_BILL" >
+  <select id="findBNteNoticeBillByAppno" resultMap="B_NTE_NOTICE_BILL.BaseResultMap">
+    select 
+    <include refid="B_NTE_NOTICE_BILL.Base_Column_List" />
+    from B_NTE_NOTICE_BILL
+    where appno = #appno:VARCHAR#
+  </select>
+
+</sqlMap>

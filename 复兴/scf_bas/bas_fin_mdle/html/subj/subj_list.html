@@ -1,0 +1,33 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+    <ht-input ht-id="subjId" name="财报科目编号" ng-model="conditionForm.subjId"></ht-input>
+    <ht-input ht-id="subjNm"  name="财报科目名称" ng-model="conditionForm.subjNm"></ht-input>
+    <ht-input ht-id="delFlg" name="删除标志" ng-model="conditionForm.delFlg"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>财报科目列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <!--<ht-button ht-id="excel" class="btn-primary">导表</ht-button>
+        <ht-button ht-id="fresh" class="btn-primary">刷新</ht-button>-->
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="subjId" zh-name="财报科目编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="subjNm" zh-name="财报科目名称"></ht-column>
+    <!--<ht-column eg-name="delFlg" zh-name="删除标志" dictionary="deleteFlag"></ht-column>-->
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->
+
+
+
+

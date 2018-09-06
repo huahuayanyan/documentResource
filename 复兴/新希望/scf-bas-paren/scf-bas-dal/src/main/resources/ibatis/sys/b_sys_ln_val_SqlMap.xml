@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_SYS_LN_VAL" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.sys.dao.model.BSysLnVal" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RATEID" property="rateid" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="CHAR" />
+    <result column="RATEVAL" property="rateval" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="VARCHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="CHAR" />
+    <result column="TERM" property="term" jdbcType="VARCHAR" />
+    <result column="RATEVAL_YEAR" property="ratevalYear" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, RATEID, CURCD, UNIT, RATEVAL, START_DATE, END_DATE, STATE, TERM, RATEVAL_YEAR
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnValExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_SYS_LN_VAL.Base_Column_List" />
+    from B_SYS_LN_VAL
+    <isParameterPresent >
+      <include refid="B_SYS_LN_VAL.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnVal" >
+    select 
+    <include refid="B_SYS_LN_VAL.Base_Column_List" />
+    from B_SYS_LN_VAL
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnVal" >
+    delete from B_SYS_LN_VAL
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnValExample" >
+    delete from B_SYS_LN_VAL
+    <include refid="B_SYS_LN_VAL.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnVal" >
+    insert into B_SYS_LN_VAL (ID, RATEID, CURCD, UNIT, RATEVAL, 
+      START_DATE, END_DATE, STATE, TERM, RATEVAL_YEAR
+      )
+    values (#id:VARCHAR#, #rateid:VARCHAR#, #curcd:VARCHAR#, #unit:CHAR#, #rateval:DECIMAL#, 
+      #startDate:VARCHAR#, #endDate:VARCHAR#, #state:CHAR#, #term:VARCHAR#, #ratevalYear:DECIMAL#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnVal" >
+    insert into B_SYS_LN_VAL
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="rateid" >
+        RATEID
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="unit" >
+        UNIT
+      </isNotNull>
+      <isNotNull prepend="," property="rateval" >
+        RATEVAL
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        STATE
+      </isNotNull>
+      <isNotNull prepend="," property="term" >
+        TERM
+      </isNotNull>
+      <isNotNull prepend="," property="ratevalYear" >
+        RATEVAL_YEAR
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rateid" >
+        #rateid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="unit" >
+        #unit:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rateval" >
+        #rateval:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        #state:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="term" >
+        #term:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ratevalYear" >
+        #ratevalYear:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnValExample" resultClass="java.lang.Integer" >
+    select count(*) from B_SYS_LN_VAL
+    <include refid="B_SYS_LN_VAL.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_SYS_LN_VAL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rateid" >
+        RATEID = #record.rateid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.unit" >
+        UNIT = #record.unit:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rateval" >
+        RATEVAL = #record.rateval:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.state" >
+        STATE = #record.state:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.term" >
+        TERM = #record.term:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ratevalYear" >
+        RATEVAL_YEAR = #record.ratevalYear:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_SYS_LN_VAL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_SYS_LN_VAL
+    set ID = #record.id:VARCHAR#,
+      RATEID = #record.rateid:VARCHAR#,
+      CURCD = #record.curcd:VARCHAR#,
+      UNIT = #record.unit:CHAR#,
+      RATEVAL = #record.rateval:DECIMAL#,
+      START_DATE = #record.startDate:VARCHAR#,
+      END_DATE = #record.endDate:VARCHAR#,
+      STATE = #record.state:CHAR#,
+      TERM = #record.term:VARCHAR#,
+      RATEVAL_YEAR = #record.ratevalYear:DECIMAL#
+    <isParameterPresent >
+      <include refid="B_SYS_LN_VAL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnVal" >
+    update B_SYS_LN_VAL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="rateid" >
+        RATEID = #rateid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="unit" >
+        UNIT = #unit:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rateval" >
+        RATEVAL = #rateval:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        STATE = #state:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="term" >
+        TERM = #term:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ratevalYear" >
+        RATEVAL_YEAR = #ratevalYear:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnVal" >
+    update B_SYS_LN_VAL
+    set RATEID = #rateid:VARCHAR#,
+      CURCD = #curcd:VARCHAR#,
+      UNIT = #unit:CHAR#,
+      RATEVAL = #rateval:DECIMAL#,
+      START_DATE = #startDate:VARCHAR#,
+      END_DATE = #endDate:VARCHAR#,
+      STATE = #state:CHAR#,
+      TERM = #term:VARCHAR#,
+      RATEVAL_YEAR = #ratevalYear:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+  <!-- 自定义 -->
+  <select id="selectByRateid" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysLnVal" >
+    select 
+    <include refid="B_SYS_LN_VAL.Base_Column_List" />
+    from B_SYS_LN_VAL
+    where RATEID = #rateid:VARCHAR#
+  </select>
+</sqlMap>

@@ -1,0 +1,29 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+		<ht-select ht-id="marketPriceSrc_Q"  name="市价来源" reg-exp="common.require"  dictionary="marketPriceSrc" ng-model="conditionForm.marketPriceSrc_Q"></ht-select>
+         <ht-input ht-id="productId_Q" name="盯市编号" ng-model="conditionForm.productId_Q"></ht-input>
+        <ht-input ht-id="productName_Q" name="产品名称" ng-model="conditionForm.productName_Q"></ht-input>
+        <ht-input ht-id="mortgageLevelThreeName_Q" name="押品名称" ng-model="conditionForm.mortgageLevelThreeName_Q"></ht-input>
+        <ht-button-group>
+            <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+            <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+        </ht-button-group>
+</ht-form>
+
+<ht-legend>价格行情</ht-legend>
+<ht-button-group>
+    <ht-button ht-id="bound" class="btn-primary" desc-name="绑定"></ht-button>
+    <ht-button ht-id="back" class="btn-primary" desc-name="返回"></ht-button>
+</ht-button-group>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+	<ht-column eg-name="productId" zh-name="盯市编号" ></ht-column>
+	<ht-column eg-name="productName" zh-name="产品名称" docolumn="column" href="true"></ht-column>
+	<ht-column eg-name="mortgageThreeName" zh-name="押品名称" dictionary=""></ht-column>
+	<ht-column eg-name="price" zh-name="价格" type="currency"></ht-column>
+	<ht-column eg-name="upDownPrice" zh-name="涨跌"  type="currency"></ht-column>
+	<ht-column eg-name="mortgageModel" zh-name="规格"  type="currency"></ht-column>
+	<ht-column eg-name="mortgageUnits" zh-name="计量单位" dictionary="mortgageUnits"></ht-column>
+	<ht-column eg-name="priceDate" zh-name="价格日期" type="date"></ht-column>
+	<ht-column eg-name="description" zh-name="备注" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

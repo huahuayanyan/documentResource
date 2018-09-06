@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- <classPathEntry location="ojdbc14.jar" /> -->
+
+    <context id="OracleTables" targetRuntime="Ibatis2Java5">
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+        <plugin type="com.huateng.generate.plugin.TopSerializablePlugin"></plugin>
+        <plugin type="com.huateng.generate.plugin.SqlMapUnMergePlugin"></plugin>
+        <!-- DAO的生成,带有分页标识 -->
+        <plugin type="com.huateng.generate.plugin.PaginationAnnotaionPlugin">
+        	<property name="extends" value="com.huateng.base.ibatisEx.IbatisDaoAnnotation4Template"/>
+        	<property name="pageClass" value="com.huateng.base.common.beans.Page"/>
+        	<property name="sqlMapTemplate" value="sqlMapClientTemplate"/>
+        </plugin>
+
+        <commentGenerator type="com.huateng.generate.plugin.DBCommentGenerator">
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+         <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@170.252.200.55:1521:dev"
+            userId="scf" password="scf">
+            <property name="remarksReporting" value="true" />
+        </jdbcConnection>
+     <!--    <jdbcConnection driverClass="org.gjt.mm.mysql.Driver" connectionURL="jdbc:mysql://170.252.200.63:3306/sample?useUnicode=true&amp;characterEncoding=UTF-8"
+            userId="sample" password="sample">
+            <property name="remarksReporting" value="true" />
+        </jdbcConnection>
+		 -->
+		<!-- POJO类生成配置 -->
+        <javaModelGenerator targetPackage="com.huateng.scf.bas.crm.dao.model" targetProject="../scf-bas-dal/src/main/java">
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+		
+		<!-- SqlMap文件生成配置 -->
+        <sqlMapGenerator targetPackage="crm" targetProject="../scf-bas-dal/src/main/resources/ibatis">
+        </sqlMapGenerator>
+		
+		<!-- Dao生成配置 -->
+        <javaClientGenerator type="SPRING" targetPackage="com.huateng.scf.bas.crm.dao" targetProject="../scf-bas-dal/src/main/java">
+		</javaClientGenerator>
+		
+        <!-- 数据库表 -->
+     <!--    <table tableName="org_user" domainObjectName="OrgUser">
+        	<generatedKey column="id" sqlStatement="SELECT genTabId('org_user')" identity="false"/>
+        </table> -->
+          <!-- 数据库表 -->
+      <!--   <table tableName="SCF_TEST" domainObjectName="ScfTest">
+        	<generatedKey column="id" sqlStatement="SELECT genTabId('SCF_TEST')" identity="false"/>
+        </table> -->
+        
+           <!-- <table tableName="B_CRM_BASE_INFO" domainObjectName="B_CRM_BASE_INFO"></table>
+           <table tableName="B_CRM_ENT_INFO" domainObjectName="B_CRM_ENT_INFO"></table>
+           <table tableName="B_CRM_ANAL_INFO" domainObjectName="B_CRM_ANAL_INFO"></table>
+           <table tableName="B_CRM_MONI_ENT_INFO" domainObjectName="B_CRM_MONI_ENT_INFO"></table>
+           <table tableName="B_CRM_MONI_EVA_INFO" domainObjectName="B_CRM_MONI_EVA_INFO"></table>
+           <table tableName="B_CRM_RELATION_INFO" domainObjectName="B_CRM_RELATION_INFO"></table>
+           <table tableName="B_CRM_UPANDDOWN_REL" domainObjectName="B_CRM_UPANDDOWN_REL"></table>-->
+            <!-- [客户标签云] -->
+ 			<!--<table tableName="B_CRM_TAG_CLOUD" domainObjectName="BCrmTagCloud"></table>-->
+           <!-- <table tableName="B_CRM_BASE_INFO"     domainObjectName="BCrmBaseInfo"></table>    
+			<table tableName="B_CRM_ENT_INFO"      domainObjectName="BCrmEntInfo"></table>     
+			<table tableName="B_CRM_ANAL_INFO"     domainObjectName="BCrmAnalInfo"></table>    
+			<table tableName="B_CRM_MONI_ENT_INFO" domainObjectName="BCrmMoniEntInfo"></table> 
+			<table tableName="B_CRM_MONI_EVA_INFO" domainObjectName="BCrmMoniEvaInfo"></table> 
+			<table tableName="B_CRM_RELATION_INFO" domainObjectName="BCrmRelationInfo"></table>
+			<table tableName="B_CRM_UPANDDOWN_REL" domainObjectName="BCrmUpanddownRel"></table>
+			<table tableName="B_SYS_SERIAL_NO" domainObjectName="BSysSerialNo"></table> -->
+ 			<!-- <table tableName="b_crg_eval_rec" domainObjectName="BCrgEvalRec"></table>  -->
+			<!-- <table tableName="B_CRG_EVAL_DTL" domainObjectName="BCrgEvalDtl"></table>
+			<table tableName="B_SYS_APPLY_DTL" domainObjectName="BSysApplyDtl"></table> -->
+			<!-- 客户财报 开始-->
+			<!-- <table tableName="B_FIN_CNFG_SUBJ" domainObjectName="BFinCnfgSubj"></table>
+			<table tableName="B_FIN_CNFG_CL" domainObjectName="BFinCnfgCl"></table>
+			<table tableName="B_FIN_CNFG_DEF" domainObjectName="BFinCnfgDef"></table>
+			<table tableName="B_FIN_CUST" domainObjectName="BFinCust"></table>
+			<table tableName="B_FIN_CUST_DIR" domainObjectName="BFinCustDir"></table>
+			<table tableName="B_FIN_CUST_DS" domainObjectName="BFinCustDs"></table> -->
+			<!-- 客户财报结束-->
+			<!-- 授信管理 开始-->
+			<!-- <table tableName="B_CRR_INV_INFO" domainObjectName="BCrrInvInfo"></table>
+			<table tableName="B_CRR_BILL_INFO" domainObjectName="BCrrBillInfo"></table>
+			<table tableName="B_CRR_LC_INFO" domainObjectName="BCrrLcInfo"></table>
+			<table tableName="B_CRR_EQPT_INFO" domainObjectName="BCrrEqptInfo"></table>
+			<table tableName="B_CRR_LG_INFO" domainObjectName="BCrrLgInfo"></table>
+			<table tableName="B_CRR_LN_APP" domainObjectName="BCrrLnApp"></table>
+			<table tableName="B_CRR_LN_APP_RELA" domainObjectName="BCrrLnAppRela"></table>
+			<table tableName="B_CRR_GNTY_CON" domainObjectName="BCrrGntyCon"></table>
+ 			<table tableName="B_CRR_GNTY_RELA" domainObjectName="BCrrGntyRela"></table>
+			<table tableName="B_CRR_GNTY_INFO" domainObjectName="BCrrGntyInfo"></table>
+			<table tableName="B_CRR_GNTY_AUDIT" domainObjectName="BCrrGntyAudit"></table>
+			<table tableName="B_CRR_GNTY_CHG" domainObjectName="BCrrGntyChg"></table>
+			<table tableName="B_CRR_LN_CON" domainObjectName="BCrrLnCon"></table>
+			<table tableName="B_CRR_LN_CON_RELA" domainObjectName="BCrrLnConRela"></table>
+			<table tableName="B_CRR_DUEBILL_APP" domainObjectName="BCrrDuebillApp"></table>
+			<table tableName="B_CRR_DUEBILL" domainObjectName="BCrrDuebill"></table>
+			<table tableName="B_CRR_GNTY_INFO" domainObjectName="BCrrGntyInfo"></table>
+			<table tableName="B_CRR_GNTY_AUDIT" domainObjectName="BCrrGntyAudit"></table>
+			<table tableName="B_CRR_GNTY_CHG" domainObjectName="BCrrGntyChg"></table>
+			<table tableName="B_CRR_GNTY_RELA" domainObjectName="BCrrGntyRela"></table>
+			<table tableName="B_CRR_PRD_MD" domainObjectName="BCrrPrdMd"></table>
+			<table tableName="B_CRR_INT_MD" domainObjectName="BCrrIntMd"></table>
+			<table tableName="B_MRN_APPLI_ACCT_INFO" domainObjectName="BMrnAppliAcctInfo"></table>
+			<table tableName="B_SYS_LN_CD" domainObjectName="BSysLnCd"></table>
+			<table tableName="B_SYS_LN_VAL" domainObjectName="BSysLnVal"></table> -->
+			<!-- 授信管理结束 -->
+			<!--<table tableName="B_PRD_INFO" domainObjectName="BPrdInfo"></table>  -->
+			<!-- 合同协议 开始-->
+			<!-- <table tableName="B_CNT_MPROT_BASE_INFO" domainObjectName="BCntMprotBaseInfo"></table>
+			<table tableName="B_CNT_MPROT_DEAL_INFO" domainObjectName="BCntMprotDealInfo"></table>
+			<table tableName="B_CNT_MPROT_PART_INFO" domainObjectName="BCntMprotPartInfo"></table>
+			<table tableName="B_CNT_BUY_INFO" domainObjectName="BCntBuyInfo"></table> -->
+			<!-- 合同协议 结束-->
+			<!-- <table tableName="B_SYS_GLOBAL_INFO" domainObjectName="BSysGlobalInfo"></table> -->
+			<!-- <table tableName="B_CNT_BUY_MPROT_INFO" domainObjectName="BCntMprotInfo"></table> -->
+    		<!-- 质押合同保险单信息表 -->
+    		<!-- <table tableName="B_CNT_INSURANCE_BASE_INFO" domainObjectName="BCntInsuranceBaseInfo"></table> -->
+    		<!-- [质押合同押品类别关联关系表] -->
+    		<!-- <table tableName="B_CNT_SLAVE_MTG_REL" domainObjectName="BCntSlaveMtgRel"></table> -->
+    		<!-- [监管下限调整申请表] -->
+    		<!-- <table tableName="S_BCP_APPLI_LOWER_PRICE" domainObjectName="SBcpAppliLowerPrice"></table> -->
+    		<!-- 监管协议最低价值变更历史表 -->
+    		<!-- <table tableName="B_CNT_MPROT_CM_PRICE_HIS" domainObjectName="BCntMprotCmPriceHis"></table> -->
+    		<!-- 分支行产品授权信息表 -->
+    		<!-- <table tableName="B_PRD_BRANCH_AUTH" domainObjectName="BPrdBranchAuth"></table> -->
+    		
+    		<!-- 还款/回款申请流水信息表 -->
+    		<!-- <table tableName="R_BCP_APPLI_REPAYMENT" domainObjectName="RBcpAppliRepayment"></table> -->
+    		
+    		<!-- 预付类 发货对账 
+    		<table tableName="B_CNT_MPROT_BASE_INFO" domainObjectName="BCntMprotBaseInfo"></table> 
+    		<table tableName="A_BCP_MORE_DVY_CHK_STOCK" domainObjectName="ABcpMoreDvyChkStock"></table> 
+    		<table tableName="B_CNT_MPROT_PART_INFO" domainObjectName="BCntMprotPartInfo"></table> 
+    		 -->
+    		<!-- <table tableName="A_BCP_MORE_DVY_CHK_STOCK_DTL" domainObjectName="ABcpMoreDvyChkStockDtl"></table>  -->
+    		<!-- 仓单产品参数扩展表 -->
+    		<!-- <table tableName="S_BCP_PRODUCT_BILL" domainObjectName="SBcpProductBill"></table> -->
+    		<!-- 非标准仓单信息表 --> 
+    		<!-- <table tableName="S_BCP_MORT_BILL_NORMAL" domainObjectName="SBcpMortBillNormal"></table> -->    		 
+    		 <!-- <table tableName="A_BCP_MORE_DVY_CHK_STOCK_DTL" domainObjectName="ABcpMoreDvyChkStockDtl"></table>  -->
+    		 <!-- 对账不平预警信息表 -->
+    		 <!-- <table tableName="B_WRN_CHECK_STOCK" domainObjectName="BWanCheckStock"></table> --> 
+    		 <!-- 发货对账不平预警信息表 -->
+    		 <!-- <table tableName="B_WRN_MORT_CHECK_INFO" domainObjectName="BWanMortCheckInfo"></table> --> 
+    		 <!-- 价格异常/跌幅预警信息表 -->
+    		 <!-- <table tableName="B_WRN_FLUC_PRICE" domainObjectName="BWanMortFlucPrice"></table> -->  
+			<!-- 非标准仓单申请表 -->
+			<!-- <table tableName="S_BCP_APPLI_MORT_BILL_NORMAL" domainObjectName="SBcpAppliMortBillNormal"></table> -->
+			<!--  -->
+			<!-- <table tableName="S_BCP_APPLI_WAREHOUSE" domainObjectName="SBcpAppliWarehouse"></table> -->
+			<!-- 仓单信息流水表 -->
+			<!-- <table tableName="S_BCP_BILL_NORMAL_IN_OUT" domainObjectName="SBcpBillNormalInOut"></table> -->
+    		<!-- B_PRD_MORT[动产产品参数表] -->
+    		<!-- <table tableName="B_PRD_MORT" domainObjectName="BPrdMort"></table> -->
+    		<!-- 未收款确认预警信息表-->
+    		<!-- <table tableName="B_WRN_LNCI_CONFIRM_INFO" domainObjectName="BWrnLnciConfirmInfo"></table> -->
+    		<!-- 未赎货/到期未发货预警信息表-->
+    		<!-- <table tableName="B_WRN_MORT_REDEEM_INFO" domainObjectName="BWrnMortRedeemInfo"></table> -->
+    		
+    		<!-- B_WRN_LNCI_CONFIRM_INFO[未收款确认预警信息表] -->
+    		<!-- <table tableName="B_WRN_LNCI_CONFIRM_INFO" domainObjectName="BWrnLnciConfirmInfo"></table> -->
+    		<!-- 核库巡库信息表 -->
+    		<!-- <table tableName="B_PBC_MTG_CHK_STOCK_INFO" domainObjectName="BPbcMtgChkStockInfo"></table> -->
+    		<!-- 订单融资业务申请流水表 -->
+    		<!-- <table tableName="B_PBC_APPLI_ORDER_BUSS_INFO" domainObjectName="BPbcAppliOrderBussInfo"></table> -->
+    		<!-- 突破监管限额预警-->
+    		<!-- <table tableName="B_WRN_OVER_MONI_INFO" domainObjectName="BWrnOverMoniInfo"></table> -->
+
+            <!--联系人信息-->
+            <!-- <table tableName="B_CRM_CONTACTS_INFO" domainObjectName="BCrmContactsInfo"></table>--> 
+            <!-- 押品历史表-->
+    	    <!--<table tableName="B_PBC_MTG_PRICE_HIS" domainObjectName="BPbcMtgPriceHis"></table>    -->
+    		<!-- 核价基本信息表-->
+<!-- 			<table tableName="B_PBC_PRICING_BASE_INFO" domainObjectName="BPbcPricingBaseInfo"></table>    
+ -->			
+			<!-- 核价质押品信息表-->
+<!-- 			<table tableName="B_PBC_PRICING_MTG" domainObjectName="BPbcPricingMtg"></table>   
+ -->   
+			<!-- [应收类业务申请基本信息表] -->
+ 			<!-- <table tableName="B_CNT_BCP_APPLI_BASE_INFO" domainObjectName="BCntBcpAppliBaseInfo"></table> -->
+ 			<!-- [信保保理保险合同信息表] -->
+ 			<!-- <table tableName="B_CNT_INSURANCE_CONT_INFO" domainObjectName="BCntInsuranceContInfo"></table> -->
+ 			<!-- [应收类合同基本信息表] -->
+ 			<!-- <table tableName="B_CNT_BCP_INFO" domainObjectName="BCntBcpInfo"></table> -->
+ 			<!-- [放款申请表] -->
+ 			<!-- <table tableName="R_BCP_DUEBILL_APP" domainObjectName="RBcpDuebillApp"></table> -->
+ 			<!-- [出账登记表] -->
+ 			<!-- <table tableName="R_BCP_DUEBILL_REGISTER" domainObjectName="RBcpDuebillRegister"></table> -->
+ 			<!-- [应收账款融资交易对手信息表] -->
+ 			<!-- <table tableName="B_CNT_BCP_EXT_INFO" domainObjectName="BCntBcpExtInfo"></table> -->
+ 			<!-- <table tableName="B_WRN_DUE_INFO" domainObjectName="BWrnDueInfo"></table>
+ 			<table tableName="B_CNT_BASE_INFO" domainObjectName="BCntBaseInfo"></table> -->
+ 			
+ 			<!-- [应收账款单据信息表] -->
+ 			<!-- <table tableName="R_BCP_DEBT_INFO" domainObjectName="RBcpDebtInfo"></table> -->
+ 			<!-- [应收类质押物信息宽表（月）] -->
+ 			<!-- <table tableName="B_QUERY_DEBT_M" domainObjectName="BQueryDebtM"></table> -->
+
+ 			<!-- [客户标签]ODS_CRM_TAG -->
+ 			<!-- <table tableName="ODS_CRM_TAG" domainObjectName="OCrmTag"></table>  -->
+ 			<!-- [合作伙伴]ODS_COOPER_PARTNER -->
+ 			<!--  <table tableName="ODS_COOPER_PARTNER" domainObjectName="OCooperPartner"></table>  -->
+ 			<!-- [客户信息分析]ODS_CRM_INFO_ANALYSIS -->
+ 			<!-- <table tableName="ODS_CRM_INFO_ANALYSIS" domainObjectName="OCrmInfoAnalysis"></table>  -->
+ 			<!-- [融资统计分析]ODS_FINA_STA_ANALYSIS -->
+ 			<!--  <table tableName="ODS_FINA_STA_ANALYSIS" domainObjectName="OFinaStaAnalysis"></table>  -->
+ 			<!-- [预警参数设置分类表]B_BRP_PAGE_PARAM_PACKAGE -->
+ 			<!-- <table tableName="B_BRP_PAGE_PARAM_PACKAGE" domainObjectName="BBrpPageParamPackage"></table> -->  
+ 			<!-- [客户财报数据分析拓展表]B_FIN_CUST_DS_EXT -->
+ 			<!--  <table tableName="B_FIN_CUST_DS_EXT" domainObjectName="BFinCustDsExt"></table>    -->
+ 			<!-- [财务指标参数配置表]B_BRP_FIN_PARAM -->
+ 			<!-- <table tableName="B_BRP_FIN_PARAM" domainObjectName="BBrpFinParam"></table>   -->
+ 			
+ 			<!-- 业务品种配置属性 -->
+ 			<!-- <table tableName="B_PRD_FLOW" domainObjectName="BPrdFlow"></table> -->
+ 			<!-- [数据查询权限分配] -->
+ 			<!-- <table tableName="B_SYS_QUERY_LIMITS" domainObjectName="BSysQueryLimits"></table> -->
+ 			<!-- [业务品种绑定文件模板] -->
+ 			<!-- <table tableName="B_PRD_FILE_INFO" domainObjectName="BPrdFileInfo"></table> -->
+ 			<!-- B_BRP_FILE_PARAM[业务文件类型参数] -->
+ 			<!-- <table tableName="B_BRP_FILE_PARAM" domainObjectName="BBrpFileParam"></table> -->
+ 			<!-- [业务品种绑定打印模板] -->
+ 			<!-- <table tableName="B_PRD_PRINT_INFO" domainObjectName="BPrdPrintInfo"></table> -->
+ 			<!-- [上传文件信息] -->
+ 			<!-- <table tableName="B_SYS_UPLOAD_FILE" domainObjectName="BSysUploadFile"></table> -->
+ 			<!-- [业务品种绑定风险拦截信息] -->
+ 			<!-- <table tableName="B_PRD_CHKDIR_INFO" domainObjectName="BPrdChkdirInfo"></table> -->
+	</context>
+</generatorConfiguration>

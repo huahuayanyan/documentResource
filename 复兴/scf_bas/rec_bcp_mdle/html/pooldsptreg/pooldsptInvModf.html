@@ -1,0 +1,19 @@
+<ht-legend>表单信息</ht-legend>
+<ht-form name="otherform">
+    <ht-input ht-id="billsNo" name="凭证编号"  ng-model="otherform.billsNo"  disable="true"></ht-input>
+    <ht-select ht-id="billsType" name="凭证类型" dictionary="billsType" ng-model="otherform.billsType" disable="true"></ht-select>
+    <ht-input ht-id="bussContcode" name="商务合同号" ng-model="otherform.bussContcode" disable="true"></ht-input>
+    <ht-input ht-id="billsDate" name="应收账款日期" edit-type="date" ng-model="otherform.billsDate"  disable="true"></ht-input>
+    <ht-input ht-id="debtEnd" name="到期日" edit-type="date" ng-model="otherform.debtEnd"  disable="true"></ht-input>
+    <ht-input ht-id="deadline" name="最迟付款日" edit-type="date" ng-model="otherform.deadline"  disable="true"></ht-input>
+    <ht-select ht-id="curcd" name="币种" dictionary="curcd" ng-model="otherform.curcd" disable="true"></ht-select>
+    <ht-input ht-id="billsAmount" name="有效金额" edit-type="currency"  ng-model="otherform.billsAmount"  disable="true"></ht-input>
+    <ht-input ht-id="remainingAmount" name="应收账款余额"edit-type="currency"   ng-model="otherform.remainingAmount"  disable="true"></ht-input>
+    <ht-input ht-id="money" name="争议金额" edit-type="currency" ng-model="otherform.money" reg-exp="common.require"></ht-input>
+    <ht-select ht-id="issueReason" name="争议原因" dictionary="issueReason" ng-model="otherform.issueReason" reg-exp="common.require"></ht-select>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

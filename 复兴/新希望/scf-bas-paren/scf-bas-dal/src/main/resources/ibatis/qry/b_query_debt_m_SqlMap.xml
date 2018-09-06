@@ -1,0 +1,2278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_QUERY_DEBT_M" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.qry.dao.model.BQueryDebtM" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="INPUTDATE" property="inputdate" jdbcType="VARCHAR" />
+    <result column="APPLY_TYPE" property="applyType" jdbcType="VARCHAR" />
+    <result column="CUSTCD_SALLER" property="custcdSaller" jdbcType="VARCHAR" />
+    <result column="CUSTCD_BUYER" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="CNAME_BUYER" property="cnameBuyer" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="INSERT_DATE" property="insertDate" jdbcType="DATE" />
+    <result column="DEBT_NUM" property="debtNum" jdbcType="DECIMAL" />
+    <result column="TOTAL_DEBT_AMOUNT" property="totalDebtAmount" jdbcType="DECIMAL" />
+    <result column="FINACING_COST" property="finacingCost" jdbcType="DECIMAL" />
+    <result column="COST" property="cost" jdbcType="DECIMAL" />
+    <result column="HANDLING_FEE" property="handlingFee" jdbcType="DECIMAL" />
+    <result column="REDUCE_AMOUNT" property="reduceAmount" jdbcType="DECIMAL" />
+    <result column="TOTAL_FEE" property="totalFee" jdbcType="DECIMAL" />
+    <result column="TOTAL_REDUCE" property="totalReduce" jdbcType="DECIMAL" />
+    <result column="RECEIVE_AMOUNT" property="receiveAmount" jdbcType="DECIMAL" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="LOAN_TYPE" property="loanType" jdbcType="VARCHAR" />
+    <result column="BANKNO" property="bankno" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="APP_DATE" property="appDate" jdbcType="DATE" />
+    <result column="RETURN_DATE" property="returnDate" jdbcType="DATE" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="BRCODE_BUSS" property="brcodeBuss" jdbcType="VARCHAR" />
+    <result column="RETURN_TYPE" property="returnType" jdbcType="CHAR" />
+    <result column="TO_SALLER_FLAG" property="toSallerFlag" jdbcType="CHAR" />
+    <result column="RETURN_AMOUNT" property="returnAmount" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="RETURN_METHOD" property="returnMethod" jdbcType="CHAR" />
+    <result column="RETURN_INTEREST_AMOUNT" property="returnInterestAmount" jdbcType="DECIMAL" />
+    <result column="RETURN_CAPITAL_AMOUNT" property="returnCapitalAmount" jdbcType="DECIMAL" />
+    <result column="TO_SALLER_AMOUNT" property="toSallerAmount" jdbcType="DECIMAL" />
+    <result column="TO_POOL_AMOUNT" property="toPoolAmount" jdbcType="DECIMAL" />
+    <result column="RETURN_ACCOUNT" property="returnAccount" jdbcType="VARCHAR" />
+    <result column="TRANSACTION_NO" property="transactionNo" jdbcType="VARCHAR" />
+    <result column="TOBAIL_AMOUNT" property="tobailAmount" jdbcType="DECIMAL" />
+    <result column="REBATE_AMOUNT" property="rebateAmount" jdbcType="DECIMAL" />
+    <result column="RETURN_ACCOUNT_BALANCE" property="returnAccountBalance" jdbcType="DECIMAL" />
+    <result column="TOTAL_OVER_AMOUNT" property="totalOverAmount" jdbcType="DECIMAL" />
+    <result column="SETTLE_METHOD" property="settleMethod" jdbcType="VARCHAR" />
+    <result column="REPAY_PURPOSE" property="repayPurpose" jdbcType="CHAR" />
+    <result column="TRANSFER_AMT" property="transferAmt" jdbcType="DECIMAL" />
+    <result column="TRANSACTION_DATE" property="transactionDate" jdbcType="DATE" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="ENAME" property="ename" jdbcType="VARCHAR" />
+    <result column="ALIAS_NAME" property="aliasName" jdbcType="VARCHAR" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="CUST_STATUS" property="custStatus" jdbcType="CHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="CORE_FLAG" property="coreFlag" jdbcType="CHAR" />
+    <result column="MONI_FLAG" property="moniFlag" jdbcType="CHAR" />
+    <result column="FUTURES_FLAG" property="futuresFlag" jdbcType="CHAR" />
+    <result column="FLC_FLAG" property="flcFlag" jdbcType="CHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="CREDIT_FLAG" property="creditFlag" jdbcType="CHAR" />
+    <result column="BLACK_FLAG" property="blackFlag" jdbcType="CHAR" />
+    <result column="INSURE_FLAG" property="insureFlag" jdbcType="CHAR" />
+    <result column="FACTOR_FLAG" property="factorFlag" jdbcType="CHAR" />
+    <result column="CCMS_CUSTCD" property="ccmsCustcd" jdbcType="VARCHAR" />
+    <result column="IMPORTANT_FLAG" property="importantFlag" jdbcType="CHAR" />
+    <result column="COMMERCIAL_FALG" property="commercialFalg" jdbcType="CHAR" />
+    <result column="OVERSEAS_FLAG" property="overseasFlag" jdbcType="CHAR" />
+    <result column="BANKS_CUST_FLAG" property="banksCustFlag" jdbcType="CHAR" />
+    <result column="EF_BUYER_FLAG" property="efBuyerFlag" jdbcType="CHAR" />
+    <result column="IF_SELLER_FLAG" property="ifSellerFlag" jdbcType="CHAR" />
+    <result column="IS_BANK" property="isBank" jdbcType="CHAR" />
+    <result column="FCI_CODE" property="fciCode" jdbcType="VARCHAR" />
+    <result column="IS_INTL" property="isIntl" jdbcType="CHAR" />
+    <result column="ENTERPRISE_TYPE" property="enterpriseType" jdbcType="CHAR" />
+    <result column="INDUSTRY_TYPE" property="industryType" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_SCOPE" property="enterpriseScope" jdbcType="VARCHAR" />
+    <result column="CUST_LEVEL" property="custLevel" jdbcType="VARCHAR" />
+    <result column="CORE_LEVEL" property="coreLevel" jdbcType="VARCHAR" />
+    <result column="SUPPLY_POSITION" property="supplyPosition" jdbcType="VARCHAR" />
+    <result column="BRNAME" property="brname" jdbcType="VARCHAR" />
+    <result column="BRCLASS" property="brclass" jdbcType="CHAR" />
+    <result column="BRNAME_BUSS" property="brnameBuss" jdbcType="VARCHAR" />
+    <result column="TLR_NAME" property="tlrName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="DEBT_CONTNO" property="debtContno" jdbcType="VARCHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="FACT_TYPE" property="factType" jdbcType="VARCHAR" />
+    <result column="FINANCING_TYPE" property="financingType" jdbcType="CHAR" />
+    <result column="CHARGE_TYPE" property="chargeType" jdbcType="CHAR" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="CHAR" />
+    <result column="IS_AUTO_PAY" property="isAutoPay" jdbcType="VARCHAR" />
+    <result column="AUTO_PAY_DAYS" property="autoPayDays" jdbcType="DECIMAL" />
+    <result column="SERVICE_CONTENT" property="serviceContent" jdbcType="VARCHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="VARCHAR" />
+    <result column="CUSTCD_CONT" property="custcdCont" jdbcType="VARCHAR" />
+    <result column="CURCD_CONT" property="curcdCont" jdbcType="CHAR" />
+    <result column="CONT_AMOUNT" property="contAmount" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="DATE" />
+    <result column="END_DATE" property="endDate" jdbcType="DATE" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="CONT_STATUS" property="contStatus" jdbcType="VARCHAR" />
+    <result column="CONT_ACCOUNT_NO" property="contAccountNo" jdbcType="VARCHAR" />
+    <result column="MGRNO_CONT" property="mgrnoCont" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRNO" property="lastUpdTlrno" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_DATE" property="lastUpdDate" jdbcType="DATE" />
+    <result column="BRCODE_CONT" property="brcodeCont" jdbcType="VARCHAR" />
+    <result column="BAIL_ACCT_NO" property="bailAcctNo" jdbcType="VARCHAR" />
+    <result column="CONT_RETU_ACCOUNT" property="contRetuAccount" jdbcType="VARCHAR" />
+    <result column="RECOVER_TYPE" property="recoverType" jdbcType="VARCHAR" />
+    <result column="CONT_REPAY_PURPOSE" property="contRepayPurpose" jdbcType="VARCHAR" />
+    <result column="DUE_BALANCE_RULE" property="dueBalanceRule" jdbcType="VARCHAR" />
+    <result column="PAYMENT_VERIFY_RULE" property="paymentVerifyRule" jdbcType="VARCHAR" />
+    <result column="REPARATION_PROT_NO" property="reparationProtNo" jdbcType="VARCHAR" />
+    <result column="LEASE" property="lease" jdbcType="VARCHAR" />
+    <result column="REPURCHASER" property="repurchaser" jdbcType="VARCHAR" />
+    <result column="REPURCHASE_PROT_NO" property="repurchaseProtNo" jdbcType="VARCHAR" />
+    <result column="FACTORING_BRCODE" property="factoringBrcode" jdbcType="VARCHAR" />
+    <result column="REPARATION_TERM" property="reparationTerm" jdbcType="DECIMAL" />
+    <result column="REPARATION_PERCENT" property="reparationPercent" jdbcType="DECIMAL" />
+    <result column="CUMULATIVE_REPARATION_AMT" property="cumulativeReparationAmt" jdbcType="DECIMAL" />
+    <result column="FACT_PATTERN" property="factPattern" jdbcType="VARCHAR" />
+    <result column="COOPERATION_BRCODE" property="cooperationBrcode" jdbcType="VARCHAR" />
+    <result column="RENT_SETTLE_WAY" property="rentSettleWay" jdbcType="CHAR" />
+    <result column="POOL_BAIL_AMT" property="poolBailAmt" jdbcType="DECIMAL" />
+    <result column="SUMDEBT_BILLS_AMOUNT" property="sumdebtBillsAmount" jdbcType="DECIMAL" />
+    <result column="SUMDEBT_BILLS_AMOUNT_VIEW" property="sumdebtBillsAmountView" jdbcType="DECIMAL" />
+    <result column="SUMDEBT_REMAINING_AMOUNT" property="sumdebtRemainingAmount" jdbcType="DECIMAL" />
+    <result column="SUMDEBT_REMAINING_USEABLE_AMOU" property="sumdebtRemainingUseableAmou" jdbcType="DECIMAL" />
+    <result column="SUMDEBT_REBATE_AMOUNT" property="sumdebtRebateAmount" jdbcType="DECIMAL" />
+    <result column="SUMDEBT_BUY_BACK_AMOUNT" property="sumdebtBuyBackAmount" jdbcType="DECIMAL" />
+    <result column="SUMDEBT_PAY_AMOUNT" property="sumdebtPayAmount" jdbcType="DECIMAL" />
+    <result column="SUMDEBT_REMOVE_AMOUNT" property="sumdebtRemoveAmount" jdbcType="DECIMAL" />
+    <result column="SUMDEBT_CASH_REMAINING_AMOUNT" property="sumdebtCashRemainingAmount" jdbcType="DECIMAL" />
+    <result column="SUMAMT_DEBT_FLAW_FLAG" property="sumamtDebtFlawFlag" jdbcType="DECIMAL" />
+    <result column="SUMAMT_DEBT_ISSUE_FLAG" property="sumamtDebtIssueFlag" jdbcType="DECIMAL" />
+    <result column="SUMAMT_DEBT_OVERDUE_FLAG" property="sumamtDebtOverdueFlag" jdbcType="DECIMAL" />
+    <result column="SUMAMT_DEBT_BAD_FLAG" property="sumamtDebtBadFlag" jdbcType="DECIMAL" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, INPUTDATE, APPLY_TYPE, CUSTCD_SALLER, CUSTCD_BUYER, APPNO, CNAME_BUYER, MAST_CONTNO, 
+    INSERT_DATE, DEBT_NUM, TOTAL_DEBT_AMOUNT, FINACING_COST, COST, HANDLING_FEE, REDUCE_AMOUNT, 
+    TOTAL_FEE, TOTAL_REDUCE, RECEIVE_AMOUNT, BUSS_TYPE, LOAN_TYPE, BANKNO, AMOUNT, APP_DATE, 
+    RETURN_DATE, CURCD, MEMO, TLRCD, BRCODE_BUSS, RETURN_TYPE, TO_SALLER_FLAG, RETURN_AMOUNT, 
+    ACCOUNT_NO, RETURN_METHOD, RETURN_INTEREST_AMOUNT, RETURN_CAPITAL_AMOUNT, TO_SALLER_AMOUNT, 
+    TO_POOL_AMOUNT, RETURN_ACCOUNT, TRANSACTION_NO, TOBAIL_AMOUNT, REBATE_AMOUNT, RETURN_ACCOUNT_BALANCE, 
+    TOTAL_OVER_AMOUNT, SETTLE_METHOD, REPAY_PURPOSE, TRANSFER_AMT, TRANSACTION_DATE, 
+    CNAME, ENAME, ALIAS_NAME, ORG_CODE, CUST_STATUS, MGRNO, CORE_FLAG, MONI_FLAG, FUTURES_FLAG, 
+    FLC_FLAG, BRCODE, CREATE_DATE, CREDIT_FLAG, BLACK_FLAG, INSURE_FLAG, FACTOR_FLAG, 
+    CCMS_CUSTCD, IMPORTANT_FLAG, COMMERCIAL_FALG, OVERSEAS_FLAG, BANKS_CUST_FLAG, EF_BUYER_FLAG, 
+    IF_SELLER_FLAG, IS_BANK, FCI_CODE, IS_INTL, ENTERPRISE_TYPE, INDUSTRY_TYPE, ENTERPRISE_SCOPE, 
+    CUST_LEVEL, CORE_LEVEL, SUPPLY_POSITION, BRNAME, BRCLASS, BRNAME_BUSS, TLR_NAME, 
+    PRODUCT_NAME, DEBT_CONTNO, LOAN_PERCENT, FACT_TYPE, FINANCING_TYPE, CHARGE_TYPE, 
+    NOTICE_TYPE, IS_AUTO_PAY, AUTO_PAY_DAYS, SERVICE_CONTENT, SUPPLY_CHAIN_PD_ID, CUSTCD_CONT, 
+    CURCD_CONT, CONT_AMOUNT, START_DATE, END_DATE, LOAN_WAY, CONT_STATUS, CONT_ACCOUNT_NO, 
+    MGRNO_CONT, LAST_UPD_BRCODE, LAST_UPD_TLRNO, LAST_UPD_DATE, BRCODE_CONT, BAIL_ACCT_NO, 
+    CONT_RETU_ACCOUNT, RECOVER_TYPE, CONT_REPAY_PURPOSE, DUE_BALANCE_RULE, PAYMENT_VERIFY_RULE, 
+    REPARATION_PROT_NO, LEASE, REPURCHASER, REPURCHASE_PROT_NO, FACTORING_BRCODE, REPARATION_TERM, 
+    REPARATION_PERCENT, CUMULATIVE_REPARATION_AMT, FACT_PATTERN, COOPERATION_BRCODE, 
+    RENT_SETTLE_WAY, POOL_BAIL_AMT, SUMDEBT_BILLS_AMOUNT, SUMDEBT_BILLS_AMOUNT_VIEW, 
+    SUMDEBT_REMAINING_AMOUNT, SUMDEBT_REMAINING_USEABLE_AMOU, SUMDEBT_REBATE_AMOUNT, 
+    SUMDEBT_BUY_BACK_AMOUNT, SUMDEBT_PAY_AMOUNT, SUMDEBT_REMOVE_AMOUNT, SUMDEBT_CASH_REMAINING_AMOUNT, 
+    SUMAMT_DEBT_FLAW_FLAG, SUMAMT_DEBT_ISSUE_FLAG, SUMAMT_DEBT_OVERDUE_FLAG, SUMAMT_DEBT_BAD_FLAG, 
+    CUSTCD
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.qry.dao.model.BQueryDebtMExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_QUERY_DEBT_M.Base_Column_List" />
+    from B_QUERY_DEBT_M
+    <isParameterPresent >
+      <include refid="B_QUERY_DEBT_M.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.qry.dao.model.BQueryDebtM" >
+    select 
+    <include refid="B_QUERY_DEBT_M.Base_Column_List" />
+    from B_QUERY_DEBT_M
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.qry.dao.model.BQueryDebtM" >
+    delete from B_QUERY_DEBT_M
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.qry.dao.model.BQueryDebtMExample" >
+    delete from B_QUERY_DEBT_M
+    <include refid="B_QUERY_DEBT_M.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.qry.dao.model.BQueryDebtM" >
+    insert into B_QUERY_DEBT_M (ID, INPUTDATE, APPLY_TYPE, CUSTCD_SALLER, 
+      CUSTCD_BUYER, APPNO, CNAME_BUYER, MAST_CONTNO, 
+      INSERT_DATE, DEBT_NUM, TOTAL_DEBT_AMOUNT, FINACING_COST, 
+      COST, HANDLING_FEE, REDUCE_AMOUNT, TOTAL_FEE, 
+      TOTAL_REDUCE, RECEIVE_AMOUNT, BUSS_TYPE, LOAN_TYPE, 
+      BANKNO, AMOUNT, APP_DATE, RETURN_DATE, CURCD, 
+      MEMO, TLRCD, BRCODE_BUSS, RETURN_TYPE, TO_SALLER_FLAG, 
+      RETURN_AMOUNT, ACCOUNT_NO, RETURN_METHOD, RETURN_INTEREST_AMOUNT, 
+      RETURN_CAPITAL_AMOUNT, TO_SALLER_AMOUNT, TO_POOL_AMOUNT, 
+      RETURN_ACCOUNT, TRANSACTION_NO, TOBAIL_AMOUNT, REBATE_AMOUNT, 
+      RETURN_ACCOUNT_BALANCE, TOTAL_OVER_AMOUNT, SETTLE_METHOD, 
+      REPAY_PURPOSE, TRANSFER_AMT, TRANSACTION_DATE, CNAME, 
+      ENAME, ALIAS_NAME, ORG_CODE, CUST_STATUS, MGRNO, 
+      CORE_FLAG, MONI_FLAG, FUTURES_FLAG, FLC_FLAG, BRCODE, 
+      CREATE_DATE, CREDIT_FLAG, BLACK_FLAG, INSURE_FLAG, FACTOR_FLAG, 
+      CCMS_CUSTCD, IMPORTANT_FLAG, COMMERCIAL_FALG, OVERSEAS_FLAG, 
+      BANKS_CUST_FLAG, EF_BUYER_FLAG, IF_SELLER_FLAG, IS_BANK, FCI_CODE, 
+      IS_INTL, ENTERPRISE_TYPE, INDUSTRY_TYPE, ENTERPRISE_SCOPE, 
+      CUST_LEVEL, CORE_LEVEL, SUPPLY_POSITION, BRNAME, 
+      BRCLASS, BRNAME_BUSS, TLR_NAME, PRODUCT_NAME, 
+      DEBT_CONTNO, LOAN_PERCENT, FACT_TYPE, FINANCING_TYPE, 
+      CHARGE_TYPE, NOTICE_TYPE, IS_AUTO_PAY, AUTO_PAY_DAYS, 
+      SERVICE_CONTENT, SUPPLY_CHAIN_PD_ID, CUSTCD_CONT, CURCD_CONT, 
+      CONT_AMOUNT, START_DATE, END_DATE, LOAN_WAY, CONT_STATUS, 
+      CONT_ACCOUNT_NO, MGRNO_CONT, LAST_UPD_BRCODE, LAST_UPD_TLRNO, 
+      LAST_UPD_DATE, BRCODE_CONT, BAIL_ACCT_NO, CONT_RETU_ACCOUNT, 
+      RECOVER_TYPE, CONT_REPAY_PURPOSE, DUE_BALANCE_RULE, PAYMENT_VERIFY_RULE, 
+      REPARATION_PROT_NO, LEASE, REPURCHASER, REPURCHASE_PROT_NO, 
+      FACTORING_BRCODE, REPARATION_TERM, REPARATION_PERCENT, 
+      CUMULATIVE_REPARATION_AMT, FACT_PATTERN, COOPERATION_BRCODE, 
+      RENT_SETTLE_WAY, POOL_BAIL_AMT, SUMDEBT_BILLS_AMOUNT, SUMDEBT_BILLS_AMOUNT_VIEW, 
+      SUMDEBT_REMAINING_AMOUNT, SUMDEBT_REMAINING_USEABLE_AMOU, SUMDEBT_REBATE_AMOUNT, 
+      SUMDEBT_BUY_BACK_AMOUNT, SUMDEBT_PAY_AMOUNT, SUMDEBT_REMOVE_AMOUNT, 
+      SUMDEBT_CASH_REMAINING_AMOUNT, SUMAMT_DEBT_FLAW_FLAG, SUMAMT_DEBT_ISSUE_FLAG, 
+      SUMAMT_DEBT_OVERDUE_FLAG, SUMAMT_DEBT_BAD_FLAG, CUSTCD)
+    values (#id:VARCHAR#, #inputdate:VARCHAR#, #applyType:VARCHAR#, #custcdSaller:VARCHAR#, 
+      #custcdBuyer:VARCHAR#, #appno:VARCHAR#, #cnameBuyer:VARCHAR#, #mastContno:VARCHAR#, 
+      #insertDate:DATE#, #debtNum:DECIMAL#, #totalDebtAmount:DECIMAL#, #finacingCost:DECIMAL#, 
+      #cost:DECIMAL#, #handlingFee:DECIMAL#, #reduceAmount:DECIMAL#, #totalFee:DECIMAL#, 
+      #totalReduce:DECIMAL#, #receiveAmount:DECIMAL#, #bussType:VARCHAR#, #loanType:VARCHAR#, 
+      #bankno:VARCHAR#, #amount:DECIMAL#, #appDate:DATE#, #returnDate:DATE#, #curcd:CHAR#, 
+      #memo:VARCHAR#, #tlrcd:VARCHAR#, #brcodeBuss:VARCHAR#, #returnType:CHAR#, #toSallerFlag:CHAR#, 
+      #returnAmount:DECIMAL#, #accountNo:VARCHAR#, #returnMethod:CHAR#, #returnInterestAmount:DECIMAL#, 
+      #returnCapitalAmount:DECIMAL#, #toSallerAmount:DECIMAL#, #toPoolAmount:DECIMAL#, 
+      #returnAccount:VARCHAR#, #transactionNo:VARCHAR#, #tobailAmount:DECIMAL#, #rebateAmount:DECIMAL#, 
+      #returnAccountBalance:DECIMAL#, #totalOverAmount:DECIMAL#, #settleMethod:VARCHAR#, 
+      #repayPurpose:CHAR#, #transferAmt:DECIMAL#, #transactionDate:DATE#, #cname:VARCHAR#, 
+      #ename:VARCHAR#, #aliasName:VARCHAR#, #orgCode:VARCHAR#, #custStatus:CHAR#, #mgrno:VARCHAR#, 
+      #coreFlag:CHAR#, #moniFlag:CHAR#, #futuresFlag:CHAR#, #flcFlag:CHAR#, #brcode:VARCHAR#, 
+      #createDate:DATE#, #creditFlag:CHAR#, #blackFlag:CHAR#, #insureFlag:CHAR#, #factorFlag:CHAR#, 
+      #ccmsCustcd:VARCHAR#, #importantFlag:CHAR#, #commercialFalg:CHAR#, #overseasFlag:CHAR#, 
+      #banksCustFlag:CHAR#, #efBuyerFlag:CHAR#, #ifSellerFlag:CHAR#, #isBank:CHAR#, #fciCode:VARCHAR#, 
+      #isIntl:CHAR#, #enterpriseType:CHAR#, #industryType:VARCHAR#, #enterpriseScope:VARCHAR#, 
+      #custLevel:VARCHAR#, #coreLevel:VARCHAR#, #supplyPosition:VARCHAR#, #brname:VARCHAR#, 
+      #brclass:CHAR#, #brnameBuss:VARCHAR#, #tlrName:VARCHAR#, #productName:VARCHAR#, 
+      #debtContno:VARCHAR#, #loanPercent:DECIMAL#, #factType:VARCHAR#, #financingType:CHAR#, 
+      #chargeType:CHAR#, #noticeType:CHAR#, #isAutoPay:VARCHAR#, #autoPayDays:DECIMAL#, 
+      #serviceContent:VARCHAR#, #supplyChainPdId:VARCHAR#, #custcdCont:VARCHAR#, #curcdCont:CHAR#, 
+      #contAmount:DECIMAL#, #startDate:DATE#, #endDate:DATE#, #loanWay:VARCHAR#, #contStatus:VARCHAR#, 
+      #contAccountNo:VARCHAR#, #mgrnoCont:VARCHAR#, #lastUpdBrcode:VARCHAR#, #lastUpdTlrno:VARCHAR#, 
+      #lastUpdDate:DATE#, #brcodeCont:VARCHAR#, #bailAcctNo:VARCHAR#, #contRetuAccount:VARCHAR#, 
+      #recoverType:VARCHAR#, #contRepayPurpose:VARCHAR#, #dueBalanceRule:VARCHAR#, #paymentVerifyRule:VARCHAR#, 
+      #reparationProtNo:VARCHAR#, #lease:VARCHAR#, #repurchaser:VARCHAR#, #repurchaseProtNo:VARCHAR#, 
+      #factoringBrcode:VARCHAR#, #reparationTerm:DECIMAL#, #reparationPercent:DECIMAL#, 
+      #cumulativeReparationAmt:DECIMAL#, #factPattern:VARCHAR#, #cooperationBrcode:VARCHAR#, 
+      #rentSettleWay:CHAR#, #poolBailAmt:DECIMAL#, #sumdebtBillsAmount:DECIMAL#, #sumdebtBillsAmountView:DECIMAL#, 
+      #sumdebtRemainingAmount:DECIMAL#, #sumdebtRemainingUseableAmou:DECIMAL#, #sumdebtRebateAmount:DECIMAL#, 
+      #sumdebtBuyBackAmount:DECIMAL#, #sumdebtPayAmount:DECIMAL#, #sumdebtRemoveAmount:DECIMAL#, 
+      #sumdebtCashRemainingAmount:DECIMAL#, #sumamtDebtFlawFlag:DECIMAL#, #sumamtDebtIssueFlag:DECIMAL#, 
+      #sumamtDebtOverdueFlag:DECIMAL#, #sumamtDebtBadFlag:DECIMAL#, #custcd:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.qry.dao.model.BQueryDebtM" >
+    insert into B_QUERY_DEBT_M
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="inputdate" >
+        INPUTDATE
+      </isNotNull>
+      <isNotNull prepend="," property="applyType" >
+        APPLY_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSaller" >
+        CUSTCD_SALLER
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        CUSTCD_BUYER
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="cnameBuyer" >
+        CNAME_BUYER
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        INSERT_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="debtNum" >
+        DEBT_NUM
+      </isNotNull>
+      <isNotNull prepend="," property="totalDebtAmount" >
+        TOTAL_DEBT_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="finacingCost" >
+        FINACING_COST
+      </isNotNull>
+      <isNotNull prepend="," property="cost" >
+        COST
+      </isNotNull>
+      <isNotNull prepend="," property="handlingFee" >
+        HANDLING_FEE
+      </isNotNull>
+      <isNotNull prepend="," property="reduceAmount" >
+        REDUCE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="totalFee" >
+        TOTAL_FEE
+      </isNotNull>
+      <isNotNull prepend="," property="totalReduce" >
+        TOTAL_REDUCE
+      </isNotNull>
+      <isNotNull prepend="," property="receiveAmount" >
+        RECEIVE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        BUSS_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="loanType" >
+        LOAN_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="bankno" >
+        BANKNO
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="appDate" >
+        APP_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="returnDate" >
+        RETURN_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="brcodeBuss" >
+        BRCODE_BUSS
+      </isNotNull>
+      <isNotNull prepend="," property="returnType" >
+        RETURN_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerFlag" >
+        TO_SALLER_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="returnAmount" >
+        RETURN_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="returnMethod" >
+        RETURN_METHOD
+      </isNotNull>
+      <isNotNull prepend="," property="returnInterestAmount" >
+        RETURN_INTEREST_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="returnCapitalAmount" >
+        RETURN_CAPITAL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerAmount" >
+        TO_SALLER_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="toPoolAmount" >
+        TO_POOL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccount" >
+        RETURN_ACCOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="transactionNo" >
+        TRANSACTION_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tobailAmount" >
+        TOBAIL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="rebateAmount" >
+        REBATE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccountBalance" >
+        RETURN_ACCOUNT_BALANCE
+      </isNotNull>
+      <isNotNull prepend="," property="totalOverAmount" >
+        TOTAL_OVER_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="settleMethod" >
+        SETTLE_METHOD
+      </isNotNull>
+      <isNotNull prepend="," property="repayPurpose" >
+        REPAY_PURPOSE
+      </isNotNull>
+      <isNotNull prepend="," property="transferAmt" >
+        TRANSFER_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="transactionDate" >
+        TRANSACTION_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="ename" >
+        ENAME
+      </isNotNull>
+      <isNotNull prepend="," property="aliasName" >
+        ALIAS_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="orgCode" >
+        ORG_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="custStatus" >
+        CUST_STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        MGRNO
+      </isNotNull>
+      <isNotNull prepend="," property="coreFlag" >
+        CORE_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="moniFlag" >
+        MONI_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="futuresFlag" >
+        FUTURES_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="flcFlag" >
+        FLC_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        CREATE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="creditFlag" >
+        CREDIT_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="blackFlag" >
+        BLACK_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="insureFlag" >
+        INSURE_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="factorFlag" >
+        FACTOR_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="ccmsCustcd" >
+        CCMS_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="importantFlag" >
+        IMPORTANT_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="commercialFalg" >
+        COMMERCIAL_FALG
+      </isNotNull>
+      <isNotNull prepend="," property="overseasFlag" >
+        OVERSEAS_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="banksCustFlag" >
+        BANKS_CUST_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="efBuyerFlag" >
+        EF_BUYER_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="ifSellerFlag" >
+        IF_SELLER_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="isBank" >
+        IS_BANK
+      </isNotNull>
+      <isNotNull prepend="," property="fciCode" >
+        FCI_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="isIntl" >
+        IS_INTL
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseType" >
+        ENTERPRISE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        INDUSTRY_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseScope" >
+        ENTERPRISE_SCOPE
+      </isNotNull>
+      <isNotNull prepend="," property="custLevel" >
+        CUST_LEVEL
+      </isNotNull>
+      <isNotNull prepend="," property="coreLevel" >
+        CORE_LEVEL
+      </isNotNull>
+      <isNotNull prepend="," property="supplyPosition" >
+        SUPPLY_POSITION
+      </isNotNull>
+      <isNotNull prepend="," property="brname" >
+        BRNAME
+      </isNotNull>
+      <isNotNull prepend="," property="brclass" >
+        BRCLASS
+      </isNotNull>
+      <isNotNull prepend="," property="brnameBuss" >
+        BRNAME_BUSS
+      </isNotNull>
+      <isNotNull prepend="," property="tlrName" >
+        TLR_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        PRODUCT_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="debtContno" >
+        DEBT_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="loanPercent" >
+        LOAN_PERCENT
+      </isNotNull>
+      <isNotNull prepend="," property="factType" >
+        FACT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="financingType" >
+        FINANCING_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="chargeType" >
+        CHARGE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        NOTICE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="isAutoPay" >
+        IS_AUTO_PAY
+      </isNotNull>
+      <isNotNull prepend="," property="autoPayDays" >
+        AUTO_PAY_DAYS
+      </isNotNull>
+      <isNotNull prepend="," property="serviceContent" >
+        SERVICE_CONTENT
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID
+      </isNotNull>
+      <isNotNull prepend="," property="custcdCont" >
+        CUSTCD_CONT
+      </isNotNull>
+      <isNotNull prepend="," property="curcdCont" >
+        CURCD_CONT
+      </isNotNull>
+      <isNotNull prepend="," property="contAmount" >
+        CONT_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="contStatus" >
+        CONT_STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="contAccountNo" >
+        CONT_ACCOUNT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mgrnoCont" >
+        MGRNO_CONT
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrno" >
+        LAST_UPD_TLRNO
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        LAST_UPD_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="brcodeCont" >
+        BRCODE_CONT
+      </isNotNull>
+      <isNotNull prepend="," property="bailAcctNo" >
+        BAIL_ACCT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="contRetuAccount" >
+        CONT_RETU_ACCOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="recoverType" >
+        RECOVER_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="contRepayPurpose" >
+        CONT_REPAY_PURPOSE
+      </isNotNull>
+      <isNotNull prepend="," property="dueBalanceRule" >
+        DUE_BALANCE_RULE
+      </isNotNull>
+      <isNotNull prepend="," property="paymentVerifyRule" >
+        PAYMENT_VERIFY_RULE
+      </isNotNull>
+      <isNotNull prepend="," property="reparationProtNo" >
+        REPARATION_PROT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="lease" >
+        LEASE
+      </isNotNull>
+      <isNotNull prepend="," property="repurchaser" >
+        REPURCHASER
+      </isNotNull>
+      <isNotNull prepend="," property="repurchaseProtNo" >
+        REPURCHASE_PROT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="factoringBrcode" >
+        FACTORING_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="reparationTerm" >
+        REPARATION_TERM
+      </isNotNull>
+      <isNotNull prepend="," property="reparationPercent" >
+        REPARATION_PERCENT
+      </isNotNull>
+      <isNotNull prepend="," property="cumulativeReparationAmt" >
+        CUMULATIVE_REPARATION_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="factPattern" >
+        FACT_PATTERN
+      </isNotNull>
+      <isNotNull prepend="," property="cooperationBrcode" >
+        COOPERATION_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="rentSettleWay" >
+        RENT_SETTLE_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="poolBailAmt" >
+        POOL_BAIL_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtBillsAmount" >
+        SUMDEBT_BILLS_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtBillsAmountView" >
+        SUMDEBT_BILLS_AMOUNT_VIEW
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRemainingAmount" >
+        SUMDEBT_REMAINING_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRemainingUseableAmou" >
+        SUMDEBT_REMAINING_USEABLE_AMOU
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRebateAmount" >
+        SUMDEBT_REBATE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtBuyBackAmount" >
+        SUMDEBT_BUY_BACK_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtPayAmount" >
+        SUMDEBT_PAY_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRemoveAmount" >
+        SUMDEBT_REMOVE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtCashRemainingAmount" >
+        SUMDEBT_CASH_REMAINING_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtFlawFlag" >
+        SUMAMT_DEBT_FLAW_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtIssueFlag" >
+        SUMAMT_DEBT_ISSUE_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtOverdueFlag" >
+        SUMAMT_DEBT_OVERDUE_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtBadFlag" >
+        SUMAMT_DEBT_BAD_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inputdate" >
+        #inputdate:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyType" >
+        #applyType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSaller" >
+        #custcdSaller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        #custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cnameBuyer" >
+        #cnameBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        #insertDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="debtNum" >
+        #debtNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalDebtAmount" >
+        #totalDebtAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="finacingCost" >
+        #finacingCost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cost" >
+        #cost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="handlingFee" >
+        #handlingFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reduceAmount" >
+        #reduceAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalFee" >
+        #totalFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalReduce" >
+        #totalReduce:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="receiveAmount" >
+        #receiveAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        #bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanType" >
+        #loanType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bankno" >
+        #bankno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        #amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="appDate" >
+        #appDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="returnDate" >
+        #returnDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcodeBuss" >
+        #brcodeBuss:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnType" >
+        #returnType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerFlag" >
+        #toSallerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAmount" >
+        #returnAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnMethod" >
+        #returnMethod:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnInterestAmount" >
+        #returnInterestAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnCapitalAmount" >
+        #returnCapitalAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerAmount" >
+        #toSallerAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="toPoolAmount" >
+        #toPoolAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccount" >
+        #returnAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="transactionNo" >
+        #transactionNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tobailAmount" >
+        #tobailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rebateAmount" >
+        #rebateAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccountBalance" >
+        #returnAccountBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalOverAmount" >
+        #totalOverAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="settleMethod" >
+        #settleMethod:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="repayPurpose" >
+        #repayPurpose:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="transferAmt" >
+        #transferAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="transactionDate" >
+        #transactionDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ename" >
+        #ename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="aliasName" >
+        #aliasName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orgCode" >
+        #orgCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custStatus" >
+        #custStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        #mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreFlag" >
+        #coreFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniFlag" >
+        #moniFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="futuresFlag" >
+        #futuresFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flcFlag" >
+        #flcFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        #createDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="creditFlag" >
+        #creditFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blackFlag" >
+        #blackFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insureFlag" >
+        #insureFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="factorFlag" >
+        #factorFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ccmsCustcd" >
+        #ccmsCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="importantFlag" >
+        #importantFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commercialFalg" >
+        #commercialFalg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="overseasFlag" >
+        #overseasFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="banksCustFlag" >
+        #banksCustFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="efBuyerFlag" >
+        #efBuyerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifSellerFlag" >
+        #ifSellerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isBank" >
+        #isBank:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fciCode" >
+        #fciCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isIntl" >
+        #isIntl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseType" >
+        #enterpriseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        #industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseScope" >
+        #enterpriseScope:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custLevel" >
+        #custLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreLevel" >
+        #coreLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyPosition" >
+        #supplyPosition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brname" >
+        #brname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brclass" >
+        #brclass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brnameBuss" >
+        #brnameBuss:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrName" >
+        #tlrName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        #productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debtContno" >
+        #debtContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanPercent" >
+        #loanPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="factType" >
+        #factType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="financingType" >
+        #financingType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chargeType" >
+        #chargeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        #noticeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isAutoPay" >
+        #isAutoPay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="autoPayDays" >
+        #autoPayDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="serviceContent" >
+        #serviceContent:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        #supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdCont" >
+        #custcdCont:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcdCont" >
+        #curcdCont:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contAmount" >
+        #contAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contStatus" >
+        #contStatus:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contAccountNo" >
+        #contAccountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrnoCont" >
+        #mgrnoCont:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrno" >
+        #lastUpdTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        #lastUpdDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="brcodeCont" >
+        #brcodeCont:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAcctNo" >
+        #bailAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contRetuAccount" >
+        #contRetuAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="recoverType" >
+        #recoverType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contRepayPurpose" >
+        #contRepayPurpose:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="dueBalanceRule" >
+        #dueBalanceRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paymentVerifyRule" >
+        #paymentVerifyRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationProtNo" >
+        #reparationProtNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lease" >
+        #lease:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="repurchaser" >
+        #repurchaser:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="repurchaseProtNo" >
+        #repurchaseProtNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="factoringBrcode" >
+        #factoringBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationTerm" >
+        #reparationTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationPercent" >
+        #reparationPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cumulativeReparationAmt" >
+        #cumulativeReparationAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="factPattern" >
+        #factPattern:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cooperationBrcode" >
+        #cooperationBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rentSettleWay" >
+        #rentSettleWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="poolBailAmt" >
+        #poolBailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtBillsAmount" >
+        #sumdebtBillsAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtBillsAmountView" >
+        #sumdebtBillsAmountView:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRemainingAmount" >
+        #sumdebtRemainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRemainingUseableAmou" >
+        #sumdebtRemainingUseableAmou:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRebateAmount" >
+        #sumdebtRebateAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtBuyBackAmount" >
+        #sumdebtBuyBackAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtPayAmount" >
+        #sumdebtPayAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRemoveAmount" >
+        #sumdebtRemoveAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtCashRemainingAmount" >
+        #sumdebtCashRemainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtFlawFlag" >
+        #sumamtDebtFlawFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtIssueFlag" >
+        #sumamtDebtIssueFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtOverdueFlag" >
+        #sumamtDebtOverdueFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtBadFlag" >
+        #sumamtDebtBadFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.qry.dao.model.BQueryDebtMExample" resultClass="java.lang.Integer" >
+    select count(*) from B_QUERY_DEBT_M
+    <include refid="B_QUERY_DEBT_M.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_QUERY_DEBT_M
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inputdate" >
+        INPUTDATE = #record.inputdate:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.applyType" >
+        APPLY_TYPE = #record.applyType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcdSaller" >
+        CUSTCD_SALLER = #record.custcdSaller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcdBuyer" >
+        CUSTCD_BUYER = #record.custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cnameBuyer" >
+        CNAME_BUYER = #record.cnameBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insertDate" >
+        INSERT_DATE = #record.insertDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debtNum" >
+        DEBT_NUM = #record.debtNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalDebtAmount" >
+        TOTAL_DEBT_AMOUNT = #record.totalDebtAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.finacingCost" >
+        FINACING_COST = #record.finacingCost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cost" >
+        COST = #record.cost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.handlingFee" >
+        HANDLING_FEE = #record.handlingFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reduceAmount" >
+        REDUCE_AMOUNT = #record.reduceAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalFee" >
+        TOTAL_FEE = #record.totalFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalReduce" >
+        TOTAL_REDUCE = #record.totalReduce:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.receiveAmount" >
+        RECEIVE_AMOUNT = #record.receiveAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bussType" >
+        BUSS_TYPE = #record.bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanType" >
+        LOAN_TYPE = #record.loanType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bankno" >
+        BANKNO = #record.bankno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amount" >
+        AMOUNT = #record.amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appDate" >
+        APP_DATE = #record.appDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnDate" >
+        RETURN_DATE = #record.returnDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcodeBuss" >
+        BRCODE_BUSS = #record.brcodeBuss:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnType" >
+        RETURN_TYPE = #record.returnType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.toSallerFlag" >
+        TO_SALLER_FLAG = #record.toSallerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnAmount" >
+        RETURN_AMOUNT = #record.returnAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accountNo" >
+        ACCOUNT_NO = #record.accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnMethod" >
+        RETURN_METHOD = #record.returnMethod:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnInterestAmount" >
+        RETURN_INTEREST_AMOUNT = #record.returnInterestAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnCapitalAmount" >
+        RETURN_CAPITAL_AMOUNT = #record.returnCapitalAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.toSallerAmount" >
+        TO_SALLER_AMOUNT = #record.toSallerAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.toPoolAmount" >
+        TO_POOL_AMOUNT = #record.toPoolAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnAccount" >
+        RETURN_ACCOUNT = #record.returnAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.transactionNo" >
+        TRANSACTION_NO = #record.transactionNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tobailAmount" >
+        TOBAIL_AMOUNT = #record.tobailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rebateAmount" >
+        REBATE_AMOUNT = #record.rebateAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnAccountBalance" >
+        RETURN_ACCOUNT_BALANCE = #record.returnAccountBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalOverAmount" >
+        TOTAL_OVER_AMOUNT = #record.totalOverAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.settleMethod" >
+        SETTLE_METHOD = #record.settleMethod:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.repayPurpose" >
+        REPAY_PURPOSE = #record.repayPurpose:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.transferAmt" >
+        TRANSFER_AMT = #record.transferAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.transactionDate" >
+        TRANSACTION_DATE = #record.transactionDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cname" >
+        CNAME = #record.cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ename" >
+        ENAME = #record.ename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.aliasName" >
+        ALIAS_NAME = #record.aliasName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.orgCode" >
+        ORG_CODE = #record.orgCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custStatus" >
+        CUST_STATUS = #record.custStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mgrno" >
+        MGRNO = #record.mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coreFlag" >
+        CORE_FLAG = #record.coreFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniFlag" >
+        MONI_FLAG = #record.moniFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.futuresFlag" >
+        FUTURES_FLAG = #record.futuresFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.flcFlag" >
+        FLC_FLAG = #record.flcFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.createDate" >
+        CREATE_DATE = #record.createDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditFlag" >
+        CREDIT_FLAG = #record.creditFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.blackFlag" >
+        BLACK_FLAG = #record.blackFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insureFlag" >
+        INSURE_FLAG = #record.insureFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.factorFlag" >
+        FACTOR_FLAG = #record.factorFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ccmsCustcd" >
+        CCMS_CUSTCD = #record.ccmsCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.importantFlag" >
+        IMPORTANT_FLAG = #record.importantFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.commercialFalg" >
+        COMMERCIAL_FALG = #record.commercialFalg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overseasFlag" >
+        OVERSEAS_FLAG = #record.overseasFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.banksCustFlag" >
+        BANKS_CUST_FLAG = #record.banksCustFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.efBuyerFlag" >
+        EF_BUYER_FLAG = #record.efBuyerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ifSellerFlag" >
+        IF_SELLER_FLAG = #record.ifSellerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isBank" >
+        IS_BANK = #record.isBank:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fciCode" >
+        FCI_CODE = #record.fciCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isIntl" >
+        IS_INTL = #record.isIntl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.enterpriseType" >
+        ENTERPRISE_TYPE = #record.enterpriseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryType" >
+        INDUSTRY_TYPE = #record.industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.enterpriseScope" >
+        ENTERPRISE_SCOPE = #record.enterpriseScope:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custLevel" >
+        CUST_LEVEL = #record.custLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coreLevel" >
+        CORE_LEVEL = #record.coreLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.supplyPosition" >
+        SUPPLY_POSITION = #record.supplyPosition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brname" >
+        BRNAME = #record.brname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brclass" >
+        BRCLASS = #record.brclass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brnameBuss" >
+        BRNAME_BUSS = #record.brnameBuss:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrName" >
+        TLR_NAME = #record.tlrName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productName" >
+        PRODUCT_NAME = #record.productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debtContno" >
+        DEBT_CONTNO = #record.debtContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanPercent" >
+        LOAN_PERCENT = #record.loanPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.factType" >
+        FACT_TYPE = #record.factType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.financingType" >
+        FINANCING_TYPE = #record.financingType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.chargeType" >
+        CHARGE_TYPE = #record.chargeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.noticeType" >
+        NOTICE_TYPE = #record.noticeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isAutoPay" >
+        IS_AUTO_PAY = #record.isAutoPay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.autoPayDays" >
+        AUTO_PAY_DAYS = #record.autoPayDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.serviceContent" >
+        SERVICE_CONTENT = #record.serviceContent:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID = #record.supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcdCont" >
+        CUSTCD_CONT = #record.custcdCont:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcdCont" >
+        CURCD_CONT = #record.curcdCont:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contAmount" >
+        CONT_AMOUNT = #record.contAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanWay" >
+        LOAN_WAY = #record.loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contStatus" >
+        CONT_STATUS = #record.contStatus:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contAccountNo" >
+        CONT_ACCOUNT_NO = #record.contAccountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mgrnoCont" >
+        MGRNO_CONT = #record.mgrnoCont:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrno" >
+        LAST_UPD_TLRNO = #record.lastUpdTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdDate" >
+        LAST_UPD_DATE = #record.lastUpdDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcodeCont" >
+        BRCODE_CONT = #record.brcodeCont:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAcctNo" >
+        BAIL_ACCT_NO = #record.bailAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contRetuAccount" >
+        CONT_RETU_ACCOUNT = #record.contRetuAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.recoverType" >
+        RECOVER_TYPE = #record.recoverType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contRepayPurpose" >
+        CONT_REPAY_PURPOSE = #record.contRepayPurpose:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.dueBalanceRule" >
+        DUE_BALANCE_RULE = #record.dueBalanceRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.paymentVerifyRule" >
+        PAYMENT_VERIFY_RULE = #record.paymentVerifyRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reparationProtNo" >
+        REPARATION_PROT_NO = #record.reparationProtNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lease" >
+        LEASE = #record.lease:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.repurchaser" >
+        REPURCHASER = #record.repurchaser:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.repurchaseProtNo" >
+        REPURCHASE_PROT_NO = #record.repurchaseProtNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.factoringBrcode" >
+        FACTORING_BRCODE = #record.factoringBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reparationTerm" >
+        REPARATION_TERM = #record.reparationTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reparationPercent" >
+        REPARATION_PERCENT = #record.reparationPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cumulativeReparationAmt" >
+        CUMULATIVE_REPARATION_AMT = #record.cumulativeReparationAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.factPattern" >
+        FACT_PATTERN = #record.factPattern:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cooperationBrcode" >
+        COOPERATION_BRCODE = #record.cooperationBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rentSettleWay" >
+        RENT_SETTLE_WAY = #record.rentSettleWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.poolBailAmt" >
+        POOL_BAIL_AMT = #record.poolBailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumdebtBillsAmount" >
+        SUMDEBT_BILLS_AMOUNT = #record.sumdebtBillsAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumdebtBillsAmountView" >
+        SUMDEBT_BILLS_AMOUNT_VIEW = #record.sumdebtBillsAmountView:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumdebtRemainingAmount" >
+        SUMDEBT_REMAINING_AMOUNT = #record.sumdebtRemainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumdebtRemainingUseableAmou" >
+        SUMDEBT_REMAINING_USEABLE_AMOU = #record.sumdebtRemainingUseableAmou:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumdebtRebateAmount" >
+        SUMDEBT_REBATE_AMOUNT = #record.sumdebtRebateAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumdebtBuyBackAmount" >
+        SUMDEBT_BUY_BACK_AMOUNT = #record.sumdebtBuyBackAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumdebtPayAmount" >
+        SUMDEBT_PAY_AMOUNT = #record.sumdebtPayAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumdebtRemoveAmount" >
+        SUMDEBT_REMOVE_AMOUNT = #record.sumdebtRemoveAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumdebtCashRemainingAmount" >
+        SUMDEBT_CASH_REMAINING_AMOUNT = #record.sumdebtCashRemainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumamtDebtFlawFlag" >
+        SUMAMT_DEBT_FLAW_FLAG = #record.sumamtDebtFlawFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumamtDebtIssueFlag" >
+        SUMAMT_DEBT_ISSUE_FLAG = #record.sumamtDebtIssueFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumamtDebtOverdueFlag" >
+        SUMAMT_DEBT_OVERDUE_FLAG = #record.sumamtDebtOverdueFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sumamtDebtBadFlag" >
+        SUMAMT_DEBT_BAD_FLAG = #record.sumamtDebtBadFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_QUERY_DEBT_M.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_QUERY_DEBT_M
+    set ID = #record.id:VARCHAR#,
+      INPUTDATE = #record.inputdate:VARCHAR#,
+      APPLY_TYPE = #record.applyType:VARCHAR#,
+      CUSTCD_SALLER = #record.custcdSaller:VARCHAR#,
+      CUSTCD_BUYER = #record.custcdBuyer:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      CNAME_BUYER = #record.cnameBuyer:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      INSERT_DATE = #record.insertDate:DATE#,
+      DEBT_NUM = #record.debtNum:DECIMAL#,
+      TOTAL_DEBT_AMOUNT = #record.totalDebtAmount:DECIMAL#,
+      FINACING_COST = #record.finacingCost:DECIMAL#,
+      COST = #record.cost:DECIMAL#,
+      HANDLING_FEE = #record.handlingFee:DECIMAL#,
+      REDUCE_AMOUNT = #record.reduceAmount:DECIMAL#,
+      TOTAL_FEE = #record.totalFee:DECIMAL#,
+      TOTAL_REDUCE = #record.totalReduce:DECIMAL#,
+      RECEIVE_AMOUNT = #record.receiveAmount:DECIMAL#,
+      BUSS_TYPE = #record.bussType:VARCHAR#,
+      LOAN_TYPE = #record.loanType:VARCHAR#,
+      BANKNO = #record.bankno:VARCHAR#,
+      AMOUNT = #record.amount:DECIMAL#,
+      APP_DATE = #record.appDate:DATE#,
+      RETURN_DATE = #record.returnDate:DATE#,
+      CURCD = #record.curcd:CHAR#,
+      MEMO = #record.memo:VARCHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      BRCODE_BUSS = #record.brcodeBuss:VARCHAR#,
+      RETURN_TYPE = #record.returnType:CHAR#,
+      TO_SALLER_FLAG = #record.toSallerFlag:CHAR#,
+      RETURN_AMOUNT = #record.returnAmount:DECIMAL#,
+      ACCOUNT_NO = #record.accountNo:VARCHAR#,
+      RETURN_METHOD = #record.returnMethod:CHAR#,
+      RETURN_INTEREST_AMOUNT = #record.returnInterestAmount:DECIMAL#,
+      RETURN_CAPITAL_AMOUNT = #record.returnCapitalAmount:DECIMAL#,
+      TO_SALLER_AMOUNT = #record.toSallerAmount:DECIMAL#,
+      TO_POOL_AMOUNT = #record.toPoolAmount:DECIMAL#,
+      RETURN_ACCOUNT = #record.returnAccount:VARCHAR#,
+      TRANSACTION_NO = #record.transactionNo:VARCHAR#,
+      TOBAIL_AMOUNT = #record.tobailAmount:DECIMAL#,
+      REBATE_AMOUNT = #record.rebateAmount:DECIMAL#,
+      RETURN_ACCOUNT_BALANCE = #record.returnAccountBalance:DECIMAL#,
+      TOTAL_OVER_AMOUNT = #record.totalOverAmount:DECIMAL#,
+      SETTLE_METHOD = #record.settleMethod:VARCHAR#,
+      REPAY_PURPOSE = #record.repayPurpose:CHAR#,
+      TRANSFER_AMT = #record.transferAmt:DECIMAL#,
+      TRANSACTION_DATE = #record.transactionDate:DATE#,
+      CNAME = #record.cname:VARCHAR#,
+      ENAME = #record.ename:VARCHAR#,
+      ALIAS_NAME = #record.aliasName:VARCHAR#,
+      ORG_CODE = #record.orgCode:VARCHAR#,
+      CUST_STATUS = #record.custStatus:CHAR#,
+      MGRNO = #record.mgrno:VARCHAR#,
+      CORE_FLAG = #record.coreFlag:CHAR#,
+      MONI_FLAG = #record.moniFlag:CHAR#,
+      FUTURES_FLAG = #record.futuresFlag:CHAR#,
+      FLC_FLAG = #record.flcFlag:CHAR#,
+      BRCODE = #record.brcode:VARCHAR#,
+      CREATE_DATE = #record.createDate:DATE#,
+      CREDIT_FLAG = #record.creditFlag:CHAR#,
+      BLACK_FLAG = #record.blackFlag:CHAR#,
+      INSURE_FLAG = #record.insureFlag:CHAR#,
+      FACTOR_FLAG = #record.factorFlag:CHAR#,
+      CCMS_CUSTCD = #record.ccmsCustcd:VARCHAR#,
+      IMPORTANT_FLAG = #record.importantFlag:CHAR#,
+      COMMERCIAL_FALG = #record.commercialFalg:CHAR#,
+      OVERSEAS_FLAG = #record.overseasFlag:CHAR#,
+      BANKS_CUST_FLAG = #record.banksCustFlag:CHAR#,
+      EF_BUYER_FLAG = #record.efBuyerFlag:CHAR#,
+      IF_SELLER_FLAG = #record.ifSellerFlag:CHAR#,
+      IS_BANK = #record.isBank:CHAR#,
+      FCI_CODE = #record.fciCode:VARCHAR#,
+      IS_INTL = #record.isIntl:CHAR#,
+      ENTERPRISE_TYPE = #record.enterpriseType:CHAR#,
+      INDUSTRY_TYPE = #record.industryType:VARCHAR#,
+      ENTERPRISE_SCOPE = #record.enterpriseScope:VARCHAR#,
+      CUST_LEVEL = #record.custLevel:VARCHAR#,
+      CORE_LEVEL = #record.coreLevel:VARCHAR#,
+      SUPPLY_POSITION = #record.supplyPosition:VARCHAR#,
+      BRNAME = #record.brname:VARCHAR#,
+      BRCLASS = #record.brclass:CHAR#,
+      BRNAME_BUSS = #record.brnameBuss:VARCHAR#,
+      TLR_NAME = #record.tlrName:VARCHAR#,
+      PRODUCT_NAME = #record.productName:VARCHAR#,
+      DEBT_CONTNO = #record.debtContno:VARCHAR#,
+      LOAN_PERCENT = #record.loanPercent:DECIMAL#,
+      FACT_TYPE = #record.factType:VARCHAR#,
+      FINANCING_TYPE = #record.financingType:CHAR#,
+      CHARGE_TYPE = #record.chargeType:CHAR#,
+      NOTICE_TYPE = #record.noticeType:CHAR#,
+      IS_AUTO_PAY = #record.isAutoPay:VARCHAR#,
+      AUTO_PAY_DAYS = #record.autoPayDays:DECIMAL#,
+      SERVICE_CONTENT = #record.serviceContent:VARCHAR#,
+      SUPPLY_CHAIN_PD_ID = #record.supplyChainPdId:VARCHAR#,
+      CUSTCD_CONT = #record.custcdCont:VARCHAR#,
+      CURCD_CONT = #record.curcdCont:CHAR#,
+      CONT_AMOUNT = #record.contAmount:DECIMAL#,
+      START_DATE = #record.startDate:DATE#,
+      END_DATE = #record.endDate:DATE#,
+      LOAN_WAY = #record.loanWay:VARCHAR#,
+      CONT_STATUS = #record.contStatus:VARCHAR#,
+      CONT_ACCOUNT_NO = #record.contAccountNo:VARCHAR#,
+      MGRNO_CONT = #record.mgrnoCont:VARCHAR#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#,
+      LAST_UPD_TLRNO = #record.lastUpdTlrno:VARCHAR#,
+      LAST_UPD_DATE = #record.lastUpdDate:DATE#,
+      BRCODE_CONT = #record.brcodeCont:VARCHAR#,
+      BAIL_ACCT_NO = #record.bailAcctNo:VARCHAR#,
+      CONT_RETU_ACCOUNT = #record.contRetuAccount:VARCHAR#,
+      RECOVER_TYPE = #record.recoverType:VARCHAR#,
+      CONT_REPAY_PURPOSE = #record.contRepayPurpose:VARCHAR#,
+      DUE_BALANCE_RULE = #record.dueBalanceRule:VARCHAR#,
+      PAYMENT_VERIFY_RULE = #record.paymentVerifyRule:VARCHAR#,
+      REPARATION_PROT_NO = #record.reparationProtNo:VARCHAR#,
+      LEASE = #record.lease:VARCHAR#,
+      REPURCHASER = #record.repurchaser:VARCHAR#,
+      REPURCHASE_PROT_NO = #record.repurchaseProtNo:VARCHAR#,
+      FACTORING_BRCODE = #record.factoringBrcode:VARCHAR#,
+      REPARATION_TERM = #record.reparationTerm:DECIMAL#,
+      REPARATION_PERCENT = #record.reparationPercent:DECIMAL#,
+      CUMULATIVE_REPARATION_AMT = #record.cumulativeReparationAmt:DECIMAL#,
+      FACT_PATTERN = #record.factPattern:VARCHAR#,
+      COOPERATION_BRCODE = #record.cooperationBrcode:VARCHAR#,
+      RENT_SETTLE_WAY = #record.rentSettleWay:CHAR#,
+      POOL_BAIL_AMT = #record.poolBailAmt:DECIMAL#,
+      SUMDEBT_BILLS_AMOUNT = #record.sumdebtBillsAmount:DECIMAL#,
+      SUMDEBT_BILLS_AMOUNT_VIEW = #record.sumdebtBillsAmountView:DECIMAL#,
+      SUMDEBT_REMAINING_AMOUNT = #record.sumdebtRemainingAmount:DECIMAL#,
+      SUMDEBT_REMAINING_USEABLE_AMOU = #record.sumdebtRemainingUseableAmou:DECIMAL#,
+      SUMDEBT_REBATE_AMOUNT = #record.sumdebtRebateAmount:DECIMAL#,
+      SUMDEBT_BUY_BACK_AMOUNT = #record.sumdebtBuyBackAmount:DECIMAL#,
+      SUMDEBT_PAY_AMOUNT = #record.sumdebtPayAmount:DECIMAL#,
+      SUMDEBT_REMOVE_AMOUNT = #record.sumdebtRemoveAmount:DECIMAL#,
+      SUMDEBT_CASH_REMAINING_AMOUNT = #record.sumdebtCashRemainingAmount:DECIMAL#,
+      SUMAMT_DEBT_FLAW_FLAG = #record.sumamtDebtFlawFlag:DECIMAL#,
+      SUMAMT_DEBT_ISSUE_FLAG = #record.sumamtDebtIssueFlag:DECIMAL#,
+      SUMAMT_DEBT_OVERDUE_FLAG = #record.sumamtDebtOverdueFlag:DECIMAL#,
+      SUMAMT_DEBT_BAD_FLAG = #record.sumamtDebtBadFlag:DECIMAL#,
+      CUSTCD = #record.custcd:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_QUERY_DEBT_M.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.qry.dao.model.BQueryDebtM" >
+    update B_QUERY_DEBT_M
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="inputdate" >
+        INPUTDATE = #inputdate:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyType" >
+        APPLY_TYPE = #applyType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSaller" >
+        CUSTCD_SALLER = #custcdSaller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        CUSTCD_BUYER = #custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cnameBuyer" >
+        CNAME_BUYER = #cnameBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        INSERT_DATE = #insertDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="debtNum" >
+        DEBT_NUM = #debtNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalDebtAmount" >
+        TOTAL_DEBT_AMOUNT = #totalDebtAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="finacingCost" >
+        FINACING_COST = #finacingCost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cost" >
+        COST = #cost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="handlingFee" >
+        HANDLING_FEE = #handlingFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reduceAmount" >
+        REDUCE_AMOUNT = #reduceAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalFee" >
+        TOTAL_FEE = #totalFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalReduce" >
+        TOTAL_REDUCE = #totalReduce:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="receiveAmount" >
+        RECEIVE_AMOUNT = #receiveAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        BUSS_TYPE = #bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanType" >
+        LOAN_TYPE = #loanType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bankno" >
+        BANKNO = #bankno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        AMOUNT = #amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="appDate" >
+        APP_DATE = #appDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="returnDate" >
+        RETURN_DATE = #returnDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcodeBuss" >
+        BRCODE_BUSS = #brcodeBuss:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnType" >
+        RETURN_TYPE = #returnType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerFlag" >
+        TO_SALLER_FLAG = #toSallerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAmount" >
+        RETURN_AMOUNT = #returnAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO = #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnMethod" >
+        RETURN_METHOD = #returnMethod:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnInterestAmount" >
+        RETURN_INTEREST_AMOUNT = #returnInterestAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnCapitalAmount" >
+        RETURN_CAPITAL_AMOUNT = #returnCapitalAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerAmount" >
+        TO_SALLER_AMOUNT = #toSallerAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="toPoolAmount" >
+        TO_POOL_AMOUNT = #toPoolAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccount" >
+        RETURN_ACCOUNT = #returnAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="transactionNo" >
+        TRANSACTION_NO = #transactionNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tobailAmount" >
+        TOBAIL_AMOUNT = #tobailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rebateAmount" >
+        REBATE_AMOUNT = #rebateAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccountBalance" >
+        RETURN_ACCOUNT_BALANCE = #returnAccountBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalOverAmount" >
+        TOTAL_OVER_AMOUNT = #totalOverAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="settleMethod" >
+        SETTLE_METHOD = #settleMethod:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="repayPurpose" >
+        REPAY_PURPOSE = #repayPurpose:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="transferAmt" >
+        TRANSFER_AMT = #transferAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="transactionDate" >
+        TRANSACTION_DATE = #transactionDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME = #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ename" >
+        ENAME = #ename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="aliasName" >
+        ALIAS_NAME = #aliasName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orgCode" >
+        ORG_CODE = #orgCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custStatus" >
+        CUST_STATUS = #custStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        MGRNO = #mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreFlag" >
+        CORE_FLAG = #coreFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniFlag" >
+        MONI_FLAG = #moniFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="futuresFlag" >
+        FUTURES_FLAG = #futuresFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flcFlag" >
+        FLC_FLAG = #flcFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        CREATE_DATE = #createDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="creditFlag" >
+        CREDIT_FLAG = #creditFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blackFlag" >
+        BLACK_FLAG = #blackFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insureFlag" >
+        INSURE_FLAG = #insureFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="factorFlag" >
+        FACTOR_FLAG = #factorFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ccmsCustcd" >
+        CCMS_CUSTCD = #ccmsCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="importantFlag" >
+        IMPORTANT_FLAG = #importantFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commercialFalg" >
+        COMMERCIAL_FALG = #commercialFalg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="overseasFlag" >
+        OVERSEAS_FLAG = #overseasFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="banksCustFlag" >
+        BANKS_CUST_FLAG = #banksCustFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="efBuyerFlag" >
+        EF_BUYER_FLAG = #efBuyerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifSellerFlag" >
+        IF_SELLER_FLAG = #ifSellerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isBank" >
+        IS_BANK = #isBank:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fciCode" >
+        FCI_CODE = #fciCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isIntl" >
+        IS_INTL = #isIntl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseType" >
+        ENTERPRISE_TYPE = #enterpriseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        INDUSTRY_TYPE = #industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="enterpriseScope" >
+        ENTERPRISE_SCOPE = #enterpriseScope:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custLevel" >
+        CUST_LEVEL = #custLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreLevel" >
+        CORE_LEVEL = #coreLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyPosition" >
+        SUPPLY_POSITION = #supplyPosition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brname" >
+        BRNAME = #brname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brclass" >
+        BRCLASS = #brclass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brnameBuss" >
+        BRNAME_BUSS = #brnameBuss:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrName" >
+        TLR_NAME = #tlrName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        PRODUCT_NAME = #productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debtContno" >
+        DEBT_CONTNO = #debtContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanPercent" >
+        LOAN_PERCENT = #loanPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="factType" >
+        FACT_TYPE = #factType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="financingType" >
+        FINANCING_TYPE = #financingType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chargeType" >
+        CHARGE_TYPE = #chargeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        NOTICE_TYPE = #noticeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isAutoPay" >
+        IS_AUTO_PAY = #isAutoPay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="autoPayDays" >
+        AUTO_PAY_DAYS = #autoPayDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="serviceContent" >
+        SERVICE_CONTENT = #serviceContent:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdCont" >
+        CUSTCD_CONT = #custcdCont:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcdCont" >
+        CURCD_CONT = #curcdCont:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contAmount" >
+        CONT_AMOUNT = #contAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY = #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contStatus" >
+        CONT_STATUS = #contStatus:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contAccountNo" >
+        CONT_ACCOUNT_NO = #contAccountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrnoCont" >
+        MGRNO_CONT = #mgrnoCont:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrno" >
+        LAST_UPD_TLRNO = #lastUpdTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        LAST_UPD_DATE = #lastUpdDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="brcodeCont" >
+        BRCODE_CONT = #brcodeCont:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAcctNo" >
+        BAIL_ACCT_NO = #bailAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contRetuAccount" >
+        CONT_RETU_ACCOUNT = #contRetuAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="recoverType" >
+        RECOVER_TYPE = #recoverType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contRepayPurpose" >
+        CONT_REPAY_PURPOSE = #contRepayPurpose:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="dueBalanceRule" >
+        DUE_BALANCE_RULE = #dueBalanceRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paymentVerifyRule" >
+        PAYMENT_VERIFY_RULE = #paymentVerifyRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationProtNo" >
+        REPARATION_PROT_NO = #reparationProtNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lease" >
+        LEASE = #lease:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="repurchaser" >
+        REPURCHASER = #repurchaser:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="repurchaseProtNo" >
+        REPURCHASE_PROT_NO = #repurchaseProtNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="factoringBrcode" >
+        FACTORING_BRCODE = #factoringBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationTerm" >
+        REPARATION_TERM = #reparationTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationPercent" >
+        REPARATION_PERCENT = #reparationPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cumulativeReparationAmt" >
+        CUMULATIVE_REPARATION_AMT = #cumulativeReparationAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="factPattern" >
+        FACT_PATTERN = #factPattern:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cooperationBrcode" >
+        COOPERATION_BRCODE = #cooperationBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rentSettleWay" >
+        RENT_SETTLE_WAY = #rentSettleWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="poolBailAmt" >
+        POOL_BAIL_AMT = #poolBailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtBillsAmount" >
+        SUMDEBT_BILLS_AMOUNT = #sumdebtBillsAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtBillsAmountView" >
+        SUMDEBT_BILLS_AMOUNT_VIEW = #sumdebtBillsAmountView:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRemainingAmount" >
+        SUMDEBT_REMAINING_AMOUNT = #sumdebtRemainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRemainingUseableAmou" >
+        SUMDEBT_REMAINING_USEABLE_AMOU = #sumdebtRemainingUseableAmou:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRebateAmount" >
+        SUMDEBT_REBATE_AMOUNT = #sumdebtRebateAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtBuyBackAmount" >
+        SUMDEBT_BUY_BACK_AMOUNT = #sumdebtBuyBackAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtPayAmount" >
+        SUMDEBT_PAY_AMOUNT = #sumdebtPayAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtRemoveAmount" >
+        SUMDEBT_REMOVE_AMOUNT = #sumdebtRemoveAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumdebtCashRemainingAmount" >
+        SUMDEBT_CASH_REMAINING_AMOUNT = #sumdebtCashRemainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtFlawFlag" >
+        SUMAMT_DEBT_FLAW_FLAG = #sumamtDebtFlawFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtIssueFlag" >
+        SUMAMT_DEBT_ISSUE_FLAG = #sumamtDebtIssueFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtOverdueFlag" >
+        SUMAMT_DEBT_OVERDUE_FLAG = #sumamtDebtOverdueFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sumamtDebtBadFlag" >
+        SUMAMT_DEBT_BAD_FLAG = #sumamtDebtBadFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.qry.dao.model.BQueryDebtM" >
+    update B_QUERY_DEBT_M
+    set INPUTDATE = #inputdate:VARCHAR#,
+      APPLY_TYPE = #applyType:VARCHAR#,
+      CUSTCD_SALLER = #custcdSaller:VARCHAR#,
+      CUSTCD_BUYER = #custcdBuyer:VARCHAR#,
+      APPNO = #appno:VARCHAR#,
+      CNAME_BUYER = #cnameBuyer:VARCHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      INSERT_DATE = #insertDate:DATE#,
+      DEBT_NUM = #debtNum:DECIMAL#,
+      TOTAL_DEBT_AMOUNT = #totalDebtAmount:DECIMAL#,
+      FINACING_COST = #finacingCost:DECIMAL#,
+      COST = #cost:DECIMAL#,
+      HANDLING_FEE = #handlingFee:DECIMAL#,
+      REDUCE_AMOUNT = #reduceAmount:DECIMAL#,
+      TOTAL_FEE = #totalFee:DECIMAL#,
+      TOTAL_REDUCE = #totalReduce:DECIMAL#,
+      RECEIVE_AMOUNT = #receiveAmount:DECIMAL#,
+      BUSS_TYPE = #bussType:VARCHAR#,
+      LOAN_TYPE = #loanType:VARCHAR#,
+      BANKNO = #bankno:VARCHAR#,
+      AMOUNT = #amount:DECIMAL#,
+      APP_DATE = #appDate:DATE#,
+      RETURN_DATE = #returnDate:DATE#,
+      CURCD = #curcd:CHAR#,
+      MEMO = #memo:VARCHAR#,
+      TLRCD = #tlrcd:VARCHAR#,
+      BRCODE_BUSS = #brcodeBuss:VARCHAR#,
+      RETURN_TYPE = #returnType:CHAR#,
+      TO_SALLER_FLAG = #toSallerFlag:CHAR#,
+      RETURN_AMOUNT = #returnAmount:DECIMAL#,
+      ACCOUNT_NO = #accountNo:VARCHAR#,
+      RETURN_METHOD = #returnMethod:CHAR#,
+      RETURN_INTEREST_AMOUNT = #returnInterestAmount:DECIMAL#,
+      RETURN_CAPITAL_AMOUNT = #returnCapitalAmount:DECIMAL#,
+      TO_SALLER_AMOUNT = #toSallerAmount:DECIMAL#,
+      TO_POOL_AMOUNT = #toPoolAmount:DECIMAL#,
+      RETURN_ACCOUNT = #returnAccount:VARCHAR#,
+      TRANSACTION_NO = #transactionNo:VARCHAR#,
+      TOBAIL_AMOUNT = #tobailAmount:DECIMAL#,
+      REBATE_AMOUNT = #rebateAmount:DECIMAL#,
+      RETURN_ACCOUNT_BALANCE = #returnAccountBalance:DECIMAL#,
+      TOTAL_OVER_AMOUNT = #totalOverAmount:DECIMAL#,
+      SETTLE_METHOD = #settleMethod:VARCHAR#,
+      REPAY_PURPOSE = #repayPurpose:CHAR#,
+      TRANSFER_AMT = #transferAmt:DECIMAL#,
+      TRANSACTION_DATE = #transactionDate:DATE#,
+      CNAME = #cname:VARCHAR#,
+      ENAME = #ename:VARCHAR#,
+      ALIAS_NAME = #aliasName:VARCHAR#,
+      ORG_CODE = #orgCode:VARCHAR#,
+      CUST_STATUS = #custStatus:CHAR#,
+      MGRNO = #mgrno:VARCHAR#,
+      CORE_FLAG = #coreFlag:CHAR#,
+      MONI_FLAG = #moniFlag:CHAR#,
+      FUTURES_FLAG = #futuresFlag:CHAR#,
+      FLC_FLAG = #flcFlag:CHAR#,
+      BRCODE = #brcode:VARCHAR#,
+      CREATE_DATE = #createDate:DATE#,
+      CREDIT_FLAG = #creditFlag:CHAR#,
+      BLACK_FLAG = #blackFlag:CHAR#,
+      INSURE_FLAG = #insureFlag:CHAR#,
+      FACTOR_FLAG = #factorFlag:CHAR#,
+      CCMS_CUSTCD = #ccmsCustcd:VARCHAR#,
+      IMPORTANT_FLAG = #importantFlag:CHAR#,
+      COMMERCIAL_FALG = #commercialFalg:CHAR#,
+      OVERSEAS_FLAG = #overseasFlag:CHAR#,
+      BANKS_CUST_FLAG = #banksCustFlag:CHAR#,
+      EF_BUYER_FLAG = #efBuyerFlag:CHAR#,
+      IF_SELLER_FLAG = #ifSellerFlag:CHAR#,
+      IS_BANK = #isBank:CHAR#,
+      FCI_CODE = #fciCode:VARCHAR#,
+      IS_INTL = #isIntl:CHAR#,
+      ENTERPRISE_TYPE = #enterpriseType:CHAR#,
+      INDUSTRY_TYPE = #industryType:VARCHAR#,
+      ENTERPRISE_SCOPE = #enterpriseScope:VARCHAR#,
+      CUST_LEVEL = #custLevel:VARCHAR#,
+      CORE_LEVEL = #coreLevel:VARCHAR#,
+      SUPPLY_POSITION = #supplyPosition:VARCHAR#,
+      BRNAME = #brname:VARCHAR#,
+      BRCLASS = #brclass:CHAR#,
+      BRNAME_BUSS = #brnameBuss:VARCHAR#,
+      TLR_NAME = #tlrName:VARCHAR#,
+      PRODUCT_NAME = #productName:VARCHAR#,
+      DEBT_CONTNO = #debtContno:VARCHAR#,
+      LOAN_PERCENT = #loanPercent:DECIMAL#,
+      FACT_TYPE = #factType:VARCHAR#,
+      FINANCING_TYPE = #financingType:CHAR#,
+      CHARGE_TYPE = #chargeType:CHAR#,
+      NOTICE_TYPE = #noticeType:CHAR#,
+      IS_AUTO_PAY = #isAutoPay:VARCHAR#,
+      AUTO_PAY_DAYS = #autoPayDays:DECIMAL#,
+      SERVICE_CONTENT = #serviceContent:VARCHAR#,
+      SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR#,
+      CUSTCD_CONT = #custcdCont:VARCHAR#,
+      CURCD_CONT = #curcdCont:CHAR#,
+      CONT_AMOUNT = #contAmount:DECIMAL#,
+      START_DATE = #startDate:DATE#,
+      END_DATE = #endDate:DATE#,
+      LOAN_WAY = #loanWay:VARCHAR#,
+      CONT_STATUS = #contStatus:VARCHAR#,
+      CONT_ACCOUNT_NO = #contAccountNo:VARCHAR#,
+      MGRNO_CONT = #mgrnoCont:VARCHAR#,
+      LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#,
+      LAST_UPD_TLRNO = #lastUpdTlrno:VARCHAR#,
+      LAST_UPD_DATE = #lastUpdDate:DATE#,
+      BRCODE_CONT = #brcodeCont:VARCHAR#,
+      BAIL_ACCT_NO = #bailAcctNo:VARCHAR#,
+      CONT_RETU_ACCOUNT = #contRetuAccount:VARCHAR#,
+      RECOVER_TYPE = #recoverType:VARCHAR#,
+      CONT_REPAY_PURPOSE = #contRepayPurpose:VARCHAR#,
+      DUE_BALANCE_RULE = #dueBalanceRule:VARCHAR#,
+      PAYMENT_VERIFY_RULE = #paymentVerifyRule:VARCHAR#,
+      REPARATION_PROT_NO = #reparationProtNo:VARCHAR#,
+      LEASE = #lease:VARCHAR#,
+      REPURCHASER = #repurchaser:VARCHAR#,
+      REPURCHASE_PROT_NO = #repurchaseProtNo:VARCHAR#,
+      FACTORING_BRCODE = #factoringBrcode:VARCHAR#,
+      REPARATION_TERM = #reparationTerm:DECIMAL#,
+      REPARATION_PERCENT = #reparationPercent:DECIMAL#,
+      CUMULATIVE_REPARATION_AMT = #cumulativeReparationAmt:DECIMAL#,
+      FACT_PATTERN = #factPattern:VARCHAR#,
+      COOPERATION_BRCODE = #cooperationBrcode:VARCHAR#,
+      RENT_SETTLE_WAY = #rentSettleWay:CHAR#,
+      POOL_BAIL_AMT = #poolBailAmt:DECIMAL#,
+      SUMDEBT_BILLS_AMOUNT = #sumdebtBillsAmount:DECIMAL#,
+      SUMDEBT_BILLS_AMOUNT_VIEW = #sumdebtBillsAmountView:DECIMAL#,
+      SUMDEBT_REMAINING_AMOUNT = #sumdebtRemainingAmount:DECIMAL#,
+      SUMDEBT_REMAINING_USEABLE_AMOU = #sumdebtRemainingUseableAmou:DECIMAL#,
+      SUMDEBT_REBATE_AMOUNT = #sumdebtRebateAmount:DECIMAL#,
+      SUMDEBT_BUY_BACK_AMOUNT = #sumdebtBuyBackAmount:DECIMAL#,
+      SUMDEBT_PAY_AMOUNT = #sumdebtPayAmount:DECIMAL#,
+      SUMDEBT_REMOVE_AMOUNT = #sumdebtRemoveAmount:DECIMAL#,
+      SUMDEBT_CASH_REMAINING_AMOUNT = #sumdebtCashRemainingAmount:DECIMAL#,
+      SUMAMT_DEBT_FLAW_FLAG = #sumamtDebtFlawFlag:DECIMAL#,
+      SUMAMT_DEBT_ISSUE_FLAG = #sumamtDebtIssueFlag:DECIMAL#,
+      SUMAMT_DEBT_OVERDUE_FLAG = #sumamtDebtOverdueFlag:DECIMAL#,
+      SUMAMT_DEBT_BAD_FLAG = #sumamtDebtBadFlag:DECIMAL#,
+      CUSTCD = #custcd:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

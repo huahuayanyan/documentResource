@@ -1,0 +1,61 @@
+<ht-legend>任务基本信息</ht-legend>
+<ht-form name="taskform">
+    <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+    <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+    <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+    <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+</ht-form>
+<ht-form name="otherform">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input ht-id="cnameSeller" name="卖方名称" disable="true" ng-model="otherform.cnameSeller"></ht-input>
+    <ht-input-extent ht-id="cnameBuyer" name="买方名称" extent="buyerContent" on-change="buyerExtent"
+                     reg-exp="common.require" ng-model="otherform.cnameBuyer"disable="{{viewdisable}}"></ht-input-extent>
+    <ht-input ht-id="mastContno" name="池合同号" disable="true" ng-model="otherform.mastContno"></ht-input>
+    <ht-input ht-id="bussTypeName" name="业务品种" disable="true" ng-model="otherform.bussTypeName"></ht-input>
+    <ht-input ht-id="totalDebtRemainAmount" name="池应收账款余额" disable="true" edit-type="currency" ng-model="otherform.totalDebtRemainAmount"></ht-input>
+    <ht-input ht-id="poolRiskAmt" name="池敞口余额" disable="true" edit-type="currency" ng-model="otherform.poolRiskAmt"></ht-input>
+    <div  style="position:absolute;z-index:12;left:89.5%;">
+        <ht-button ht-id="queryBailAmount" class="btn-primary" hide="{{viewhide}}" desc-name="实时查询"></ht-button>
+    </div>
+    <ht-input ht-id="bailAcctNo" name="池保证金账号" disable="true" ng-model="otherform.bailAcctNo"></ht-input>
+    <ht-input ht-id="poolBailAmount" name="池保证金余额" disable="true" edit-type="currency" ng-model="otherform.poolBailAmount"></ht-input>
+
+    <ht-input ht-id="startDate" name="合同生效日" disable="true" edit-type="date" ng-model="otherform.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="合同到期日" disable="true" edit-type="date" ng-model="otherform.endDate"></ht-input>
+
+
+    <ht-legend>出池信息</ht-legend>
+    <ht-input ht-id="inpoolDate" name="出池日期" edit-type="date" ng-model="otherform.inpoolDate"></ht-input>
+    <ht-input ht-id="totalAmount" name="本次出池金额" disable="true" ng-model="otherform.totalAmount" edit-type="currency"></ht-input>
+    <ht-input ht-id="totalNum" name="本次出池笔数" disable ="true"  ng-model="otherform.totalNum"></ht-input>
+    <ht-input ht-id="totalRiskAmt" name="本次出池后池敞口余额" disable ="true" edit-type="currency"
+              ng-model="otherform.totalRiskAmt"></ht-input>
+    <ht-text-area name="备注" ng-model="otherform.memo" disable="{{viewdisable}}"></ht-text-area>
+
+</ht-form>
+
+<ht-legend>出池应收账款列表</ht-legend>
+<ht-button-group >
+    <ht-button ht-id="add" class="btn-primary" hide="{{viewhide}}">新增</ht-button>
+    <ht-button ht-id="delete" class="btn-primary" hide="{{viewhide}}">删除</ht-button>
+</ht-button-group>
+<ht-table ht-id="table" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="billsNo" zh-name="凭证编号" ></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType" ></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同号" ></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期" type="date"></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="账面金额" type="currency"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="应收账款余额" type="currency"></ht-column>
+    <ht-column eg-name="status" zh-name="状态" dictionary="debtBussStatus"></ht-column>
+    <ht-column eg-name="poolFlag" zh-name="池状态" dictionary="poolFlag"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" disable="{{savedisable}}" hide="{{viewhide}}">保存</ht-button>
+    <ht-button ht-id="sumbit" disable="{{disableButton}}" class="btn-primary" hide="{{viewhide}}">提交</ht-button>
+    <ht-button ht-id="back" class="btn-primary" hide="{{hideback}}">返回</ht-button>
+</ht-button-group>

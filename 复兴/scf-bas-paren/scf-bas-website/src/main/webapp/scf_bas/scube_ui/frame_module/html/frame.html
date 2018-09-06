@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="frameModule"  ng-controller="frameController">
+<head>
+    <meta charset="utf-8"/>
+    <title>SysFrame</title>
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../css/font-awesome.css" />
+    <!--home style-->
+    <link rel="stylesheet" href="../../css/public.css" />
+    <link rel="stylesheet" href="../../css/ht-onepage-scroll.css" />
+    <link rel="stylesheet" href="../../css/ngDialog.css" />
+    <link rel="stylesheet" href="../../css/ngDialog-theme-plain.css"/>
+    <link rel="stylesheet" href="../../css/home-green.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../../css/ie8.css" type="text/css"/>
+    <![endif]-->
+    <!-- ace settings handler -->
+    <script src="../../lib/bower_components/ace-extra.js"></script>
+</head>
+
+<body>
+<div id="navDiv" class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-container">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer">
+                    <i class="icon-only icon-th-list" style="font-size:30px;"></i>
+                </a>
+                <sidebar-ul sidebar="sidebarList"></sidebar-ul>
+            </li>
+        </ul>
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <small>
+                    常用功能
+                </small>
+            </a>
+            <ul class="navbar-header-list navbar-header-list-show">
+                <li><a>内容</a></li>
+                <li><a>内容</a></li>
+                <li><a>内容</a></li>
+                <li><a>内容</a></li>
+            </ul>
+            <!-- /.brand -->
+        </div><!-- /.navbar-header -->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <small>
+                    最近浏览
+                </small>
+            </a>
+            <ul class="navbar-header-list navbar-header-list-show">
+                <li><a>内容</a></li>
+                <li><a>内容</a></li>
+                <li><a>内容</a></li>
+                <li><a>内容</a></li>
+            </ul><!-- /.brand -->
+        </div><!-- /.navbar-header -->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <small>
+                    历史记录
+                </small>
+            </a>
+            <ul class="navbar-header-list navbar-header-list-show">
+                <li><a>内容</a></li>
+                <li><a>内容</a></li>
+                <li><a>内容</a></li>
+                <li><a>内容</a></li>
+            </ul><!-- /.brand -->
+        </div><!-- /.navbar-header -->
+    </div><!-- /.container -->
+</div>
+<!--<div style="background-color: silver;height: 25px;" id="tabDiv">-->
+<!--</div>-->
+<div style="height: 20px;display: none;" id="opDiv">
+    <close></close>
+    <hide></hide>
+</div>
+<!--main框架 beign  http://127.0.0.1:3000/html/frame.html-->
+<div style="padding: 0px;">
+    <iframes></iframes>
+    <main-iframe></main-iframe>
+    <!--<iframe src="mainContent.html" width="100%" id="mainContent" frameborder="0" scrolling="yes" ng-show="!visible"></iframe>-->
+</div>
+<div class="lunbo" style="display: none">
+    <div class="wrapper">
+        <div class="container focus">
+            <div class="page page1">
+                <div class="header">
+                    <h1><a>HuaTeng</a></h1>
+                </div>
+                <div class="main">
+                    <div class="main-top">
+                        <h2>华腾金融系统</h2>
+                        <p>为你提供多个金融系统平台</p>
+                    </div>
+                    <form class="main-bottom">
+                        <div class="userName">
+                            <input type="text" placeholder="用户名"/>
+                        </div>
+                        <div class="eMail">
+                            <input type="text" placeholder="邮箱"/>
+                        </div>
+                        <div class="tel">
+                            <input type="text" placeholder="手机"/>
+                        </div>
+                        <button type="submit">购买下载</button>
+                    </form>
+                    <div class="main-bg">
+                        <img src="../../images/mac.png">
+                    </div>
+                </div>
+                <div class="footer"></div>
+            </div>
+            <div class="page page2">
+                <div class="header">
+                    <h2>我们系统</h2>
+                    <p>方便、安全、易用</p>
+                </div>
+                <div class="main clearfix">
+                    <ul class="main-left pull-left clearfix">
+                        <li class="clearfix">
+                            <div class="page1-icon">
+                                <img src="../../images/funcicon_1.png">
+                            </div>
+                            <div class="text">
+                                <h5>拥有一套自己的图标字体</h5>
+                                <p>有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="page1-icon">
+                                <img src="../../images/funcicon_2.png">
+                            </div>
+                            <div class="text">
+                                <h5>拥有一套自己的图标字体</h5>
+                                <p>有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="page1-icon">
+                                <img src="../../images/funcicon_3.png">
+                            </div>
+                            <div class="text">
+                                <h5>拥有一套自己的图标字体</h5>
+                                <p>有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="main-right pull-right">
+                        <li class="clearfix">
+                            <div class="page1-icon">
+                                <img src="../../images/funcicon_4.png">
+                            </div>
+                            <div class="text">
+                                <h5>拥有一套自己的图标字体</h5>
+                                <p>有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="page1-icon">
+                                <img src="../../images/funcicon_5.png">
+                            </div>
+                            <div class="text">
+                                <h5>拥有一套自己的图标字体</h5>
+                                <p>有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="page1-icon">
+                                <img src="../../images/funcicon_6.png">
+                            </div>
+                            <div class="text">
+                                <h5>拥有一套自己的图标字体</h5>
+                                <p>有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer"></div>
+            </div>
+            <div class="page page3">
+                <div class="header">
+                    <h2>用户评价</h2>
+                    <p>拥有大量用户群</p>
+                </div>
+                <div class="main clearfix">
+                    <ul class="main-left pull-left clearfix">
+                        <li class="clearfix">
+                            <div class="page3-icon">
+                                <img src="../../images/headerimage_1.png">
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <i><img src="../../images/funcicon_7.png"></i>
+                                    有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的
+                                    <i class="pull-right"><img src="../../images/funcicon_8.png"></i>
+                                </p>
+                                <span class="city">上海</span>
+                                <span class="name">张章</span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="page3-icon">
+                                <img src="../../images/headerimage_2.png">
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <i><img src="../../images/funcicon_7.png"></i>
+                                    有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的
+                                    <i class="pull-right"><img src="../../images/funcicon_8.png"></i>
+                                </p>
+                                <span class="city">上海</span>
+                                <span class="name">张章</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="main-right pull-right">
+                        <li class="clearfix">
+                            <div class="page3-icon">
+                                <img src="../../images/headerimage_3.png">
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <i><img src="../../images/funcicon_7.png"></i>
+                                    有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的
+                                    <i class="pull-right"><img src="../../images/funcicon_8.png"></i>
+                                </p>
+                                <span class="city">上海</span>
+                                <span class="name">张章</span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="page3-icon">
+                                <img src="../../images/headerimage_4.png">
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <i><img src="../../images/funcicon_7.png"></i>
+                                    有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的，有自己的图标字体规范，有自己的
+                                    <i class="pull-right"><img src="../../images/funcicon_8.png"></i>
+                                </p>
+                                <span class="city">上海</span>
+                                <span class="name">张章</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer"></div>
+            </div>
+            <div class="page page4">
+                <div class="header">
+                    <h2>关于我们</h2>
+                    <p>我们来自五湖四海，但共同的目标孕育着同一个理想，出发点不同但目的地一样，年轻的心在此刻相聚、团结一致、不离不弃、斩破风浪、勇敢起航。我们来自五湖四海，但共同的目标孕育着同一个理想，出发点不同但目的地一样，年轻的心在此刻相聚、团结一致、不离不弃、斩破风浪、勇敢起航。我们来自五湖四海，但共同的目标孕育着同一个理想，出发点不同但目的地一样，年轻的心在此刻相聚、团结一致、不离不弃、斩破风浪、勇敢起航。</p>
+                </div>
+                <div class="main clearfix">
+                    <a href="#">更多</a>
+                </div>
+                <div class="footer"></div>
+            </div>
+            <div class="page page5">
+                <div class="header">
+                    <h2>分布</h2>
+                    <p>分公司遍布20多个地区</p>
+                </div>
+                <form class="main">
+                    <div class="userName clearfix">
+                        <input type="text" placeholder="用户名"/>
+                    </div>
+                    <div class="eMail clearfix">
+                        <input type="text" placeholder="邮箱"/>
+                    </div>
+                    <button id="enter">进入主页</button>
+                    <!--<button ng-click="closeThisDialog()">取消</button>-->
+                </form>
+                <div class="footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../config.js"></script>
+<!--[if !IE]> -->
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../../lib/bower_components/jquery-2.0.3.js'>"+"<"+"/script>");
+</script>
+<!-- <![endif]-->
+<!--[if lte IE 8]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../../lib/bower_components/jquery-1.10.2.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+<script src="../../lib/bower_components/ace.js"></script>
+<script src="../../lib/bower_components/bootstrap.js"></script>
+<script src="../../lib/bower_components/angular.min.js"></script>
+<script src="../../lib/bower_components/angular-ui-router.js"></script>
+<script src="../../lib/bower_components/ocLazyLoad.min.js"></script>
+<script src="../../lib/bower_components/ngDialog.js"></script>
+<script src="../../lib/bower_components/angular-cookies.min.js"></script>
+<script src="../../common_module/js/services/common.js"></script>
+
+<script src="../js/controllers/frameController.js"></script>
+<script src="../js/controllers/jquery.ht-onepage-scroll.js"></script>
+<script src="../js/frameModule.js"></script>
+<script src="../js/directives/sidebarList.js"></script>
+<script>
+    function iFrameHeight() {
+        var theight=$(window).height()-$("#navDiv").height()-$("#tabDiv").height()-35;
+        $("iframe").height(theight);
+    }
+    var iFrameWidth=function(){
+        this.bodyW = $('#navDiv').width();
+        this.mainW = this.bodyW-38;
+        $('iframe').width(this.mainW);
+    };
+    jQuery(function($){
+//        iFrameWidth();
+        iFrameHeight();
+    });
+    var trustedOrigin = 'http://127.0.0.1:3000';
+    var sendMsg= {
+        tagName:'input',
+        editType:'currency',
+        id:'currency',
+        name:'currency',
+        dataParam:{
+            colMd:'col-md-4',
+            disabled:false
+        }
+    };
+    function loadHanler() {
+        document.getElementById('rightMain').contentWindow.postMessage(JSON.stringify(sendMsg),trustedOrigin);
+    }
+    function addEvent(obj,trigger,fun) {
+        if(obj.addEventListener){
+            obj.addEventListener(trigger,fun,false);
+        }else if (obj.attachEvent){
+            obj.attachEvent('on'+trigger,fun);
+        }else{
+            obj['on'+trigger] = fun;
+        }
+    }
+    //    addEvent(window,'load',loadHanler);
+        $('a.navbar-brand').click(function(){
+            $(this).next().toggleClass('navbar-header-list-show')
+        });
+    //轮播弹层
+        $(".focus").onepage_scroll({
+            sectionContainer: ".page",
+            loop: true
+        });
+    $('#enter').click(function () {
+        $('.lunbo').fadeOut(500);
+        sessionStorage.setItem('flag','ture');
+        console.log(sessionStorage.flag);
+    });
+    if(!sessionStorage.getItem('flag')){
+        $('.lunbo').show();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_INSURANCE_CONT_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.nrec.bcp.dao.model.BCntInsuranceContInfo" >
+    <result column="INSURANCE_NO" property="insuranceNo" jdbcType="VARCHAR" />
+    <result column="INSURANCE_CODE" property="insuranceCode" jdbcType="VARCHAR" />
+    <result column="INSURANCE_TYPE" property="insuranceType" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="INSURANCE_CUSTCD" property="insuranceCustcd" jdbcType="VARCHAR" />
+    <result column="INSURANCE_FEE" property="insuranceFee" jdbcType="DECIMAL" />
+    <result column="REPARATION_FACTOR" property="reparationFactor" jdbcType="DECIMAL" />
+    <result column="REPARATION_PERCENT" property="reparationPercent" jdbcType="DECIMAL" />
+    <result column="CREDIT_TERM" property="creditTerm" jdbcType="DECIMAL" />
+    <result column="TOP_REPARATION_AMT" property="topReparationAmt" jdbcType="DECIMAL" />
+    <result column="CUMULATIVE_REPARATION_AMT" property="cumulativeReparationAmt" jdbcType="DECIMAL" />
+    <result column="REPARATION_TERM" property="reparationTerm" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    INSURANCE_NO, INSURANCE_CODE, INSURANCE_TYPE, AMOUNT, MEMO, MAST_CONTNO, INSURANCE_CUSTCD, 
+    INSURANCE_FEE, REPARATION_FACTOR, REPARATION_PERCENT, CREDIT_TERM, TOP_REPARATION_AMT, 
+    CUMULATIVE_REPARATION_AMT, REPARATION_TERM
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntInsuranceContInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_INSURANCE_CONT_INFO.Base_Column_List" />
+    from B_CNT_INSURANCE_CONT_INFO
+    <isParameterPresent >
+      <include refid="B_CNT_INSURANCE_CONT_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntInsuranceContInfo" >
+    select 
+    <include refid="B_CNT_INSURANCE_CONT_INFO.Base_Column_List" />
+    from B_CNT_INSURANCE_CONT_INFO
+    where INSURANCE_NO = #insuranceNo:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntInsuranceContInfo" >
+    delete from B_CNT_INSURANCE_CONT_INFO
+    where INSURANCE_NO = #insuranceNo:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntInsuranceContInfoExample" >
+    delete from B_CNT_INSURANCE_CONT_INFO
+    <include refid="B_CNT_INSURANCE_CONT_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntInsuranceContInfo" >
+    insert into B_CNT_INSURANCE_CONT_INFO (INSURANCE_NO, INSURANCE_CODE, INSURANCE_TYPE, 
+      AMOUNT, MEMO, MAST_CONTNO, INSURANCE_CUSTCD, 
+      INSURANCE_FEE, REPARATION_FACTOR, REPARATION_PERCENT, 
+      CREDIT_TERM, TOP_REPARATION_AMT, CUMULATIVE_REPARATION_AMT, 
+      REPARATION_TERM)
+    values (#insuranceNo:VARCHAR#, #insuranceCode:VARCHAR#, #insuranceType:VARCHAR#, 
+      #amount:DECIMAL#, #memo:VARCHAR#, #mastContno:VARCHAR#, #insuranceCustcd:VARCHAR#, 
+      #insuranceFee:DECIMAL#, #reparationFactor:DECIMAL#, #reparationPercent:DECIMAL#, 
+      #creditTerm:DECIMAL#, #topReparationAmt:DECIMAL#, #cumulativeReparationAmt:DECIMAL#, 
+      #reparationTerm:DECIMAL#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntInsuranceContInfo" >
+    insert into B_CNT_INSURANCE_CONT_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="insuranceNo" >
+        INSURANCE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceCode" >
+        INSURANCE_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceType" >
+        INSURANCE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceCustcd" >
+        INSURANCE_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceFee" >
+        INSURANCE_FEE
+      </isNotNull>
+      <isNotNull prepend="," property="reparationFactor" >
+        REPARATION_FACTOR
+      </isNotNull>
+      <isNotNull prepend="," property="reparationPercent" >
+        REPARATION_PERCENT
+      </isNotNull>
+      <isNotNull prepend="," property="creditTerm" >
+        CREDIT_TERM
+      </isNotNull>
+      <isNotNull prepend="," property="topReparationAmt" >
+        TOP_REPARATION_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="cumulativeReparationAmt" >
+        CUMULATIVE_REPARATION_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="reparationTerm" >
+        REPARATION_TERM
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="insuranceNo" >
+        #insuranceNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceCode" >
+        #insuranceCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceType" >
+        #insuranceType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        #amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceCustcd" >
+        #insuranceCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceFee" >
+        #insuranceFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationFactor" >
+        #reparationFactor:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationPercent" >
+        #reparationPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditTerm" >
+        #creditTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="topReparationAmt" >
+        #topReparationAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cumulativeReparationAmt" >
+        #cumulativeReparationAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationTerm" >
+        #reparationTerm:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntInsuranceContInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_INSURANCE_CONT_INFO
+    <include refid="B_CNT_INSURANCE_CONT_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_INSURANCE_CONT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.insuranceNo" >
+        INSURANCE_NO = #record.insuranceNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insuranceCode" >
+        INSURANCE_CODE = #record.insuranceCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insuranceType" >
+        INSURANCE_TYPE = #record.insuranceType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amount" >
+        AMOUNT = #record.amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insuranceCustcd" >
+        INSURANCE_CUSTCD = #record.insuranceCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insuranceFee" >
+        INSURANCE_FEE = #record.insuranceFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reparationFactor" >
+        REPARATION_FACTOR = #record.reparationFactor:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reparationPercent" >
+        REPARATION_PERCENT = #record.reparationPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditTerm" >
+        CREDIT_TERM = #record.creditTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.topReparationAmt" >
+        TOP_REPARATION_AMT = #record.topReparationAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cumulativeReparationAmt" >
+        CUMULATIVE_REPARATION_AMT = #record.cumulativeReparationAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reparationTerm" >
+        REPARATION_TERM = #record.reparationTerm:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_INSURANCE_CONT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_INSURANCE_CONT_INFO
+    set INSURANCE_NO = #record.insuranceNo:VARCHAR#,
+      INSURANCE_CODE = #record.insuranceCode:VARCHAR#,
+      INSURANCE_TYPE = #record.insuranceType:VARCHAR#,
+      AMOUNT = #record.amount:DECIMAL#,
+      MEMO = #record.memo:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      INSURANCE_CUSTCD = #record.insuranceCustcd:VARCHAR#,
+      INSURANCE_FEE = #record.insuranceFee:DECIMAL#,
+      REPARATION_FACTOR = #record.reparationFactor:DECIMAL#,
+      REPARATION_PERCENT = #record.reparationPercent:DECIMAL#,
+      CREDIT_TERM = #record.creditTerm:DECIMAL#,
+      TOP_REPARATION_AMT = #record.topReparationAmt:DECIMAL#,
+      CUMULATIVE_REPARATION_AMT = #record.cumulativeReparationAmt:DECIMAL#,
+      REPARATION_TERM = #record.reparationTerm:DECIMAL#
+    <isParameterPresent >
+      <include refid="B_CNT_INSURANCE_CONT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntInsuranceContInfo" >
+    update B_CNT_INSURANCE_CONT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="insuranceCode" >
+        INSURANCE_CODE = #insuranceCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceType" >
+        INSURANCE_TYPE = #insuranceType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        AMOUNT = #amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceCustcd" >
+        INSURANCE_CUSTCD = #insuranceCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceFee" >
+        INSURANCE_FEE = #insuranceFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationFactor" >
+        REPARATION_FACTOR = #reparationFactor:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationPercent" >
+        REPARATION_PERCENT = #reparationPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditTerm" >
+        CREDIT_TERM = #creditTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="topReparationAmt" >
+        TOP_REPARATION_AMT = #topReparationAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cumulativeReparationAmt" >
+        CUMULATIVE_REPARATION_AMT = #cumulativeReparationAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reparationTerm" >
+        REPARATION_TERM = #reparationTerm:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where INSURANCE_NO = #insuranceNo:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntInsuranceContInfo" >
+    update B_CNT_INSURANCE_CONT_INFO
+    set INSURANCE_CODE = #insuranceCode:VARCHAR#,
+      INSURANCE_TYPE = #insuranceType:VARCHAR#,
+      AMOUNT = #amount:DECIMAL#,
+      MEMO = #memo:VARCHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      INSURANCE_CUSTCD = #insuranceCustcd:VARCHAR#,
+      INSURANCE_FEE = #insuranceFee:DECIMAL#,
+      REPARATION_FACTOR = #reparationFactor:DECIMAL#,
+      REPARATION_PERCENT = #reparationPercent:DECIMAL#,
+      CREDIT_TERM = #creditTerm:DECIMAL#,
+      TOP_REPARATION_AMT = #topReparationAmt:DECIMAL#,
+      CUMULATIVE_REPARATION_AMT = #cumulativeReparationAmt:DECIMAL#,
+      REPARATION_TERM = #reparationTerm:DECIMAL#
+    where INSURANCE_NO = #insuranceNo:VARCHAR#
+  </update>
+</sqlMap>

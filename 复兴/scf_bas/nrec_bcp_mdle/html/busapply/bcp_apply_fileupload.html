@@ -1,0 +1,33 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="fileupload">
+    <ht-input name="文件名称" ng-model="fileupload.picName"></ht-input>
+    <ht-select ht-id="reservedValue2" name="文件种类" datasource="datasourcecont" dataOption="contCode"
+               dataTrsOption="contName" ng-model="fileupload.reservedValue2"></ht-select>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-legend>文件模版列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasourcecont" selected="selectedcont" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="upload" class="btn-primary" hide="{{hide}}">上传</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="contCode" zh-name="类型编号"></ht-column>
+    <ht-column eg-name="contName" zh-name="类型名称" ></ht-column>
+</ht-table>
+<ht-page conf="confcont"></ht-page>
+<ht-legend>文件上传列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-file type="download" option="downloadoption"></ht-file>
+        <ht-button ht-id="delete" class="btn-primary" hide="{{hide}}">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="picId" zh-name="文件流水号"></ht-column>
+    <ht-column eg-name="picName" zh-name="文件名"></ht-column>
+    <ht-column eg-name="reservedValue3" zh-name="文件种类"></ht-column>
+    <ht-column eg-name="expiryDate" zh-name="上传时间"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+<span style="color:red;font-size: 10px">注意：文件名称中文不得超过12位,其它字符不得超过45位</span>

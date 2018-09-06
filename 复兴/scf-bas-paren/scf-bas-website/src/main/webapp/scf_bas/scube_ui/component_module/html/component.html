@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="componentModule" ng-controller="componentController">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../css/ngDialog.css" />
+    <link rel="stylesheet" href="../../css/ngDialog-theme-plain.css"/>
+    <link rel="stylesheet" href="../../lib/angular-tree-control/css/tree-control.css"/>
+    <link rel="stylesheet" href="../../css/components-green.css" />
+
+    <script src="../../config.js"></script>
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='../../lib/bower_components/jquery-2.0.3.js'>"+"<"+"/script>");
+    </script>
+    <!-- <![endif]-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='../../lib/bower_components/jquery-1.10.2.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+    <script src="../../lib/bower_components/bootstrap.js"></script>
+    <script src="../../lib/bower_components/angular.min.js"></script>
+    <script src="../../lib/bower_components/ngDialog.js"></script>
+    <!--<script src="../../common/initialize.js"></script>-->
+    <script src='../../lib/plugins/echarts/dist/echarts.min.js'></script>
+    <script src="../../lib/angular-tree-control/angular-tree-control.js"></script>
+    <script src="../../lib/angular-file-upload-master/dist/angular-file-upload.min.js"></script>
+    <script src="../../lib/plugins/jqValidate/jquery.poshytip.js"></script>
+    <!--<script src="../../lib/plugins/jqValidate/jq.validate.js"></script>-->
+    <script src="../../lib/plugins/My97DatePicker/WdatePicker.js"></script>
+    <script src="../../common_module/js/services/common.js"></script>
+    <script src="../../common_module/js/directives/tableHelper.js"></script>
+
+    <script src="../js/componentModule.js"></script>
+</head>
+<body>
+
+<fieldset>
+    <legend style="margin-bottom: 5px">表格</legend>
+    <!--<ht-button class="btn-default"  ng-click="query()" desc-name="查询"></ht-button>-->
+    <ht-table datasource="datasource" selected="selected" docheckbox="true" dooption="false">
+        <ht-form name="orgUser" table-search="searchFunction" is-table-form="true">
+            <ht-input id="d2345" name="文本框" ng-model="orgUser.text"></ht-input>
+            <ht-input id="d23456" name="文本框" ng-model="orgUser.text2"></ht-input>
+            <ht-select id="sex" name="性别" dictionary="sex"  ng-model="orgUser.sex"></ht-select>
+            <ht-input id="d1234" edit-type="date"
+                      name="起始日期"
+                      high-date-id="d4567"
+                      min-date="2016-08-07"
+                      max-date="2016-08-22"
+                      ng-model="orgUser.date"></ht-input>
+            <ht-input id="d4567" edit-type="date"
+                      name="终止日期"
+                      lower-date-id="d1234"
+                      min-date="2016-08-07"
+                      max-date="2016-08-22"
+                      ng-model="orgUser.date2"></ht-input>
+        </ht-form>
+        <ht-button-group>
+            <ht-button id="add">新增</ht-button>
+            <ht-button id="delete">删除</ht-button>
+            <ht-button id="update">修改</ht-button>
+            <ht-button id="detail">查看明细</ht-button>
+            <ht-button id="excel">excel导出</ht-button>
+        </ht-button-group>
+        <ht-column eg-name="id" zh-name="主键" href="true"></ht-column>
+        <ht-column eg-name="remark" zh-name="备注"></ht-column>
+        <ht-column eg-name="userName" zh-name="用户名名"></ht-column>
+        <ht-column eg-name="password" zh-name="密码"></ht-column>
+        <ht-column eg-name="beginDate" zh-name="起始日期" href="true"></ht-column>
+        <ht-column eg-name="endDate" zh-name="终止日期"></ht-column>
+        <ht-column eg-name="sex" zh-name="性别"></ht-column>
+        <ht-column eg-name="remark2" zh-name="备注2"></ht-column>
+        <ht-column eg-name="id3" zh-name="主键3" href="true"></ht-column>
+        <ht-column eg-name="remark3" zh-name="备注3"></ht-column>
+        <ht-column eg-name="userName3" zh-name="用户名3"></ht-column>
+        <ht-column eg-name="password3" zh-name="密码3"></ht-column>
+    </ht-table>
+    <ht-page conf="conf"></ht-page>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">进度条</legend>
+    <ht-progress percent="percent"></ht-progress>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">上传下载</legend>
+    <ht-file-upload></ht-file-upload>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">表单</legend>
+    <ht-form name="myform">
+        <!--reg-exp="UserService.getLogin.userName"-->
+        <ht-input id="d234" name="文本框" ng-model="myform.text" reg-exp="UserService.getLogin.userName"></ht-input>
+        <ht-input id="d123" edit-type="date"
+                  name="起始日期"
+                  high-date-id="d456"
+                  min-date="2016-08-07"
+                  max-date="2016-08-22"
+                  ng-model="myform.date"></ht-input>
+        <ht-input id="d456" edit-type="date"
+                  name="终止日期"
+                  lower-date-id="d123"
+                  min-date="2016-08-07"
+                  max-date="2016-08-22"
+                  ng-model="myform.date2"></ht-input>
+        <ht-select id="sex" name="性别" dictionary="sex" onchange="change" ng-model="myform.sex"></ht-select>
+        <ht-input id="d444" name="文本框2" ng-model="myform.text2" reg-exp="UserService.getLogin.userName"></ht-input>
+        <ht-select  id="check" name="是否代客" dictionary="checked" ng-model="myform.checked"></ht-select>
+        <ht-input id="d555" edit-type="number"  name="数值" ng-model="myform.number"></ht-input>
+        <ht-input id="d666" edit-type="currency"  name="金额" ng-model="myform.currency"></ht-input>
+
+        <!--<ht-form-group label-name="性别">-->
+        <!--<ht-input edit-type="radio" ht-dictionary="sex" ng-model="myform._sex"></ht-input>-->
+        <!--</ht-form-group>-->
+        <!--<ht-form-group label-name="复选框">-->
+        <!--<ht-input edit-type="checkbox" ng-model="myform.checkbox1" ng-true-value="01" ng-false-value="10"></ht-input> 标签1-->
+        <!--<ht-input edit-type="checkbox" ng-model="myform.checkbox2" ng-true-value="02" ng-false-value="20"></ht-input> 标签2-->
+        <!--<ht-input edit-type="checkbox" ng-model="myform.checkbox3" ng-true-value="03" ng-false-value="30"></ht-input> 标签3-->
+        <!--</ht-form-group>-->
+        <div style="text-align: center">
+            <ht-button class="btn-info" id="submit" desc-name="提交"></ht-button>
+        </div>
+    </ht-form>
+</fieldset><br>
+
+<fieldset>
+    <legend style="margin-bottom: 5px">文件上传</legend>
+    <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+    <div><ht-input edit-type="file" src=""></ht-input></div>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">图表</legend>
+    <!--<ht-chart chart-type="bar" data="data"></ht-chart>-->
+    <!--<ht-chart chart-type="line" data="data"></ht-chart>-->
+    <!--<ht-chart chart-type="pie" data="data"></ht-chart>-->
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">双向选择列表</legend>
+    <ht-double-selects data="doubleSelect"></ht-double-selects>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">双向选择列表2</legend>
+    <ht-select2way left-options-variable="leftOptions" right-options-variable="rightOptions"></ht-select2way>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">导航条</legend>
+    <ht-guide data="guide"></ht-guide>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">树控件</legend>
+    <treecontrol class="tree-light"
+                 tree-model="dataForTheTree"
+                 options="treeOptions"
+                 on-selection="showSelected(node)"
+                 selected-node="node">
+                        <span ng-switch on="node.type" style="color:#22c064;">
+                            <span ng-switch-when="default" class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                            <span ng-switch-when="folder" class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                            <span ng-switch-when="pic" class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                            <span ng-switch-when="doc" class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                            <span ng-switch-when="file" class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                            <span ng-switch-when="movie" class="glyphicon glyphicon-film" aria-hidden="true"></span>
+                            <span ng-switch-when="email" class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                            <span ng-switch-when="home" class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            <span ng-switch-when="trash" class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </span>
+        employee: {{node.name}} age {{node.age}}
+    </treecontrol>
+    <br><span>选择了{{selectedNode.name}}</span>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">按钮控件</legend>
+    <ht-button class="btn-info"  id="button" desc-name="点击响应（id）"></ht-button>
+    <ht-button class="btn-info" desc-name="提交防重" prevent-submit=true></ht-button>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">提示框控件</legend>
+    <ht-button class="btn-info"  id="button2" desc-name="成功提示框"></ht-button>
+    <ht-button class="btn-info"  id="button3" desc-name="失败提示框"></ht-button>
+    <ht-button class="btn-info"  id="button4" desc-name="警告提示框"></ht-button>
+    <ht-button class="btn-info"  id="button5" desc-name="信息提示框"></ht-button>
+    <ht-button class="btn-info"  id="button6" desc-name="确认提示框"></ht-button>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">tab控件</legend>
+    <ht-tabs>
+        <ht-pane title="tab1">pane1</ht-pane>
+        <ht-pane title="tab2">pane2</ht-pane>
+        <ht-pane title="tab3">pane3</ht-pane>
+    </ht-tabs>
+</fieldset><br>
+<!--<fieldset>-->
+<!--<legend style="margin-bottom: 5px">分页控件</legend>-->
+<!--<ht-page conf="conf" datasource="datasource"></ht-page>-->
+<!--</fieldset><br>-->
+<fieldset>
+    <legend style="margin-bottom: 5px">按钮组</legend>
+    <ht-button-group>
+        <ht-button class="active" desc-name="默认按钮（活动）"></ht-button>
+        <ht-button class="btn-info" desc-name="信息按钮"></ht-button>
+        <ht-button class="btn-primary" desc-name="原始按钮"></ht-button>
+        <ht-button class="btn-success" desc-name="成功按钮"></ht-button>
+        <ht-button class="btn-warning" desc-name="谨慎按钮"></ht-button>
+        <ht-button class="btn-danger disabled" desc-name="危险按钮（禁用）"></ht-button>
+    </ht-button-group>
+    <ht-button-group>
+        <ht-button desc-name="默认按钮"></ht-button>
+        <ht-button class="btn-danger disabled" desc-name="危险按钮（禁用）"></ht-button>
+    </ht-button-group>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">菜单</legend>
+    <ht-menu id="menu1"
+             name="按钮式下拉"
+             datasource="menu"
+             selected-menu="selectedMenu">
+    </ht-menu>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">导航</legend>
+    <ht-nav id="nav1" dictionary="nav" selected-nav="selectedNav">
+    </ht-nav>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">徽章</legend>
+    <a href="javascript:void(0);">首页 <ht-badge id="badge1" badge-data=""></ht-badge></a>
+    <a href="javascript:void(0);">消息 <ht-badge id="badge2" badge-data="23"></ht-badge></a>
+</fieldset><br>
+<fieldset>
+    <legend style="margin-bottom: 5px">面板</legend>
+    <div class="col-sm-4">
+        <ht-panel  id="panel0">
+            这里写内容
+        </ht-panel>
+    </div>
+    <div class="col-sm-4">
+        <ht-panel id="panel1" type="panel-info" title="这是面板标题">
+            <ht-menu id="menu2" name="按钮式下拉"
+                     datasource="menu" selected-menu="selectedMenu">
+            </ht-menu>
+        </ht-panel>
+    </div>
+    <div class="col-sm-4">
+        <ht-panel id="panel2" type="panel-warning" title="这是面板标题" footer="这是脚注">
+            <table class="table"style="width: 100%;">
+                <tr><th style="text-align: center">姓名</th>
+                    <th style="text-align: center">年龄</th>
+                    <th style="text-align: center">性别</th></tr>
+                <tr><td>小明</td><td>4</td><td>男</td></tr>
+                <tr><td>小红</td><td>32</td><td>女</td></tr>
+            </table>
+        </ht-panel>
+    </div>
+</fieldset><br>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html  xmlns:ng="http://angularjs.org">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=gb2312">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ------------公共css--------------------- -->
+    <script>
+        window.console = window.console||{log:function(a){}};
+    </script>
+    <script src="../../scube_ui/common/importCs.js" charset="utf-8"></script>
+    <!-- ------------业务css--------------------- -->
+
+    <!--<script>-->
+        <!--var downloadaaa = function(alink){-->
+            <!--debugger-->
+            <!--var str ="aaa值,bbb值,ccc值\nval1值,值val2,值val3";-->
+            <!--str = encodeURIComponent(str);-->
+            <!--alink.href = "data:text/csv;charset=utf-8,\ufeff"+str;-->
+        <!--}-->
+    <!--</script>-->
+</head>
+<body id="ng-app">
+<!--<a download="myWubin.txt" href="data:text/txt;charset=utf-8,ddddddddddd">download(txt)</a>-->
+<!--<a download="myWubin.csv" onclick="downloadaaa(this)" href="#">download(csv)</a>-->
+
+<div style="height: 100%;padding: 3px"  ui-view>
+<!-- --------------------装载dom------------------------------ -->
+</div>
+
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+<script src="../../config.js" charset="utf-8"></script>
+
+<!-- ------------公共js--------------------- -->
+<script src="../../scube_ui/common/myBrowser.js" charset="utf-8"></script>
+<script src="../../scube_ui/common/importJs.js" charset="utf-8"></script>
+
+<!-- ------------业务js--------------------- -->
+<script src="../js/controllers/ft_controller.js" charset="utf-8"></script>
+<script src="../js/controllers/ftDialog_controller.js" charset="utf-8"></script>
+<script src="../js/test_module.js" charset="utf-8"></script>
+</body>
+</html>
+
+

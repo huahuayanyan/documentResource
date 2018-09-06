@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_QRY_DEBTPOOLGENERATEQUERY" >
+    <resultMap id="RBcpDebtBaseInfoMap" class="com.huateng.scf.rec.bcp.dao.model.RBcpDebtBaseInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUSTCD_SALLER" property="custcdSaller" jdbcType="VARCHAR" />
+    <result column="CNAME_BUYER" property="cnameBuyer" jdbcType="VARCHAR" />
+    <result column="CUSTCD_BUYER" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="CNAME_SELLER" property="cnameSeller" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="INSERT_DATE" property="insertDate" jdbcType="CHAR" />
+    <result column="AGING" property="aging" jdbcType="VARCHAR" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="BILLS_NO" property="billsNo" jdbcType="VARCHAR" />
+    <result column="BILLS_TYPE" property="billsType" jdbcType="CHAR" />
+    <result column="BILLS_DATE" property="billsDate" jdbcType="CHAR" />
+    <result column="DEBT_END" property="debtEnd" jdbcType="CHAR" />
+    <result column="BILLS_AMOUNT" property="billsAmount" jdbcType="DECIMAL" />
+    <result column="BILLS_AMOUNT_VIEW" property="billsAmountView" jdbcType="DECIMAL" />
+    <result column="REMAINING_AMOUNT" property="remainingAmount" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="LOAN_AMOUNT" property="loanAmount" jdbcType="DECIMAL" />
+    <result column="PURCHASE_DATE" property="purchaseDate" jdbcType="CHAR" />
+    <result column="LOAN_REMAINING_AMOUNT" property="loanRemainingAmount" jdbcType="DECIMAL" />
+    <result column="REMAINING_USEABLE_AMOUNT" property="remainingUseableAmount" jdbcType="DECIMAL" />
+    <result column="RATE_COLLECT_AMOUNT" property="rateCollectAmount" jdbcType="DECIMAL" />
+    <result column="OWN_RATE_COLLECT_AMOUNT" property="ownRateCollectAmount" jdbcType="DECIMAL" />
+    <result column="LOAN_END_DATE" property="loanEndDate" jdbcType="CHAR" />
+    <result column="ASSURE_PERCENT" property="assurePercent" jdbcType="DECIMAL" />
+    <result column="ASSURE_PAY_DATE" property="assurePayDate" jdbcType="CHAR" />
+    <result column="REBATE_AMOUNT" property="rebateAmount" jdbcType="DECIMAL" />
+    <result column="BUY_BACK_AMOUNT" property="buyBackAmount" jdbcType="DECIMAL" />
+    <result column="PAY_AMOUNT" property="payAmount" jdbcType="DECIMAL" />
+    <result column="REMOVE_AMOUNT" property="removeAmount" jdbcType="DECIMAL" />
+    <result column="CASH_REMAINING_AMOUNT" property="cashRemainingAmount" jdbcType="DECIMAL" />
+    <result column="FLAW_FLAG" property="flawFlag" jdbcType="CHAR" />
+    <result column="FLAW_REASON" property="flawReason" jdbcType="VARCHAR" />
+    <result column="ISSUE_FLAG" property="issueFlag" jdbcType="CHAR" />
+    <result column="ISSUE_REASON" property="issueReason" jdbcType="VARCHAR" />
+    <result column="OVERDUE_FLAG" property="overdueFlag" jdbcType="CHAR" />
+    <result column="OVERDUE_REASON" property="overdueReason" jdbcType="VARCHAR" />
+    <result column="BAD_FLAG" property="badFlag" jdbcType="CHAR" />
+    <result column="BAD_REASON" property="badReason" jdbcType="VARCHAR" />
+    <result column="POOL_FLAG" property="poolFlag" jdbcType="VARCHAR" />
+    <result column="OVERDUE_AMOUNT" property="overdueAmount" jdbcType="DECIMAL" />
+    <result column="PLEDGE_STATUS" property="pledgeStatus" jdbcType="VARCHAR" />
+    <result column="OVERDUE_STATUS" property="overdueStatus" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="RETURN_STATUS" property="returnStatus" jdbcType="CHAR" />
+    <result column="PLEDGE_ACTIVE_DATE" property="pledgeActiveDate" jdbcType="CHAR" />
+    <result column="UNPLEDGE_ACTIVE_DATE" property="unpledgeActiveDate" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="PRESS_COUNT" property="pressCount" jdbcType="DECIMAL" />
+    <result column="WARN_COUNT" property="warnCount" jdbcType="DECIMAL" />
+    <result column="BILLS_PERIOD" property="billsPeriod" jdbcType="CHAR" />
+    <result column="BEGIN_DATE" property="beginDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="PAYDATE" property="paydate" jdbcType="CHAR" />
+    <result column="DELETE_REASON" property="deleteReason" jdbcType="VARCHAR" />
+    <result column="OTHER_REASON" property="otherReason" jdbcType="VARCHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="LOAN_OVERDUE_FLAG" property="loanOverdueFlag" jdbcType="CHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="ADD_BAIL_AMOUNT" property="addBailAmount" jdbcType="DECIMAL" />
+    <result column="IS_LOCKED" property="isLocked" jdbcType="CHAR" />
+    <result column="LOCK_APPNO" property="lockAppno" jdbcType="VARCHAR" />
+    <result column="FACT_TYPE" property="factType" jdbcType="CHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="DEADLINE" property="deadline" jdbcType="CHAR" />
+    <result column="BUSS_CONTCODE" property="bussContcode" jdbcType="VARCHAR" />
+    <result column="GRACE_PERIOD" property="gracePeriod" jdbcType="DECIMAL" />
+    <result column="CLAIM_STATUS" property="claimStatus" jdbcType="CHAR" />
+    <result column="CONFIRM_DATE" property="confirmDate" jdbcType="CHAR" />
+    <result column="EBANK_APPNO" property="ebankAppno" jdbcType="VARCHAR" />
+    <result column="CHANNEL_FLAG" property="channelFlag" jdbcType="CHAR" />
+    <result column="ISSUE_TIMES" property="issueTimes" jdbcType="DECIMAL" />
+    <result column="IS_PAY" property="isPay" jdbcType="CHAR" />
+  </resultMap>
+    
+    <sql id="Base_Column_List" >
+     a.ID, a.CUSTCD_SALLER, a.CNAME_BUYER, a.CUSTCD_BUYER, a.CNAME_SELLER, a.MAST_CONTNO, a.INSERT_DATE, 
+    a.AGING, a.BUSS_TYPE, a.BILLS_NO, a.BILLS_TYPE, a.BILLS_DATE, a.DEBT_END, a.BILLS_AMOUNT, a.BILLS_AMOUNT_VIEW, 
+    a.REMAINING_AMOUNT, a.CURCD, a.LOAN_PERCENT, a.LOAN_AMOUNT, a.PURCHASE_DATE, a.LOAN_REMAINING_AMOUNT, 
+    a.REMAINING_USEABLE_AMOUNT, a.RATE_COLLECT_AMOUNT, a.OWN_RATE_COLLECT_AMOUNT, a.LOAN_END_DATE, 
+    a.ASSURE_PERCENT, a.ASSURE_PAY_DATE, a.REBATE_AMOUNT, a.BUY_BACK_AMOUNT, a.PAY_AMOUNT, a.REMOVE_AMOUNT, 
+    a.CASH_REMAINING_AMOUNT, a.FLAW_FLAG, a.FLAW_REASON, a.ISSUE_FLAG, a.ISSUE_REASON, a.OVERDUE_FLAG, 
+    a.OVERDUE_REASON, a.BAD_FLAG, a.BAD_REASON, a.POOL_FLAG, a.OVERDUE_AMOUNT, a.PLEDGE_STATUS, a.OVERDUE_STATUS, 
+    a.STATUS, a.RETURN_STATUS, a.PLEDGE_ACTIVE_DATE, a.UNPLEDGE_ACTIVE_DATE, a.MEMO, a.PRESS_COUNT, 
+    a.WARN_COUNT, a.BILLS_PERIOD, a.BEGIN_DATE, a.END_DATE, PAYDATE, a.DELETE_REASON, a.OTHER_REASON, 
+    a.REASON, a.LOAN_OVERDUE_FLAG, a.DEBET_NO, a.BAIL_AMOUNT, a.ADD_BAIL_AMOUNT, a.IS_LOCKED, a.LOCK_APPNO, 
+    a.FACT_TYPE, a.LOAN_WAY, a.DEADLINE, a.BUSS_CONTCODE, a.GRACE_PERIOD, a.CLAIM_STATUS, a.CONFIRM_DATE, 
+    a.EBANK_APPNO, a.CHANNEL_FLAG, a.ISSUE_TIMES, a.IS_PAY
+  </sql> 
+  <select id="getTotalLnciAmtByProtocolNo" resultClass="java.util.HashMap" parameterClass="java.util.HashMap" >
+	
+	select sum(tlbi.LNCI_AMT) as lnciamt,sum(tlbi.LNCI_BAL) as lncibal,sum(nvl(tlbi.BAIL_AMOUNT,0)+nvl(tlbi.ADD_BAIL_AMOUNT,0)) as bailamount, 
+	sum(nvl(tlbi.INIT_CASH_EQT_AMT,0)+nvl(tlbi.ADD_CASH_EQT_AMT,0))  as eqtamt
+	from B_LAN_LNCI_BASE tlbi 
+	WHERE
+	    1=1
+	<isNotNull prepend="AND" property="protocolNo" >
+        <![CDATA[tlbi.PROTOCOL_NO =#protocolNo:VARCHAR#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="mastContNo" >
+        <![CDATA[tlbi.MAST_CONTNO =#mastContNo:VARCHAR#]]>
+    </isNotNull>
+  </select>
+  
+  <select id="getDebtInfoQuery" resultMap="EXT_QRY_DEBTPOOLGENERATEQUERY.RBcpDebtBaseInfoMap" parameterClass="java.util.HashMap" >
+	 select
+    <include refid="EXT_QRY_DEBTPOOLGENERATEQUERY.Base_Column_List" />
+    from R_BCP_DEBT_BASE_INFO a ,B_CNT_DEBT_INFO b   
+    where 1=1 
+    and a.MAST_CONTNO  = b.DEBT_CONTNO 
+   <!--  and a.FACT_TYPE in ('7','8','9') -->  
+    and a.STATUS != '00' 
+    <isNotNull prepend="AND" property="sellerCustcd_Q" >
+        <![CDATA[a.CNAME_SELLER  like '%$sellerCustcd_Q$%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="buyerCustcd_Q" >
+        <![CDATA[a.CNAME_BUYER  like '%$buyerCustcd_Q$%']]>
+    </isNotNull>
+   <isNotNull prepend="AND" property="debtContno_Q" >
+        <![CDATA[a.MAST_CONTNO  like '%$debtContno_Q$%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="status_Q" >
+        <![CDATA[a.STATUS = #"status_Q"#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="billsType_Q" >
+        <![CDATA[a.BILLS_TYPE = #"billsType_Q"#]]>
+    </isNotNull>
+    <isNotEmpty prepend="and" property="factType" >
+	       	<isEqual property="factType" compareValue ="1">
+              a.FACT_TYPE in ('1','2','6')
+            </isEqual>   
+	       	<isEqual property="factType" compareValue ="2">
+              a.FACT_TYPE in ('7','8','9')
+            </isEqual>   
+           	<isEqual property="factType" compareValue ="3">
+              a.FACT_TYPE = '3'
+            </isEqual>  
+	       	<isEqual property="factType" compareValue ="4">
+              a.FACT_TYPE = '4'
+            </isEqual>   
+	       	<isEqual property="factType" compareValue ="5">
+              a.FACT_TYPE = '5'
+            </isEqual>   
+     </isNotEmpty>
+    order by a.INSERT_DATE desc ,a.ID desc
+  </select>
+</sqlMap>

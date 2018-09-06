@@ -1,0 +1,17 @@
+<ht-form name="noticeForm">
+
+    <ht-input ng-model="noticeForm.num" name="通知书编号" disable="true"></ht-input>
+    <ht-input ng-model="noticeForm.slaveContno" name="质押合同号" disable="true"></ht-input>
+    <ht-input ng-model="noticeForm.monitorProtocolNo" name="监管协议号" disable="true"></ht-input>
+    <ht-input ng-model="noticeForm.custcd" name="出质人客户号" disable="true"></ht-input>
+    <ht-input ng-model="noticeForm.moniOfCustcd" name="监管客户号" disable="true"></ht-input>
+    <ht-select ng-model="noticeForm.noticeType" name="通知书类型" disable="true" dictionary="nteType"></ht-select>
+    <!--<ht-input ng-model="noticeForm.mortgageChangeType" name="押品变更类型" disable="true"></ht-input>-->
+    <ht-input ng-model="noticeForm.bussType" name="业务品种" disable="true"></ht-input>
+    <ht-input ng-model="noticeForm.ext1Amount" name="新的监管下限值" edit-type="currency" disable="true"></ht-input>
+    <ht-input ng-model="noticeForm.ext2Amount" name="旧的监管下限值" edit-type="currency" disable="true"></ht-input>
+
+    <ht-button-group align="center">
+        <ht-button ht-id="closeThisDialog" class="btn-primary">关闭</ht-button>
+    </ht-button-group>
+</ht-form>

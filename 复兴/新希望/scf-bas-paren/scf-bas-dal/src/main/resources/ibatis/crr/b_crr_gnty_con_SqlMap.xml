@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRR_GNTY_CON" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrGntyCon" >
+    <result column="CON_ID" property="conId" jdbcType="VARCHAR" />
+    <result column="CON_TYP" property="conTyp" jdbcType="VARCHAR" />
+    <result column="GUTY_TYP" property="gutyTyp" jdbcType="VARCHAR" />
+    <result column="CON_STAT" property="conStat" jdbcType="VARCHAR" />
+    <result column="GUT_FRM" property="gutFrm" jdbcType="VARCHAR" />
+    <result column="GUT_ID" property="gutId" jdbcType="VARCHAR" />
+    <result column="GUT_NM" property="gutNm" jdbcType="VARCHAR" />
+    <result column="GCRT_TYP" property="gcrtTyp" jdbcType="VARCHAR" />
+    <result column="GCRT_ID" property="gcrtId" jdbcType="VARCHAR" />
+    <result column="LN_NO" property="lnNo" jdbcType="VARCHAR" />
+    <result column="GUT_CURCD" property="gutCurcd" jdbcType="VARCHAR" />
+    <result column="GUT_VAL" property="gutVal" jdbcType="DECIMAL" />
+    <result column="OTH_DSCRB" property="othDscrb" jdbcType="VARCHAR" />
+    <result column="BAIL_RATE" property="bailRate" jdbcType="DECIMAL" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="VID_PRD_ID" property="vidPrdId" jdbcType="VARCHAR" />
+    <result column="PRTCL_NO" property="prtclNo" jdbcType="VARCHAR" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" />
+    <result column="LOW_PRICE" property="lowPrice" jdbcType="DECIMAL" />
+    <result column="MONI_MD" property="moniMd" jdbcType="CHAR" />
+    <result column="FLG" property="flg" jdbcType="VARCHAR" />
+    <result column="GUARD_RAT" property="guardRat" jdbcType="DECIMAL" />
+    <result column="GUTY_WAY" property="gutyWay" jdbcType="VARCHAR" />
+    <result column="BUSI_STAT" property="busiStat" jdbcType="CHAR" />
+    <result column="BUSI_NO" property="busiNo" jdbcType="VARCHAR" />
+    <result column="PRTCL_BR_NM" property="prtclBrNm" jdbcType="VARCHAR" />
+    <result column="GUT_SUM" property="gutSum" jdbcType="DECIMAL" />
+    <result column="STRT_DT" property="strtDt" jdbcType="VARCHAR" />
+    <result column="END_DT" property="endDt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    CON_ID, CON_TYP, GUTY_TYP, CON_STAT, GUT_FRM, GUT_ID, GUT_NM, GCRT_TYP, GCRT_ID, 
+    LN_NO, GUT_CURCD, GUT_VAL, OTH_DSCRB, BAIL_RATE, TLR_NO, TLR_NM, BR_CD, BR_NM, INP_DT, 
+    LST_UPD_TLR, LST_UPD_TLR_NM, LST_UPD_BR_CD, LST_UPD_BR_NM, LST_UPD_DT, VID_PRD_ID, 
+    PRTCL_NO, RATION, LOW_PRICE_NEW, LOW_PRICE, MONI_MD, FLG, GUARD_RAT, GUTY_WAY, BUSI_STAT, 
+    BUSI_NO, PRTCL_BR_NM, GUT_SUM, STRT_DT, END_DT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyConExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRR_GNTY_CON.Base_Column_List" />
+    from B_CRR_GNTY_CON
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_CON.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyCon" >
+    select 
+    <include refid="B_CRR_GNTY_CON.Base_Column_List" />
+    from B_CRR_GNTY_CON
+    where CON_ID = #conId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyCon" >
+    delete from B_CRR_GNTY_CON
+    where CON_ID = #conId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyConExample" >
+    delete from B_CRR_GNTY_CON
+    <include refid="B_CRR_GNTY_CON.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyCon" >
+    insert into B_CRR_GNTY_CON (CON_ID, CON_TYP, GUTY_TYP, CON_STAT, 
+      GUT_FRM, GUT_ID, GUT_NM, GCRT_TYP, GCRT_ID, 
+      LN_NO, GUT_CURCD, GUT_VAL, OTH_DSCRB, BAIL_RATE, 
+      TLR_NO, TLR_NM, BR_CD, BR_NM, INP_DT, 
+      LST_UPD_TLR, LST_UPD_TLR_NM, LST_UPD_BR_CD, LST_UPD_BR_NM, 
+      LST_UPD_DT, VID_PRD_ID, PRTCL_NO, RATION, LOW_PRICE_NEW, 
+      LOW_PRICE, MONI_MD, FLG, GUARD_RAT, GUTY_WAY, 
+      BUSI_STAT, BUSI_NO, PRTCL_BR_NM, GUT_SUM, STRT_DT, 
+      END_DT)
+    values (#conId:VARCHAR#, #conTyp:VARCHAR#, #gutyTyp:VARCHAR#, #conStat:VARCHAR#, 
+      #gutFrm:VARCHAR#, #gutId:VARCHAR#, #gutNm:VARCHAR#, #gcrtTyp:VARCHAR#, #gcrtId:VARCHAR#, 
+      #lnNo:VARCHAR#, #gutCurcd:VARCHAR#, #gutVal:DECIMAL#, #othDscrb:VARCHAR#, #bailRate:DECIMAL#, 
+      #tlrNo:VARCHAR#, #tlrNm:VARCHAR#, #brCd:VARCHAR#, #brNm:VARCHAR#, #inpDt:VARCHAR#, 
+      #lstUpdTlr:VARCHAR#, #lstUpdTlrNm:VARCHAR#, #lstUpdBrCd:VARCHAR#, #lstUpdBrNm:VARCHAR#, 
+      #lstUpdDt:VARCHAR#, #vidPrdId:VARCHAR#, #prtclNo:VARCHAR#, #ration:DECIMAL#, #lowPriceNew:DECIMAL#, 
+      #lowPrice:DECIMAL#, #moniMd:CHAR#, #flg:VARCHAR#, #guardRat:DECIMAL#, #gutyWay:VARCHAR#, 
+      #busiStat:CHAR#, #busiNo:VARCHAR#, #prtclBrNm:VARCHAR#, #gutSum:DECIMAL#, #strtDt:VARCHAR#, 
+      #endDt:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyCon" >
+    insert into B_CRR_GNTY_CON
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="conId" >
+        CON_ID
+      </isNotNull>
+      <isNotNull prepend="," property="conTyp" >
+        CON_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="gutyTyp" >
+        GUTY_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="conStat" >
+        CON_STAT
+      </isNotNull>
+      <isNotNull prepend="," property="gutFrm" >
+        GUT_FRM
+      </isNotNull>
+      <isNotNull prepend="," property="gutId" >
+        GUT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="gutNm" >
+        GUT_NM
+      </isNotNull>
+      <isNotNull prepend="," property="gcrtTyp" >
+        GCRT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="gcrtId" >
+        GCRT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="lnNo" >
+        LN_NO
+      </isNotNull>
+      <isNotNull prepend="," property="gutCurcd" >
+        GUT_CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="gutVal" >
+        GUT_VAL
+      </isNotNull>
+      <isNotNull prepend="," property="othDscrb" >
+        OTH_DSCRB
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        BAIL_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      <isNotNull prepend="," property="vidPrdId" >
+        VID_PRD_ID
+      </isNotNull>
+      <isNotNull prepend="," property="prtclNo" >
+        PRTCL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        RATION
+      </isNotNull>
+      <isNotNull prepend="," property="lowPriceNew" >
+        LOW_PRICE_NEW
+      </isNotNull>
+      <isNotNull prepend="," property="lowPrice" >
+        LOW_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="moniMd" >
+        MONI_MD
+      </isNotNull>
+      <isNotNull prepend="," property="flg" >
+        FLG
+      </isNotNull>
+      <isNotNull prepend="," property="guardRat" >
+        GUARD_RAT
+      </isNotNull>
+      <isNotNull prepend="," property="gutyWay" >
+        GUTY_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="busiStat" >
+        BUSI_STAT
+      </isNotNull>
+      <isNotNull prepend="," property="busiNo" >
+        BUSI_NO
+      </isNotNull>
+      <isNotNull prepend="," property="prtclBrNm" >
+        PRTCL_BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="gutSum" >
+        GUT_SUM
+      </isNotNull>
+      <isNotNull prepend="," property="strtDt" >
+        STRT_DT
+      </isNotNull>
+      <isNotNull prepend="," property="endDt" >
+        END_DT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="conId" >
+        #conId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="conTyp" >
+        #conTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutyTyp" >
+        #gutyTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="conStat" >
+        #conStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutFrm" >
+        #gutFrm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutId" >
+        #gutId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutNm" >
+        #gutNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gcrtTyp" >
+        #gcrtTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gcrtId" >
+        #gcrtId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lnNo" >
+        #lnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutCurcd" >
+        #gutCurcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutVal" >
+        #gutVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="othDscrb" >
+        #othDscrb:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        #bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="vidPrdId" >
+        #vidPrdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prtclNo" >
+        #prtclNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        #ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPriceNew" >
+        #lowPriceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPrice" >
+        #lowPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="moniMd" >
+        #moniMd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flg" >
+        #flg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="guardRat" >
+        #guardRat:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="gutyWay" >
+        #gutyWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="busiStat" >
+        #busiStat:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="busiNo" >
+        #busiNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prtclBrNm" >
+        #prtclBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutSum" >
+        #gutSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="strtDt" >
+        #strtDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDt" >
+        #endDt:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyConExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRR_GNTY_CON
+    <include refid="B_CRR_GNTY_CON.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRR_GNTY_CON
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.conId" >
+        CON_ID = #record.conId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.conTyp" >
+        CON_TYP = #record.conTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gutyTyp" >
+        GUTY_TYP = #record.gutyTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.conStat" >
+        CON_STAT = #record.conStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gutFrm" >
+        GUT_FRM = #record.gutFrm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gutId" >
+        GUT_ID = #record.gutId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gutNm" >
+        GUT_NM = #record.gutNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gcrtTyp" >
+        GCRT_TYP = #record.gcrtTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gcrtId" >
+        GCRT_ID = #record.gcrtId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lnNo" >
+        LN_NO = #record.lnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gutCurcd" >
+        GUT_CURCD = #record.gutCurcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gutVal" >
+        GUT_VAL = #record.gutVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.othDscrb" >
+        OTH_DSCRB = #record.othDscrb:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailRate" >
+        BAIL_RATE = #record.bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNo" >
+        TLR_NO = #record.tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNm" >
+        TLR_NM = #record.tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brCd" >
+        BR_CD = #record.brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brNm" >
+        BR_NM = #record.brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inpDt" >
+        INP_DT = #record.inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlr" >
+        LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrCd" >
+        LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrNm" >
+        LST_UPD_BR_NM = #record.lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdDt" >
+        LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.vidPrdId" >
+        VID_PRD_ID = #record.vidPrdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prtclNo" >
+        PRTCL_NO = #record.prtclNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ration" >
+        RATION = #record.ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lowPriceNew" >
+        LOW_PRICE_NEW = #record.lowPriceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lowPrice" >
+        LOW_PRICE = #record.lowPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniMd" >
+        MONI_MD = #record.moniMd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.flg" >
+        FLG = #record.flg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.guardRat" >
+        GUARD_RAT = #record.guardRat:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gutyWay" >
+        GUTY_WAY = #record.gutyWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.busiStat" >
+        BUSI_STAT = #record.busiStat:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.busiNo" >
+        BUSI_NO = #record.busiNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prtclBrNm" >
+        PRTCL_BR_NM = #record.prtclBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gutSum" >
+        GUT_SUM = #record.gutSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.strtDt" >
+        STRT_DT = #record.strtDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDt" >
+        END_DT = #record.endDt:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_CON.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRR_GNTY_CON
+    set CON_ID = #record.conId:VARCHAR#,
+      CON_TYP = #record.conTyp:VARCHAR#,
+      GUTY_TYP = #record.gutyTyp:VARCHAR#,
+      CON_STAT = #record.conStat:VARCHAR#,
+      GUT_FRM = #record.gutFrm:VARCHAR#,
+      GUT_ID = #record.gutId:VARCHAR#,
+      GUT_NM = #record.gutNm:VARCHAR#,
+      GCRT_TYP = #record.gcrtTyp:VARCHAR#,
+      GCRT_ID = #record.gcrtId:VARCHAR#,
+      LN_NO = #record.lnNo:VARCHAR#,
+      GUT_CURCD = #record.gutCurcd:VARCHAR#,
+      GUT_VAL = #record.gutVal:DECIMAL#,
+      OTH_DSCRB = #record.othDscrb:VARCHAR#,
+      BAIL_RATE = #record.bailRate:DECIMAL#,
+      TLR_NO = #record.tlrNo:VARCHAR#,
+      TLR_NM = #record.tlrNm:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      BR_NM = #record.brNm:VARCHAR#,
+      INP_DT = #record.inpDt:VARCHAR#,
+      LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #record.lstUpdBrNm:VARCHAR#,
+      LST_UPD_DT = #record.lstUpdDt:VARCHAR#,
+      VID_PRD_ID = #record.vidPrdId:VARCHAR#,
+      PRTCL_NO = #record.prtclNo:VARCHAR#,
+      RATION = #record.ration:DECIMAL#,
+      LOW_PRICE_NEW = #record.lowPriceNew:DECIMAL#,
+      LOW_PRICE = #record.lowPrice:DECIMAL#,
+      MONI_MD = #record.moniMd:CHAR#,
+      FLG = #record.flg:VARCHAR#,
+      GUARD_RAT = #record.guardRat:DECIMAL#,
+      GUTY_WAY = #record.gutyWay:VARCHAR#,
+      BUSI_STAT = #record.busiStat:CHAR#,
+      BUSI_NO = #record.busiNo:VARCHAR#,
+      PRTCL_BR_NM = #record.prtclBrNm:VARCHAR#,
+      GUT_SUM = #record.gutSum:DECIMAL#,
+      STRT_DT = #record.strtDt:VARCHAR#,
+      END_DT = #record.endDt:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_CON.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyCon" >
+    update B_CRR_GNTY_CON
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="conTyp" >
+        CON_TYP = #conTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutyTyp" >
+        GUTY_TYP = #gutyTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="conStat" >
+        CON_STAT = #conStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutFrm" >
+        GUT_FRM = #gutFrm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutId" >
+        GUT_ID = #gutId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutNm" >
+        GUT_NM = #gutNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gcrtTyp" >
+        GCRT_TYP = #gcrtTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gcrtId" >
+        GCRT_ID = #gcrtId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lnNo" >
+        LN_NO = #lnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutCurcd" >
+        GUT_CURCD = #gutCurcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutVal" >
+        GUT_VAL = #gutVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="othDscrb" >
+        OTH_DSCRB = #othDscrb:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        BAIL_RATE = #bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO = #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM = #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD = #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM = #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT = #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR = #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM = #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT = #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="vidPrdId" >
+        VID_PRD_ID = #vidPrdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prtclNo" >
+        PRTCL_NO = #prtclNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        RATION = #ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPriceNew" >
+        LOW_PRICE_NEW = #lowPriceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPrice" >
+        LOW_PRICE = #lowPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="moniMd" >
+        MONI_MD = #moniMd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flg" >
+        FLG = #flg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="guardRat" >
+        GUARD_RAT = #guardRat:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="gutyWay" >
+        GUTY_WAY = #gutyWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="busiStat" >
+        BUSI_STAT = #busiStat:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="busiNo" >
+        BUSI_NO = #busiNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prtclBrNm" >
+        PRTCL_BR_NM = #prtclBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gutSum" >
+        GUT_SUM = #gutSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="strtDt" >
+        STRT_DT = #strtDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDt" >
+        END_DT = #endDt:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where CON_ID = #conId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyCon" >
+    update B_CRR_GNTY_CON
+    set CON_TYP = #conTyp:VARCHAR#,
+      GUTY_TYP = #gutyTyp:VARCHAR#,
+      CON_STAT = #conStat:VARCHAR#,
+      GUT_FRM = #gutFrm:VARCHAR#,
+      GUT_ID = #gutId:VARCHAR#,
+      GUT_NM = #gutNm:VARCHAR#,
+      GCRT_TYP = #gcrtTyp:VARCHAR#,
+      GCRT_ID = #gcrtId:VARCHAR#,
+      LN_NO = #lnNo:VARCHAR#,
+      GUT_CURCD = #gutCurcd:VARCHAR#,
+      GUT_VAL = #gutVal:DECIMAL#,
+      OTH_DSCRB = #othDscrb:VARCHAR#,
+      BAIL_RATE = #bailRate:DECIMAL#,
+      TLR_NO = #tlrNo:VARCHAR#,
+      TLR_NM = #tlrNm:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      BR_NM = #brNm:VARCHAR#,
+      INP_DT = #inpDt:VARCHAR#,
+      LST_UPD_TLR = #lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #lstUpdBrNm:VARCHAR#,
+      LST_UPD_DT = #lstUpdDt:VARCHAR#,
+      VID_PRD_ID = #vidPrdId:VARCHAR#,
+      PRTCL_NO = #prtclNo:VARCHAR#,
+      RATION = #ration:DECIMAL#,
+      LOW_PRICE_NEW = #lowPriceNew:DECIMAL#,
+      LOW_PRICE = #lowPrice:DECIMAL#,
+      MONI_MD = #moniMd:CHAR#,
+      FLG = #flg:VARCHAR#,
+      GUARD_RAT = #guardRat:DECIMAL#,
+      GUTY_WAY = #gutyWay:VARCHAR#,
+      BUSI_STAT = #busiStat:CHAR#,
+      BUSI_NO = #busiNo:VARCHAR#,
+      PRTCL_BR_NM = #prtclBrNm:VARCHAR#,
+      GUT_SUM = #gutSum:DECIMAL#,
+      STRT_DT = #strtDt:VARCHAR#,
+      END_DT = #endDt:VARCHAR#
+    where CON_ID = #conId:VARCHAR#
+  </update>
+</sqlMap>

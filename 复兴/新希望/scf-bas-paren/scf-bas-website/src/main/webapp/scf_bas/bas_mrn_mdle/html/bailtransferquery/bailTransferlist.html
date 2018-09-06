@@ -1,0 +1,20 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input-extent ht-id="custcd" name="客户号" extent="custcontent" on-change="doextend" ng-model="conditionForm.custcd"></ht-input-extent>
+    <ht-input ht-id=mastContno name="主合同号" ng-model="conditionForm.mastContno"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="reset"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-legend>保证金流水信息列表</ht-legend>
+<ht-table ht-id="tableId2" datasource="datasource" selected="selected"    docheckbox="true"  minheit="150px">
+     <ht-column eg-name="custcd" zh-name="客户号" ></ht-column>
+     <ht-column eg-name="bailAccountno" zh-name="保证金账号"  ></ht-column>
+     <ht-column eg-name="mastContno" zh-name="主合同号"  ></ht-column>
+     <ht-column eg-name="debetNo" zh-name="借据号" ></ht-column>
+     <ht-column eg-name="bailAmount"   zh-name="交易金额"   type="currency"></ht-column>
+      <ht-column eg-name="bailFrozenAmt"   zh-name="冻结金额"   type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+

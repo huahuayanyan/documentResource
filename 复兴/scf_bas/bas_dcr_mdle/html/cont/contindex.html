@@ -1,0 +1,23 @@
+<ht-legend colorid="lawngreen">基本信息</ht-legend>
+<ht-form name="updateForm">
+    <ht-input ht-id="bcCrId" name="授信协议号" ng-model="updateForm.bcCrId"  disable="true" ></ht-input>
+    <ht-input ht-id="crNm" name="授信类型" ng-model="updateForm.crNm"   disable="true" reg-exp="common.require"></ht-input>
+    <ht-input ht-id="crId" name="授信类型编号" ng-model="updateForm.crId"   disable="true" reg-exp="common.require"  hide="true" ></ht-input>    
+    <ht-input ht-id="custId" name="客户编号" ng-model="updateForm.custId"   disable="true" reg-exp="common.require"></ht-input>
+    <ht-input ht-id="custNm" name="客户名" ng-model="updateForm.custNm"  disable="true" reg-exp="common.require"></ht-input>
+    <ht-select  ht-id="curcd"  name="币种"  ng-model="updateForm.curcd"  dictionary="curcd"     disable="true"  reg-exp="common.require"></ht-select>
+    <ht-input ht-id="crAmt" name="额度金额" ng-model="updateForm.crAmt"   edit-type="currency"  reg-exp="common.require"    disable="true" ></ht-input>
+     <ht-input ht-id="effectDt" name="生效日" ng-model="updateForm.effectDt"  edit-type="date"     disable="true"   reg-exp="common.require" ></ht-input>   
+    <ht-select ht-id="circFlag" name="循环标志" ng-model="updateForm.circFlag"  dictionary="circFlag"  disable="true" reg-exp="common.require"></ht-select>
+      <ht-input ht-id="begDt" name="起始日" ng-model="updateForm.begDt"  edit-type="date"    disable="true"   reg-exp="common.require" ></ht-input>   
+      <ht-input ht-id="endDt" name="到期日" ng-model="updateForm.endDt"  edit-type="date"    disable="true"   reg-exp="common.require" ></ht-input>   
+       <ht-input ht-id="tlrNm" name="经办人" ng-model="updateForm.tlrNm"   disable="true" ></ht-input>
+     <ht-input ht-id="brNm" name="经办机构" ng-model="updateForm.brNm"   disable="true" ></ht-input>
+     <ht-input ht-id="inputDt" name="经办日期" ng-model="updateForm.inputDt"   disable="true"  edit-type="date"></ht-input>
+     <ht-input ht-id="lstUpdTlrNm" name="更新人" ng-model="updateForm.lstUpdTlrNm"    disable="true" ></ht-input>
+     <ht-input ht-id="lstUpdBrNm" name="更新机构" ng-model="updateForm.lstUpdBrNm"  disable="true" ></ht-input>
+     <ht-input ht-id="lstUpdDt" name="更新日期" ng-model="updateForm.lstUpdDt"  disable="true"  edit-type="date"></ht-input>   
+</ht-form>
+<ht-button-group align="center">
+    <ht-button ht-id="cancel" desc-name="关闭" class="btn-primary"></ht-button>
+</ht-button-group>

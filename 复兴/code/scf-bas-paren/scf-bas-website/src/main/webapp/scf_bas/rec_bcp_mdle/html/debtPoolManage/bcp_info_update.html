@@ -1,0 +1,45 @@
+
+
+
+<ht-form name="otherform">
+    <ht-legend>买卖方信息</ht-legend>
+    <ht-input ht-id="cnameSeller" name="卖方名称" disable="true" ng-model="otherform.cnameSeller"></ht-input>
+    <ht-input ht-id="cnameBuyer" name="买方名称" disable ="true"  ng-model="otherform.cnameBuyer"></ht-input>
+    <ht-input ht-id="mastContno" name="池合同号" disable="true" ng-model="otherform.mastContno"></ht-input>
+    <ht-input ht-id="bussTypeName" name="业务品种" disable="true" ng-model="otherform.bussTypeName"></ht-input>
+
+    <ht-legend>应收账款单据信息</ht-legend>
+    <ht-input ht-id="billsNo" name="凭证编号" disable="true"  ng-model="otherform.billsNo"></ht-input>
+    <ht-select ht-id="billsType" name="凭证类型" disable ="true"  dictionary="billsType" ng-model="otherform.billsType"></ht-select>
+    <ht-input ht-id="billsAmountView" name="票面金额" disable ="{{disable}}" reg-exp="common.require" edit-type="currency"
+              ng-model="otherform.billsAmountView"></ht-input>
+    <ht-input ht-id="billsAmount" name="有效金额"  disable ="{{disable}}" reg-exp="common.require" edit-type="currency"
+              ng-model="otherform.billsAmount"></ht-input>
+    <ht-input ht-id="remainingAmount" name="应收账款余额"  disable ="true" edit-type="currency" ng-model="otherform.remainingAmount"></ht-input>
+
+    <ht-input ht-id="insertDate" name="应收账款登记日期"  disable ="true" edit-type="date"  ng-model="otherform.insertDate"></ht-input>
+    <ht-input ht-id="purchaseDate" name="应收账款转让日期"  disable="true" edit-type="date" ng-model="otherform.purchaseDate"></ht-input>
+    <ht-input ht-id="billsDate" name="应收账款日期"  disable ="{{disable}}" edit-type="date" reg-exp="common.require"
+              ng-model="otherform.billsDate"></ht-input>
+    <ht-input ht-id="aging" name="账期"  disable ="{{disable}}" reg-exp="common.require,common.number" ng-model="otherform.aging"></ht-input>
+
+    <ht-input ht-id="debtEnd" name="到期日期" disable="true" edit-type="date"  ng-model="otherform.debtEnd"></ht-input>
+    <ht-input ht-id="gracePeriod" name="宽限期" disable ="{{disable}}" reg-exp="common.require,common.number"
+               ng-model="otherform.gracePeriod"></ht-input>
+    <ht-input ht-id="deadline" name="最迟付款日"  disable="true" edit-type="date" ng-model="otherform.deadline"></ht-input>
+    <ht-input ht-id="bussContcode" name="商务合同号" disable ="{{disable}}" reg-exp="common.require" ng-model="otherform.bussContcode"></ht-input>
+    <ht-text-area ht-id="memo" name="备注"  disable ="{{disable}}" ng-model="otherform.memo"></ht-text-area>
+
+
+    <ht-legend>状态信息</ht-legend>
+    <ht-select ht-id="issueFlag" name="商纠状态" disable="true" dictionary="issueFlag" ng-model="otherform.issueFlag"></ht-select>
+    <ht-select ht-id="issueReason" name="商纠原因" disable ="true" dictionary="issueReason" ng-model="otherform.issueReason"></ht-select>
+    <ht-select ht-id="overdueFlag" name="逾期状态" disable="true" dictionary="overdueFlag"  ng-model="otherform.overdueFlag"></ht-select>
+    <ht-text-area ht-id="overdueReason" name="逾期原因" disable="true"  ng-model="otherform.overdueReason"></ht-text-area>
+
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{hide}}">保存</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

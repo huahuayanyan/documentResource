@@ -1,0 +1,16 @@
+
+<ht-form name="otherform">
+    <!--<ht-button-group><ht-button ht-id="submit2" desc-name="客户信息"></ht-button></ht-button-group>-->
+    <ht-select  ht-id="cname" name="客户名称" dictionary="checked" datasource="selectClientNms"
+                datatrsoption="value" dataoption="key" ng-model="otherform.cname" on-change="selectCname"></ht-select>
+    <ht-input ht-id="custcd"  name="客户号" ng-model="otherform.custcd" disable="true"></ht-input>
+</ht-form>
+
+
+<ht-button-group class="center">
+    <ht-button ht-id="apply" class="btn-primary">确认</ht-button>
+    <ht-button ht-id="closeThisDialog">取消</ht-button>
+</ht-button-group>
+
+
+

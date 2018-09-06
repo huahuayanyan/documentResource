@@ -1,0 +1,19 @@
+<ht-form name="otherform">
+    <ht-input ht-id="num" name="通知书编号" ng-model="otherform.num" disable="true"></ht-input>
+    <ht-select ht-id="noticeType" name="通知书类型" ng-model="otherform.noticeType" disable="true" dictionary="nteType"></ht-select>
+    <ht-select ht-id="status" name="通知书状态" disable="true" dictionary="noticeStatus" disable="true"
+               ng-model="otherform.status"></ht-select>
+    <ht-input ht-id="signDate" name="签发日期" ng-model="otherform.signDate" disable="true"
+              edit-type="date"></ht-input>
+    <ht-input ht-id="commonDate" name="回执日期" ng-model="otherform.commonDate" disable="true"
+              edit-type="date"></ht-input>
+    <ht-input ht-id="mastContno" name="业务合同号" ng-model="otherform.mastContno" disable="true"></ht-input>
+    <ht-input ht-id="otherCustName" name="贸易对手" ng-model="otherform.otherCustName" disable="true"></ht-input>
+    <ht-input ht-id="custName" name="融资客户" ng-model="otherform.custName" disable="true"></ht-input>
+    <ht-input ht-id="commonAmt" name="催收总金额" ng-model="otherform.commonAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="khjl" name="客户经理" ng-model="otherform.khjl" disable="true"></ht-input>
+    <ht-input ht-id="jbjg" name="经办机构" ng-model="otherform.jbjg" disable="true"></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

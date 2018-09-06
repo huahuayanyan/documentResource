@@ -1,0 +1,13 @@
+<ht-form name="cashadd">
+    <ht-legend>现金等价物信息编辑</ht-legend>
+    <ht-select ht-id="bailType" reg-exp="common.require" name="类型" ng-model="cashadd.bailType" dictionary="bailType"></ht-select>
+    <ht-input ht-id="bailAccountno" reg-exp="common.require" name="现金等价物编号" ng-model="cashadd.bailAccountno"></ht-input>
+    <ht-input ht-id="bailAmount" reg-exp="common.require" name="现金等价物金额" ng-model="cashadd.bailAmount" edit-type="currency"></ht-input>
+    <ht-input ht-id="bailRate" reg-exp="common.require" name="现金等价物质押率(%)" ng-model="cashadd.bailRate" edit-type="number"></ht-input>
+    <ht-input ht-id="value" name="现金等价物质押价值" disable="true" ng-model="cashadd.value" edit-type="currency"></ht-input>
+    <ht-input ht-id="npsBailAmount" name="核心返回金额" disable="true" ng-model="cashadd.npsBailAmount" edit-type="currency"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">确定</ht-button>
+</ht-button-group>

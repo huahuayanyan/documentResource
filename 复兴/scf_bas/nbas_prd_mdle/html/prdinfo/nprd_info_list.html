@@ -1,0 +1,31 @@
+<!--产品列表-->
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="productName" name="产品名称" ng-model="conditionForm.productName"></ht-input>
+    <ht-input ht-id="productId"  name="产品代码" ng-model="conditionForm.productId"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>产品信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="view" class="btn-primary">查看</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="productId" zh-name="产品代码" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="productName" zh-name="产品小类"></ht-column>
+    <ht-column eg-name="parentId" zh-name="产品大类" dictionary="parentProduct"></ht-column>
+    <ht-column eg-name="activeDate" zh-name="生效日期" type="date"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+
+

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_WRN_CHECK_STOCK" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.wrn.dao.model.BWanCheckStock" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="MONI_CNAME" property="moniCname" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="MORT_AMT" property="mortAmt" jdbcType="DECIMAL" />
+    <result column="CHECK_AMT" property="checkAmt" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="CONFIRM_DATE" property="confirmDate" jdbcType="CHAR" />
+    <result column="CHECK_TYPE" property="checkType" jdbcType="VARCHAR" />
+    <result column="CHECK_RESULT" property="checkResult" jdbcType="VARCHAR" />
+    <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, SLAVE_CONTNO, SLAVE_CONTCODE, CUSTCD, CNAME, MONI_CUSTCD, MONI_CNAME, 
+    PROTOCOL_NO, MORT_AMT, CHECK_AMT, START_DATE, CONFIRM_DATE, CHECK_TYPE, CHECK_RESULT, 
+    CHECK_STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanCheckStockExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_WRN_CHECK_STOCK.Base_Column_List" />
+    from B_WRN_CHECK_STOCK
+    <isParameterPresent >
+      <include refid="B_WRN_CHECK_STOCK.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanCheckStock" >
+    select 
+    <include refid="B_WRN_CHECK_STOCK.Base_Column_List" />
+    from B_WRN_CHECK_STOCK
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanCheckStock" >
+    delete from B_WRN_CHECK_STOCK
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanCheckStockExample" >
+    delete from B_WRN_CHECK_STOCK
+    <include refid="B_WRN_CHECK_STOCK.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanCheckStock" >
+    insert into B_WRN_CHECK_STOCK (ID, WARN_ID, SLAVE_CONTNO, SLAVE_CONTCODE, 
+      CUSTCD, CNAME, MONI_CUSTCD, MONI_CNAME, PROTOCOL_NO, 
+      MORT_AMT, CHECK_AMT, START_DATE, CONFIRM_DATE, CHECK_TYPE, 
+      CHECK_RESULT, CHECK_STATUS)
+    values (#id:VARCHAR#, #warnId:VARCHAR#, #slaveContno:VARCHAR#, #slaveContcode:VARCHAR#, 
+      #custcd:VARCHAR#, #cname:VARCHAR#, #moniCustcd:VARCHAR#, #moniCname:VARCHAR#, #protocolNo:VARCHAR#, 
+      #mortAmt:DECIMAL#, #checkAmt:DECIMAL#, #startDate:CHAR#, #confirmDate:CHAR#, #checkType:VARCHAR#, 
+      #checkResult:VARCHAR#, #checkStatus:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanCheckStock" >
+    insert into B_WRN_CHECK_STOCK
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        SLAVE_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        MONI_CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mortAmt" >
+        MORT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="checkAmt" >
+        CHECK_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="confirmDate" >
+        CONFIRM_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="checkType" >
+        CHECK_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="checkResult" >
+        CHECK_RESULT
+      </isNotNull>
+      <isNotNull prepend="," property="checkStatus" >
+        CHECK_STATUS
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        #slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        #moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortAmt" >
+        #mortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="checkAmt" >
+        #checkAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmDate" >
+        #confirmDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkType" >
+        #checkType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkResult" >
+        #checkResult:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStatus" >
+        #checkStatus:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanCheckStockExample" resultClass="java.lang.Integer" >
+    select count(*) from B_WRN_CHECK_STOCK
+    <include refid="B_WRN_CHECK_STOCK.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_WRN_CHECK_STOCK
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnId" >
+        WARN_ID = #record.warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContcode" >
+        SLAVE_CONTCODE = #record.slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cname" >
+        CNAME = #record.cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCustcd" >
+        MONI_CUSTCD = #record.moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCname" >
+        MONI_CNAME = #record.moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortAmt" >
+        MORT_AMT = #record.mortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkAmt" >
+        CHECK_AMT = #record.checkAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.confirmDate" >
+        CONFIRM_DATE = #record.confirmDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkType" >
+        CHECK_TYPE = #record.checkType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkResult" >
+        CHECK_RESULT = #record.checkResult:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.checkStatus" >
+        CHECK_STATUS = #record.checkStatus:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_WRN_CHECK_STOCK.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_WRN_CHECK_STOCK
+    set ID = #record.id:VARCHAR#,
+      WARN_ID = #record.warnId:VARCHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      SLAVE_CONTCODE = #record.slaveContcode:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      CNAME = #record.cname:VARCHAR#,
+      MONI_CUSTCD = #record.moniCustcd:VARCHAR#,
+      MONI_CNAME = #record.moniCname:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      MORT_AMT = #record.mortAmt:DECIMAL#,
+      CHECK_AMT = #record.checkAmt:DECIMAL#,
+      START_DATE = #record.startDate:CHAR#,
+      CONFIRM_DATE = #record.confirmDate:CHAR#,
+      CHECK_TYPE = #record.checkType:VARCHAR#,
+      CHECK_RESULT = #record.checkResult:VARCHAR#,
+      CHECK_STATUS = #record.checkStatus:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_WRN_CHECK_STOCK.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanCheckStock" >
+    update B_WRN_CHECK_STOCK
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID = #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContcode" >
+        SLAVE_CONTCODE = #slaveContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME = #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD = #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCname" >
+        MONI_CNAME = #moniCname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortAmt" >
+        MORT_AMT = #mortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="checkAmt" >
+        CHECK_AMT = #checkAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmDate" >
+        CONFIRM_DATE = #confirmDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkType" >
+        CHECK_TYPE = #checkType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkResult" >
+        CHECK_RESULT = #checkResult:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="checkStatus" >
+        CHECK_STATUS = #checkStatus:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWanCheckStock" >
+    update B_WRN_CHECK_STOCK
+    set WARN_ID = #warnId:VARCHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      SLAVE_CONTCODE = #slaveContcode:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      CNAME = #cname:VARCHAR#,
+      MONI_CUSTCD = #moniCustcd:VARCHAR#,
+      MONI_CNAME = #moniCname:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      MORT_AMT = #mortAmt:DECIMAL#,
+      CHECK_AMT = #checkAmt:DECIMAL#,
+      START_DATE = #startDate:CHAR#,
+      CONFIRM_DATE = #confirmDate:CHAR#,
+      CHECK_TYPE = #checkType:VARCHAR#,
+      CHECK_RESULT = #checkResult:VARCHAR#,
+      CHECK_STATUS = #checkStatus:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

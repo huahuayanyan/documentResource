@@ -1,0 +1,34 @@
+<ht-legend colorId="lawngreen">入库押品新增</ht-legend>
+<ht-form name ="mortgageAdd">
+    <ht-input-extent ht-id="secName" name="出质人名称" reg-exp="common.require" extent="cnameList" on-change="cname" ng-model="mortgageAdd.secName"></ht-input-extent>
+    <!--<ht-select ht-id="slaveContcode" name="抵/质押合同号" datasource="slaveContcodeSourse" dataOption="code" dataTrsOption="codeName" ng-model="mortgageAdd.slaveContcode"></ht-select>-->
+    <ht-input-extent ht-id="slaveContcode" name="抵/质押合同号" reg-exp="common.require" extent="slaveContcodeList" on-change="slaveContcode" ng-model="mortgageAdd.slaveContcode"></ht-input-extent>
+    <ht-input ht-id="thrName" name="监管公司名称" disable="true" ng-model="mortgageAdd.thrName"></ht-input>
+    <ht-input ht-id="protocolCode" name="监管合同号" disable="true" ng-model="mortgageAdd.protocolCode"></ht-input>
+    <ht-select ht-id="productId" name="业务品种" disable="true" datasource="productSource" dataOption="productId" dataTrsOption="productName" ng-model="mortgageAdd.productId"></ht-select>
+    <ht-select ht-id="moniModel" name="货押模式" disable="true" dictionary="moniType" ng-model="mortgageAdd.moniModel"></ht-select>
+
+</ht-form>
+<ht-legend>入库押品列表</ht-legend>
+<ht-button-group>
+    <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+    <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+    <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+</ht-button-group>
+<ht-table datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="mortgageName" zh-name="押品名称" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="manufacturer" zh-name="生产厂家"></ht-column>
+    <ht-column eg-name="manufactureDate" zh-name="出厂日期"></ht-column>
+    <ht-column eg-name="invQuantity" zh-name="数量/重量"></ht-column>
+    <ht-column eg-name="price" zh-name="买入单价" type="currency"></ht-column>
+    <ht-column eg-name="originalTotPrice" zh-name="总价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+<ht-button ht-id="save" class="btn-primary">保存</ht-button>
+<ht-button ht-id="saveApply" class="btn-primary">保存并出质申请</ht-button>
+<ht-button ht-id="cancel" class="btn-primary">返回</ht-button>
+</ht-button-group>

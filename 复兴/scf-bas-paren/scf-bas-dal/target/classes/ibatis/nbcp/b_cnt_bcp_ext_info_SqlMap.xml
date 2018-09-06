@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_BCP_EXT_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.nrec.bcp.dao.model.BCntBcpExtInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="BUSINESS_NO" property="businessNo" jdbcType="VARCHAR" />
+    <result column="BUSINESS_CUSTCD" property="businessCustcd" jdbcType="VARCHAR" />
+    <result column="LOAN_DAYS" property="loanDays" jdbcType="DECIMAL" />
+    <result column="DEBT_GRACE_DAYS" property="debtGraceDays" jdbcType="DECIMAL" />
+    <result column="BUSINESS_NAME" property="businessName" jdbcType="VARCHAR" />
+    <result column="BATCH_NUMBER" property="batchNumber" jdbcType="VARCHAR" />
+    <result column="CREDIT_TERM" property="creditTerm" jdbcType="DECIMAL" />
+    <result column="CREDIT_AMT" property="creditAmt" jdbcType="DECIMAL" />
+    <result column="RISK_TERM" property="riskTerm" jdbcType="DECIMAL" />
+    <result column="RECOVER_TYPE" property="recoverType" jdbcType="VARCHAR" />
+    <result column="FACT_PATTERN" property="factPattern" jdbcType="VARCHAR" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="CHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, BUSINESS_NO, BUSINESS_CUSTCD, LOAN_DAYS, DEBT_GRACE_DAYS, BUSINESS_NAME, BATCH_NUMBER, 
+    CREDIT_TERM, CREDIT_AMT, RISK_TERM, RECOVER_TYPE, FACT_PATTERN, NOTICE_TYPE, LOAN_PERCENT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntBcpExtInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_BCP_EXT_INFO.Base_Column_List" />
+    from B_CNT_BCP_EXT_INFO
+    <isParameterPresent >
+      <include refid="B_CNT_BCP_EXT_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntBcpExtInfo" >
+    select 
+    <include refid="B_CNT_BCP_EXT_INFO.Base_Column_List" />
+    from B_CNT_BCP_EXT_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntBcpExtInfo" >
+    delete from B_CNT_BCP_EXT_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntBcpExtInfoExample" >
+    delete from B_CNT_BCP_EXT_INFO
+    <include refid="B_CNT_BCP_EXT_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntBcpExtInfo" >
+    insert into B_CNT_BCP_EXT_INFO (ID, BUSINESS_NO, BUSINESS_CUSTCD, LOAN_DAYS, 
+      DEBT_GRACE_DAYS, BUSINESS_NAME, BATCH_NUMBER, CREDIT_TERM, 
+      CREDIT_AMT, RISK_TERM, RECOVER_TYPE, FACT_PATTERN, 
+      NOTICE_TYPE, LOAN_PERCENT)
+    values (#id:VARCHAR#, #businessNo:VARCHAR#, #businessCustcd:VARCHAR#, #loanDays:DECIMAL#, 
+      #debtGraceDays:DECIMAL#, #businessName:VARCHAR#, #batchNumber:VARCHAR#, #creditTerm:DECIMAL#, 
+      #creditAmt:DECIMAL#, #riskTerm:DECIMAL#, #recoverType:VARCHAR#, #factPattern:VARCHAR#, 
+      #noticeType:CHAR#, #loanPercent:DECIMAL#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntBcpExtInfo" >
+    insert into B_CNT_BCP_EXT_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="businessNo" >
+        BUSINESS_NO
+      </isNotNull>
+      <isNotNull prepend="," property="businessCustcd" >
+        BUSINESS_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="loanDays" >
+        LOAN_DAYS
+      </isNotNull>
+      <isNotNull prepend="," property="debtGraceDays" >
+        DEBT_GRACE_DAYS
+      </isNotNull>
+      <isNotNull prepend="," property="businessName" >
+        BUSINESS_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="batchNumber" >
+        BATCH_NUMBER
+      </isNotNull>
+      <isNotNull prepend="," property="creditTerm" >
+        CREDIT_TERM
+      </isNotNull>
+      <isNotNull prepend="," property="creditAmt" >
+        CREDIT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="riskTerm" >
+        RISK_TERM
+      </isNotNull>
+      <isNotNull prepend="," property="recoverType" >
+        RECOVER_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="factPattern" >
+        FACT_PATTERN
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        NOTICE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="loanPercent" >
+        LOAN_PERCENT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessNo" >
+        #businessNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessCustcd" >
+        #businessCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanDays" >
+        #loanDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="debtGraceDays" >
+        #debtGraceDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="businessName" >
+        #businessName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="batchNumber" >
+        #batchNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditTerm" >
+        #creditTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditAmt" >
+        #creditAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskTerm" >
+        #riskTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="recoverType" >
+        #recoverType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="factPattern" >
+        #factPattern:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        #noticeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanPercent" >
+        #loanPercent:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntBcpExtInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_BCP_EXT_INFO
+    <include refid="B_CNT_BCP_EXT_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_BCP_EXT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.businessNo" >
+        BUSINESS_NO = #record.businessNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.businessCustcd" >
+        BUSINESS_CUSTCD = #record.businessCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanDays" >
+        LOAN_DAYS = #record.loanDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debtGraceDays" >
+        DEBT_GRACE_DAYS = #record.debtGraceDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.businessName" >
+        BUSINESS_NAME = #record.businessName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.batchNumber" >
+        BATCH_NUMBER = #record.batchNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditTerm" >
+        CREDIT_TERM = #record.creditTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditAmt" >
+        CREDIT_AMT = #record.creditAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.riskTerm" >
+        RISK_TERM = #record.riskTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.recoverType" >
+        RECOVER_TYPE = #record.recoverType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.factPattern" >
+        FACT_PATTERN = #record.factPattern:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.noticeType" >
+        NOTICE_TYPE = #record.noticeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanPercent" >
+        LOAN_PERCENT = #record.loanPercent:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_BCP_EXT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_BCP_EXT_INFO
+    set ID = #record.id:VARCHAR#,
+      BUSINESS_NO = #record.businessNo:VARCHAR#,
+      BUSINESS_CUSTCD = #record.businessCustcd:VARCHAR#,
+      LOAN_DAYS = #record.loanDays:DECIMAL#,
+      DEBT_GRACE_DAYS = #record.debtGraceDays:DECIMAL#,
+      BUSINESS_NAME = #record.businessName:VARCHAR#,
+      BATCH_NUMBER = #record.batchNumber:VARCHAR#,
+      CREDIT_TERM = #record.creditTerm:DECIMAL#,
+      CREDIT_AMT = #record.creditAmt:DECIMAL#,
+      RISK_TERM = #record.riskTerm:DECIMAL#,
+      RECOVER_TYPE = #record.recoverType:VARCHAR#,
+      FACT_PATTERN = #record.factPattern:VARCHAR#,
+      NOTICE_TYPE = #record.noticeType:CHAR#,
+      LOAN_PERCENT = #record.loanPercent:DECIMAL#
+    <isParameterPresent >
+      <include refid="B_CNT_BCP_EXT_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntBcpExtInfo" >
+    update B_CNT_BCP_EXT_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="businessNo" >
+        BUSINESS_NO = #businessNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessCustcd" >
+        BUSINESS_CUSTCD = #businessCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanDays" >
+        LOAN_DAYS = #loanDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="debtGraceDays" >
+        DEBT_GRACE_DAYS = #debtGraceDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="businessName" >
+        BUSINESS_NAME = #businessName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="batchNumber" >
+        BATCH_NUMBER = #batchNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditTerm" >
+        CREDIT_TERM = #creditTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditAmt" >
+        CREDIT_AMT = #creditAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskTerm" >
+        RISK_TERM = #riskTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="recoverType" >
+        RECOVER_TYPE = #recoverType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="factPattern" >
+        FACT_PATTERN = #factPattern:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        NOTICE_TYPE = #noticeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanPercent" >
+        LOAN_PERCENT = #loanPercent:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.nrec.bcp.dao.model.BCntBcpExtInfo" >
+    update B_CNT_BCP_EXT_INFO
+    set BUSINESS_NO = #businessNo:VARCHAR#,
+      BUSINESS_CUSTCD = #businessCustcd:VARCHAR#,
+      LOAN_DAYS = #loanDays:DECIMAL#,
+      DEBT_GRACE_DAYS = #debtGraceDays:DECIMAL#,
+      BUSINESS_NAME = #businessName:VARCHAR#,
+      BATCH_NUMBER = #batchNumber:VARCHAR#,
+      CREDIT_TERM = #creditTerm:DECIMAL#,
+      CREDIT_AMT = #creditAmt:DECIMAL#,
+      RISK_TERM = #riskTerm:DECIMAL#,
+      RECOVER_TYPE = #recoverType:VARCHAR#,
+      FACT_PATTERN = #factPattern:VARCHAR#,
+      NOTICE_TYPE = #noticeType:CHAR#,
+      LOAN_PERCENT = #loanPercent:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

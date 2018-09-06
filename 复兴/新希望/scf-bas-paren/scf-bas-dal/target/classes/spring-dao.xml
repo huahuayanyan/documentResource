@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.huateng.scf.bas.sys.dao;com.huateng.scf.bas.icr.dao;com.huateng.scf.bas.crm.dao;com.huateng.scf.bas.crg.dao;com.huateng.scf.bas.fin.dao;com.huateng.scf.bas.crr.dao;
+	com.huateng.scf.bas.dcr.dao;com.huateng.scf.bas.fin.dao.ext;com.huateng.scf.bas.crr.dao.ext;com.huateng.scf.bas.prd.dao;com.huateng.scf.bas.brp.dao;com.huateng.scf.bas.acc.dao;com.huateng.scf.bas.cnt.dao;
+	com.huateng.scf.bas.lan.dao;com.huateng.scf.bas.mrn.dao;com.huateng.scf.bas.nte.dao;com.huateng.scf.bas.pbc.dao;
+	com.huateng.scf.adv.bcp.dao;com.huateng.scf.adv.tcs.dao;com.huateng.scf.rec.bcp.dao;com.huateng.scf.sto.dmp.dao;com.huateng.scf.bas.bcp.dao;
+	com.huateng.scf.rec.qry.dao;com.huateng.scf.nrec.bcp.dao;
+	com.huateng.scf.bas.wrn.dao;com.huateng.scf.rec.wrn.dao;
+	com.huateng.scf.adv.qry.dao;com.huateng.scf.adv.fcs.dao;
+	com.huateng.scf.bas.common.dao.ext;com.huateng.scf.bas.nte.dao.ext;
+	com.huateng.scf.sto.bcp.dao;com.huateng.scf.sto.nwr.dao;com.huateng.scf.sto.nwr.dao.ext;
+	com.huateng.scf.adv.wrn.dao;com.huateng.scf.sto.wrn.dao.ext;
+	com.huateng.scf.nbas.prd.dao;com.huateng.scf.nbas.prd.dao.ext;
+	com.huateng.scf.adv.nte.dao;
+	com.huateng.scf.sto.smp.dao;
+	com.huateng.scf.ods.dao;
+	com.huateng.base.task"/>
+	
+	
+	<bean name="sqlExecutor" class="com.huateng.base.ibatisEx.PaginationSqlExecutor">
+		<property name="dialect">
+			<!-- <bean class="com.huateng.base.common.dialect.MysqlDialect" /> -->
+			<bean class="com.huateng.base.common.dialect.OracleDialect" />
+		</property>
+	</bean>
+	<!--add by zhangcheng  处理blob对象handle   -->
+   <bean name="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler"></bean>
+	<bean name="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+			<value>classpath:ibatis/sql-map-config.xml</value>
+		</property>
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="lobHandler">
+			<ref bean="lobHandler" />
+		</property>
+	</bean>
+
+ 	<bean name="sqlMapClientTemplate" class="com.huateng.base.ibatisEx.IbatisTemplate">
+		<property name="sqlMapClient">
+			<ref bean="sqlMapClient" />
+		</property>
+	</bean>
+</beans>

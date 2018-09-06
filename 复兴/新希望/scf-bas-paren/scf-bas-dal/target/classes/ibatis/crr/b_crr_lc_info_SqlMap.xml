@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRR_LC_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrLcInfo" >
+    <result column="LC_ID" property="lcId" jdbcType="VARCHAR" />
+    <result column="RELA_TYP" property="relaTyp" jdbcType="VARCHAR" />
+    <result column="RELA_NO" property="relaNo" jdbcType="VARCHAR" />
+    <result column="LC_NO" property="lcNo" jdbcType="VARCHAR" />
+    <result column="LC_TYP" property="lcTyp" jdbcType="VARCHAR" />
+    <result column="ISE_BAK" property="iseBak" jdbcType="VARCHAR" />
+    <result column="ISE_STAT" property="iseStat" jdbcType="VARCHAR" />
+    <result column="ISE_CD" property="iseCd" jdbcType="VARCHAR" />
+    <result column="ISE_DT" property="iseDt" jdbcType="VARCHAR" />
+    <result column="PRPS" property="prps" jdbcType="VARCHAR" />
+    <result column="APLAT_NO" property="aplatNo" jdbcType="VARCHAR" />
+    <result column="APLAT_NM" property="aplatNm" jdbcType="VARCHAR" />
+    <result column="APLAT_ADS" property="aplatAds" jdbcType="VARCHAR" />
+    <result column="BNFCY_NO" property="bnfcyNo" jdbcType="VARCHAR" />
+    <result column="BNFCY_NM" property="bnfcyNm" jdbcType="VARCHAR" />
+    <result column="BNFCY_ADS" property="bnfcyAds" jdbcType="VARCHAR" />
+    <result column="BNFCY_CD" property="bnfcyCd" jdbcType="VARCHAR" />
+    <result column="LST_DOC_DT" property="lstDocDt" jdbcType="VARCHAR" />
+    <result column="DOC_DT" property="docDt" jdbcType="VARCHAR" />
+    <result column="LC_TRM_TYP" property="lcTrmTyp" jdbcType="VARCHAR" />
+    <result column="FLG" property="flg" jdbcType="VARCHAR" />
+    <result column="BAT_LOAD" property="batLoad" jdbcType="VARCHAR" />
+    <result column="TRSPT" property="trspt" jdbcType="VARCHAR" />
+    <result column="LOAD_AREA" property="loadArea" jdbcType="VARCHAR" />
+    <result column="DEST_AREA" property="destArea" jdbcType="VARCHAR" />
+    <result column="LOAD_TYP" property="loadTyp" jdbcType="VARCHAR" />
+    <result column="SEND_TYP" property="sendTyp" jdbcType="VARCHAR" />
+    <result column="PAY_SITE" property="paySite" jdbcType="VARCHAR" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="LC_TRM" property="lcTrm" jdbcType="DECIMAL" />
+    <result column="PAY_TYP" property="payTyp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    LC_ID, RELA_TYP, RELA_NO, LC_NO, LC_TYP, ISE_BAK, ISE_STAT, ISE_CD, ISE_DT, PRPS, 
+    APLAT_NO, APLAT_NM, APLAT_ADS, BNFCY_NO, BNFCY_NM, BNFCY_ADS, BNFCY_CD, LST_DOC_DT, 
+    DOC_DT, LC_TRM_TYP, FLG, BAT_LOAD, TRSPT, LOAD_AREA, DEST_AREA, LOAD_TYP, SEND_TYP, 
+    PAY_SITE, TLR_NO, TLR_NM, BR_CD, BR_NM, INP_DT, LST_UPD_TLR, LST_UPD_TLR_NM, LST_UPD_BR_CD, 
+    LST_UPD_BR_NM, LST_UPD_DT, LC_TRM, PAY_TYP
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrLcInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRR_LC_INFO.Base_Column_List" />
+    from B_CRR_LC_INFO
+    <isParameterPresent >
+      <include refid="B_CRR_LC_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrLcInfo" >
+    select 
+    <include refid="B_CRR_LC_INFO.Base_Column_List" />
+    from B_CRR_LC_INFO
+    where LC_ID = #lcId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrLcInfo" >
+    delete from B_CRR_LC_INFO
+    where LC_ID = #lcId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrLcInfoExample" >
+    delete from B_CRR_LC_INFO
+    <include refid="B_CRR_LC_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrLcInfo" >
+    insert into B_CRR_LC_INFO (LC_ID, RELA_TYP, RELA_NO, LC_NO, LC_TYP, 
+      ISE_BAK, ISE_STAT, ISE_CD, ISE_DT, PRPS, 
+      APLAT_NO, APLAT_NM, APLAT_ADS, BNFCY_NO, BNFCY_NM, 
+      BNFCY_ADS, BNFCY_CD, LST_DOC_DT, DOC_DT, LC_TRM_TYP, 
+      FLG, BAT_LOAD, TRSPT, LOAD_AREA, DEST_AREA, 
+      LOAD_TYP, SEND_TYP, PAY_SITE, TLR_NO, TLR_NM, 
+      BR_CD, BR_NM, INP_DT, LST_UPD_TLR, LST_UPD_TLR_NM, 
+      LST_UPD_BR_CD, LST_UPD_BR_NM, LST_UPD_DT, LC_TRM, 
+      PAY_TYP)
+    values (#lcId:VARCHAR#, #relaTyp:VARCHAR#, #relaNo:VARCHAR#, #lcNo:VARCHAR#, #lcTyp:VARCHAR#, 
+      #iseBak:VARCHAR#, #iseStat:VARCHAR#, #iseCd:VARCHAR#, #iseDt:VARCHAR#, #prps:VARCHAR#, 
+      #aplatNo:VARCHAR#, #aplatNm:VARCHAR#, #aplatAds:VARCHAR#, #bnfcyNo:VARCHAR#, #bnfcyNm:VARCHAR#, 
+      #bnfcyAds:VARCHAR#, #bnfcyCd:VARCHAR#, #lstDocDt:VARCHAR#, #docDt:VARCHAR#, #lcTrmTyp:VARCHAR#, 
+      #flg:VARCHAR#, #batLoad:VARCHAR#, #trspt:VARCHAR#, #loadArea:VARCHAR#, #destArea:VARCHAR#, 
+      #loadTyp:VARCHAR#, #sendTyp:VARCHAR#, #paySite:VARCHAR#, #tlrNo:VARCHAR#, #tlrNm:VARCHAR#, 
+      #brCd:VARCHAR#, #brNm:VARCHAR#, #inpDt:VARCHAR#, #lstUpdTlr:VARCHAR#, #lstUpdTlrNm:VARCHAR#, 
+      #lstUpdBrCd:VARCHAR#, #lstUpdBrNm:VARCHAR#, #lstUpdDt:VARCHAR#, #lcTrm:DECIMAL#, 
+      #payTyp:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrLcInfo" >
+    insert into B_CRR_LC_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="lcId" >
+        LC_ID
+      </isNotNull>
+      <isNotNull prepend="," property="relaTyp" >
+        RELA_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="relaNo" >
+        RELA_NO
+      </isNotNull>
+      <isNotNull prepend="," property="lcNo" >
+        LC_NO
+      </isNotNull>
+      <isNotNull prepend="," property="lcTyp" >
+        LC_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="iseBak" >
+        ISE_BAK
+      </isNotNull>
+      <isNotNull prepend="," property="iseStat" >
+        ISE_STAT
+      </isNotNull>
+      <isNotNull prepend="," property="iseCd" >
+        ISE_CD
+      </isNotNull>
+      <isNotNull prepend="," property="iseDt" >
+        ISE_DT
+      </isNotNull>
+      <isNotNull prepend="," property="prps" >
+        PRPS
+      </isNotNull>
+      <isNotNull prepend="," property="aplatNo" >
+        APLAT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="aplatNm" >
+        APLAT_NM
+      </isNotNull>
+      <isNotNull prepend="," property="aplatAds" >
+        APLAT_ADS
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyNo" >
+        BNFCY_NO
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyNm" >
+        BNFCY_NM
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyAds" >
+        BNFCY_ADS
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyCd" >
+        BNFCY_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lstDocDt" >
+        LST_DOC_DT
+      </isNotNull>
+      <isNotNull prepend="," property="docDt" >
+        DOC_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lcTrmTyp" >
+        LC_TRM_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="flg" >
+        FLG
+      </isNotNull>
+      <isNotNull prepend="," property="batLoad" >
+        BAT_LOAD
+      </isNotNull>
+      <isNotNull prepend="," property="trspt" >
+        TRSPT
+      </isNotNull>
+      <isNotNull prepend="," property="loadArea" >
+        LOAD_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="destArea" >
+        DEST_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="loadTyp" >
+        LOAD_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="sendTyp" >
+        SEND_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="paySite" >
+        PAY_SITE
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lcTrm" >
+        LC_TRM
+      </isNotNull>
+      <isNotNull prepend="," property="payTyp" >
+        PAY_TYP
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="lcId" >
+        #lcId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relaTyp" >
+        #relaTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relaNo" >
+        #relaNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lcNo" >
+        #lcNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lcTyp" >
+        #lcTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="iseBak" >
+        #iseBak:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="iseStat" >
+        #iseStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="iseCd" >
+        #iseCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="iseDt" >
+        #iseDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prps" >
+        #prps:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="aplatNo" >
+        #aplatNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="aplatNm" >
+        #aplatNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="aplatAds" >
+        #aplatAds:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyNo" >
+        #bnfcyNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyNm" >
+        #bnfcyNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyAds" >
+        #bnfcyAds:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyCd" >
+        #bnfcyCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstDocDt" >
+        #lstDocDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="docDt" >
+        #docDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lcTrmTyp" >
+        #lcTrmTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flg" >
+        #flg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="batLoad" >
+        #batLoad:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trspt" >
+        #trspt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loadArea" >
+        #loadArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="destArea" >
+        #destArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loadTyp" >
+        #loadTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sendTyp" >
+        #sendTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paySite" >
+        #paySite:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lcTrm" >
+        #lcTrm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="payTyp" >
+        #payTyp:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrLcInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRR_LC_INFO
+    <include refid="B_CRR_LC_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRR_LC_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.lcId" >
+        LC_ID = #record.lcId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.relaTyp" >
+        RELA_TYP = #record.relaTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.relaNo" >
+        RELA_NO = #record.relaNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lcNo" >
+        LC_NO = #record.lcNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lcTyp" >
+        LC_TYP = #record.lcTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.iseBak" >
+        ISE_BAK = #record.iseBak:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.iseStat" >
+        ISE_STAT = #record.iseStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.iseCd" >
+        ISE_CD = #record.iseCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.iseDt" >
+        ISE_DT = #record.iseDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prps" >
+        PRPS = #record.prps:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.aplatNo" >
+        APLAT_NO = #record.aplatNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.aplatNm" >
+        APLAT_NM = #record.aplatNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.aplatAds" >
+        APLAT_ADS = #record.aplatAds:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bnfcyNo" >
+        BNFCY_NO = #record.bnfcyNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bnfcyNm" >
+        BNFCY_NM = #record.bnfcyNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bnfcyAds" >
+        BNFCY_ADS = #record.bnfcyAds:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bnfcyCd" >
+        BNFCY_CD = #record.bnfcyCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstDocDt" >
+        LST_DOC_DT = #record.lstDocDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.docDt" >
+        DOC_DT = #record.docDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lcTrmTyp" >
+        LC_TRM_TYP = #record.lcTrmTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.flg" >
+        FLG = #record.flg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.batLoad" >
+        BAT_LOAD = #record.batLoad:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.trspt" >
+        TRSPT = #record.trspt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loadArea" >
+        LOAD_AREA = #record.loadArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.destArea" >
+        DEST_AREA = #record.destArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loadTyp" >
+        LOAD_TYP = #record.loadTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sendTyp" >
+        SEND_TYP = #record.sendTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.paySite" >
+        PAY_SITE = #record.paySite:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNo" >
+        TLR_NO = #record.tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNm" >
+        TLR_NM = #record.tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brCd" >
+        BR_CD = #record.brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brNm" >
+        BR_NM = #record.brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inpDt" >
+        INP_DT = #record.inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlr" >
+        LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrCd" >
+        LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrNm" >
+        LST_UPD_BR_NM = #record.lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdDt" >
+        LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lcTrm" >
+        LC_TRM = #record.lcTrm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payTyp" >
+        PAY_TYP = #record.payTyp:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRR_LC_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRR_LC_INFO
+    set LC_ID = #record.lcId:VARCHAR#,
+      RELA_TYP = #record.relaTyp:VARCHAR#,
+      RELA_NO = #record.relaNo:VARCHAR#,
+      LC_NO = #record.lcNo:VARCHAR#,
+      LC_TYP = #record.lcTyp:VARCHAR#,
+      ISE_BAK = #record.iseBak:VARCHAR#,
+      ISE_STAT = #record.iseStat:VARCHAR#,
+      ISE_CD = #record.iseCd:VARCHAR#,
+      ISE_DT = #record.iseDt:VARCHAR#,
+      PRPS = #record.prps:VARCHAR#,
+      APLAT_NO = #record.aplatNo:VARCHAR#,
+      APLAT_NM = #record.aplatNm:VARCHAR#,
+      APLAT_ADS = #record.aplatAds:VARCHAR#,
+      BNFCY_NO = #record.bnfcyNo:VARCHAR#,
+      BNFCY_NM = #record.bnfcyNm:VARCHAR#,
+      BNFCY_ADS = #record.bnfcyAds:VARCHAR#,
+      BNFCY_CD = #record.bnfcyCd:VARCHAR#,
+      LST_DOC_DT = #record.lstDocDt:VARCHAR#,
+      DOC_DT = #record.docDt:VARCHAR#,
+      LC_TRM_TYP = #record.lcTrmTyp:VARCHAR#,
+      FLG = #record.flg:VARCHAR#,
+      BAT_LOAD = #record.batLoad:VARCHAR#,
+      TRSPT = #record.trspt:VARCHAR#,
+      LOAD_AREA = #record.loadArea:VARCHAR#,
+      DEST_AREA = #record.destArea:VARCHAR#,
+      LOAD_TYP = #record.loadTyp:VARCHAR#,
+      SEND_TYP = #record.sendTyp:VARCHAR#,
+      PAY_SITE = #record.paySite:VARCHAR#,
+      TLR_NO = #record.tlrNo:VARCHAR#,
+      TLR_NM = #record.tlrNm:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      BR_NM = #record.brNm:VARCHAR#,
+      INP_DT = #record.inpDt:VARCHAR#,
+      LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #record.lstUpdBrNm:VARCHAR#,
+      LST_UPD_DT = #record.lstUpdDt:VARCHAR#,
+      LC_TRM = #record.lcTrm:DECIMAL#,
+      PAY_TYP = #record.payTyp:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRR_LC_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrLcInfo" >
+    update B_CRR_LC_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="relaTyp" >
+        RELA_TYP = #relaTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relaNo" >
+        RELA_NO = #relaNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lcNo" >
+        LC_NO = #lcNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lcTyp" >
+        LC_TYP = #lcTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="iseBak" >
+        ISE_BAK = #iseBak:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="iseStat" >
+        ISE_STAT = #iseStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="iseCd" >
+        ISE_CD = #iseCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="iseDt" >
+        ISE_DT = #iseDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prps" >
+        PRPS = #prps:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="aplatNo" >
+        APLAT_NO = #aplatNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="aplatNm" >
+        APLAT_NM = #aplatNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="aplatAds" >
+        APLAT_ADS = #aplatAds:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyNo" >
+        BNFCY_NO = #bnfcyNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyNm" >
+        BNFCY_NM = #bnfcyNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyAds" >
+        BNFCY_ADS = #bnfcyAds:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bnfcyCd" >
+        BNFCY_CD = #bnfcyCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstDocDt" >
+        LST_DOC_DT = #lstDocDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="docDt" >
+        DOC_DT = #docDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lcTrmTyp" >
+        LC_TRM_TYP = #lcTrmTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flg" >
+        FLG = #flg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="batLoad" >
+        BAT_LOAD = #batLoad:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trspt" >
+        TRSPT = #trspt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loadArea" >
+        LOAD_AREA = #loadArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="destArea" >
+        DEST_AREA = #destArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loadTyp" >
+        LOAD_TYP = #loadTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sendTyp" >
+        SEND_TYP = #sendTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paySite" >
+        PAY_SITE = #paySite:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO = #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM = #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD = #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM = #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT = #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR = #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM = #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT = #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lcTrm" >
+        LC_TRM = #lcTrm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="payTyp" >
+        PAY_TYP = #payTyp:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where LC_ID = #lcId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrLcInfo" >
+    update B_CRR_LC_INFO
+    set RELA_TYP = #relaTyp:VARCHAR#,
+      RELA_NO = #relaNo:VARCHAR#,
+      LC_NO = #lcNo:VARCHAR#,
+      LC_TYP = #lcTyp:VARCHAR#,
+      ISE_BAK = #iseBak:VARCHAR#,
+      ISE_STAT = #iseStat:VARCHAR#,
+      ISE_CD = #iseCd:VARCHAR#,
+      ISE_DT = #iseDt:VARCHAR#,
+      PRPS = #prps:VARCHAR#,
+      APLAT_NO = #aplatNo:VARCHAR#,
+      APLAT_NM = #aplatNm:VARCHAR#,
+      APLAT_ADS = #aplatAds:VARCHAR#,
+      BNFCY_NO = #bnfcyNo:VARCHAR#,
+      BNFCY_NM = #bnfcyNm:VARCHAR#,
+      BNFCY_ADS = #bnfcyAds:VARCHAR#,
+      BNFCY_CD = #bnfcyCd:VARCHAR#,
+      LST_DOC_DT = #lstDocDt:VARCHAR#,
+      DOC_DT = #docDt:VARCHAR#,
+      LC_TRM_TYP = #lcTrmTyp:VARCHAR#,
+      FLG = #flg:VARCHAR#,
+      BAT_LOAD = #batLoad:VARCHAR#,
+      TRSPT = #trspt:VARCHAR#,
+      LOAD_AREA = #loadArea:VARCHAR#,
+      DEST_AREA = #destArea:VARCHAR#,
+      LOAD_TYP = #loadTyp:VARCHAR#,
+      SEND_TYP = #sendTyp:VARCHAR#,
+      PAY_SITE = #paySite:VARCHAR#,
+      TLR_NO = #tlrNo:VARCHAR#,
+      TLR_NM = #tlrNm:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      BR_NM = #brNm:VARCHAR#,
+      INP_DT = #inpDt:VARCHAR#,
+      LST_UPD_TLR = #lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #lstUpdBrNm:VARCHAR#,
+      LST_UPD_DT = #lstUpdDt:VARCHAR#,
+      LC_TRM = #lcTrm:DECIMAL#,
+      PAY_TYP = #payTyp:VARCHAR#
+    where LC_ID = #lcId:VARCHAR#
+  </update>
+</sqlMap>

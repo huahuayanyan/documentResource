@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="com.huateng.ebank.batch.common.BatchUtil" 
+		class="com.huateng.ebank.batch.common.ConfigMap">
+		<property name="configMap">
+			<map>
+				<!-- used in BatchUtil.getGlobalInfo 修改时字段顺序不能错，以DB2为准-->
+				<entry key="GlobalinfoDB2">
+				    <value>Select BHDATE,TBSDY,LBHDATE,STATUS from GLOBALINFO where id=?</value>
+				</entry>
+				
+				<entry key="GlobalinfoINFORMIX">
+				    <value>Select BHDATE,TBSDY,LBHDATE,STATUS from GLOBALINFO where id=?</value>
+				</entry>
+				
+				<entry key="GlobalinfoORACLE">
+				    <value>Select BHDATE,TBSDY,LBHDATE,STATUS from GLOBALINFO where id=?</value>
+				</entry>
+				
+				<entry key="GlobalinfoSYBASE">
+				    <value>Select BHDATE,TBSDY,LBHDATE,STATUS from GLOBALINFO where id=?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.writeDBLog -->
+				<entry key="UpDateBhprocLogDB2">
+				     <value>Update BH_PROC_LOG Set STATUS=?,END_TIME=?,TIMESTAMPS=?,ERR_MSG=?,DESC1=? where bhdate=? and jobno =? and step =? and sub_step =? </value>
+				</entry>
+				<entry key="UpDateBhprocLogINFORMIX">
+				     <value></value>
+				</entry>
+				<entry key="UpDateBhprocLogORACLE">
+				     <value></value>
+				</entry>
+				<entry key="UpDateBhprocLogSYBASE">
+				     <value></value>
+				</entry>
+				
+				<entry key="InsertBhprocLogDB2">
+				     <value>Insert into BH_PROC_LOG (BHDATE, JOBNO, STEP, SUB_STEP, PROCESS_FUNCTION, PROCESSID, START_TIME, END_TIME,error_stack,STATUS, TIMESTAMPS,ERR_MSG,DESC1) VALUES(?,?,?,?,?,0,?,null,null,?,?,?,?)</value>
+				</entry>
+				<entry key="InsertBhprocLogINFORMIX">
+				     <value></value>
+				</entry>
+				<entry key="InsertBhprocLogORACLE">
+				     <value></value>
+				</entry>
+				<entry key="InsertBhprocLogSYBASE">
+				     <value></value>
+				</entry>
+				
+				
+				<entry key="SelectMsrnoByTlrnoAndPartitionKey">
+					<value>select msrno from tlr_info_msrno where tlrno = ? and partition_key = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getCommit -->
+				<entry key="SelectResumePoint">
+					<value>select resume_point, proc_value from bh_proc where bhdate = ? and jobno = ? and step = ? and sub_step = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getCommit -->
+				<entry key="InsertBhProc">
+					<value>insert into bh_proc(bhdate, jobno, step, sub_step, resume_point, proc_value) values(?, ?, ?, ?, ?, ?)</value>
+				</entry>
+				
+				<!-- used in BatchUtil.putCommit -->
+				<entry key="UpdateBhProcResumePoint">
+					<value>update bh_proc set resume_point = ? where bhdate = ?  and jobno = ? and step = ? and sub_step = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.putCommit -->
+				<entry key="UpdateBhProcResumePointAndProcValue">
+					<value>update bh_proc set resume_point = ?, proc_value = ? where bhdate = ?  and jobno = ? and step = ? and sub_step = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.putTlsrno -->
+				<entry key="UpdateTlrInfoMsrnoMsrno">
+					<value>update tlr_info_msrno set msrno = ?, timestamps = ? where tlrno = ? and partition_key = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.putTlsrno -->
+				<entry key="InsertTlrInfoMsrno">
+					<value>insert into tlr_info_msrno(tlrno, partition_key, msrno, timestamps) values(?, ?, ?, ?)</value>
+				</entry>
+				
+				<!-- used in BatchUtil.writeDBLog -->
+				<entry key="SelectStatusFromBhProc">
+					<value>select status from bh_proc_log where bhdate = ? and jobno = ? and step = ? and sub_step = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.writeDBLog -->
+				<entry key="UpdateBhProcLog">
+					<value>update bh_proc_log set status = ?, end_time = ?, timestamps = ?, err_msg = ?, desc1 = ? where bhdate = ? and jobno = ? and step = ? and sub_step = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.writeDBLog -->
+				<entry key="InsertBhProcLog">
+					<value>insert into bh_proc_log(id, bhdate, jobno, step, sub_step, process_function, processid, start_time, end_time, status, timestamps, err_msg, desc1) values(nextval for bh_proc_log_seq, ?, ?, ?, ?, ?, 0, ?, null, ?, ?, ?, ?)</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getGlobalInfo -->
+				<entry key="SelectGlobalinfo">
+					<value>select bhdate, tbsdy, lbhdate, status from globalinfo where id = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getBranchBrcode -->
+				<entry key="SelectBlnBranchBrcode">
+					<value>select brcode, brclass, bln_up_brcode from bctl where brcode = ? and status = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getBrclass -->
+				<entry key="SelectBrclass">
+					<value>select brclass from bctl where brcode = ? and delete_flag != ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getHeadBrcode -->
+				<entry key="SelectHeadBrcode">
+					<value>select brcode from bctl where brclass = ? and delete_flag != ? order by brcode desc</value>
+				</entry>
+				
+				<!-- used in BatchUtil.sortByBrseq -->
+				<entry key="SelectSortedBrcode">
+					<value>select distinct brcode,brseq from bctl order by brseq</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getCreditNo -->
+				<entry key="SelectCreditContractno">
+					<value>select contractno from contractmap where cocontractno = ? and maptype = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.dataDicMapInToOut -->
+				<entry key="SelectInCode2OutCode">
+					<value>select outcode, outcode_len from data_dic_map where map_type = ? and incode = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getLnnameTable -->
+				<entry key="SelectLnNameList">
+					<value>select ln_name, lnid from loan_param where brcode = ? and flag = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getLnname -->
+				<entry key="SelectLnName">
+					<value>select ln_name from loan_param where lnid = ? and brcode = ? and flag = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getBrname -->
+				<entry key="SelectBrName">
+					<value>select brname from bctl where brcode = ? and delete_flag != ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getCustName -->
+				<entry key="SelectChnName">
+					<value>select chn_name from customer_info where custcd = ? and status = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getTlrName -->
+				<entry key="SelectTlrnoName">
+					<value>select tlrno_name from tlr_info where tlrno = ? and flag = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getDataDicName -->
+				<entry key="SelectDataNameByTypeAndNo">
+					<value>select data_name from data_dic where data_type_no = ? and data_no = ? and flag = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getSystemStatus -->
+				<entry key="SelectGlobalinfoStatus">
+					<value>select status from globalinfo where id = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getBatchStatus -->
+				<entry key="SelectBatchStatus">
+					<value>select status from bh_proc_status where bhdate = ? and jobno = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getAllLnList -->
+				<entry key="SelectLoanList">
+					<value>select lnid, ln_name from loan_param where brcode = ? and flag = ? order by lnid</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getGuatTypeMap -->
+				<entry key="SelectGuatTypeMap">
+					<value>select incode, outcode, outcode_len from data_dic_map where map_type = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getSeqno -->
+				<entry key="SelectSeqctl">
+					<value>select value_curr as value, max_value as maxValue, min_value as minValue from seqctl where value_no = ? and value_index = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getSeqno -->
+				<entry key="UpdateSeqctl">
+					<value>update seqctl set value_curr = ? where value_no = ? and value_index = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getSeqno -->
+				<entry key="InsertSeqctl">
+					<value>insert into seqctl(value_no, value_index, value_curr, max_value, min_value) values(?, ?, ?, ?, ?)</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getFiveRptTbNmByDate -->
+				<entry key="SelectTablename">
+					<value>select tablename from f1f2info where fdate = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.getDataDicValue -->
+				<entry key="SelectDataDicValue">
+					<value>select high_limit, low_limit from data_dic where data_type_no = ? and data_no = ? and flag = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.isCurrentBhdate -->
+				<entry key="SelectBhBranchBrcode">
+					<value>select brcode, branch_brcode from bh_branch_brcode where bhdate = ?</value>
+				</entry>
+				
+				<!-- used in BatchUtil.insertBhBranchBrcode -->
+				<entry key="InsertBhBranchBrcode">
+					<value>insert into bh_branch_brcode(brcode, branch_brcode, bhdate) values(?, ?, ?)</value>
+				</entry>
+				
+				<entry key="SelectBctl">
+					<value>select brcode from bctl where status='1'</value>
+				</entry>
+
+				<entry key="test">
+					<value>select system_name from globalinfo where id = ?</value>
+				</entry>
+				
+				<!-- used in GeneralControl.intBrcodeToString 机构转型格式化  -->
+				<!-- 对机构号进行格式化“000000”或是“000000000” -->
+				<entry key="brodeFormate">
+				    <value>000000</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="com.huateng.ebank.batch.control.GeneralControl" 
+		class="com.huateng.ebank.batch.common.ConfigMap">
+		<property name="configMap">
+			<map>
+			    <!-- 根据不同的数据库写相应的正确的sql脚本 -->
+				<!-- used in GeneralControl.writeCtlDBLog -->
+				<entry key="UpBhprocStatusDB2">
+					<value>update bh_proc_status set run_status = ?, step = ?, end_time = ? where bhdate = ? and jobno = ?</value>
+				</entry>
+				
+				<entry key="UpBhprocStatusINFORMIX">
+					<value>update bh_proc_status set run_status = ?, step = ?, end_time = ? where bhdate = ? and jobno = ?</value>
+				</entry>
+				
+				<entry key="UpBhprocStatusORACLE">
+					<value>update bh_proc_status set run_status = ?, step = ?, end_time = ? where bhdate = ? and jobno = ?</value>
+				</entry>
+				
+				<entry key="UpBhprocStatusSYBASE">
+					<value>update bh_proc_status set run_status = ?, step = ?, end_time = ? where bhdate = ? and jobno = ?</value>
+				</entry>
+				
+				<!-- used in GeneralControl.insertBhProcStatus -->
+				<entry key="InSertBhprocStatusDB2">
+				    <value>insert into BH_PROC_STATUS (ID, BHDATE, JOBNO, STEP, SUB_STEP, PROCESS_FUNCTION,PROCESSID, START_TIME, END_TIME,ERROR_STACK, SUB_FLAG,RUN_STATUS,TIMESTAMPS,BRANCHLIST,DESC1,DESC2) VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</value>
+                </entry>
+                
+                <entry key="InSertBhprocStatusINFORMIX">
+				    <value>insert into BH_PROC_STATUS (BHDATE, JOBNO, STEP, SUB_STEP, PROCESS_FUNCTION,PROCESSID, START_TIME, END_TIME,ERROR_STACK, SUB_FLAG,RUN_STATUS,TIMESTAMPS,BRANCHLIST,DESC1,DESC2) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)</value>
+                </entry>
+                
+                <entry key="InSertBhprocStatusORACLE">
+				    <value>insert into BH_PROC_STATUS (ID, BHDATE, JOBNO, STEP, SUB_STEP, PROCESS_FUNCTION,PROCESSID, START_TIME, END_TIME,ERROR_STACK, SUB_FLAG,RUN_STATUS,TIMESTAMPS,BRANCHLIST,DESC1,DESC2) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)</value>
+                </entry>
+                
+                <entry key="InSertBhprocStatusSYBASE">
+				    <value>insert into BH_PROC_STATUS (ID, BHDATE, JOBNO, STEP, SUB_STEP, PROCESS_FUNCTION,PROCESSID, START_TIME, END_TIME,ERROR_STACK, SUB_FLAG,RUN_STATUS,TIMESTAMPS,BRANCHLIST,DESC1,DESC2) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)</value>
+                </entry>
+                
+                <!-- used in GeneralControl.initMonitorAndWorkQueue -->
+                <entry key="SelectBhprocStepBctlDB2">
+                    <value>Select  s.step, s.sub_step,s.suspend,s.maxproc, s.runtime,s.sub_flag,
+                    s.process_function,s.process_param,s.process_tlrno,s.DESC1,s.DESC2  from BH_PROC_STEP as s
+				    where s.jobno =?  and s.step >=? and s.sub_flag !=?	and s.temp_flag !=?
+				    union  
+				    Select s.step,Integer(b.BRCODE) as sub_step, s.suspend,s.maxproc, s.runtime,s.sub_flag,
+				    s.process_function,s.process_param,s.process_tlrno,s.DESC1,s.DESC2 from BH_PROC_STEP as s,  
+				    (select BRCODE from BCTL WHERE BRCODE = BLN_BRANCH_BRCODE and brclass =? and DELETE_FLAG =? ) as b 
+				    where s.jobno =?  and s.step >=?
+				    and s.temp_flag !=?  and s.sub_flag =? 
+				    order by step,sub_step
+				   </value>
+                </entry>
+                <entry key="SelectBhprocStepBctlINFORMIX">
+                   <value></value>
+                </entry>
+                <entry key="SelectBhprocStepBctlORACLE">
+                   <value></value>
+                </entry>
+                <entry key="SelectBhprocStepBctlSYBASE">
+                   <value></value>
+                </entry>
+                
+                <!-- used in GeneralControl.initSingleMonitorAndWorkQueue -->
+                <entry key="SingelSelectBhprocStepBctlDB2">
+                    <value>Select  s.step, s.sub_step,s.suspend,s.maxproc, s.runtime,s.sub_flag,
+                    s.process_function,s.process_param,s.process_tlrno,s.DESC1,s.DESC2  from BH_PROC_STEP as s
+				    where s.jobno =? and s.step = ? and s.sub_step=? and s.sub_flag !=?
+                    union 
+                    Select s.step,Integer(b.BRCODE) as sub_step, s.suspend,s.maxproc, s.runtime,s.sub_flag,
+                    s.process_function,s.process_param,s.process_tlrno,s.DESC1,s.DESC2 from BH_PROC_STEP as s, 
+		      	    (select BRCODE from BCTL WHERE BRCODE = BLN_BRANCH_BRCODE and brclass =? and DELETE_FLAG = ?) as b
+			        where s.jobno = ?  and s.step = ? and s.sub_step= ? and s.sub_flag =?
+                    order by stepsub_step
+				   </value>
+                </entry>
+                <entry key="SingelSelectBhprocStepBctlINFORMIX">
+                   <value></value>
+                </entry>
+                <entry key="SingelSelectBhprocStepBctlORACLE">
+                   <value></value>
+                </entry>
+                <entry key="SingelSelectBhprocStepBctlSYBASE">
+                   <value></value>
+                </entry>
+				
+				<!-- used in GeneralControl.warnDBLog -->
+				<entry key="InsertBhWarningLogDB2">
+					<value>insert into bh_warning_log(txdate, jobno, step, sub_step, contractno, peri, msg, line, timestamps) values(?, ?, ?, ?, ?, ?, ?, ?, ?)</value>
+				</entry>
+				<entry key="InsertBhWarningLogINFORMIX">
+				    <value></value>
+				</entry>
+				<entry key="InsertBhWarningLogORACLE">
+				    <value></value>
+				</entry>
+				<entry key="InsertBhWarningLogSYBASE">
+				    <value></value>
+				</entry>
+				
+				<!--为考虑有表分区而用，现在只适用到表分区一条记录不会影响各行总控  -->
+				<entry key="SelectBhPartitionBctlDB2">
+				    <value> 
+				    select a.BRCODE BRCODE,b.PARTITION_GROUP PARTITION_GROUP from 
+                     (select distinct(bln_branch_brcode) BRCODE 
+                    from BCTL where <![CDATA[  BCTL.bln_branch_brcode <>'']]>) a,BH_PARTITION b 
+                    where a.BRCODE>=b.PARTITION_S and  <![CDATA[ a.BRCODE <= b.PARTITION_E ]]> 
+				    </value>
+				</entry>			
+				<entry key="SelectBhPartitionBctlINFORMIX">
+				    <value></value>
+				</entry>
+				<entry key="SelectBhPartitionBctlORACLE">
+				    <value></value>
+				</entry>
+				<entry key="SelectBhPartitionBctlSYBASE">
+				    <value></value>
+				</entry>
+				
+				
+				<!-- used in GeneralControl.getPartitionMap -->
+				<entry key="SelectPartitionMap">
+					<value>select a.brcode brcode, b.partition_group partition_group from (select distinct(branch_brcode) brcode from bh_branch_brcode where bh_branch_brcode.branch_brcode != ?) a, bh_partition b where a.brcode &gt;= b.partition_s and a.brcode &lt;= b.partition_e</value>
+				</entry>
+				
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="com.huateng.ebank.batch.frame.BatchTemplet" 
+	      class="com.huateng.ebank.batch.common.ConfigMap">
+	   <property name="configMap">
+	       <map>
+	           <!--  -->
+	           <entry key="">
+	               <value>
+	               </value>
+	           </entry>
+	       
+	       </map>	   
+	   </property>
+	
+	</bean>
+	
+	<bean id="com.huateng.ebank.batch.entry.PLSwitchDay"
+		class="com.huateng.ebank.batch.common.ConfigMap">
+		<property name="configMap">
+			<map>
+				<!-- used in PLSwitchDay.doSwitchDay -->
+				<entry key="UpdateGlobalinfoDB2">
+					<value>update globalinfo set tbsdy = ?, bhdate = ?, lbhdate = ?, status = ? where id = ?</value>
+				</entry>
+				<entry key="UpdateGlobalinfoINFORMIX">
+					<value>update globalinfo set tbsdy = ?, bhdate = ?, lbhdate = ?, status = ? where id = ?</value>
+				</entry>
+				<entry key="UpdateGlobalinfoORACLE">
+					<value>update globalinfo set tbsdy = ?, bhdate = ?, lbhdate = ?, status = ? where id = ?</value>
+				</entry>
+				<entry key="UpdateGlobalinfoSYBASE">
+					<value>update globalinfo set tbsdy = ?, bhdate = ?, lbhdate = ?, status = ? where id = ?</value>
+				</entry>
+				
+				<entry key="UpdateBhProcStepTempFlag">
+					<value>update bh_proc_step set temp_flag = ?</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="com.huateng.ebank.batch.upd.BhClearBeforeProc"
+		class="com.huateng.ebank.batch.common.ConfigMap">
+		<property name="configMap">
+			<map>
+				<entry key="DeleteTableDataByBhdate">
+					<list>
+						<!-- 此处定义需要根据批量日清理数据的库表清单 -->
+						<!-- 执行SQL为：delete from tablename where bhdate != ? -->
+						<value>bh_proc_log</value>
+						<value>bh_proc</value>
+						<value>bh_proc_status</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_NREC_WRN_DEBT_PDO" >
+
+	<resultMap id="BaseResultMap1" class="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfoDetail" >
+	    <result column="ID" property="id" jdbcType="VARCHAR" />
+	    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+	    <result column="BILLS_TYPE" property="billsType" jdbcType="CHAR" />
+	    <result column="BILLS_NO" property="billsNo" jdbcType="VARCHAR" />
+	    <result column="BUSS_CONTCODE" property="bussContcode" jdbcType="VARCHAR" />
+	    <result column="BILLS_DATE" property="billsDate" jdbcType="CHAR" />
+	    <result column="DEBT_END" property="debtEnd" jdbcType="CHAR" />
+	    <result column="DEADLINE" property="deadline" jdbcType="CHAR" />
+	    <result column="BILLS_AMOUNT_VIEW" property="billsAmountView" jdbcType="DECIMAL" />
+	    <result column="BILLS_AMOUNT" property="billsAmount" jdbcType="DECIMAL" />
+	    <result column="REMAINING_AMOUNT" property="remainingAmount" jdbcType="DECIMAL" />
+	    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+	    <result column="STATUS" property="status" jdbcType="CHAR" />
+	    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+	    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+	    <result column="CUST_MANAGER" property="custManager" jdbcType="VARCHAR" />
+  	</resultMap>
+
+  <!-- 应收账款到期提示 -->
+  <select id="selectAccountDebtPromptWarn" resultMap="BaseResultMap1" parameterClass="java.util.Map" >
+    	select a.BRCODE,a.CUST_MANAGER,b.ID,b.BILLS_NO,b.BILLS_TYPE,b.BUSS_CONTCODE,b.BILLS_DATE, b.DEBT_END,
+    	b.DEADLINE,b.BILLS_AMOUNT_VIEW,b.BILLS_AMOUNT,b.REMAINING_AMOUNT,b.CURCD,b.STATUS,b.MEMO
+    	from B_WRN_BASE_INFO a,B_WRN_DEBT_PDO_INFO b	
+    	where a.ID = b.WARN_ID
+    	and a.PARAM_ID in
+    	<iterate property="paramIds" conjunction="," open="(" close=")">
+    			$paramIds[]$
+    	</iterate>
+    	<isNotEmpty prepend="and" property="billsNo" >
+    		<![CDATA[b.BILLS_NO like '%' || #billsNo# || '%']]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="bussContcode" >
+    		<![CDATA[b.BUSS_CONTCODE like '%' || #bussContcode# || '%']]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="startYj" >
+			<![CDATA[a.WARN_DATE >= #startYj:VARCHAR#]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endYj" >
+			<![CDATA[a.WARN_DATE <= #endYj:VARCHAR#]]>
+		</isNotEmpty>
+	<isNotNull prepend="and" property="tlrNoList" > 
+        a.CUST_MANAGER in 
+        <iterate property="tlrNoList" conjunction="," open="(" close=")" >
+   		 #tlrNoList[]#
+   		</iterate> 
+    </isNotNull>
+    <isNotNull prepend="and" property="brNoList" > 
+        a.BRCODE in 
+        <iterate property="brNoList" conjunction="," open="(" close=")" >
+   		 #brNoList[]#
+   		</iterate> 
+    </isNotNull>
+		order by a.WARN_DATE DESC
+  </select>
+  
+   <resultMap id="BaseResultMap" class="java.util.HashMap" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PARAM_ID" property="paramId" jdbcType="VARCHAR" />
+    <result column="WARN_DATE" property="warnDate" jdbcType="CHAR" />
+    <result column="WARN_LEVEL" property="warnLevel" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="SUSPEND_DATE" property="suspendDate" jdbcType="CHAR" />
+    <result column="SUSPEND_DAYS" property="suspendDays" jdbcType="DECIMAL" />
+    <result column="SUSPEND_TLRNO" property="suspendTlrno" jdbcType="VARCHAR" />
+    <result column="PROCESS_TLRNO" property="processTlrno" jdbcType="VARCHAR" />
+    <result column="PROCESS_DATE" property="processDate" jdbcType="CHAR" />
+    <result column="CUST_MANAGER" property="custManager" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="WARN_DUE_DATE" property="warnDueDate" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="TOP_PRODUCT_ID" property="topProductId" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_DATE" property="lastUpdDate" jdbcType="TIMESTAMP" />
+    <result column="DEBT_ID" property="debtId" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="BILLS_TYPE" property="billsType" jdbcType="CHAR" />
+    <result column="BILLS_NO" property="billsNo" jdbcType="VARCHAR" />
+    <result column="BUSS_CONTCODE" property="bussContcode" jdbcType="VARCHAR" />
+    <result column="BILLS_DATE" property="billsDate" jdbcType="CHAR" />
+    <result column="DEBT_END" property="debtEnd" jdbcType="CHAR" />
+    <result column="DEADLINE" property="deadline" jdbcType="CHAR" />
+    <result column="BILLS_AMOUNT_VIEW" property="billsAmountView" jdbcType="DECIMAL" />
+    <result column="BILLS_AMOUNT" property="billsAmount" jdbcType="DECIMAL" />
+    <result column="REMAINING_AMOUNT" property="remainingAmount" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="DEBT_STATUS" property="debtStatus" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <select id="selectAccountDebtPromptWarnInfo" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+    select 
+    <include refid="EXT_B_WRN.Base_Column_List" />,
+    <include refid="EXT_B_WRN.Debt_Column_List" />
+    from B_WRN_BASE_INFO wbi,B_WRN_DEBT_PDO_INFO twdi	
+    	where wbi.ID = twdi.WARN_ID
+    	<isNotEmpty prepend="and" property="paramIds" >
+			 wbi.PARAM_ID in
+	    	<iterate property="paramIds" conjunction="," open="(" close=")">
+	    			$paramIds[]$
+	    	</iterate>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="paramId" >
+    		<![CDATA[wbi.PARAM_ID = #paramId:VARCHAR#]]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="billsNo" >
+    		<![CDATA[twdi.BILLS_NO like '%' || #billsNo# || '%']]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="bussContcode" >
+    		<![CDATA[twdi.BUSS_CONTCODE like '%' || #bussContcode# || '%']]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="startDate" >
+			<![CDATA[wbi.WARN_DATE >= #startDate:VARCHAR#]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endDate" >
+			<![CDATA[wbi.WARN_DATE <= #endDate:VARCHAR#]]>
+		</isNotEmpty>
+	<isNotNull prepend="and" property="tlrNoList" > 
+        wbi.CUST_MANAGER in 
+        <iterate property="tlrNoList" conjunction="," open="(" close=")" >
+   		 #tlrNoList[]#
+   		</iterate> 
+    </isNotNull>
+    <isNotNull prepend="and" property="brNoList" > 
+        wbi.BRCODE in 
+        <iterate property="brNoList" conjunction="," open="(" close=")" >
+   		 #brNoList[]#
+   		</iterate> 
+    </isNotNull>
+  </select>
+  
+</sqlMap>

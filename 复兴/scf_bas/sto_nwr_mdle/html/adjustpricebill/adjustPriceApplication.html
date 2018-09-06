@@ -1,0 +1,19 @@
+<ht-form name="taskform">
+	<ht-legend>任务基本信息</ht-legend>
+	<ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+	<ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+	<ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+	<ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+</ht-form>
+<div>
+	<ht-tabs>
+		<ht-pane title="调价申请" ui-sref="adjustPriceApplication.adjustPrice"></ht-pane>
+		  <ht-pane title="仓单质押监管协议"  ui-sref="adjustPriceApplication.protocol">
+    </ht-pane>
+    <ht-pane title="出质人信息"  ui-sref="adjustPriceApplication.cust">
+    </ht-pane>
+    <ht-pane title="监管商信息"  ui-sref="adjustPriceApplication.monicust">
+    </ht-pane>
+	</ht-tabs>
+	
+</div>

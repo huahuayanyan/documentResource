@@ -1,0 +1,42 @@
+
+<ht-form name="otherform">
+
+    <ht-legend>客户基础信息</ht-legend>
+   <ht-input-extent ht-id="cname" name="客户名称" reg-exp="common.require"  extent="cnameContent" 
+                     on-change="cnamedooextent" ng-model="otherform.cname">
+   </ht-input-extent>
+    <ht-input name="行业" disable="true" ng-model="otherform.industryTypeName"></ht-input>
+    <ht-input name="ERP数据开通时间" disable="true" ng-model="otherform.openDate" edit-type="date">></ht-input>
+    <ht-input name="年度销售额" disable="true" ng-model="otherform.annualSalesAmt" edit-type="currency"></ht-input>
+    <ht-input name="相对销售占比" disable="true" ng-model="otherform.salesRate" edit-type="currency"></ht-input>
+    <ht-input name="年度采购额" disable="true" ng-model="otherform.annualPurchaseAmt" edit-type="currency"></ht-input>
+    <ht-input name="相对采购占比" disable="true" ng-model="otherform.purchaseRate" edit-type="currency"></ht-input>
+    <ht-input name="年度应收帐款" disable="true" ng-model="otherform.annualRec" edit-type="currency"></ht-input>
+    <ht-input name="逾期比例" disable="true" ng-model="otherform.overdueRate" edit-type="currency"></ht-input>
+    <ht-input name="平均账龄" disable="true" ng-model="otherform.averageAge" edit-type="currency"></ht-input>
+    <ht-input name="年度应付账数 " disable="true" ng-model="otherform.annualPay"></ht-input>
+    <!-- <ht-input name="逾期比例" disable="true" ng-model="otherform.custname"></ht-input> -->
+    <ht-input name="利润率  " disable="true" ng-model="otherform.profitRate" edit-type="currency"></ht-input>
+    <ht-legend>客户分析信息</ht-legend>
+    <ht-input name="ERP使用比率" disable="true" ng-model="otherform.erpUsedRate" edit-type="currency"></ht-input>
+    <ht-input name="逾期率" disable="true" ng-model="otherform.overdueRate" edit-type="currency"></ht-input>
+    <ht-input name="坏账率" disable="true" ng-model="otherform.badRate" edit-type="currency"></ht-input>
+    <ht-input name="预付款占比" disable="true" ng-model="otherform.prepayRate" edit-type="currency"></ht-input>
+    <ht-input name="应收帐款占比" disable="true" ng-model="otherform.recRate" edit-type="currency"></ht-input>
+    <ht-input name="销售增长率" disable="true" ng-model="otherform.saleGrowthRate" edit-type="currency"></ht-input>
+    <ht-input name="销售利润率" disable="true" ng-model="otherform.salesProfitRate" edit-type="currency"></ht-input>
+    <ht-input name="保证金覆盖率" disable="true" ng-model="otherform.marginCoverRate"></ht-input>
+    <ht-input name="关系紧密" disable="true" ng-model="otherform.relation"></ht-input>
+    <ht-legend>业务汇总</ht-legend>
+    <ht-input name="总贷款额" disable="true" ng-model="otherform.totalLoanAmt" edit-type="currency"></ht-input>
+    <ht-input name="已还款额" disable="true" ng-model="otherform.repaymentAmt" edit-type="currency"></ht-input>
+    <ht-input name="逾期笔数" disable="true" ng-model="otherform.overdueNum" edit-type="currency"></ht-input>
+    <ht-input name="损失金额" disable="true" ng-model="otherform.lossAmt" edit-type="currency"></ht-input>
+    <ht-input name="总通道费用 " disable="true" ng-model="otherform.totalChanFee" edit-type="currency"></ht-input>
+    <ht-input name="总收益" disable="true" ng-model="otherform.totalIncome" edit-type="currency"></ht-input>
+   
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

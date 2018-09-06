@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ODS_CRM_TAG" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.ods.dao.model.OCrmTag" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+    <result column="RELATION" property="relation" jdbcType="VARCHAR" />
+    <result column="CUST_QUALITY" property="custQuality" jdbcType="VARCHAR" />
+    <result column="PROSPECT" property="prospect" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CUSTCD, CREATE_TIME, RELATION, CUST_QUALITY, PROSPECT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.ods.dao.model.OCrmTagExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="ODS_CRM_TAG.Base_Column_List" />
+    from ODS_CRM_TAG
+    <isParameterPresent >
+      <include refid="ODS_CRM_TAG.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.ods.dao.model.OCrmTag" >
+    select 
+    <include refid="ODS_CRM_TAG.Base_Column_List" />
+    from ODS_CRM_TAG
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.ods.dao.model.OCrmTag" >
+    delete from ODS_CRM_TAG
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.ods.dao.model.OCrmTagExample" >
+    delete from ODS_CRM_TAG
+    <include refid="ODS_CRM_TAG.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.ods.dao.model.OCrmTag" >
+    insert into ODS_CRM_TAG (ID, CUSTCD, CREATE_TIME, RELATION, CUST_QUALITY, 
+      PROSPECT)
+    values (#id:VARCHAR#, #custcd:VARCHAR#, #createTime:CHAR#, #relation:VARCHAR#, #custQuality:VARCHAR#, 
+      #prospect:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.ods.dao.model.OCrmTag" >
+    insert into ODS_CRM_TAG
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        CREATE_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="relation" >
+        RELATION
+      </isNotNull>
+      <isNotNull prepend="," property="custQuality" >
+        CUST_QUALITY
+      </isNotNull>
+      <isNotNull prepend="," property="prospect" >
+        PROSPECT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        #createTime:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relation" >
+        #relation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custQuality" >
+        #custQuality:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prospect" >
+        #prospect:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.ods.dao.model.OCrmTagExample" resultClass="java.lang.Integer" >
+    select count(*) from ODS_CRM_TAG
+    <include refid="ODS_CRM_TAG.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update ODS_CRM_TAG
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.createTime" >
+        CREATE_TIME = #record.createTime:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.relation" >
+        RELATION = #record.relation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custQuality" >
+        CUST_QUALITY = #record.custQuality:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prospect" >
+        PROSPECT = #record.prospect:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="ODS_CRM_TAG.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update ODS_CRM_TAG
+    set ID = #record.id:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      CREATE_TIME = #record.createTime:CHAR#,
+      RELATION = #record.relation:VARCHAR#,
+      CUST_QUALITY = #record.custQuality:VARCHAR#,
+      PROSPECT = #record.prospect:VARCHAR#
+    <isParameterPresent >
+      <include refid="ODS_CRM_TAG.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.ods.dao.model.OCrmTag" >
+    update ODS_CRM_TAG
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        CREATE_TIME = #createTime:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relation" >
+        RELATION = #relation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custQuality" >
+        CUST_QUALITY = #custQuality:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prospect" >
+        PROSPECT = #prospect:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.ods.dao.model.OCrmTag" >
+    update ODS_CRM_TAG
+    set CUSTCD = #custcd:VARCHAR#,
+      CREATE_TIME = #createTime:CHAR#,
+      RELATION = #relation:VARCHAR#,
+      CUST_QUALITY = #custQuality:VARCHAR#,
+      PROSPECT = #prospect:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

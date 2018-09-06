@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+  "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<import resource="batch.properties.xml" />
+	<bean id="entityInterceptor"
+		class="com.huateng.ebank.framework.util.HibernateInterceptor">
+	</bean>
+	<!-- Choose the dialect that matches your "dataSource" definition -->
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!--  -->
+		<property name="entityInterceptor">
+			<ref local="entityInterceptor" />
+		</property>
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:/resources/hbm/mng/*.xml</value>
+				<value>classpath:/resources/ace/hbm/*.hbm</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+				<!--com.huateng.hibernate.dialect.HTOracle9Dialect -->
+				<!--com.huateng.hibernate.dialect.HTInformixDialect -->
+				    org.hibernate.dialect.DB2Dialect
+				</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.cache.use_second_level_cache">
+					true
+				</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.EhCacheProvider
+				</prop>
+				<!--
+				<prop key="hibernate.cache.provider_class">
+				org.hibernate.cache.HashtableCacheProvider
+				</prop>
+				-->
+			</props>
+		</property>
+	</bean>
+	<!-- Operation Caller Target的配置 -->
+	<bean id="CallerTarget"
+		class="com.huateng.ebank.framework.operation.OPCaller">
+	</bean>
+	<!--Operation Caller的配置, 使用transaction对Call方法来进行保护。-->
+	<bean id="operationCaller" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="myTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="CallerTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="doLog">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="doTlsrno">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="callOperation">PROPAGATION_REQUIRED,-Exception</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--Operation Caller的配置, 使用transaction对Call方法来进行保护。-->
+	<bean id="singleCaller" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="myTransactionManager" />
+		</property>
+		<property name="target">
+			<bean id="SingleCallerTarget"
+				class="com.huateng.ebank.framework.operation.SingleOPCaller">
+		</bean>
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="callOperation">PROPAGATION_REQUIRES_NEW,-Exception</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+	<bean id="myTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="mySessionFactory" />
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,33 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="costCode" name="费用代码" ng-model="conditionForm.costCode" ></ht-input>
+    <ht-input ht-id="costName"  name="费用名称" ng-model="conditionForm.costName"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>费用参数列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+       <!-- <ht-button ht-id="fresh">刷新</ht-button>-->
+        <ht-button ht-id="add"class="btn-primary">新增</ht-button>
+        <ht-button ht-id="update"class="btn-primary">修改</ht-button>
+        <ht-button ht-id="delete"class="btn-primary">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="costName" zh-name="费用名称"  href="true" docolumn="column" ></ht-column>
+    <ht-column eg-name="costCode" zh-name="费用代码"></ht-column>
+    <ht-column eg-name="costClass" zh-name="允许收取种类" dictionary="costClass"></ht-column>
+    <ht-column eg-name="costType" zh-name="收取方式" dictionary="costType"></ht-column>
+    <ht-column eg-name="costCalcType" zh-name="计算方式"  dictionary="costCalcType"></ht-column>
+    <ht-column eg-name="chargeType" zh-name="扣取方式"  dictionary="costChargeType"></ht-column>
+    <ht-column eg-name="minRate" zh-name="最小比率" ></ht-column>
+    <ht-column eg-name="maxRate" zh-name="最大比率"  ></ht-column>
+    <ht-column eg-name="costDesc" zh-name="备注"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->

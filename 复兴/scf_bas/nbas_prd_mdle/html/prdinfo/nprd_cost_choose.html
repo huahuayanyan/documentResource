@@ -1,0 +1,28 @@
+<!--费用参数选择页面-->
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="costCode" name="费用代码" ng-model="conditionForm.costCode"></ht-input>
+    <ht-input ht-id="costName"  name="费用名称" ng-model="conditionForm.costName"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>费用参数列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-column eg-name="costCode" zh-name="费用代码" ></ht-column>
+    <ht-column eg-name="costName" zh-name="费用名称"  ></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>
+
+
+
+

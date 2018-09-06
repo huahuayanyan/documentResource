@@ -1,0 +1,20 @@
+
+<ht-legend>客户情况分析表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="add" hide="{{hide}}" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="delete" hide="{{hide}}" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="update" hide="{{hide}}" class="btn-primary">修改</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="id" zh-name="数据ID" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="cname" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="registerN" zh-name="登记人"></ht-column>
+    <ht-column eg-name="analDate" zh-name="分析日期"type="date"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <!--<ht-button ht-id="confirm" hide="{{hide1}}"class="btn-primary">确定</ht-button>-->
+    <ht-button ht-id="confuse" class="btn-primary">返回</ht-button>
+    <!--<ht-button ht-id="closeThisDialog">返回</ht-button>-->
+</ht-button-group>

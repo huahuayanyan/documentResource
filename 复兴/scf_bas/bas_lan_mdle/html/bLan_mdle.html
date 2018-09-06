@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ------------公共css--------------------- -->
+    <script src="../../scube_ui/common/importCs.js"></script>
+    <!-- ------------业务css--------------------- -->
+
+</head>
+<body>
+<div ng-controller="repayController">
+    <ht-form name="taskform">
+        <ht-legend>任务基本信息</ht-legend>
+        <ht-input name="流程名称" ng-model="taskform.ext2" disable="true"></ht-input>
+        <ht-input name="申请发起时间" ng-model="taskform.appDate" disable="true" edit-type="date"></ht-input>
+        <ht-input name="经办人" ng-model="taskform.appTlrcd" disable="true"></ht-input>
+        <ht-input name="经办机构" ng-model="taskform.approveBrcode" disable="true"></ht-input>
+    </ht-form>
+    <div id="bb">
+        <ht-tabs>
+            <ht-pane title="放款申请"  ui-sref="{{baseparam}}">
+            </ht-pane>
+            <ht-pane title="票据信息"  ui-sref="repaybill" >
+            </ht-pane>
+            <ht-pane title="保证金列表"  ui-sref="repayacct">
+            </ht-pane>
+            <ht-pane title="担保提货协议"  ui-sref="repayprotocol" >
+            </ht-pane>
+            <ht-pane title="信贷合同"  ui-sref="repaylncon">
+            </ht-pane>
+        </ht-tabs>
+    </div>
+    <div id="cc">
+        <ht-tabs>
+            <ht-pane title="放款申请"  ui-sref="{{baseparam}}">
+            </ht-pane>
+            <ht-pane title="保证金列表"  ui-sref="repayacct">
+            </ht-pane>
+            <ht-pane title="应收账款合同"  ui-sref="repayysht" >
+            </ht-pane>
+            <ht-pane title="信贷合同"  ui-sref="repaylncon">
+            </ht-pane>
+        </ht-tabs>
+    </div>
+    <div id="dd">
+        <ht-tabs>
+            <ht-pane title="放款申请"  ui-sref="{{baseparam}}">
+            </ht-pane>
+            <ht-pane title="保证金列表"  ui-sref="repayacct">
+            </ht-pane>
+            <ht-pane title="押品清单"  ui-sref="repayyp" >
+            </ht-pane>
+            <ht-pane title="抵/质押合同查询"  ui-sref="repaycntlncon">
+            </ht-pane>
+            <ht-pane title="核库"  ui-sref="repayhk">
+            </ht-pane>
+            <ht-pane title="信贷合同"  ui-sref="repaylncon">
+            </ht-pane>
+        </ht-tabs>
+    </div>
+    <div id="ee">
+        <ht-tabs>
+            <ht-pane title="放款申请"  ui-sref="{{baseparam}}">
+            </ht-pane>
+            <ht-pane title="池应收账款"  ui-sref="repaycyszk">
+            </ht-pane>
+            <ht-pane title="保证金列表"  ui-sref="repayacct">
+            </ht-pane>
+            <ht-pane title="应收账款池合同"  ui-sref="repayyscht" >
+            </ht-pane>
+            <ht-pane title="信贷合同"  ui-sref="repaylncon">
+            </ht-pane>
+        </ht-tabs>
+    </div>
+</div>
+
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+<script src="../../config.js"></script>
+
+<!-- ------------公共js--------------------- -->
+<script src="../../scube_ui/common/myBrowser.js"></script>
+<script src="../../scube_ui/common/importJs.js"></script>
+
+<!-- ------------业务js--------------------- -->
+<script src="../js/bLan_mdle.js"></script>
+<script src="../js/repay_controller.js"></script>
+<script src="../js/info/repayyc_controller.js"></script>
+<script src="../js/info/repayyszk_controller.js"></script>
+<script src="../js/info/repayxhdy_controller.js"></script>
+<script src="../js/info/acct_controller.js"></script>
+<script src="../js/info/bill_controller.js"></script>
+<script src="../js/info/repayhk_controller.js"></script>
+<script src="../js/info/lncon_controller.js"></script>
+<script src="../js/info/cntlncon_controller.js"></script>
+<script src="../js/info/repayyp_controller.js"></script>
+<script src="../js/info/buy_add_controller.js"></script>
+<script src="../js/info/buy_update_controller.js"></script>
+<script src="../js/info/dtl_add_controller.js"></script>
+<script src="../js/info/cyszk_controller.js"></script>
+<script src="../js/info/repaygnblc_controller.js"></script>
+<script src="../js/info/threeProDetail_Controller.js"></script>
+<script src="../../bas_cnt_mdle/js/controllers/bcnt_threeProtocol_controller.js"></script>
+<script src="../../bas_cnt_mdle/js/controllers/bcntdebtpool/debtPoolConView_controller.js"></script>
+<script src="../../bas_cnt_mdle/js/controllers/bcntdebt/debtConView_controller.js"></script>
+</body>
+</html>
+
+

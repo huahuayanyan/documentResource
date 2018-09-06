@@ -1,0 +1,27 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+    <ht-input ht-id="cname" name="客户名称" ng-model="conditionForm.cname"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>客户信息分析列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="rel" class="btn-primary">关联</ht-button>
+         <ht-button ht-id="deleterel" class="btn-primary">删除关联</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="custcd" zh-name="客户"></ht-column>
+   <ht-column eg-name="cname" zh-name="客户名称" ></ht-column>
+    <ht-column eg-name="industryTypeName" zh-name="行业"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->
+
+
+
+

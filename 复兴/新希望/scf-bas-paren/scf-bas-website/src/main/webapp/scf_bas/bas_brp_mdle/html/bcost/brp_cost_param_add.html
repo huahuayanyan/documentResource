@@ -1,0 +1,20 @@
+
+<ht-form name="otherform">
+    <ht-legend>费用参数信息</ht-legend>
+    <ht-input ht-id="costCode" name="费用代码" disable="{{disable1}}"reg-exp="common.require"  ng-model="otherform.costCode"></ht-input>
+    <ht-input ht-id="costName" name="费用名称" disable="{{disable}}"reg-exp="common.require"  ng-model="otherform.costName"></ht-input>
+    <ht-checkbox ht-id="costClass" name="允许收取种类" dictionary="costClass" disable="{{disable}}"reg-exp="common.require"  ng-model="otherform.costClass"></ht-checkbox>
+    <ht-checkbox ht-id="costType" name="收取方式" dictionary="costType" disable="{{disable}}"reg-exp="common.require"  ng-model="otherform.costType"></ht-checkbox>
+    <ht-checkbox ht-id="costCalcType" name="计算方式"  dictionary="costCalcType"  disable="{{disable}}"reg-exp="common.require"  ng-model="otherform.costCalcType"></ht-checkbox>
+    <ht-checkbox ht-id="chargeType" name="扣取方式"  dictionary="costChargeType" disable="{{disable}}"reg-exp="common.require"  ng-model="otherform.chargeType"></ht-checkbox>
+    <ht-input ht-id="minRate" name="最小比率"  disable="{{disable}}"reg-exp="common.require" edit-type="currency" ng-model="otherform.minRate"></ht-input>
+    <ht-input ht-id="maxRate" name="最大比率" disable="{{disable}}" reg-exp="common.require" edit-type="currency" ng-model="otherform.maxRate" ></ht-input>
+    <ht-text-area ht-id="costDesc" name="备注" disable="{{disable}}"  ng-model="otherform.costDesc"></ht-text-area>
+
+<!-- hide，当查看的时候，确定键隐藏。-->
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide}}" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"class="btn-primary">取消</ht-button>
+</ht-button-group>
+
+

@@ -1,0 +1,27 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input  name="拦截模型ID" ng-model="conditionForm.mdlId"></ht-input>
+    <ht-input  name="拦截模型名" ng-model="conditionForm.mdlNm"></ht-input>
+    <ht-button-group>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>拦截模型列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="mdlId" zh-name="拦截模型ID" ></ht-column>
+    <ht-column eg-name="mdlNm" zh-name="拦截模型名"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+
+

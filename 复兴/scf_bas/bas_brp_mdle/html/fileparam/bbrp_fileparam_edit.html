@@ -1,0 +1,12 @@
+
+<ht-form name="baseinfo">
+    <ht-input ht-id="contCode" name="类型编号" disable="{{disable}}" reg-exp="common.require" ng-model="baseinfo.contCode"></ht-input>
+    <ht-input ht-id="contName" name="类型名称" disable="{{viewDisable}}" reg-exp="common.require" ng-model="baseinfo.contName"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" hide="{{hide}}" class="btn-primary" desc-name="确定"></ht-button>
+    <ht-button ht-id="back" class="btn-primary" desc-name="返回"></ht-button>
+</ht-button-group>
+
+

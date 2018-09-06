@@ -1,0 +1,17 @@
+<ht-form name="billinfo">
+	<ht-input ht-id="billsNo" name="凭证编号" disable="true" ng-model="billinfo.billsNo"></ht-input>
+    <ht-select ht-id="billsType"  name="凭证类型" disable ="true"  dictionary="billsType" ng-model="billinfo.billsType"></ht-select>
+    <ht-input ht-id="bussContcode" name="商务合同号" disable="true" ng-model="billinfo.bussContcode"></ht-input>
+    <ht-input ht-id="billsDate" name="应收账款日期" disable="true" edit-type="date" ng-model="billinfo.billsDate"></ht-input>
+    <ht-input ht-id="debtEnd" name="到期日" disable="true" edit-type="date" ng-model="billinfo.debtEnd"></ht-input>
+    <ht-select ht-id="curcd"  name="币种" dictionary="curcd"   disable="true" ng-model="billinfo.curcd"></ht-select>
+    <ht-input ht-id="billsAmount" name="有效金额" ng-model="billinfo.billsAmount" edit-type="currency"  disable="true"></ht-input>
+    <ht-input ht-id="debetNo" name="借据号/承兑协议号" ng-model="billinfo.debetNo" disable="true"></ht-input>
+    <ht-input ht-id="remainingAmount" name="应收账款余额" ng-model="billinfo.remainingAmount" edit-type="currency"  disable="true"></ht-input>
+    <ht-input ht-id="removeAmount" name="本次核销金额" ng-model="billinfo.removeAmount" edit-type="currency"  reg-exp="common.require"  ></ht-input>
+    <ht-input ht-id="payAmount" name="实际入账金额" ng-model="billinfo.payAmount" edit-type="currency"   reg-exp="common.require"  ></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">确定</ht-button>
+</ht-button-group>
+

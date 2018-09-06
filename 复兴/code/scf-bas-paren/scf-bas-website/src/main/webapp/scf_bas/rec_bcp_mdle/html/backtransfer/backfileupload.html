@@ -1,0 +1,22 @@
+<ht-form name="fileupload">
+    <ht-legend>文件上传</ht-legend>
+    <ht-input name="文档名称" ng-model="fileupload.fileName"></ht-input>
+    <ht-select name="文档格式" ng-model="fileupload.fileType" dictionary="fileType"></ht-select>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-legend>文件上传</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="fileName" zh-name="文档名称"></ht-column>
+    <ht-column eg-name="fileType" zh-name="文档格式"></ht-column>
+    <ht-column eg-name="tlrNm" zh-name="上传人操作员" dictionary="curcd"></ht-column>
+    <ht-column eg-name="inpDt" zh-name="上传时间" type="date"></ht-column>
+    <ht-column eg-name="act" zh-name="操作"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="upload" class="btn-primary">上传</ht-button>
+    <ht-button ht-id="back" class="btn-primary" hide="{{hideButton}}">返回</ht-button>
+</ht-button-group>

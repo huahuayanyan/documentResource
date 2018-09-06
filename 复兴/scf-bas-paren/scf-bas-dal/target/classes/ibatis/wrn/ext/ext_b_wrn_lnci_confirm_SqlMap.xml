@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_WRN_LNCI_CONFIRM" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.wrn.dao.model.ThreeNoConfirmPayWarnVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="CUSTCD_SELLER" property="custcdSeller" jdbcType="VARCHAR" />
+    <result column="CNAME_SELLER" property="cnameSeller" jdbcType="VARCHAR" />
+    <result column="CUSTCD_BUYER" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="CNAME_BUYER" property="cnameBuyer" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="LOAN_AMT" property="loanAmt" jdbcType="DECIMAL" />
+    <result column="LOAN_DATE" property="loanDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="CONFIRM_STAUS" property="confirmStaus" jdbcType="CHAR" />
+    <result column="WARN_DATE" property="warnDate" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, CUSTCD_SELLER, CNAME_SELLER, CUSTCD_BUYER, CNAME_BUYER, PROTOCOL_NO, 
+    LOAN_WAY, DEBET_NO, DEBET_ID, CURCD, LOAN_AMT, LOAN_DATE, END_DATE, CONFIRM_STAUS
+  </sql>
+  
+  <select id="selectConfirmPayWarnList" resultMap="BaseResultMap" parameterClass="java.util.Map" >
+	SELECT tnbi.*,tlbi.warn_date FROM B_WRN_BASE_INFO tlbi,B_WRN_LNCI_CONFIRM_INFO tnbi WHERE 1=1 and tlbi.id = tnbi.warn_id
+	<isNotNull property="productId" prepend="and">
+			tlbi.product_id = #productId:VARCHAR#
+	</isNotNull>
+	<isNotNull property="protocolNo" prepend="and">
+			tnbi.protocol_no =  #protocolNo:VARCHAR#
+	</isNotNull>
+	<isNotNull property="loanWay" prepend="and">
+			tnbi.loan_way = #loanWay:VARCHAR#
+	</isNotNull>
+	<isNotNull property="startDate" prepend="and">
+			<![CDATA[tlbi.warn_date >= #startDate:VARCHAR#]]>
+	</isNotNull>
+	<isNotNull property="endDate" prepend="and">
+			<![CDATA[tlbi.warn_date <= #endDate:VARCHAR#]]>
+	</isNotNull>
+	<isNotNull property="cnameBuyer" prepend="and">
+			tnbi.cname_buyer like '%'||#cnameBuyer:VARCHAR#||'%'
+	</isNotNull>
+	<!-- <isParameterPresent>
+		<isEqual property="brattr" compareValue="1" prepend="and">
+			exists (select 1 from B_CNT_MPROT_BASE_INFO tcdi where tcdi.protocol_no=tnbi.protocol_no and tcdi.protocol_type='07'
+				and tcdi.cooperation_brcode = #brcode:VARCHAR#)
+		</isEqual>
+		<isNotEqual property="brattr" compareValue="1" prepend="and">
+			exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =tlbi.brcode and parent_brcode =#brcode:VARCHAR#
+			and affiliation_type = '1')			
+		</isNotEqual>
+	</isParameterPresent> -->
+
+  </select>
+  
+  <select id="countConfirmPayWarnList" resultClass="java.lang.Integer" parameterClass="java.util.Map" >
+	SELECT COUNT(id) FROM(
+	SELECT tnbi.*,tlbi.warn_date FROM B_WRN_BASE_INFO tlbi,B_WRN_LNCI_CONFIRM_INFO tnbi WHERE 1=1 and tlbi.id = tnbi.warn_id
+	<isNotNull property="productId" prepend="and">
+			tlbi.product_id = #productId:VARCHAR#
+	</isNotNull>
+	<isNotNull property="protocolNo" prepend="and">
+			tnbi.protocol_no =  #protocolNo:VARCHAR#
+	</isNotNull>
+	<isNotNull property="loanWay" prepend="and">
+			tnbi.loan_way = #loanWay:VARCHAR#
+	</isNotNull>
+	<isNotNull property="startDate" prepend="and">
+			<![CDATA[tlbi.warn_date >= #startDate:VARCHAR#]]>
+	</isNotNull>
+	<isNotNull property="endDate" prepend="and">
+			<![CDATA[tlbi.warn_date <= #endDate:VARCHAR#]]>
+	</isNotNull>
+	<isNotNull property="cnameBuyer" prepend="and">
+			tnbi.cname_buyer like '%'||#cnameBuyer:VARCHAR#||'%'
+	</isNotNull>
+	<isParameterPresent>
+		<isEqual property="brattr" compareValue="1" prepend="and">
+			exists (select 1 from B_CNT_MPROT_BASE_INFO tcdi where tcdi.protocol_no=tnbi.protocol_no and tcdi.protocol_type='07'
+				and tcdi.cooperation_brcode = #brcode:VARCHAR#)
+		</isEqual>
+		<isNotEqual property="brattr" compareValue="1" prepend="and">
+			exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =tlbi.brcode and parent_brcode =#brcode:VARCHAR#
+			and affiliation_type = '1')			
+		</isNotEqual>
+	</isParameterPresent>
+	)
+  </select>
+
+
+</sqlMap>

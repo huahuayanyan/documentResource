@@ -1,0 +1,31 @@
+<div  style="position:absolute;z-index:12;float:right;top:12px;right:12px;">
+    <ht-button ht-id="back" class="btn-primary" desc-name="返回"></ht-button>
+</div>
+<ht-legend>任务基本信息</ht-legend>
+<ht-form name="taskform">
+    <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+    <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+    <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+    <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+</ht-form>
+<ht-legend>基本信息</ht-legend>
+<ht-form name="baseinfo">
+    <ht-input name="主合同号" ng-model="baseinfo.mastContno"  reg-exp="common.require" disable="true"></ht-input>
+    <ht-input name="合同币种" ng-model="baseinfo.curcd" disable="true"></ht-input>
+    <ht-input name="抵/质押合同号" ng-model="baseinfo.slaveContno" disable="true"></ht-input>
+    <ht-input name="出质人名称" ng-model="baseinfo.cname" disable="true"></ht-input>
+    <ht-input name="监管合同号" ng-model="baseinfo.protocolNo" disable="true"></ht-input>
+    <ht-input name="监管人名称" ng-model="baseinfo.prtclBrNm" disable="true"></ht-input>
+</ht-form>
+<ht-tabs>
+    <ht-pane title="仓单质押申请"  ui-sref="mngtask.apply">
+    </ht-pane>
+    <ht-pane title="质押合同"  ui-sref="mngtask.slave">
+    </ht-pane>
+    <ht-pane title="仓单质押监管协议"  ui-sref="mngtask.protocol">
+    </ht-pane>
+    <ht-pane title="出质人信息"  ui-sref="mngtask.cust">
+    </ht-pane>
+    <ht-pane title="监管商信息"  ui-sref="mngtask.monicust">
+    </ht-pane>
+</ht-tabs>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ------------公共css--------------------- -->
+
+    <script src="../../scube_ui/common/importCs.js"></script>
+
+
+
+    <!-- ------------业务css--------------------- -->
+
+</head>
+<body>
+<div ng-controller="impairmentRequestConFirm">
+    <ht-legend colorId="lawngreen">任务基本信息</ht-legend>
+    <ht-form name ="taskBaseInfo">
+        <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+        <ht-input  ht-id="flowName" name="流程名称"  ng-model="taskBaseInfo.flowName" disable="true"></ht-input>
+        <ht-input  ht-id="requestTime" name="申请发起时间"  ng-model="taskBaseInfo.requestTime" disable="true"></ht-input>
+        <ht-input  ht-id="opStaff" name="经办人"  ng-model="taskBaseInfo.opStaff" disable="true"></ht-input>
+        <ht-input ht-id="opOrg" name="经办机构"   ng-model="taskBaseInfo.opOrg" disable="true"></ht-input>
+    </ht-form>
+
+    <ht-legend colorId="lawngreen">基本信息</ht-legend>
+    <ht-form name ="baseInfo">
+        <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+        <ht-input hide="{{appNohide}}"    ht-id="appno" name="业务申请号"  ng-model="baseInfo.appno" disable="true"></ht-input>
+        <ht-input    ht-id="custName" name="卖方名称"  ng-model="baseInfo.custName" disable="true"></ht-input>
+        <ht-select ht-id="buyerName" name="买方名称" disable="{{buyerNameDisable}}"   datatrsoption="buyerName" dataoption="buyerCustcd"  datasource="selectBuyerName"  ng-model="baseInfo.buyerName" reg-exp="common.require" on-change="buyerNameChange"></ht-select>
+        <ht-input  ht-id="debtContno" name="业务合同号"  ng-model="baseInfo.debtContno" disable="true"></ht-input>
+        <ht-input ht-id="supplyChainPdId" name="业务品种"   ng-model="baseInfo.supplyChainPdId" disable="true"></ht-input>
+        <ht-input hide="{{curcdhide}}" ht-id="curcd" name="币种"   ng-model="baseInfo.curcd" disable="true"></ht-input>
+        <ht-input ht-id="startDate" name="合同生效日"   ng-model="baseInfo.startDate" disable="true"></ht-input>
+        <ht-input ht-id="endDate" name="合同到期日"   ng-model="baseInfo.endDate" disable="true"></ht-input>
+    </ht-form>
+
+    <ht-legend colorId="lawngreen">减值信息</ht-legend>
+    <ht-form name ="impairmentInfo">
+        <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+        <ht-input  ht-id="impairmentDate" name="减值日期"  ng-model="impairmentInfo.impairmentDate" disable="true"></ht-input>
+        <ht-input ht-id="impairmentCount" name="减值总份数"   ng-model="impairmentInfo.impairmentCount" disable="true"></ht-input>
+        <ht-input ht-id="impairmentAmount" name="减值总金额"   ng-model="impairmentInfo.impairmentAmount" disable="true"></ht-input>
+        <ht-text-area ht-id="impairmentReason" name="减值原因" disable="{{impairmentReasonDisable}}"   ng-model="impairmentInfo.impairmentReason" ></ht-text-area>
+        <ht-text-area ht-id="remark" name="备注"  disable="{{remarkDisable}}"  ng-model="impairmentInfo.remark"></ht-text-area>
+
+    </ht-form>
+    <ht-legend>减值应收账款列表</ht-legend>
+    <ht-button ht-id="add" hide="{{addhide}}" class="btn-primary">添加</ht-button>
+    <ht-button ht-id="modify" hide="{{modifyhide}}"  class="btn-primary">修改</ht-button>
+    <ht-button ht-id="delete" hide="{{deletehide}}" class="btn-primary">删除</ht-button>
+    <ht-table ht-id="tableId1"  datasource="rBcpDebtBase" selected="selected1" docheckbox="true">
+        <ht-column eg-name="billsNo" zh-name="凭证编号"></ht-column>
+        <ht-column eg-name="billsType" zh-name="凭证类型"></ht-column>
+        <ht-column eg-name="bussContcode" zh-name="商务合同号" ></ht-column>
+        <ht-column eg-name="billsDate" zh-name="应收账款日期" type="date"></ht-column>
+        <ht-column eg-name="debtEnd" zh-name="到期日" type="date"></ht-column>
+        <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+        <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+        <ht-column eg-name="billsAmount" zh-name="有效金额" ></ht-column>
+        <ht-column eg-name="remainingAmount" zh-name="应收账款余额" ></ht-column>
+        <ht-column eg-name="rebateAmounts" zh-name="减值金额" contenteditable="false"></ht-column>
+        <ht-column eg-name="rebatebalance" zh-name="减值后余额" contenteditable="true"></ht-column>
+        <ht-column eg-name="debetNo" zh-name="借据号/承兑协议号" ></ht-column>
+        <ht-column eg-name="status" zh-name="状态"></ht-column>
+        <ht-column eg-name="" zh-name="操作"></ht-column>
+    </ht-table>
+    <div id="relInfo">
+    <ht-page conf="conf1"></ht-page>
+    <ht-legend>关联的融资信息</ht-legend>
+    <ht-table  ht-id="tableId2"   datasource="bLanLnciBase" selected="selected2" docheckbox="true">
+        <ht-column eg-name="loanAppno" zh-name="出账流水号"></ht-column>
+        <ht-column eg-name="debetId" zh-name="借据号/承兑协议号"></ht-column>
+        <ht-column eg-name="mastContno" zh-name="信贷合同号" ></ht-column>
+        <ht-column eg-name="lnciType" zh-name="出账方式" ></ht-column>
+        <ht-column eg-name="startDate" zh-name="起始日" ></ht-column>
+        <ht-column eg-name="endDate" zh-name="到期日" ></ht-column>
+        <ht-column eg-name="lnciAmt" zh-name="借据金额"></ht-column>
+        <ht-column eg-name="lnciBal" zh-name="借据余额" ></ht-column>
+        <ht-column eg-name="totalRateRemainAmount" zh-name="欠息总额" ></ht-column>
+        <ht-column eg-name="avaliableRiskAmt" zh-name="敞口余额" ></ht-column>
+        <ht-column eg-name="lnciStatus" zh-name="借据状态" ></ht-column>
+    </ht-table>
+    <ht-page conf="conf2"></ht-page>
+    </div>
+    <ht-button-group class="center">
+        <ht-button ht-id="save" class="btn-primary" hide="{{savehide}}">保存</ht-button>
+        <ht-button ht-id="submit" class="btn-primary" hide="{{submithide}}">提交</ht-button>
+    </ht-button-group>
+</div>
+
+
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+
+<script src="../../config.js"></script>
+
+<!-- ------------公共js--------------------- -->
+
+<script src="../../scube_ui/common/myBrowser.js"></script>
+
+<script src="../../scube_ui/common/importJs.js"></script>
+
+
+<!-- ------------业务js--------------------- -->
+<script src="../js/appli/impairmentRequestConFirm_controller.js"></script>
+<script src="../js/rbcp_impairment_task_mdle.js"></script>
+
+</body>
+
+</html>

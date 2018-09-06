@@ -1,0 +1,42 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="evalId" name="评估流水号" ng-model="conditionForm.evalId"></ht-input>
+    <!-- <ht-select  name="评估模型名" ht-id="mdlId" datasource="evalMdls" datatrsoption="mdlNm"
+                             dataoption="mdlId" ng-model="conditionForm.mdlId">
+    </ht-select> -->
+    <ht-button-group class="left">
+        <ht-button ht-id="searchTab"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>评估记录表列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="submit" class="btn-primary">提交</ht-button>
+        <!-- <ht-button ht-id="view" class="btn-primary">查看</ht-button> -->
+    </ht-button-group>
+
+    <ht-column eg-name="evalId" zh-name="评估流水号"  href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="cname" zh-name="客户名称" ></ht-column>
+    <!--<ht-column eg-name="rltTyp"  zh-name="客户类型" dictionary="custType"></ht-column>-->
+    <!--<ht-column  eg-name="finDt" zh-name="会计月份"></ht-column>-->
+    <!--  <ht-column  eg-name="mdlNm" zh-name="评估模型名" dictionary="evalModel"></ht-column> -->
+    <ht-column  eg-name="evalScr" zh-name="机评得分"></ht-column>
+    <ht-column  eg-name="evalRslt" zh-name="机评级别"></ht-column>
+    <ht-column  eg-name="cognScr" zh-name="认定得分"></ht-column>
+    <ht-column  eg-name="cognRslt" zh-name="认定级别"></ht-column>
+    <ht-column  eg-name="eftDt" zh-name="认定有效期" type="date"></ht-column>
+    <ht-column  eg-name="isVld" zh-name="有效状态"  dictionary="status"></ht-column>
+    <ht-column  eg-name="stat" zh-name="审核状态" dictionary="stat"></ht-column>
+
+</ht-table>
+
+<ht-page conf="conf"></ht-page>
+
+
+
+

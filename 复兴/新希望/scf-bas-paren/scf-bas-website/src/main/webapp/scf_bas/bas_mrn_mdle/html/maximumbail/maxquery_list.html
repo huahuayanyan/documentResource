@@ -1,0 +1,30 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-select ht-id="applyType" name="类型" ng-model="conditionForm.applyType" dictionary="maximumBailApplyType"></ht-select>
+    <ht-input name="客户名称" ng-model="conditionForm.cname"></ht-input>
+    <ht-input-extent ht-id="subContno" name="质押监管协议编号" extent="subcontent" on-change="subdooextend"
+        ng-model="conditionForm.subContno"></ht-input-extent>
+    <ht-input-extent ht-id="slaveContno" name="抵/质押合同号" extent="slavecontent" on-change="slavedooextend"
+                     ng-model="conditionForm.slaveContno"></ht-input-extent>
+<ht-button-group class="left">
+<ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+<ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+</ht-button-group>
+</ht-form>
+
+<ht-legend>查询结果信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+<ht-column eg-name="applyType" zh-name="类型" dictionary="maximumBailApplyType"></ht-column>
+<ht-column eg-name="cnameBuyer" zh-name="客户名称"></ht-column>
+<ht-column eg-name="accountno" zh-name="保证金账号"></ht-column>
+<ht-column eg-name="slaveContno" zh-name="抵/质押合同号"></ht-column>
+<ht-column eg-name="subContno" zh-name="质押监管协议编号"></ht-column>
+<ht-column eg-name="amount" zh-name="金额" type="currency"></ht-column>
+<ht-column eg-name="newAppDate" zh-name="日期"></ht-column>
+</ht-table>
+
+<ht-page conf="conf"></ht-page>
+
+
+
+

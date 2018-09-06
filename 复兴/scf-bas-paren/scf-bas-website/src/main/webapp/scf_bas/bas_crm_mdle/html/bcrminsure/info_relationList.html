@@ -1,0 +1,31 @@
+
+<ht-legend colorId="lawngreen">保险公司关系信息查询</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="custcd" name="客户号" ng-model="conditionForm.custcd"></ht-input>
+    <!--<ht-input ht-id="cname" name="客户名称" ng-model="conditionForm.cname"></ht-input>class="center" -->
+    <ht-button-group >
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-legend>保险公司关系信息列表</ht-legend>
+<!--<ht-button-group>
+    <ht-button ht-id="fresh" class="btn-primary">刷新</ht-button>
+    <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+    <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+</ht-button-group>-->
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <!--<ht-column eg-name="id" zh-name="数据ID" href="true" docolumn="column" ></ht-column>-->
+    <ht-column eg-name="custcd" zh-name="客户号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="ccmsCustcd" zh-name="信贷客户号"></ht-column>
+    <ht-column eg-name="cname" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="orgCode" zh-name="组织机构代码" ></ht-column>
+    <ht-column eg-name="industryType" zh-name="国标行业分类" dictionary="industryType"></ht-column>
+    <ht-column eg-name="contactAddr" zh-name="地址"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="confuse" disable="{{disable}}" class="btn-primary">返回</ht-button>
+</ht-button-group>

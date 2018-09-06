@@ -1,0 +1,56 @@
+
+<ht-form name="bCrrLcInfo">
+    <ht-input name="信用证编号" reg-exp="BillCodeValidate" ng-model="bCrrLcInfo.lcNo" disable="{{disableview}}"></ht-input>
+    <ht-input name="开征行行名" reg-exp="common.require" ng-model="bCrrLcInfo.iseBak" disable="{{disableview}}"></ht-input>
+    <ht-input name="开证地址" reg-exp="common.require" ng-model="bCrrLcInfo.iseStat" disable="{{disableview}}"></ht-input>
+    <ht-input name="开证行邮编" reg-exp="CodeValidate" ng-model="bCrrLcInfo.iseCd" disable="{{disableview}}"></ht-input>
+    <ht-select name="信用证性质" reg-exp="common.require" ng-model="bCrrLcInfo.lcTyp" dictionary="lcTyp" disable="{{disableview}}"></ht-select>
+    <ht-select name="信用证期限类型" reg-exp="common.require" ng-model="bCrrLcInfo.lcTrmTyp" dictionary="trmTyp" disable="{{disableview}}"></ht-select>
+    <ht-text-area name="用途" reg-exp="common.require" ng-model="bCrrLcInfo.prps" disable="{{disableview}}"></ht-text-area>
+    <ht-input name="付款期限(天)" reg-exp="common.require,common.number" ng-model="bCrrLcInfo.lcTrm" disable="{{disableview}}"></ht-input>
+    <ht-input name="受益人帐号" reg-exp="BillCodeValidate" ng-model="bCrrLcInfo.bnfcyNo" disable="{{disableview}}"></ht-input>
+    <ht-input name="受益人名称" reg-exp="common.require" ng-model="bCrrLcInfo.bnfcyNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="受益人地址" reg-exp="common.require" ng-model="bCrrLcInfo.bnfcyAds" disable="{{disableview}}"></ht-input>
+    <ht-input name="受益人邮编" reg-exp="CodeValidate" ng-model="bCrrLcInfo.bnfcyCd" disable="{{disableview}}"></ht-input>
+    <ht-input name="开证申请人帐号" reg-exp="BillCodeValidate" ng-model="bCrrLcInfo.aplatNo" disable="{{disableview}}"></ht-input>
+    <ht-input name="开证申请人名称" reg-exp="common.require" ng-model="bCrrLcInfo.aplatNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="开证申请人地址" reg-exp="common.require" ng-model="bCrrLcInfo.aplatAds" disable="{{disableview}}"></ht-input>
+    <ht-input ht-id="lstDocDt" name="最晚装运期" reg-exp="common.require" ng-model="bCrrLcInfo.lstDocDt" edit-type="date" disable="{{disableview}}"></ht-input>
+    <ht-input ht-id="docDt" name="交单期" reg-exp="common.require" ng-model="bCrrLcInfo.docDt" edit-type="date" disable="{{disableview}}"></ht-input>
+    <ht-select name="付款方式" reg-exp="common.require" ng-model="bCrrLcInfo.payTyp" dictionary="payTyp" disable="{{disableview}}"></ht-select>
+    <ht-select name="分批装运" reg-exp="common.require" ng-model="bCrrLcInfo.batLoad" dictionary="isOrNo" disable="{{disableview}}"></ht-select>
+    <ht-select name="转运" reg-exp="common.require" ng-model="bCrrLcInfo.trspt" dictionary="isOrNo" disable="{{disableview}}"></ht-select>
+    <ht-input name="装运地" reg-exp="common.require" ng-model="bCrrLcInfo.loadArea" disable="{{disableview}}"></ht-input>
+    <ht-input name="货物运输目的地" reg-exp="common.require" ng-model="bCrrLcInfo.destArea" disable="{{disableview}}"></ht-input>
+    <ht-select name="运输方式" reg-exp="common.require" ng-model="bCrrLcInfo.loadTyp" dictionary="trafficTyp" disable="{{disableview}}"></ht-select>
+    <ht-select name="发送方式" reg-exp="common.require" ng-model="bCrrLcInfo.sendTyp" dictionary="lcSendTyp" disable="{{disableview}}"></ht-select>
+    <ht-select name="费用承担人" reg-exp="common.require" ng-model="bCrrLcInfo.paySite" dictionary="lcPaySite" disable="{{disableview}}"></ht-select>
+    <!--<ht-input ht-id="tlrNm" name="经办人" ng-model="otherform.tlrNm" disable="true"></ht-input>-->
+    <!--<ht-input ht-id="brNm" name="经办机构" ng-model="otherform.brNm" disable="true"></ht-input>-->
+    <!--<ht-input ht-id="inpDt" name="经办日期" ng-model="otherform.inpDt" disable="true"></ht-input>-->
+    <!--<ht-input ht-id="lstUpdTlrNm" name="更新人" ng-model="otherform.lstUpdTlrNm" disable="true"></ht-input>-->
+    <!--<ht-input ht-id="lstUpdBrNm" name="更新机构" ng-model="otherform.lstUpdBrNm" disable="true"></ht-input>-->
+    <!--<ht-input ht-id="lstUpdDt" name="更新日期" ng-model="otherform.lstUpdDt" disable="true"></ht-input>-->
+    <!--<ht-input ht-id="iseDt" name="归档日期" ng-model="otherform.iseDt" disable="{{disableview}}"></ht-input>-->
+</ht-form>
+
+<ht-button-group>
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{disableconfirm}}">确定</ht-button>
+</ht-button-group>
+
+<ht-legend style="margin-top: 10px">保证金列表</ht-legend>
+<ht-table ht-id="tableIdInfo" datasource="datasourceinfo" selected="selectedinfo" docheckbox="true" minheit="10px">
+
+    <ht-button-group>
+        <ht-button ht-id="addinfo" class="btn-primary" hide="{{hide}}">新增</ht-button>
+        <ht-button ht-id="updateinfo" class="btn-primary" hide="{{hide}}">修改</ht-button>
+        <ht-button ht-id="deleteinfo" class="btn-primary" hide="{{hide}}">删除</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="accountNo" zh-name="保证金帐号" href="true" docolumn="columninfo"></ht-column>
+    <ht-column eg-name="amount" zh-name="保证金金额" type="currency"></ht-column>
+    <ht-column eg-name="bailFrozenAmt" zh-name="冻结金额" type="currency"></ht-column>
+    <ht-column eg-name="accountName" zh-name="保证金账号名称"></ht-column>
+    <ht-column eg-name="actBrNm" zh-name="开户机构" ></ht-column>
+</ht-table>
+<ht-page conf="confinfo" style="height: 40px;padding-top: 1px"></ht-page>

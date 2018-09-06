@@ -1,0 +1,63 @@
+<!--<ht-form name="otherformX">-->
+    <!--<ht-legend>任务基本信息</ht-legend>-->
+    <!--<ht-input id="processTemplateName" name="流程名称" ng-model="otherformX.processTemplateName" disable="true"></ht-input>-->
+    <!--<ht-input id="startTaskDate" name="申请发起时间"ng-model="otherformX.startTaskDate" edit-type="date" disable="true"></ht-input>-->
+    <!--<ht-input id="startTlrcdName" name="经办人" ng-model="otherformX.startTlrcdName" disable="true"></ht-input>-->
+    <!--<ht-input id="startBrcodeName" name="经办机构"ng-model="otherformX.startBrcodeName" disable="true"></ht-input>-->
+<!--</ht-form>-->
+<ht-form name="otherform">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input ht-id="cname" name="融资客户" disable="true" ng-model="otherform.cname"></ht-input>
+    <ht-input ht-id="cnameBuyer" name="贸易对手" ng-model="otherform.cnameBuyer" disable="true"></ht-input>
+    <ht-input ht-id="mastContno" name="业务合同号" disable="true" ng-model="otherform.mastContno"></ht-input>
+    <ht-input ht-id="supplyChainPdName" name="业务品种" disable="true" ng-model="otherform.supplyChainPdName"></ht-input>
+    <ht-input ht-id="loanDays" name="账期（天）" disable="true" ng-model="otherform.loanDays"></ht-input>
+    <ht-input ht-id="debtGraceDays" name="宽限期（天）" disable="true" ng-model="otherform.debtGraceDays"></ht-input>
+    <ht-input ht-id="startDate" name="合同生效日" disable="true" edit-type="date" ng-model="otherform.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="合同到期日" disable="true" edit-type="date" ng-model="otherform.endDate"></ht-input>
+
+    <ht-legend>转让/出质信息</ht-legend>
+    <ht-input ht-id="purchaseDate" name="转让/出质日期" disable="true" edit-type="date" ng-model="otherform.purchaseDate"></ht-input>
+    <ht-input ht-id="debtNum" name="转让/出质总份数" disable ="true"  ng-model="otherform.debtNum"></ht-input>
+    <ht-input ht-id="totalDebtAmount" name="转让/出质总金额" disable ="true" edit-type="currency"
+              ng-model="otherform.totalDebtAmount"></ht-input>
+
+    <ht-legend>费用信息</ht-legend>
+    <ht-input ht-id="feeRate" name="手续费率（%）" hide="{{cost1}}" disable="true"  ng-model="otherform.feeRate"></ht-input>
+    <ht-input ht-id="costAmt" name="固定费用" hide="{{cost2}}" disable="true"  edit-type="currency" ng-model="otherform.costAmt"></ht-input>
+    <ht-input ht-id="accountNo" name="结算账号"  disable="true"   ng-model="otherform.accountNo"></ht-input>
+
+    <ht-input ht-id="totalFee" name="费用总额" disable="true" edit-type="currency"  ng-model="otherform.totalFee"></ht-input>
+    <ht-input ht-id="reduceAmount" name="减免金额" reg-exp="common.require" disable="{{task2}}" edit-type="currency"  ng-model="otherform.reduceAmount"></ht-input>
+    <ht-input ht-id="receiveAmount" name="实收费用" disable="true" edit-type="currency"  ng-model="otherform.receiveAmount"></ht-input>
+
+</ht-form>
+
+<ht-legend>转让应收账款票据列表</ht-legend>
+<ht-button-group >
+    <ht-button ht-id="addBill"  hide="{{task2}}" class="btn-primary">新增</ht-button>
+    <ht-button ht-id="updateBill"  hide="{{task2}}" class="btn-primary">修改</ht-button>
+    <ht-button ht-id="deleteBill"  hide="{{task2}}" class="btn-primary">删除</ht-button>
+    <ht-file type="download" name="Excel模版下载"hide="{{task2}}" option="downloadoption"></ht-file>
+    <ht-file type="upload" name="批量导入"hide="{{task2}}" option="uploadoption"></ht-file>
+    <ht-button ht-id="viewBill" class="btn-primary">查看</ht-button>
+</ht-button-group>
+<ht-table ht-id="bcpTable" datasource="bcpDatasource" selected="bcpSelected" docheckbox="true">
+    <ht-column eg-name="billsNo" zh-name="凭证编号" ></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType" ></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同号" ></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期" type="date"></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日" type="date"></ht-column>
+   <!-- <ht-column eg-name="unpledgeActiveDate" zh-name="最迟付款日" type="date"></ht-column>-->
+    <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="票面金额" type="currency"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="	应收账款余额" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="bcpConf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" hide="{{task2}}" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="submit" hide="{{task2}}" disable="{{submit}}" class="btn-primary">提交</ht-button>
+    <ht-button ht-id="back" hide="{{task1}}" class="btn-primary">返回</ht-button>
+</ht-button-group>

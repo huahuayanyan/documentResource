@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PBC_PRICING_BASE_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.sto.nwr.dao.model.BPbcPricingBaseInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="PRICING_NO" property="pricingNo" jdbcType="VARCHAR" />
+    <result column="APPROVE_BRCODE" property="approveBrcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_ADDRESS" property="warehouseAddress" jdbcType="VARCHAR" />
+    <result column="MONI_MODEL" property="moniModel" jdbcType="VARCHAR" />
+    <result column="PRICING_REASON" property="pricingReason" jdbcType="CHAR" />
+    <result column="PRICING_DATE" property="pricingDate" jdbcType="CHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+    <result column="APPROVER" property="approver" jdbcType="VARCHAR" />
+    <result column="APPROVE_DATE" property="approveDate" jdbcType="CHAR" />
+    <result column="APP_TLRCD" property="appTlrcd" jdbcType="VARCHAR" />
+    <result column="APP_DATE" property="appDate" jdbcType="TIMESTAMP" />
+    <result column="OTHER_REASON" property="otherReason" jdbcType="VARCHAR" />
+    <result column="APPLI_TYPE" property="appliType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, PRICING_NO, APPROVE_BRCODE, CUSTCD, MONI_OF_CUSTCD, WAREHOUSE_ADDRESS, 
+    MONI_MODEL, PRICING_REASON, PRICING_DATE, SLAVE_CONTNO, MONITOR_PROTOCOL_NO, APPROVER, 
+    APPROVE_DATE, APP_TLRCD, APP_DATE, OTHER_REASON, APPLI_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.sto.nwr.dao.model.BPbcPricingBaseInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PBC_PRICING_BASE_INFO.Base_Column_List" />
+    from B_PBC_PRICING_BASE_INFO
+    <isParameterPresent >
+      <include refid="B_PBC_PRICING_BASE_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.sto.nwr.dao.model.BPbcPricingBaseInfo" >
+    select 
+    <include refid="B_PBC_PRICING_BASE_INFO.Base_Column_List" />
+    from B_PBC_PRICING_BASE_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.sto.nwr.dao.model.BPbcPricingBaseInfo" >
+    delete from B_PBC_PRICING_BASE_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.sto.nwr.dao.model.BPbcPricingBaseInfoExample" >
+    delete from B_PBC_PRICING_BASE_INFO
+    <include refid="B_PBC_PRICING_BASE_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.sto.nwr.dao.model.BPbcPricingBaseInfo" >
+    insert into B_PBC_PRICING_BASE_INFO (ID, APPNO, PRICING_NO, APPROVE_BRCODE, 
+      CUSTCD, MONI_OF_CUSTCD, WAREHOUSE_ADDRESS, MONI_MODEL, 
+      PRICING_REASON, PRICING_DATE, SLAVE_CONTNO, MONITOR_PROTOCOL_NO, 
+      APPROVER, APPROVE_DATE, APP_TLRCD, APP_DATE, 
+      OTHER_REASON, APPLI_TYPE)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #pricingNo:VARCHAR#, #approveBrcode:VARCHAR#, 
+      #custcd:VARCHAR#, #moniOfCustcd:VARCHAR#, #warehouseAddress:VARCHAR#, #moniModel:VARCHAR#, 
+      #pricingReason:CHAR#, #pricingDate:CHAR#, #slaveContno:VARCHAR#, #monitorProtocolNo:VARCHAR#, 
+      #approver:VARCHAR#, #approveDate:CHAR#, #appTlrcd:VARCHAR#, #appDate:TIMESTAMP#, 
+      #otherReason:VARCHAR#, #appliType:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.sto.nwr.dao.model.BPbcPricingBaseInfo" >
+    insert into B_PBC_PRICING_BASE_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="pricingNo" >
+        PRICING_NO
+      </isNotNull>
+      <isNotNull prepend="," property="approveBrcode" >
+        APPROVE_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        MONI_OF_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddress" >
+        WAREHOUSE_ADDRESS
+      </isNotNull>
+      <isNotNull prepend="," property="moniModel" >
+        MONI_MODEL
+      </isNotNull>
+      <isNotNull prepend="," property="pricingReason" >
+        PRICING_REASON
+      </isNotNull>
+      <isNotNull prepend="," property="pricingDate" >
+        PRICING_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="approver" >
+        APPROVER
+      </isNotNull>
+      <isNotNull prepend="," property="approveDate" >
+        APPROVE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="appTlrcd" >
+        APP_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="appDate" >
+        APP_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="otherReason" >
+        OTHER_REASON
+      </isNotNull>
+      <isNotNull prepend="," property="appliType" >
+        APPLI_TYPE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pricingNo" >
+        #pricingNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveBrcode" >
+        #approveBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        #moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddress" >
+        #warehouseAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniModel" >
+        #moniModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pricingReason" >
+        #pricingReason:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pricingDate" >
+        #pricingDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        #monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approver" >
+        #approver:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveDate" >
+        #approveDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appTlrcd" >
+        #appTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appDate" >
+        #appDate:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="otherReason" >
+        #otherReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appliType" >
+        #appliType:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.sto.nwr.dao.model.BPbcPricingBaseInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PBC_PRICING_BASE_INFO
+    <include refid="B_PBC_PRICING_BASE_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PBC_PRICING_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pricingNo" >
+        PRICING_NO = #record.pricingNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.approveBrcode" >
+        APPROVE_BRCODE = #record.approveBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniOfCustcd" >
+        MONI_OF_CUSTCD = #record.moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseAddress" >
+        WAREHOUSE_ADDRESS = #record.warehouseAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniModel" >
+        MONI_MODEL = #record.moniModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pricingReason" >
+        PRICING_REASON = #record.pricingReason:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pricingDate" >
+        PRICING_DATE = #record.pricingDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO = #record.monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.approver" >
+        APPROVER = #record.approver:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.approveDate" >
+        APPROVE_DATE = #record.approveDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appTlrcd" >
+        APP_TLRCD = #record.appTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appDate" >
+        APP_DATE = #record.appDate:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherReason" >
+        OTHER_REASON = #record.otherReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appliType" >
+        APPLI_TYPE = #record.appliType:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PBC_PRICING_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PBC_PRICING_BASE_INFO
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      PRICING_NO = #record.pricingNo:VARCHAR#,
+      APPROVE_BRCODE = #record.approveBrcode:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      MONI_OF_CUSTCD = #record.moniOfCustcd:VARCHAR#,
+      WAREHOUSE_ADDRESS = #record.warehouseAddress:VARCHAR#,
+      MONI_MODEL = #record.moniModel:VARCHAR#,
+      PRICING_REASON = #record.pricingReason:CHAR#,
+      PRICING_DATE = #record.pricingDate:CHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      MONITOR_PROTOCOL_NO = #record.monitorProtocolNo:VARCHAR#,
+      APPROVER = #record.approver:VARCHAR#,
+      APPROVE_DATE = #record.approveDate:CHAR#,
+      APP_TLRCD = #record.appTlrcd:VARCHAR#,
+      APP_DATE = #record.appDate:TIMESTAMP#,
+      OTHER_REASON = #record.otherReason:VARCHAR#,
+      APPLI_TYPE = #record.appliType:CHAR#
+    <isParameterPresent >
+      <include refid="B_PBC_PRICING_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.sto.nwr.dao.model.BPbcPricingBaseInfo" >
+    update B_PBC_PRICING_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pricingNo" >
+        PRICING_NO = #pricingNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveBrcode" >
+        APPROVE_BRCODE = #approveBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddress" >
+        WAREHOUSE_ADDRESS = #warehouseAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniModel" >
+        MONI_MODEL = #moniModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pricingReason" >
+        PRICING_REASON = #pricingReason:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pricingDate" >
+        PRICING_DATE = #pricingDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approver" >
+        APPROVER = #approver:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="approveDate" >
+        APPROVE_DATE = #approveDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appTlrcd" >
+        APP_TLRCD = #appTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appDate" >
+        APP_DATE = #appDate:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="otherReason" >
+        OTHER_REASON = #otherReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appliType" >
+        APPLI_TYPE = #appliType:CHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.sto.nwr.dao.model.BPbcPricingBaseInfo" >
+    update B_PBC_PRICING_BASE_INFO
+    set APPNO = #appno:VARCHAR#,
+      PRICING_NO = #pricingNo:VARCHAR#,
+      APPROVE_BRCODE = #approveBrcode:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#,
+      WAREHOUSE_ADDRESS = #warehouseAddress:VARCHAR#,
+      MONI_MODEL = #moniModel:VARCHAR#,
+      PRICING_REASON = #pricingReason:CHAR#,
+      PRICING_DATE = #pricingDate:CHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#,
+      APPROVER = #approver:VARCHAR#,
+      APPROVE_DATE = #approveDate:CHAR#,
+      APP_TLRCD = #appTlrcd:VARCHAR#,
+      APP_DATE = #appDate:TIMESTAMP#,
+      OTHER_REASON = #otherReason:VARCHAR#,
+      APPLI_TYPE = #appliType:CHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

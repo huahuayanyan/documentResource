@@ -1,0 +1,34 @@
+<!--------------- 组件绑定--------------------->
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+
+<ht-form name="conditionForm">
+    <ht-input ht-id="copName" name="组件名称" ng-model="conditionForm.copName"></ht-input>
+    <ht-select ht-id="copType" name="组件类型" dictionary="copType" ng-model="conditionForm.copType"></ht-select>
+    <ht-select ht-id="status" name="状态" dictionary="productStatus" ng-model="conditionForm.status"></ht-select>
+    <ht-input ht-id="copOrder" name="顺序" ng-model="conditionForm.copOrder"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="清空"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>组件绑定列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="copOrder" zh-name="顺序"></ht-column>
+    <ht-column eg-name="copName" zh-name="组件名称" ></ht-column>
+    <ht-column eg-name="copType" zh-name="组件类型" dictionary="copType"></ht-column>
+    <ht-column eg-name="status" zh-name="状态" dictionary="productStatus"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+<ht-button-group class="center">
+    <ht-button ht-id="former" class="btn-primary" desc-name="上一步"></ht-button>
+    <ht-button ht-id="next" class="btn-primary" desc-name="下一步"></ht-button>
+    <ht-button ht-id="complete" hide="{{hide}}" class="btn-primary" desc-name="完成"></ht-button>
+</ht-button-group>
+

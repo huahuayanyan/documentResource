@@ -1,0 +1,51 @@
+<ht-legend>评估记录详情</ht-legend>
+<ht-form name="evalform">
+    <ht-panel>
+        <!--custType-->
+
+        <!--custno-->
+        <!--<ht-input name="客户编号" ng-model="evalform.cname" disable="true"></ht-input>-->
+        <ht-input-extent name="客户编号" ht-id="cname" extent="cnameContent" on-change="doExtent"  ng-model="evalform.cname"
+                         disable="{{disable}}"></ht-input-extent>
+<!--        <ht-select name="客户类型"  ht-id="rltTyp" ng-model="evalform.rltTyp" dictionary="custType" disable="true"  reg-exp="common.require">
+        </ht-select>-->
+        <!--<ht-input name="客户名称" ng-model="evalform.cname" disable="true"></ht-input>-->
+        <ht-input name="会计月份" ht-id="finDt"  ng-model="evalform.finDt" reg-exp="FinMonthValidate" disable="{{disable1}}"></ht-input>
+        <ht-select  name="评估模型名" ht-id="mdlNm" dictionary="checked" datasource="selectMdlNms" datatrsoption="value"
+                    dataoption="key" ng-model="evalform.mdlNm" on-change="chooseMdlNm" reg-exp="MdlNmValidate,common.require"
+                    disable="{{disable1}}">
+        </ht-select>
+        <ht-input name="评估模型编号" ht-id="mdlId"  ng-model="evalform.mdlId" reg-exp="common.require" disable="true"></ht-input>
+        <ht-input name="机评得分" ht-id="evalScr"  ng-model="evalform.evalScr" reg-exp="common.require" disable="true"></ht-input>
+        <ht-input name="机评级别" ht-id="evalRslt"  ng-model="evalform.evalRslt" reg-exp="common.require" disable="true"></ht-input>
+        <ht-input name="认定得分" ht-id="cognScr"  ng-model="evalform.cognScr" reg-exp="credictEvalScore" disable="{{disable1}}"></ht-input>
+        <ht-input name="认定级别" ht-id="cognRslt"  ng-model="evalform.cognRslt" reg-exp="credictEvalLeval" disable="{{disable1}}"></ht-input>
+        <ht-input name="认定有效期" ht-id="eftDt" edit-type="date" ng-model="evalform.eftDt" disable="{{disable1}}"></ht-input>
+        <ht-input name="认定理由" ht-id="rem"  ng-model="evalform.rem" disable="{{disable1}}"></ht-input>
+
+        <ht-select name="有效状态" ht-id="isVld"  ng-model="evalform.isVld" datatrsoption="value"  dataoption="key" dictionary="status"
+                   disable="true"></ht-select>
+        <ht-select name="审核状态" ht-id="stat"  ng-model="evalform.stat"  datatrsoption="value"  dataoption="key" dictionary="stat"
+                   disable="true"></ht-select>
+
+    </ht-panel>
+
+    <br/>
+
+    <ht-panel>
+
+        <ht-input  name="评估机构" ht-id="brNm" ng-model="evalform.brNm" disable="true"></ht-input>
+        <ht-input  name="更新机构" ht-id="lstUpdBrNm"  ng-model="evalform.lstUpdBrNm" disable="true"></ht-input>
+        <ht-input  name="评估人" ht-id="tlrNm" ng-model="evalform.tlrNm" disable="true"></ht-input>
+        <ht-input  name="更新人" ht-id="lastUpdTlrNm" ng-model="evalform.lastUpdTlrNm" disable="true"></ht-input>
+        <ht-input  name="评估日期"  ht-id="evalDt" ng-model="evalform.evalDt" disable="true" edit-type="date"></ht-input>
+        <ht-input  name="更新日期"  ht-id="lstUpdDt" ng-model="evalform.lstUpdDt" disable="true" edit-type="date"></ht-input>
+    </ht-panel>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirmEval" class="btn-primary"  hide="{{hide}}">评估</ht-button>
+    <ht-button ht-id="confirmSbmt" class="btn-primary" disable="{{disable2}}" hide="{{hide}}">提交</ht-button>
+    <ht-button ht-id="confirmSave" class="btn-primary" disable="{{disable3}}" hide="{{hide}}">保存</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary" hide="{{hide}}">返回</ht-button>
+</ht-button-group>

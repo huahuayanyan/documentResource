@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PBC_MTG_MKT_PRICE_HIS" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPriceHis" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TXDATE" property="txdate" jdbcType="CHAR" />
+    <result column="TXTIME" property="txtime" jdbcType="TIMESTAMP" />
+    <result column="MORTGAGE_SUB_CLASS" property="mortgageSubClass" jdbcType="CHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="CHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_CLASS_NO" property="mortgageClassNo" jdbcType="CHAR" />
+    <result column="MARKET_PRICE_SRC" property="marketPriceSrc" jdbcType="CHAR" />
+    <result column="SRC_DESCRIPTION" property="srcDescription" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_THREE_NAME" property="mortgageThreeName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PRICE_DATE" property="priceDate" jdbcType="CHAR" />
+    <result column="UP_DOWN_PRICE" property="upDownPrice" jdbcType="DECIMAL" />
+    <result column="ADD_DATE" property="addDate" jdbcType="CHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="MORT_UNITS_NAME" property="mortUnitsName" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TXDATE, TXTIME, MORTGAGE_SUB_CLASS, MORTGAGE_MODEL, PRICE, MORTGAGE_CLASS_NO, 
+    MARKET_PRICE_SRC, SRC_DESCRIPTION, CURCD, MORTGAGE_UNITS, PRODUCT_ID, MORTGAGE_LEVEL_ONE, 
+    MORTGAGE_LEVEL_TWO, MORTGAGE_LEVEL_THREE, MORTGAGE_NO, MORTGAGE_THREE_NAME, PRODUCT_NAME, 
+    PRICE_DATE, UP_DOWN_PRICE, ADD_DATE, DESCRIPTION, MORT_UNITS_NAME, TLRCD, CRT_TIME, 
+    BRCODE, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPriceHisExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PBC_MTG_MKT_PRICE_HIS.Base_Column_List" />
+    from B_PBC_MTG_MKT_PRICE_HIS
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_MKT_PRICE_HIS.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPriceHis" >
+    select 
+    <include refid="B_PBC_MTG_MKT_PRICE_HIS.Base_Column_List" />
+    from B_PBC_MTG_MKT_PRICE_HIS
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPriceHis" >
+    delete from B_PBC_MTG_MKT_PRICE_HIS
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPriceHisExample" >
+    delete from B_PBC_MTG_MKT_PRICE_HIS
+    <include refid="B_PBC_MTG_MKT_PRICE_HIS.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPriceHis" >
+    insert into B_PBC_MTG_MKT_PRICE_HIS (ID, TXDATE, TXTIME, MORTGAGE_SUB_CLASS, 
+      MORTGAGE_MODEL, PRICE, MORTGAGE_CLASS_NO, MARKET_PRICE_SRC, 
+      SRC_DESCRIPTION, CURCD, MORTGAGE_UNITS, PRODUCT_ID, 
+      MORTGAGE_LEVEL_ONE, MORTGAGE_LEVEL_TWO, MORTGAGE_LEVEL_THREE, 
+      MORTGAGE_NO, MORTGAGE_THREE_NAME, PRODUCT_NAME, PRICE_DATE, 
+      UP_DOWN_PRICE, ADD_DATE, DESCRIPTION, MORT_UNITS_NAME, 
+      TLRCD, CRT_TIME, BRCODE, LAST_UPD_TLRCD, 
+      LAST_UPD_TIME, LAST_UPD_BRCODE)
+    values (#id:VARCHAR#, #txdate:CHAR#, #txtime:TIMESTAMP#, #mortgageSubClass:CHAR#, 
+      #mortgageModel:CHAR#, #price:DECIMAL#, #mortgageClassNo:CHAR#, #marketPriceSrc:CHAR#, 
+      #srcDescription:VARCHAR#, #curcd:CHAR#, #mortgageUnits:CHAR#, #productId:CHAR#, 
+      #mortgageLevelOne:VARCHAR#, #mortgageLevelTwo:VARCHAR#, #mortgageLevelThree:VARCHAR#, 
+      #mortgageNo:VARCHAR#, #mortgageThreeName:VARCHAR#, #productName:VARCHAR#, #priceDate:CHAR#, 
+      #upDownPrice:DECIMAL#, #addDate:CHAR#, #description:VARCHAR#, #mortUnitsName:VARCHAR#, 
+      #tlrcd:VARCHAR#, #crtTime:TIMESTAMP#, #brcode:VARCHAR#, #lastUpdTlrcd:VARCHAR#, 
+      #lastUpdTime:TIMESTAMP#, #lastUpdBrcode:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPriceHis" >
+    insert into B_PBC_MTG_MKT_PRICE_HIS
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="txdate" >
+        TXDATE
+      </isNotNull>
+      <isNotNull prepend="," property="txtime" >
+        TXTIME
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageSubClass" >
+        MORTGAGE_SUB_CLASS
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        MORTGAGE_MODEL
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageClassNo" >
+        MORTGAGE_CLASS_NO
+      </isNotNull>
+      <isNotNull prepend="," property="marketPriceSrc" >
+        MARKET_PRICE_SRC
+      </isNotNull>
+      <isNotNull prepend="," property="srcDescription" >
+        SRC_DESCRIPTION
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageThreeName" >
+        MORTGAGE_THREE_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        PRODUCT_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="priceDate" >
+        PRICE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="upDownPrice" >
+        UP_DOWN_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="addDate" >
+        ADD_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION
+      </isNotNull>
+      <isNotNull prepend="," property="mortUnitsName" >
+        MORT_UNITS_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txdate" >
+        #txdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txtime" >
+        #txtime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageSubClass" >
+        #mortgageSubClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        #mortgageModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        #price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageClassNo" >
+        #mortgageClassNo:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="marketPriceSrc" >
+        #marketPriceSrc:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="srcDescription" >
+        #srcDescription:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        #mortgageUnits:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        #productId:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        #mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        #mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        #mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageThreeName" >
+        #mortgageThreeName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        #productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceDate" >
+        #priceDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="upDownPrice" >
+        #upDownPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="addDate" >
+        #addDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        #description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortUnitsName" >
+        #mortUnitsName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPriceHisExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PBC_MTG_MKT_PRICE_HIS
+    <include refid="B_PBC_MTG_MKT_PRICE_HIS.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PBC_MTG_MKT_PRICE_HIS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.txdate" >
+        TXDATE = #record.txdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.txtime" >
+        TXTIME = #record.txtime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageSubClass" >
+        MORTGAGE_SUB_CLASS = #record.mortgageSubClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageModel" >
+        MORTGAGE_MODEL = #record.mortgageModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.price" >
+        PRICE = #record.price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageClassNo" >
+        MORTGAGE_CLASS_NO = #record.mortgageClassNo:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.marketPriceSrc" >
+        MARKET_PRICE_SRC = #record.marketPriceSrc:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.srcDescription" >
+        SRC_DESCRIPTION = #record.srcDescription:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageUnits" >
+        MORTGAGE_UNITS = #record.mortgageUnits:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productId" >
+        PRODUCT_ID = #record.productId:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE = #record.mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO = #record.mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE = #record.mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageNo" >
+        MORTGAGE_NO = #record.mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageThreeName" >
+        MORTGAGE_THREE_NAME = #record.mortgageThreeName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productName" >
+        PRODUCT_NAME = #record.productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.priceDate" >
+        PRICE_DATE = #record.priceDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.upDownPrice" >
+        UP_DOWN_PRICE = #record.upDownPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.addDate" >
+        ADD_DATE = #record.addDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.description" >
+        DESCRIPTION = #record.description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortUnitsName" >
+        MORT_UNITS_NAME = #record.mortUnitsName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crtTime" >
+        CRT_TIME = #record.crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTime" >
+        LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_MKT_PRICE_HIS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PBC_MTG_MKT_PRICE_HIS
+    set ID = #record.id:VARCHAR#,
+      TXDATE = #record.txdate:CHAR#,
+      TXTIME = #record.txtime:TIMESTAMP#,
+      MORTGAGE_SUB_CLASS = #record.mortgageSubClass:CHAR#,
+      MORTGAGE_MODEL = #record.mortgageModel:CHAR#,
+      PRICE = #record.price:DECIMAL#,
+      MORTGAGE_CLASS_NO = #record.mortgageClassNo:CHAR#,
+      MARKET_PRICE_SRC = #record.marketPriceSrc:CHAR#,
+      SRC_DESCRIPTION = #record.srcDescription:VARCHAR#,
+      CURCD = #record.curcd:CHAR#,
+      MORTGAGE_UNITS = #record.mortgageUnits:CHAR#,
+      PRODUCT_ID = #record.productId:CHAR#,
+      MORTGAGE_LEVEL_ONE = #record.mortgageLevelOne:VARCHAR#,
+      MORTGAGE_LEVEL_TWO = #record.mortgageLevelTwo:VARCHAR#,
+      MORTGAGE_LEVEL_THREE = #record.mortgageLevelThree:VARCHAR#,
+      MORTGAGE_NO = #record.mortgageNo:VARCHAR#,
+      MORTGAGE_THREE_NAME = #record.mortgageThreeName:VARCHAR#,
+      PRODUCT_NAME = #record.productName:VARCHAR#,
+      PRICE_DATE = #record.priceDate:CHAR#,
+      UP_DOWN_PRICE = #record.upDownPrice:DECIMAL#,
+      ADD_DATE = #record.addDate:CHAR#,
+      DESCRIPTION = #record.description:VARCHAR#,
+      MORT_UNITS_NAME = #record.mortUnitsName:VARCHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      CRT_TIME = #record.crtTime:TIMESTAMP#,
+      BRCODE = #record.brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_MKT_PRICE_HIS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPriceHis" >
+    update B_PBC_MTG_MKT_PRICE_HIS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="txdate" >
+        TXDATE = #txdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txtime" >
+        TXTIME = #txtime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageSubClass" >
+        MORTGAGE_SUB_CLASS = #mortgageSubClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        MORTGAGE_MODEL = #mortgageModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        PRICE = #price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageClassNo" >
+        MORTGAGE_CLASS_NO = #mortgageClassNo:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="marketPriceSrc" >
+        MARKET_PRICE_SRC = #marketPriceSrc:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="srcDescription" >
+        SRC_DESCRIPTION = #srcDescription:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS = #mortgageUnits:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID = #productId:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO = #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageThreeName" >
+        MORTGAGE_THREE_NAME = #mortgageThreeName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        PRODUCT_NAME = #productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceDate" >
+        PRICE_DATE = #priceDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="upDownPrice" >
+        UP_DOWN_PRICE = #upDownPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="addDate" >
+        ADD_DATE = #addDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION = #description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortUnitsName" >
+        MORT_UNITS_NAME = #mortUnitsName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME = #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPriceHis" >
+    update B_PBC_MTG_MKT_PRICE_HIS
+    set TXDATE = #txdate:CHAR#,
+      TXTIME = #txtime:TIMESTAMP#,
+      MORTGAGE_SUB_CLASS = #mortgageSubClass:CHAR#,
+      MORTGAGE_MODEL = #mortgageModel:CHAR#,
+      PRICE = #price:DECIMAL#,
+      MORTGAGE_CLASS_NO = #mortgageClassNo:CHAR#,
+      MARKET_PRICE_SRC = #marketPriceSrc:CHAR#,
+      SRC_DESCRIPTION = #srcDescription:VARCHAR#,
+      CURCD = #curcd:CHAR#,
+      MORTGAGE_UNITS = #mortgageUnits:CHAR#,
+      PRODUCT_ID = #productId:CHAR#,
+      MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#,
+      MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#,
+      MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#,
+      MORTGAGE_NO = #mortgageNo:VARCHAR#,
+      MORTGAGE_THREE_NAME = #mortgageThreeName:VARCHAR#,
+      PRODUCT_NAME = #productName:VARCHAR#,
+      PRICE_DATE = #priceDate:CHAR#,
+      UP_DOWN_PRICE = #upDownPrice:DECIMAL#,
+      ADD_DATE = #addDate:CHAR#,
+      DESCRIPTION = #description:VARCHAR#,
+      MORT_UNITS_NAME = #mortUnitsName:VARCHAR#,
+      TLRCD = #tlrcd:VARCHAR#,
+      CRT_TIME = #crtTime:TIMESTAMP#,
+      BRCODE = #brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

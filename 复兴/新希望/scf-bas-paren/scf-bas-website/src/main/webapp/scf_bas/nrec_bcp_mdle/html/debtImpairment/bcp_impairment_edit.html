@@ -1,0 +1,64 @@
+
+<ht-form name="otherform">
+    <ht-panel>
+        <ht-legend>基本信息</ht-legend>
+        <ht-input ht-id="cnameSeller" name="融资企业" disable="true" ng-model="otherform.cnameSeller"></ht-input>
+        <ht-input ht-id="cnameBuyer" name="贸易对手" reg-exp="common.require" ng-model="otherform.cnameBuyer" disable="true"></ht-input>
+        <ht-input ht-id="mastContno" name="业务合同号" disable="true" ng-model="otherform.mastContno"></ht-input>
+        <ht-select ht-id="bussType" name="业务品种" disable="true" ng-model="otherform.bussType" dictionary="vidBusTyp"></ht-select>
+        <ht-input ht-id="startDate" name="合同生效日" disable="true" edit-type="date" ng-model="otherform.startDate"></ht-input>
+        <ht-input ht-id="endDate" name="合同到期日" disable="true" edit-type="date" ng-model="otherform.endDate"></ht-input>
+    </ht-panel>
+    <ht-panel>
+        <ht-legend>减值信息</ht-legend>
+        <ht-input ht-id="insertDate" name="减值日期" disable="{{disable}}" edit-type="date" ng-model="otherform.insertDate"></ht-input>
+        <ht-input ht-id="totalNum" name="减值总份数" disable ="true"  ng-model="otherform.totalNum"></ht-input>
+        <ht-input ht-id="totalAmount" name="减值总金额" disable ="true" edit-type="currency"
+                  ng-model="otherform.totalAmount"></ht-input>
+        <ht-text-area ht-id="reason" name="减值原因" disable="{{disable}}" ng-model="otherform.reason" style="resize: none"></ht-text-area>
+        <ht-text-area ht-id="memo" name="备注" disable="{{disable}}" ng-model="otherform.memo" style="resize: none"></ht-text-area>
+    </ht-panel>
+</ht-form>
+
+<ht-legend>减值应收账款列表</ht-legend>
+<ht-button-group >
+    <ht-button ht-id="add" hide="{{hide}}" class="btn-primary">新增</ht-button>
+    <ht-button ht-id="edit" hide="{{hide}}" class="btn-primary">修改</ht-button>
+    <ht-button ht-id="viewdebt" hide="{{hide}}" class="btn-primary">查看</ht-button>
+    <ht-button ht-id="delete" hide="{{hide}}" class="btn-primary">删除</ht-button>
+    <ht-button ht-id="progress"  class="btn-primary">历程</ht-button>
+</ht-button-group>
+<ht-table datasource="datasourcedebt" selected="selecteddebt" docheckbox="true" minheit="10px">
+    <ht-column eg-name="billsNo" zh-name="凭证编号" ></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType" ></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同号" ></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期" type="date"></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="应收账款余额" type="currency"></ht-column>
+    <ht-column eg-name="rebateAmounts" zh-name="减值金额" type="currency"></ht-column>
+    <ht-column eg-name="rebatebalance" zh-name="减值后余额" type="currency"></ht-column>
+    <!--<ht-column eg-name="debetNo" zh-name="借据号/承兑协议号"></ht-column>-->
+</ht-table>
+<ht-page conf="confdebt" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-legend>关联的融资信息</ht-legend>
+<ht-table datasource="datasourcelnci" selected="selectedlnci" docheckbox="true" minheit="10px">
+    <ht-column eg-name="loanAppno" zh-name="出账流水号" ></ht-column>
+    <ht-column eg-name="debetId" zh-name="借据号/承兑协议号" dictionary="billsType" ></ht-column>
+    <ht-column eg-name="mastContno" zh-name="信贷合同号" ></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="startDate" zh-name="起始日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="lnciBal" zh-name="借据余额" type="currency"></ht-column>
+    <ht-column eg-name="inTableInt" zh-name="欠息总额" type="currency"></ht-column>
+    <ht-column eg-name="avaliableRiskAmt" zh-name="敞口余额" type="currency"></ht-column>
+    <ht-column eg-name="lnciStatus" zh-name="	借据状态" dictionary="lnciStatus"></ht-column>
+</ht-table>
+<ht-page conf="conflnci" style="height: 50px;padding-top: 5px"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{hide}}" disable="{{savedisable}}">保存</ht-button>
+    <ht-button ht-id="submit" class="btn-primary" hide="{{hide}}" disable="{{disableButton}}">提交</ht-button>
+</ht-button-group>

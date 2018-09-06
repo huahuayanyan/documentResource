@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PRD_BIZ_SUR" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.prd.dao.model.BPrdBizSur" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MATL_NAME" property="matlName" jdbcType="VARCHAR" />
+    <result column="MATL_TYPE" property="matlType" jdbcType="CHAR" />
+    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, MATL_NAME, MATL_TYPE, FILE_NAME, PRODUCT_ID, PRODUCT_NAME, REMARK, TLRCD, CRT_TIME, 
+    BRCODE, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdBizSurExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PRD_BIZ_SUR.Base_Column_List" />
+    from B_PRD_BIZ_SUR
+    <isParameterPresent >
+      <include refid="B_PRD_BIZ_SUR.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdBizSur" >
+    select 
+    <include refid="B_PRD_BIZ_SUR.Base_Column_List" />
+    from B_PRD_BIZ_SUR
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdBizSur" >
+    delete from B_PRD_BIZ_SUR
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdBizSurExample" >
+    delete from B_PRD_BIZ_SUR
+    <include refid="B_PRD_BIZ_SUR.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdBizSur" >
+    insert into B_PRD_BIZ_SUR (ID, MATL_NAME, MATL_TYPE, FILE_NAME, PRODUCT_ID, 
+      PRODUCT_NAME, REMARK, TLRCD, CRT_TIME, 
+      BRCODE, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+      )
+    values (#id:VARCHAR#, #matlName:VARCHAR#, #matlType:CHAR#, #fileName:VARCHAR#, #productId:VARCHAR#, 
+      #productName:VARCHAR#, #remark:VARCHAR#, #tlrcd:VARCHAR#, #crtTime:TIMESTAMP#, 
+      #brcode:VARCHAR#, #lastUpdTlrcd:VARCHAR#, #lastUpdTime:TIMESTAMP#, #lastUpdBrcode:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdBizSur" >
+    insert into B_PRD_BIZ_SUR
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="matlName" >
+        MATL_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="matlType" >
+        MATL_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="fileName" >
+        FILE_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        PRODUCT_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        REMARK
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="matlName" >
+        #matlName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="matlType" >
+        #matlType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileName" >
+        #fileName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        #productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        #productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        #remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdBizSurExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PRD_BIZ_SUR
+    <include refid="B_PRD_BIZ_SUR.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PRD_BIZ_SUR
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.matlName" >
+        MATL_NAME = #record.matlName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.matlType" >
+        MATL_TYPE = #record.matlType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fileName" >
+        FILE_NAME = #record.fileName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productId" >
+        PRODUCT_ID = #record.productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productName" >
+        PRODUCT_NAME = #record.productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remark" >
+        REMARK = #record.remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crtTime" >
+        CRT_TIME = #record.crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTime" >
+        LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PRD_BIZ_SUR.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PRD_BIZ_SUR
+    set ID = #record.id:VARCHAR#,
+      MATL_NAME = #record.matlName:VARCHAR#,
+      MATL_TYPE = #record.matlType:CHAR#,
+      FILE_NAME = #record.fileName:VARCHAR#,
+      PRODUCT_ID = #record.productId:VARCHAR#,
+      PRODUCT_NAME = #record.productName:VARCHAR#,
+      REMARK = #record.remark:VARCHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      CRT_TIME = #record.crtTime:TIMESTAMP#,
+      BRCODE = #record.brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_PRD_BIZ_SUR.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdBizSur" >
+    update B_PRD_BIZ_SUR
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="matlName" >
+        MATL_NAME = #matlName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="matlType" >
+        MATL_TYPE = #matlType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileName" >
+        FILE_NAME = #fileName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID = #productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        PRODUCT_NAME = #productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        REMARK = #remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME = #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdBizSur" >
+    update B_PRD_BIZ_SUR
+    set MATL_NAME = #matlName:VARCHAR#,
+      MATL_TYPE = #matlType:CHAR#,
+      FILE_NAME = #fileName:VARCHAR#,
+      PRODUCT_ID = #productId:VARCHAR#,
+      PRODUCT_NAME = #productName:VARCHAR#,
+      REMARK = #remark:VARCHAR#,
+      TLRCD = #tlrcd:VARCHAR#,
+      CRT_TIME = #crtTime:TIMESTAMP#,
+      BRCODE = #brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  
+</sqlMap>

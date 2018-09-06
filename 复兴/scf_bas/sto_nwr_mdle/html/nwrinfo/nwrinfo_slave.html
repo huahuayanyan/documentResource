@@ -1,0 +1,35 @@
+
+<ht-form name="row">
+    <ht-panel>
+    <ht-legend>抵质押合同信息</ht-legend>
+        <ht-input name="抵/质押合同内部编号" reg-exp="common.require" ng-model="row.conId" disable="true"></ht-input>
+        <ht-input ht-id="prtclNo" name="监管合同号" reg-exp="common.require" ng-model="row.prtclNo" readonly="false" disable="{{disable}}">
+        </ht-input>
+        <ht-select name="业务品种" ng-model="row.vidPrdId" dictionary="vidBusTyp" disable="true"></ht-select>
+        <ht-input name="监管公司名称" reg-exp="common.require" ng-model="row.prtclBrNm"disable="true"></ht-input>
+        <ht-input name="抵/质押率（%）" reg-exp="common.require" ng-model="row.ration" disable="{{disable}}" edit-type="number"></ht-input>
+        <ht-input name="市值抵/质押率警戒线（%）" reg-exp="common.require" ng-model="row.guardRat" disable="{{disable}}" edit-type="number"></ht-input>
+        <ht-input ht-id="gutNm" name="出质人名称" reg-exp="common.require" ng-model="row.gutNm" disable="true"></ht-input>
+        <ht-input name="抵/质押合同号" reg-exp="common.require" ng-model="row.conId" disable="true"></ht-input>
+        <ht-select name="担保类型" reg-exp="common.require" ng-model="row.conTyp" dictionary="gntyConTyp" disable="true"></ht-select>
+        <ht-select name="状态" reg-exp="common.require" ng-model="row.conStat" dictionary="appTyp" disable="{{disable}}"></ht-select>
+        <ht-select name="币种" reg-exp="common.require" ng-model="row.gutCurcd" dictionary="curcd" disable="true"></ht-select>
+        <ht-input name="合同金额" reg-exp="common.require" ng-model="row.gutVal" edit-type="currency" disable="true"></ht-input>
+        <ht-input ht-id="strtDt" name="合同生效日" reg-exp="common.require" ng-model="row.strtDt" edit-type="date"
+                  disable="true" high-date-id="endDt"></ht-input>
+        <ht-input ht-id="endDt" name="合同到期日" reg-exp="common.require" ng-model="row.endDt" edit-type="date"
+                  disable="true" lower-date-id="strtDt"></ht-input>
+        <ht-input ht-id="tlrNm" name="客户经理" ng-model="row.tlrNm" disable="true"></ht-input>
+        <ht-input ht-id="brNm" name="经办机构" ng-model="row.brNm" disable="true"></ht-input>
+    </ht-panel>
+    <div id="intcd" style="display: none">
+    <ht-panel>
+    <ht-legend>利率信息</ht-legend>
+        <ht-input name="利率代码" reg-exp="common.require" ng-model="otherform.intCd" disable="true"></ht-input>
+        <ht-input name="基准年利率(%)" reg-exp="common.require" ng-model="otherform.basInt" disable="true" edit-type="number"></ht-input>
+        <ht-select name="利率浮动方式" reg-exp="common.require" ng-model="otherform.intFltTyp"
+                   dictionary="intFltTyp" disable="true" on-change="changeFltTyp"></ht-select>
+        <ht-input ht-id="fltIntRt" name="浮动利率(%)" reg-exp="common.require" ng-model="otherform.fltIntRt" disable="true" edit-type="number"></ht-input>
+    </ht-panel>
+    </div>
+</ht-form>

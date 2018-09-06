@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_MPROT_PART_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="ROLE" property="role" jdbcType="CHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="LEGAL" property="legal" jdbcType="VARCHAR" />
+    <result column="ACT_BANKNO" property="actBankno" jdbcType="VARCHAR" />
+    <result column="ACTNO" property="actno" jdbcType="VARCHAR" />
+    <result column="BAIL_ACTNO" property="bailActno" jdbcType="VARCHAR" />
+    <result column="ATTN" property="attn" jdbcType="VARCHAR" />
+    <result column="ATTN_TEL" property="attnTel" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="CHAR" />
+    <result column="IDNO" property="idno" jdbcType="VARCHAR" />
+    <result column="LICENSE_NO" property="licenseNo" jdbcType="VARCHAR" />
+    <result column="WEBSITE" property="website" jdbcType="VARCHAR" />
+    <result column="MAILBOX" property="mailbox" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PROTOCOL_NO, ROLE, CUSTCD, CNAME, ADDRESS, LEGAL, ACT_BANKNO, ACTNO, BAIL_ACTNO, 
+    ATTN, ATTN_TEL, FAX, POST_CODE, IDNO, LICENSE_NO, WEBSITE, MAILBOX
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_MPROT_PART_INFO.Base_Column_List" />
+    from B_CNT_MPROT_PART_INFO
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_PART_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfo" >
+    select 
+    <include refid="B_CNT_MPROT_PART_INFO.Base_Column_List" />
+    from B_CNT_MPROT_PART_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfo" >
+    delete from B_CNT_MPROT_PART_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfoExample" >
+    delete from B_CNT_MPROT_PART_INFO
+    <include refid="B_CNT_MPROT_PART_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfo" >
+    insert into B_CNT_MPROT_PART_INFO (ID, PROTOCOL_NO, ROLE, CUSTCD, CNAME, 
+      ADDRESS, LEGAL, ACT_BANKNO, ACTNO, BAIL_ACTNO, 
+      ATTN, ATTN_TEL, FAX, POST_CODE, IDNO, 
+      LICENSE_NO, WEBSITE, MAILBOX)
+    values (#id:VARCHAR#, #protocolNo:VARCHAR#, #role:CHAR#, #custcd:VARCHAR#, #cname:VARCHAR#, 
+      #address:VARCHAR#, #legal:VARCHAR#, #actBankno:VARCHAR#, #actno:VARCHAR#, #bailActno:VARCHAR#, 
+      #attn:VARCHAR#, #attnTel:VARCHAR#, #fax:VARCHAR#, #postCode:CHAR#, #idno:VARCHAR#, 
+      #licenseNo:VARCHAR#, #website:VARCHAR#, #mailbox:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfo" >
+    insert into B_CNT_MPROT_PART_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="role" >
+        ROLE
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="address" >
+        ADDRESS
+      </isNotNull>
+      <isNotNull prepend="," property="legal" >
+        LEGAL
+      </isNotNull>
+      <isNotNull prepend="," property="actBankno" >
+        ACT_BANKNO
+      </isNotNull>
+      <isNotNull prepend="," property="actno" >
+        ACTNO
+      </isNotNull>
+      <isNotNull prepend="," property="bailActno" >
+        BAIL_ACTNO
+      </isNotNull>
+      <isNotNull prepend="," property="attn" >
+        ATTN
+      </isNotNull>
+      <isNotNull prepend="," property="attnTel" >
+        ATTN_TEL
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        FAX
+      </isNotNull>
+      <isNotNull prepend="," property="postCode" >
+        POST_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="idno" >
+        IDNO
+      </isNotNull>
+      <isNotNull prepend="," property="licenseNo" >
+        LICENSE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="website" >
+        WEBSITE
+      </isNotNull>
+      <isNotNull prepend="," property="mailbox" >
+        MAILBOX
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="role" >
+        #role:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="address" >
+        #address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="legal" >
+        #legal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actBankno" >
+        #actBankno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actno" >
+        #actno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailActno" >
+        #bailActno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="attn" >
+        #attn:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="attnTel" >
+        #attnTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        #fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="postCode" >
+        #postCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="idno" >
+        #idno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="licenseNo" >
+        #licenseNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="website" >
+        #website:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mailbox" >
+        #mailbox:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_MPROT_PART_INFO
+    <include refid="B_CNT_MPROT_PART_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_MPROT_PART_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.role" >
+        ROLE = #record.role:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cname" >
+        CNAME = #record.cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.address" >
+        ADDRESS = #record.address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.legal" >
+        LEGAL = #record.legal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.actBankno" >
+        ACT_BANKNO = #record.actBankno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.actno" >
+        ACTNO = #record.actno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailActno" >
+        BAIL_ACTNO = #record.bailActno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.attn" >
+        ATTN = #record.attn:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.attnTel" >
+        ATTN_TEL = #record.attnTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fax" >
+        FAX = #record.fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.postCode" >
+        POST_CODE = #record.postCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.idno" >
+        IDNO = #record.idno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.licenseNo" >
+        LICENSE_NO = #record.licenseNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.website" >
+        WEBSITE = #record.website:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mailbox" >
+        MAILBOX = #record.mailbox:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_PART_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_MPROT_PART_INFO
+    set ID = #record.id:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      ROLE = #record.role:CHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      CNAME = #record.cname:VARCHAR#,
+      ADDRESS = #record.address:VARCHAR#,
+      LEGAL = #record.legal:VARCHAR#,
+      ACT_BANKNO = #record.actBankno:VARCHAR#,
+      ACTNO = #record.actno:VARCHAR#,
+      BAIL_ACTNO = #record.bailActno:VARCHAR#,
+      ATTN = #record.attn:VARCHAR#,
+      ATTN_TEL = #record.attnTel:VARCHAR#,
+      FAX = #record.fax:VARCHAR#,
+      POST_CODE = #record.postCode:CHAR#,
+      IDNO = #record.idno:VARCHAR#,
+      LICENSE_NO = #record.licenseNo:VARCHAR#,
+      WEBSITE = #record.website:VARCHAR#,
+      MAILBOX = #record.mailbox:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_PART_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfo" >
+    update B_CNT_MPROT_PART_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="role" >
+        ROLE = #role:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME = #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="address" >
+        ADDRESS = #address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="legal" >
+        LEGAL = #legal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actBankno" >
+        ACT_BANKNO = #actBankno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actno" >
+        ACTNO = #actno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailActno" >
+        BAIL_ACTNO = #bailActno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="attn" >
+        ATTN = #attn:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="attnTel" >
+        ATTN_TEL = #attnTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fax" >
+        FAX = #fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="postCode" >
+        POST_CODE = #postCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="idno" >
+        IDNO = #idno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="licenseNo" >
+        LICENSE_NO = #licenseNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="website" >
+        WEBSITE = #website:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mailbox" >
+        MAILBOX = #mailbox:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfo" >
+    update B_CNT_MPROT_PART_INFO
+    set PROTOCOL_NO = #protocolNo:VARCHAR#,
+      ROLE = #role:CHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      CNAME = #cname:VARCHAR#,
+      ADDRESS = #address:VARCHAR#,
+      LEGAL = #legal:VARCHAR#,
+      ACT_BANKNO = #actBankno:VARCHAR#,
+      ACTNO = #actno:VARCHAR#,
+      BAIL_ACTNO = #bailActno:VARCHAR#,
+      ATTN = #attn:VARCHAR#,
+      ATTN_TEL = #attnTel:VARCHAR#,
+      FAX = #fax:VARCHAR#,
+      POST_CODE = #postCode:CHAR#,
+      IDNO = #idno:VARCHAR#,
+      LICENSE_NO = #licenseNo:VARCHAR#,
+      WEBSITE = #website:VARCHAR#,
+      MAILBOX = #mailbox:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+    <select id="selectByRole" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+    select 
+    <include refid="B_CNT_MPROT_PART_INFO.Base_Column_List" />
+    from B_CNT_MPROT_PART_INFO
+    where PROTOCOL_NO = #protocolNo:VARCHAR# and ROLE=#role:VARCHAR#
+  </select>
+  
+</sqlMap>

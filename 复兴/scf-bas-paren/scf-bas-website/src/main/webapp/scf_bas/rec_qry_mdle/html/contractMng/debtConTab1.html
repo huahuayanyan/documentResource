@@ -1,0 +1,72 @@
+<ht-form name="otherform">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input ht-id="debtContno" name="业务合同号" ng-model="otherform.debtContno" disable="true"></ht-input>
+    <ht-input ht-id="cname" name="卖方名称" ng-model="otherform.cname" disable="true"  ></ht-input>
+    <ht-input ht-id="productName" name="业务品种"   disable="true" ng-model="otherform.productName"></ht-input>
+    <ht-input ht-id="returnAccount" name="回款专户"  disable="true" ng-model="otherform.returnAccount"></ht-input>
+    <ht-input ht-id="startDate" edit-type="date"
+              name="业务合同生效日"
+              high-date-id="endDate"
+              ng-model="otherform.startDate" disable="true"></ht-input>
+    <ht-input ht-id="endDate" edit-type="date"
+              name="业务合同到期日"
+              lower-date-id="startDate"
+              ng-model="otherform.endDate" disable="true"></ht-input>
+    <ht-select ht-id="curcd" name="币种" dictionary="curcd"  disable="true" ng-model="otherform.curcd"></ht-select>
+    <ht-input ht-id="contAmount" name="合同金额" ng-model="otherform.contAmount" edit-type="currency"  disable="true"></ht-input>
+    <ht-input ht-id="mgrno" name="客户经理" ng-model="otherform.mgrno" disable="true"></ht-input>
+    <ht-input ht-id="brcode" name="经办机构" ng-model="otherform.brcode" disable="true" ></ht-input>
+</ht-form>
+<ht-legend>信贷合同</ht-legend>
+<ht-table ht-id="credittableId" datasource="creditdatasource" selected="creditselected" docheckbox="false">
+    <ht-column eg-name="mastContcode" zh-name="信贷合同号" ></ht-column>
+    <ht-column eg-name="contAmount" zh-name="信贷合同金额" type="currency"></ht-column>
+    <ht-column eg-name="riskAmt" zh-name="信贷合同总敞口" type="currency"></ht-column>
+    <ht-column eg-name="avaliableRiskAmt" zh-name="信贷合同可用敞口" type="currency"></ht-column>
+    <ht-column eg-name="totCashEqtAmt" zh-name="保证金余额" type="currency"></ht-column>
+    <ht-column eg-name="totCashEqtAmt" zh-name="现金等价物余额" type="currency"></ht-column>
+    <ht-column eg-name="startDate" zh-name="合同生效日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="合同到期日" type="date"></ht-column>
+</ht-table>
+<ht-page conf="creditconf"></ht-page>
+<ht-legend>借据信息</ht-legend>
+<ht-table ht-id="lncitableId" datasource="lncidatasource" selected="lnciselected" docheckbox="false">
+    <ht-column eg-name="loanAppno" zh-name="出账流水号"></ht-column>
+    <ht-column eg-name="debetId" zh-name="借据号/承兑协议号	"></ht-column>
+    <ht-column eg-name="mastContno" zh-name="信贷合同号"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="startDate" zh-name="起始日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="借据金额" type="currency"></ht-column>
+    <ht-column eg-name="lnciBal" zh-name="借据余额" type="currency"></ht-column>
+    <ht-column eg-name="inTableInt" zh-name="欠息总额" type="currency"></ht-column>
+    <ht-column eg-name="lnciStatus" zh-name="借据状态" dictionary="lnciStatus"></ht-column>
+    <ht-column eg-name="rate" zh-name="利率(%)" type="number"></ht-column>
+    <ht-column eg-name="firstBailRatio" zh-name="初始保证金比例(%)" type="number"></ht-column>
+    <ht-column eg-name="totBailAmt" zh-name="保证金金额" type="currency"></ht-column>
+    <ht-column eg-name="totCashEqualAmt" zh-name="现金等价物金额" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="lnciconf"></ht-page>
+<ht-legend>应收账款清单</ht-legend>
+<ht-table ht-id="debtOvertableId" datasource="debtOverdatasource" selected="debtOverselected" docheckbox="false">
+    <ht-column eg-name="cnameBuyer" zh-name="买方名称"></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同号"></ht-column>
+    <ht-column eg-name="billsNo" zh-name="凭证编号"></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType"></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期	" type="date"></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="账面金额" type="currency"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="应收账款余额" type="currency"></ht-column>
+    <ht-column eg-name="status" zh-name="状态" dictionary="debtBussStatus"></ht-column>
+    <ht-column eg-name="debetNo" zh-name="借据号/承兑协议号	"></ht-column>
+</ht-table>
+<ht-page conf="debtOverconf"></ht-page>
+
+
+
+
+
+

@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_CRR" >
+  <resultMap id="CustResultMap" class="java.util.HashMap" >
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="CUST_NM" property="custNm" jdbcType="VARCHAR" />
+    <result column="IDTYPE" property="idtype" jdbcType="VARCHAR" />
+    <result column="IDNO" property="idno" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryCustList" resultMap="CustResultMap"  parameterClass="java.util.Map" >
+    select CUSTCD CUST_ID,CNAME CUST_NM,IDTYPE,IDNO
+    from B_CRM_BASE_INFO  
+   <dynamic prepend="where" >
+      <isNotEmpty prepend="or" property="custId" >
+        CUSTCD  like '%'|| #custId:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="custNm" >
+        CNAME  like '%'|| #custNm:VARCHAR#||'%'    
+      </isNotEmpty>
+    </dynamic>
+    order by CUSTCD   
+  </select>
+  
+  <resultMap id="BaseLnConResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrLnCon" >
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="RELA_ID" property="relaId" jdbcType="VARCHAR" />
+    <result column="PRD_ID" property="prdId" jdbcType="VARCHAR" />
+    <result column="PRD_NM" property="prdNm" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="CUST_NM" property="custNm" jdbcType="VARCHAR" />
+    <result column="PRD_CL" property="prdCl" jdbcType="VARCHAR" />
+    <result column="EXT_ID" property="extId" jdbcType="VARCHAR" />
+    <result column="EXT_TYP" property="extTyp" jdbcType="VARCHAR" />
+    <result column="LN_TYP" property="lnTyp" jdbcType="CHAR" />
+    <result column="LN_NAT" property="lnNat" jdbcType="CHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="EXCHG_RT" property="exchgRt" jdbcType="DECIMAL" />
+    <result column="LN_AMT" property="lnAmt" jdbcType="DECIMAL" />
+    <result column="LN_STRT_DT" property="lnStrtDt" jdbcType="VARCHAR" />
+    <result column="LN_END_DT" property="lnEndDt" jdbcType="VARCHAR" />
+    <result column="TRM_TYP" property="trmTyp" jdbcType="CHAR" />
+    <result column="TRM" property="trm" jdbcType="VARCHAR" />
+    <result column="TRM_YEAR" property="trmYear" jdbcType="DECIMAL" />
+    <result column="TRM_MON" property="trmMon" jdbcType="DECIMAL" />
+    <result column="TRM_DAY" property="trmDay" jdbcType="DECIMAL" />
+    <result column="BAS_INT" property="basInt" jdbcType="DECIMAL" />
+    <result column="RTN_TYP" property="rtnTyp" jdbcType="CHAR" />
+    <result column="RTN_INVL" property="rtnInvl" jdbcType="CHAR" />
+    <result column="RTN_INT_INVL" property="rtnIntInvl" jdbcType="CHAR" />
+    <result column="RTN_PD" property="rtnPd" jdbcType="DECIMAL" />
+    <result column="DOG_TYP" property="dogTyp" jdbcType="VARCHAR" />
+    <result column="DOG" property="dog" jdbcType="DECIMAL" />
+    <result column="GUAT_TYP_MAIN" property="guatTypMain" jdbcType="CHAR" />
+    <result column="GUAT_TYP_OTH" property="guatTypOth" jdbcType="VARCHAR" />
+    <result column="LN_DIR" property="lnDir" jdbcType="VARCHAR" />
+    <result column="DIR_NM" property="dirNm" jdbcType="VARCHAR" />
+    <result column="FEE_AMT" property="feeAmt" jdbcType="DECIMAL" />
+    <result column="FEE_RAT" property="feeRat" jdbcType="DECIMAL" />
+    <result column="FEE_TYP" property="feeTyp" jdbcType="VARCHAR" />
+    <result column="FEE_PD" property="feePd" jdbcType="VARCHAR" />
+    <result column="RTN_SRC" property="rtnSrc" jdbcType="VARCHAR" />
+    <result column="RISK_CLS" property="riskCls" jdbcType="CHAR" />
+    <result column="INVST_CONCL" property="invstConcl" jdbcType="VARCHAR" />
+    <result column="CR_MDL" property="crMdl" jdbcType="CHAR" />
+    <result column="CR_AMT" property="crAmt" jdbcType="DECIMAL" />
+    <result column="CR_NO" property="crNo" jdbcType="VARCHAR" />
+    <result column="BC_CR_ID" property="bcCrId" jdbcType="VARCHAR" />
+    <result column="RTN_DT_TYP" property="rtnDtTyp" jdbcType="CHAR" />
+    <result column="RTN_DT" property="rtnDt" jdbcType="CHAR" />
+    <result column="INT_ADJ" property="intAdj" jdbcType="CHAR" />
+    <result column="INT_ADJ_DT" property="intAdjDt" jdbcType="CHAR" />
+    <result column="INT_CD" property="intCd" jdbcType="CHAR" />
+    <result column="FIX_FLG" property="fixFlg" jdbcType="CHAR" />
+    <result column="FLT_INT_VAL" property="fltIntVal" jdbcType="DECIMAL" />
+    <result column="FLT_INT_RT" property="fltIntRt" jdbcType="DECIMAL" />
+    <result column="FIX_TRM" property="fixTrm" jdbcType="CHAR" />
+    <result column="FIX_INT" property="fixInt" jdbcType="DECIMAL" />
+    <result column="ACT_INT" property="actInt" jdbcType="DECIMAL" />
+    <result column="PFLT_INT_OPT" property="pfltIntOpt" jdbcType="CHAR" />
+    <result column="PFLT_CD" property="pfltCd" jdbcType="CHAR" />
+    <result column="PFLT_FLT" property="pfltFlt" jdbcType="DECIMAL" />
+    <result column="PFLT_INT" property="pfltInt" jdbcType="DECIMAL" />
+    <result column="PFLT_FLT_OPT" property="pfltFltOpt" jdbcType="CHAR" />
+    <result column="IS_COMINT" property="isComint" jdbcType="CHAR" />
+    <result column="APP_DT" property="appDt" jdbcType="VARCHAR" />
+    <result column="INT_FLT_TYP" property="intFltTyp" jdbcType="CHAR" />
+    <result column="ACT_BR_CD" property="actBrCd" jdbcType="VARCHAR" />
+    <result column="APP_STAT" property="appStat" jdbcType="VARCHAR" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="INDRCT_CRDT" property="indrctCrdt" jdbcType="VARCHAR" />
+    <result column="CRDT_CUST_CD" property="crdtCustCd" jdbcType="VARCHAR" />
+    <result column="CRDT_CUST_NM" property="crdtCustNm" jdbcType="VARCHAR" />
+    <result column="VID_NO" property="vidNo" jdbcType="VARCHAR" />
+    <result column="VID_BUSI_TYP" property="vidBusiTyp" jdbcType="VARCHAR" />
+    <result column="CREDIT_PROT_NO" property="creditProtNo" jdbcType="VARCHAR" />
+    <result column="CONTROL_TYPE" property="controlType" jdbcType="VARCHAR" />
+    <result column="LN_SUM" property="lnSum" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="queryLnConSource" resultMap="BaseLnConResultMap"  parameterClass="java.util.Map" >
+    select 
+    <include refid="B_CRR_LN_CON.Base_Column_List" />
+    from B_CRR_LN_CON  
+   <dynamic prepend="where" >
+      <isNotEmpty prepend="or" property="appId" >
+        APP_ID  like '%'|| #appId:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="custId" >
+        CUST_ID  like '%'|| #custId:VARCHAR#||'%'    
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="custNm" >
+        CUST_NM  like '%'|| #prdNm:VARCHAR#||'%'    
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="appStat" >
+        APP_STAT  like '%'|| #appStat:VARCHAR#||'%'    
+      </isNotEmpty>
+    </dynamic>
+    order by PRD_ID   
+  </select>
+  
+  <resultMap id="BasePrdMdResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrPrdMd" >
+    <result column="PRD_ID" property="prdId" jdbcType="VARCHAR" />
+    <result column="PRD_NM" property="prdNm" jdbcType="VARCHAR" />
+    <result column="PRD_TYP" property="prdTyp" jdbcType="VARCHAR" />
+    <result column="ADD_URL" property="addUrl" jdbcType="VARCHAR" />
+    <result column="UPD_URL" property="updUrl" jdbcType="VARCHAR" />
+    <result column="FIN_URL" property="finUrl" jdbcType="VARCHAR" />
+    <result column="STAT" property="stat" jdbcType="CHAR" />
+    <result column="TIT_NM" property="titNm" jdbcType="VARCHAR" />
+    <result column="OBJ" property="obj" jdbcType="VARCHAR" />
+    <result column="PAGE_URL" property="pageUrl" jdbcType="VARCHAR" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="STATU" property="statu" jdbcType="CHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="IS_LIST" property="isList" jdbcType="CHAR" />
+  </resultMap>
+  <select id="queryPrdMdSource" resultMap="BasePrdMdResultMap"  parameterClass="java.util.Map" >
+    select 
+    <include refid="B_CRR_PRD_MD.Base_Column_List" />
+    from B_CRR_PRD_MD  
+   <dynamic prepend="where" >
+   	  <isNotEmpty prepend="and" property="statu" >
+        STATU = #statu:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="prdId" >
+        (PRD_ID  like '%'|| #prdId:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="prdNm" >
+        PRD_NM  like '%'|| #prdNm:VARCHAR#||'%')
+      </isNotEmpty>
+    </dynamic>
+    order by PRD_ID   
+  </select>
+  
+  <resultMap id="BaseValResultMap" class="java.util.HashMap" >
+    <result column="RATEVAL" property="rateval" jdbcType="VARCHAR" />
+    <result column="RATECODE" property="ratecode" jdbcType="VARCHAR" />
+    <result column="RATENAME" property="ratename" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryLnSource" resultMap="BaseValResultMap"  parameterClass="java.util.Map" >
+    select t1.RATECODE ||'-'|| t1.RATENAME RATENAME,t1.RATECODE,t2.RATEVAL
+    from B_SYS_LN_CD t1,B_SYS_LN_VAL t2
+   <dynamic prepend="where" >
+   	t1.ID=t2.RATEID
+      <isNotEmpty prepend="or" property="ratecode">
+        and (t1.RATECODE  like '%'|| #ratecode:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="ratename">
+        t1.RATENAME  like '%'|| #ratename:VARCHAR#||'%')
+      </isNotEmpty>
+   </dynamic>
+    order by t1.RATECODE   
+  </select>
+  
+  <!-- 担保合同 -->
+  <!-- 合同签订中担保合同分页查询 -->
+  <resultMap id="BaseGntyConResultMap" class="java.util.HashMap" >
+    <result column="CON_ID" property="conId" jdbcType="VARCHAR" />
+    <result column="CON_TYP" property="conTyp" jdbcType="VARCHAR" />
+    <result column="GUTY_TYP" property="gutyTyp" jdbcType="VARCHAR" />
+    <result column="CON_STAT" property="conStat" jdbcType="VARCHAR" />
+    <result column="GUT_FRM" property="gutFrm" jdbcType="VARCHAR" />
+    <result column="GUT_ID" property="gutId" jdbcType="VARCHAR" />
+    <result column="GUT_NM" property="gutNm" jdbcType="VARCHAR" />
+    <result column="GCRT_TYP" property="gcrtTyp" jdbcType="VARCHAR" />
+    <result column="GCRT_ID" property="gcrtId" jdbcType="VARCHAR" />
+    <result column="LN_NO" property="lnNo" jdbcType="VARCHAR" />
+    <result column="GUT_CURCD" property="gutCurcd" jdbcType="VARCHAR" />
+    <result column="GUT_VAL" property="gutVal" jdbcType="DECIMAL" />
+    <result column="OTH_DSCRB" property="othDscrb" jdbcType="VARCHAR" />
+    <result column="BAIL_RATE" property="bailRate" jdbcType="DECIMAL" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="VID_PRD_ID" property="vidPrdId" jdbcType="VARCHAR" />
+    <result column="PRTCL_NO" property="prtclNo" jdbcType="VARCHAR" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" />
+    <result column="LOW_PRICE" property="lowPrice" jdbcType="DECIMAL" />
+    <result column="MONI_MD" property="moniMd" jdbcType="CHAR" />
+    <result column="FLG" property="flg" jdbcType="VARCHAR" />
+    <result column="GUARD_RAT" property="guardRat" jdbcType="DECIMAL" />
+    <result column="GUTY_WAY" property="gutyWay" jdbcType="VARCHAR" />
+    <result column="BUSI_STAT" property="busiStat" jdbcType="CHAR" />
+    <result column="BUSI_NO" property="busiNo" jdbcType="VARCHAR" />
+    <result column="PRTCL_BR_NM" property="prtclBrNm" jdbcType="VARCHAR" />
+    <result column="GUT_SUM" property="gutSum" jdbcType="DECIMAL" />
+    <result column="IS_RELATE" property="isRelate" jdbcType="DECIMAL" />
+    <result column="STRT_DT" property="strtDt" jdbcType="VARCHAR" />
+    <result column="END_DT" property="endDt" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="countConByExample" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(t.CON_ID) from B_CRR_GNTY_CON t, B_CRR_LN_CON_RELA tt
+    where t.CON_ID=tt.RLT_NO
+    <isNotEmpty prepend="and" property="appId">
+        tt.SERIALNO  like '%'|| #appId:VARCHAR#||'%'
+    </isNotEmpty>
+  </select>
+  <select id="countAppByExample" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(t.CON_ID) from B_CRR_GNTY_CON t, B_CRR_LN_APP_RELA tt
+    where t.CON_ID=tt.RLT_NO
+    <isNotEmpty prepend="and" property="appId">
+        tt.SERIALNO  like '%'|| #appId:VARCHAR#||'%'
+    </isNotEmpty>
+  </select>
+  <select id="selectConByExample" resultMap="BaseGntyConResultMap" parameterClass="java.util.HashMap" >
+    select t.*,tt.IS_RELATE
+    from B_CRR_GNTY_CON t, B_CRR_LN_CON_RELA tt
+    where t.CON_ID=tt.RLT_NO
+    <isNotEmpty prepend="and" property="appId">
+        tt.SERIALNO  like '%'|| #appId:VARCHAR#||'%'
+    </isNotEmpty>
+   order by t.INP_DT DESC
+  </select>
+  <select id="selectAppByExample" resultMap="BaseGntyConResultMap" parameterClass="java.util.HashMap" >
+    select t.*,tt.IS_RELATE
+    from B_CRR_GNTY_CON t, B_CRR_LN_APP_RELA tt
+    where t.CON_ID=tt.RLT_NO
+    <isNotEmpty prepend="and" property="appId">
+        tt.SERIALNO  like '%'|| #appId:VARCHAR#||'%'
+    </isNotEmpty>
+   order by t.INP_DT DESC
+  </select>
+  
+  <!-- 出账申请 -->
+  <resultMap id="BaseDeubillAppResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrDuebillApp" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="APP_STAT" property="appStat" jdbcType="VARCHAR" />
+    <result column="LN_NO" property="lnNo" jdbcType="VARCHAR" />
+    <result column="CUST_CD" property="custCd" jdbcType="VARCHAR" />
+    <result column="CUST_NM" property="custNm" jdbcType="VARCHAR" />
+    <result column="ACT_BR_CD" property="actBrCd" jdbcType="VARCHAR" />
+    <result column="PRD_ID" property="prdId" jdbcType="VARCHAR" />
+    <result column="PRD_NM" property="prdNm" jdbcType="VARCHAR" />
+    <result column="IS_DT" property="isDt" jdbcType="VARCHAR" />
+    <result column="TE_DT" property="teDt" jdbcType="VARCHAR" />
+    <result column="TRM_CTL_TYP" property="trmCtlTyp" jdbcType="VARCHAR" />
+    <result column="TRM" property="trm" jdbcType="VARCHAR" />
+    <result column="TRM_YEAR" property="trmYear" jdbcType="DECIMAL" />
+    <result column="TRM_MON" property="trmMon" jdbcType="DECIMAL" />
+    <result column="TRM_DAY" property="trmDay" jdbcType="DECIMAL" />
+    <result column="TRM_RGE" property="trmRge" jdbcType="VARCHAR" />
+    <result column="PER_ADJ_EQL" property="perAdjEql" jdbcType="DECIMAL" />
+    <result column="LN_AMT" property="lnAmt" jdbcType="DECIMAL" />
+    <result column="RTN_TYP" property="rtnTyp" jdbcType="VARCHAR" />
+    <result column="RTN_INVL" property="rtnInvl" jdbcType="VARCHAR" />
+    <result column="RTN_INT_INVL" property="rtnIntInvl" jdbcType="VARCHAR" />
+    <result column="RTN_PD" property="rtnPd" jdbcType="DECIMAL" />
+    <result column="NON_EQL_MD" property="nonEqlMd" jdbcType="VARCHAR" />
+    <result column="NON_EQL_AMT" property="nonEqlAmt" jdbcType="DECIMAL" />
+    <result column="RTN_MD" property="rtnMd" jdbcType="VARCHAR" />
+    <result column="RTN_NO" property="rtnNo" jdbcType="VARCHAR" />
+    <result column="RTN_ACT_NO" property="rtnActNo" jdbcType="VARCHAR" />
+    <result column="RTN_DT_TYP" property="rtnDtTyp" jdbcType="VARCHAR" />
+    <result column="RTN_DT" property="rtnDt" jdbcType="CHAR" />
+    <result column="PHS_FLG" property="phsFlg" jdbcType="VARCHAR" />
+    <result column="PHS_NO" property="phsNo" jdbcType="DECIMAL" />
+    <result column="INT_ADJ" property="intAdj" jdbcType="VARCHAR" />
+    <result column="INT_ADJ_DT" property="intAdjDt" jdbcType="VARCHAR" />
+    <result column="INT_CD" property="intCd" jdbcType="CHAR" />
+    <result column="BAS_INT" property="basInt" jdbcType="DECIMAL" />
+    <result column="RAT_DT" property="ratDt" jdbcType="VARCHAR" />
+    <result column="FLT_INT" property="fltInt" jdbcType="DECIMAL" />
+    <result column="FLT_INT_VAL" property="fltIntVal" jdbcType="DECIMAL" />
+    <result column="ACT_INT" property="actInt" jdbcType="DECIMAL" />
+    <result column="PFLT_INT_OPT" property="pfltIntOpt" jdbcType="VARCHAR" />
+    <result column="PFLT_CD" property="pfltCd" jdbcType="CHAR" />
+    <result column="PFLT_FLT" property="pfltFlt" jdbcType="DECIMAL" />
+    <result column="PFLT_INT" property="pfltInt" jdbcType="DECIMAL" />
+    <result column="MISP_PFLT_OPT" property="mispPfltOpt" jdbcType="VARCHAR" />
+    <result column="MISP_PFLT_CD" property="mispPfltCd" jdbcType="CHAR" />
+    <result column="MISP_PFLT_FLT" property="mispPfltFlt" jdbcType="DECIMAL" />
+    <result column="MISP_PFLT_INT" property="mispPfltInt" jdbcType="DECIMAL" />
+    <result column="OVD_RAT_TYP" property="ovdRatTyp" jdbcType="VARCHAR" />
+    <result column="IS_COMINT" property="isComint" jdbcType="VARCHAR" />
+    <result column="PAY_DRCT" property="payDrct" jdbcType="VARCHAR" />
+    <result column="PAY_MD" property="payMd" jdbcType="VARCHAR" />
+    <result column="PAY_CD_NO" property="payCdNo" jdbcType="VARCHAR" />
+    <result column="PAY_ACT_NO" property="payActNo" jdbcType="VARCHAR" />
+    <result column="BAIL_ACT_NO" property="bailActNo" jdbcType="VARCHAR" />
+    <result column="BAIL_RAT" property="bailRat" jdbcType="DECIMAL" />
+    <result column="BAIL_AMT" property="bailAmt" jdbcType="DECIMAL" />
+    <result column="FEE_TYP" property="feeTyp" jdbcType="VARCHAR" />
+    <result column="FEE_AMT" property="feeAmt" jdbcType="DECIMAL" />
+    <result column="FEE_RAT" property="feeRat" jdbcType="DECIMAL" />
+    <result column="FEE_PD" property="feePd" jdbcType="VARCHAR" />
+    <result column="RTN_NO2" property="rtnNo2" jdbcType="VARCHAR" />
+    <result column="INT_FLT_TYP" property="intFltTyp" jdbcType="VARCHAR" />
+    <result column="PFLT_INT_MD" property="pfltIntMd" jdbcType="VARCHAR" />
+    <result column="PFLT_INT_AMT" property="pfltIntAmt" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="WRT_NO" property="wrtNo" jdbcType="VARCHAR" />
+    <result column="CR_MDL" property="crMdl" jdbcType="CHAR" />
+    <result column="CR_AMT" property="crAmt" jdbcType="DECIMAL" />
+    <result column="CR_NO" property="crNo" jdbcType="VARCHAR" />
+    <result column="BC_CR_ID" property="bcCrId" jdbcType="VARCHAR" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="INDRCT_CRDT" property="indrctCrdt" jdbcType="VARCHAR" />
+    <result column="CRDT_CUST_CD" property="crdtCustCd" jdbcType="VARCHAR" />
+    <result column="CRDT_CUST_NM" property="crdtCustNm" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="CHAR" />
+    <result column="ELEC_FLG" property="elecFlg" jdbcType="CHAR" />
+  </resultMap>
+  <select id="selectByAppId" resultMap="BaseDeubillAppResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrDuebillApp" >
+    select 
+    <include refid="B_CRR_DUEBILL_APP.Base_Column_List" />
+    from B_CRR_DUEBILL_APP
+    where APP_ID = #appId:VARCHAR#
+  </select>
+  
+  <select id="getMastContByPara" resultMap="BaseLnConResultMap" parameterClass="java.util.HashMap" >
+    select cust.*,cbf.* 
+    from B_CRR_LN_CON cbf,B_CRM_BASE_INFO cust 
+    where 1=1 and cbf.CUST_ID = cust.CUSTCD
+    <isNotEmpty prepend="and" property="custcd">
+        cbf.CUST_ID = #custcd:VARCHAR#
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="mastContno">
+        cbf.APP_ID = #mastContno:VARCHAR#
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="cname">
+        cust.CNAME like '%'|| #cname:VARCHAR#||'%'
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="brcode">
+        exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = cbf.BR_CD
+        	and PARENT_BRCODE = #parentBrcode:VARCHAR#
+        	and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="tlrNo">
+        cbf.TLR_NO = #tlrNo:VARCHAR#
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="appStat">
+        cbf.APP_STAT = #appStat:VARCHAR#
+    </isNotEmpty>
+    order by cbf.APP_ID desc
+  </select>
+  <select id="countMastContByPara" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(cbf.APP_ID)
+    from B_CRR_LN_CON cbf,B_CRM_BASE_INFO cust 
+    where 1=1 and cbf.CUST_ID = cust.CUSTCD
+    <isNotEmpty prepend="and" property="custcd">
+        cbf.CUST_ID = #custcd:VARCHAR#
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="mastContno">
+        cbf.APP_ID = #mastContno:VARCHAR#
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="cname">
+        cust.CNAME like '%'|| #cname:VARCHAR#||'%'
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="brcode">
+        exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = cbf.BR_CD
+        	and PARENT_BRCODE = #parentBrcode:VARCHAR#
+        	and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="tlrNo">
+        cbf.TLR_NO = #tlrNo:VARCHAR#
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="appStat">
+        cbf.APP_STAT = #appStat:VARCHAR#
+    </isNotEmpty>
+  </select>
+  
+  <!-- 列表查询 -->
+  <select id="getContSlaveBaseInfo" resultMap="B_CRR_GNTY_CON.BaseResultMap"  parameterClass="java.util.HashMap" >
+    select csi.* 
+    from B_CRM_BASE_INFO custbi, B_CRR_GNTY_CON csi
+    where 1=1
+   	and csi.GUT_ID = custbi.CUSTCD 
+   	and csi.CON_STAT = #conStat:VARCHAR#
+      <isNotEmpty prepend="and" property="endDate" >
+        <![CDATA[ csi.END_DT >= #endDate:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="custcd" >
+        csi.GUT_ID = #custcd:VARCHAR#   
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="cname" >
+        custbi.CNAME like '%'|| #cname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="slaveContno" >
+        csi.CON_ID = #slaveContno:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="protocolNo" >
+        csi.PRTCL_NO = #protocolNo:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="supplyChainPdId" >
+        csi.VID_PRD_ID = #supplyChainPdId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="moniModel" >
+        csi.MONI_MD = #moniModel:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="parentBrcode" >
+        exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = po.BRCODE
+        	and PARENT_BRCODE = #parentBrcode:VARCHAR#
+        	and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+      </isNotEmpty>
+  </select>
+  <!-- 个数查询 -->
+  <select id="countContSlaveBaseInfo" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(csi.CON_ID)
+    from B_CRM_BASE_INFO custbi, B_CRR_GNTY_CON csi
+    where 1=1
+   	and csi.GUT_ID = custbi.CUSTCD 
+   	and csi.CON_STAT = #conStat:VARCHAR#
+      <isNotEmpty prepend="and" property="endDate" >
+        <![CDATA[ csi.END_DT >= #endDate:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="custcd" >
+        csi.GUT_ID = #custcd:VARCHAR#   
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="cname" >
+        custbi.CNAME like '%'|| #cname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="slaveContno" >
+        csi.CON_ID = #slaveContno:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="protocolNo" >
+        csi.PRTCL_NO = #protocolNo:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="supplyChainPdId" >
+        csi.VID_PRD_ID = #supplyChainPdId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="moniModel" >
+        csi.MONI_MD = #moniModel:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="parentBrcode" >
+        exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = po.BRCODE
+        	and PARENT_BRCODE = #parentBrcode:VARCHAR#
+        	and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+      </isNotEmpty>
+  </select>
+  
+  <!-- 列表查询 -->
+  <select id="findBCrrGntyConForCHL" resultMap="B_CRR_GNTY_CON.BaseResultMap"  parameterClass="java.util.HashMap" >
+    select csi.* 
+    from B_CRR_GNTY_CON csi
+    where 1=1
+   	and csi.CON_STAT = #conStat:VARCHAR#
+      <isNotEmpty prepend="and" property="vidPrdId" >
+      (
+        csi.VID_PRD_ID = #vidPrdId:VARCHAR#
+        or csi.VID_PRD_ID is null
+        )
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="conId" >
+        csi.CON_ID like '%'|| #conId:VARCHAR# ||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="gutNm" >
+        csi.GUT_NM like '%'|| #gutNm:VARCHAR# ||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="gutId" >
+        csi.GUT_ID = #gutId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="prtclBrNm" >
+        csi.PRTCL_BR_NM like '%'|| #prtclBrNm:VARCHAR# ||'%'
+      </isNotEmpty>
+    order by csi.INP_DT desc
+  </select>
+  <!-- 个数查询 -->
+  <select id="countBCrrGntyConForCHL" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(csi.CON_ID)
+    from B_CRR_GNTY_CON csi
+    where 1=1
+   	and csi.CON_STAT = #conStat:VARCHAR#
+      <isNotEmpty prepend="and" property="vidPrdId" >
+      (
+        csi.VID_PRD_ID = #vidPrdId:VARCHAR#
+        or csi.VID_PRD_ID is null
+        )
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="conId" >
+        csi.CON_ID like '%'|| #conId:VARCHAR# ||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="gutNm" >
+        csi.GUT_NM like '%'|| #gutNm:VARCHAR# ||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="gutId" >
+        csi.GUT_ID = #gutId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="prtclBrNm" >
+        csi.PRTCL_BR_NM like '%'|| #prtclBrNm:VARCHAR# ||'%'
+      </isNotEmpty>
+  </select>
+  
+  <!-- 根据出质人查询质押合同编号信息列表 -->
+  <select id="findSlaveContnoByPageForCHL" resultMap="B_CRR_GNTY_CON.BaseResultMap"  parameterClass="java.util.HashMap" >
+    select csi.* 
+    from B_CRR_GNTY_CON csi
+    where 1=1
+   	and csi.CON_STAT = #conStat:VARCHAR#
+      <isNotEmpty prepend="and" property="vidPrdId" >
+        csi.VID_PRD_ID = #vidPrdId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="conId" >
+        csi.CON_ID like '%'|| #conId:VARCHAR# ||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="gutNm" >
+        csi.GUT_NM like '%'|| #gutNm:VARCHAR# ||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="gutId" >
+        csi.GUT_ID = #gutId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="prtclBrNm" >
+        csi.PRTCL_BR_NM like '%'|| #prtclBrNm:VARCHAR# ||'%'
+      </isNotEmpty>
+    order by csi.INP_DT desc
+  </select>
+  <!-- 根据出质人查询质押合同编号列表查询 -->
+  <select id="countSlaveContnoByPageForCHL" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(csi.CON_ID)
+    from B_CRR_GNTY_CON csi
+    where 1=1
+   	and csi.CON_STAT = #conStat:VARCHAR#
+      <isNotEmpty prepend="and" property="vidPrdId" >
+        csi.VID_PRD_ID = #vidPrdId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="conId" >
+        csi.CON_ID like '%'|| #conId:VARCHAR# ||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="gutNm" >
+        csi.GUT_NM like '%'|| #gutNm:VARCHAR# ||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="gutId" >
+        csi.GUT_ID = #gutId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="prtclBrNm" >
+        csi.PRTCL_BR_NM like '%'|| #prtclBrNm:VARCHAR# ||'%'
+      </isNotEmpty>
+  </select>
+  
+  <!-- 抵质押合同列表查询 -->
+  <select id="getSlaveContList" resultMap="B_CRR_GNTY_CON.BaseResultMap"  parameterClass="java.util.HashMap" >
+    select csi.* 
+    from B_CRR_GNTY_CON csi
+    left join B_CRM_BASE_INFO custbi
+    on csi.GUT_ID = custbi.CUSTCD
+    <!-- left join scf_scube.BCTL b
+    on csi.BR_CD = b.BRCODE -->
+    left join B_CNT_MPROT_PART_INFO tmp
+    on csi.PRTCL_NO = tmp.PROTOCOL_NO AND tmp.ROLE = #role:VARCHAR#
+    left join B_CNT_MPROT_BASE_INFO tmpbi
+    on csi.PRTCL_NO = tmpbi.PROTOCOL_NO
+    where 1=1
+   	  <isNotEmpty prepend="and" property="custcd" >
+        csi.GUT_ID = #custcd:VARCHAR#   
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="cname" >
+        custbi.CNAME like '%'|| #cname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="slaveContno" >
+        csi.CON_ID like '%'|| #slaveContno:VARCHAR#||'%' 
+      </isNotEmpty>
+      <!-- 表中无该字段 -->
+      <!-- <isNotEmpty prepend="and" property="mastContno" >
+        csi.MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotEmpty> -->
+      <isNotEmpty prepend="and" property="slaveContcode" >
+        csi.CON_ID like '%'|| #slaveContcode:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="supplyChainPdId" >
+        csi.VID_PRD_ID = #supplyChainPdId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="monicname" >
+        tmp.CNAME like '%'|| #monicname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="assureType" >
+        csi.CON_TYP = #assureType:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="brname" >
+        csi.BR_NM like '%'|| #brname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="startDate" >
+        <![CDATA[ csi.STRT_DT >= #startDate:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="endDate" >
+        <![CDATA[ csi.END_DT <= #endDate:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="protocolCode" >
+        tmpbi.PROTOCOL_CODE like '%'|| #protocolCode:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="mgrno" >
+        exists (select 1 from B_CRM_BASE_INFO where CUSTCD = csi.GUT_ID AND MGRNO = #mgrno:VARCHAR#)
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="parentBrcode" >
+        exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = csi.BR_CD
+        	and PARENT_BRCODE = #parentBrcode:VARCHAR#
+        	and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+      </isNotEmpty>
+      <isNotNull prepend="and" property="custcdList" > 
+        csi.GUT_ID in 
+        <iterate property="custcdList" conjunction="," open="(" close=")" >
+   		 $custcdList[]$
+   		</iterate> 
+      </isNotNull>
+      order by csi.CON_ID DESC
+  </select>
+  <!-- 抵质押合同个数查询 -->
+  <select id="countSlaveContList" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(csi.CON_ID)
+    from B_CRR_GNTY_CON csi
+    left join B_CRM_BASE_INFO custbi
+    on csi.GUT_ID = custbi.CUSTCD
+    <!-- left join scf_scube.BCTL b
+    on csi.BR_CD = b.BRCODE -->
+    left join B_CNT_MPROT_PART_INFO tmp
+    on csi.PRTCL_NO = tmp.PROTOCOL_NO AND tmp.ROLE = #role:VARCHAR#
+    left join B_CNT_MPROT_BASE_INFO tmpbi
+    on csi.PRTCL_NO = tmpbi.PROTOCOL_NO
+    where 1=1
+   	  <isNotEmpty prepend="and" property="custcd" >
+        csi.GUT_ID = #custcd:VARCHAR#   
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="cname" >
+        custbi.CNAME like '%'|| #cname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="slaveContno" >
+        csi.CON_ID like '%'|| #slaveContno:VARCHAR#||'%' 
+      </isNotEmpty>
+      <!-- 表中无该字段 -->
+      <!-- <isNotEmpty prepend="and" property="mastContno" >
+        csi.MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotEmpty> -->
+      <isNotEmpty prepend="and" property="slaveContcode" >
+        csi.CON_ID like '%'|| #slaveContcode:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="supplyChainPdId" >
+        csi.VID_PRD_ID = #supplyChainPdId:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="monicname" >
+        tmp.CNAME like '%'|| #monicname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="assureType" >
+        csi.CON_TYP = #assureType:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="brname" >
+        csi.BR_NM like '%'|| #brname:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="startDate" >
+        <![CDATA[ csi.STRT_DT >= #startDate:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="endDate" >
+        <![CDATA[ csi.END_DT <= #endDate:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="protocolCode" >
+        tmpbi.PROTOCOL_CODE like '%'|| #protocolCode:VARCHAR#||'%' 
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="mgrno" >
+        exists (select 1 from B_CRM_BASE_INFO where CUSTCD = csi.GUT_ID AND MGRNO = #mgrno:VARCHAR#)
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="parentBrcode" >
+        exists (select 1 from B_SYS_BCTL_AFFILIATION where CHILD_BRCODE = csi.BR_CD
+        	and PARENT_BRCODE = #parentBrcode:VARCHAR#
+        	and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+      </isNotEmpty>
+      <isNotNull prepend="and" property="custcdList" > 
+        csi.GUT_ID in 
+        <iterate property="custcdList" conjunction="," open="(" close=")" >
+   		 $custcdList[]$
+   		</iterate> 
+      </isNotNull>
+  </select>
+</sqlMap>

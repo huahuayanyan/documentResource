@@ -1,0 +1,899 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ODS_CRM_INFO_ANALYSIS" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.ods.dao.model.OCrmInfoAnalysis" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="CHAR" />
+    <result column="INDUSTRY_TYPE" property="industryType" jdbcType="VARCHAR" />
+    <result column="OPEN_DATE" property="openDate" jdbcType="CHAR" />
+    <result column="ANNUAL_SALES_AMT" property="annualSalesAmt" jdbcType="DECIMAL" />
+    <result column="SALES_RATE" property="salesRate" jdbcType="DECIMAL" />
+    <result column="ANNUAL_PURCHASE_AMT" property="annualPurchaseAmt" jdbcType="DECIMAL" />
+    <result column="PURCHASE_RATE" property="purchaseRate" jdbcType="DECIMAL" />
+    <result column="ANNUAL_REC" property="annualRec" jdbcType="DECIMAL" />
+    <result column="OVERDUE_RATE" property="overdueRate" jdbcType="DECIMAL" />
+    <result column="AVERAGE_AGE" property="averageAge" jdbcType="DECIMAL" />
+    <result column="ANNUAL_PAY" property="annualPay" jdbcType="DECIMAL" />
+    <result column="PROFIT_RATE" property="profitRate" jdbcType="DECIMAL" />
+    <result column="ERP_USED_RATE" property="erpUsedRate" jdbcType="DECIMAL" />
+    <result column="RELATION" property="relation" jdbcType="DECIMAL" />
+    <result column="QUALITY_ENVIR" property="qualityEnvir" jdbcType="DECIMAL" />
+    <result column="SALES_PROFIT_RATE" property="salesProfitRate" jdbcType="DECIMAL" />
+    <result column="ANNUAN_GROWTH" property="annuanGrowth" jdbcType="DECIMAL" />
+    <result column="LASTQUA_SALE_ACTIVE_RATE" property="lastquaSaleActiveRate" jdbcType="DECIMAL" />
+    <result column="LASTQUA_PUA_ACTIVE_RATE" property="lastquaPuaActiveRate" jdbcType="DECIMAL" />
+    <result column="LASTQUA_IN_ACTIVE_RATE" property="lastquaInActiveRate" jdbcType="DECIMAL" />
+    <result column="LASTQUA_OUT_ACTIVE_RATE" property="lastquaOutActiveRate" jdbcType="DECIMAL" />
+    <result column="DEPOSIT_MY_RATE" property="depositMyRate" jdbcType="DECIMAL" />
+    <result column="CREDIT_RATE" property="creditRate" jdbcType="DECIMAL" />
+    <result column="CREDIT_MY_RATE" property="creditMyRate" jdbcType="DECIMAL" />
+    <result column="THREEM_DALIY_ASSETS" property="threemDaliyAssets" jdbcType="DECIMAL" />
+    <result column="THREEM_DALIY_DEPOSIT" property="threemDaliyDeposit" jdbcType="DECIMAL" />
+    <result column="ASSETS" property="assets" jdbcType="DECIMAL" />
+    <result column="DEPOSIT" property="deposit" jdbcType="DECIMAL" />
+    <result column="THREEM_DALIY_LOAN_IN" property="threemDaliyLoanIn" jdbcType="DECIMAL" />
+    <result column="THREEM_DALIY_LOAN_OUT" property="threemDaliyLoanOut" jdbcType="DECIMAL" />
+    <result column="OVERDUE_AMOUNT" property="overdueAmount" jdbcType="DECIMAL" />
+    <result column="PRINCIPAL_LOSS_AMT" property="principalLossAmt" jdbcType="DECIMAL" />
+    <result column="MARGIN_COVER_RATE" property="marginCoverRate" jdbcType="DECIMAL" />
+    <result column="SALE_GROWTH_RATE" property="saleGrowthRate" jdbcType="DECIMAL" />
+    <result column="REC_RATE" property="recRate" jdbcType="DECIMAL" />
+    <result column="PREPAY_RATE" property="prepayRate" jdbcType="DECIMAL" />
+    <result column="BAD_RATE" property="badRate" jdbcType="DECIMAL" />
+    <result column="TOTAL_LOAN_AMT" property="totalLoanAmt" jdbcType="DECIMAL" />
+    <result column="REPAYMENT_AMT" property="repaymentAmt" jdbcType="DECIMAL" />
+    <result column="OVERDUE_NUM" property="overdueNum" jdbcType="DECIMAL" />
+    <result column="LOSS_AMT" property="lossAmt" jdbcType="DECIMAL" />
+    <result column="TOTAL_CHAN_FEE" property="totalChanFee" jdbcType="DECIMAL" />
+    <result column="TOTAL_INCOME" property="totalIncome" jdbcType="DECIMAL" />
+    <result column="EXT1" property="ext1" jdbcType="DECIMAL" />
+    <result column="EXT2" property="ext2" jdbcType="DECIMAL" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="EXT4" property="ext4" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_TYPE_NAME" property="industryTypeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CUSTCD, CNAME, CREATE_DATE, INDUSTRY_TYPE, OPEN_DATE, ANNUAL_SALES_AMT, SALES_RATE, 
+    ANNUAL_PURCHASE_AMT, PURCHASE_RATE, ANNUAL_REC, OVERDUE_RATE, AVERAGE_AGE, ANNUAL_PAY, 
+    PROFIT_RATE, ERP_USED_RATE, RELATION, QUALITY_ENVIR, SALES_PROFIT_RATE, ANNUAN_GROWTH, 
+    LASTQUA_SALE_ACTIVE_RATE, LASTQUA_PUA_ACTIVE_RATE, LASTQUA_IN_ACTIVE_RATE, LASTQUA_OUT_ACTIVE_RATE, 
+    DEPOSIT_MY_RATE, CREDIT_RATE, CREDIT_MY_RATE, THREEM_DALIY_ASSETS, THREEM_DALIY_DEPOSIT, 
+    ASSETS, DEPOSIT, THREEM_DALIY_LOAN_IN, THREEM_DALIY_LOAN_OUT, OVERDUE_AMOUNT, PRINCIPAL_LOSS_AMT, 
+    MARGIN_COVER_RATE, SALE_GROWTH_RATE, REC_RATE, PREPAY_RATE, BAD_RATE, TOTAL_LOAN_AMT, 
+    REPAYMENT_AMT, OVERDUE_NUM, LOSS_AMT, TOTAL_CHAN_FEE, TOTAL_INCOME, EXT1, EXT2, EXT3, 
+    EXT4, INDUSTRY_TYPE_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.ods.dao.model.OCrmInfoAnalysisExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="ODS_CRM_INFO_ANALYSIS.Base_Column_List" />
+    from ODS_CRM_INFO_ANALYSIS
+    <isParameterPresent >
+      <include refid="ODS_CRM_INFO_ANALYSIS.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.ods.dao.model.OCrmInfoAnalysis" >
+    select 
+    <include refid="ODS_CRM_INFO_ANALYSIS.Base_Column_List" />
+    from ODS_CRM_INFO_ANALYSIS
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.ods.dao.model.OCrmInfoAnalysis" >
+    delete from ODS_CRM_INFO_ANALYSIS
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.ods.dao.model.OCrmInfoAnalysisExample" >
+    delete from ODS_CRM_INFO_ANALYSIS
+    <include refid="ODS_CRM_INFO_ANALYSIS.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.ods.dao.model.OCrmInfoAnalysis" >
+    insert into ODS_CRM_INFO_ANALYSIS (ID, CUSTCD, CNAME, CREATE_DATE, INDUSTRY_TYPE, 
+      OPEN_DATE, ANNUAL_SALES_AMT, SALES_RATE, ANNUAL_PURCHASE_AMT, 
+      PURCHASE_RATE, ANNUAL_REC, OVERDUE_RATE, AVERAGE_AGE, 
+      ANNUAL_PAY, PROFIT_RATE, ERP_USED_RATE, RELATION, 
+      QUALITY_ENVIR, SALES_PROFIT_RATE, ANNUAN_GROWTH, LASTQUA_SALE_ACTIVE_RATE, 
+      LASTQUA_PUA_ACTIVE_RATE, LASTQUA_IN_ACTIVE_RATE, LASTQUA_OUT_ACTIVE_RATE, 
+      DEPOSIT_MY_RATE, CREDIT_RATE, CREDIT_MY_RATE, THREEM_DALIY_ASSETS, 
+      THREEM_DALIY_DEPOSIT, ASSETS, DEPOSIT, THREEM_DALIY_LOAN_IN, 
+      THREEM_DALIY_LOAN_OUT, OVERDUE_AMOUNT, PRINCIPAL_LOSS_AMT, 
+      MARGIN_COVER_RATE, SALE_GROWTH_RATE, REC_RATE, PREPAY_RATE, 
+      BAD_RATE, TOTAL_LOAN_AMT, REPAYMENT_AMT, OVERDUE_NUM, 
+      LOSS_AMT, TOTAL_CHAN_FEE, TOTAL_INCOME, EXT1, 
+      EXT2, EXT3, EXT4, INDUSTRY_TYPE_NAME)
+    values (#id:VARCHAR#, #custcd:VARCHAR#, #cname:VARCHAR#, #createDate:CHAR#, #industryType:VARCHAR#, 
+      #openDate:CHAR#, #annualSalesAmt:DECIMAL#, #salesRate:DECIMAL#, #annualPurchaseAmt:DECIMAL#, 
+      #purchaseRate:DECIMAL#, #annualRec:DECIMAL#, #overdueRate:DECIMAL#, #averageAge:DECIMAL#, 
+      #annualPay:DECIMAL#, #profitRate:DECIMAL#, #erpUsedRate:DECIMAL#, #relation:DECIMAL#, 
+      #qualityEnvir:DECIMAL#, #salesProfitRate:DECIMAL#, #annuanGrowth:DECIMAL#, #lastquaSaleActiveRate:DECIMAL#, 
+      #lastquaPuaActiveRate:DECIMAL#, #lastquaInActiveRate:DECIMAL#, #lastquaOutActiveRate:DECIMAL#, 
+      #depositMyRate:DECIMAL#, #creditRate:DECIMAL#, #creditMyRate:DECIMAL#, #threemDaliyAssets:DECIMAL#, 
+      #threemDaliyDeposit:DECIMAL#, #assets:DECIMAL#, #deposit:DECIMAL#, #threemDaliyLoanIn:DECIMAL#, 
+      #threemDaliyLoanOut:DECIMAL#, #overdueAmount:DECIMAL#, #principalLossAmt:DECIMAL#, 
+      #marginCoverRate:DECIMAL#, #saleGrowthRate:DECIMAL#, #recRate:DECIMAL#, #prepayRate:DECIMAL#, 
+      #badRate:DECIMAL#, #totalLoanAmt:DECIMAL#, #repaymentAmt:DECIMAL#, #overdueNum:DECIMAL#, 
+      #lossAmt:DECIMAL#, #totalChanFee:DECIMAL#, #totalIncome:DECIMAL#, #ext1:DECIMAL#, 
+      #ext2:DECIMAL#, #ext3:VARCHAR#, #ext4:VARCHAR#, #industryTypeName:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.ods.dao.model.OCrmInfoAnalysis" >
+    insert into ODS_CRM_INFO_ANALYSIS
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        CREATE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        INDUSTRY_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="openDate" >
+        OPEN_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="annualSalesAmt" >
+        ANNUAL_SALES_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="salesRate" >
+        SALES_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="annualPurchaseAmt" >
+        ANNUAL_PURCHASE_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="purchaseRate" >
+        PURCHASE_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="annualRec" >
+        ANNUAL_REC
+      </isNotNull>
+      <isNotNull prepend="," property="overdueRate" >
+        OVERDUE_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="averageAge" >
+        AVERAGE_AGE
+      </isNotNull>
+      <isNotNull prepend="," property="annualPay" >
+        ANNUAL_PAY
+      </isNotNull>
+      <isNotNull prepend="," property="profitRate" >
+        PROFIT_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="erpUsedRate" >
+        ERP_USED_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="relation" >
+        RELATION
+      </isNotNull>
+      <isNotNull prepend="," property="qualityEnvir" >
+        QUALITY_ENVIR
+      </isNotNull>
+      <isNotNull prepend="," property="salesProfitRate" >
+        SALES_PROFIT_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="annuanGrowth" >
+        ANNUAN_GROWTH
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaSaleActiveRate" >
+        LASTQUA_SALE_ACTIVE_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaPuaActiveRate" >
+        LASTQUA_PUA_ACTIVE_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaInActiveRate" >
+        LASTQUA_IN_ACTIVE_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaOutActiveRate" >
+        LASTQUA_OUT_ACTIVE_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="depositMyRate" >
+        DEPOSIT_MY_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="creditRate" >
+        CREDIT_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="creditMyRate" >
+        CREDIT_MY_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyAssets" >
+        THREEM_DALIY_ASSETS
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyDeposit" >
+        THREEM_DALIY_DEPOSIT
+      </isNotNull>
+      <isNotNull prepend="," property="assets" >
+        ASSETS
+      </isNotNull>
+      <isNotNull prepend="," property="deposit" >
+        DEPOSIT
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyLoanIn" >
+        THREEM_DALIY_LOAN_IN
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyLoanOut" >
+        THREEM_DALIY_LOAN_OUT
+      </isNotNull>
+      <isNotNull prepend="," property="overdueAmount" >
+        OVERDUE_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="principalLossAmt" >
+        PRINCIPAL_LOSS_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="marginCoverRate" >
+        MARGIN_COVER_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="saleGrowthRate" >
+        SALE_GROWTH_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="recRate" >
+        REC_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="prepayRate" >
+        PREPAY_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="badRate" >
+        BAD_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="totalLoanAmt" >
+        TOTAL_LOAN_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="repaymentAmt" >
+        REPAYMENT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="overdueNum" >
+        OVERDUE_NUM
+      </isNotNull>
+      <isNotNull prepend="," property="lossAmt" >
+        LOSS_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="totalChanFee" >
+        TOTAL_CHAN_FEE
+      </isNotNull>
+      <isNotNull prepend="," property="totalIncome" >
+        TOTAL_INCOME
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3
+      </isNotNull>
+      <isNotNull prepend="," property="ext4" >
+        EXT4
+      </isNotNull>
+      <isNotNull prepend="," property="industryTypeName" >
+        INDUSTRY_TYPE_NAME
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        #createDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        #industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="openDate" >
+        #openDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="annualSalesAmt" >
+        #annualSalesAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="salesRate" >
+        #salesRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="annualPurchaseAmt" >
+        #annualPurchaseAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="purchaseRate" >
+        #purchaseRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="annualRec" >
+        #annualRec:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueRate" >
+        #overdueRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="averageAge" >
+        #averageAge:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="annualPay" >
+        #annualPay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="profitRate" >
+        #profitRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="erpUsedRate" >
+        #erpUsedRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="relation" >
+        #relation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="qualityEnvir" >
+        #qualityEnvir:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="salesProfitRate" >
+        #salesProfitRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="annuanGrowth" >
+        #annuanGrowth:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaSaleActiveRate" >
+        #lastquaSaleActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaPuaActiveRate" >
+        #lastquaPuaActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaInActiveRate" >
+        #lastquaInActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaOutActiveRate" >
+        #lastquaOutActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="depositMyRate" >
+        #depositMyRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditRate" >
+        #creditRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditMyRate" >
+        #creditMyRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyAssets" >
+        #threemDaliyAssets:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyDeposit" >
+        #threemDaliyDeposit:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="assets" >
+        #assets:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deposit" >
+        #deposit:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyLoanIn" >
+        #threemDaliyLoanIn:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyLoanOut" >
+        #threemDaliyLoanOut:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueAmount" >
+        #overdueAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="principalLossAmt" >
+        #principalLossAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="marginCoverRate" >
+        #marginCoverRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="saleGrowthRate" >
+        #saleGrowthRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="recRate" >
+        #recRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="prepayRate" >
+        #prepayRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="badRate" >
+        #badRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalLoanAmt" >
+        #totalLoanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="repaymentAmt" >
+        #repaymentAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueNum" >
+        #overdueNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lossAmt" >
+        #lossAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalChanFee" >
+        #totalChanFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalIncome" >
+        #totalIncome:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        #ext1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        #ext2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        #ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext4" >
+        #ext4:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryTypeName" >
+        #industryTypeName:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.ods.dao.model.OCrmInfoAnalysisExample" resultClass="java.lang.Integer" >
+    select count(*) from ODS_CRM_INFO_ANALYSIS
+    <include refid="ODS_CRM_INFO_ANALYSIS.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update ODS_CRM_INFO_ANALYSIS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cname" >
+        CNAME = #record.cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.createDate" >
+        CREATE_DATE = #record.createDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryType" >
+        INDUSTRY_TYPE = #record.industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.openDate" >
+        OPEN_DATE = #record.openDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.annualSalesAmt" >
+        ANNUAL_SALES_AMT = #record.annualSalesAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.salesRate" >
+        SALES_RATE = #record.salesRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.annualPurchaseAmt" >
+        ANNUAL_PURCHASE_AMT = #record.annualPurchaseAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.purchaseRate" >
+        PURCHASE_RATE = #record.purchaseRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.annualRec" >
+        ANNUAL_REC = #record.annualRec:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overdueRate" >
+        OVERDUE_RATE = #record.overdueRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.averageAge" >
+        AVERAGE_AGE = #record.averageAge:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.annualPay" >
+        ANNUAL_PAY = #record.annualPay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.profitRate" >
+        PROFIT_RATE = #record.profitRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.erpUsedRate" >
+        ERP_USED_RATE = #record.erpUsedRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.relation" >
+        RELATION = #record.relation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.qualityEnvir" >
+        QUALITY_ENVIR = #record.qualityEnvir:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.salesProfitRate" >
+        SALES_PROFIT_RATE = #record.salesProfitRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.annuanGrowth" >
+        ANNUAN_GROWTH = #record.annuanGrowth:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastquaSaleActiveRate" >
+        LASTQUA_SALE_ACTIVE_RATE = #record.lastquaSaleActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastquaPuaActiveRate" >
+        LASTQUA_PUA_ACTIVE_RATE = #record.lastquaPuaActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastquaInActiveRate" >
+        LASTQUA_IN_ACTIVE_RATE = #record.lastquaInActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastquaOutActiveRate" >
+        LASTQUA_OUT_ACTIVE_RATE = #record.lastquaOutActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.depositMyRate" >
+        DEPOSIT_MY_RATE = #record.depositMyRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditRate" >
+        CREDIT_RATE = #record.creditRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditMyRate" >
+        CREDIT_MY_RATE = #record.creditMyRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.threemDaliyAssets" >
+        THREEM_DALIY_ASSETS = #record.threemDaliyAssets:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.threemDaliyDeposit" >
+        THREEM_DALIY_DEPOSIT = #record.threemDaliyDeposit:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.assets" >
+        ASSETS = #record.assets:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deposit" >
+        DEPOSIT = #record.deposit:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.threemDaliyLoanIn" >
+        THREEM_DALIY_LOAN_IN = #record.threemDaliyLoanIn:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.threemDaliyLoanOut" >
+        THREEM_DALIY_LOAN_OUT = #record.threemDaliyLoanOut:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overdueAmount" >
+        OVERDUE_AMOUNT = #record.overdueAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.principalLossAmt" >
+        PRINCIPAL_LOSS_AMT = #record.principalLossAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.marginCoverRate" >
+        MARGIN_COVER_RATE = #record.marginCoverRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.saleGrowthRate" >
+        SALE_GROWTH_RATE = #record.saleGrowthRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.recRate" >
+        REC_RATE = #record.recRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prepayRate" >
+        PREPAY_RATE = #record.prepayRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.badRate" >
+        BAD_RATE = #record.badRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalLoanAmt" >
+        TOTAL_LOAN_AMT = #record.totalLoanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.repaymentAmt" >
+        REPAYMENT_AMT = #record.repaymentAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overdueNum" >
+        OVERDUE_NUM = #record.overdueNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lossAmt" >
+        LOSS_AMT = #record.lossAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalChanFee" >
+        TOTAL_CHAN_FEE = #record.totalChanFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalIncome" >
+        TOTAL_INCOME = #record.totalIncome:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1" >
+        EXT1 = #record.ext1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext2" >
+        EXT2 = #record.ext2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext3" >
+        EXT3 = #record.ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext4" >
+        EXT4 = #record.ext4:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryTypeName" >
+        INDUSTRY_TYPE_NAME = #record.industryTypeName:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="ODS_CRM_INFO_ANALYSIS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update ODS_CRM_INFO_ANALYSIS
+    set ID = #record.id:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      CNAME = #record.cname:VARCHAR#,
+      CREATE_DATE = #record.createDate:CHAR#,
+      INDUSTRY_TYPE = #record.industryType:VARCHAR#,
+      OPEN_DATE = #record.openDate:CHAR#,
+      ANNUAL_SALES_AMT = #record.annualSalesAmt:DECIMAL#,
+      SALES_RATE = #record.salesRate:DECIMAL#,
+      ANNUAL_PURCHASE_AMT = #record.annualPurchaseAmt:DECIMAL#,
+      PURCHASE_RATE = #record.purchaseRate:DECIMAL#,
+      ANNUAL_REC = #record.annualRec:DECIMAL#,
+      OVERDUE_RATE = #record.overdueRate:DECIMAL#,
+      AVERAGE_AGE = #record.averageAge:DECIMAL#,
+      ANNUAL_PAY = #record.annualPay:DECIMAL#,
+      PROFIT_RATE = #record.profitRate:DECIMAL#,
+      ERP_USED_RATE = #record.erpUsedRate:DECIMAL#,
+      RELATION = #record.relation:DECIMAL#,
+      QUALITY_ENVIR = #record.qualityEnvir:DECIMAL#,
+      SALES_PROFIT_RATE = #record.salesProfitRate:DECIMAL#,
+      ANNUAN_GROWTH = #record.annuanGrowth:DECIMAL#,
+      LASTQUA_SALE_ACTIVE_RATE = #record.lastquaSaleActiveRate:DECIMAL#,
+      LASTQUA_PUA_ACTIVE_RATE = #record.lastquaPuaActiveRate:DECIMAL#,
+      LASTQUA_IN_ACTIVE_RATE = #record.lastquaInActiveRate:DECIMAL#,
+      LASTQUA_OUT_ACTIVE_RATE = #record.lastquaOutActiveRate:DECIMAL#,
+      DEPOSIT_MY_RATE = #record.depositMyRate:DECIMAL#,
+      CREDIT_RATE = #record.creditRate:DECIMAL#,
+      CREDIT_MY_RATE = #record.creditMyRate:DECIMAL#,
+      THREEM_DALIY_ASSETS = #record.threemDaliyAssets:DECIMAL#,
+      THREEM_DALIY_DEPOSIT = #record.threemDaliyDeposit:DECIMAL#,
+      ASSETS = #record.assets:DECIMAL#,
+      DEPOSIT = #record.deposit:DECIMAL#,
+      THREEM_DALIY_LOAN_IN = #record.threemDaliyLoanIn:DECIMAL#,
+      THREEM_DALIY_LOAN_OUT = #record.threemDaliyLoanOut:DECIMAL#,
+      OVERDUE_AMOUNT = #record.overdueAmount:DECIMAL#,
+      PRINCIPAL_LOSS_AMT = #record.principalLossAmt:DECIMAL#,
+      MARGIN_COVER_RATE = #record.marginCoverRate:DECIMAL#,
+      SALE_GROWTH_RATE = #record.saleGrowthRate:DECIMAL#,
+      REC_RATE = #record.recRate:DECIMAL#,
+      PREPAY_RATE = #record.prepayRate:DECIMAL#,
+      BAD_RATE = #record.badRate:DECIMAL#,
+      TOTAL_LOAN_AMT = #record.totalLoanAmt:DECIMAL#,
+      REPAYMENT_AMT = #record.repaymentAmt:DECIMAL#,
+      OVERDUE_NUM = #record.overdueNum:DECIMAL#,
+      LOSS_AMT = #record.lossAmt:DECIMAL#,
+      TOTAL_CHAN_FEE = #record.totalChanFee:DECIMAL#,
+      TOTAL_INCOME = #record.totalIncome:DECIMAL#,
+      EXT1 = #record.ext1:DECIMAL#,
+      EXT2 = #record.ext2:DECIMAL#,
+      EXT3 = #record.ext3:VARCHAR#,
+      EXT4 = #record.ext4:VARCHAR#,
+      INDUSTRY_TYPE_NAME = #record.industryTypeName:VARCHAR#
+    <isParameterPresent >
+      <include refid="ODS_CRM_INFO_ANALYSIS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.ods.dao.model.OCrmInfoAnalysis" >
+    update ODS_CRM_INFO_ANALYSIS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME = #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        CREATE_DATE = #createDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        INDUSTRY_TYPE = #industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="openDate" >
+        OPEN_DATE = #openDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="annualSalesAmt" >
+        ANNUAL_SALES_AMT = #annualSalesAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="salesRate" >
+        SALES_RATE = #salesRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="annualPurchaseAmt" >
+        ANNUAL_PURCHASE_AMT = #annualPurchaseAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="purchaseRate" >
+        PURCHASE_RATE = #purchaseRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="annualRec" >
+        ANNUAL_REC = #annualRec:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueRate" >
+        OVERDUE_RATE = #overdueRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="averageAge" >
+        AVERAGE_AGE = #averageAge:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="annualPay" >
+        ANNUAL_PAY = #annualPay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="profitRate" >
+        PROFIT_RATE = #profitRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="erpUsedRate" >
+        ERP_USED_RATE = #erpUsedRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="relation" >
+        RELATION = #relation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="qualityEnvir" >
+        QUALITY_ENVIR = #qualityEnvir:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="salesProfitRate" >
+        SALES_PROFIT_RATE = #salesProfitRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="annuanGrowth" >
+        ANNUAN_GROWTH = #annuanGrowth:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaSaleActiveRate" >
+        LASTQUA_SALE_ACTIVE_RATE = #lastquaSaleActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaPuaActiveRate" >
+        LASTQUA_PUA_ACTIVE_RATE = #lastquaPuaActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaInActiveRate" >
+        LASTQUA_IN_ACTIVE_RATE = #lastquaInActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lastquaOutActiveRate" >
+        LASTQUA_OUT_ACTIVE_RATE = #lastquaOutActiveRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="depositMyRate" >
+        DEPOSIT_MY_RATE = #depositMyRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditRate" >
+        CREDIT_RATE = #creditRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="creditMyRate" >
+        CREDIT_MY_RATE = #creditMyRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyAssets" >
+        THREEM_DALIY_ASSETS = #threemDaliyAssets:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyDeposit" >
+        THREEM_DALIY_DEPOSIT = #threemDaliyDeposit:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="assets" >
+        ASSETS = #assets:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deposit" >
+        DEPOSIT = #deposit:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyLoanIn" >
+        THREEM_DALIY_LOAN_IN = #threemDaliyLoanIn:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="threemDaliyLoanOut" >
+        THREEM_DALIY_LOAN_OUT = #threemDaliyLoanOut:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueAmount" >
+        OVERDUE_AMOUNT = #overdueAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="principalLossAmt" >
+        PRINCIPAL_LOSS_AMT = #principalLossAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="marginCoverRate" >
+        MARGIN_COVER_RATE = #marginCoverRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="saleGrowthRate" >
+        SALE_GROWTH_RATE = #saleGrowthRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="recRate" >
+        REC_RATE = #recRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="prepayRate" >
+        PREPAY_RATE = #prepayRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="badRate" >
+        BAD_RATE = #badRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalLoanAmt" >
+        TOTAL_LOAN_AMT = #totalLoanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="repaymentAmt" >
+        REPAYMENT_AMT = #repaymentAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueNum" >
+        OVERDUE_NUM = #overdueNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lossAmt" >
+        LOSS_AMT = #lossAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalChanFee" >
+        TOTAL_CHAN_FEE = #totalChanFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalIncome" >
+        TOTAL_INCOME = #totalIncome:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1 = #ext1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2 = #ext2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3 = #ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext4" >
+        EXT4 = #ext4:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryTypeName" >
+        INDUSTRY_TYPE_NAME = #industryTypeName:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.ods.dao.model.OCrmInfoAnalysis" >
+    update ODS_CRM_INFO_ANALYSIS
+    set CUSTCD = #custcd:VARCHAR#,
+      CNAME = #cname:VARCHAR#,
+      CREATE_DATE = #createDate:CHAR#,
+      INDUSTRY_TYPE = #industryType:VARCHAR#,
+      OPEN_DATE = #openDate:CHAR#,
+      ANNUAL_SALES_AMT = #annualSalesAmt:DECIMAL#,
+      SALES_RATE = #salesRate:DECIMAL#,
+      ANNUAL_PURCHASE_AMT = #annualPurchaseAmt:DECIMAL#,
+      PURCHASE_RATE = #purchaseRate:DECIMAL#,
+      ANNUAL_REC = #annualRec:DECIMAL#,
+      OVERDUE_RATE = #overdueRate:DECIMAL#,
+      AVERAGE_AGE = #averageAge:DECIMAL#,
+      ANNUAL_PAY = #annualPay:DECIMAL#,
+      PROFIT_RATE = #profitRate:DECIMAL#,
+      ERP_USED_RATE = #erpUsedRate:DECIMAL#,
+      RELATION = #relation:DECIMAL#,
+      QUALITY_ENVIR = #qualityEnvir:DECIMAL#,
+      SALES_PROFIT_RATE = #salesProfitRate:DECIMAL#,
+      ANNUAN_GROWTH = #annuanGrowth:DECIMAL#,
+      LASTQUA_SALE_ACTIVE_RATE = #lastquaSaleActiveRate:DECIMAL#,
+      LASTQUA_PUA_ACTIVE_RATE = #lastquaPuaActiveRate:DECIMAL#,
+      LASTQUA_IN_ACTIVE_RATE = #lastquaInActiveRate:DECIMAL#,
+      LASTQUA_OUT_ACTIVE_RATE = #lastquaOutActiveRate:DECIMAL#,
+      DEPOSIT_MY_RATE = #depositMyRate:DECIMAL#,
+      CREDIT_RATE = #creditRate:DECIMAL#,
+      CREDIT_MY_RATE = #creditMyRate:DECIMAL#,
+      THREEM_DALIY_ASSETS = #threemDaliyAssets:DECIMAL#,
+      THREEM_DALIY_DEPOSIT = #threemDaliyDeposit:DECIMAL#,
+      ASSETS = #assets:DECIMAL#,
+      DEPOSIT = #deposit:DECIMAL#,
+      THREEM_DALIY_LOAN_IN = #threemDaliyLoanIn:DECIMAL#,
+      THREEM_DALIY_LOAN_OUT = #threemDaliyLoanOut:DECIMAL#,
+      OVERDUE_AMOUNT = #overdueAmount:DECIMAL#,
+      PRINCIPAL_LOSS_AMT = #principalLossAmt:DECIMAL#,
+      MARGIN_COVER_RATE = #marginCoverRate:DECIMAL#,
+      SALE_GROWTH_RATE = #saleGrowthRate:DECIMAL#,
+      REC_RATE = #recRate:DECIMAL#,
+      PREPAY_RATE = #prepayRate:DECIMAL#,
+      BAD_RATE = #badRate:DECIMAL#,
+      TOTAL_LOAN_AMT = #totalLoanAmt:DECIMAL#,
+      REPAYMENT_AMT = #repaymentAmt:DECIMAL#,
+      OVERDUE_NUM = #overdueNum:DECIMAL#,
+      LOSS_AMT = #lossAmt:DECIMAL#,
+      TOTAL_CHAN_FEE = #totalChanFee:DECIMAL#,
+      TOTAL_INCOME = #totalIncome:DECIMAL#,
+      EXT1 = #ext1:DECIMAL#,
+      EXT2 = #ext2:DECIMAL#,
+      EXT3 = #ext3:VARCHAR#,
+      EXT4 = #ext4:VARCHAR#,
+      INDUSTRY_TYPE_NAME = #industryTypeName:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

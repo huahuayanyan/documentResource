@@ -1,0 +1,65 @@
+<div class="mymain container">
+    <div class="mymain-top clearfix">
+        <div class="mymain-top-header clearfix">
+            <h1 class="pull-left">我的主页</h1>
+            <div class="pull-right" style="position: relative;">
+                <div class="mymain-top-search">
+                    <input type="text" placeholder="搜索"/>
+                </div>
+                <div class="mymain-logo" ng-click="myLogin()">
+                    <img src="../../images/per_01.png">
+                    <a class="mymain-logo-arr">
+                        <img src="../../images/per_arr.png">
+                    </a>
+                </div>
+                <ul class="mymain-login">
+                    <li>
+                        <button ng-click="loginOut()">退出登陆</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul class="mymain-top-bottom clearfix row">
+            <li class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-click="gotoComponent()">
+                <div class="row">
+                    <img src="../../images/icon_18.png" class="img-responsive">
+                </div>
+                <p>我的组件</p>
+            </li>
+            <li ng-class="item.className" ng-repeat="item in top">
+                <div class="row">
+                    <img ng-src="{{item.imgName}}" class="img-responsive">
+                    <span class="number">{{item.number}}</span>
+                </div>
+                <p>{{item.text}}</p>
+                <div class="mymain-delete">
+                    <a><img src="../../images/del_01.png"></a>
+                    &nbsp;
+                    <a ng-click="removeTop(item)"><img src="../../images/del_02.png"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="mymain-bottom clearfix">
+        <h2>我的常用功能</h2>
+        <ul class="mymain-bottom-bottom clearfix row">
+            <li class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-click="ngDialogOpen()">
+                <div class="row">
+                    <img src="../../images/icon_09.png" class="img-responsive">
+                </div>
+            </li>
+            <li ng-class="item.className" ng-repeat="item in cart">
+                <div class="row">
+                    <img ng-src="{{item.imgName}}" class="img-responsive">
+                </div>
+                <p>{{item.text}}</p>
+                <span class="badge">{{item.number}}</span>
+                <div class="mymain-delete">
+                    <a><img src="../../images/del_01.png"></a>
+                    &nbsp;
+                    <a ng-click="removeBottom(item)"><img src="../../images/del_02.png"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="dataSource" class="com.huateng.scf.bas.batch.security.SubBasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+		<value>com.ibm.db2.jcc.DB2Driver</value>
+		</property>
+		<property name="url">
+		<value>jdbc:db2://130.252.15.119:50000/bmsdb</value>
+		</property>
+		<property name="username">
+		<value>billsys</value>
+		</property>
+		<property name="password">
+
+		<value>billsys</value>
+		</property>
+	</bean>
+	<!-- bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>com.sybase.jdbc3.jdbc.SybDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:sybase:Tds:10.102.14.75:5000/gd?CHARSET=cp936</value>
+		</property>
+		<property name="username">
+			<value>gd</value>
+		</property>
+		<property name="password">
+			<value>gd1111</value>
+		</property>
+	</bean-->
+	<!-- informix DB -->
+	<!--  bean id="dataSource"
+		class="com.huateng.ebank.batch.dbcp.SubBasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>oracle.jdbc.OracleDriver</value>
+		</property>
+		<property name="url">
+		   
+			<value>jdbc:oracle:thin:@130.252.15.39:1521:bploandb</value>
+				</property>
+		<property name="username">
+		   
+			<value>oracle</value>
+
+		</property>
+		<property name="password">
+		   
+		    <value>huateng</value>
+
+		</property>
+	</bean-->
+</beans>

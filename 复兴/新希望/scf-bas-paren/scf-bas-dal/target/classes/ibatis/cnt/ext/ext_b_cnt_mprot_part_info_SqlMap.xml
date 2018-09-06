@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_CNT_MPROT_PART_INFO" >
+<!-- 通过protocolNo获得参与者的信息 -->
+  <select id="findBCntMpartInfoByProtocolNo" resultMap="B_CNT_MPROT_PART_INFO.BaseResultMap">
+    select 
+    <include refid="B_CNT_MPROT_PART_INFO.Base_Column_List" />
+    from B_CNT_MPROT_PART_INFO
+    where PROTOCOL_NO = #protocolNo:VARCHAR#
+  </select>
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.cnt.dao.model.BCntMprotBaseInfo" >
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_TYPE" property="protocolType" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="TENOR" property="tenor" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="PROT_AMT" property="protAmt" jdbcType="DECIMAL" />
+    <result column="SIGN_IN" property="signIn" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="OTHER_DES" property="otherDes" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="CHAR" />
+    <result column="TLRNO" property="tlrno" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="UPDATE_STATE" property="updateState" jdbcType="CHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="OTHERPROTOCOL_NO" property="otherprotocolNo" jdbcType="VARCHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="MONI_TYPE" property="moniType" jdbcType="CHAR" />
+    <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" />
+    <result column="ARRIVED_MANAGE_MODE" property="arrivedManageMode" jdbcType="CHAR" />
+    <result column="SELL_OFF_FLAG" property="sellOffFlag" jdbcType="CHAR" />
+    <result column="PRICE_DROP_RATE" property="priceDropRate" jdbcType="DECIMAL" />
+    <result column="COOPERATION_BRCODE" property="cooperationBrcode" jdbcType="VARCHAR" />
+    <result column="CIRCLE_LOAN_FLAG" property="circleLoanFlag" jdbcType="CHAR" />
+    <result column="TRIPLE_PROTOCOL_TYPE" property="tripleProtocolType" jdbcType="CHAR" />
+    <result column="DELIVERY_MODE" property="deliveryMode" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="FourProtocolVOMap" class="com.huateng.scf.bas.cnt.dao.model.FourProtocolVO" >
+    <result column="CUSTCD"              property="custcd"/>           
+	<result column="BALANCEACCOUNT"      property="balanceAccount"/>   
+	<result column="SELLERBANKNO"   property="sellerBankNo"/>
+	<result column="BAILACCOUNT"         property="bailAccount"  />    
+	<result column="SELLERREGADDR"       property="sellerRegAddr"  />  
+	<result column="SELLERCONTACTNAME"   property="sellerContactName"/>
+	
+	<result column="CORECUSTCD"          property="coreCustcd"     />  
+	<result column="COREACCOUNT"         property="coreAccount"    /> 
+	<result column="COREREGADDR"         property="coreRegAddr"   />   
+	<result column="CORECONTACTNAME"     property="coreContactName" />
+	
+	<result column="FOUCD"               property="fouCd"      />      
+	<result column="REFUNDACCOUNT"       property="refundAccount" /> 
+	
+	<result column="MONICUSTCD"          property="moniCustcd" />    
+	
+	<result column="SELLERNM"       property="sellerNm" />
+	<result column="CORENM"        property="coreNm" />   
+	<result column="FOUNAME"       property="fouName" />  
+	<result column="MONINM"       property="moniNm" />  
+	
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_CODE" property="protocolCode" />
+    <result column="PROTOCOL_TYPE" property="protocolType" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="TENOR" property="tenor" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="PROT_AMT" property="protAmt" jdbcType="DECIMAL" />
+    <result column="SIGN_IN" property="signIn" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="OTHER_DES" property="otherDes" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="CHAR" />
+    <result column="TLRNO" property="tlrno" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="UPDATE_STATE" property="updateState" jdbcType="CHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="OTHERPROTOCOL_NO" property="otherprotocolNo" jdbcType="VARCHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="MONI_TYPE" property="moniType" jdbcType="CHAR" />
+    <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" />
+    <result column="ARRIVED_MANAGE_MODE" property="arrivedManageMode" jdbcType="CHAR" />
+    <result column="SELL_OFF_FLAG" property="sellOffFlag" jdbcType="CHAR" />
+    <result column="PRICE_DROP_RATE" property="priceDropRate" jdbcType="DECIMAL" />
+    <result column="COOPERATION_BRCODE" property="cooperationBrcode" jdbcType="VARCHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="FIRST_BAIL_RATIO" property="firstBailRatio" jdbcType="DECIMAL" />
+    <result column="FIRST_BAIL_TYPE" property="firstBailType" jdbcType="CHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="LOAN_DAYS" property="loanDays" />
+    <result column="ARRIVED_MANAGE_MODE" property="arrivedManageMode" jdbcType="CHAR" />
+    <result column="GOODS_NM" property="goodsNm" jdbcType="VARCHAR" />
+    <result column="TAKE_MODE" property="takeMode" jdbcType="VARCHAR" />
+    <result column="CORE_CUST_DUTY" property="coreCustDuty" jdbcType="CHAR" />
+    <result column="MORTGAGE_MANAGE_MODE" property="mortgageManageMode" jdbcType="CHAR" />
+    <result column="IS_INSURANCE" property="isInsurance" jdbcType="CHAR" />
+    <result column="FOU_ADDRESS" property="fouAddress" jdbcType="CHAR" />
+    <result column="TRI_CONVENTIONS" property="triConventions" jdbcType="VARCHAR" />
+    <result column="CONDIGNEE" property="condignee" jdbcType="VARCHAR" />
+    <result column="TRASPORTATION_MODE" property="trasportationMode" jdbcType="VARCHAR" />
+    <result column="DELIVERY_POINTS" property="deliveryPoints" jdbcType="VARCHAR" />
+    <result column="DESTINATION" property="destination" jdbcType="VARCHAR" />
+    <result column="DELIVERY_AMOUNT" property="deliveryAmount" jdbcType="DECIMAL" />
+    <result column="DUTY_ASSUME_TYPE" property="dutyAssumeType" jdbcType="VARCHAR" />
+    <result column="OTHER_CUST_NAME" property="otherCustName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    
+    <result column="DELIVERY_MODE" property="deliveryMode" jdbcType="VARCHAR" />
+    <result column="CONSIGNMENT_DAYS" property="consignmentDays" jdbcType="VARCHAR" />
+  </resultMap>
+<select id="selectForRelateAdvanced" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+    select a.*
+    <!-- <include refid="B_CNT_MPROT_BASE_INFO.Base_Column_List" /> -->
+    from B_CNT_MPROT_BASE_INFO a , B_CNT_MPROT_PART_INFO b
+    where a.PROTOCOL_NO = b.PROTOCOL_NO 
+    	and a.STATE='1' 
+    	
+       <isNotEmpty prepend="and" property="protocolType" >
+        a.PROTOCOL_TYPE  = #protocolType:VARCHAR#   
+      	</isNotEmpty> 
+       <isNotEmpty prepend="and" property="protocolNo" >
+        a.PROTOCOL_NO  like '%'|| #protocolNo#||'%'    
+      	</isNotEmpty> 
+        <isNotEmpty prepend="and" property="productId" >
+        a.PRODUCT_ID = #productId:VARCHAR#
+      	</isNotEmpty>
+        <isNotEmpty prepend="and" property="custcd" >
+        b.CUSTCD = #custcd:VARCHAR#
+      	</isNotEmpty>
+      	<isNotEmpty prepend="and" property="role" >
+        b.ROLE = #role:VARCHAR#
+      	</isNotEmpty>
+ 	order by a.PROTOCOL_NO DESC  
+     
+  </select>
+ <select id="getFourAgreementQuery" resultMap="FourProtocolVOMap" parameterClass="java.util.HashMap" >
+   	SELECT 
+   	   a.custcd,
+   	   ca.cname sellerNm,
+       a.actno balanceAccount,
+       a.bail_actno bailAccount,
+       a.address sellerRegAddr,
+       a.attn sellerContactName,
+       
+       a.ACT_BANKNO sellerBankNo,
+       
+       b.custcd coreCustcd,
+       cb.cname coreNm,
+       b.actno coreAccount,
+       b.address coreRegAddr,
+       b.attn coreContactName,
+       
+       c.custcd fouCd,
+       cc.cname fouName,
+       c.actno refundAccount,
+       
+       d.custcd moniCustcd,
+       cd.cname moniNm,
+       
+       mpbi.protocol_no,
+       mpbi.protocol_code,
+       mpbi.protocol_type,
+       mpbi.product_id,
+       mpbi.sign_date,
+       mpbi.start_date,
+       mpbi.end_date,
+       mpbi.tenor,
+       mpbi.curcd,
+       mpbi.prot_amt,
+       mpbi.sign_in,
+       mpbi.status,
+       mpbi.other_des,
+       mpbi.state,
+       mpbi.tlrno,
+       mpbi.brcode,
+       mpbi.update_state,
+       mpbi.update_date,
+       mpbi.otherprotocol_no,
+       mpbi.loan_percent,
+       mpbi.moni_type,
+       mpbi.low_price_new,
+       mpbi.arrived_manage_mode,
+       mpbi.sell_off_flag,
+       mpbi.price_drop_rate,
+       mpbi.cooperation_brcode,
+       mpbi.DELIVERY_MODE,
+       
+       mpdi.bail_amount,
+       mpdi.first_bail_ratio,
+       mpdi.first_bail_type,
+       mpdi.loan_way,
+       mpdi.loan_days,
+       mpdi.goods_nm,
+       mpdi.take_mode,
+       mpdi.core_cust_duty,
+       mpdi.mortgage_manage_mode,
+       mpdi.is_insurance,
+       mpdi.fou_address,
+       mpdi.tri_conventions,
+       mpdi.condignee,
+       mpdi.trasportation_mode,
+       mpdi.delivery_points,
+       mpdi.destination,
+       mpdi.delivery_amount,
+       mpdi.duty_assume_type,
+       mpdi.other_cust_name,
+       mpdi.CONSIGNMENT_DAYS,
+       prd.PRODUCT_NAME
+       
+  FROM B_CNT_MPROT_BASE_INFO mpbi,
+       B_CNT_MPROT_DEAL_INFO mpdi,
+       B_CNT_MPROT_PART_INFO a,
+       B_CNT_MPROT_PART_INFO b,
+       B_CNT_MPROT_PART_INFO c,
+       B_CNT_MPROT_PART_INFO d,
+       
+       B_PRD_INFO prd,
+       <!-- 买方、卖方、承担责任方,监管方名称 从客户表取 -->
+       B_CRM_BASE_INFO ca,
+       B_CRM_BASE_INFO cb,
+       B_CRM_BASE_INFO cc,
+       B_CRM_BASE_INFO cd
+       
+ WHERE 1 = 1
+	<isNotNull prepend="AND" property="roleCredit" >
+        <![CDATA[a.role=#roleCredit#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleCore" >
+        <![CDATA[b.role=#roleCore#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleBackcore" >
+        <![CDATA[c.role=#roleBackcore#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleMoni" >
+        <![CDATA[d.role=#roleMoni#]]>
+    </isNotNull>
+    <isNotNull prepend="and" property="arrBr" >
+		mpbi.brcode in  
+	    <iterate conjunction="," open="(" close=")" property="arrBr">
+	 	      #arrBr[]#
+	 	</iterate>
+	</isNotNull>
+   AND mpbi.protocol_no = mpdi.protocol_no
+   AND mpbi.protocol_no = a.protocol_no
+   AND mpbi.Protocol_No = b.protocol_no
+   AND mpbi.protocol_no = c.protocol_no
+   AND mpbi.protocol_no = d.protocol_no
+   
+   
+   AND mpbi.product_id =prd.PRODUCT_ID
+   AND a.custcd =ca.custcd
+   AND b.custcd =cb.custcd
+   AND c.custcd =cc.custcd
+   AND d.custcd =cd.custcd
+   
+   <isNotNull prepend="AND" property="protocolType" >
+        <![CDATA[mpbi.protocol_type=#protocolType#]]>
+   </isNotNull>
+    <isNotNull prepend="AND" property="sellerNm" >
+        <![CDATA[ca.cname like '%' || #sellerNm# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="sellerCode" >
+        <![CDATA[ca.custcd =#sellerCode#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="coreNm" >
+        <![CDATA[cb.cname like '%' || #coreNm# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="fouName" >
+        <![CDATA[cc.cname like '%' || #fouName# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="protocolNo" >
+        <![CDATA[mpbi.protocol_no like '%' || #protocolNo# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="productId" >
+        <![CDATA[mpbi.product_id=#productId#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="state" >
+        <![CDATA[mpbi.state=#state#]]>
+    </isNotNull>
+    
+     ORDER BY mpbi.UPDATE_DATE DESC
+  </select>
+
+<select id="getFourAgreementQueryCETK" resultMap="FourProtocolVOMap" parameterClass="java.util.HashMap" >
+   	SELECT 
+   	   a.custcd,
+   	   ca.cname sellerNm,
+       a.actno balanceAccount,
+       a.bail_actno bailAccount,
+       a.address sellerRegAddr,
+       a.attn sellerContactName,
+       
+       a.ACT_BANKNO sellerBankNo,
+       
+       b.custcd coreCustcd,
+       cb.cname coreNm,
+       b.actno coreAccount,
+       b.address coreRegAddr,
+       b.attn coreContactName,
+       
+       c.custcd fouCd,
+       cc.cname fouName,
+       c.actno refundAccount,
+       
+       d.custcd moniCustcd,
+       cd.cname moniNm,
+       
+       mpbi.protocol_no,
+       mpbi.protocol_code,
+       mpbi.protocol_type,
+       mpbi.product_id,
+       mpbi.sign_date,
+       mpbi.start_date,
+       mpbi.end_date,
+       mpbi.tenor,
+       mpbi.curcd,
+       mpbi.prot_amt,
+       mpbi.sign_in,
+       mpbi.status,
+       mpbi.other_des,
+       mpbi.state,
+       mpbi.tlrno,
+       mpbi.brcode,
+       mpbi.update_state,
+       mpbi.update_date,
+       mpbi.otherprotocol_no,
+       mpbi.loan_percent,
+       mpbi.moni_type,
+       mpbi.low_price_new,
+       mpbi.arrived_manage_mode,
+       mpbi.sell_off_flag,
+       mpbi.price_drop_rate,
+       mpbi.cooperation_brcode,
+       mpbi.DELIVERY_MODE,
+       
+       mpdi.bail_amount,
+       mpdi.first_bail_ratio,
+       mpdi.first_bail_type,
+       mpdi.loan_way,
+       mpdi.loan_days,
+       mpdi.goods_nm,
+       mpdi.take_mode,
+       mpdi.core_cust_duty,
+       mpdi.mortgage_manage_mode,
+       mpdi.is_insurance,
+       mpdi.fou_address,
+       mpdi.tri_conventions,
+       mpdi.condignee,
+       mpdi.trasportation_mode,
+       mpdi.delivery_points,
+       mpdi.destination,
+       mpdi.delivery_amount,
+       mpdi.duty_assume_type,
+       mpdi.other_cust_name,
+       mpdi.CONSIGNMENT_DAYS,
+       prd.PRODUCT_NAME
+       
+  FROM B_CNT_MPROT_BASE_INFO mpbi,
+       B_CNT_MPROT_DEAL_INFO mpdi,
+       B_CNT_MPROT_PART_INFO a,
+       B_CNT_MPROT_PART_INFO b,
+       B_CNT_MPROT_PART_INFO c,
+       B_CNT_MPROT_PART_INFO d,
+       B_CRR_LN_CON bc
+      ,B_LAN_LNCI_BASE bl,
+       
+       B_PRD_INFO prd,
+       <!-- 买方、卖方、承担责任方,监管方名称 从客户表取 -->
+       B_CRM_BASE_INFO ca,
+       B_CRM_BASE_INFO cb,
+       B_CRM_BASE_INFO cc,
+       B_CRM_BASE_INFO cd
+       
+ WHERE  mpbi.PROTOCOL_NO = bc.VID_NO
+ 	and bl.MAST_CONTNO=bc.APP_ID
+   	and bl.CONFIRM_STATUS = 1
+	<isNotNull prepend="AND" property="roleCredit" >
+        <![CDATA[a.role=#roleCredit#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleCore" >
+        <![CDATA[b.role=#roleCore#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleBackcore" >
+        <![CDATA[c.role=#roleBackcore#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleMoni" >
+        <![CDATA[d.role=#roleMoni#]]>
+    </isNotNull>
+    <isNotNull prepend="and" property="arrBr" >
+		mpbi.brcode in  
+	    <iterate conjunction="," open="(" close=")" property="arrBr">
+	 	      #arrBr[]#
+	 	</iterate>
+	</isNotNull>
+   AND mpbi.protocol_no = mpdi.protocol_no
+   AND mpbi.protocol_no = a.protocol_no
+   AND mpbi.Protocol_No = b.protocol_no
+   AND mpbi.protocol_no = c.protocol_no
+   AND mpbi.protocol_no = d.protocol_no
+   
+   
+   AND mpbi.product_id =prd.PRODUCT_ID
+   AND a.custcd =ca.custcd
+   AND b.custcd =cb.custcd
+   AND c.custcd =cc.custcd
+   AND d.custcd =cd.custcd
+   
+   <isNotNull prepend="AND" property="protocolType" >
+        <![CDATA[mpbi.protocol_type=#protocolType#]]>
+   </isNotNull>
+    <isNotNull prepend="AND" property="sellerNm" >
+        <![CDATA[ca.cname like '%' || #sellerNm# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="sellerCode" >
+        <![CDATA[ca.custcd =#sellerCode#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="coreNm" >
+        <![CDATA[cb.cname like '%' || #coreNm# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="fouName" >
+        <![CDATA[cc.cname like '%' || #fouName# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="protocolNo" >
+        <![CDATA[mpbi.protocol_no like '%' || #protocolNo# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="productId" >
+        <![CDATA[mpbi.product_id=#productId#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="state" >
+        <![CDATA[mpbi.state=#state#]]>
+    </isNotNull>
+    
+     ORDER BY mpbi.UPDATE_DATE DESC
+  </select>
+  
+</sqlMap>

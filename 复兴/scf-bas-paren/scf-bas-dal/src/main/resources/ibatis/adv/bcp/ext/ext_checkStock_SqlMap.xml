@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_CHECKSTOCK" >
+ 
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.bcp.dao.model.CheckStockVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="UP_CUSTCD" property="upCustcd" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="CHECK_BRCODE" property="checkBrcode" jdbcType="VARCHAR" />
+    <result column="CHECK_TLRNO" property="checkTlrno" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="RECEIVED_TOT_AMT" property="receivedTotAmt" jdbcType="DECIMAL" />
+    <result column="DELIVRIED_VALUE" property="delivriedValue" jdbcType="DECIMAL" />
+    <result column="NOT_DELIVRIED_VALUE" property="notDelivriedValue" jdbcType="DECIMAL" />
+    <result column="RESULT" property="result" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CHECK_DATE" property="checkDate" jdbcType="CHAR" />
+    <result column="CHECK_TYPE" property="checkType" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="CHECK_CONFIRM_DATE" property="checkConfirmDate" jdbcType="CHAR" />
+    <result column="SELLER_CHECKER" property="sellerChecker" jdbcType="VARCHAR" />
+ 
+    <result column="CUSTNAME" property="custname" jdbcType="VARCHAR" />
+    <result column="UPCUSTNAME" property="upcustname" jdbcType="VARCHAR" />
+    <result column="TLRNO" property="tlrno" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+  </resultMap>
+ <!-- 借据提货信息 -->
+  <resultMap id="threeCheckStockDebetVO" class="com.huateng.scf.adv.bcp.dao.model.ThreeCheckStockDebetVO" >
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="LNCI_TYPE" property="lnciType" jdbcType="CHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="AMOUNT_IN" property="amountIn" jdbcType="DECIMAL" />
+    <result column="AMOUNT_OUT" property="amountOut" jdbcType="DECIMAL" />
+    <result column="ACCU_SEND_AMT" property="accuSendAmt" jdbcType="DECIMAL" />
+    <result column="BAL_SEND_AMT" property="balSendAmt" jdbcType="DECIMAL" />
+    
+    <result column="NUM" property="num" jdbcType="VARCHAR" />
+  </resultMap> 
+  
+  
+<!-- 发货对账查询 -->
+<select id="queryCheckStockList" resultMap="BaseResultMap"   parameterClass="java.util.HashMap" > 
+select tmd.ID, tmd.CUSTCD,tmd.CUSTNAME,  tmd.UP_CUSTCD, tmd.UPCUSTNAME, tmd.PROTOCOL_NO ,  tmd.CHECK_BRCODE ,  tmd.CHECK_TLRNO ,  tmd.STATUS ,  tmd.RECEIVED_TOT_AMT,  tmd.DELIVRIED_VALUE,  
+   tmd.NOT_DELIVRIED_VALUE ,  tmd.RESULT ,  tmd.REMARK ,  tmd.CHECK_DATE ,  tmd.CHECK_TYPE ,  tmd.APPNO ,  tmd.PRODUCT_ID ,  tmd.CHECK_CONFIRM_DATE ,
+   tmd.SELLER_CHECKER,tmpb.TLRNO ,pd.PRODUCT_NAME   
+
+ from B_CNT_MPROT_BASE_INFO tmpb,
+ (select t1.*,cus1.CNAME as CUSTNAME ,cus2.CNAME as UPCUSTNAME from A_BCP_MORE_DVY_CHK_STOCK t1 
+ left join  B_CRM_BASE_INFO cus1 on cus1.CUSTCD=t1.CUSTCD
+ left join B_CRM_BASE_INFO cus2 on cus2.CUSTCD=t1.UP_CUSTCD
+ )  tmd,
+  B_CNT_MPROT_PART_INFO a,B_CNT_MPROT_PART_INFO b,
+  B_PRD_INFO pd
+    where  tmpb.PROTOCOL_NO=a.PROTOCOL_NO  
+    and tmpb.PROTOCOL_NO=b.PROTOCOL_NO 
+    and tmpb.PROTOCOL_CODE = tmd.PROTOCOL_NO 
+    and pd.PRODUCT_ID =tmd.PRODUCT_ID 
+    <isNotNull prepend="and" property="arrBr" >
+		tmd.CHECK_BRCODE in 
+	    <iterate conjunction="," open="(" close=")" property="arrBr">
+	 	      #arrBr[]#
+	 	</iterate>
+	</isNotNull>
+    <isNotEmpty prepend="and" property="roleCredit">
+	     <![CDATA[a.ROLE=#roleCredit:VARCHAR# ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="roleCore">
+	     <![CDATA[b.ROLE=#roleCore:VARCHAR#]]>
+	</isNotEmpty>
+       <isNotEmpty prepend="AND" property="custname">
+       tmd.CUSTNAME like '%$custname$%'
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="checkType">
+       tmd.CHECK_TYPE = #checkType#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="productId">
+       tmd.PRODUCT_ID = #productId#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="result">
+       tmd.RESULT =  #result#
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="protocolNo">
+       tmd.PROTOCOL_NO like '%$protocolNo$%'
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="upcustname">
+       tmd.UPCUSTNAME like '%$upcustname$%'
+       </isNotEmpty>
+      <isNotEmpty prepend="AND" property="checkDate1">
+        <![CDATA[
+       tmd.CHECK_DATE >= #checkDate1# 
+        ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="checkDate2">
+         <![CDATA[
+       tmd.CHECK_DATE <= #checkDate2# 
+         ]]>
+       </isNotEmpty>
+       <isNotEmpty prepend="AND" property="status">
+       tmd.STATUS =  #status#
+       </isNotEmpty>
+       
+     order by  tmpb.PROTOCOL_NO desc
+</select>
+   
+  
+  
+   <!-- 根据协议号查询借据提货信息 -->
+  <select id="threeCheckStockDebetQry" resultMap="threeCheckStockDebetVO"   parameterClass="java.util.HashMap" > 
+   SELECT bnnb.NUM,bllb.DEBET_NO,bllb.DEBET_ID,bllb.COMMON_DATE,bllb.LNCI_TYPE,bllb.LNCI_AMT,bllb.START_DATE,bllb.END_DATE,bllb.AMOUNT_OUT,
+          bllb.AMOUNT_IN, bllb.ACCU_SEND_AMT, bllb.BAL_SEND_AMT
+   FROM B_LAN_LNCI_BASE bllb ,B_NTE_NOTICE_BASE bnnb 
+   WHERE 1=1 and bllb.DEBET_NO = bnnb.DEBET_NO
+   <isNotEmpty prepend="and" property="status">
+	     <![CDATA[bnnb.STATUS=#status:VARCHAR# ]]>
+	</isNotEmpty>
+	<dynamic prepend="and" open="(" close=")">
+	<isNotEmpty prepend="or" property="noticeType75">
+	     <![CDATA[bnnb.NOTICE_TYPE=#noticeType75:VARCHAR# ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="or" property="noticeType78">
+	     <![CDATA[bnnb.NOTICE_TYPE=#noticeType78:VARCHAR# ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="or" property="noticeType122">
+	     <![CDATA[bnnb.NOTICE_TYPE=#noticeType122:VARCHAR# ]]>
+	</isNotEmpty>
+	</dynamic>
+	<isNotEmpty prepend="and" property="state">
+	     <![CDATA[bllb.STATE=#state:VARCHAR# ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isSettle">
+	     <![CDATA[bllb.IS_SETTLE=#isSettle:VARCHAR# ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="protocolNo">
+	     <![CDATA[bllb.PROTOCOL_NO=#protocolNo:VARCHAR# ]]>
+	</isNotEmpty>
+ 
+   </select>
+   <!--根据购销合同编号查询相应押品的发货数量-->
+  <select id="getSumQuantityByDebetNo" resultClass="java.util.HashMap"   parameterClass="java.util.HashMap" > 
+     SELECT sum(tmbi.QUANTITY) as num 
+     FROM B_PBC_MTG_BASE_INFO tmbi,B_LAN_LNCI_BUY_BIZ tcbi 
+     WHERE tmbi.TRADE_CONTNO = tcbi.TRADE_CONTNO  
+     <isNotEmpty prepend="and" property="debetNo">
+	     <![CDATA[tcbi.DEBET_NO=#debetNo:VARCHAR# ]]>
+	</isNotEmpty>
+  </select>
+  
+   <!--根据购销合同编号查询相应押品的发货数量-->
+  <select id="getSumQuantityByNoticeType" resultClass="java.util.HashMap"   parameterClass="java.util.HashMap" > 
+     SELECT sum(m.quantity) quantity
+		FROM SCF.B_NTE_NOTICE_BASE b,SCF.B_NTE_NOTICE_MTG m 
+		WHERE b.id = m.pid and b.NOTICE_TYPE = '122'
+     <isNotEmpty prepend="and" property="debetNo">
+	     <![CDATA[b.DEBET_NO=#debetNo:VARCHAR# ]]>
+	</isNotEmpty>
+  </select>
+  
+   <!--发货明细信息查询-->
+  <select id="getCheckStockAmtByProtocol" resultClass="java.util.HashMap"   parameterClass="java.util.HashMap" > 
+     SELECT
+	    nvl(SUM(b.LNCI_AMT),0) LNCI_AMT, nvl(SUM(b.ACCU_SEND_AMT),0) ACCU_SEND_AMT
+		FROM    B_LAN_LNCI_BASE  b
+     where b.PROTOCOL_NO = #protocolNo:VARCHAR#
+  </select>
+   
+   
+</sqlMap>

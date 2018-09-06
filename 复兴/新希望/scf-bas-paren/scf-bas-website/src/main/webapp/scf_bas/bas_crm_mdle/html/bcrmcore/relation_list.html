@@ -1,0 +1,34 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="buyerCustcd" name="买方客户号" ng-model="conditionForm.buyerCustcd"></ht-input>
+    <ht-input ht-id="sellerCustcd"  name="卖方客户号" ng-model="conditionForm.sellerCustcd"></ht-input>
+    <ht-select ht-id="moniCustcd" name="监管公司客户号" ng-model="conditionForm.moniCustcd"></ht-select>
+    <ht-select ht-id="coreCustcd" name="核心厂商客户号"  ng-model="conditionForm.coreCustcd"></ht-select>
+   <!-- <ht-select ht-id="state" name="状态" dictionary="custStatus" hide="true"  ng-model="conditionForm.state"></ht-select>class="center" -->
+    <ht-button-group >
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-legend>客户关系信息表</ht-legend>
+<ht-button-group>
+    <ht-button ht-id="fresh" class="btn-primary">刷新</ht-button>
+    <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+    <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+</ht-button-group>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="id" zh-name="数据ID" href="true" docolumn="column" ></ht-column>
+    <!--<ht-column eg-name="coreCustcd" zh-name="核心厂商客户号" ></ht-column>-->
+    <ht-column eg-name="buyerCustcd" zh-name="买方客户号"></ht-column>
+    <ht-column eg-name="sellerCustcd" zh-name="卖方客户号" ></ht-column>
+    <ht-column eg-name="moniCustcd" zh-name="监管公司客户号" ></ht-column>
+    <ht-column eg-name="relaType" zh-name="客户关联类型" dictionary="relaType"></ht-column>
+    <ht-column eg-name="state" zh-name="状态" dictionary="custStatus"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="confuse" class="btn-primary">返回</ht-button>
+</ht-button-group>

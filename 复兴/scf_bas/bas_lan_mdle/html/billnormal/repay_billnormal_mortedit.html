@@ -1,0 +1,25 @@
+
+<ht-form name ="mortgageInfo">
+    <ht-input ht-id="billcode" name="仓单号" disable="true" ng-model="mortgageInfo.billcode"></ht-input>
+    <ht-input ht-id="mortgageNo" name="押品编号" disable="true" ng-model="mortgageInfo.mortgageNo"></ht-input>
+    <!--<ht-input ht-id="productName" name="货物名称" disable="{{disable}}" reg-exp="common.require" ng-model="mortgageInfo.productName"></ht-input>-->
+    <!--<ht-input ht-id="mortgageName" name="押品名称" disable="{{disable}}" reg-exp="common.require" ng-model="mortgageInfo.mortgageName"></ht-input>-->
+    <ht-select ht-id="mortgageLevelOne" name="押品一级" disable="{{disable}}" reg-exp="common.require" on-change="mortgageLevelOneName" datasource="mortgageLevelOneSource" dataOption="code" dataTrsOption="codeName"  ng-model="mortgageInfo.mortgageLevelOne"></ht-select>
+    <ht-select ht-id="mortgageLevelTwo" name="押品二级" disable="{{disable}}" reg-exp="common.require"on-change="mortgageLevelTwoName" datasource="mortgageLevelTwoSource" dataOption="code" dataTrsOption="codeName" ng-model="mortgageInfo.mortgageLevelTwo"></ht-select>
+    <ht-input ht-id="quantity" name="仓单数量" disable="{{disable}}" ng-model="mortgageInfo.quantity" edit-type="number"></ht-input>
+    <ht-input ht-id="weightAll" name="总重量" disable="{{disable}}" ng-model="mortgageInfo.weightAll" edit-type="number"></ht-input>
+    <ht-input ht-id="totPrice" name="总价" disable="true" ng-model="mortgageInfo.totPrice" edit-type="currency"></ht-input>
+    <ht-input ht-id="vender" name="品牌/厂家" disable="{{disable}}" ng-model="mortgageInfo.vender"></ht-input>
+    <ht-select ht-id="mortgageUnits" name="计量单位" disable="{{disable}}" dictionary="mortgageUnits" ng-model="mortgageInfo.mortgageUnits"></ht-select>
+    <!--<ht-input ht-id="confirmPrice" name="销售价格" disable="{{disable}}" reg-exp="common.require" ng-model="mortgageInfo.confirmPrice" edit-type="currency"></ht-input>-->
+    <ht-input ht-id="qualityLevel" name="质量等级" disable="{{disable}}" ng-model="mortgageInfo.qualityLevel"></ht-input>
+    <ht-select ht-id="upDownMoneyFlag" name="升贴水标志" reg-exp="common.require" disable="{{disable}}" ng-model="mortgageInfo.upDownMoneyFlag" dictionary="upDownMoneyFlag"></ht-select>
+    <ht-input ht-id="upDownMoney" name="升贴水" reg-exp="common.require" disable="{{disable}}" ng-model="mortgageInfo.upDownMoney"></ht-input>
+    <ht-input ht-id="curcd" name="协议币种" disable="{{disable}}" ng-model="mortgageInfo.curcd"></ht-input>
+    <ht-text-area ht-id="warehouseAddress" name="仓库地址" disable="{{disable}}" ng-model="mortgageInfo.warehouseAddress"
+                  style="resize : none"></ht-text-area>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="close" class="btn-primary">返回</ht-button>
+</ht-button-group>

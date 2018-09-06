@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_A_TCS_THREE_DELIVERY" >
+	<resultMap id="ThreeDeliveryVOMap" class="com.huateng.scf.adv.tcs.dao.model.ThreeDeliveryVO">
+		<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+		<result column="CONFIRM_STATUS" property="confirmStatus" jdbcType="CHAR" />
+		<result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+		<result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+		<result column="CUSTCD" property="custcd" />
+		<result column="CNAME" property="cname" jdbcType="VARCHAR" />
+		<result column="CORECUSTCD" property="coreCustcd" jdbcType="VARCHAR" />
+		<result column="CORENM" property="coreNm" jdbcType="VARCHAR" />
+		<result column="FOUCD" property="fouCd" jdbcType="CHAR" />
+		<result column="FIRST_BAIL_RATIO" property="firstBailRatio" jdbcType="DECIMAL" />
+		<result column="CURRDELIVERYAMT" property="currDeliveryAmt" jdbcType="DECIMAL" />
+		<result column="CANDELIVERYAMT" property="canDeliveryAmt" jdbcType="DECIMAL" />
+		
+		<result column="INSERT_DATE" property="insertDate" jdbcType="CHAR" />
+		 <result column="AMOUNT_IN" property="amountIn" jdbcType="DECIMAL" />
+  		<result column="AMOUNT_OUT" property="amountOut" jdbcType="DECIMAL" />
+    	<result column="FIRST_BAIL_TYPE" property="firstBailType" jdbcType="VARCHAR" />
+        <result column="ADD_BAIL_AMOUNT" property="addBailAmount" jdbcType="DECIMAL" />
+        <result column="ADD_CASH_EQT_AMT" property="addCashEqtAmt" jdbcType="DECIMAL" />
+         <result column="CASH_EQT_AMT" property="cashEqtAmt" jdbcType="DECIMAL" />
+        <result column="CORE_BAIL_AMOUNT" property="coreBailAmount" jdbcType="DECIMAL" />
+        		
+		<result column="START_DATE" property="startDate" jdbcType="CHAR" />
+		<result column="END_DATE" property="endDate" jdbcType="CHAR" />
+		<result column="LIMIT_DATE" property="limitDate" jdbcType="CHAR" />
+		<result column="LNCIAMT" property="lnciAmt" jdbcType="DECIMAL" />
+		<result column="OPENAMOUNT" property="openAmount" jdbcType="DECIMAL" />
+		<result column="LNCI_BAL" property="lnciBal" jdbcType="DECIMAL" />
+		<result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+		<result column="REFUNDAMOUNT" property="refundAmount" />
+		<result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+		<result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+		<result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+		<result column="PRODUCT_ID" property="productId" />
+		<result column="MASTCONTNO" property="mastContno" jdbcType="VARCHAR" />
+		<result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+		<result column="NOTICEID" property="noticeId" />
+
+		<result column="INIT_CASH_EQT_AMT" property="initCashEqtAmt" jdbcType="DECIMAL" />
+		<result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+		<result column="BRCODENAME" property="brcodeName" jdbcType="VARCHAR" />
+		<result column="TLRNAME" property="tlrName" jdbcType="VARCHAR" />
+		<result column="PRODUCTNAME" property="productName" jdbcType="VARCHAR" />
+		<result column="MEMO" property="memo" jdbcType="VARCHAR" />
+		
+</resultMap>
+  <resultMap id="ThreeDeliveryListMap" class="com.huateng.scf.adv.tcs.dao.model.ThreeDeliveryVO" >
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="VARCHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="CORECUSTCD" property="coreCustcd" jdbcType="VARCHAR" />
+    <result column="CORENM" property="coreNm" jdbcType="VARCHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+    <result column="CONFIRM_STATUS" property="confirmStatus" jdbcType="CHAR" />
+
+    <result column="PRODUCT_ID" property="productId" jdbcType="CHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="CHAR" />
+   <result column="AMOUNT_IN" property="amountIn" jdbcType="DECIMAL" />
+  	<result column="AMOUNT_OUT" property="amountOut" jdbcType="DECIMAL" />
+
+    
+  </resultMap>
+    <select id="selectThreeDeliveryList" resultMap="ThreeDeliveryListMap" parameterClass="java.util.HashMap" >
+	SELECT
+	   T2.APP_ID as MAST_CONTNO,
+	   T1.PROTOCOL_NO,
+	   T3.START_DATE,
+	   T3.END_DATE,
+	   T3.DEBET_NO,
+	   T3.DEBET_ID,
+	   A.custcd, A.CNAME,
+	   B.custcd AS coreCustcd, B.CNAME AS coreNm,
+	   T3.LNCI_TYPE AS loan_Way,
+	   T3.CONFIRM_STATUS,
+	   T3.LNCI_AMT,
+	   T3.AMOUNT_OUT,
+	   T3.AMOUNT_IN,
+	   T2.VID_BUSI_TYP as product_id
+	   ,T4.PRODUCT_NAME
+	FROM
+	    B_CNT_MPROT_BASE_INFO T1 ,
+	    B_CRR_LN_CON T2 ,
+	    B_LAN_LNCI_BASE T3 ,
+	    B_PRD_INFO T4,
+	 	B_CNT_MPROT_PART_INFO A ,
+	    B_CNT_MPROT_PART_INFO B
+
+    <isParameterPresent >
+	WHERE
+    	T1.PROTOCOL_NO = T2.VID_NO
+	AND T2.APP_ID =T3.MAST_CONTNO
+	AND T2.VID_BUSI_TYP = T4.product_id
+	AND T1.PROTOCOL_NO = A.PROTOCOL_NO
+	AND T1.PROTOCOL_NO = B.PROTOCOL_NO
+	 <![CDATA[AND T3.AMOUNT_IN>0]]>
+	<isNotEmpty prepend="and" property="roleCredit">
+	     <![CDATA[A.ROLE=#roleCredit:VARCHAR# ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="roleCore">
+	     <![CDATA[B.ROLE=#roleCore:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="protocolType"> 
+	     <![CDATA[T1.PROTOCOL_TYPE=#protocolType:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="state"> 
+	    <![CDATA[ T3.STATE=#state:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isSettle"> 
+	    <![CDATA[ T3.IS_SETTLE=#isSettle:VARCHAR#  ]]>
+	</isNotEmpty>
+	
+	<isNotEmpty prepend="and" property="sellerNm">
+         <![CDATA[A.CNAME  like '%'|| #sellerNm:VARCHAR#||'%']]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="coreNm">
+         <![CDATA[B.CNAME   like '%'|| #coreNm:VARCHAR#||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="protocolNo">
+         <![CDATA[T1.protocol_no  like '%'|| #protocolNo:VARCHAR#||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mastContno">
+         <![CDATA[T3.MAST_CONTNO  like '%'|| #mastContno:VARCHAR#||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="loanWay"> 
+	     <![CDATA[T3.LNCI_TYPE = #loanWay:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate1">
+	    <![CDATA[ T3.START_DATE>=#startDate1:VARCHAR#
+	    ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate2">
+	    <![CDATA[ T3.START_DATE <= #startDate2:VARCHAR#
+	    ]]>
+	</isNotEmpty>
+		<isNotEmpty prepend="and" property="amount1">
+	    <![CDATA[ T3.LNCI_AMT>=#amount1:DECIMAL#
+	    ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="amount2">
+	    <![CDATA[ T3.LNCI_AMT <= #amount2:DECIMAL#
+	    ]]>
+	</isNotEmpty>
+
+	order by T3.MAST_CONTNO DESC,T1.PROTOCOL_NO DESC
+    </isParameterPresent>
+  </select>
+ <!-- 根据申请编号查询提货申请信息 -->
+ <resultMap id="DeliveryAppMap" class="com.huateng.scf.adv.tcs.dao.model.ThreeDeliveryVO" >
+	<result column="FIRST_BAIL_TYPE" property="firstBailType" jdbcType="VARCHAR" />
+	<result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+	<result column="AMOUNT_IN" property="amountIn" jdbcType="DECIMAL" />
+	<result column="AMOUNT_OUT" property="amountOut" jdbcType="DECIMAL" />
+	<result column="ADD_BAIL_AMOUNT" property="addBailAmount" jdbcType="DECIMAL" />
+	<result column="FIRST_BAIL_RATIO" property="firstBailRatio" jdbcType="DECIMAL" />
+	<result column="CANDELIVERYAMT" property="canDeliveryAmt" jdbcType="DECIMAL" />
+	<result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+	<result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+	<result column="PRODUCT_ID" property="productId" jdbcType="CHAR" />
+	<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+	<result column="MEMO" property="memo" jdbcType="VARCHAR" />
+	<result column="CASH_EQT_AMT" property="cashEqtAmt" jdbcType="DECIMAL" />
+	<result column="OPENAMOUNT" property="openAmount" jdbcType="DECIMAL" />
+	
+</resultMap>
+<select id="getThreeDeliveryInfoByAppno" resultMap="DeliveryAppMap" parameterClass="java.util.HashMap" >
+	SELECT
+		T1.FIRST_BAIL_TYPE,
+		nvl(T1.UNDELIVERY_AMT,0) as AMOUNT_IN,
+		nvl(T1.DELIVERY_AMT,0) as AMOUNT_out,
+		nvl(T1.CORE_BAIL_AMT,0) as BAIL_AMOUNT,
+		nvl(T1.ADD_BAIL_AMT,0) as ADD_BAIL_AMOUNT,
+		nvl(T1.INIT_AMT_PERCENT,0) as FIRST_BAIL_RATIO,
+		nvl(T1.PICK_AMT,0) as canDeliveryAmt,
+		nvl(T1.COMMON_AMT,0) as Amount,
+		T1.DEBET_NO,
+		T2.SUPPLY_CHAIN_PD_ID as PRODUCT_ID,
+		T1.appno,
+		T2.MEMO,
+		nvl(T1.CASH_EQT_AMT,0) as CASH_EQT_AMT,
+		nvl(T1.RISK_AMT,0) as openAmount
+	FROM A_BCP_APPLI_IMPREST_BUSS T1,
+	B_PBC_APPLI_BASE_INFO T2 
+
+    <isParameterPresent >
+    	WHERE T1.appno =T2 .appno
+	
+	<isNotEmpty prepend="and" property="appno">
+	     <![CDATA[T1.appno=#appno:VARCHAR# ]]>
+	</isNotEmpty>
+
+	order by T1.PROTOCOL_NO DESC
+    </isParameterPresent>
+  </select>
+   <!-- 根据借据号查询提货信息 -->
+ <resultMap id="DeliveryInfoMap" class="com.huateng.scf.adv.tcs.dao.model.ThreeDeliveryVO" >
+	<result column="FIRST_BAIL_TYPE" property="firstBailType" jdbcType="VARCHAR" />
+	<result column="AMOUNT_IN" property="amountIn" jdbcType="DECIMAL" />
+	<result column="AMOUNT_OUT" property="amountOut" jdbcType="DECIMAL" />
+	<result column="INIT_CASH_EQT_AMT" property="initCashEqtAmt" jdbcType="DECIMAL" />
+	 <result column="ADD_CASH_EQT_AMT" property="addCashEqtAmt" jdbcType="DECIMAL" />
+	<result column="FIRST_BAIL_RATIO" property="firstBailRatio" jdbcType="DECIMAL" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+    <result column="LNCI_BAL" property="lnciBal" jdbcType="DECIMAL" />
+	<result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+	<result column="PRODUCT_ID" property="productId" jdbcType="CHAR" />
+
+</resultMap>
+<select id="getThreeDeliveryInfoByDebetNo" resultMap="DeliveryInfoMap" parameterClass="java.util.HashMap" >
+	SELECT
+	    T3.FIRST_BAIL_TYPE,
+	    NVL(T1.AMOUNT_IN,0) AS AMOUNT_IN ,
+	    NVL(T1.AMOUNT_OUT,0) AS AMOUNT_OUT ,
+	    NVL(T1.INIT_CASH_EQT_AMT,0) AS INIT_CASH_EQT_AMT,
+	    NVL(T1.ADD_CASH_EQT_AMT,0) AS ADD_CASH_EQT_AMT,
+	    NVL(T1.FIRST_BAIL_RATIO,0) AS FIRST_BAIL_RATIO,
+	    NVL(T1.LNCI_AMT,0) AS LNCI_AMT,
+	    NVL(T1.LNCI_BAL,0) AS LNCI_BAL,
+	    T1.DEBET_NO,
+	    T2.PRODUCT_ID
+	FROM
+	    B_LAN_LNCI_BASE T1,
+	    B_CNT_MPROT_BASE_INFO T2,
+	    B_CNT_MPROT_DEAL_INFO T3
+
+    <isParameterPresent >
+	WHERE T1.PROTOCOL_NO = T2.PROTOCOL_NO
+	AND T2.PROTOCOL_NO = T3.PROTOCOL_NO
+	<isNotEmpty prepend="and" property="debetNo">
+	     <![CDATA[T1.DEBET_NO=#debetNo:VARCHAR# ]]>
+	</isNotEmpty>
+
+	order by T1.PROTOCOL_NO DESC
+    </isParameterPresent>
+  </select>
+  <!--根据借据号查询对应出账的贸易合同押品信息(线下)-->
+   <resultMap id="DeliveryAppMortListMap" class="com.huateng.scf.adv.tcs.dao.model.ThreeBuyMortgageInfoVO">
+   	<result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+   <result column="TRADE_CONTCODE" property="tradeContcode" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+  <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+      <result column="MORTGAGE_LEVEL_ONENAME" property="mortgageLevelOneName" jdbcType="VARCHAR" />
+      <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+      <result column="MORTGAGE_LEVEL_TWOName" property="mortgageLevelTwoName" jdbcType="VARCHAR" />
+
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+     <result column="CONFIRMPRICE" property="confirmPrice" jdbcType="DECIMAL" />
+    
+  <!--   <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" /> -->
+    <result column="SUMPRICE" property="sumPrice" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+   <!--  <result column="PLEDGED_AMOUNT" property="pledgedAmount" jdbcType="DECIMAL" />S 
+   <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FOUR" property="mortgageLevelFour" jdbcType="VARCHAR" />
+    <result column="BAL_AMOUNT" property="balAmount" jdbcType="DECIMAL" />
+    <result column="BAL_QUANTITY" property="balQuantity" jdbcType="DECIMAL" />
+    <result column="CERTIFICATION_NO" property="certificationNo" jdbcType="VARCHAR" />
+    <result column="CHASSIS_NO" property="chassisNo" jdbcType="VARCHAR" />
+    <result column="MANUFACTURER" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="MANUFACTURE_DATE" property="manufactureDate" jdbcType="CHAR" /> -->
+	</resultMap>
+	<select id="getTripartiteDeliveryAppMortList" resultMap="DeliveryAppMortListMap" parameterClass="java.util.HashMap" >
+	SELECT
+	    T2.MORTGAGE_NO,
+	    T2.TRADE_CONTNO,
+	    T2.PROTOCOL_NO,
+	    T2.MORTGAGE_NAME,
+	    T2.MORTGAGE_LEVEL_ONE,
+	    T4. MORTGAGE_NAME AS  MORTGAGE_LEVEL_ONENAME,
+	    T2.MORTGAGE_LEVEL_TWO,
+	    T5. MORTGAGE_NAME AS  MORTGAGE_LEVEL_TWOName,
+	    T2.MORTGAGE_LEVEL_THREE,
+	    T2.MORTGAGE_LEVEL_FOUR,
+	    T2.MORTGAGE_MODEL,
+	    T2.QUANTITY,
+	    T2.PRICE,
+	    T2.PRICE AS confirmPrice,
+	    T2.TOT_PRICE as sumPrice,
+	    T2.MORTGAGE_UNITS,
+	    T2.PLEDGED_AMOUNT,
+	    T2.CURCD,
+	    T2.BAL_AMOUNT,
+	    T2.BAL_QUANTITY,
+	    T2.CERTIFICATION_NO,
+	    T2.CHASSIS_NO,
+	    T2.MANUFACTURER,
+	    T2.MANUFACTURE_DATE
+	    ,T6.TRADE_CONTCODE
+	FROM
+	    B_LAN_LNCI_BUY_BIZ T1,
+	    B_CNT_BUY_MPROT_INFO T2,
+	    B_LAN_LNCI_BASE T3
+	    ,B_PBC_MTG_CLASS T4
+	    ,B_PBC_MTG_CLASS T5
+	    ,B_CNT_BUY_INFO T6
+    <isParameterPresent >
+	WHERE T1.DEBET_NO = T3.DEBET_NO
+	AND T2.TRADE_CONTNO = T1.TRADE_CONTNO
+	and T2.MORTGAGE_LEVEL_ONE =T4.MORTGAGE_CODE 
+	and T2.MORTGAGE_LEVEL_TWO =T5.MORTGAGE_CODE
+	AND T2.TRADE_CONTNO = T6.TRADE_CONTNO
+	 <![CDATA[AND NVL(T6.ACCU_DELI_AMT,0) < NVL(T2.TOT_PRICE,0) ]]>
+	<isNotEmpty prepend="and" property="debetNo">
+	     <![CDATA[T3.DEBET_NO=#debetNo:VARCHAR# ]]>
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="addedList" > 
+        T2.MORTGAGE_NO not in 
+       <iterate property="addedList" conjunction="," open="(" close=")" >
+   		<![CDATA[ #addedList[]#   ]]> <!-- 已在列表中的不查询出来 -->
+   		</iterate> 
+     </isNotEmpty>
+      
+	order by T1.TRADE_CONTNO DESC
+    </isParameterPresent>
+  </select>
+  
+   <!--根据申请编号查询冻结保证金信息-->
+	<resultMap id="AddBailAmountListMap" class="com.huateng.scf.bas.mrn.dao.model.DebetListVO">
+		<result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+		<result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+		<result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+		<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+		<result column="LNCI_TYPE" property="lnciType" jdbcType="CHAR" />
+		<result column="LNCI_STATUS" property="lnciStatus" jdbcType="CHAR" />
+		<result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+		<result column="LNCI_BAL" property="lnciBal" jdbcType="DECIMAL" />
+		<result column="START_DATE" property="startDate" jdbcType="CHAR" />
+		<result column="END_DATE" property="endDate" jdbcType="CHAR" />
+		<result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+		<result column="ADD_BAIL_AMOUNT" property="addBailAmount" jdbcType="DECIMAL" />
+		<result column="BAIL_ACCOUNT" property="bailAccount" jdbcType="VARCHAR" />
+		<result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+		<result column="RECEIVABLE_INT" property="receivableInt" jdbcType="DECIMAL" />
+	</resultMap>
+	<select id="getAddBailAmountListByAppno" resultMap="AddBailAmountListMap" parameterClass="java.lang.String" >
+	select NVL(T1.BAIL_ACCOUNTNO,0) as BAIL_ACCOUNT
+		,NVL(T1.BAIL_AMOUNT,0) as ADD_BAIL_AMOUNT
+		,T2.DEBET_NO
+		,T2.DEBET_ID
+		,T2.MAST_CONTNO
+		,T2.LNCI_TYPE
+		,T2.LNCI_STATUS
+		,T2.LNCI_AMT
+		,T2.LNCI_BAL
+		,T2.START_DATE
+		,T2.END_DATE
+		,T1.APPNO
+		,T2.BAIL_AMOUNT
+		,T2.MAST_CONTCODE
+		,NVL(T2.RECEIVABLE_INT,0) as RECEIVABLE_INT
+
+	FROM
+		B_MRN_APPLI_ACCT_INFO T1,
+		B_LAN_LNCI_BASE T2 
+    <isParameterPresent >
+	WHERE  T1.DEBET_NO = T2.DEBET_NO 
+	and T1.appno=#appno:VARCHAR#
+
+	order by T2.END_DATE asc, T2.DEBET_ID asc
+    </isParameterPresent>
+  </select>
+</sqlMap>

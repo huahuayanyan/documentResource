@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_WRN_BASE_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.wrn.dao.model.BWrnBaseInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PARAM_ID" property="paramId" jdbcType="VARCHAR" />
+    <result column="WARN_DATE" property="warnDate" jdbcType="CHAR" />
+    <result column="WARN_LEVEL" property="warnLevel" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="SUSPEND_DATE" property="suspendDate" jdbcType="CHAR" />
+    <result column="SUSPEND_DAYS" property="suspendDays" jdbcType="DECIMAL" />
+    <result column="SUSPEND_TLRNO" property="suspendTlrno" jdbcType="VARCHAR" />
+    <result column="PROCESS_TLRNO" property="processTlrno" jdbcType="VARCHAR" />
+    <result column="PROCESS_DATE" property="processDate" jdbcType="CHAR" />
+    <result column="CUST_MANAGER" property="custManager" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="WARN_DUE_DATE" property="warnDueDate" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="TOP_PRODUCT_ID" property="topProductId" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_DATE" property="lastUpdDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PARAM_ID, WARN_DATE, WARN_LEVEL, STATUS, SUSPEND_DATE, SUSPEND_DAYS, SUSPEND_TLRNO, 
+    PROCESS_TLRNO, PROCESS_DATE, CUST_MANAGER, BRCODE, WARN_DUE_DATE, PRODUCT_ID, TOP_PRODUCT_ID, 
+    CUSTCD, LAST_UPD_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.wrn.dao.model.BWrnBaseInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_WRN_BASE_INFO.Base_Column_List" />
+    from B_WRN_BASE_INFO
+    <isParameterPresent >
+      <include refid="B_WRN_BASE_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.wrn.dao.model.BWrnBaseInfo" >
+    select 
+    <include refid="B_WRN_BASE_INFO.Base_Column_List" />
+    from B_WRN_BASE_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.wrn.dao.model.BWrnBaseInfo" >
+    delete from B_WRN_BASE_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.wrn.dao.model.BWrnBaseInfoExample" >
+    delete from B_WRN_BASE_INFO
+    <include refid="B_WRN_BASE_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.wrn.dao.model.BWrnBaseInfo" >
+    insert into B_WRN_BASE_INFO (ID, PARAM_ID, WARN_DATE, WARN_LEVEL, STATUS, 
+      SUSPEND_DATE, SUSPEND_DAYS, SUSPEND_TLRNO, PROCESS_TLRNO, 
+      PROCESS_DATE, CUST_MANAGER, BRCODE, WARN_DUE_DATE, 
+      PRODUCT_ID, TOP_PRODUCT_ID, CUSTCD, LAST_UPD_DATE
+      )
+    values (#id:VARCHAR#, #paramId:VARCHAR#, #warnDate:CHAR#, #warnLevel:CHAR#, #status:CHAR#, 
+      #suspendDate:CHAR#, #suspendDays:DECIMAL#, #suspendTlrno:VARCHAR#, #processTlrno:VARCHAR#, 
+      #processDate:CHAR#, #custManager:VARCHAR#, #brcode:VARCHAR#, #warnDueDate:CHAR#, 
+      #productId:VARCHAR#, #topProductId:VARCHAR#, #custcd:VARCHAR#, #lastUpdDate:TIMESTAMP#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.wrn.dao.model.BWrnBaseInfo" >
+    insert into B_WRN_BASE_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="paramId" >
+        PARAM_ID
+      </isNotNull>
+      <isNotNull prepend="," property="warnDate" >
+        WARN_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevel" >
+        WARN_LEVEL
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="suspendDate" >
+        SUSPEND_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="suspendDays" >
+        SUSPEND_DAYS
+      </isNotNull>
+      <isNotNull prepend="," property="suspendTlrno" >
+        SUSPEND_TLRNO
+      </isNotNull>
+      <isNotNull prepend="," property="processTlrno" >
+        PROCESS_TLRNO
+      </isNotNull>
+      <isNotNull prepend="," property="processDate" >
+        PROCESS_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="custManager" >
+        CUST_MANAGER
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="warnDueDate" >
+        WARN_DUE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="topProductId" >
+        TOP_PRODUCT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        LAST_UPD_DATE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paramId" >
+        #paramId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnDate" >
+        #warnDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevel" >
+        #warnLevel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="suspendDate" >
+        #suspendDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="suspendDays" >
+        #suspendDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="suspendTlrno" >
+        #suspendTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="processTlrno" >
+        #processTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="processDate" >
+        #processDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custManager" >
+        #custManager:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnDueDate" >
+        #warnDueDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        #productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="topProductId" >
+        #topProductId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        #lastUpdDate:TIMESTAMP#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.wrn.dao.model.BWrnBaseInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_WRN_BASE_INFO
+    <include refid="B_WRN_BASE_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_WRN_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.paramId" >
+        PARAM_ID = #record.paramId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnDate" >
+        WARN_DATE = #record.warnDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnLevel" >
+        WARN_LEVEL = #record.warnLevel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.suspendDate" >
+        SUSPEND_DATE = #record.suspendDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.suspendDays" >
+        SUSPEND_DAYS = #record.suspendDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.suspendTlrno" >
+        SUSPEND_TLRNO = #record.suspendTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.processTlrno" >
+        PROCESS_TLRNO = #record.processTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.processDate" >
+        PROCESS_DATE = #record.processDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custManager" >
+        CUST_MANAGER = #record.custManager:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnDueDate" >
+        WARN_DUE_DATE = #record.warnDueDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productId" >
+        PRODUCT_ID = #record.productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.topProductId" >
+        TOP_PRODUCT_ID = #record.topProductId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdDate" >
+        LAST_UPD_DATE = #record.lastUpdDate:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_WRN_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_WRN_BASE_INFO
+    set ID = #record.id:VARCHAR#,
+      PARAM_ID = #record.paramId:VARCHAR#,
+      WARN_DATE = #record.warnDate:CHAR#,
+      WARN_LEVEL = #record.warnLevel:CHAR#,
+      STATUS = #record.status:CHAR#,
+      SUSPEND_DATE = #record.suspendDate:CHAR#,
+      SUSPEND_DAYS = #record.suspendDays:DECIMAL#,
+      SUSPEND_TLRNO = #record.suspendTlrno:VARCHAR#,
+      PROCESS_TLRNO = #record.processTlrno:VARCHAR#,
+      PROCESS_DATE = #record.processDate:CHAR#,
+      CUST_MANAGER = #record.custManager:VARCHAR#,
+      BRCODE = #record.brcode:VARCHAR#,
+      WARN_DUE_DATE = #record.warnDueDate:CHAR#,
+      PRODUCT_ID = #record.productId:VARCHAR#,
+      TOP_PRODUCT_ID = #record.topProductId:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      LAST_UPD_DATE = #record.lastUpdDate:TIMESTAMP#
+    <isParameterPresent >
+      <include refid="B_WRN_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.wrn.dao.model.BWrnBaseInfo" >
+    update B_WRN_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="paramId" >
+        PARAM_ID = #paramId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnDate" >
+        WARN_DATE = #warnDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnLevel" >
+        WARN_LEVEL = #warnLevel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="suspendDate" >
+        SUSPEND_DATE = #suspendDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="suspendDays" >
+        SUSPEND_DAYS = #suspendDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="suspendTlrno" >
+        SUSPEND_TLRNO = #suspendTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="processTlrno" >
+        PROCESS_TLRNO = #processTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="processDate" >
+        PROCESS_DATE = #processDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custManager" >
+        CUST_MANAGER = #custManager:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnDueDate" >
+        WARN_DUE_DATE = #warnDueDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID = #productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="topProductId" >
+        TOP_PRODUCT_ID = #topProductId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        LAST_UPD_DATE = #lastUpdDate:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.wrn.dao.model.BWrnBaseInfo" >
+    update B_WRN_BASE_INFO
+    set PARAM_ID = #paramId:VARCHAR#,
+      WARN_DATE = #warnDate:CHAR#,
+      WARN_LEVEL = #warnLevel:CHAR#,
+      STATUS = #status:CHAR#,
+      SUSPEND_DATE = #suspendDate:CHAR#,
+      SUSPEND_DAYS = #suspendDays:DECIMAL#,
+      SUSPEND_TLRNO = #suspendTlrno:VARCHAR#,
+      PROCESS_TLRNO = #processTlrno:VARCHAR#,
+      PROCESS_DATE = #processDate:CHAR#,
+      CUST_MANAGER = #custManager:VARCHAR#,
+      BRCODE = #brcode:VARCHAR#,
+      WARN_DUE_DATE = #warnDueDate:CHAR#,
+      PRODUCT_ID = #productId:VARCHAR#,
+      TOP_PRODUCT_ID = #topProductId:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      LAST_UPD_DATE = #lastUpdDate:TIMESTAMP#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

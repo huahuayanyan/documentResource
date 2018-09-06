@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_THREEWARECOLLIGATE" >
+ <resultMap id="BaseResultMap" class="com.huateng.scf.adv.qry.dao.model.ThreeWareVO" >
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_TYPE" property="protocolType" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="TENOR" property="tenor" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="PROT_AMT" property="protAmt" jdbcType="DECIMAL" />
+    <result column="SIGN_IN" property="signIn" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="OTHER_DES" property="otherDes" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="CHAR" />
+    <result column="TLRNO" property="tlrno" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="UPDATE_STATE" property="updateState" jdbcType="CHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="OTHERPROTOCOL_NO" property="otherprotocolNo" jdbcType="VARCHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="MONI_TYPE" property="moniType" jdbcType="CHAR" />
+    <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" />
+    <result column="ARRIVED_MANAGE_MODE" property="arrivedManageMode" jdbcType="CHAR" />
+    <result column="SELL_OFF_FLAG" property="sellOffFlag" jdbcType="CHAR" />
+    <result column="PRICE_DROP_RATE" property="priceDropRate" jdbcType="DECIMAL" />
+    <result column="COOPERATION_BRCODE" property="cooperationBrcode" jdbcType="VARCHAR" />
+    <result column="CIRCLE_LOAN_FLAG" property="circleLoanFlag" jdbcType="CHAR" />
+    <result column="TRIPLE_PROTOCOL_TYPE" property="tripleProtocolType" jdbcType="CHAR" />
+    <result column="DELIVERY_MODE" property="deliveryMode" jdbcType="VARCHAR" />
+    
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="CORENAME" property="coreName" jdbcType="VARCHAR" />
+    <result column="PRODUCTNAME" property="productName" jdbcType="VARCHAR" />
+     
+  </resultMap>
+<!-- 台帐综合查询 -->
+<sql id="Base_Column_List" >
+    a.PROTOCOL_NO, a.PROTOCOL_CODE, a.PROTOCOL_TYPE, a.PRODUCT_ID, a.SIGN_DATE, a.START_DATE, a.END_DATE, 
+    a.TENOR, a.CURCD, a.PROT_AMT, a.SIGN_IN, a.STATUS, a.OTHER_DES, a.STATE, a.TLRNO, a.BRCODE, a.UPDATE_STATE, 
+    a.UPDATE_DATE, a.OTHERPROTOCOL_NO, a.LOAN_PERCENT, a.MONI_TYPE, a.LOW_PRICE_NEW, a.ARRIVED_MANAGE_MODE, 
+    a.SELL_OFF_FLAG, a.PRICE_DROP_RATE, a.COOPERATION_BRCODE, a.CIRCLE_LOAN_FLAG, a.TRIPLE_PROTOCOL_TYPE, 
+    a.DELIVERY_MODE,
+    b.CNAME as CNAME,c.CNAME as CORENAME,p.PRODUCT_NAME as PRODUCTNAME 
+  </sql>
+<select id="queryColligate" resultMap="BaseResultMap"   parameterClass="java.util.HashMap" > 
+  select 
+    <include refid="EXT_THREEWARECOLLIGATE.Base_Column_List" />
+   from B_CNT_MPROT_BASE_INFO a 
+   left join B_CNT_MPROT_PART_INFO b on a.PROTOCOL_NO=b.PROTOCOL_NO and b.ROLE='03' 
+   left join B_CNT_MPROT_PART_INFO c on a.PROTOCOL_NO=c.PROTOCOL_NO and c.ROLE='04' 
+   left join B_PRD_INFO p on a.PRODUCT_ID = p.PRODUCT_ID 
+   where a.PROTOCOL_TYPE='07' 
+	  <isNotNull prepend="and" property="arrBr" >
+		a.BRCODE in  
+	    <iterate conjunction="," open="(" close=")" property="arrBr">
+	 	      #arrBr[]#
+	 	</iterate>
+	  </isNotNull>
+      <isNotEmpty prepend="AND" property="custName">
+      b.CNAME like '%$custName$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="otherCustName">
+      c.CNAME like '%$otherCustName$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="protocolCode">
+      a.PROTOCOL_CODE like '%$protocolCode$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="state">
+      a.STATE = #state#
+      </isNotEmpty>
+      <!--<isNotEmpty prepend="AND" property="brcode">
+      a.BRCODE = #brcode#
+      </isNotEmpty>-->
+     order by a.PROTOCOL_NO desc
+</select>
+<select id="getLnciAmtByProtocolNo" resultClass="java.util.HashMap"   parameterClass="java.lang.String" > 
+   select COALESCE(sum(tlbi.LNCI_AMT),0) as LNCIAMT
+    from B_LAN_LNCI_BASE tlbi 
+   where tlbi.state='0' 
+   and tlbi.IS_SETTLE != '1' 
+    <isNotEmpty prepend="AND" property="value">
+      tlbi.PROTOCOL_NO = #value#
+    </isNotEmpty>
+</select>
+<select id="getLnciBalByProtocolNo" resultClass="java.util.HashMap"   parameterClass="java.lang.String" > 
+   select COALESCE(sum(a.LNCI_BAL),0) as LNCIBAL
+   from B_LAN_LNCI_BASE a 
+   where a.state != '1' and a.IS_SETTLE ='0' 
+    <isNotEmpty prepend="AND" property="value">
+      a.PROTOCOL_NO = #value#
+    </isNotEmpty>
+</select>
+<select id="getBailAmountByProtocolNo" resultClass="java.util.HashMap"   parameterClass="java.lang.String" > 
+   select COALESCE(sum(nvl(tlbi.BAIL_AMOUNT,0)+nvl(tlbi.ADD_BAIL_AMOUNT,0)),0) as BAILAMOUNT 
+	from B_LAN_LNCI_BASE tlbi 
+	where tlbi.state != '1' 
+	and tlbi.IS_SETTLE = '0' 
+    <isNotEmpty prepend="AND" property="value">
+      tlbi.PROTOCOL_NO = #value#
+    </isNotEmpty>
+</select>
+ <select id="getCashEqtAmountByProtocolNo" resultClass="java.util.HashMap"   parameterClass="java.lang.String" > 
+   select COALESCE(sum(nvl(tlbi.INIT_CASH_EQT_AMT,0)+nvl(tlbi.ADD_CASH_EQT_AMT,0)),0) as CASHEQTAMT 
+	from B_LAN_LNCI_BASE tlbi where 1=1 
+	and tlbi.state = '0' and tlbi.IS_SETTLE = '0' 
+    <isNotEmpty prepend="AND" property="value">
+      tlbi.PROTOCOL_NO = #value#
+    </isNotEmpty>
+</select>
+ <select id="getAmountInByProtocolNo" resultClass="java.util.HashMap"   parameterClass="java.lang.String" > 
+   select COALESCE(sum(tlbi.AMOUNT_IN),0) as AMOUNTIN 
+    from B_LAN_LNCI_BASE tlbi where tlbi.state != '1'  and tlbi.IS_SETTLE = '0' 
+    <isNotEmpty prepend="AND" property="value">
+      tlbi.PROTOCOL_NO = #value#
+    </isNotEmpty>
+</select>
+ <select id="getAmountOutByProtocolNo" resultClass="java.util.HashMap"   parameterClass="java.lang.String" > 
+   select COALESCE(sum(tlbi.AMOUNT_OUT),0)  as AMOUNTOUT
+	from B_LAN_LNCI_BASE tlbi 
+	where tlbi.state!='1'  and tlbi.IS_SETTLE ='0' 
+ <isNotEmpty prepend="AND" property="value">
+      tlbi.PROTOCOL_NO = #value#
+    </isNotEmpty>
+</select>
+
+
+</sqlMap>

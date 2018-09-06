@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_CNT_DEBT_EXT_INFO" >
+  <resultMap id="DebtExtInfoMap" class="com.huateng.scf.bas.cnt.dao.model.BCntDebtExtInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="BUSINESS_NO" property="businessNo" jdbcType="VARCHAR" />
+    <result column="BUYER_CUSTCD" property="buyerCustcd" jdbcType="VARCHAR" />
+    <result column="LOAN_DAYS" property="loanDays" jdbcType="DECIMAL" />
+    <result column="DEBT_GRACE_DAYS" property="debtGraceDays" jdbcType="DECIMAL" />
+    <result column="BUYER_NAME" property="buyerName" jdbcType="VARCHAR" />
+    <result column="BATCH_NUMBER" property="batchNumber" jdbcType="VARCHAR" />
+    <result column="CREDIT_TERM" property="creditTerm" jdbcType="DECIMAL" />
+    <result column="CREDIT_AMT" property="creditAmt" jdbcType="DECIMAL" />
+    <result column="RISK_TERM" property="riskTerm" jdbcType="DECIMAL" />
+    <result column="RECOVER_TYPE" property="recoverType" jdbcType="VARCHAR" />
+    <result column="FACT_PATTERN" property="factPattern" jdbcType="VARCHAR" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="CHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+  </resultMap>
+  <!-- 应收账款融资交易对手买方名称从客户表中取 -->
+	<select id="findDebtExtInfoByContno" resultMap="DebtExtInfoMap" parameterClass="java.util.HashMap">
+		SELECT
+		T1.ID,
+		T1.BUSINESS_NO,
+		T1.BUYER_CUSTCD,
+		T1.LOAN_DAYS,
+		T1.DEBT_GRACE_DAYS,
+		T2.CNAME AS BUYER_NAME,
+		T1.BATCH_NUMBER,
+		T1.CREDIT_TERM,
+		T1.CREDIT_AMT,
+		T1.RISK_TERM,
+		T1.RECOVER_TYPE,
+		T1.FACT_PATTERN,
+		T1.NOTICE_TYPE,
+		T1.LOAN_PERCENT
+		FROM
+		B_CNT_DEBT_EXT_INFO T1,
+		B_CRM_BASE_INFO T2
+		<isParameterPresent>
+			where T1.BUYER_CUSTCD = T2.CUSTCD
+			<isNotEmpty prepend="AND" property="businessNo">
+				T1.BUSINESS_NO=#businessNo:VARCHAR#
+			</isNotEmpty>
+		</isParameterPresent>
+	</select>
+  <!-- 根据合同编号删除合同下的交易对手 -->
+  <delete id="deleteDebtExtInfoByContno" parameterClass="java.util.HashMap">
+    delete from B_CNT_DEBT_EXT_INFO
+   <isNotEmpty prepend="where" property="businessNo">
+	   BUSINESS_NO=#businessNo:VARCHAR#
+   </isNotEmpty>
+  </delete>
+</sqlMap>

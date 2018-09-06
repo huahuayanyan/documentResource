@@ -1,0 +1,36 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input-extent ht-id="custNm" name="客户名称" extent="custcontent" on-change="dooextend"
+                     ng-model="conditionForm.custNm"></ht-input-extent>
+    <ht-input ht-id="appId" name="信贷合同号" ng-model="conditionForm.appId"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>现金等价物抵质押登记</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="startApply" class="btn-primary" disable="{{flowsubmitdisable}}">申请发起</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="custNm" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="appId" zh-name="信贷合同号"></ht-column>
+    <ht-column eg-name="vidPrdNm" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="loanWay" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="lnAmt" zh-name="信贷合同金额" type="currency"></ht-column>
+    <ht-column eg-name="lnStrtDt" zh-name="合同生效日" type="date"></ht-column>
+    <ht-column eg-name="lnEndDt" zh-name="合同到期日" type="date"></ht-column>
+    <ht-column eg-name="creditProtNo" zh-name="额度协议流水号"></ht-column>
+    <ht-column eg-name="vidNo" zh-name="业务合同号"></ht-column>
+</ht-table>
+
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->
+
+
+
+

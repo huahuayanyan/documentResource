@@ -1,0 +1,34 @@
+<ht-button-group>
+    <ht-button ht-id="a" class="btn-primary">绑定市价</ht-button>
+    <ht-button ht-id="b" class="btn-primary">取消绑定</ht-button>
+</ht-button-group>
+<ht-form name="qulityApplyCheckForm">
+    <ht-input ht-id="mortgageNo" name="押品编号" disable="true" ng-model="qualityApplyCheck.mortgageNo"></ht-input>
+    <ht-input ht-id="mortgageName" name="押品名称" disable="true" ng-model="qualityApplyCheck.mortgageName"></ht-input>
+    <ht-input ht-id="mortgageModel" name="规格/型号" disable="true" ng-model="qualityApplyCheck.mortgageModel"></ht-input>
+    <ht-input ht-id="mortgageUnits" name="单位" disable="true" ng-model="qualityApplyCheck.mortgageUnits"></ht-input>
+    <ht-input ht-id="manufacturer" name="生产厂家" disable="true" ng-model="qualityApplyCheck.manufacturer"></ht-input>
+    <ht-input ht-id="manufactureDate" name="出厂日期" edit-type="date" disable="true" ng-model="qualityApplyCheck.manufactureDate"></ht-input>
+    <ht-input ht-id="weightAll" name="数量/重量" disable="true" ng-model="qualityApplyCheck.weightAll"></ht-input>
+    <ht-input ht-id="mortgageLevelOneName" name="押品一级" disable="true" ng-model="qualityApplyCheck.mortgageLevelOneName"></ht-input>
+    <ht-input ht-id="mortgageLevelTwoName" name="押品二级" disable="true" ng-model="qualityApplyCheck.mortgageLevelTwoName"></ht-input>
+    <ht-input ht-id="mortgageLevelThreeName" name="押品三级" disable="true" ng-model="qualityApplyCheck.mortgageLevelThreeName"></ht-input>
+    <ht-input ht-id="description" name="押品其他描述" disable="true" ng-model="qualityApplyCheck.description"></ht-input>
+    <ht-input ht-id="originalPrice" name="买入单价" disable="true" edit-type="currency" ng-model="qualityApplyCheck.originalPrice"></ht-input>
+    <ht-select ht-id="curcd" name="币种" disable="true" dictionary="curcd" ng-model="qualityApplyCheck.curcd"></ht-select>
+    <ht-input ht-id="warehouse" name="仓库名称" disable="true" ng-model="qualityApplyCheck.warehouse"></ht-input>
+    <ht-input ht-id="warehouseAddress" name="仓库地址" disable="true" ng-model="qualityApplyCheck.warehouseAddress"></ht-input>
+    <ht-select ht-id="moniWarehouseType" name="监管模式" disable="true" dictionary="moniWarehouseType" ng-model="qualityApplyCheck.moniWarehouseType"></ht-select>
+    <ht-input ht-id="freightarea" name="货区号" disable="true" ng-model="qualityApplyCheck.freightarea"></ht-input>
+    <ht-input ht-id="freightlot" name="货位号" disable="true" ng-model="qualityApplyCheck.freightlot"></ht-input>
+    <ht-input ht-id="confirmPrice" name="核定单价" reg-exp="IsNotNull" edit-type="currency" ng-model="qualityApplyCheck.confirmPrice"></ht-input>
+    <ht-input ht-id="confirmAccording" name="核准依据" reg-exp="IsNotNull" ng-model="qualityApplyCheck.confirmAccording"></ht-input>
+    <ht-input ht-id="fixMortgageNo" name="盯市产品编号" disable="true" ng-model="qualityApplyCheck.fixMortgageNo"></ht-input>
+    <ht-input ht-id="marketPrice" name="市场价" reg-exp="IsNotNull" edit-type="currency" ng-model="qualityApplyCheck.marketPrice"></ht-input>
+    <ht-select ht-id="joinBatch" name="是否参与核定价格批量调整" disable="true" dictionary="joinBatch" ng-model="qualityApplyCheck.joinBatch"></ht-select>
+    <ht-input ht-id="memo" name="备注" ng-model="qualityApplyCheck.memo"></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确认</ht-button>
+    <ht-button ht-id="cancel" class="btn-primary">返回</ht-button>
+</ht-button-group>

@@ -1,0 +1,23 @@
+
+
+
+<ht-form name="otherform">
+    <ht-input ht-id="costName" name="费用名称" disable="true" ng-model="otherform.costName"></ht-input>
+    <ht-select ht-id="costClass" name="费用收取种类" disable="true" dictionary="costClass"  ng-model="otherform.costClass"></ht-select>
+    <ht-select ht-id="costType" name="收取方式" disable="true"  dictionary="costType" ng-model="otherform.costType"></ht-select>
+    <ht-select ht-id="chargeType" name="扣取方式" disable="true" dictionary="costChargeType" ng-model="otherform.chargeType"></ht-select>
+    <ht-select ht-id="costCalcType" name="计算方式" disable="true" dictionary="costCalcType" ng-model="otherform.costCalcType"></ht-select>
+    <ht-input ht-id="costRate" name="费用比率(%)" disable="true"  ng-model="otherform.costRate"></ht-input>
+    <ht-input ht-id="costAmt" name="固定费用" disable="true" edit-type="currency"  ng-model="otherform.costAmt"></ht-input>
+    <ht-input ht-id="totalAmt" name="费用小计" disable="true" edit-type="currency"  ng-model="otherform.totalAmt"></ht-input>
+    <ht-input ht-id="reduceAmt" name="减免金额"  reg-exp="common.require" edit-type="currency"  ng-model="otherform.reduceAmt"></ht-input>
+    <ht-input ht-id="costAccount" name="扣费账号" reg-exp="BillCodeValidate" ng-model="otherform.costAccount"></ht-input>
+    <ht-input ht-id="receiveAmount" name="实收费用金额" disable="true" edit-type="currency"  ng-model="otherform.receiveAmount"></ht-input>
+    <ht-input-extent ht-id="brname" name="费用收取网点" extent="brnameContent" on-change="brnameExtent"
+                     reg-exp="common.require" ng-model="otherform.brname"></ht-input-extent>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确认</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

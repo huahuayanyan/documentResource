@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_CRR_GNTY_CON" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrGntyCon" >
+    <result column="CON_ID" property="conId" jdbcType="VARCHAR" />
+    <result column="CON_TYP" property="conTyp" jdbcType="VARCHAR" />
+    <result column="GUTY_TYP" property="gutyTyp" jdbcType="VARCHAR" />
+    <result column="CON_STAT" property="conStat" jdbcType="VARCHAR" />
+    <result column="GUT_FRM" property="gutFrm" jdbcType="VARCHAR" />
+    <result column="GUT_ID" property="gutId" jdbcType="VARCHAR" />
+    <result column="GUT_NM" property="gutNm" jdbcType="VARCHAR" />
+    <result column="GCRT_TYP" property="gcrtTyp" jdbcType="VARCHAR" />
+    <result column="GCRT_ID" property="gcrtId" jdbcType="VARCHAR" />
+    <result column="LN_NO" property="lnNo" jdbcType="VARCHAR" />
+    <result column="GUT_CURCD" property="gutCurcd" jdbcType="VARCHAR" />
+    <result column="GUT_VAL" property="gutVal" jdbcType="DECIMAL" />
+    <result column="OTH_DSCRB" property="othDscrb" jdbcType="VARCHAR" />
+    <result column="BAIL_RATE" property="bailRate" jdbcType="DECIMAL" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="VID_PRD_ID" property="vidPrdId" jdbcType="VARCHAR" />
+    <result column="PRTCL_NO" property="prtclNo" jdbcType="VARCHAR" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" />
+    <result column="LOW_PRICE" property="lowPrice" jdbcType="DECIMAL" />
+    <result column="MONI_MD" property="moniMd" jdbcType="CHAR" />
+    <result column="FLG" property="flg" jdbcType="VARCHAR" />
+    <result column="GUARD_RAT" property="guardRat" jdbcType="DECIMAL" />
+    <result column="GUTY_WAY" property="gutyWay" jdbcType="VARCHAR" />
+    <result column="BUSI_STAT" property="busiStat" jdbcType="CHAR" />
+    <result column="BUSI_NO" property="busiNo" jdbcType="VARCHAR" />
+    <result column="PRTCL_BR_NM" property="prtclBrNm" jdbcType="VARCHAR" />
+    <result column="GUT_SUM" property="gutSum" jdbcType="DECIMAL" />
+    <result column="STRT_DT" property="strtDt" jdbcType="VARCHAR" />
+    <result column="END_DT" property="endDt" jdbcType="VARCHAR" />
+    <result column="vidPrdNm" property="vidPrdNm" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    CON_ID, CON_TYP, GUTY_TYP, CON_STAT, GUT_FRM, GUT_ID, GUT_NM, GCRT_TYP, GCRT_ID, 
+    LN_NO, GUT_CURCD, GUT_VAL, OTH_DSCRB, BAIL_RATE, TLR_NO, TLR_NM, BR_CD, BR_NM, INP_DT, 
+    LST_UPD_TLR, LST_UPD_TLR_NM, LST_UPD_BR_CD, LST_UPD_BR_NM, LST_UPD_DT, VID_PRD_ID, 
+    PRTCL_NO, RATION, LOW_PRICE_NEW, LOW_PRICE, MONI_MD, FLG, GUARD_RAT, GUTY_WAY, BUSI_STAT, 
+    BUSI_NO, PRTCL_BR_NM, GUT_SUM, STRT_DT, END_DT
+  </sql>
+   
+   <select id="getSlaveContListXPHH" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+   	SELECT 
+   	   CSI.CON_ID,CSI.CON_TYP,CSI.GUTY_TYP,CSI.CON_STAT,CSI.GUT_FRM,
+   	   CSI.GUT_ID ,CSI.GCRT_TYP,CSI.GCRT_ID,CSI.LN_NO,
+   	   CSI.GUT_CURCD,CSI.GUT_VAL,CSI.OTH_DSCRB,CSI.BAIL_RATE,CSI.TLR_NO,
+   	   CSI.TLR_NM,CSI.BR_CD,CSI.BR_NM,CSI.INP_DT,CSI.LST_UPD_TLR,CSI.LST_UPD_TLR_NM,
+   	   CSI.LST_UPD_BR_CD,CSI.LST_UPD_BR_NM,CSI.LST_UPD_DT,CSI.VID_PRD_ID,
+   	   CSI.PRTCL_NO,CSI.RATION,CSI.LOW_PRICE_NEW,CSI.LOW_PRICE,CSI.MONI_MD,
+   	   CSI.FLG,CSI.GUARD_RAT,CSI.GUTY_WAY,CSI.BUSI_STAT,CSI.BUSI_NO,
+   	   CSI.GUT_SUM,CSI.STRT_DT,CSI.END_DT,cb.CNAME AS PRTCL_BR_NM,
+      prd.PRODUCT_NAME AS vidPrdNm,ca.CNAME AS GUT_NM,a.CUSTCD AS MONI_CUSTCD
+       
+        
+  FROM B_CNT_MPROT_BASE_INFO mpbi,
+       B_CNT_MPROT_PART_INFO a,
+       B_PRD_INFO prd,
+       <!-- 担保人名称和监管公司名称 -->
+       B_CRM_BASE_INFO ca,
+       B_CRM_BASE_INFO cb,
+       B_CRR_GNTY_CON CSI
+       ,B_CRR_LN_CON bc
+      ,B_LAN_LNCI_BASE bl
+ WHERE 1 = 1
+   AND mpbi.PROTOCOL_NO = a.PROTOCOL_NO
+   AND CSI.PRTCL_NO = a.PROTOCOL_NO 
+   AND a.CUSTCD = cb.CUSTCD 
+   <!--角色为监管公司 -->
+   AND a.ROLE = '02'
+   AND CSI.VID_PRD_ID =prd.PRODUCT_ID
+   AND CSI.GUT_ID =ca.custcd
+   and bl.MAST_CONTNO=bc.APP_ID
+   and mpbi.OTHERPROTOCOL_NO = bc.VID_NO
+   and bl.CONFIRM_STATUS = 1
+
+   <isNotNull prepend="AND" property="conId" >
+        <![CDATA[CSI.CON_ID=#conId:VARCHAR#]]>
+   </isNotNull>
+    <isNotNull prepend="AND" property="gutNm" >
+        <![CDATA[CSI.GUT_NM like '%' || #gutNm# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="gutId" >
+        <![CDATA[CSI.GUT_ID =  #gutId:VARCHAR# ]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="vidPrdId" >
+        <![CDATA[CSI.VID_PRD_ID =#vidPrdId:VARCHAR#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="prtclBrNm" >
+        <![CDATA[cb.CNAME like '%' || #prtclBrNm# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="strtDtFrom" >
+        <![CDATA[CSI.STRT_DT >= #strtDtFrom:VARCHAR# ]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="strtDtTo" >
+        <![CDATA[CSI.STRT_DT <= #strtDtTo:VARCHAR# ]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="conTyp" >
+        <![CDATA[CSI.CON_TYP=#conTyp:VARCHAR#]]>
+    </isNotNull>
+     <isNotNull prepend="AND" property="brcode" >
+        <![CDATA[CSI.BR_CD=#brcode:VARCHAR#]]>
+    </isNotNull>
+     <isNotNull prepend="AND" property="custcd" >
+        <![CDATA[CSI.GUT_ID=#custcd:VARCHAR#]]>
+    </isNotNull>
+    
+     ORDER BY CSI.LST_UPD_DT DESC ,PRTCL_NO DESC
+  </select>
+  <select id="getSlaveContList" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+   	SELECT 
+   	   CSI.CON_ID,CSI.CON_TYP,CSI.GUTY_TYP,CSI.CON_STAT,CSI.GUT_FRM,
+   	   CSI.GUT_ID ,CSI.GCRT_TYP,CSI.GCRT_ID,CSI.LN_NO,
+   	   CSI.GUT_CURCD,CSI.GUT_VAL,CSI.OTH_DSCRB,CSI.BAIL_RATE,CSI.TLR_NO,
+   	   CSI.TLR_NM,CSI.BR_CD,CSI.BR_NM,CSI.INP_DT,CSI.LST_UPD_TLR,CSI.LST_UPD_TLR_NM,
+   	   CSI.LST_UPD_BR_CD,CSI.LST_UPD_BR_NM,CSI.LST_UPD_DT,CSI.VID_PRD_ID,
+   	   CSI.PRTCL_NO,CSI.RATION,CSI.LOW_PRICE_NEW,CSI.LOW_PRICE,CSI.MONI_MD,
+   	   CSI.FLG,CSI.GUARD_RAT,CSI.GUTY_WAY,CSI.BUSI_STAT,CSI.BUSI_NO,
+   	   CSI.GUT_SUM,CSI.STRT_DT,CSI.END_DT,cb.CNAME AS PRTCL_BR_NM,
+      prd.PRODUCT_NAME AS vidPrdNm,ca.CNAME AS GUT_NM,a.CUSTCD AS MONI_CUSTCD
+       
+        
+  FROM B_CNT_MPROT_BASE_INFO mpbi,
+       B_CNT_MPROT_PART_INFO a,
+       B_PRD_INFO prd,
+       <!-- 担保人名称和监管公司名称 -->
+       B_CRM_BASE_INFO ca,
+       B_CRM_BASE_INFO cb,
+       B_CRR_GNTY_CON CSI
+       
+ WHERE 1 = 1
+   AND mpbi.PROTOCOL_NO = a.PROTOCOL_NO
+   AND CSI.PRTCL_NO = a.PROTOCOL_NO 
+   AND a.CUSTCD = cb.CUSTCD 
+   <!--角色为监管公司 -->
+   AND a.ROLE = '02'
+   AND CSI.VID_PRD_ID =prd.PRODUCT_ID
+   AND CSI.GUT_ID =ca.custcd
+
+   <isNotNull prepend="AND" property="conId" >
+        <![CDATA[CSI.CON_ID=#conId:VARCHAR#]]>
+   </isNotNull>
+    <isNotNull prepend="AND" property="gutNm" >
+        <![CDATA[CSI.GUT_NM like '%' || #gutNm# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="gutId" >
+        <![CDATA[CSI.GUT_ID =  #gutId:VARCHAR# ]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="vidPrdId" >
+        <![CDATA[CSI.VID_PRD_ID =#vidPrdId:VARCHAR#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="prtclBrNm" >
+        <![CDATA[cb.CNAME like '%' || #prtclBrNm# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="strtDtFrom" >
+        <![CDATA[CSI.STRT_DT >= #strtDtFrom:VARCHAR# ]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="strtDtTo" >
+        <![CDATA[CSI.STRT_DT <= #strtDtTo:VARCHAR# ]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="conTyp" >
+        <![CDATA[CSI.CON_TYP=#conTyp:VARCHAR#]]>
+    </isNotNull>
+     <isNotNull prepend="AND" property="brcode" >
+        <![CDATA[CSI.BR_CD=#brcode:VARCHAR#]]>
+    </isNotNull>
+     <isNotNull prepend="AND" property="custcd" >
+        <![CDATA[CSI.GUT_ID=#custcd:VARCHAR#]]>
+    </isNotNull>
+    
+     ORDER BY CSI.LST_UPD_DT DESC ,PRTCL_NO DESC
+  </select>
+  <resultMap id="BaseResultMap1" class="com.huateng.scf.bas.crr.dao.model.BCrrGntyConVO" >
+     <result column="CON_ID" property="conId" jdbcType="VARCHAR" />
+     <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+     <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+     <result column="RATION" property="ration" jdbcType="DECIMAL" />
+     <result column="PRTCL_NO" property="prtclNo" jdbcType="VARCHAR" />
+     
+     <result column="RISK_BAL" property="riskBal" jdbcType="DECIMAL" />
+     <result column="LEAST_MORT_AMT" property="leastMortAmt" jdbcType="DECIMAL" />
+     <result column="MORT_AMT" property="mortAmt" jdbcType="DECIMAL" />
+     <result column="MORT_BALANCE" property="mortBalance" jdbcType="DECIMAL" />
+     <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" />
+     <result column="GUT_NM" property="gutNm" jdbcType="VARCHAR" />
+     <result column="GUT_ID" property="gutId" jdbcType="VARCHAR" />
+     <result column="MONI_MD" property="moniMd" jdbcType="VARCHAR" />
+    
+    <result column="vidPrdNm" property="vidPrdNm" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getWarnDropCtlInfoByParam" resultMap="BaseResultMap1" parameterClass="java.util.HashMap" >
+   	SELECT 
+   	   tcsi.CON_ID,tcsi.TLR_NO,tcsi.BR_CD,tcsi.RATION,tcsi.PRTCL_NO,tcsi.MONI_MD,tcsi.GUT_ID,tcsi.LOW_PRICE_NEW,
+   	   twdc.RISK_BAL,twdc.LEAST_MORT_AMT,twdc.MORT_AMT,twdc.MORT_BALANCE,
+       CUS.CNAME AS GUT_NM,prd.PRODUCT_NAME as vidPrdNm
+        
+ 	FROM 
+       B_WRN_BASE_INFO twbi,
+       B_WRN_DROP_CTL_INFO twdc,
+       B_PRD_INFO prd,
+       B_CRM_BASE_INFO CUS,
+       B_CRR_GNTY_CON tcsi,
+       B_CNT_MPROT_BASE_INFO tmpb
+       
+ 	WHERE 
+	   twbi.ID = twdc.WARN_ID 
+	   AND twdc.SLAVE_CONTNO = tcsi.CON_ID
+	   AND CUS.CUSTCD = tcsi.GUT_ID
+	   AND prd.PRODUCT_ID=tcsi.VID_PRD_ID
+	   AND tmpb.PROTOCOL_NO =  tcsi.PRTCL_NO
+	   AND tcsi.PRTCL_NO is not null
+    <isNotNull prepend="AND" property="slaveContcode" >
+        <![CDATA[tcsi.CON_ID like '%' || #slaveContcode:VARCHAR# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="paramId" >
+        <![CDATA[twbi.PARAM_ID =#paramId:VARCHAR#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="cname" >
+        <![CDATA[CUS.CNAME like '%' || #cname:VARCHAR# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="vidPrdId" >
+        <![CDATA[tcsi.VID_PRD_ID =#vidPrdId:VARCHAR#]]>
+    </isNotNull>
+    
+     ORDER BY twbi.LAST_UPD_DATE DESC ,tcsi.LST_UPD_DT DESC
+  </select>
+ 
+</sqlMap>

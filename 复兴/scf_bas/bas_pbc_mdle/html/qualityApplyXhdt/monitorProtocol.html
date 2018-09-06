@@ -1,0 +1,16 @@
+<ht-legend>监管合同基本信息</ht-legend>
+<ht-form>
+    <ht-input ht-id="protocolCode" name="监管合同号" disable="true" ng-model="mortgageInfo.protocolCode"></ht-input>
+    <ht-select ht-id="productId" name="业务品种" disable="true" datasource="productSource" dataOption="code" dataTrsOption="codeName"  ng-model="mortgageInfo.productId"></ht-select>
+    <ht-select ht-id="moniType" name="货押模式" disable="true" dictionary="moniType" ng-model="mortgageInfo.moniType"></ht-select>
+    <ht-select ht-id="curcdNm" name="币种" disable="true" dictionary="curcd" ng-model="mortgageInfo.curcdNm"></ht-select>
+    <ht-input ht-id="secName" name="出质人名称" disable="true" ng-model="mortgageInfo.secName"></ht-input>
+    <ht-input ht-id="thrName" name="监管公司名称" disable="true" ng-model="mortgageInfo.thrName"></ht-input>
+    <ht-input ht-id="startDate" name="合同生效日" disable="true" edit-type="date" ng-model="mortgageInfo.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="合同到期日" disable="true" edit-type="date" ng-model="mortgageInfo.endDate"></ht-input>
+    <ht-select ht-id="sellOffFlag" name="是否签订委托变卖协议" disable="true" dictionary="sellOffFlag" ng-model="mortgageInfo.sellOffFlag"></ht-select>
+    <ht-select ht-id="state" name="合同状态" disable="true" dictionary="contraceState" ng-model="mortgageInfo.state"></ht-select>
+    <ht-input ht-id="cooperationBrcodeNm" name="合作机构" disable="true" ng-model="mortgageInfo.cooperationBrcodeNm"></ht-input>
+    <ht-input ht-id="tlrName" name="客户经理" disable="true" ng-model="mortgageInfo.tlrName"></ht-input>
+    <ht-input ht-id="brcodeNm" name="经办机构" disable="true" ng-model="mortgageInfo.brcodeNm"></ht-input>
+</ht-form>

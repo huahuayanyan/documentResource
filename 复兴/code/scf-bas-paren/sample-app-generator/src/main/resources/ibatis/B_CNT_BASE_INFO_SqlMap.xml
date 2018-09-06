@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_BASE_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.warn.dao.model.BCntBaseInfo" >
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+    <result column="CREDIT_PROT_NO" property="creditProtNo" jdbcType="VARCHAR" />
+    <result column="CONT_TYPE" property="contType" jdbcType="CHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="CONT_AMOUNT" property="contAmount" jdbcType="DECIMAL" />
+    <result column="COMMERCIAL_CONT_AMT" property="commercialContAmt" jdbcType="DECIMAL" />
+    <result column="TERM" property="term" jdbcType="DECIMAL" />
+    <result column="POUNDAGE_PERCENT" property="poundagePercent" jdbcType="DECIMAL" />
+    <result column="BILL_NUM" property="billNum" jdbcType="DECIMAL" />
+    <result column="MAIN_ASSURE_TYPE" property="mainAssureType" jdbcType="CHAR" />
+    <result column="DIRECTION" property="direction" jdbcType="VARCHAR" />
+    <result column="CYCLE" property="cycle" jdbcType="VARCHAR" />
+    <result column="PROXY_FLAG" property="proxyFlag" jdbcType="VARCHAR" />
+    <result column="MAST_CONT_STATUS" property="mastContStatus" jdbcType="VARCHAR" />
+    <result column="BAIL_ACCT_NO" property="bailAcctNo" jdbcType="VARCHAR" />
+    <result column="LOWEST_BAIL_PERCENT" property="lowestBailPercent" jdbcType="DECIMAL" />
+    <result column="TOTAL_BALANCE" property="totalBalance" jdbcType="DECIMAL" />
+    <result column="NORMAL_BALANCE" property="normalBalance" jdbcType="DECIMAL" />
+    <result column="OVERDUE_BALANCE" property="overdueBalance" jdbcType="DECIMAL" />
+    <result column="OVERDUE_DAYS" property="overdueDays" jdbcType="DECIMAL" />
+    <result column="SLUGGISH_BALANCE" property="sluggishBalance" jdbcType="DECIMAL" />
+    <result column="BAD_BALANCE" property="badBalance" jdbcType="DECIMAL" />
+    <result column="PRE_PAID_AMT" property="prePaidAmt" jdbcType="DECIMAL" />
+    <result column="PRE_PAY_REASON" property="prePayReason" jdbcType="VARCHAR" />
+    <result column="TERMINATE_TYPE" property="terminateType" jdbcType="VARCHAR" />
+    <result column="TERMINATE_DATE" property="terminateDate" jdbcType="CHAR" />
+    <result column="PURPOSE" property="purpose" jdbcType="VARCHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="RATE_TYPE" property="rateType" jdbcType="VARCHAR" />
+    <result column="BASE_YEAR_RATE" property="baseYearRate" jdbcType="DECIMAL" />
+    <result column="RATE_FLOAT_TYPE" property="rateFloatType" jdbcType="VARCHAR" />
+    <result column="RATE_FLOAT_VALUE" property="rateFloatValue" jdbcType="DECIMAL" />
+    <result column="EXECUTE_RATE" property="executeRate" jdbcType="DECIMAL" />
+    <result column="OVERDUE_FLOAT_VALUE" property="overdueFloatValue" jdbcType="DECIMAL" />
+    <result column="PUNITIVE_PERCENT" property="punitivePercent" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="BUSINESS_NO" property="businessNo" jdbcType="VARCHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="RISK_AMT" property="riskAmt" jdbcType="DECIMAL" />
+    <result column="AVALIABLE_RISK_AMT" property="avaliableRiskAmt" jdbcType="DECIMAL" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE2" property="brcode2" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    MAST_CONTNO, MAST_CONTCODE, CREDIT_PROT_NO, CONT_TYPE, SUPPLY_CHAIN_PD_ID, CUSTCD, 
+    CURCD, CONT_AMOUNT, COMMERCIAL_CONT_AMT, TERM, POUNDAGE_PERCENT, BILL_NUM, MAIN_ASSURE_TYPE, 
+    DIRECTION, CYCLE, PROXY_FLAG, MAST_CONT_STATUS, BAIL_ACCT_NO, LOWEST_BAIL_PERCENT, 
+    TOTAL_BALANCE, NORMAL_BALANCE, OVERDUE_BALANCE, OVERDUE_DAYS, SLUGGISH_BALANCE, BAD_BALANCE, 
+    PRE_PAID_AMT, PRE_PAY_REASON, TERMINATE_TYPE, TERMINATE_DATE, PURPOSE, MGRNO, START_DATE, 
+    END_DATE, RATE_TYPE, BASE_YEAR_RATE, RATE_FLOAT_TYPE, RATE_FLOAT_VALUE, EXECUTE_RATE, 
+    OVERDUE_FLOAT_VALUE, PUNITIVE_PERCENT, REMARK, BUSINESS_NO, LOAN_WAY, RISK_AMT, AVALIABLE_RISK_AMT, 
+    TLRCD, CRT_TIME, BRCODE2, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.warn.dao.model.BCntBaseInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_BASE_INFO.Base_Column_List" />
+    from B_CNT_BASE_INFO
+    <isParameterPresent >
+      <include refid="B_CNT_BASE_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.warn.dao.model.BCntBaseInfo" >
+    select 
+    <include refid="B_CNT_BASE_INFO.Base_Column_List" />
+    from B_CNT_BASE_INFO
+    where MAST_CONTNO = #mastContno:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.warn.dao.model.BCntBaseInfo" >
+    delete from B_CNT_BASE_INFO
+    where MAST_CONTNO = #mastContno:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.warn.dao.model.BCntBaseInfoExample" >
+    delete from B_CNT_BASE_INFO
+    <include refid="B_CNT_BASE_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.warn.dao.model.BCntBaseInfo" >
+    insert into B_CNT_BASE_INFO (MAST_CONTNO, MAST_CONTCODE, CREDIT_PROT_NO, CONT_TYPE, 
+      SUPPLY_CHAIN_PD_ID, CUSTCD, CURCD, CONT_AMOUNT, 
+      COMMERCIAL_CONT_AMT, TERM, POUNDAGE_PERCENT, BILL_NUM, 
+      MAIN_ASSURE_TYPE, DIRECTION, CYCLE, PROXY_FLAG, 
+      MAST_CONT_STATUS, BAIL_ACCT_NO, LOWEST_BAIL_PERCENT, TOTAL_BALANCE, 
+      NORMAL_BALANCE, OVERDUE_BALANCE, OVERDUE_DAYS, SLUGGISH_BALANCE, 
+      BAD_BALANCE, PRE_PAID_AMT, PRE_PAY_REASON, TERMINATE_TYPE, 
+      TERMINATE_DATE, PURPOSE, MGRNO, START_DATE, END_DATE, 
+      RATE_TYPE, BASE_YEAR_RATE, RATE_FLOAT_TYPE, RATE_FLOAT_VALUE, 
+      EXECUTE_RATE, OVERDUE_FLOAT_VALUE, PUNITIVE_PERCENT, 
+      REMARK, BUSINESS_NO, LOAN_WAY, RISK_AMT, AVALIABLE_RISK_AMT, 
+      TLRCD, CRT_TIME, BRCODE2, LAST_UPD_TLRCD, 
+      LAST_UPD_TIME, LAST_UPD_BRCODE)
+    values (#mastContno:VARCHAR#, #mastContcode:VARCHAR#, #creditProtNo:VARCHAR#, #contType:CHAR#, 
+      #supplyChainPdId:VARCHAR#, #custcd:VARCHAR#, #curcd:CHAR#, #contAmount:DECIMAL#, 
+      #commercialContAmt:DECIMAL#, #term:DECIMAL#, #poundagePercent:DECIMAL#, #billNum:DECIMAL#, 
+      #mainAssureType:CHAR#, #direction:VARCHAR#, #cycle:VARCHAR#, #proxyFlag:VARCHAR#, 
+      #mastContStatus:VARCHAR#, #bailAcctNo:VARCHAR#, #lowestBailPercent:DECIMAL#, #totalBalance:DECIMAL#, 
+      #normalBalance:DECIMAL#, #overdueBalance:DECIMAL#, #overdueDays:DECIMAL#, #sluggishBalance:DECIMAL#, 
+      #badBalance:DECIMAL#, #prePaidAmt:DECIMAL#, #prePayReason:VARCHAR#, #terminateType:VARCHAR#, 
+      #terminateDate:CHAR#, #purpose:VARCHAR#, #mgrno:VARCHAR#, #startDate:CHAR#, #endDate:CHAR#, 
+      #rateType:VARCHAR#, #baseYearRate:DECIMAL#, #rateFloatType:VARCHAR#, #rateFloatValue:DECIMAL#, 
+      #executeRate:DECIMAL#, #overdueFloatValue:DECIMAL#, #punitivePercent:DECIMAL#, 
+      #remark:VARCHAR#, #businessNo:VARCHAR#, #loanWay:VARCHAR#, #riskAmt:DECIMAL#, #avaliableRiskAmt:DECIMAL#, 
+      #tlrcd:VARCHAR#, #crtTime:TIMESTAMP#, #brcode2:VARCHAR#, #lastUpdTlrcd:VARCHAR#, 
+      #lastUpdTime:TIMESTAMP#, #lastUpdBrcode:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.warn.dao.model.BCntBaseInfo" >
+    insert into B_CNT_BASE_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        MAST_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="creditProtNo" >
+        CREDIT_PROT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="contType" >
+        CONT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="contAmount" >
+        CONT_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="commercialContAmt" >
+        COMMERCIAL_CONT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="term" >
+        TERM
+      </isNotNull>
+      <isNotNull prepend="," property="poundagePercent" >
+        POUNDAGE_PERCENT
+      </isNotNull>
+      <isNotNull prepend="," property="billNum" >
+        BILL_NUM
+      </isNotNull>
+      <isNotNull prepend="," property="mainAssureType" >
+        MAIN_ASSURE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="direction" >
+        DIRECTION
+      </isNotNull>
+      <isNotNull prepend="," property="cycle" >
+        CYCLE
+      </isNotNull>
+      <isNotNull prepend="," property="proxyFlag" >
+        PROXY_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="mastContStatus" >
+        MAST_CONT_STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="bailAcctNo" >
+        BAIL_ACCT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="lowestBailPercent" >
+        LOWEST_BAIL_PERCENT
+      </isNotNull>
+      <isNotNull prepend="," property="totalBalance" >
+        TOTAL_BALANCE
+      </isNotNull>
+      <isNotNull prepend="," property="normalBalance" >
+        NORMAL_BALANCE
+      </isNotNull>
+      <isNotNull prepend="," property="overdueBalance" >
+        OVERDUE_BALANCE
+      </isNotNull>
+      <isNotNull prepend="," property="overdueDays" >
+        OVERDUE_DAYS
+      </isNotNull>
+      <isNotNull prepend="," property="sluggishBalance" >
+        SLUGGISH_BALANCE
+      </isNotNull>
+      <isNotNull prepend="," property="badBalance" >
+        BAD_BALANCE
+      </isNotNull>
+      <isNotNull prepend="," property="prePaidAmt" >
+        PRE_PAID_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="prePayReason" >
+        PRE_PAY_REASON
+      </isNotNull>
+      <isNotNull prepend="," property="terminateType" >
+        TERMINATE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="terminateDate" >
+        TERMINATE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="purpose" >
+        PURPOSE
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        MGRNO
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="rateType" >
+        RATE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="baseYearRate" >
+        BASE_YEAR_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="rateFloatType" >
+        RATE_FLOAT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="rateFloatValue" >
+        RATE_FLOAT_VALUE
+      </isNotNull>
+      <isNotNull prepend="," property="executeRate" >
+        EXECUTE_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="overdueFloatValue" >
+        OVERDUE_FLOAT_VALUE
+      </isNotNull>
+      <isNotNull prepend="," property="punitivePercent" >
+        PUNITIVE_PERCENT
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        REMARK
+      </isNotNull>
+      <isNotNull prepend="," property="businessNo" >
+        BUSINESS_NO
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        RISK_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="avaliableRiskAmt" >
+        AVALIABLE_RISK_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="brcode2" >
+        BRCODE2
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        #mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditProtNo" >
+        #creditProtNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contType" >
+        #contType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        #supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contAmount" >
+        #contAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="commercialContAmt" >
+        #commercialContAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="term" >
+        #term:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="poundagePercent" >
+        #poundagePercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="billNum" >
+        #billNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mainAssureType" >
+        #mainAssureType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="direction" >
+        #direction:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cycle" >
+        #cycle:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="proxyFlag" >
+        #proxyFlag:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContStatus" >
+        #mastContStatus:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAcctNo" >
+        #bailAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lowestBailPercent" >
+        #lowestBailPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalBalance" >
+        #totalBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="normalBalance" >
+        #normalBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueBalance" >
+        #overdueBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueDays" >
+        #overdueDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sluggishBalance" >
+        #sluggishBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="badBalance" >
+        #badBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="prePaidAmt" >
+        #prePaidAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="prePayReason" >
+        #prePayReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="terminateType" >
+        #terminateType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="terminateDate" >
+        #terminateDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="purpose" >
+        #purpose:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        #mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rateType" >
+        #rateType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="baseYearRate" >
+        #baseYearRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rateFloatType" >
+        #rateFloatType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rateFloatValue" >
+        #rateFloatValue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="executeRate" >
+        #executeRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueFloatValue" >
+        #overdueFloatValue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="punitivePercent" >
+        #punitivePercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        #remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessNo" >
+        #businessNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        #riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="avaliableRiskAmt" >
+        #avaliableRiskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode2" >
+        #brcode2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.warn.dao.model.BCntBaseInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_BASE_INFO
+    <include refid="B_CNT_BASE_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContcode" >
+        MAST_CONTCODE = #record.mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditProtNo" >
+        CREDIT_PROT_NO = #record.creditProtNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contType" >
+        CONT_TYPE = #record.contType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID = #record.supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contAmount" >
+        CONT_AMOUNT = #record.contAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.commercialContAmt" >
+        COMMERCIAL_CONT_AMT = #record.commercialContAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.term" >
+        TERM = #record.term:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.poundagePercent" >
+        POUNDAGE_PERCENT = #record.poundagePercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billNum" >
+        BILL_NUM = #record.billNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mainAssureType" >
+        MAIN_ASSURE_TYPE = #record.mainAssureType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.direction" >
+        DIRECTION = #record.direction:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cycle" >
+        CYCLE = #record.cycle:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.proxyFlag" >
+        PROXY_FLAG = #record.proxyFlag:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContStatus" >
+        MAST_CONT_STATUS = #record.mastContStatus:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAcctNo" >
+        BAIL_ACCT_NO = #record.bailAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lowestBailPercent" >
+        LOWEST_BAIL_PERCENT = #record.lowestBailPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalBalance" >
+        TOTAL_BALANCE = #record.totalBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.normalBalance" >
+        NORMAL_BALANCE = #record.normalBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overdueBalance" >
+        OVERDUE_BALANCE = #record.overdueBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overdueDays" >
+        OVERDUE_DAYS = #record.overdueDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sluggishBalance" >
+        SLUGGISH_BALANCE = #record.sluggishBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.badBalance" >
+        BAD_BALANCE = #record.badBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prePaidAmt" >
+        PRE_PAID_AMT = #record.prePaidAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prePayReason" >
+        PRE_PAY_REASON = #record.prePayReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.terminateType" >
+        TERMINATE_TYPE = #record.terminateType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.terminateDate" >
+        TERMINATE_DATE = #record.terminateDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.purpose" >
+        PURPOSE = #record.purpose:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mgrno" >
+        MGRNO = #record.mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rateType" >
+        RATE_TYPE = #record.rateType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.baseYearRate" >
+        BASE_YEAR_RATE = #record.baseYearRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rateFloatType" >
+        RATE_FLOAT_TYPE = #record.rateFloatType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rateFloatValue" >
+        RATE_FLOAT_VALUE = #record.rateFloatValue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.executeRate" >
+        EXECUTE_RATE = #record.executeRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overdueFloatValue" >
+        OVERDUE_FLOAT_VALUE = #record.overdueFloatValue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.punitivePercent" >
+        PUNITIVE_PERCENT = #record.punitivePercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remark" >
+        REMARK = #record.remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.businessNo" >
+        BUSINESS_NO = #record.businessNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanWay" >
+        LOAN_WAY = #record.loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.riskAmt" >
+        RISK_AMT = #record.riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.avaliableRiskAmt" >
+        AVALIABLE_RISK_AMT = #record.avaliableRiskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crtTime" >
+        CRT_TIME = #record.crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode2" >
+        BRCODE2 = #record.brcode2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTime" >
+        LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_BASE_INFO
+    set MAST_CONTNO = #record.mastContno:VARCHAR#,
+      MAST_CONTCODE = #record.mastContcode:VARCHAR#,
+      CREDIT_PROT_NO = #record.creditProtNo:VARCHAR#,
+      CONT_TYPE = #record.contType:CHAR#,
+      SUPPLY_CHAIN_PD_ID = #record.supplyChainPdId:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      CURCD = #record.curcd:CHAR#,
+      CONT_AMOUNT = #record.contAmount:DECIMAL#,
+      COMMERCIAL_CONT_AMT = #record.commercialContAmt:DECIMAL#,
+      TERM = #record.term:DECIMAL#,
+      POUNDAGE_PERCENT = #record.poundagePercent:DECIMAL#,
+      BILL_NUM = #record.billNum:DECIMAL#,
+      MAIN_ASSURE_TYPE = #record.mainAssureType:CHAR#,
+      DIRECTION = #record.direction:VARCHAR#,
+      CYCLE = #record.cycle:VARCHAR#,
+      PROXY_FLAG = #record.proxyFlag:VARCHAR#,
+      MAST_CONT_STATUS = #record.mastContStatus:VARCHAR#,
+      BAIL_ACCT_NO = #record.bailAcctNo:VARCHAR#,
+      LOWEST_BAIL_PERCENT = #record.lowestBailPercent:DECIMAL#,
+      TOTAL_BALANCE = #record.totalBalance:DECIMAL#,
+      NORMAL_BALANCE = #record.normalBalance:DECIMAL#,
+      OVERDUE_BALANCE = #record.overdueBalance:DECIMAL#,
+      OVERDUE_DAYS = #record.overdueDays:DECIMAL#,
+      SLUGGISH_BALANCE = #record.sluggishBalance:DECIMAL#,
+      BAD_BALANCE = #record.badBalance:DECIMAL#,
+      PRE_PAID_AMT = #record.prePaidAmt:DECIMAL#,
+      PRE_PAY_REASON = #record.prePayReason:VARCHAR#,
+      TERMINATE_TYPE = #record.terminateType:VARCHAR#,
+      TERMINATE_DATE = #record.terminateDate:CHAR#,
+      PURPOSE = #record.purpose:VARCHAR#,
+      MGRNO = #record.mgrno:VARCHAR#,
+      START_DATE = #record.startDate:CHAR#,
+      END_DATE = #record.endDate:CHAR#,
+      RATE_TYPE = #record.rateType:VARCHAR#,
+      BASE_YEAR_RATE = #record.baseYearRate:DECIMAL#,
+      RATE_FLOAT_TYPE = #record.rateFloatType:VARCHAR#,
+      RATE_FLOAT_VALUE = #record.rateFloatValue:DECIMAL#,
+      EXECUTE_RATE = #record.executeRate:DECIMAL#,
+      OVERDUE_FLOAT_VALUE = #record.overdueFloatValue:DECIMAL#,
+      PUNITIVE_PERCENT = #record.punitivePercent:DECIMAL#,
+      REMARK = #record.remark:VARCHAR#,
+      BUSINESS_NO = #record.businessNo:VARCHAR#,
+      LOAN_WAY = #record.loanWay:VARCHAR#,
+      RISK_AMT = #record.riskAmt:DECIMAL#,
+      AVALIABLE_RISK_AMT = #record.avaliableRiskAmt:DECIMAL#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      CRT_TIME = #record.crtTime:TIMESTAMP#,
+      BRCODE2 = #record.brcode2:VARCHAR#,
+      LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CNT_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.warn.dao.model.BCntBaseInfo" >
+    update B_CNT_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="mastContcode" >
+        MAST_CONTCODE = #mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditProtNo" >
+        CREDIT_PROT_NO = #creditProtNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contType" >
+        CONT_TYPE = #contType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="contAmount" >
+        CONT_AMOUNT = #contAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="commercialContAmt" >
+        COMMERCIAL_CONT_AMT = #commercialContAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="term" >
+        TERM = #term:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="poundagePercent" >
+        POUNDAGE_PERCENT = #poundagePercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="billNum" >
+        BILL_NUM = #billNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mainAssureType" >
+        MAIN_ASSURE_TYPE = #mainAssureType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="direction" >
+        DIRECTION = #direction:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cycle" >
+        CYCLE = #cycle:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="proxyFlag" >
+        PROXY_FLAG = #proxyFlag:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContStatus" >
+        MAST_CONT_STATUS = #mastContStatus:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAcctNo" >
+        BAIL_ACCT_NO = #bailAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lowestBailPercent" >
+        LOWEST_BAIL_PERCENT = #lowestBailPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalBalance" >
+        TOTAL_BALANCE = #totalBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="normalBalance" >
+        NORMAL_BALANCE = #normalBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueBalance" >
+        OVERDUE_BALANCE = #overdueBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueDays" >
+        OVERDUE_DAYS = #overdueDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sluggishBalance" >
+        SLUGGISH_BALANCE = #sluggishBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="badBalance" >
+        BAD_BALANCE = #badBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="prePaidAmt" >
+        PRE_PAID_AMT = #prePaidAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="prePayReason" >
+        PRE_PAY_REASON = #prePayReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="terminateType" >
+        TERMINATE_TYPE = #terminateType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="terminateDate" >
+        TERMINATE_DATE = #terminateDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="purpose" >
+        PURPOSE = #purpose:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        MGRNO = #mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rateType" >
+        RATE_TYPE = #rateType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="baseYearRate" >
+        BASE_YEAR_RATE = #baseYearRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rateFloatType" >
+        RATE_FLOAT_TYPE = #rateFloatType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rateFloatValue" >
+        RATE_FLOAT_VALUE = #rateFloatValue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="executeRate" >
+        EXECUTE_RATE = #executeRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overdueFloatValue" >
+        OVERDUE_FLOAT_VALUE = #overdueFloatValue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="punitivePercent" >
+        PUNITIVE_PERCENT = #punitivePercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        REMARK = #remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessNo" >
+        BUSINESS_NO = #businessNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY = #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        RISK_AMT = #riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="avaliableRiskAmt" >
+        AVALIABLE_RISK_AMT = #avaliableRiskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME = #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode2" >
+        BRCODE2 = #brcode2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where MAST_CONTNO = #mastContno:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.warn.dao.model.BCntBaseInfo" >
+    update B_CNT_BASE_INFO
+    set MAST_CONTCODE = #mastContcode:VARCHAR#,
+      CREDIT_PROT_NO = #creditProtNo:VARCHAR#,
+      CONT_TYPE = #contType:CHAR#,
+      SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      CURCD = #curcd:CHAR#,
+      CONT_AMOUNT = #contAmount:DECIMAL#,
+      COMMERCIAL_CONT_AMT = #commercialContAmt:DECIMAL#,
+      TERM = #term:DECIMAL#,
+      POUNDAGE_PERCENT = #poundagePercent:DECIMAL#,
+      BILL_NUM = #billNum:DECIMAL#,
+      MAIN_ASSURE_TYPE = #mainAssureType:CHAR#,
+      DIRECTION = #direction:VARCHAR#,
+      CYCLE = #cycle:VARCHAR#,
+      PROXY_FLAG = #proxyFlag:VARCHAR#,
+      MAST_CONT_STATUS = #mastContStatus:VARCHAR#,
+      BAIL_ACCT_NO = #bailAcctNo:VARCHAR#,
+      LOWEST_BAIL_PERCENT = #lowestBailPercent:DECIMAL#,
+      TOTAL_BALANCE = #totalBalance:DECIMAL#,
+      NORMAL_BALANCE = #normalBalance:DECIMAL#,
+      OVERDUE_BALANCE = #overdueBalance:DECIMAL#,
+      OVERDUE_DAYS = #overdueDays:DECIMAL#,
+      SLUGGISH_BALANCE = #sluggishBalance:DECIMAL#,
+      BAD_BALANCE = #badBalance:DECIMAL#,
+      PRE_PAID_AMT = #prePaidAmt:DECIMAL#,
+      PRE_PAY_REASON = #prePayReason:VARCHAR#,
+      TERMINATE_TYPE = #terminateType:VARCHAR#,
+      TERMINATE_DATE = #terminateDate:CHAR#,
+      PURPOSE = #purpose:VARCHAR#,
+      MGRNO = #mgrno:VARCHAR#,
+      START_DATE = #startDate:CHAR#,
+      END_DATE = #endDate:CHAR#,
+      RATE_TYPE = #rateType:VARCHAR#,
+      BASE_YEAR_RATE = #baseYearRate:DECIMAL#,
+      RATE_FLOAT_TYPE = #rateFloatType:VARCHAR#,
+      RATE_FLOAT_VALUE = #rateFloatValue:DECIMAL#,
+      EXECUTE_RATE = #executeRate:DECIMAL#,
+      OVERDUE_FLOAT_VALUE = #overdueFloatValue:DECIMAL#,
+      PUNITIVE_PERCENT = #punitivePercent:DECIMAL#,
+      REMARK = #remark:VARCHAR#,
+      BUSINESS_NO = #businessNo:VARCHAR#,
+      LOAN_WAY = #loanWay:VARCHAR#,
+      RISK_AMT = #riskAmt:DECIMAL#,
+      AVALIABLE_RISK_AMT = #avaliableRiskAmt:DECIMAL#,
+      TLRCD = #tlrcd:VARCHAR#,
+      CRT_TIME = #crtTime:TIMESTAMP#,
+      BRCODE2 = #brcode2:VARCHAR#,
+      LAST_UPD_TLRCD = #lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+    where MAST_CONTNO = #mastContno:VARCHAR#
+  </update>
+</sqlMap>

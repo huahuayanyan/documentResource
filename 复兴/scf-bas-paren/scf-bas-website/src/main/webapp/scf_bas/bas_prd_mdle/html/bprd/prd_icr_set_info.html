@@ -1,0 +1,42 @@
+<!--------------- 产品额度--------------------->
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+
+<ht-form name="conditionForm">
+    <ht-input ht-id="creditType" name="额度类型" ng-model="conditionForm.creditType"></ht-input>
+    <ht-select ht-id="creditPhase" name="额度阶段" dictionary="creditPhase" ng-model="conditionForm.creditPhase"></ht-select>
+    <ht-select ht-id="oprType" name="操作类型" dictionary="oprType" ng-model="conditionForm.oprType"></ht-select>
+    <ht-select ht-id="oprField" name="额度操作金额类型" dictionary="oprField" ng-model="conditionForm.oprField"></ht-select>
+    <ht-select ht-id="oprMode" name="操作模式" dictionary="oprMode" ng-model="conditionForm.oprMode"></ht-select>
+    <ht-input ht-id="funNo" name="功能编号" ng-model="conditionForm.funNo"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="清空"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>产品额度列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="creditType" zh-name="额度类型" ></ht-column>
+    <ht-column eg-name="productName" zh-name="产品名称" href="true" docolumn="column" ></ht-column>
+    <ht-column eg-name="creditPhase" zh-name="额度阶段" dictionary="creditPhase"></ht-column>
+    <ht-column eg-name="oprType" zh-name="操作类型" dictionary="oprType"></ht-column>
+    <ht-column eg-name="oprField" zh-name="额度操作金额类型" dictionary="oprField"></ht-column>
+    <ht-column eg-name="oprMode" zh-name="操作模式" dictionary="oprMode"></ht-column>
+    <ht-column eg-name="funNo" zh-name="功能编号"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+<ht-button-group class="center">
+    <ht-button ht-id="former" class="btn-primary" desc-name="上一步"></ht-button>
+    <ht-button ht-id="next" class="btn-primary" desc-name="下一步"></ht-button>
+    <ht-button ht-id="complete" hide="{{hide}}" class="btn-primary" desc-name="完成"></ht-button>
+</ht-button-group>
+
+
+

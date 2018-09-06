@@ -1,0 +1,19 @@
+
+<ht-form name="bCrrInvInfo">
+    <!--<ht-select name="关联类型" reg-exp="common.require" ng-model="bCrrInvInfo.relaTyp" disable="{{disable}}" dictionary="rtlTyp" disable="{{disableview}}"></ht-select>
+    <ht-input name="关联编号" reg-exp="common.require" ng-model="bCrrInvInfo.relaNo" disable="true" hide="{{hide}}" disable="{{disableview}}"></ht-input>-->
+    <ht-input name="发票号码" reg-exp="common.require" ng-model="bCrrInvInfo.invNo" disable="{{disableview}}"></ht-input>
+    <ht-select name="发票币种" reg-exp="common.require" ng-model="bCrrInvInfo.invCurcd" dictionary="curcd" disable="{{disableview}}"></ht-select>
+    <ht-input name="买方代码" reg-exp="common.require" ng-model="bCrrInvInfo.prchId" disable="{{disableview}}"></ht-input>
+    <ht-input name="买方名称" reg-exp="common.require" ng-model="bCrrInvInfo.prchNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="卖方代码" reg-exp="common.require" ng-model="bCrrInvInfo.sellId" disable="{{disableview}}"></ht-input>
+    <ht-input name="卖方名称" reg-exp="common.require" ng-model="bCrrInvInfo.sellNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="开票日期" reg-exp="common.require" ng-model="bCrrInvInfo.invDt" edit-type="date" disable="{{disableview}}"></ht-input>
+    <ht-input name="金额" reg-exp="common.require" ng-model="bCrrInvInfo.invSum" edit-type="currency" disable="{{disableview}}"></ht-input>
+    <ht-select name="贸易方式" reg-exp="common.require" ng-model="bCrrInvInfo.trdTyp" dictionary="busTypCd" disable="{{disableview}}"></ht-select>
+    <ht-text-area name="贸易产品" reg-exp="common.require" ng-model="bCrrInvInfo.trdPrd" disable="{{disableview}}"></ht-text-area>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="close" class="btn-primary">关闭</ht-button>
+</ht-button-group>

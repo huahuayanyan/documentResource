@@ -1,0 +1,4 @@
+INSERT INTO b_fin_cnfg_cl (MDL_ID, MDL_NM, MDL_CL, COL, COTES, DEL_FLG, REM, MDL_TYP) VALUES ('CWZB', '财务指标', '1', 1, 1, '0', '[{"name":"项目","style":"width:150px;"}, {"name":"指标"}]', '4ZB');
+INSERT INTO b_fin_cnfg_cl (MDL_ID, MDL_NM, MDL_CL, COL, COTES, DEL_FLG, REM, MDL_TYP) VALUES ('SYB', '损益表', '1', 2, 1, '0', '[{"name":"项目","style":"width:150px;"}, {"name":"期末数(单位:元)"},{"name":"本年累计发生额(单位:元)"}]', '2BS');
+INSERT INTO b_fin_cnfg_cl (MDL_ID, MDL_NM, MDL_CL, COL, COTES, DEL_FLG, REM, MDL_TYP) VALUES ('XJLL', '现金流量表', '1', 1, 1, '0', '[{"name":"项目","style":"width:150px;"}, {"name":"本期发生额(单位:元)"}]', '3CS');
+INSERT INTO b_fin_cnfg_cl (MDL_ID, MDL_NM, MDL_CL, COL, COTES, DEL_FLG, REM, MDL_TYP) VALUES ('ZCFZ', '资产负债表', '1', 2, 2, '0', '[{"name":"资产","style":"width:150px;"}, {"name":"年初余额(单位:元)"},{"name":"期末数(单位:元)"},{"name":"负债及股东权益","style":"width:150px;"},{"name":"年初余额(单位:元)"},{"name":"期末数(单位:元)"}]', '1IS');

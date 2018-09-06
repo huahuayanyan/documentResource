@@ -1,0 +1,15 @@
+<ht-form name="cntform">
+    <ht-legend>联系人信息</ht-legend>
+    <ht-input name="联系人名称"  ng-model="cntform.name" reg-exp="common.require,notNull"></ht-input>
+    <ht-input name="手机号"  ng-model="cntform.mobile" reg-exp="common.require,common.mobile"></ht-input>
+    <ht-input name="电话"  ng-model="cntform.contactTel" ></ht-input>
+    <ht-input name="邮箱"  ng-model="cntform.email"></ht-input>
+    <ht-select  name="证件类型" ng-model="cntform.idtype" reg-exp="common.require,notNull"   dictionary="idtype"></ht-select>    
+    <ht-input name="证件号码"  ng-model="cntform.idno" reg-exp="common.require,notNull"></ht-input>
+ 	<ht-text-area name="备注"  ng-model="cntform.remarks"  height="90" hide="false" >
+	</ht-text-area>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"  class="btn-primary">取消</ht-button>
+</ht-button-group>

@@ -1,0 +1,110 @@
+{
+  "validate": [
+    {
+      "ruleName": "UserService.getLogin.userNamee",
+      "rule": "IS_NOT_NULL",
+      "errMsg": "不能为空"
+    },
+    {
+      "ruleName": "UserService.getLogin.userNamee",
+      "rule": "/[a-zA-Z]/",
+      "errMsg": "英文格式"
+    },
+    {
+      "ruleName": "UserService.getLogin.userName",
+      "rule": "/[a-zA-Z]{10,}/",
+      "errMsg": "英文必须大于10位"
+    },
+    {
+      "ruleName": "telephoneNumber",
+      "rule": "/^(\\d{11})$|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$/",
+      "errMsg": "请输入正确的电话！"
+    },
+    {
+      "ruleName": "fax",
+      "rule": "/^(\\d{11})$|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$/",
+      "errMsg": "请输入正确的传真号码！"
+    },
+    {
+      "ruleName": "OrgCodeValidate",
+      "rule": "/^[A-Za-z0-9]{8}-[A-Za-z0-9]{1}$/",
+      "errMsg": "请输入正确的组织结构代码"
+    },
+    {
+      "ruleName": "subjIdValidate",
+      "rule": "/^[A-Za-z0-9]{0,9}$/",
+      "errMsg": "科目编号不能大于9位"
+    },
+    {
+      "ruleName": "mdlIdValidate",
+      "rule": "/^[A-Za-z0-9]{0,6}$/",
+      "errMsg": "模型编号不能大于6位"
+    },
+    {
+      "ruleName": "numValidate",
+      "rule": "/^[0-9]{0,22}$/",
+      "errMsg": "数字格式"
+    },
+    {
+      "ruleName": "finDtValidate",
+      "rule": "/^[0-9]{0,10}$/",
+      "errMsg": "数字不能超过10位"
+    },
+    {
+      "ruleName": "rtnDtValidate",
+      "rule": "/^[0-9]{0,2}$/",
+      "errMsg": "不得超过2位"
+    },
+    {
+      "ruleName": "char1Validate",
+      "rule": "/^[A-Za-z0-9]{1}$/",
+      "errMsg": "一位数字或英文字母"
+    },
+    {
+      "ruleName": "char2Validate",
+      "rule": "/^[A-Za-z0-9]{2}$/",
+      "errMsg": "两位数字或英文字母"
+    },
+    {
+      "ruleName": "IsNotNull",
+      "rule": "IS_NOT_NULL",
+      "errMsg": "不能为空"
+    },
+    {
+      "ruleName": "TipCode",
+      "rule": "",
+      "errMsg": "点击输入框进入选择页"
+    },
+    {
+    	"ruleName": "FinMonthValidate",
+      	"rule": "/^(19|20[0-9]{2})(0[1-9]|1[0-2])$/",
+      	"errMsg": "会计月份格式"
+    },
+     {
+    	"ruleName": "credictEvalLeval",
+      	"rule": "/([A-G]{1})/",
+      	"errMsg": "认定级别须为A-G大写字母"
+    },
+     {
+    	"ruleName": "credictEvalScore",
+      	"rule": "/^[0-9]{2}$/",
+      	"errMsg": "认定得分须为两位数字"
+    },
+    {
+      "ruleName": "BillCodeValidate",
+      "rule": "/^[A-Za-z0-9]{1,32}$/",
+      "errMsg": "长度不可超过32位且不可输入中文及特殊字符"
+    },
+    {
+      "ruleName": "CodeValidate",
+      "rule": "/^[0-9]{6}$/",
+      "errMsg": "六位邮政编号"
+    },
+    {
+      "ruleName": "num22Validate",
+      "rule": "/^[0-9]{0,22}$/",
+      "errMsg": "只能输入长度不超过22位的正整数 "
+    }
+  ]
+}
+

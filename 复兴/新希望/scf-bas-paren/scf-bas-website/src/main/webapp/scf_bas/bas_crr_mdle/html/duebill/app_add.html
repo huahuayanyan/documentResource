@@ -1,0 +1,14 @@
+<ht-legend>合同信息</ht-legend>
+<ht-form name="secondform" columns="1">
+    <ht-input ht-id="appId" name="合同号" reg-exp="TipCode" ng-model="secondform.appId" disable="{{disable}}" aria-readonly="true"></ht-input>
+    <ht-input name="客户名称" reg-exp="common.require" ng-model="secondform.custNm" disable="true"></ht-input>
+    <ht-input name="客户号" reg-exp="common.require" ng-model="secondform.custCd" disable="true"></ht-input>
+    <ht-input name="业务品种" reg-exp="common.require" ng-model="secondform.prdNm" disable="true"></ht-input>
+    <ht-select name="币种" reg-exp="common.require" ng-model="secondform.curcd" dictionary="curcd" disable="true"></ht-select>
+    <ht-input name="合同可用金额" reg-exp="common.require" ng-model="secondform.lnSum" edit-type="currency" disable="true"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

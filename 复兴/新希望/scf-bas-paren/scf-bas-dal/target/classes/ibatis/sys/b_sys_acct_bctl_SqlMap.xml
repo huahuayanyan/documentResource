@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_SYS_ACCT_BCTL" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.sys.dao.model.RSysAcctBctl" >
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="BRNO" property="brno" jdbcType="VARCHAR" />
+    <result column="BRNAME" property="brname" jdbcType="VARCHAR" />
+    <result column="BRCLASS" property="brclass" jdbcType="CHAR" />
+    <result column="BRATTR" property="brattr" jdbcType="CHAR" />
+    <result column="BLN_BRANCH_CLASS" property="blnBranchClass" jdbcType="CHAR" />
+    <result column="BLN_BRANCH_BRCODE" property="blnBranchBrcode" jdbcType="VARCHAR" />
+    <result column="BLN_MANAGE_BRCODE" property="blnManageBrcode" jdbcType="VARCHAR" />
+    <result column="BLN_UP_BRCODE" property="blnUpBrcode" jdbcType="VARCHAR" />
+    <result column="TXN_BRCODE" property="txnBrcode" jdbcType="VARCHAR" />
+    <result column="AUTHLVL" property="authlvl" jdbcType="CHAR" />
+    <result column="LINKMAN" property="linkman" jdbcType="VARCHAR" />
+    <result column="TELENO" property="teleno" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="POSTNO" property="postno" jdbcType="CHAR" />
+    <result column="OTHER_AREA_FLAG" property="otherAreaFlag" jdbcType="CHAR" />
+    <result column="REGIONALISM" property="regionalism" jdbcType="CHAR" />
+    <result column="FINANCE_CODE" property="financeCode" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MISCFLGS" property="miscflgs" jdbcType="CHAR" />
+    <result column="MISC" property="misc" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="BLN_HEAD_BRCODE" property="blnHeadBrcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLR" property="lastUpdTlr" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_FUNC" property="lastUpdFunc" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_DATE" property="lastUpdDate" jdbcType="CHAR" />
+    <result column="TIMESTAMPS" property="timestamps" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    BRCODE, BRNO, BRNAME, BRCLASS, BRATTR, BLN_BRANCH_CLASS, BLN_BRANCH_BRCODE, BLN_MANAGE_BRCODE, 
+    BLN_UP_BRCODE, TXN_BRCODE, AUTHLVL, LINKMAN, TELENO, ADDRESS, POSTNO, OTHER_AREA_FLAG, 
+    REGIONALISM, FINANCE_CODE, STATUS, MISCFLGS, MISC, PROVINCE, BLN_HEAD_BRCODE, LAST_UPD_TLR, 
+    LAST_UPD_FUNC, LAST_UPD_DATE, TIMESTAMPS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.RSysAcctBctlExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_SYS_ACCT_BCTL.Base_Column_List" />
+    from B_SYS_ACCT_BCTL
+    <isParameterPresent >
+      <include refid="B_SYS_ACCT_BCTL.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.RSysAcctBctl" >
+    select 
+    <include refid="B_SYS_ACCT_BCTL.Base_Column_List" />
+    from B_SYS_ACCT_BCTL
+    where BRCODE = #brcode:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.RSysAcctBctl" >
+    delete from B_SYS_ACCT_BCTL
+    where BRCODE = #brcode:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.RSysAcctBctlExample" >
+    delete from B_SYS_ACCT_BCTL
+    <include refid="B_SYS_ACCT_BCTL.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.sys.dao.model.RSysAcctBctl" >
+    insert into B_SYS_ACCT_BCTL (BRCODE, BRNO, BRNAME, BRCLASS, BRATTR, 
+      BLN_BRANCH_CLASS, BLN_BRANCH_BRCODE, BLN_MANAGE_BRCODE, BLN_UP_BRCODE, 
+      TXN_BRCODE, AUTHLVL, LINKMAN, TELENO, ADDRESS, 
+      POSTNO, OTHER_AREA_FLAG, REGIONALISM, FINANCE_CODE, 
+      STATUS, MISCFLGS, MISC, PROVINCE, BLN_HEAD_BRCODE, 
+      LAST_UPD_TLR, LAST_UPD_FUNC, LAST_UPD_DATE, TIMESTAMPS
+      )
+    values (#brcode:VARCHAR#, #brno:VARCHAR#, #brname:VARCHAR#, #brclass:CHAR#, #brattr:CHAR#, 
+      #blnBranchClass:CHAR#, #blnBranchBrcode:VARCHAR#, #blnManageBrcode:VARCHAR#, #blnUpBrcode:VARCHAR#, 
+      #txnBrcode:VARCHAR#, #authlvl:CHAR#, #linkman:VARCHAR#, #teleno:VARCHAR#, #address:VARCHAR#, 
+      #postno:CHAR#, #otherAreaFlag:CHAR#, #regionalism:CHAR#, #financeCode:VARCHAR#, 
+      #status:CHAR#, #miscflgs:CHAR#, #misc:VARCHAR#, #province:VARCHAR#, #blnHeadBrcode:VARCHAR#, 
+      #lastUpdTlr:VARCHAR#, #lastUpdFunc:VARCHAR#, #lastUpdDate:CHAR#, #timestamps:TIMESTAMP#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.sys.dao.model.RSysAcctBctl" >
+    insert into B_SYS_ACCT_BCTL
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="brno" >
+        BRNO
+      </isNotNull>
+      <isNotNull prepend="," property="brname" >
+        BRNAME
+      </isNotNull>
+      <isNotNull prepend="," property="brclass" >
+        BRCLASS
+      </isNotNull>
+      <isNotNull prepend="," property="brattr" >
+        BRATTR
+      </isNotNull>
+      <isNotNull prepend="," property="blnBranchClass" >
+        BLN_BRANCH_CLASS
+      </isNotNull>
+      <isNotNull prepend="," property="blnBranchBrcode" >
+        BLN_BRANCH_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="blnManageBrcode" >
+        BLN_MANAGE_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="blnUpBrcode" >
+        BLN_UP_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="txnBrcode" >
+        TXN_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="authlvl" >
+        AUTHLVL
+      </isNotNull>
+      <isNotNull prepend="," property="linkman" >
+        LINKMAN
+      </isNotNull>
+      <isNotNull prepend="," property="teleno" >
+        TELENO
+      </isNotNull>
+      <isNotNull prepend="," property="address" >
+        ADDRESS
+      </isNotNull>
+      <isNotNull prepend="," property="postno" >
+        POSTNO
+      </isNotNull>
+      <isNotNull prepend="," property="otherAreaFlag" >
+        OTHER_AREA_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="regionalism" >
+        REGIONALISM
+      </isNotNull>
+      <isNotNull prepend="," property="financeCode" >
+        FINANCE_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="miscflgs" >
+        MISCFLGS
+      </isNotNull>
+      <isNotNull prepend="," property="misc" >
+        MISC
+      </isNotNull>
+      <isNotNull prepend="," property="province" >
+        PROVINCE
+      </isNotNull>
+      <isNotNull prepend="," property="blnHeadBrcode" >
+        BLN_HEAD_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlr" >
+        LAST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdFunc" >
+        LAST_UPD_FUNC
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        LAST_UPD_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="timestamps" >
+        TIMESTAMPS
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brno" >
+        #brno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brname" >
+        #brname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brclass" >
+        #brclass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brattr" >
+        #brattr:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blnBranchClass" >
+        #blnBranchClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blnBranchBrcode" >
+        #blnBranchBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blnManageBrcode" >
+        #blnManageBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blnUpBrcode" >
+        #blnUpBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txnBrcode" >
+        #txnBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="authlvl" >
+        #authlvl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="linkman" >
+        #linkman:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="teleno" >
+        #teleno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="address" >
+        #address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="postno" >
+        #postno:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherAreaFlag" >
+        #otherAreaFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regionalism" >
+        #regionalism:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="financeCode" >
+        #financeCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="miscflgs" >
+        #miscflgs:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="misc" >
+        #misc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="province" >
+        #province:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blnHeadBrcode" >
+        #blnHeadBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlr" >
+        #lastUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdFunc" >
+        #lastUpdFunc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        #lastUpdDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="timestamps" >
+        #timestamps:TIMESTAMP#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.RSysAcctBctlExample" resultClass="java.lang.Integer" >
+    select count(*) from B_SYS_ACCT_BCTL
+    <include refid="B_SYS_ACCT_BCTL.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_SYS_ACCT_BCTL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brno" >
+        BRNO = #record.brno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brname" >
+        BRNAME = #record.brname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brclass" >
+        BRCLASS = #record.brclass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brattr" >
+        BRATTR = #record.brattr:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.blnBranchClass" >
+        BLN_BRANCH_CLASS = #record.blnBranchClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.blnBranchBrcode" >
+        BLN_BRANCH_BRCODE = #record.blnBranchBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.blnManageBrcode" >
+        BLN_MANAGE_BRCODE = #record.blnManageBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.blnUpBrcode" >
+        BLN_UP_BRCODE = #record.blnUpBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.txnBrcode" >
+        TXN_BRCODE = #record.txnBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.authlvl" >
+        AUTHLVL = #record.authlvl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.linkman" >
+        LINKMAN = #record.linkman:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.teleno" >
+        TELENO = #record.teleno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.address" >
+        ADDRESS = #record.address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.postno" >
+        POSTNO = #record.postno:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherAreaFlag" >
+        OTHER_AREA_FLAG = #record.otherAreaFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.regionalism" >
+        REGIONALISM = #record.regionalism:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.financeCode" >
+        FINANCE_CODE = #record.financeCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.miscflgs" >
+        MISCFLGS = #record.miscflgs:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.misc" >
+        MISC = #record.misc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.province" >
+        PROVINCE = #record.province:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.blnHeadBrcode" >
+        BLN_HEAD_BRCODE = #record.blnHeadBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlr" >
+        LAST_UPD_TLR = #record.lastUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdFunc" >
+        LAST_UPD_FUNC = #record.lastUpdFunc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdDate" >
+        LAST_UPD_DATE = #record.lastUpdDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.timestamps" >
+        TIMESTAMPS = #record.timestamps:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_SYS_ACCT_BCTL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_SYS_ACCT_BCTL
+    set BRCODE = #record.brcode:VARCHAR#,
+      BRNO = #record.brno:VARCHAR#,
+      BRNAME = #record.brname:VARCHAR#,
+      BRCLASS = #record.brclass:CHAR#,
+      BRATTR = #record.brattr:CHAR#,
+      BLN_BRANCH_CLASS = #record.blnBranchClass:CHAR#,
+      BLN_BRANCH_BRCODE = #record.blnBranchBrcode:VARCHAR#,
+      BLN_MANAGE_BRCODE = #record.blnManageBrcode:VARCHAR#,
+      BLN_UP_BRCODE = #record.blnUpBrcode:VARCHAR#,
+      TXN_BRCODE = #record.txnBrcode:VARCHAR#,
+      AUTHLVL = #record.authlvl:CHAR#,
+      LINKMAN = #record.linkman:VARCHAR#,
+      TELENO = #record.teleno:VARCHAR#,
+      ADDRESS = #record.address:VARCHAR#,
+      POSTNO = #record.postno:CHAR#,
+      OTHER_AREA_FLAG = #record.otherAreaFlag:CHAR#,
+      REGIONALISM = #record.regionalism:CHAR#,
+      FINANCE_CODE = #record.financeCode:VARCHAR#,
+      STATUS = #record.status:CHAR#,
+      MISCFLGS = #record.miscflgs:CHAR#,
+      MISC = #record.misc:VARCHAR#,
+      PROVINCE = #record.province:VARCHAR#,
+      BLN_HEAD_BRCODE = #record.blnHeadBrcode:VARCHAR#,
+      LAST_UPD_TLR = #record.lastUpdTlr:VARCHAR#,
+      LAST_UPD_FUNC = #record.lastUpdFunc:VARCHAR#,
+      LAST_UPD_DATE = #record.lastUpdDate:CHAR#,
+      TIMESTAMPS = #record.timestamps:TIMESTAMP#
+    <isParameterPresent >
+      <include refid="B_SYS_ACCT_BCTL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.sys.dao.model.RSysAcctBctl" >
+    update B_SYS_ACCT_BCTL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="brno" >
+        BRNO = #brno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brname" >
+        BRNAME = #brname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brclass" >
+        BRCLASS = #brclass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brattr" >
+        BRATTR = #brattr:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blnBranchClass" >
+        BLN_BRANCH_CLASS = #blnBranchClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blnBranchBrcode" >
+        BLN_BRANCH_BRCODE = #blnBranchBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blnManageBrcode" >
+        BLN_MANAGE_BRCODE = #blnManageBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blnUpBrcode" >
+        BLN_UP_BRCODE = #blnUpBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txnBrcode" >
+        TXN_BRCODE = #txnBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="authlvl" >
+        AUTHLVL = #authlvl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="linkman" >
+        LINKMAN = #linkman:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="teleno" >
+        TELENO = #teleno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="address" >
+        ADDRESS = #address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="postno" >
+        POSTNO = #postno:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherAreaFlag" >
+        OTHER_AREA_FLAG = #otherAreaFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="regionalism" >
+        REGIONALISM = #regionalism:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="financeCode" >
+        FINANCE_CODE = #financeCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="miscflgs" >
+        MISCFLGS = #miscflgs:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="misc" >
+        MISC = #misc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="province" >
+        PROVINCE = #province:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blnHeadBrcode" >
+        BLN_HEAD_BRCODE = #blnHeadBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlr" >
+        LAST_UPD_TLR = #lastUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdFunc" >
+        LAST_UPD_FUNC = #lastUpdFunc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        LAST_UPD_DATE = #lastUpdDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="timestamps" >
+        TIMESTAMPS = #timestamps:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    where BRCODE = #brcode:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.RSysAcctBctl" >
+    update B_SYS_ACCT_BCTL
+    set BRNO = #brno:VARCHAR#,
+      BRNAME = #brname:VARCHAR#,
+      BRCLASS = #brclass:CHAR#,
+      BRATTR = #brattr:CHAR#,
+      BLN_BRANCH_CLASS = #blnBranchClass:CHAR#,
+      BLN_BRANCH_BRCODE = #blnBranchBrcode:VARCHAR#,
+      BLN_MANAGE_BRCODE = #blnManageBrcode:VARCHAR#,
+      BLN_UP_BRCODE = #blnUpBrcode:VARCHAR#,
+      TXN_BRCODE = #txnBrcode:VARCHAR#,
+      AUTHLVL = #authlvl:CHAR#,
+      LINKMAN = #linkman:VARCHAR#,
+      TELENO = #teleno:VARCHAR#,
+      ADDRESS = #address:VARCHAR#,
+      POSTNO = #postno:CHAR#,
+      OTHER_AREA_FLAG = #otherAreaFlag:CHAR#,
+      REGIONALISM = #regionalism:CHAR#,
+      FINANCE_CODE = #financeCode:VARCHAR#,
+      STATUS = #status:CHAR#,
+      MISCFLGS = #miscflgs:CHAR#,
+      MISC = #misc:VARCHAR#,
+      PROVINCE = #province:VARCHAR#,
+      BLN_HEAD_BRCODE = #blnHeadBrcode:VARCHAR#,
+      LAST_UPD_TLR = #lastUpdTlr:VARCHAR#,
+      LAST_UPD_FUNC = #lastUpdFunc:VARCHAR#,
+      LAST_UPD_DATE = #lastUpdDate:CHAR#,
+      TIMESTAMPS = #timestamps:TIMESTAMP#
+    where BRCODE = #brcode:VARCHAR#
+  </update>
+</sqlMap>

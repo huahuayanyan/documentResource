@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_FIN_CUST_DS" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    <result column="SERIALNO" property="serialno" jdbcType="VARCHAR" />
+    <result column="FIN_DIR_ID" property="finDirId" jdbcType="VARCHAR" />
+    <result column="SUBJ_ID" property="subjId" jdbcType="VARCHAR" />
+    <result column="SUBJ_NM" property="subjNm" jdbcType="VARCHAR" />
+    <result column="ORD" property="ord" jdbcType="DECIMAL" />
+    <result column="COTES" property="cotes" jdbcType="DECIMAL" />
+    <result column="ROW_FLG" property="rowFlg" jdbcType="CHAR" />
+    <result column="COL_VAL1" property="colVal1" jdbcType="DECIMAL" />
+    <result column="COL_VAL2" property="colVal2" jdbcType="DECIMAL" />
+    <result column="RP_SOURCE" property="rpSource" jdbcType="CHAR" />         
+    <result column="RPT_NO" property="rptNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    SERIALNO, FIN_DIR_ID, SUBJ_ID, SUBJ_NM, ORD, COTES, ROW_FLG, COL_VAL1, COL_VAL2,RPT_NO,RP_SOURCE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDsExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_FIN_CUST_DS.Base_Column_List" />
+    from B_FIN_CUST_DS
+    <isParameterPresent >
+      <include refid="B_FIN_CUST_DS.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    delete from B_FIN_CUST_DS
+    where SERIALNO = #serialno:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDsExample" >
+    delete from B_FIN_CUST_DS
+    <include refid="B_FIN_CUST_DS.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    insert into B_FIN_CUST_DS (SERIALNO, FIN_DIR_ID, SUBJ_ID, SUBJ_NM, 
+      ORD, COTES, ROW_FLG, COL_VAL1, COL_VAL2,RP_SOURCE,RPT_NO
+      )
+    values (#serialno:VARCHAR#, #finDirId:VARCHAR#, #subjId:VARCHAR#, #subjNm:VARCHAR#, 
+      #ord:DECIMAL#, #cotes:DECIMAL#, #rowFlg:CHAR#, #colVal1:DECIMAL#, #colVal2:DECIMAL#,#rpSource:CHAR#,#rptNo:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    insert into B_FIN_CUST_DS
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="serialno" >
+        SERIALNO
+      </isNotNull>
+      <isNotNull prepend="," property="finDirId" >
+        FIN_DIR_ID
+      </isNotNull>
+      <isNotNull prepend="," property="subjId" >
+        SUBJ_ID
+      </isNotNull>
+      <isNotNull prepend="," property="subjNm" >
+        SUBJ_NM
+      </isNotNull>
+      <isNotNull prepend="," property="ord" >
+        ORD
+      </isNotNull>
+      <isNotNull prepend="," property="cotes" >
+        COTES
+      </isNotNull>
+      <isNotNull prepend="," property="rowFlg" >
+        ROW_FLG
+      </isNotNull>
+      <isNotNull prepend="," property="colVal1" >
+        COL_VAL1
+      </isNotNull>
+      <isNotNull prepend="," property="colVal2" >
+        COL_VAL2
+      </isNotNull>
+      <isNotNull prepend="," property="rpSource" >
+        RP_SOURCE
+      </isNotNull>
+      <isNotNull prepend="," property="rptNo" >
+        RPT_NO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="serialno" >
+        #serialno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finDirId" >
+        #finDirId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="subjId" >
+        #subjId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="subjNm" >
+        #subjNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ord" >
+        #ord:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cotes" >
+        #cotes:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rowFlg" >
+        #rowFlg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="colVal1" >
+        #colVal1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="colVal2" >
+        #colVal2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rpSource" >
+        #rpSource:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rptNo" >
+        #rptNo:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDsExample" resultClass="java.lang.Integer" >
+    select count(*) from B_FIN_CUST_DS
+    <include refid="B_FIN_CUST_DS.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_FIN_CUST_DS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.serialno" >
+        SERIALNO = #record.serialno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.finDirId" >
+        FIN_DIR_ID = #record.finDirId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.subjId" >
+        SUBJ_ID = #record.subjId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.subjNm" >
+        SUBJ_NM = #record.subjNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ord" >
+        ORD = #record.ord:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cotes" >
+        COTES = #record.cotes:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rowFlg" >
+        ROW_FLG = #record.rowFlg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.colVal1" >
+        COL_VAL1 = #record.colVal1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.colVal2" >
+        COL_VAL2 = #record.colVal2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rpSource" >
+        RP_SOURCE = #record.rpSource:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rptNo" >
+        RPT_NO = #record.rptNo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_FIN_CUST_DS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_FIN_CUST_DS
+    set SERIALNO = #record.serialno:VARCHAR#,
+      FIN_DIR_ID = #record.finDirId:VARCHAR#,
+      SUBJ_ID = #record.subjId:VARCHAR#,
+      SUBJ_NM = #record.subjNm:VARCHAR#,
+      ORD = #record.ord:DECIMAL#,
+      COTES = #record.cotes:DECIMAL#,
+      ROW_FLG = #record.rowFlg:CHAR#,
+      COL_VAL1 = #record.colVal1:DECIMAL#,
+      COL_VAL2 = #record.colVal2:DECIMAL#,
+      RP_SOURCE = #record.rpSource:CHAR#,
+      RPT_NO = #record.rptNo:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_FIN_CUST_DS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    update B_FIN_CUST_DS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="finDirId" >
+        FIN_DIR_ID = #finDirId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="subjId" >
+        SUBJ_ID = #subjId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="subjNm" >
+        SUBJ_NM = #subjNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ord" >
+        ORD = #ord:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cotes" >
+        COTES = #cotes:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rowFlg" >
+        ROW_FLG = #rowFlg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="colVal1" >
+        COL_VAL1 = #colVal1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="colVal2" >
+        COL_VAL2 = #colVal2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rpSource" >
+        RP_SOURCE = #rpSource:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rptNo" >
+        RPT_NO = #rptNo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where SERIALNO = #serialno:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    update B_FIN_CUST_DS
+    set FIN_DIR_ID = #finDirId:VARCHAR#,
+      SUBJ_ID = #subjId:VARCHAR#,
+      SUBJ_NM = #subjNm:VARCHAR#,
+      ORD = #ord:DECIMAL#,
+      COTES = #cotes:DECIMAL#,
+      ROW_FLG = #rowFlg:CHAR#,
+      COL_VAL1 = #colVal1:DECIMAL#,
+      COL_VAL2 = #colVal2:DECIMAL#,
+      RP_SOURCE = #rpSource:CHAR#,
+      RPT_NO = #rptNo:VARCHAR#
+    where SERIALNO = #serialno:VARCHAR#
+  </update>
+  <!-- 自定义 -->
+  <resultMap id="BaseMdlResultMap" class="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    <result column="SERIALNO" property="serialno" jdbcType="VARCHAR" />
+    <result column="FIN_DIR_ID" property="finDirId" jdbcType="VARCHAR" />
+    <result column="SUBJ_ID" property="subjId" jdbcType="VARCHAR" />
+    <result column="SUBJ_NM" property="subjNm" jdbcType="VARCHAR" />
+    <result column="ORD" property="ord" jdbcType="DECIMAL" />
+    <result column="COTES" property="cotes" jdbcType="DECIMAL" />
+    <result column="ROW_FLG" property="rowFlg" jdbcType="CHAR" />
+    <result column="COL_VAL1" property="colVal1" jdbcType="DECIMAL" />
+    <result column="COL_VAL2" property="colVal2" jdbcType="DECIMAL" />
+    <result column="MDL_ID" property="mdlId" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByFinId" resultMap="BaseMdlResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    select T2.FIN_DIR_ID,T3.MDL_ID,t4.SUBJ_ID,T4.SUBJ_NM,T4.ORD,T4.COTES,T4.ROW_FLG,NVL(T5.COL_VAL1,0.00) COL_VAL1,NVL(T5.COL_VAL2,0.00) COL_VAL2,T5.SERIALNO
+    from B_FIN_CUST T1,B_FIN_CUST_DIR T2,B_FIN_CNFG_CL T3,B_FIN_CNFG_DEF T4,B_FIN_CUST_DS T5
+    <isParameterPresent >
+	    where T1.FIN_ID = #finId:VARCHAR#
+	    and T1.FIN_ID = T2.FIN_ID
+        and T2.MDL_ID LIKE #fin:VARCHAR#
+		and T2.MDL_ID = T3.MDL_TYP||'-'||T3.MDL_ID
+		and T3.MDL_ID = T4.MDL_ID
+		and T4.DEL_FLG = #delFlg:VARCHAR#
+		and T2.FIN_DIR_ID=T5.FIN_DIR_ID(+)
+		order by T4.ORD ASC
+    </isParameterPresent>
+  </select>
+  <select id="selectByFinDirId" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    select  SERIALNO, FIN_DIR_ID, SUBJ_ID, SUBJ_NM, ORD, COTES, ROW_FLG, COL_VAL1, COL_VAL2,RPT_NO,RP_SOURCE
+    from B_FIN_CUST_DS 
+    where FIN_DIR_ID = #finDirId:VARCHAR#
+  </select>
+  <resultMap id="BaseCustDsResultMap" class="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    <result column="SERIALNO" property="serialno" jdbcType="VARCHAR" />
+    <result column="FIN_DIR_ID" property="finDirId" jdbcType="VARCHAR" />
+    <result column="SUBJ_ID" property="subjId" jdbcType="VARCHAR" />
+    <result column="SUBJ_NM" property="subjNm" jdbcType="VARCHAR" />
+    <result column="ORD" property="ord" jdbcType="DECIMAL" />
+    <result column="COTES" property="cotes" jdbcType="DECIMAL" />
+    <result column="COL_VAL1" property="colVal1" jdbcType="DECIMAL" />
+    <result column="COL_VAL2" property="colVal2" jdbcType="DECIMAL" />
+    <result column="RP_SOURCE" property="rpSource" jdbcType="CHAR" />         
+    <result column="RPT_NO" property="rptNo" jdbcType="VARCHAR" />
+    <result column="MDL_ID" property="mdlId" jdbcType="VARCHAR" />
+    <result column="ED_TYP" property="edTyp" jdbcType="CHAR" />
+    <result column="CAL" property="cal" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryBfinCustDsByFdIRpSource" resultMap="BaseCustDsResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+	select 
+	    s.serialno,
+        s.fin_dir_id,
+        s.subj_id,
+        s.subj_nm,
+        s.ord,
+        s.cotes,
+        s.col_val1,
+        s.col_val2,
+        s.rp_source,
+        s.rpt_no,
+        b.mdl_id,
+        b.ed_typ,
+        b.cal
+   from B_FIN_CUST_DS s, B_FIN_CNFG_DEF b
+  where s.subj_id = b.subj_id
+    and s.RP_SOURCE = #rpSource#
+    and s.FIN_DIR_ID =#finDirId#
+    and b.mdl_id=#mdlId# 
+     order by s.ord
+  </select>
+  <select id="queryAnalyData" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    SELECT 
+		<include refid="B_FIN_CUST_DS.Base_Column_List" />
+    FROM B_FIN_CUST_DS t
+    WHERE 1=1 
+    and t.fin_dir_id in(
+		select s.fin_dir_id from B_FIN_CUST_DIR s where 1=1 
+		<isNotNull property="finId" >
+			and s.fin_id=#finId# 
+		</isNotNull>
+		<isNotNull property="mdlId" >
+			and substr(s.mdl_id,5,4)!=#mdlId#
+		</isNotNull>
+		<isNotNull property="rptNo" >
+			and s.rpt_no = #rptNo#
+		</isNotNull>
+		<isNotNull property="custId" >
+			and s.cust_id = #custId#
+		</isNotNull>
+	) 
+	<isNotNull property="rpSource" >
+		and t.rp_source=#rpSource# 
+	</isNotNull>
+	<isNotNull property="rptNo" >
+        and t.RPT_NO=#rptNo#
+    </isNotNull>
+  </select>
+    <resultMap id="CustFinAnalyMap" class="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    <result column="SERIALNO" property="serialno" jdbcType="VARCHAR" />
+    <result column="FIN_DIR_ID" property="finDirId" jdbcType="VARCHAR" />
+    <result column="SUBJ_ID" property="subjId" jdbcType="VARCHAR" />
+    <result column="SUBJ_NM" property="subjNm" jdbcType="VARCHAR" />
+    <result column="ORD" property="ord" jdbcType="DECIMAL" />
+    <result column="COTES" property="cotes" jdbcType="DECIMAL" />
+    <result column="COL_VAL1" property="colVal1" jdbcType="DECIMAL" />
+    <result column="COL_VAL2" property="colVal2" jdbcType="DECIMAL" />
+    <result column="RP_SOURCE" property="rpSource" jdbcType="CHAR" />         
+    <result column="RPT_NO" property="rptNo" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="MDL_ID" property="mdlId" jdbcType="VARCHAR" />
+    <result column="ED_TYP" property="edTyp" jdbcType="CHAR" />
+    <result column="CAL" property="cal" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    
+  </resultMap>
+	<select id="queryFinTargetAnalyData" resultMap="CustFinAnalyMap"
+		parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs">
+		SELECT
+		T1.SERIALNO,
+		T1.FIN_DIR_ID,
+		T1.SUBJ_ID,
+		T1.SUBJ_NM,
+		T1.ORD,
+		T1.COTES,
+		T1.ROW_FLG,
+		T1.COL_VAL1,
+		T1.COL_VAL2,
+		T1.RPT_NO,
+		T1.RP_SOURCE,
+		T2.CUST_ID,
+		t3.MDL_ID,
+		T3.ed_typ,
+		T3.CAL,
+		T4.REMARK
+		FROM
+		B_FIN_CUST_DS T1
+		LEFT JOIN B_FIN_CUST_DIR T2 ON T1.FIN_DIR_ID = T2.FIN_DIR_ID
+		left join B_FIN_CNFG_DEF T3 ON T1.SUBJ_ID = T3.SUBJ_ID
+		left join B_FIN_CUST_DS_EXT T4 ON T1.SERIALNO = T4.SERIALNO
+		<isParameterPresent>
+			where 1=1
+			<isNotNull property="mdlId">
+				AND T3.MDL_ID=#mdlId#
+			</isNotNull>
+			<isNotNull property="custId">
+				and T2.cust_id = #custId#
+			</isNotNull>
+			<isNotNull property="rpSource">
+				and T1.rp_source=#rpSource#
+			</isNotNull>
+			<isNotNull property="rptNo">
+				and T1.RPT_NO=#rptNo#
+			</isNotNull>
+			order by T1.ord
+		</isParameterPresent>
+	</select>
+  <!-- 存在问题 -->
+  <select id="selectIsDs" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    select T2.FIN_DIR_ID,T3.MDL_ID,t4.SUBJ_ID,T4.SUBJ_NM,T4.ORD,T4.COTES,T4.ROW_FLG,NVL(T5.COL_VAL1,0.00) COL_VAL1,NVL(T5.COL_VAL2,0.00) COL_VAL2,T5.SERIALNO
+    from B_FIN_CUST T1,B_FIN_CUST_DIR T2,B_FIN_CNFG_CL T3,B_FIN_CNFG_DEF T4,B_FIN_CUST_DS T5
+    <isParameterPresent >
+	    where T1.FIN_ID = #finId:VARCHAR#
+	    and T1.FIN_ID = T2.FIN_ID
+        and T2.MDL_ID LIKE #fin:VARCHAR#
+		and T2.MDL_ID = T3.MDL_TYP||'-'||T3.MDL_ID
+		and T3.MDL_ID = T4.MDL_ID
+		and T4.DEL_FLG = #delFlg:VARCHAR#
+		and T2.FIN_DIR_ID=T5.FIN_DIR_ID
+		order by T4.ORD ASC
+    </isParameterPresent>
+  </select>
+  <delete id="deleteByFinId" parameterClass="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+  	delete B_FIN_CUST_DS 
+	where FIN_DIR_ID IN 
+		(select t.fin_dir_id 
+		from B_FIN_CUST TT,B_FIN_CUST_DIR T 
+		where TT.FIN_ID=T.FIN_ID
+		and TT.FIN_ID = #finId:VARCHAR#)
+  </delete>
+    <resultMap id="FinDirResultMap" class="com.huateng.scf.bas.fin.dao.model.BFinCustDs" >
+    <result column="FIN_DIR_ID" property="finDirId" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="queryFinCustDsByFinId" resultMap="FinDirResultMap" parameterClass="java.lang.String" >
+   	 select DISTINCT t.fin_dir_id 
+		from B_FIN_CUST TT,B_FIN_CUST_DIR T 
+		where TT.FIN_ID=T.FIN_ID
+		and TT.FIN_ID = #finId:VARCHAR#
+    </select>
+</sqlMap>

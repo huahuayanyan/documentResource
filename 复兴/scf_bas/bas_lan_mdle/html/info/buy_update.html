@@ -1,0 +1,15 @@
+
+<ht-form name="otherform" columns="1">
+    <ht-legend>购销合同信息编辑</ht-legend>
+    <ht-input ht-id="tradeContcode" name="购销合同号" ng-model="otherform.tradeContcode" disable="true"></ht-input>
+    <ht-input name="合同生效日" ng-model="otherform.startDate" edit-type="date" disable="true"></ht-input>
+    <ht-input name="合同到期日" ng-model="otherform.endDate" edit-type="date" disable="true"></ht-input>
+    <ht-input name="合同金额" ng-model="otherform.contAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="累计出账金额" ng-model="otherform.accuLoanAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="本次出账金额" ng-model="otherform.loanAmt" reg-exp="common.require" edit-type="currency"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

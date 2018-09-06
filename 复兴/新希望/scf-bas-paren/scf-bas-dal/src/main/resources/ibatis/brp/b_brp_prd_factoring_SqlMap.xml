@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_BRP_PRD_FACTORING" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.brp.dao.model.BBrpPrdFactoring" >
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="FACT_TYPE" property="factType" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="CHAR" />
+    <result column="RECOVER_TYPE" property="recoverType" jdbcType="CHAR" />
+    <result column="INOUT" property="inout" jdbcType="CHAR" />
+    <result column="CALC_RATE_TYPE" property="calcRateType" jdbcType="CHAR" />
+    <result column="RATE_SHARE_TYPE" property="rateShareType" jdbcType="CHAR" />
+    <result column="GRACE_DAYS" property="graceDays" jdbcType="DECIMAL" />
+    <result column="DEBT_GRACE_DAYS" property="debtGraceDays" jdbcType="DECIMAL" />
+    <result column="FINANCING_TYPE" property="financingType" jdbcType="CHAR" />
+    <result column="SELLER_TYPE" property="sellerType" jdbcType="CHAR" />
+    <result column="BUYER_TYPE" property="buyerType" jdbcType="CHAR" />
+    <result column="BILLS_TYPE" property="billsType" jdbcType="CHAR" />
+    <result column="LEASE_FACTORING_FLAG" property="leaseFactoringFlag" jdbcType="CHAR" />
+    <result column="LEASEBACK_FLAG" property="leasebackFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    PRODUCT_ID, FACT_TYPE, TYPE, RECOVER_TYPE, INOUT, CALC_RATE_TYPE, RATE_SHARE_TYPE, 
+    GRACE_DAYS, DEBT_GRACE_DAYS, FINANCING_TYPE, SELLER_TYPE, BUYER_TYPE, BILLS_TYPE, 
+    LEASE_FACTORING_FLAG, LEASEBACK_FLAG
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPrdFactoringExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_BRP_PRD_FACTORING.Base_Column_List" />
+    from B_BRP_PRD_FACTORING
+    <isParameterPresent >
+      <include refid="B_BRP_PRD_FACTORING.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPrdFactoring" >
+    select 
+    <include refid="B_BRP_PRD_FACTORING.Base_Column_List" />
+    from B_BRP_PRD_FACTORING
+    where PRODUCT_ID = #productId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPrdFactoring" >
+    delete from B_BRP_PRD_FACTORING
+    where PRODUCT_ID = #productId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPrdFactoringExample" >
+    delete from B_BRP_PRD_FACTORING
+    <include refid="B_BRP_PRD_FACTORING.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPrdFactoring" >
+    insert into B_BRP_PRD_FACTORING (PRODUCT_ID, FACT_TYPE, TYPE, RECOVER_TYPE, 
+      INOUT, CALC_RATE_TYPE, RATE_SHARE_TYPE, GRACE_DAYS, DEBT_GRACE_DAYS, 
+      FINANCING_TYPE, SELLER_TYPE, BUYER_TYPE, BILLS_TYPE, LEASE_FACTORING_FLAG, 
+      LEASEBACK_FLAG)
+    values (#productId:VARCHAR#, #factType:VARCHAR#, #type:CHAR#, #recoverType:CHAR#, 
+      #inout:CHAR#, #calcRateType:CHAR#, #rateShareType:CHAR#, #graceDays:DECIMAL#, #debtGraceDays:DECIMAL#, 
+      #financingType:CHAR#, #sellerType:CHAR#, #buyerType:CHAR#, #billsType:CHAR#, #leaseFactoringFlag:CHAR#, 
+      #leasebackFlag:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPrdFactoring" >
+    insert into B_BRP_PRD_FACTORING
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="factType" >
+        FACT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="recoverType" >
+        RECOVER_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="inout" >
+        INOUT
+      </isNotNull>
+      <isNotNull prepend="," property="calcRateType" >
+        CALC_RATE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="rateShareType" >
+        RATE_SHARE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="graceDays" >
+        GRACE_DAYS
+      </isNotNull>
+      <isNotNull prepend="," property="debtGraceDays" >
+        DEBT_GRACE_DAYS
+      </isNotNull>
+      <isNotNull prepend="," property="financingType" >
+        FINANCING_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="sellerType" >
+        SELLER_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="buyerType" >
+        BUYER_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="billsType" >
+        BILLS_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="leaseFactoringFlag" >
+        LEASE_FACTORING_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="leasebackFlag" >
+        LEASEBACK_FLAG
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="productId" >
+        #productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="factType" >
+        #factType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        #type:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="recoverType" >
+        #recoverType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inout" >
+        #inout:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="calcRateType" >
+        #calcRateType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rateShareType" >
+        #rateShareType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="graceDays" >
+        #graceDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="debtGraceDays" >
+        #debtGraceDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="financingType" >
+        #financingType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellerType" >
+        #sellerType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="buyerType" >
+        #buyerType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsType" >
+        #billsType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="leaseFactoringFlag" >
+        #leaseFactoringFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="leasebackFlag" >
+        #leasebackFlag:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPrdFactoringExample" resultClass="java.lang.Integer" >
+    select count(*) from B_BRP_PRD_FACTORING
+    <include refid="B_BRP_PRD_FACTORING.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_BRP_PRD_FACTORING
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.productId" >
+        PRODUCT_ID = #record.productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.factType" >
+        FACT_TYPE = #record.factType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.type" >
+        TYPE = #record.type:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.recoverType" >
+        RECOVER_TYPE = #record.recoverType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inout" >
+        INOUT = #record.inout:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.calcRateType" >
+        CALC_RATE_TYPE = #record.calcRateType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rateShareType" >
+        RATE_SHARE_TYPE = #record.rateShareType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.graceDays" >
+        GRACE_DAYS = #record.graceDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debtGraceDays" >
+        DEBT_GRACE_DAYS = #record.debtGraceDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.financingType" >
+        FINANCING_TYPE = #record.financingType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sellerType" >
+        SELLER_TYPE = #record.sellerType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.buyerType" >
+        BUYER_TYPE = #record.buyerType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billsType" >
+        BILLS_TYPE = #record.billsType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.leaseFactoringFlag" >
+        LEASE_FACTORING_FLAG = #record.leaseFactoringFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.leasebackFlag" >
+        LEASEBACK_FLAG = #record.leasebackFlag:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_BRP_PRD_FACTORING.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_BRP_PRD_FACTORING
+    set PRODUCT_ID = #record.productId:VARCHAR#,
+      FACT_TYPE = #record.factType:VARCHAR#,
+      TYPE = #record.type:CHAR#,
+      RECOVER_TYPE = #record.recoverType:CHAR#,
+      INOUT = #record.inout:CHAR#,
+      CALC_RATE_TYPE = #record.calcRateType:CHAR#,
+      RATE_SHARE_TYPE = #record.rateShareType:CHAR#,
+      GRACE_DAYS = #record.graceDays:DECIMAL#,
+      DEBT_GRACE_DAYS = #record.debtGraceDays:DECIMAL#,
+      FINANCING_TYPE = #record.financingType:CHAR#,
+      SELLER_TYPE = #record.sellerType:CHAR#,
+      BUYER_TYPE = #record.buyerType:CHAR#,
+      BILLS_TYPE = #record.billsType:CHAR#,
+      LEASE_FACTORING_FLAG = #record.leaseFactoringFlag:CHAR#,
+      LEASEBACK_FLAG = #record.leasebackFlag:CHAR#
+    <isParameterPresent >
+      <include refid="B_BRP_PRD_FACTORING.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPrdFactoring" >
+    update B_BRP_PRD_FACTORING
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="factType" >
+        FACT_TYPE = #factType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        TYPE = #type:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="recoverType" >
+        RECOVER_TYPE = #recoverType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inout" >
+        INOUT = #inout:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="calcRateType" >
+        CALC_RATE_TYPE = #calcRateType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rateShareType" >
+        RATE_SHARE_TYPE = #rateShareType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="graceDays" >
+        GRACE_DAYS = #graceDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="debtGraceDays" >
+        DEBT_GRACE_DAYS = #debtGraceDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="financingType" >
+        FINANCING_TYPE = #financingType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellerType" >
+        SELLER_TYPE = #sellerType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="buyerType" >
+        BUYER_TYPE = #buyerType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsType" >
+        BILLS_TYPE = #billsType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="leaseFactoringFlag" >
+        LEASE_FACTORING_FLAG = #leaseFactoringFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="leasebackFlag" >
+        LEASEBACK_FLAG = #leasebackFlag:CHAR#
+      </isNotNull>
+    </dynamic>
+    where PRODUCT_ID = #productId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPrdFactoring" >
+    update B_BRP_PRD_FACTORING
+    set FACT_TYPE = #factType:VARCHAR#,
+      TYPE = #type:CHAR#,
+      RECOVER_TYPE = #recoverType:CHAR#,
+      INOUT = #inout:CHAR#,
+      CALC_RATE_TYPE = #calcRateType:CHAR#,
+      RATE_SHARE_TYPE = #rateShareType:CHAR#,
+      GRACE_DAYS = #graceDays:DECIMAL#,
+      DEBT_GRACE_DAYS = #debtGraceDays:DECIMAL#,
+      FINANCING_TYPE = #financingType:CHAR#,
+      SELLER_TYPE = #sellerType:CHAR#,
+      BUYER_TYPE = #buyerType:CHAR#,
+      BILLS_TYPE = #billsType:CHAR#,
+      LEASE_FACTORING_FLAG = #leaseFactoringFlag:CHAR#,
+      LEASEBACK_FLAG = #leasebackFlag:CHAR#
+    where PRODUCT_ID = #productId:VARCHAR#
+  </update>
+</sqlMap>

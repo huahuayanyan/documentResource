@@ -1,0 +1,25 @@
+
+<ht-form name="billnormaladd">
+    <ht-legend>仓单信息</ht-legend>
+    <ht-input ht-id="billcode" name="仓单编号" ng-model="billnormaladd.billcode" reg-exp="common.require"></ht-input>
+    <ht-select ht-id="billType" name="仓单类型" ng-model="billnormaladd.billType" reg-exp="common.require" dictionary="billType"></ht-select>
+    <ht-input ht-id="address" name="仓库地址" ng-model="billnormaladd.address" reg-exp="common.require"></ht-input>
+    <ht-input ht-id="postno" name="邮编" ng-model="billnormaladd.postno" reg-exp="common.require,CodeValidate"></ht-input>
+    <ht-input ht-id="storageAddress" name="存储地址" ng-model="billnormaladd.storageAddress" reg-exp="common.require"></ht-input>
+    <ht-input ht-id="signDate" name="签约日期" ng-model="billnormaladd.signDate" reg-exp="common.require" edit-type="date"></ht-input>
+    <ht-input ht-id="phone" name="经办人电话" ng-model="billnormaladd.phone" reg-exp="telephoneNumber"></ht-input>
+    <ht-input ht-id="fax" name="经办人传真" ng-model="billnormaladd.fax" reg-exp="common.require,fax"></ht-input>
+    <ht-input ht-id="startDate" name="开具日期" ng-model="billnormaladd.startDate" reg-exp="common.require"
+              edit-type="date" high-date-id="endDate"></ht-input>
+    <ht-input ht-id="endDate" name="截止日期" ng-model="billnormaladd.endDate" reg-exp="common.require"
+              edit-type="date" lower-date-id="startDate"></ht-input>
+    <ht-input ht-id="keeperName" name="保管人名称" ng-model="billnormaladd.keeperName" reg-exp="common.require"></ht-input>
+    <ht-input ht-id="insuranceNo" name="保险单号" ng-model="billnormaladd.insuranceNo" reg-exp="common.require"></ht-input>
+    <ht-input ht-id="standLose" name="标准损耗" ng-model="billnormaladd.standLose"></ht-input>
+    <ht-input ht-id="storageCostEndDate" name="存储费用截止日" ng-model="billnormaladd.storageCostEndDate" edit-type="date"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{hide}}" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="close" class="btn-primary" hide="{{hideclose}}">关闭</ht-button>
+</ht-button-group>

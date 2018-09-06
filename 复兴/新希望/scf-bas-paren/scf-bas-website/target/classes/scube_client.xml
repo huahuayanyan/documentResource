@@ -1,0 +1,1506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ Copyright 2009-2016 Weibo, Inc. ~ ~ Licensed under the Apache License, 
+	Version 2.0 (the "License"); ~ you may not use this file except in compliance 
+	with the License. ~ You may obtain a copy of the License at ~ ~ http://www.apache.org/licenses/LICENSE-2.0 
+	~ ~ Unless required by applicable law or agreed to in writing, software ~ 
+	distributed under the License is distributed on an "AS IS" BASIS, ~ WITHOUT 
+	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. ~ See the 
+	License for the specific language governing permissions and ~ limitations 
+	under the License. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="dictionaryService" class="com.huateng.scube.client.ScubeClientProxy">
+	 	<property name="targetClass" >
+	 		<value>com.huateng.authority.service.DictionaryService</value>
+	 	</property>
+	</bean>	
+	<!-- 数据字典client -->
+	<bean id="bdDataDictService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.data.service.BdDataDictService</value>
+		</property>
+	</bean>
+	<bean id="orgService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.authority.service.OrgService</value>
+		</property>
+	</bean>
+
+	<bean id="userService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.authority.service.UserService</value>
+		</property>
+	</bean>
+	
+	<bean id="roleService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.authority.service.RoleService</value>
+		</property>
+	</bean>
+	
+	<bean id="ssoRuleService"   class="com.huateng.scube.client.ScubeClientProxy">
+	   <property name="targetClass" >
+	   <value>com.huateng.sso.service.SSORuleService</value>
+	   </property>
+	</bean>
+	
+	<!-- <bean id="loginService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.sso.service.LoginService</value>
+		</property>
+	</bean> -->
+	<bean id="scubeUserService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.authority.inter.service.ScubeUserService</value>
+		</property>
+	</bean>
+	<!-- 动态表单service -->
+	<bean id="dynamicFormService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.dynamicForm.service.DynamicFormService</value>
+		</property>
+	</bean>
+	
+	<!-- 数据字典工具类  init-method="initData" -->
+	<!-- <bean id="bDDataUtil" class="com.huateng.data.util.BDDataUtil"/> -->
+	<bean id="bDDataUtil" class="com.huateng.data.util.BDDataUtil" init-method="initData" />
+	<!-- 工作流发起流程 processService client -->
+	<bean id="processService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.flowsharp.api.IProcessService</value>
+		</property>
+	</bean>
+	<!-- 工作流发起流程 taskService client -->
+	<bean id="taskService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.flowsharp.api.ITaskService</value>
+		</property>
+	</bean>
+	<!-- 工作流发起流程 websiteService client -->
+	<bean id="websiteService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.flowsharp.api.IWebsiteService</value>
+		</property>
+	</bean>
+		<!-- BIcrTypeService -->
+ 	 <bean id="bIcrTypeService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.icr.service.IBIcrTypeService</value>
+		</property>
+	</bean> 
+	<!-- 客户维护 -->
+	<bean id="bCrmBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmBaseInfoService</value>
+		</property>
+	</bean>
+	<!-- 联系人信息查询 -->
+	<bean id="bCrmContactsInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmContactsInfoService</value>
+		</property>
+	</bean>
+	<!-- 额度与产品绑定 -->
+	 <bean id="bIcrPrdBindService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.icr.service.IBIcrPrdBindService</value>
+		</property>
+	</bean> 
+	<!-- 间接额度管理 -->
+	 <bean id="bIcrInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.icr.service.IBIcrInfoService</value>
+		</property>
+	</bean>
+	<!-- 额度申请 -->
+	<bean id="bIcrAppliInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.icr.service.IBIcrAppliInfoService</value>
+		</property>
+	</bean> 
+		<!-- 业务申请额度适用机构映射 -->
+	<bean id="bIcrAppliBrcodeListService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.icr.service.IBIcrAppliBrcodeListService</value>
+		</property>
+	</bean>
+	<!-- 额度适用机构关联 -->
+	<bean id="bIcrBrcodeListService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.icr.service.IBIcrBrcodeListService</value>
+		</property>
+	</bean> 
+	<!-- 公共类，下拉列表 ，筛选框 --> 
+	 <bean id="bSysCommonService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysCommonService</value>
+		</property>
+	</bean> 
+	<!-- 应收账款合同管理 -->
+	<bean id="bCntDebtInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntDebtInfoService</value>
+		</property>
+	</bean>
+	<!-- 应收账款融资交易对手信息-->
+	<bean id="bCntDebtExtInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntDebtExtInfoService</value>
+		</property>
+	</bean>
+	<!-- 应收账款费用信息-->
+	<bean id="bCntCostInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntCostInfoService</value>
+		</property>
+	</bean>
+	<!-- 客户情况分析 -->
+	<bean id="bCrmAnalInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmAnalInfoService</value>
+		</property>
+	</bean>
+	<!-- 监管公司信息 -->
+	<bean id="bCrmMoniEntInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmMoniEntInfoService</value>
+		</property>
+	</bean>
+	<!-- 监管公司年审记录-->
+	<bean id="bCrmMoniEvaInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmMoniEvaInfoService</value>
+		</property>
+	</bean>
+	<!-- 客户关联关系-->
+	<bean id="bCrmRelationInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmRelationInfoService</value>
+		</property>
+	</bean>
+	<!-- 上下游客户关联关系-->
+	<bean id="bCrmUpanddownRelService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmUpanddownRelService</value>
+		</property>
+	</bean>
+	<!-- 企业信息-->
+	<bean id="bCrmEntInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmEntInfoService</value>
+		</property>
+	</bean>
+	<!-- BRP国际行业标准-->
+	<bean id="bBrpIndustryTypesService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.brp.service.IBBrpIndustryTypesService</value>
+		</property>
+	</bean>
+	<!-- 费用信息-->
+	<bean id="bBrpCostParamService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.brp.service.IBBrpCostParamService</value>
+		</property>
+	</bean>
+	<!-- 预警信息-->
+	<bean id="bBrpWarnParamService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.brp.service.IBBrpWarnParamService</value>
+		</property>
+	</bean>
+	<!-- 预警参数设置 -->
+	<bean id="warnParamMngService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.brp.service.IWarnParamMngService</value>
+		</property>
+	</bean>
+
+	<!--acc账户信息-->
+	<bean id="bAccAccountInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.acc.service.IBAccAccountInfoService</value>
+		</property>
+	</bean>
+	
+	<!-- 客户财务信息client -->
+	<bean id="bFinCnfgSubjService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.fin.service.IBFinCnfgSubjService</value>
+		</property>
+	</bean>
+	<bean id="bFinCnfgClService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.fin.service.IBFinCnfgClService</value>
+		</property>
+	</bean>
+	<bean id="bFinCnfgDefService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.fin.service.IBFinCnfgDefService</value>
+		</property>
+	</bean>
+	<bean id="bFinCustService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.fin.service.IBFinCustService</value>
+		</property>
+	</bean>
+	<bean id="bFinCustDirService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.fin.service.IBFinCustDirService</value>
+		</property>
+	</bean>
+	<bean id="bFinCustDsService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.fin.service.IBFinCustDsService</value>
+		</property>
+	</bean>
+
+	<!-- 业务流水号生成服务 -->
+	<bean id="bSysSerialNoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysSerialNoService</value>
+		</property>
+	</bean>
+		<!-- 信息发布服务 -->
+	<bean id="bSysInfoPublishMngService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysInfoPublishMngService</value>
+		</property>
+	</bean>
+	
+	<!-- 拦截管理  -->
+	<bean id="bSysChkCnfgService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysChkCnfgService</value>
+		</property>
+	</bean>
+	
+	<bean id="bSysChkDirService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysChkDirService</value>
+		</property>
+	</bean>
+	
+	<bean id="bSysChkPlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysChkPlService</value>
+		</property>
+	</bean>
+	
+	<bean id="bSysChkRecService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysChkRecService</value>
+		</property>
+	</bean>
+	<bean id="bSysChkControlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysChkControlService</value>
+		</property>
+	</bean>	
+	<!-- 区域信息 -->
+	<bean id="bSysRegionService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysRegionService</value>
+		</property>
+	</bean>
+	
+	<!-- 信用评级 -->
+	<bean id="iBCrgEvalRecService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crg.service.IBCrgEvalRecService</value>
+		</property>
+	</bean>
+	
+	<bean id="iBCrgEvalDtlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crg.service.IBCrgEvalDtlService</value>
+		</property>
+	</bean>
+	
+	<!-- 授信管理 -->
+	<!-- 贷款申请 -->
+	<bean id="bCrrLnAppService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrLnAppService</value>
+		</property>
+	</bean>
+	<!-- 业务关联 -->
+	<bean id="bCrrLnAppRelaService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrLnAppRelaService</value>
+		</property>
+	</bean>
+	<!-- 担保合同 -->
+	<bean id="bCrrGntyConService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrGntyConService</value>
+		</property>
+	</bean>
+	<!-- 保函信息 -->
+	<bean id="bCrrLgInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrLgInfoService</value>
+		</property>
+	</bean>
+	<!-- 设备信息 -->
+	<bean id="bCrrEqptInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrEqptInfoService</value>
+		</property>
+	</bean>
+	<!-- 信用证信息 -->
+	<bean id="bCrrLcInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrLcInfoService</value>
+		</property>
+	</bean>
+	<!-- 票据信息 -->
+	<bean id="bCrrBillInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrBillInfoService</value>
+		</property>
+	</bean>
+	<!-- 发票信息 -->
+	<bean id="bCrrInvInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrInvInfoService</value>
+		</property>
+	</bean>
+	<!-- 贷款合同信息 -->
+	<bean id="bCrrLnConService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrLnConService</value>
+		</property>
+	</bean>
+	<!-- 合同关联 -->
+	<bean id="bCrrLnConRelaService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrLnConRelaService</value>
+		</property>
+	</bean>
+	<!-- 出账申请 -->
+	<bean id="bCrrDuebillAppService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrDuebillAppService</value>
+		</property>
+	</bean>
+	<!-- 借据表 -->
+	<bean id="bCrrDuebillService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrDuebillService</value>
+		</property>
+	</bean>
+	<!-- 担保物信息表 -->
+	<bean id="bCrrGntyInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrGntyInfoService</value>
+		</property>
+	</bean>
+	<!-- 担保合同与担保物关联表 -->
+	<bean id="bCrrGntyRelaService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrGntyRelaService</value>
+		</property>
+	</bean>
+	<!-- 业务品种配置 -->
+	<bean id="bCrrPrdMdService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrPrdMdService</value>
+		</property>
+	</bean>
+	
+   <!-- 授信额度管理 -->	
+    <bean id="bDcrLinTypService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.dcr.service.BDcrLinTypService</value>
+		</property>
+	</bean>
+	 <bean id="bDcrLinCnfgService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.dcr.service.BDcrLinCnfgService</value>
+		</property>
+	</bean>
+    <bean id="ibDcrLinAppService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.dcr.service.IbDcrLinAppService</value>
+		</property>
+	</bean>	
+    <bean id="ibDcrLinInfService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.dcr.service.IbDcrLinInfService</value>
+		</property>
+	</bean>		
+    <bean id="ibDcrChkDetailService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.dcr.service.IbDcrChkDetailService</value>
+		</property>
+	</bean>
+    <bean id="ibDcrChkDirService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.dcr.service.IbDcrChkDirService</value>
+		</property>
+	</bean>						
+    <bean id="ibDcrLinService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.dcr.service.IbDcrLinService</value>
+		</property>
+	</bean>
+	<!--待办任务 -->
+	<bean id="bSysTaskService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysTaskService</value>
+		</property>
+	</bean>
+	<!-- 网点机构  -->
+	<bean id="bSysAcctBctlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysAcctBctlService</value>
+		</property>
+	</bean>
+	<!-- 审批历史记录 -->
+	<bean id="bSysApplyDtlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysApplyDtlService</value>
+		</property>
+	</bean>
+	<!-- 供应链产品 -->
+	<bean id="bPrdInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdInfoService</value>
+		</property>
+	</bean>
+	<!-- 组件管理 -->
+	<bean id="bPrdBcopService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdBcopService</value>
+		</property>
+	</bean>
+	<bean id="bPrdWkflowCopService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdWkflowCopService</value>
+		</property>
+	</bean>
+	<bean id="bPrdCopLibService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdCopLibService</value>
+		</property>
+	</bean>
+	 <bean id="bPrdCopLibBindService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdCopLibBindService</value>
+		</property>
+	</bean>
+	<!-- 产品额度绑定 -->
+   <bean id="bPrdCreditBindService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdCreditBindService</value>
+		</property>
+	</bean>
+	<!-- 授信政策 -->
+	<bean id="bPrdCreditPlyService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdCreditPlyService</value>
+		</property>
+	</bean>
+	<!-- 业务调查资料-->
+	 <bean id="bPrdBizSurBindService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdBizSurBindService</value>
+		</property>
+	</bean>
+	 <bean id="bPrdBizSurService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdBizSurService</value>
+		</property>
+	</bean>
+	
+	<!-- 应收材料 -->
+	 <bean id="bPrdReceMatlBindService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdReceMatlBindService</value>
+		</property>
+	</bean>
+	
+	<bean id="bPrdReceMatlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdReceMatlService</value>
+		</property>
+	</bean>
+	<!-- 产品基本信息 -->
+	<bean id="bPrdBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdBaseInfoService</value>
+		</property>
+	</bean>
+	<!-- 产品行业关联 -->
+	<bean id="bPrdIndustryTypeService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdIndustryTypeService</value>
+		</property>
+	</bean>
+	<!-- 产品费用关联 -->
+	<bean id="bPrdCostBindService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdCostBindService</value>
+		</property>
+	</bean>
+	<!-- 产品风险关联 -->
+	<bean id="bPrdWarnBindService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdWarnBindService</value>
+		</property>
+	</bean>
+	<!-- 产品组件 -->
+	<!-- 业务申请基本信息 -->
+	<bean id="bPbcAppliBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IBPbcAppliBaseInfoService</value>
+		</property>
+	</bean>
+	<!-- 押品变更流水信息 -->
+	<bean id="bPbcMtgStorDeliService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IBPbcMtgStorDeliService</value>
+		</property>
+	</bean>
+	<!-- 核库 -->
+	<bean id="bPbcWhseInspectService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IBPbcWhseInspectService</value>
+		</property>
+	</bean>
+	<!-- 押品基本信息表 -->
+	<bean id="bPbcMtgBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IBPbcMtgBaseInfoService</value>
+		</property>
+	</bean>
+	<!-- 业务申请押品信息 -->
+	<bean id="bPbcAppliMtgInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IBPbcAppliMtgInfoService</value>
+		</property>
+	</bean>	
+	<!-- 押品信息 -->
+	<bean id="bPbcMtgClassService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IBPbcMtgClassService</value>
+		</property>
+	</bean>	
+	<!-- 押品信息变更明细 -->
+	<bean id="bPbcMtgStockDtlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IBPbcMtgStockDtlService</value>
+		</property>
+	</bean>	
+		<!-- 保证金及现金等价物交易流水-->
+	<bean id="bMrnAcctBussInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.mrn.service.IBMrnAcctBussInfoService</value>
+		</property>
+	</bean>	
+	
+	<!-- 担保提货协议-->
+	<bean id="threeProtocolService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IThreeProtocolService</value>
+		</property>
+	</bean>
+	<!-- 先票/款后货协议-->
+	<bean id="fourProtocolService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IFourProtocolService</value>
+		</property>
+	</bean>
+	<!-- 缓存服务 -->
+	<bean id="scfSysCacheService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IScfSysCacheService</value>
+		</property>
+	</bean>
+	
+	<!-- 规则引擎 -->
+	<bean id="topRuleScubeService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass"
+			value="com.huateng.toprules.scube.service.ITopRuleScubeService">
+		</property>
+	</bean>
+	
+	<bean id="topRulesUserScubeService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name = "targetClass"
+			value="com.huateng.toprules.scube.service.ITopRulesUserScubeService">
+		</property>
+	</bean>
+	<!-- 报表展现 -->
+	<bean id="reportDisplayService" class="com.huateng.scube.client.ScubeClientProxy">
+	<property name="targetClass">
+		<value>com.huateng.scf.bas.brp.service.IReportDisplayService</value>
+	</property>
+	</bean>
+	<!-- 统计分析 -->
+	<bean id="statisAnalysisService" class="com.huateng.scube.client.ScubeClientProxy">
+	<property name="targetClass">
+		<value>com.huateng.scf.bas.qry.service.IStatisAnalysisService</value>
+	</property>
+	</bean>
+	<!-- 客户关联合作伙伴-->
+	<bean id="iCoopPartnerMngService" class="com.huateng.scube.client.ScubeClientProxy">
+	<property name="targetClass">
+		<value>com.huateng.scf.bas.qry.service.ICoopPartnerMngService</value>
+	</property>
+	</bean>
+	
+		<!-- 监管合同管理 -->
+	<bean id="monitorProtocolService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IMonitorProtocolService</value>
+		</property>
+	</bean>
+		<!--购销合同管理 -->
+		
+	<bean id="iBCntBuyInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntBuyInfoService</value>
+		</property>
+	</bean>
+	<bean id="iBCntMprotInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntMprotInfoService</value>
+		</property>
+	</bean>
+	<bean id="iBCntMprotBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntMprotBaseInfoService</value>
+		</property>
+	</bean>
+		<!--多方协议参与者信息表 -->
+	<bean id="bCntMprotPartInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntMprotPartInfoService</value>
+		</property>
+	</bean>
+	<!--预付款协议扩展信息 -->
+	<bean id="bCntMprotDealInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntMprotDealInfoService</value>
+		</property>
+	</bean>
+	<!-- 放款申请==票据列表显示 -->
+	<bean id="bLanAppliBillInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanAppliBillInfoService</value>
+		</property>
+	</bean>
+	<!-- 放款申请==保证金列表显示 -->
+	<bean id="bMrnAppliAcctInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.mrn.service.IBMrnAppliAcctInfoService</value>
+		</property>
+	</bean>
+	<!-- 放款申请==信贷合同列表显示 -->
+	<bean id="bCrrLnConInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IBCrrLnConInfoService</value>
+		</property>
+	</bean>
+	<!-- 放款申请==三大类放款审批页面查询 -->
+	<bean id="bLanApproveFindService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanApproveFindService</value>
+		</property>
+	</bean>
+	<!-- 放款审批 -->
+	<bean id="bLanLoanApplyService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanLoanApplyService</value>
+		</property>
+	</bean>
+	<!-- 放款申请购销合同信息申请 begin -->
+	<bean id="bLanLnciBuyInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanLnciBuyInfoService</value>
+		</property>
+	</bean>
+	<!-- 放款申请购销合同信息申请end -->
+	<!-- 供应链补录==银承购销合同 -->
+	<bean id="bLanLnciBuyBizService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanLnciBuyBizService</value>
+		</property>
+	</bean>
+	<!-- 供应链补录 -->
+	<!--应收账款融资流贷保存业务逻辑-->
+	<bean id="bLanRepaySaveService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanRepayFlowCreditSaveService</value>
+		</property>
+	</bean>
+	<!--现货抵押流贷保存业务逻辑-->
+	<bean id="bLanRepayXhdySaveService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanRepayXhdySaveService</value>
+		</property>
+	</bean>
+	<!--银承担保提货保存业务逻辑-->
+	<bean id="bLanRepayYcSaveService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanRepayYcSaveService</value>
+		</property>
+	</bean>
+	<!-- 供应链流贷补录提交 -->
+	<bean id="bLanRepaySubmitService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanRepaySubmitService</value>
+		</property>
+	</bean>
+	<!-- 供应链补录银承提交 -->
+	<bean id="bLanRepayYcSubmitService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanRepayYcSubmitService</value>
+		</property>
+	</bean>
+	<!-- 利率种类 -->
+	<bean id="bSysLnCdService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysLnCdService</value>
+		</property>
+	</bean>
+	<!-- 基准利率 -->
+	<bean id="bSysLnValService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysLnValService</value>
+		</property>
+	</bean>
+	<!-- 借据基本信息 -->
+	<bean id="bLanLnciBaseService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanLnciBaseService</value>
+		</property>
+	</bean>	
+	<!-- 票据基本信息 -->
+	<bean id="bLanBillBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanBillBaseInfoService</value>
+		</property>
+	</bean>
+	<!--通知书基本信息 -->
+	<bean id="bNteNoticeBaseService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.nte.service.IBNteNoticeBaseService</value>
+		</property>
+	</bean>
+	<!--通知书查询信息 -->
+	<bean id="bNteNoticeQryVOService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.nte.service.IBNteNoticeQryVOService</value>
+		</property>
+	</bean>
+	<!-- 应收=通知书 -->
+	<bean id="rNteNoticeBaseService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.nte.service.IRNteNoticeBaseService</value>
+		</property>
+	</bean>
+	<!--通知书票据信息 -->
+	<bean id="bNteNoticeBillService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.nte.service.IBNteNoticeBillService</value>
+		</property>
+	</bean>
+	<!--通知书关联押品信息 -->
+	<bean id="bNteNoticeMtgService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.nte.service.IBNteNoticeMtgService</value>
+		</property>
+	</bean>
+
+	<!-- 预付类end -->
+		<bean id="bCntMprotBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntMprotBaseInfoService</value>
+		</property>
+	</bean>
+	<!--应收类  -->
+	<!-- 应收账款基本信息-->
+	<bean id="rBcpDebtBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpDebtBaseInfoService</value>
+		</property>
+	</bean>
+	<!-- 应收账款单据明细信息-->
+	<bean id="rBcpDebtBussDtlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpDebtBussDtlService</value>
+		</property>
+	</bean>
+	<!-- 应收账款单据信息-->
+	<bean id="rBcpDebtBussInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpDebtBussInfoService</value>
+		</property>
+	</bean>		
+	<!-- 应收账款业务申请基本信息-->
+	<bean id="rBcpAppliBussInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpAppliBussInfoService</value>
+		</property>
+	</bean>
+	<!-- 应收账款业务申请明细信息-->
+	<bean id="rBcpAppliBussDtlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpAppliBussDtlService</value>
+		</property>
+	</bean>
+	<!-- 应收账款业务申请费用信息-->
+	<bean id="rBcpAppliCostOutService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpAppliCostOutService</value>
+		</property>
+	</bean>
+	<!-- 应收账款池信息-->
+	<bean id="rBcpDebtPoolService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpDebtPoolService</value>
+		</property>
+	</bean>
+		<!-- 应收账款池信息-催收-->
+	<bean id="rDebtPressService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRDebtPressService</value>
+		</property>
+	</bean>
+	<!-- 应收账款融资-纠纷登记-->
+	<bean id="rBcpDebtDisputRegService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpDebtDisputRegService</value>
+		</property>
+	</bean>
+	<!-- 应收账款池融资-纠纷解除-->
+	<bean id="rBcpPoolDisputeRemoveService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpPoolDisputeRemoveService</value>
+		</property>
+	</bean>
+	<!-- 应收账款池融资-纠纷登记-->
+	<bean id="rBcpPoolDisputeRegisterService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpPoolDisputeRegisterService</value>
+		</property>
+	</bean>
+		<!-- 监管合同管理 -->
+	<bean id="mortgageEnteringService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IMortgageEnteringService</value>
+		</property>
+	</bean>
+	
+	<!-- 应收类商纠登记 -->
+	<bean id="rBcpDisptInvoiceSetApplyService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpDisptInvoiceSetApplyService</value>
+		</property>
+	</bean>
+	
+	<!-- 池融资商纠登记 -->
+	<bean id="iRBcpDebtDisputRegService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpDebtDisputRegService</value>
+		</property>
+	</bean>
+	
+	<!-- 质押合同保险单信息表 -->
+	<bean id="bCntInsuranceBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntInsuranceBaseInfoService</value>
+		</property>
+	</bean>
+	<!-- 质押合同押品类别关联关系表 -->
+	<bean id="bCntSlaveMtgRelService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntSlaveMtgRelService</value>
+		</property>
+	</bean>
+
+
+	<!-- 供应链页面查询添加 -->
+	<bean id="bLanRepayDetailService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBLanRepayDetailService</value>
+		</property>
+	</bean>
+		<!-- 应收账款核销 -->
+	<bean id="iRBcpWriteoffService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpWriteoffService</value>
+		</property>
+	</bean>
+
+	<!-- 监管协议最低价值变更历史表 -->
+	<bean id="bCntMprotCmPriceHisService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntMprotCmPriceHisService</value>
+		</property>
+	</bean>
+	<!-- 分支行产品授权信息表 -->
+	<bean id="bPrdBranchAuthService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.prd.service.IBPrdBranchAuthService</value>
+		</property>
+	</bean>
+	<!-- 借据信息查询 -->
+	<bean id="bQryTripartiteDeliveryInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.qry.service.IBQryTripartiteDeliveryInfoService</value>
+		</property>
+	</bean>
+			<!-- 出质入库-->
+	<bean id="qualityApplyService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IQualityApplyService</value>
+		</property>
+	</bean>
+	<bean id="amountService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IAmountService</value>
+		</property>
+	</bean>
+    <bean id="irBcpPaymentService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpPaymentService</value>
+		</property>
+	</bean>
+	
+	<!-- 应收账款反转让 -->
+	<bean id="factoringDebtBackService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IFactoringDebtBackService</value>
+		</property>
+	</bean>
+	<!-- 回款专户转账 -->
+	<bean id="rBcpPoolRePayService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpPoolRePayService</value>
+		</property>
+	</bean>
+	<!--应收账款池综合台帐  -->
+	<bean id="debtPoolGenerateQueryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.qry.service.IDebtPoolGenerateQueryService</value>
+		</property>
+	</bean>
+	<!-- 应收账款入池 -->
+	<bean id="rBcpDebtReturnAccntQryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.qry.service.IRBcpDebtReturnAccntQryService</value>
+		</property>
+	</bean>
+	
+	<!-- 应收账款入池	mengjiajia -->
+	<bean id="rBcpDebtInPoolAccountService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpDebtInPoolAccountService</value>
+		</property>
+	</bean>
+		<!-- 应收账款出池 -->
+	<bean id="rBcpDebtOutPoolService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpDebtOutPoolService</value>
+		</property>
+	</bean>
+		<!-- 流程公共查询 -->
+	<bean id="iScfWorkFlowService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.common.service.IScfWorkFlowService</value>
+		</property>
+	</bean>
+	
+	<!-- 池保证金余额 -->
+	<bean id="interfaceButtonQueryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.InterfaceButtonQueryService</value>
+		</property>
+	</bean>
+	
+	<!-- 预警提示 -->
+	<bean id="rWrnBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.wrn.service.IRWrnBaseInfoService</value>
+		</property>
+	</bean>
+	 <!-- 应收账款减值 -->
+	 <bean id="iRBcpImpairmentService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IRBcpImpairmentService</value>
+		</property>
+	</bean>
+	<!-- 通知书查询  应收账款提示付款通知书-->
+	 <bean id="promptPaymentNoticeQryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.wrn.service.IPromptPaymentNoticeQryService</value>
+		</property>
+	</bean>
+	
+	
+	<!--应收账款回款查询-->
+	<bean id ="rBcpDebtRepaymentInfoQryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass" >
+			<value>com.huateng.scf.rec.qry.service.IRBcpDebtRepaymentInfoQryService</value>
+		</property>
+	</bean>
+	
+	<!--应收账款查询-->
+	<bean id ="rBcpPoolDebtDtlInfoQryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass" >
+			<value>com.huateng.scf.rec.qry.service.IRBcpPoolDebtDtlInfoQryService</value>
+		</property>
+	</bean>
+	<!-- 系统交易工作日查询 -->
+	<bean id="sysTimeService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.authority.service.SysTimeService</value>
+		</property>
+	</bean>
+	<!-- 通知书查询-->
+	<bean id="bBrpNoticeModelService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.brp.service.IBBrpNoticeModelService</value>
+		</property>
+	</bean>
+
+	 
+	<!-- 应收账款融资综合查询-->
+	<bean id="conMngQryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.qry.service.IConMngQryService</value>
+		</property>
+	</bean>
+	<!-- 通知书展示-->
+	<bean id="INoticeExportReportService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.brp.notice.service.INoticeExportReportService</value>
+		</property>
+	</bean>
+	<!-- 保险公司维护-->
+	<bean id="bCrmInsureCustomerService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmInsureCustomerService</value>
+		</property>
+	</bean>
+
+	<!-- 客户维护-->
+	<bean id="bCrmCustomerService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmCustomerService</value>
+		</property>
+	</bean>
+	
+	<!-- 现金等价物质押 -->
+	<bean id="cashEqualValueRegisterService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.mrn.service.ICashEqualValueRegisterService</value>
+		</property>
+	</bean>
+	
+	<!-- 现金等价物解押 -->
+	<bean id="dismortgageBillService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.mrn.service.IDismortgageBillService</value>
+		</property>
+	</bean>
+
+	<!-- 现金等价物流水 -->
+	<bean id="cashEqualValueQueryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.mrn.service.ICashEqualValueQueryService</value>
+		</property>
+	</bean>
+	
+	<!-- 费用信息管理 -->
+	<bean id="costledgerQueryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.common.service.ICostledgerQueryService</value>
+		</property>
+	</bean>
+	
+	<!-- 押品目录管理 -->
+	<bean id="mortgageClassService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IMortgageClassService</value>
+		</property>
+	</bean>
+	
+	<bean id="incimarginService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.mrn.service.IncimarginService</value>
+		</property>
+	</bean>
+	
+	<!-- 手工市价维护 -->
+	<bean id="bPbcMtgMktPriceService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IBPbcMtgMktPriceService</value>
+		</property>
+	</bean>
+	<bean id="bPbcMtgMktPriceHisService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IBPbcMtgMktPriceHisService</value>
+		</property>
+	</bean>
+	
+	
+	<!-- 最高额保证金转入 -->
+	<bean id="maximumBailTransferApplyService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.mrn.service.IMaximumBailTransferApplyService</value>
+		</property>
+	</bean>
+	
+	<!-- 最高额保证金转出 -->
+	<bean id="maximumBailTransferOutApplyService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.mrn.service.IMaximumBailTransferOutApplyService</value>
+		</property>
+	</bean>
+	
+	<!-- 最高额保证金流水 -->
+	<bean id="maxmumBailTransferQueryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.mrn.service.IMaxmumBailTransferQueryService</value>
+		</property>
+	</bean>
+
+	
+	
+	
+	<!--库存冲正  -->
+	<bean id="bCntStockAdjustService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntStockAdjustService</value>
+		</property>
+	</bean>
+
+
+
+	<!--普通仓单放款-->
+	<bean id="billNormalLoanApplyService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IBillNormalLoanApplyService</value>
+		</property>
+	</bean>
+
+	
+
+	
+	<!--对账管理  -->
+	<bean id="bPbcCheckAccountService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.pbc.service.IBPbcCheckAccountService</value>
+		</property>
+	</bean>
+
+	
+	<!-- 在线保理池合同查询接口 -->
+	<bean id="IIfspBCntDebtInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IIfspBCntDebtInfoService</value>
+		</property>
+	</bean>
+	<!-- 在线客户同步接口 -->
+	<bean id="IIfspBcrmBaseService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IIfspBcrmBaseService</value>
+		</property>
+	</bean>
+	<!-- 在线信贷合同查询接口 -->
+	<bean id="IIfspBCrrLnConService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IIfspBCrrLnConService</value>
+		</property>
+	</bean>
+	<!-- 应收账款池转让接口 -->
+	<bean id="IIfspRBcpAppliBussInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IIfspRBcpAppliBussInfoService</value>
+		</property>
+	</bean>
+	<!-- 出账申请接口 -->
+	<bean id="IIfspBCrrDuebillAppService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crr.service.IIfspBCrrDuebillAppService</value>
+		</property>
+	</bean>
+	<!-- 应收账款查询接口 -->
+	<bean id="IIfspRBcpDebtBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.rec.bcp.service.IIfspRBcpDebtBaseInfoService</value>
+		</property>
+	</bean>
+		<!-- 借据查询接口 -->
+	<bean id="IIfspBLanLnciBaseService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IIfspBLanLnciBaseService</value>
+		</property>
+	</bean>
+	
+	
+	<!-- 先款/后货发货对账 -->
+	<bean id="fourCheckStockService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.cnt.service.IBCntFourCheckStockService</value>
+		</property>
+	</bean>
+
+	
+	<!-- 动产-放款申请 -->
+	<bean id="mtgLoanApplyService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.lan.service.IMtgLoanApplyService</value>
+		</property>
+	</bean>
+	
+
+	
+	<!-- 应收类（配置版） -->
+	<!-- 业务申请 -->
+	<bean id="bcntBcpAppliBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IBCntBcpAppliBaseInfoService</value>
+		</property>
+	</bean>
+	<!-- 合同信息 -->
+	<bean id="bcntBcpInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IBCntBcpInfoService</value>
+		</property>
+	</bean>
+	<!-- 应收账款管理 -->
+	<bean id="rbcpDebtInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IRBcpDebtInfoService</value>
+		</property>
+	</bean>
+	<!-- 应收账款明细 -->
+	<bean id="nrbcpDebtBussDtlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INRBcpDebtBussDtlService</value>
+		</property>
+	</bean>
+	<!-- 应收类放款 -->
+	<bean id="rbcpDuebillAppService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IRBcpDuebillAppService</value>
+		</property>
+	</bean>
+	<!-- 应收类出账登记 -->
+	<bean id="rbcpDuebillRegisterService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IRBcpDuebillRegisterService</value>
+		</property>
+	</bean>
+	<!-- 应收类业务查询-->
+	<bean id="bCntBcpInfoBussQryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IBCntBcpInfoBussQryService</value>
+		</property>
+	</bean>
+	<!-- 应收类业务申请信息-->
+	<bean id="nRBcpAppliBussInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INRBcpAppliBussInfoService</value>
+		</property>
+	</bean>
+	<!-- 应收类业务申请明细信息-->
+	<bean id="nRBcpAppliBussDtlService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INRBcpAppliBussDtlService</value>
+		</property>
+	</bean>
+	<!-- 应收类转让信息-->
+	<bean id="transferApplyService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.ITransferApplyService</value>
+		</property>
+	</bean>
+	<!-- 应收类催收信息-->
+	<bean id="ndebtPressApplyService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INDebtPressApplyService</value>
+		</property>
+	</bean>
+	<!-- 应收类反转让信息-->
+	<bean id="nfactoringDebtBackService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INFactoringDebtBackService</value>
+		</property>
+	</bean>
+	<!-- 应收类核销信息-->
+	<bean id="factoringChargeOffService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IFactoringChargeOffService</value>
+		</property>
+	</bean>
+	<!-- 应收类核销信息-->
+	<bean id="ndebtImpairmentService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INDebtImpairmentService</value>
+		</property>
+	</bean>
+
+	<!-- 应收类通知书 -->
+	<bean id="bCntBcpNoticeQryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IBCntBcpNoticeQryService</value>
+		</property>
+	</bean>
+	<!-- 应收类基本信息 -->
+	<bean id="nRBcpDebtBussInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INRBcpDebtBussInfoService</value>
+		</property>
+	</bean>
+	<!-- 应收类现金回款-->
+	<bean id="nRBcpPaymentService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INRBcpPaymentService</value>
+		</property>
+	</bean>
+	<!-- 应收类商纠登记-->
+	<bean id="disputeRegisterService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IDisputeRegisterService</value>
+		</property>
+	</bean>
+	<!-- 应收类商纠登记-->
+	<bean id="disputeRemoveService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IDisputeRemoveService</value>
+		</property>
+	</bean>
+	<!-- 应收类入池申请-->
+	<bean id="debtInPoolService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IDebtInPoolService</value>
+		</property>
+	</bean>
+	<!-- 应收类出池申请-->
+	<bean id="debtOutPoolService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.IDebtOutPoolService</value>
+		</property>
+	</bean>
+	<!-- 融资信息（借据信息）-->
+	<bean id="nBLanLnciBaseService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INBLanLnciBaseService</value>
+		</property>
+	</bean>
+	
+	<!-- 保证金余额 -->
+	<bean id="nInterfaceButtonQueryService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INInterfaceButtonQueryService</value>
+		</property>
+	</bean>
+	
+	<!-- 预警查询-->
+	<bean id="nRWrnBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nrec.bcp.service.INRWrnBaseInfoService</value>
+		</property>
+	</bean>
+	
+	<!-- 角色查询权限 -->
+	<bean id="bsysQueryLimitsService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysQueryLimitsService</value>
+		</property>
+	</bean>
+	
+	<!-- 产品配置*************************start -->
+	<!-- 产品基本信息 -->
+	<bean id="nbprdInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nbas.prd.service.INBPrdInfoService</value>
+		</property>
+	</bean>
+	<!-- 业务品种配置属性-->
+	<bean id="bprdFlowService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nbas.prd.service.IBPrdFlowService</value>
+		</property>
+	</bean>
+	<!-- 产品文件类型绑定-->
+	<bean id="bprdFileInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nbas.prd.service.IBPrdFileInfoService</value>
+		</property>
+	</bean>
+	<!-- 文件类型参数-->
+	<bean id="bbrpFileParamService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.brp.service.IBBrpFileParamService</value>
+		</property>
+	</bean>
+	<!--产品费用信息绑定-->
+	<bean id="nbprdCostBindService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nbas.prd.service.INBPrdCostBindService</value>
+		</property>
+	</bean>
+	<!--产品风险信息绑定-->
+	<bean id="nbprdWarnBindService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nbas.prd.service.INBPrdWarnBindService</value>
+		</property>
+	</bean>
+	<!-- 产品出账方式绑定 -->
+	<bean id="nbprdBaseInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nbas.prd.service.INBPrdBaseInfoService</value>
+		</property>
+	</bean>
+	<!-- 产品打印模板绑定 -->
+	<bean id="bprdPrintInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nbas.prd.service.IBPrdPrintInfoService</value>
+		</property>
+	</bean>
+	<!-- 产品风险拦截模板绑定 -->
+	<bean id="bprdChkdirInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.nbas.prd.service.IBPrdChkdirInfoService</value>
+		</property>
+	</bean>
+	<!-- 产品配置*************************end -->	
+	
+	<!--系统日期配置-->
+	<bean id="bSysGlobalInfoService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysGlobalInfoService</value>
+		</property>
+	</bean>	
+	<!-- 定时任务管理 -->
+	<bean id="batchFileService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.autotask.service.BatchFileService</value>
+		</property>
+	</bean>
+
+	<!-- 上传文件信息 -->
+	<bean id="bsysUploadFileService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.sys.service.IBSysUploadFileService</value>
+		</property>
+	</bean>
+	
+	<!-- 上传文件信息 -->
+	<bean id="bCrmTagCloudRelService" class="com.huateng.scube.client.ScubeClientProxy">
+		<property name="targetClass">
+			<value>com.huateng.scf.bas.crm.service.IBCrmTagCloudRelService</value>
+		</property>
+	</bean>
+</beans>

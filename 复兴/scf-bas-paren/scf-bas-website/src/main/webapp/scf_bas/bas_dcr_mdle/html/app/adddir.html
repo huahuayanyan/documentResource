@@ -1,0 +1,9 @@
+<ht-form name="addForm"  columns="1">
+    <ht-input ht-id="chkDirId" name="检查目录ID" ng-model="addForm.chkDirId"  hide="true" ></ht-input>
+    <ht-input ht-id="linId"  name="额度ID" ng-model="addForm.linId"  disable="true"    reg-exp="common.require"></ht-input>
+    <ht-select ht-id="typId" name="检查类型ID" ng-model="addForm.typId"    reg-exp="common.require" on-change="changeSelect"   dataoption="typId" datatrsoption="typNm"  datasource="typIdDatasource" ></ht-select>    
+</ht-form>
+<ht-button-group align="center">
+    <ht-button ht-id="confirm" desc-name="确认" class="btn-primary"></ht-button>
+    <ht-button ht-id="cancel" desc-name="取消" class="btn-primary"></ht-button>
+</ht-button-group>

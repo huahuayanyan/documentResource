@@ -1,0 +1,54 @@
+{
+    "dictionary": [
+        {
+            "dictName": "nav",
+            "dictCode": "nav",
+            "dataItems": [
+                {
+                    "dataVal": "0",
+                    "dataTrsVal": "首页"
+                },
+                {
+                    "dataVal": "1",
+                    "dataTrsVal": "简介"
+                },
+                {
+                    "dataVal": "2",
+                    "dataTrsVal": "消息"
+                }
+            ]
+        },
+        {
+            "dictName": "checked",
+            "dictCode": "checked",
+            "dataItems": [
+                {
+                    "dataVal": "1",
+                    "dataTrsVal": "是"
+                },
+                {
+                    "dataVal": "0",
+                    "dataTrsVal": "否"
+                }
+            ]
+        },
+        {
+            "dictName": "sex",
+            "dictCode": "sex",
+            "dataItems": [
+                {
+                    "dataVal": "1",
+                    "dataTrsVal": "男人"
+                },
+                {
+                    "dataVal": "2",
+                    "dataTrsVal": "女人"
+                },
+                {
+                    "dataVal": "3",
+                    "dataTrsVal": "哈哈"
+                }
+            ]
+        }
+    ]
+}

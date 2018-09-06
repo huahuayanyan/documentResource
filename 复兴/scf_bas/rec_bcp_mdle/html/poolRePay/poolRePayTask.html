@@ -1,0 +1,13 @@
+
+<ht-form name="poolRePay">
+    <ht-legend>回款专户转出申请</ht-legend>
+    <ht-input-extent ht-id="cname" name="借款企业" disable="true" reg-exp="IsNotNull" extent="cnameContent" on-change="cnameChange" ng-model="poolRePay.cname"></ht-input-extent>
+    <ht-input ht-id="returnAccount" name="回款专户" disable="true" reg-exp="IsNotNull" datasource="returnAccountSource" dataOption="code" dataTrsOption="codeName" ng-model="poolRePay.returnAccount"></ht-input>
+    <div  style="position:absolute;z-index:12;left:42%;">
+        <ht-button ht-id="queryAmount" disable="true"  class="btn-primary" hide="{{viewhide}}"  desc-name="实时查询"></ht-button>
+    </div>
+    <ht-input ht-id="returnAmount" name="回款专户可用余额" disable="true" edit-type="currency" disable="true" ng-model="poolRePay.returnAmount"></ht-input>
+    <ht-input ht-id="amount" name="转出金额" disable="true"  reg-exp="IsNotNull" edit-type="currency" ng-model="poolRePay.amount"></ht-input>
+    <ht-input ht-id="balanceAccount" name="客户结算帐号" disable="true"  reg-exp="IsNotNull" datasource="balanceAccountSource" dataOption="code" dataTrsOption="codeName" ng-model="poolRePay.balanceAccount"></ht-input>
+    <ht-text-area ht-id="reason" name="转账原因" disable="true"  reg-exp="IsNotNull" ng-model="poolRePay.reason"></ht-text-area>
+</ht-form>

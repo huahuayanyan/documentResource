@@ -1,0 +1,72 @@
+
+<ht-legend>申请内容</ht-legend>
+<ht-form name="deliver">
+    <ht-input name="融资金额" ng-model="deliver.debtAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="仓单总价值" ng-model="deliver.mortAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="仓单质押总价值" ng-model="deliver.totalPrice" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="抵/质押率" ng-model="deliver.ration" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="保证金及现金等价物" ng-model="deliver.bailAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="可提货最高价值" ng-model="deliver.maxDeliverValue" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="风险敞口" ng-model="deliver.riskamt" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="提货总价值" ng-model="deliver.deliverValue" disable="true" edit-type="currency"></ht-input>
+</ht-form>
+
+<ht-legend>质押仓单信息</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="allBal" class="btn-primary" hide="{{hide}}">全部提货</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="billType" zh-name="仓单类型" dictionary="billType"></ht-column>
+    <ht-column eg-name="keeperName" zh-name="保管人名称"></ht-column>
+    <ht-column eg-name="startDate" zh-name="开具日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="截止日期" type="date"></ht-column>
+    <ht-column eg-name="insuranceNo" zh-name="保险单号"></ht-column>
+    <ht-column eg-name="address" zh-name="仓库地址"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-legend>普通仓单下押品列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasourcemort" selected="selectedmort" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="editmort" class="btn-primary" hide="{{hide}}">修改</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="mortgageNo" zh-name="押品编号"></ht-column>
+    <ht-column eg-name="mortgageName" zh-name="货物名称"></ht-column>
+    <ht-column eg-name="quantity" zh-name="数量/重量"></ht-column>
+    <ht-column eg-name="mortgageUnits" zh-name="单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="价格" type="currency"></ht-column>
+    <ht-column eg-name="balQuantity" zh-name="提货数量" type="currency"></ht-column>
+    <ht-column eg-name="amt" zh-name="提货价值" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="confmort" style="height: 50px;padding-top: 5px"></ht-page>
+
+<div id="showIdea" style="display: none">
+    <ht-legend>历史审批意见</ht-legend>
+    <ht-table ht-id="tableId" datasource="datasourcetask" selected="selectedtask" docheckbox="true">
+        <ht-column eg-name="taskName" zh-name="任务名称"></ht-column>
+        <ht-column eg-name="taskComment" zh-name="审批意见"></ht-column>
+        <ht-column eg-name="name5" zh-name="处理人"></ht-column>
+        <ht-column eg-name="assignId" zh-name="处理人编号"></ht-column>
+        <ht-column eg-name="dealTime" zh-name="处理时间"></ht-column>
+    </ht-table>
+    <ht-page conf="conftask"></ht-page>
+    <ht-legend>审批意见</ht-legend>
+    <ht-form name="applyDtlForm">
+        <ht-text-area ht-id="taskComment" name="审批意见" height="70" ng-model="applyDtlForm.taskComment"></ht-text-area>
+    </ht-form>
+</div>
+<ht-button-group align="center">
+    <ht-button ht-id="save" hide="{{Write}}" disable="{{WriteDisable}}" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="submit" hide="{{Write}}" disable="{{submitDisable}}" class="btn-primary">提交</ht-button>
+
+    <ht-button ht-id="IssuedSubmit" hide="{{Issued}}" disable="{{IssuedDisable}}" class="btn-primary">同意</ht-button>
+    <ht-button ht-id="IssuedGoBack" hide="{{Issued}}" disable="{{IssuedDisable}}" class="btn-primary">退回</ht-button>
+
+    <ht-button ht-id="ReceiptSubmit" hide="{{Receipt}}" disable="{{ReceiptDisable}}" class="btn-primary">回执确认</ht-button>
+
+    <ht-button ht-id="noticePrint" hide="{{Notice}}" class="btn-primary">查看提货通知书</ht-button>
+</ht-button-group>
+
+
+

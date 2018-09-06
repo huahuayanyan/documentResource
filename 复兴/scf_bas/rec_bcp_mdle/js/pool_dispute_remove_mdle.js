@@ -1,0 +1,50 @@
+/**
+ * Created by htrad0016 on 2016/8/23.
+ */
+(function(){
+    //跳转的路由配置
+    var routeArry=[
+        {
+            'state':'debtPoolConList',
+            'url':'/debtPoolConList',
+            'default':'true',
+            'templateUrl':'poolDisputeRemove/debtPoolConList.html',
+            'controller':'DebtPoolConListController'
+        },
+        {
+            'state':'dsptBillModify',
+            'url':'/dsptBillModify',
+            'templateUrl':'poolDisputeRemove/dsptBillModify.html',
+            'controller':'dsptBillModifyController'
+        },
+        {
+            'state':'progress',
+            'url':'/progress',
+            'templateUrl':'manage/bcp_progress_list.html',
+            'controller':'ProgressController'
+        },
+        {
+            'state':'bcpBaseInfo',
+            'url':'/bcp_base_info_list',
+            'templateUrl':'debtPoolTransfer/bcp_base_info_list.html',
+            'controller':'BcpBaseInfoController'
+        },
+        {
+            'state':'dsptRemAdd',
+            'url':'/dsptRemAdd',
+            'templateUrl':'poolDisputeRemove/dsptRemAdd.html',
+            'controller':'dsptRemAddController'
+        },
+        {
+            'state':'dsptRemAddApply',
+            'url':'/dsptRemAddApply',
+            'templateUrl':'poolDisputeRemove/dsptRemAddApply.html',
+            'controller':'dsptRemAddApplyController'
+        },
+    ];
+    //模块的依赖加载配置
+    var dependency=[
+        //todo
+    ];
+    scubeUI.module('pool_dispute_remove_mdle',dependency,routeArry)
+}());

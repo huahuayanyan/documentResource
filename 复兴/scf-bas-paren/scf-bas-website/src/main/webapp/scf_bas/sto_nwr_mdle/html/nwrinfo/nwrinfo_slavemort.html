@@ -1,0 +1,45 @@
+
+<ht-form name="row">
+    <ht-legend>抵质押合同信息</ht-legend>
+    <ht-input-extent ht-id="vidPrdNm" name="业务品种" reg-exp="common.require"  extent="productNameContent"
+                     on-change="productNamedooextent" ng-model="row.vidPrdNm" readonly="false" disable="{{disable}}">
+    </ht-input-extent>
+    <ht-input name="抵/质押合同号" reg-exp="common.require" ng-model="row.conId" disable="true"></ht-input>
+    <ht-input-extent ht-id="prtclNo" name="监管合同号" reg-exp="common.require"  extent="prtclNoContent"
+                     on-change="prtclNodooextent" ng-model="row.prtclNo" readonly="false" disable="{{disable}}">
+    </ht-input-extent>
+    <ht-input-extent ht-id="gutNm" name="出质人名称" reg-exp="common.require" extent="gutcontent" readonly="true"
+                     on-change="gutextend" ng-model="row.gutNm" disable="true"></ht-input-extent>
+    <ht-input name="监管公司名称" reg-exp="common.require" ng-model="row.prtclBrNm"disable="true"></ht-input>
+    <ht-input name="抵/质押率（%）" reg-exp="common.require" ng-model="row.ration" disable="{{disable}}" edit-type="number"></ht-input>
+    <ht-input name="市值抵/质押率警戒线（%）" reg-exp="common.require" ng-model="row.guardRat" disable="{{disable}}" edit-type="number"></ht-input>
+    <ht-select name="担保类型" reg-exp="common.require" ng-model="row.conTyp" dictionary="gntyConTyp" disable="true"></ht-select>
+    <ht-select name="担保方式" reg-exp="common.require" ng-model="row.gutyWay" dictionary="gutyWay" disable="{{disable}}"></ht-select>
+    <ht-select name="币种" reg-exp="common.require" ng-model="row.gutCurcd" dictionary="curcd" disable="true"></ht-select>
+    <ht-input name="合同金额" reg-exp="common.require" ng-model="row.gutVal" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="strtDt" name="合同生效日" reg-exp="common.require" ng-model="row.strtDt" edit-type="date"
+              disable="true" high-date-id="endDt"></ht-input>
+    <ht-input ht-id="endDt" name="合同到期日" reg-exp="common.require" ng-model="row.endDt" edit-type="date"
+              disable="true" lower-date-id="strtDt"></ht-input>
+    <ht-input ht-id="tlrNm" name="客户经理" ng-model="row.tlrNm" disable="true"></ht-input>
+    <ht-input ht-id="brNm" name="经办机构" ng-model="row.brNm" disable="true"></ht-input>
+</ht-form>
+
+<ht-legend>押品信息</ht-legend>
+<ht-table datasource="datasourcemort" selected="selectedmort" docheckbox="false">
+    <ht-column  eg-name="mortgageLevelOneNm" zh-name="押品一级" ></ht-column>
+    <ht-column  eg-name="mortgageLevelTwoNm" zh-name="押品二级" ></ht-column>
+</ht-table>
+<ht-page conf="confmort" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-legend>合同下保险列表</ht-legend>
+<ht-table datasource="datasourceins" selected="selectedins" docheckbox="false">
+    <ht-column  eg-name="insuranceCode" zh-name="保单号" ></ht-column>
+    <ht-column  eg-name="insuranceName" zh-name="保险公司名称" ></ht-column>
+    <ht-column  eg-name="insuranceType" zh-name="保险类型" ></ht-column>
+    <ht-column  eg-name="beneficiary" zh-name="受益人"></ht-column>
+    <ht-column  eg-name="amount" zh-name="保险金额" type="currency"></ht-column>
+    <ht-column  eg-name="startDate" zh-name="保险投保日" type="date"></ht-column>
+    <ht-column  eg-name="endDate" zh-name="保险到期日" type="date"></ht-column>
+</ht-table>
+<ht-page conf="confins" style="height: 40px;padding-top: 1px"></ht-page>

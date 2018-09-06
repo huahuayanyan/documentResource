@@ -1,0 +1,71 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ------------公共css--------------------- -->
+
+    <script src="../../scube_ui/common/importCs.js"></script>
+
+
+
+    <!-- ------------业务css--------------------- -->
+
+</head>
+<body>
+<div ng-controller="deliveryGuideController">
+    <ht-legend>任务基本信息</ht-legend>
+    <ht-form name="taskform">
+        <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+        <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+        <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+        <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+    </ht-form>
+    <ht-legend>基本信息</ht-legend>
+    <ht-form name="baseinfo">
+        <ht-input name="主合同号" ng-model="baseinfo.mastContno"  reg-exp="common.require" disable="true"></ht-input>
+        <ht-input name="合同币种" ng-model="baseinfo.curcd" disable="true"></ht-input>
+        <ht-input name="抵/质押合同号" ng-model="baseinfo.slaveContno" disable="true"></ht-input>
+        <ht-input name="出质人名称" ng-model="baseinfo.cname" disable="true"></ht-input>
+        <ht-input name="监管合同号" ng-model="baseinfo.protocolNo" disable="true"></ht-input>
+        <ht-input name="监管人名称" ng-model="baseinfo.prtclBrNm" disable="true"></ht-input>
+    </ht-form>
+    <ht-tabs>
+        <ht-pane title="提货申请"  ui-sref="deliveryapply">
+        </ht-pane>
+        <ht-pane title="保证金追加"  ui-sref="deliveryacctadd">
+        </ht-pane>
+        <ht-pane title="质押合同"  ui-sref="deliveryslave">
+        </ht-pane>
+        <ht-pane title="仓单质押监管协议"  ui-sref="deliveryprotocol">
+        </ht-pane>
+        <ht-pane title="出质人信息"  ui-sref="deliverycust">
+        </ht-pane>
+        <ht-pane title="监管商信息"  ui-sref="deliverymonicust">
+        </ht-pane>
+    </ht-tabs>
+</div>
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+<script src="../../config.js"></script>
+
+<!-- ------------公共js--------------------- -->
+<script src="../../scube_ui/common/myBrowser.js"></script>
+<script src="../../scube_ui/common/importJs.js"></script>
+
+<!-- ------------业务js--------------------- -->
+<script src="../js/controllers/delivery/delivery_guide_controller.js"></script>
+<script src="../js/controllers/delivery/delivery_apply_controller.js"></script>
+<script src="../js/controllers/nwrinfo/nwrinfo_slave_controller.js"></script>
+<script src="../js/controllers/nwrinfo/nwrinfo_protocol_controller.js"></script>
+<script src="../js/controllers/nwrinfo/nwrinfo_cust_controller.js"></script>
+<script src="../js/controllers/nwrinfo/nwrinfo_acctadd_controller.js"></script>
+<script src="../js/nwr_delivery_guide.js"></script>
+</body>
+</html>
+
+

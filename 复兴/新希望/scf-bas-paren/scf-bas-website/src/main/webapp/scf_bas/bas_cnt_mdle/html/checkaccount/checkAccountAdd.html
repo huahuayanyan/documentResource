@@ -1,0 +1,35 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+    <ht-input  ht-id="prtclBrNm" name="监管公司名称"  ng-model="conditionForm.prtclBrNm"></ht-input>
+    <ht-input  ht-id="conId" name="抵/质押合同号"  ng-model="conditionForm.conId"></ht-input>
+    <ht-input  ht-id="gutName" name="出质人名称"  ng-model="conditionForm.cname"></ht-input>
+
+    <ht-button-group>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>抵质押合同列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="detail"  class="btn-primary">查看质押合同下押品</ht-button>
+        <ht-button ht-id="applyCheck"  class="btn-primary">发起对账</ht-button>
+        <ht-button ht-id="return"  class="btn-primary">返回</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="conId" zh-name="抵/质押合同号"></ht-column>
+    <ht-column eg-name="gutNm" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="prtclBrNm" zh-name="监管公司名称"></ht-column>
+    <ht-column eg-name="strtDt" zh-name="合同生效日" type="date"></ht-column>
+    <ht-column eg-name="endDt" zh-name="合同到期日" type="date"></ht-column>
+    <ht-column eg-name="gutCurcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="gutVal" zh-name="抵质押合同金额"  type="currency" ></ht-column>
+    <ht-column eg-name="tlrNm" zh-name="客户经理"></ht-column>
+    <ht-column eg-name="brNm" zh-name="经办机构"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+
+

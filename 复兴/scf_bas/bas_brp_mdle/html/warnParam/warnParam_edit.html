@@ -1,0 +1,24 @@
+<ht-form name="warnParamForm">
+    <ht-legend>预警基本资料</ht-legend>
+    <ht-input ht-id="warnNo" reg-exp="common.require" name="预警编号" ng-model="warnParamForm.warnNo"  disable="{{updateDisable}}"></ht-input>
+    <ht-input ht-id="warnName" reg-exp="common.require" name="预警名称" ng-model="warnParamForm.warnName"  disable="{{viewDisable}}"></ht-input>
+    <ht-select ht-id="warnType" reg-exp="common.require" name="预警类型" disable="{{viewDisable}}" dictionary="warnType" ng-model="warnParamForm.warnType"></ht-select>
+    <ht-select ht-id="suspendFlag" reg-exp="common.require" name="是否可忽略" ng-model="warnParamForm.suspendFlag" dictionary="yesOrNo" on-change="suspendFlagChange" disable="{{viewDisable}}"></ht-select>-->
+    <ht-input ht-id="suspendDay" reg-exp="{{suspendFlagRequire}}" name="可忽略天数" ng-model="warnParamForm.suspendDay" disable="{{suspendFlagDisable}}"></ht-input>
+    <ht-input ht-id="warnLevelLow" reg-exp="common.require" name="低级阀值" ng-model="warnParamForm.warnLevelLow" disable="{{viewDisable}}"></ht-input>
+    <ht-input ht-id="warnLevelMidi" reg-exp="common.require" name="中级阀值" ng-model="warnParamForm.warnLevelMidi" disable="{{viewDisable}}"></ht-input>
+    <ht-input ht-id="warnLevelHigh" reg-exp="common.require" name="高级阀值" ng-model="warnParamForm.warnLevelHigh" disable="{{viewDisable}}"></ht-input>
+    <ht-select ht-id="targetType" reg-exp="common.require" name="预警目标类型"ng-model="warnParamForm.targetType" dictionary="targetType" on-change="targetTypeChange" disable="{{viewDisable}}"></ht-select>
+    <ht-select ht-id="targetBrclass" name="目标机构级别"ng-model="warnParamForm.targetBrclass" dictionary="targetBrclass" disable="{{targetTypeDisable}}"></ht-select>
+   <!-- <ht-select ht-id="targetRoleid" name="目标岗位" ng-model="warnParamForm.targetRoleid" dictionary="warnType" disable="{{targetTypeDisable}}"></ht-select>-->
+    <ht-input-extent ht-id="targetRoleid" name="目标岗位" extent="roleNameContent" disable="{{targetTypeDisable}}"
+                     on-change="roleNamedooextent" ng-model="warnParamForm.roleName">
+    </ht-input-extent>
+    <ht-text-area ht-id="warnProcess" name="预警程序" height="70"  ng-model="warnParamForm.warnProcess" disable="{{viewDisable}}"></ht-text-area>
+        <ht-text-area ht-id="url" name="预警明细页面的URL" height="70"  ng-model="warnParamForm.url" disable="{{viewDisable}}"></ht-text-area>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

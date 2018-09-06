@@ -1,0 +1,1352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PBC_APPLI_MTG_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="APPLI_MORT_BIZ_TYPE" property="appliMortBizType" jdbcType="CHAR" />
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_BIZ_TYPE" property="mortgageBizType" jdbcType="CHAR" />
+    <result column="MORTGAGE_CLASS" property="mortgageClass" jdbcType="CHAR" />
+    <result column="MORTGAGE_SUB_CLASS" property="mortgageSubClass" jdbcType="CHAR" />
+    <result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="MANUFACTURER" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="CHAR" />
+    <result column="BAL_QUANTITY" property="balQuantity" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FOUR" property="mortgageLevelFour" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FIVE" property="mortgageLevelFive" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_SIX" property="mortgageLevelSix" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="ORIGINAL_PRICE" property="originalPrice" jdbcType="DECIMAL" />
+    <result column="ORIGINAL_TOT_PRICE" property="originalTotPrice" jdbcType="DECIMAL" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="CONFIRM_PRICE" property="confirmPrice" jdbcType="DECIMAL" />
+    <result column="STOCK_STATUS" property="stockStatus" jdbcType="CHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="VENDER" property="vender" jdbcType="VARCHAR" />
+    <result column="PRODUCT_AREA" property="productArea" jdbcType="VARCHAR" />
+    <result column="INCOME_NO" property="incomeNo" jdbcType="VARCHAR" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="QUALITY_LEVEL" property="qualityLevel" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="YEAR" property="year" jdbcType="VARCHAR" />
+    <result column="BILL_TYPE" property="billType" jdbcType="VARCHAR" />
+    <result column="WEIGHT_ALL" property="weightAll" jdbcType="DECIMAL" />
+    <result column="UP_DOWN_MONEY" property="upDownMoney" jdbcType="DECIMAL" />
+    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+    <result column="BILL_QUANTITY" property="billQuantity" jdbcType="DECIMAL" />
+    <result column="FUTURE_CUSTCD" property="futureCustcd" jdbcType="VARCHAR" />
+    <result column="BILL_DUE_DATE" property="billDueDate" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_ADDRESS" property="warehouseAddress" jdbcType="VARCHAR" />
+    <result column="OLD_CONFIRM_PRICE" property="oldConfirmPrice" jdbcType="DECIMAL" />
+    <result column="CONFIRM_ACCORDING" property="confirmAccording" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+    <result column="FREIGHTAREA" property="freightarea" jdbcType="VARCHAR" />
+    <result column="FREIGHTLOT" property="freightlot" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE" property="warehouse" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_CODE" property="mortgageCode" jdbcType="DECIMAL" />
+    <result column="WEIGHT_UNITS" property="weightUnits" jdbcType="VARCHAR" />
+    <result column="ENGINE_NO" property="engineNo" jdbcType="VARCHAR" />
+    <result column="CHASSIS_NO" property="chassisNo" jdbcType="VARCHAR" />
+    <result column="CERTIFICATION_NO" property="certificationNo" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="FIX_MORTGAGE_NO" property="fixMortgageNo" jdbcType="VARCHAR" />
+    <result column="JOIN_BATCH" property="joinBatch" jdbcType="CHAR" />
+    <result column="UP_DOWN_MONEY_FLAG" property="upDownMoneyFlag" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="OUT_QUANTITY" property="outQuantity" jdbcType="DECIMAL" />
+    <result column="IS_SL_EXIBITION" property="isSlExibition" jdbcType="CHAR" />
+    <result column="MANUFACTURE_DATE" property="manufactureDate" jdbcType="CHAR" />
+    <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR" />
+    <result column="MONI_WAREHOUSE_TYPE" property="moniWarehouseType" jdbcType="CHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="DELIVERY_NUM" property="deliveryNum" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PACKAGEW" property="packagew" jdbcType="VARCHAR" />
+    <result column="ADD_QUANTITY" property="addQuantity" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, APPLI_MORT_BIZ_TYPE, MORTGAGE_NO, MORTGAGE_BIZ_TYPE, MORTGAGE_CLASS, MORTGAGE_SUB_CLASS, 
+    MONITOR_PROTOCOL_NO, OTHER_PROTOCOL_NO, MORTGAGE_MODEL, SLAVE_CONTNO, CUSTCD, MORTGAGE_UNITS, 
+    QUANTITY, PRICE, TOT_PRICE, DESCRIPTION, MANUFACTURER, WAREHOUSE_ID, FLAG, BAL_QUANTITY, 
+    CURCD, MORTGAGE_LEVEL_ONE, MORTGAGE_LEVEL_TWO, MORTGAGE_LEVEL_THREE, MORTGAGE_LEVEL_FOUR, 
+    MORTGAGE_LEVEL_FIVE, MORTGAGE_LEVEL_SIX, MAST_CONTNO, ORIGINAL_PRICE, ORIGINAL_TOT_PRICE, 
+    MARKET_PRICE, CONFIRM_PRICE, STOCK_STATUS, MONI_OF_CUSTCD, VENDER, PRODUCT_AREA, 
+    INCOME_NO, RATION, QUALITY_LEVEL, SN, YEAR, BILL_TYPE, WEIGHT_ALL, UP_DOWN_MONEY, 
+    BILLNO, BILL_QUANTITY, FUTURE_CUSTCD, BILL_DUE_DATE, STATUS, WAREHOUSE_ADDRESS, OLD_CONFIRM_PRICE, 
+    CONFIRM_ACCORDING, MORTGAGE_NAME, FREIGHTAREA, FREIGHTLOT, MEMO, WAREHOUSE, MORTGAGE_CODE, 
+    WEIGHT_UNITS, ENGINE_NO, CHASSIS_NO, CERTIFICATION_NO, START_DATE, END_DATE, BRCODE, 
+    FIX_MORTGAGE_NO, JOIN_BATCH, UP_DOWN_MONEY_FLAG, TRADE_CONTNO, OUT_QUANTITY, IS_SL_EXIBITION, 
+    MANUFACTURE_DATE, DOCUMENT_NO, MONI_WAREHOUSE_TYPE, REASON, DELIVERY_NUM, PRODUCT_NAME, 
+    PACKAGEW, ADD_QUANTITY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PBC_APPLI_MTG_INFO.Base_Column_List" />
+    from B_PBC_APPLI_MTG_INFO
+    <isParameterPresent >
+      <include refid="B_PBC_APPLI_MTG_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfo" >
+    select 
+    <include refid="B_PBC_APPLI_MTG_INFO.Base_Column_List" />
+    from B_PBC_APPLI_MTG_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfo" >
+    delete from B_PBC_APPLI_MTG_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfoExample" >
+    delete from B_PBC_APPLI_MTG_INFO
+    <include refid="B_PBC_APPLI_MTG_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfo" >
+    insert into B_PBC_APPLI_MTG_INFO (ID, APPNO, APPLI_MORT_BIZ_TYPE, MORTGAGE_NO, 
+      MORTGAGE_BIZ_TYPE, MORTGAGE_CLASS, MORTGAGE_SUB_CLASS, MONITOR_PROTOCOL_NO, 
+      OTHER_PROTOCOL_NO, MORTGAGE_MODEL, SLAVE_CONTNO, CUSTCD, 
+      MORTGAGE_UNITS, QUANTITY, PRICE, TOT_PRICE, 
+      DESCRIPTION, MANUFACTURER, WAREHOUSE_ID, FLAG, 
+      BAL_QUANTITY, CURCD, MORTGAGE_LEVEL_ONE, MORTGAGE_LEVEL_TWO, 
+      MORTGAGE_LEVEL_THREE, MORTGAGE_LEVEL_FOUR, MORTGAGE_LEVEL_FIVE, 
+      MORTGAGE_LEVEL_SIX, MAST_CONTNO, ORIGINAL_PRICE, ORIGINAL_TOT_PRICE, 
+      MARKET_PRICE, CONFIRM_PRICE, STOCK_STATUS, MONI_OF_CUSTCD, 
+      VENDER, PRODUCT_AREA, INCOME_NO, RATION, 
+      QUALITY_LEVEL, SN, YEAR, BILL_TYPE, WEIGHT_ALL, 
+      UP_DOWN_MONEY, BILLNO, BILL_QUANTITY, FUTURE_CUSTCD, 
+      BILL_DUE_DATE, STATUS, WAREHOUSE_ADDRESS, OLD_CONFIRM_PRICE, 
+      CONFIRM_ACCORDING, MORTGAGE_NAME, FREIGHTAREA, FREIGHTLOT, 
+      MEMO, WAREHOUSE, MORTGAGE_CODE, WEIGHT_UNITS, 
+      ENGINE_NO, CHASSIS_NO, CERTIFICATION_NO, START_DATE, 
+      END_DATE, BRCODE, FIX_MORTGAGE_NO, JOIN_BATCH, UP_DOWN_MONEY_FLAG, 
+      TRADE_CONTNO, OUT_QUANTITY, IS_SL_EXIBITION, MANUFACTURE_DATE, 
+      DOCUMENT_NO, MONI_WAREHOUSE_TYPE, REASON, DELIVERY_NUM, 
+      PRODUCT_NAME, PACKAGEW, ADD_QUANTITY)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #appliMortBizType:CHAR#, #mortgageNo:VARCHAR#, 
+      #mortgageBizType:CHAR#, #mortgageClass:CHAR#, #mortgageSubClass:CHAR#, #monitorProtocolNo:VARCHAR#, 
+      #otherProtocolNo:VARCHAR#, #mortgageModel:VARCHAR#, #slaveContno:VARCHAR#, #custcd:VARCHAR#, 
+      #mortgageUnits:VARCHAR#, #quantity:DECIMAL#, #price:DECIMAL#, #totPrice:DECIMAL#, 
+      #description:VARCHAR#, #manufacturer:VARCHAR#, #warehouseId:VARCHAR#, #flag:CHAR#, 
+      #balQuantity:DECIMAL#, #curcd:CHAR#, #mortgageLevelOne:VARCHAR#, #mortgageLevelTwo:VARCHAR#, 
+      #mortgageLevelThree:VARCHAR#, #mortgageLevelFour:VARCHAR#, #mortgageLevelFive:VARCHAR#, 
+      #mortgageLevelSix:VARCHAR#, #mastContno:VARCHAR#, #originalPrice:DECIMAL#, #originalTotPrice:DECIMAL#, 
+      #marketPrice:DECIMAL#, #confirmPrice:DECIMAL#, #stockStatus:CHAR#, #moniOfCustcd:VARCHAR#, 
+      #vender:VARCHAR#, #productArea:VARCHAR#, #incomeNo:VARCHAR#, #ration:DECIMAL#, 
+      #qualityLevel:VARCHAR#, #sn:VARCHAR#, #year:VARCHAR#, #billType:VARCHAR#, #weightAll:DECIMAL#, 
+      #upDownMoney:DECIMAL#, #billno:VARCHAR#, #billQuantity:DECIMAL#, #futureCustcd:VARCHAR#, 
+      #billDueDate:CHAR#, #status:VARCHAR#, #warehouseAddress:VARCHAR#, #oldConfirmPrice:DECIMAL#, 
+      #confirmAccording:VARCHAR#, #mortgageName:VARCHAR#, #freightarea:VARCHAR#, #freightlot:VARCHAR#, 
+      #memo:VARCHAR#, #warehouse:VARCHAR#, #mortgageCode:DECIMAL#, #weightUnits:VARCHAR#, 
+      #engineNo:VARCHAR#, #chassisNo:VARCHAR#, #certificationNo:VARCHAR#, #startDate:CHAR#, 
+      #endDate:CHAR#, #brcode:VARCHAR#, #fixMortgageNo:VARCHAR#, #joinBatch:CHAR#, #upDownMoneyFlag:VARCHAR#, 
+      #tradeContno:VARCHAR#, #outQuantity:DECIMAL#, #isSlExibition:CHAR#, #manufactureDate:CHAR#, 
+      #documentNo:VARCHAR#, #moniWarehouseType:CHAR#, #reason:VARCHAR#, #deliveryNum:VARCHAR#, 
+      #productName:VARCHAR#, #packagew:VARCHAR#, #addQuantity:DECIMAL#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfo" >
+    insert into B_PBC_APPLI_MTG_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="appliMortBizType" >
+        APPLI_MORT_BIZ_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageBizType" >
+        MORTGAGE_BIZ_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageClass" >
+        MORTGAGE_CLASS
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageSubClass" >
+        MORTGAGE_SUB_CLASS
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        OTHER_PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        MORTGAGE_MODEL
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS
+      </isNotNull>
+      <isNotNull prepend="," property="quantity" >
+        QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        TOT_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION
+      </isNotNull>
+      <isNotNull prepend="," property="manufacturer" >
+        MANUFACTURER
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseId" >
+        WAREHOUSE_ID
+      </isNotNull>
+      <isNotNull prepend="," property="flag" >
+        FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="balQuantity" >
+        BAL_QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFour" >
+        MORTGAGE_LEVEL_FOUR
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFive" >
+        MORTGAGE_LEVEL_FIVE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelSix" >
+        MORTGAGE_LEVEL_SIX
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="originalPrice" >
+        ORIGINAL_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="originalTotPrice" >
+        ORIGINAL_TOT_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="marketPrice" >
+        MARKET_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="confirmPrice" >
+        CONFIRM_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="stockStatus" >
+        STOCK_STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        MONI_OF_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="vender" >
+        VENDER
+      </isNotNull>
+      <isNotNull prepend="," property="productArea" >
+        PRODUCT_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="incomeNo" >
+        INCOME_NO
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        RATION
+      </isNotNull>
+      <isNotNull prepend="," property="qualityLevel" >
+        QUALITY_LEVEL
+      </isNotNull>
+      <isNotNull prepend="," property="sn" >
+        SN
+      </isNotNull>
+      <isNotNull prepend="," property="year" >
+        YEAR
+      </isNotNull>
+      <isNotNull prepend="," property="billType" >
+        BILL_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="weightAll" >
+        WEIGHT_ALL
+      </isNotNull>
+      <isNotNull prepend="," property="upDownMoney" >
+        UP_DOWN_MONEY
+      </isNotNull>
+      <isNotNull prepend="," property="billno" >
+        BILLNO
+      </isNotNull>
+      <isNotNull prepend="," property="billQuantity" >
+        BILL_QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="futureCustcd" >
+        FUTURE_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="billDueDate" >
+        BILL_DUE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddress" >
+        WAREHOUSE_ADDRESS
+      </isNotNull>
+      <isNotNull prepend="," property="oldConfirmPrice" >
+        OLD_CONFIRM_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="confirmAccording" >
+        CONFIRM_ACCORDING
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageName" >
+        MORTGAGE_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="freightarea" >
+        FREIGHTAREA
+      </isNotNull>
+      <isNotNull prepend="," property="freightlot" >
+        FREIGHTLOT
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      <isNotNull prepend="," property="warehouse" >
+        WAREHOUSE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageCode" >
+        MORTGAGE_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="weightUnits" >
+        WEIGHT_UNITS
+      </isNotNull>
+      <isNotNull prepend="," property="engineNo" >
+        ENGINE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="chassisNo" >
+        CHASSIS_NO
+      </isNotNull>
+      <isNotNull prepend="," property="certificationNo" >
+        CERTIFICATION_NO
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="fixMortgageNo" >
+        FIX_MORTGAGE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="joinBatch" >
+        JOIN_BATCH
+      </isNotNull>
+      <isNotNull prepend="," property="upDownMoneyFlag" >
+        UP_DOWN_MONEY_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        TRADE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="outQuantity" >
+        OUT_QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="isSlExibition" >
+        IS_SL_EXIBITION
+      </isNotNull>
+      <isNotNull prepend="," property="manufactureDate" >
+        MANUFACTURE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="documentNo" >
+        DOCUMENT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="moniWarehouseType" >
+        MONI_WAREHOUSE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        REASON
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryNum" >
+        DELIVERY_NUM
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        PRODUCT_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="packagew" >
+        PACKAGEW
+      </isNotNull>
+      <isNotNull prepend="," property="addQuantity" >
+        ADD_QUANTITY
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appliMortBizType" >
+        #appliMortBizType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageBizType" >
+        #mortgageBizType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageClass" >
+        #mortgageClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageSubClass" >
+        #mortgageSubClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        #monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        #otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        #mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        #mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="quantity" >
+        #quantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        #price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        #totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        #description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="manufacturer" >
+        #manufacturer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseId" >
+        #warehouseId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flag" >
+        #flag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="balQuantity" >
+        #balQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        #mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        #mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        #mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFour" >
+        #mortgageLevelFour:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFive" >
+        #mortgageLevelFive:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelSix" >
+        #mortgageLevelSix:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="originalPrice" >
+        #originalPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="originalTotPrice" >
+        #originalTotPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="marketPrice" >
+        #marketPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmPrice" >
+        #confirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="stockStatus" >
+        #stockStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        #moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="vender" >
+        #vender:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productArea" >
+        #productArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="incomeNo" >
+        #incomeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        #ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="qualityLevel" >
+        #qualityLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sn" >
+        #sn:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="year" >
+        #year:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billType" >
+        #billType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="weightAll" >
+        #weightAll:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="upDownMoney" >
+        #upDownMoney:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="billno" >
+        #billno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billQuantity" >
+        #billQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="futureCustcd" >
+        #futureCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billDueDate" >
+        #billDueDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddress" >
+        #warehouseAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldConfirmPrice" >
+        #oldConfirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmAccording" >
+        #confirmAccording:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageName" >
+        #mortgageName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="freightarea" >
+        #freightarea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="freightlot" >
+        #freightlot:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouse" >
+        #warehouse:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageCode" >
+        #mortgageCode:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="weightUnits" >
+        #weightUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="engineNo" >
+        #engineNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chassisNo" >
+        #chassisNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="certificationNo" >
+        #certificationNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fixMortgageNo" >
+        #fixMortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="joinBatch" >
+        #joinBatch:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="upDownMoneyFlag" >
+        #upDownMoneyFlag:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        #tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="outQuantity" >
+        #outQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="isSlExibition" >
+        #isSlExibition:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="manufactureDate" >
+        #manufactureDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="documentNo" >
+        #documentNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniWarehouseType" >
+        #moniWarehouseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        #reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryNum" >
+        #deliveryNum:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        #productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="packagew" >
+        #packagew:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="addQuantity" >
+        #addQuantity:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PBC_APPLI_MTG_INFO
+    <include refid="B_PBC_APPLI_MTG_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PBC_APPLI_MTG_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appliMortBizType" >
+        APPLI_MORT_BIZ_TYPE = #record.appliMortBizType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageNo" >
+        MORTGAGE_NO = #record.mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageBizType" >
+        MORTGAGE_BIZ_TYPE = #record.mortgageBizType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageClass" >
+        MORTGAGE_CLASS = #record.mortgageClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageSubClass" >
+        MORTGAGE_SUB_CLASS = #record.mortgageSubClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO = #record.monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherProtocolNo" >
+        OTHER_PROTOCOL_NO = #record.otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageModel" >
+        MORTGAGE_MODEL = #record.mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageUnits" >
+        MORTGAGE_UNITS = #record.mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.quantity" >
+        QUANTITY = #record.quantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.price" >
+        PRICE = #record.price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totPrice" >
+        TOT_PRICE = #record.totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.description" >
+        DESCRIPTION = #record.description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.manufacturer" >
+        MANUFACTURER = #record.manufacturer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseId" >
+        WAREHOUSE_ID = #record.warehouseId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.flag" >
+        FLAG = #record.flag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.balQuantity" >
+        BAL_QUANTITY = #record.balQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE = #record.mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO = #record.mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE = #record.mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelFour" >
+        MORTGAGE_LEVEL_FOUR = #record.mortgageLevelFour:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelFive" >
+        MORTGAGE_LEVEL_FIVE = #record.mortgageLevelFive:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelSix" >
+        MORTGAGE_LEVEL_SIX = #record.mortgageLevelSix:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.originalPrice" >
+        ORIGINAL_PRICE = #record.originalPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.originalTotPrice" >
+        ORIGINAL_TOT_PRICE = #record.originalTotPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.marketPrice" >
+        MARKET_PRICE = #record.marketPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.confirmPrice" >
+        CONFIRM_PRICE = #record.confirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stockStatus" >
+        STOCK_STATUS = #record.stockStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniOfCustcd" >
+        MONI_OF_CUSTCD = #record.moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.vender" >
+        VENDER = #record.vender:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productArea" >
+        PRODUCT_AREA = #record.productArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.incomeNo" >
+        INCOME_NO = #record.incomeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ration" >
+        RATION = #record.ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.qualityLevel" >
+        QUALITY_LEVEL = #record.qualityLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sn" >
+        SN = #record.sn:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.year" >
+        YEAR = #record.year:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billType" >
+        BILL_TYPE = #record.billType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.weightAll" >
+        WEIGHT_ALL = #record.weightAll:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.upDownMoney" >
+        UP_DOWN_MONEY = #record.upDownMoney:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billno" >
+        BILLNO = #record.billno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billQuantity" >
+        BILL_QUANTITY = #record.billQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.futureCustcd" >
+        FUTURE_CUSTCD = #record.futureCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billDueDate" >
+        BILL_DUE_DATE = #record.billDueDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseAddress" >
+        WAREHOUSE_ADDRESS = #record.warehouseAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldConfirmPrice" >
+        OLD_CONFIRM_PRICE = #record.oldConfirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.confirmAccording" >
+        CONFIRM_ACCORDING = #record.confirmAccording:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageName" >
+        MORTGAGE_NAME = #record.mortgageName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.freightarea" >
+        FREIGHTAREA = #record.freightarea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.freightlot" >
+        FREIGHTLOT = #record.freightlot:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouse" >
+        WAREHOUSE = #record.warehouse:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageCode" >
+        MORTGAGE_CODE = #record.mortgageCode:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.weightUnits" >
+        WEIGHT_UNITS = #record.weightUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.engineNo" >
+        ENGINE_NO = #record.engineNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.chassisNo" >
+        CHASSIS_NO = #record.chassisNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.certificationNo" >
+        CERTIFICATION_NO = #record.certificationNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fixMortgageNo" >
+        FIX_MORTGAGE_NO = #record.fixMortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.joinBatch" >
+        JOIN_BATCH = #record.joinBatch:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.upDownMoneyFlag" >
+        UP_DOWN_MONEY_FLAG = #record.upDownMoneyFlag:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tradeContno" >
+        TRADE_CONTNO = #record.tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.outQuantity" >
+        OUT_QUANTITY = #record.outQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isSlExibition" >
+        IS_SL_EXIBITION = #record.isSlExibition:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.manufactureDate" >
+        MANUFACTURE_DATE = #record.manufactureDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.documentNo" >
+        DOCUMENT_NO = #record.documentNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniWarehouseType" >
+        MONI_WAREHOUSE_TYPE = #record.moniWarehouseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reason" >
+        REASON = #record.reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deliveryNum" >
+        DELIVERY_NUM = #record.deliveryNum:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productName" >
+        PRODUCT_NAME = #record.productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.packagew" >
+        PACKAGEW = #record.packagew:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.addQuantity" >
+        ADD_QUANTITY = #record.addQuantity:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PBC_APPLI_MTG_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PBC_APPLI_MTG_INFO
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      APPLI_MORT_BIZ_TYPE = #record.appliMortBizType:CHAR#,
+      MORTGAGE_NO = #record.mortgageNo:VARCHAR#,
+      MORTGAGE_BIZ_TYPE = #record.mortgageBizType:CHAR#,
+      MORTGAGE_CLASS = #record.mortgageClass:CHAR#,
+      MORTGAGE_SUB_CLASS = #record.mortgageSubClass:CHAR#,
+      MONITOR_PROTOCOL_NO = #record.monitorProtocolNo:VARCHAR#,
+      OTHER_PROTOCOL_NO = #record.otherProtocolNo:VARCHAR#,
+      MORTGAGE_MODEL = #record.mortgageModel:VARCHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      MORTGAGE_UNITS = #record.mortgageUnits:VARCHAR#,
+      QUANTITY = #record.quantity:DECIMAL#,
+      PRICE = #record.price:DECIMAL#,
+      TOT_PRICE = #record.totPrice:DECIMAL#,
+      DESCRIPTION = #record.description:VARCHAR#,
+      MANUFACTURER = #record.manufacturer:VARCHAR#,
+      WAREHOUSE_ID = #record.warehouseId:VARCHAR#,
+      FLAG = #record.flag:CHAR#,
+      BAL_QUANTITY = #record.balQuantity:DECIMAL#,
+      CURCD = #record.curcd:CHAR#,
+      MORTGAGE_LEVEL_ONE = #record.mortgageLevelOne:VARCHAR#,
+      MORTGAGE_LEVEL_TWO = #record.mortgageLevelTwo:VARCHAR#,
+      MORTGAGE_LEVEL_THREE = #record.mortgageLevelThree:VARCHAR#,
+      MORTGAGE_LEVEL_FOUR = #record.mortgageLevelFour:VARCHAR#,
+      MORTGAGE_LEVEL_FIVE = #record.mortgageLevelFive:VARCHAR#,
+      MORTGAGE_LEVEL_SIX = #record.mortgageLevelSix:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      ORIGINAL_PRICE = #record.originalPrice:DECIMAL#,
+      ORIGINAL_TOT_PRICE = #record.originalTotPrice:DECIMAL#,
+      MARKET_PRICE = #record.marketPrice:DECIMAL#,
+      CONFIRM_PRICE = #record.confirmPrice:DECIMAL#,
+      STOCK_STATUS = #record.stockStatus:CHAR#,
+      MONI_OF_CUSTCD = #record.moniOfCustcd:VARCHAR#,
+      VENDER = #record.vender:VARCHAR#,
+      PRODUCT_AREA = #record.productArea:VARCHAR#,
+      INCOME_NO = #record.incomeNo:VARCHAR#,
+      RATION = #record.ration:DECIMAL#,
+      QUALITY_LEVEL = #record.qualityLevel:VARCHAR#,
+      SN = #record.sn:VARCHAR#,
+      YEAR = #record.year:VARCHAR#,
+      BILL_TYPE = #record.billType:VARCHAR#,
+      WEIGHT_ALL = #record.weightAll:DECIMAL#,
+      UP_DOWN_MONEY = #record.upDownMoney:DECIMAL#,
+      BILLNO = #record.billno:VARCHAR#,
+      BILL_QUANTITY = #record.billQuantity:DECIMAL#,
+      FUTURE_CUSTCD = #record.futureCustcd:VARCHAR#,
+      BILL_DUE_DATE = #record.billDueDate:CHAR#,
+      STATUS = #record.status:VARCHAR#,
+      WAREHOUSE_ADDRESS = #record.warehouseAddress:VARCHAR#,
+      OLD_CONFIRM_PRICE = #record.oldConfirmPrice:DECIMAL#,
+      CONFIRM_ACCORDING = #record.confirmAccording:VARCHAR#,
+      MORTGAGE_NAME = #record.mortgageName:VARCHAR#,
+      FREIGHTAREA = #record.freightarea:VARCHAR#,
+      FREIGHTLOT = #record.freightlot:VARCHAR#,
+      MEMO = #record.memo:VARCHAR#,
+      WAREHOUSE = #record.warehouse:VARCHAR#,
+      MORTGAGE_CODE = #record.mortgageCode:DECIMAL#,
+      WEIGHT_UNITS = #record.weightUnits:VARCHAR#,
+      ENGINE_NO = #record.engineNo:VARCHAR#,
+      CHASSIS_NO = #record.chassisNo:VARCHAR#,
+      CERTIFICATION_NO = #record.certificationNo:VARCHAR#,
+      START_DATE = #record.startDate:CHAR#,
+      END_DATE = #record.endDate:CHAR#,
+      BRCODE = #record.brcode:VARCHAR#,
+      FIX_MORTGAGE_NO = #record.fixMortgageNo:VARCHAR#,
+      JOIN_BATCH = #record.joinBatch:CHAR#,
+      UP_DOWN_MONEY_FLAG = #record.upDownMoneyFlag:VARCHAR#,
+      TRADE_CONTNO = #record.tradeContno:VARCHAR#,
+      OUT_QUANTITY = #record.outQuantity:DECIMAL#,
+      IS_SL_EXIBITION = #record.isSlExibition:CHAR#,
+      MANUFACTURE_DATE = #record.manufactureDate:CHAR#,
+      DOCUMENT_NO = #record.documentNo:VARCHAR#,
+      MONI_WAREHOUSE_TYPE = #record.moniWarehouseType:CHAR#,
+      REASON = #record.reason:VARCHAR#,
+      DELIVERY_NUM = #record.deliveryNum:VARCHAR#,
+      PRODUCT_NAME = #record.productName:VARCHAR#,
+      PACKAGEW = #record.packagew:VARCHAR#,
+      ADD_QUANTITY = #record.addQuantity:DECIMAL#
+    <isParameterPresent >
+      <include refid="B_PBC_APPLI_MTG_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfo" >
+    update B_PBC_APPLI_MTG_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appliMortBizType" >
+        APPLI_MORT_BIZ_TYPE = #appliMortBizType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO = #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageBizType" >
+        MORTGAGE_BIZ_TYPE = #mortgageBizType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageClass" >
+        MORTGAGE_CLASS = #mortgageClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageSubClass" >
+        MORTGAGE_SUB_CLASS = #mortgageSubClass:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorProtocolNo" >
+        MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherProtocolNo" >
+        OTHER_PROTOCOL_NO = #otherProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        MORTGAGE_MODEL = #mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS = #mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="quantity" >
+        QUANTITY = #quantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        PRICE = #price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        TOT_PRICE = #totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION = #description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="manufacturer" >
+        MANUFACTURER = #manufacturer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseId" >
+        WAREHOUSE_ID = #warehouseId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flag" >
+        FLAG = #flag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="balQuantity" >
+        BAL_QUANTITY = #balQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFour" >
+        MORTGAGE_LEVEL_FOUR = #mortgageLevelFour:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFive" >
+        MORTGAGE_LEVEL_FIVE = #mortgageLevelFive:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelSix" >
+        MORTGAGE_LEVEL_SIX = #mortgageLevelSix:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="originalPrice" >
+        ORIGINAL_PRICE = #originalPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="originalTotPrice" >
+        ORIGINAL_TOT_PRICE = #originalTotPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="marketPrice" >
+        MARKET_PRICE = #marketPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmPrice" >
+        CONFIRM_PRICE = #confirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="stockStatus" >
+        STOCK_STATUS = #stockStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="vender" >
+        VENDER = #vender:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productArea" >
+        PRODUCT_AREA = #productArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="incomeNo" >
+        INCOME_NO = #incomeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        RATION = #ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="qualityLevel" >
+        QUALITY_LEVEL = #qualityLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sn" >
+        SN = #sn:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="year" >
+        YEAR = #year:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billType" >
+        BILL_TYPE = #billType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="weightAll" >
+        WEIGHT_ALL = #weightAll:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="upDownMoney" >
+        UP_DOWN_MONEY = #upDownMoney:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="billno" >
+        BILLNO = #billno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billQuantity" >
+        BILL_QUANTITY = #billQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="futureCustcd" >
+        FUTURE_CUSTCD = #futureCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billDueDate" >
+        BILL_DUE_DATE = #billDueDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddress" >
+        WAREHOUSE_ADDRESS = #warehouseAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldConfirmPrice" >
+        OLD_CONFIRM_PRICE = #oldConfirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmAccording" >
+        CONFIRM_ACCORDING = #confirmAccording:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageName" >
+        MORTGAGE_NAME = #mortgageName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="freightarea" >
+        FREIGHTAREA = #freightarea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="freightlot" >
+        FREIGHTLOT = #freightlot:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouse" >
+        WAREHOUSE = #warehouse:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageCode" >
+        MORTGAGE_CODE = #mortgageCode:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="weightUnits" >
+        WEIGHT_UNITS = #weightUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="engineNo" >
+        ENGINE_NO = #engineNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chassisNo" >
+        CHASSIS_NO = #chassisNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="certificationNo" >
+        CERTIFICATION_NO = #certificationNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fixMortgageNo" >
+        FIX_MORTGAGE_NO = #fixMortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="joinBatch" >
+        JOIN_BATCH = #joinBatch:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="upDownMoneyFlag" >
+        UP_DOWN_MONEY_FLAG = #upDownMoneyFlag:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeContno" >
+        TRADE_CONTNO = #tradeContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="outQuantity" >
+        OUT_QUANTITY = #outQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="isSlExibition" >
+        IS_SL_EXIBITION = #isSlExibition:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="manufactureDate" >
+        MANUFACTURE_DATE = #manufactureDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="documentNo" >
+        DOCUMENT_NO = #documentNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniWarehouseType" >
+        MONI_WAREHOUSE_TYPE = #moniWarehouseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        REASON = #reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryNum" >
+        DELIVERY_NUM = #deliveryNum:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productName" >
+        PRODUCT_NAME = #productName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="packagew" >
+        PACKAGEW = #packagew:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="addQuantity" >
+        ADD_QUANTITY = #addQuantity:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfo" >
+    update B_PBC_APPLI_MTG_INFO
+    set APPNO = #appno:VARCHAR#,
+      APPLI_MORT_BIZ_TYPE = #appliMortBizType:CHAR#,
+      MORTGAGE_NO = #mortgageNo:VARCHAR#,
+      MORTGAGE_BIZ_TYPE = #mortgageBizType:CHAR#,
+      MORTGAGE_CLASS = #mortgageClass:CHAR#,
+      MORTGAGE_SUB_CLASS = #mortgageSubClass:CHAR#,
+      MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#,
+      OTHER_PROTOCOL_NO = #otherProtocolNo:VARCHAR#,
+      MORTGAGE_MODEL = #mortgageModel:VARCHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      MORTGAGE_UNITS = #mortgageUnits:VARCHAR#,
+      QUANTITY = #quantity:DECIMAL#,
+      PRICE = #price:DECIMAL#,
+      TOT_PRICE = #totPrice:DECIMAL#,
+      DESCRIPTION = #description:VARCHAR#,
+      MANUFACTURER = #manufacturer:VARCHAR#,
+      WAREHOUSE_ID = #warehouseId:VARCHAR#,
+      FLAG = #flag:CHAR#,
+      BAL_QUANTITY = #balQuantity:DECIMAL#,
+      CURCD = #curcd:CHAR#,
+      MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#,
+      MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#,
+      MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#,
+      MORTGAGE_LEVEL_FOUR = #mortgageLevelFour:VARCHAR#,
+      MORTGAGE_LEVEL_FIVE = #mortgageLevelFive:VARCHAR#,
+      MORTGAGE_LEVEL_SIX = #mortgageLevelSix:VARCHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      ORIGINAL_PRICE = #originalPrice:DECIMAL#,
+      ORIGINAL_TOT_PRICE = #originalTotPrice:DECIMAL#,
+      MARKET_PRICE = #marketPrice:DECIMAL#,
+      CONFIRM_PRICE = #confirmPrice:DECIMAL#,
+      STOCK_STATUS = #stockStatus:CHAR#,
+      MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#,
+      VENDER = #vender:VARCHAR#,
+      PRODUCT_AREA = #productArea:VARCHAR#,
+      INCOME_NO = #incomeNo:VARCHAR#,
+      RATION = #ration:DECIMAL#,
+      QUALITY_LEVEL = #qualityLevel:VARCHAR#,
+      SN = #sn:VARCHAR#,
+      YEAR = #year:VARCHAR#,
+      BILL_TYPE = #billType:VARCHAR#,
+      WEIGHT_ALL = #weightAll:DECIMAL#,
+      UP_DOWN_MONEY = #upDownMoney:DECIMAL#,
+      BILLNO = #billno:VARCHAR#,
+      BILL_QUANTITY = #billQuantity:DECIMAL#,
+      FUTURE_CUSTCD = #futureCustcd:VARCHAR#,
+      BILL_DUE_DATE = #billDueDate:CHAR#,
+      STATUS = #status:VARCHAR#,
+      WAREHOUSE_ADDRESS = #warehouseAddress:VARCHAR#,
+      OLD_CONFIRM_PRICE = #oldConfirmPrice:DECIMAL#,
+      CONFIRM_ACCORDING = #confirmAccording:VARCHAR#,
+      MORTGAGE_NAME = #mortgageName:VARCHAR#,
+      FREIGHTAREA = #freightarea:VARCHAR#,
+      FREIGHTLOT = #freightlot:VARCHAR#,
+      MEMO = #memo:VARCHAR#,
+      WAREHOUSE = #warehouse:VARCHAR#,
+      MORTGAGE_CODE = #mortgageCode:DECIMAL#,
+      WEIGHT_UNITS = #weightUnits:VARCHAR#,
+      ENGINE_NO = #engineNo:VARCHAR#,
+      CHASSIS_NO = #chassisNo:VARCHAR#,
+      CERTIFICATION_NO = #certificationNo:VARCHAR#,
+      START_DATE = #startDate:CHAR#,
+      END_DATE = #endDate:CHAR#,
+      BRCODE = #brcode:VARCHAR#,
+      FIX_MORTGAGE_NO = #fixMortgageNo:VARCHAR#,
+      JOIN_BATCH = #joinBatch:CHAR#,
+      UP_DOWN_MONEY_FLAG = #upDownMoneyFlag:VARCHAR#,
+      TRADE_CONTNO = #tradeContno:VARCHAR#,
+      OUT_QUANTITY = #outQuantity:DECIMAL#,
+      IS_SL_EXIBITION = #isSlExibition:CHAR#,
+      MANUFACTURE_DATE = #manufactureDate:CHAR#,
+      DOCUMENT_NO = #documentNo:VARCHAR#,
+      MONI_WAREHOUSE_TYPE = #moniWarehouseType:CHAR#,
+      REASON = #reason:VARCHAR#,
+      DELIVERY_NUM = #deliveryNum:VARCHAR#,
+      PRODUCT_NAME = #productName:VARCHAR#,
+      PACKAGEW = #packagew:VARCHAR#,
+      ADD_QUANTITY = #addQuantity:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

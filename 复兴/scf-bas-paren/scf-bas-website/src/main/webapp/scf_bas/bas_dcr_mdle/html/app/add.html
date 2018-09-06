@@ -1,0 +1,13 @@
+<ht-form name="addForm"  columns="1">
+    <ht-select ht-id="occTyp"  name="授信发生类型"   dictionary="crdLinOccTyp"  ng-model="addForm.occTyp"   reg-exp="common.require"></ht-select> 
+    <ht-input ht-id="appCrId" name="授信申请流水号" ng-model="addForm.appCrId"   hide="true"></ht-input>
+    <ht-select ht-id="crNm"  name="授信类型" ng-model="addForm.crNm"  on-change="changeSelect" dataoption="crId" datatrsoption="crNm"  datasource="crDatasource" reg-exp="common.require"></ht-select>
+    <ht-input ht-id="crId" name="授信类型编号" ng-model="addForm.crId"    hide="true" ></ht-input>
+    <ht-select ht-id="circFlag"  name="循环标志"   dictionary="circFlag"  ng-model="addForm.circFlag"   disable="true"  reg-exp="common.require"></ht-select> 
+ 	<ht-input-extent ht-id="custNm" name="客户名" extent="custcontent"  on-change="dooextent" ng-model="addForm.custNm" reg-exp="common.require"></ht-input-extent>   
+    <ht-input ht-id="custId" name="客户编号" ng-model="addForm.custId"    reg-exp="common.require"  disable="true"></ht-input>
+</ht-form>
+<ht-button-group align="center">
+    <ht-button ht-id="confirm" desc-name="确认" class="btn-primary"></ht-button>
+    <ht-button ht-id="cancel" desc-name="取消" class="btn-primary"></ht-button>
+</ht-button-group>

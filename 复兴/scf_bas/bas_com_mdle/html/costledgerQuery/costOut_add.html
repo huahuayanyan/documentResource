@@ -1,0 +1,26 @@
+<ht-form name="costadd">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input-extent ht-id="sellerNm" name="客户名称" extent="custcontent" on-change="custdooextend" reg-exp="common.require"
+                     ng-model="costadd.sellerNm"></ht-input-extent>
+    <ht-input-extent ht-id="bussContno" name="业务合同号" extent="busscontent" on-change="bussdooextend" reg-exp="common.require"
+                     ng-model="costadd.bussContno"></ht-input-extent>
+    <ht-input ht-id="txFlowNo" name="交易流水号" disable="true" ng-model="costadd.txFlowNo"></ht-input>
+    <ht-input ht-id="costName" name="费用名称" disable="true" ng-model="costadd.costName"></ht-input>
+    <ht-select ht-id="costClass" name="费用收取种类" disable="true" ng-model="costadd.costClass" dictionary="costClass"></ht-select>
+    <ht-select ht-id="costType" name="费用收取方式ʽ" disable="true" ng-model="costadd.costType" dictionary="costType"></ht-select>
+    <ht-select ht-id="costCalcType" reg-exp="common.require" name="计算方式" ng-model="costadd.costCalcType" disable="true"
+               dictionary="costCalcType"></ht-select>
+    <ht-input ht-id="costAmt" reg-exp="common.require" name="固定费用" ng-model="costadd.costAmt" disable="true"></ht-input>
+    <ht-input ht-id="totalAmt" reg-exp="common.require" name="费用小计" ng-model="costadd.totalAmt" edit-type="currency"></ht-input>
+    <ht-input ht-id="reduceAmt" reg-exp="common.require" name="减免金额 " ng-model="costadd.reduceAmt" edit-type="currency"></ht-input>
+    <ht-input ht-id="receiveAmount" name="实收费用小计" disable="true" ng-model="costadd.receiveAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input-extent ht-id="costAccount" name="扣费账号" extent="costcontent" on-change="costdooextend" reg-exp="common.require"
+                     ng-model="costadd.costAccount"></ht-input-extent>
+    <ht-input ht-id="commonDate" reg-exp="common.require" name="扣收日期" ng-model="costadd.commonDate" edit-type="date"></ht-input>
+    <ht-select ht-id="chargeClass" reg-exp="common.require" disable="true" name="收费类型" ng-model="costadd.chargeClass" dictionary="chargeClass"></ht-select>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="close" class="btn-primary">返回</ht-button>
+</ht-button-group>

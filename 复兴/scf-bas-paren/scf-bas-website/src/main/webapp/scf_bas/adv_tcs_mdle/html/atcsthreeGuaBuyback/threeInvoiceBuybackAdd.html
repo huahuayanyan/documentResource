@@ -1,0 +1,18 @@
+<ht-legend>差额退款列表</ht-legend>
+<ht-table ht-id="tableDialogId" datasource="datasourceDialog" selected="selectedDialog" docheckbox="true">
+    <!-- <ht-column eg-name="treeId" zh-name=""></ht-column> -->
+    <ht-column eg-name="confirmStatus" zh-name="收款确认状态" dictionary="lnciConfirmStatus"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="startDate" zh-name="发放日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="curcd" zh-name="出账币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="出账金额" type="currency"></ht-column>
+    <ht-column eg-name="businessOpenAmount" zh-name="敞口金额" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="confDialog"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确认</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>
+

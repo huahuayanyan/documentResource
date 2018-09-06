@@ -1,0 +1,57 @@
+/**
+ * Created by htrad0016 on 2016/8/23.
+ */
+(function(){
+    //跳转的路由配置
+    var routeArry=[
+        {
+            'state':'debtList',
+            'url':'/debtList',
+            'default':'true',
+            'templateUrl':'busqry/debtGenrt/debtGenerateQuery.html',
+            'controller':'debtGenerateController'
+        },
+        {
+            'state':'info',
+            'url':'/info',
+            'templateUrl':'busqry/debtGenrt/debtInfo.html',
+            'controller':'infoController'
+        },
+        {
+            'state':'info.staticInfo',
+            'url':'/staticInfo',
+            'templateUrl':'busqry/debtGenrt/debtStaticInfoTab.html',
+            'controller':'staticController'
+
+        },
+        {//国内信保保理
+            'state':'info.credit',
+            'url':'/info.contcredit',
+            'templateUrl':'../html/buscont/creditFactoringConInfo.html',
+            'controller':'nrBcpContEditController'
+        },
+        {//国内双保理
+            'state':'info.double',
+            'url':'/info.contdouble',
+            'templateUrl':'../html/buscont/doublfactorContAdd.html',
+            'controller':'nrBcpContEditController'
+        },
+        {//租赁保理
+            'state':'info.lease',
+            'url':'/info.contlease',
+            'templateUrl':'../html/buscont/leasefactorContAdd.html',
+            'controller':'nrBcpContEditController'
+        },
+        {//国内保理/反保理/应收账款质押/国内保理池/应收账款质押池/出口退税池
+            'state':'info.local',
+            'url':'/info.contlocal',
+            'templateUrl':'../html/buscont/localfactorContAdd.html',
+            'controller':'nrBcpContEditController'
+        }
+    ];
+    //模块的依赖加载配置
+    var dependency=[
+        //todo
+    ];
+    scubeUI.module('debtList',dependency,routeArry)
+}());

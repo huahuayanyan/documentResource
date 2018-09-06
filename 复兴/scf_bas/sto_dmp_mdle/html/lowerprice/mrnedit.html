@@ -1,0 +1,22 @@
+<ht-form name="mrnedit">
+
+    <ht-input ng-model="mrnedit.loanAppno" name="出账流水号" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.debetNo" name="借据号/承兑协议号" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.mastContno" name="信贷合同号" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.lnciType" name="出账方式" dictionary="loanWay" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.startDate" name="起始日期" edit-type="date" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.endDate" name="到期日期" edit-type="date" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.lnciAmt" name="借据金额" edit-type="currency" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.lnciBal" name="借据余额" edit-type="currency" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.receivableInt" name="欠息总额" edit-type="currency" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.lnciStatus" name="借据状态" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.riskAmt" name="敞口余额" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.bailAmount" name="保证金金额" edit-type="currency" disable="true"></ht-input>
+    <ht-input ng-model="mrnedit.bailAccountno" reg-exp="common.require" name="保证金账号"></ht-input>
+    <ht-input ng-model="mrnedit.addBailAmount" reg-exp="common.require" name="追加冻结金额" edit-type="currency"></ht-input>
+
+    <ht-button-group align="center">
+        <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+        <ht-button ht-id="closeThisDialog" class="btn-primary">关闭</ht-button>
+    </ht-button-group>
+</ht-form>

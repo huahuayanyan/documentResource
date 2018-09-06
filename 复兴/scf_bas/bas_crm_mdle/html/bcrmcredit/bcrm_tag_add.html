@@ -1,0 +1,14 @@
+
+
+
+<ht-form name="otherform">
+    <!--<ht-legend>客户新增</ht-legend> dataVal-->
+	<ht-input-extent ht-id="dataTrsVal" name="客户标签" disable="{{disable}}" extent="areaContent"
+          on-change="dooextent" ng-model="otherform.dataTrsVal"></ht-input-extent>
+
+    <ht-input ht-id="tagValue" name="标签值" ng-model="otherform.tagValue"></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"class="btn-primary">取消</ht-button>
+</ht-button-group>

@@ -1,0 +1,15 @@
+
+<ht-form name="baseinfo">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input-extent ht-id="cname" name="融资企业名称" reg-exp="common.require" extent="custcontent"
+                     on-change="dooextend" ng-model="baseinfo.cname"></ht-input-extent>
+    <ht-input-extent ht-id="businessCname" name="贸易对手" reg-exp="common.require" extent="busicustcontent"
+                     on-change="busidooextend" ng-model="baseinfo.businessCname"></ht-input-extent>
+    <ht-select ht-id="supplyChainPdId" name="业务品种" datasource="productselect" dataOption="code" dataTrsOption="codeName"
+               ng-model="baseinfo.supplyChainPdId" reg-exp="common.require"></ht-select>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" disable="{{flowsubmitdisable}}">下一步</ht-button>
+    <ht-button ht-id="close" class="btn-primary">取消</ht-button>
+</ht-button-group>

@@ -1,0 +1,83 @@
+
+<ht-form name="otherform">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input name="买方名称" reg-exp="common.require" ng-model="otherform.cname" disable="true"></ht-input>
+    <ht-input name="信贷合同号" reg-exp="common.require" ng-model="otherform.mastContcode" disable="true"></ht-input>
+    <ht-input name="额度协议流水号" reg-exp="common.require" ng-model="otherform.creditProtNo" disable="true" hide="{{hidehide}}"></ht-input>
+    <ht-select name="信贷合同状态" reg-exp="common.require" ng-model="otherform.mastContStatus" dictionary="contraceState" disable="true"></ht-select>
+    <ht-select name="出账方式" reg-exp="common.require" ng-model="otherform.loanWay" dictionary="loanWay" disable="true"></ht-select>
+    <ht-select name="币种" reg-exp="common.require" ng-model="otherform.curcd" dictionary="curcd" disable="true"></ht-select>
+    <ht-select name="循环标识" ng-model="otherform.cycle" dictionary="circFlag" disable="true"></ht-select>
+    <ht-input name="信贷合同金额" reg-exp="common.require" ng-model="otherform.contAmount" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="信贷合同总敞口" reg-exp="common.require" ng-model="otherform.contRiskAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="信贷合同可用敞口" reg-exp="common.require" ng-model="otherform.avaliableRiskAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="信贷合同生效日" reg-exp="common.require" ng-model="otherform.contStartDate" edit-type="date" disable="true"></ht-input>
+    <ht-input name="信贷合同到期日" reg-exp="common.require" ng-model="otherform.contEndDate" edit-type="date" disable="true"></ht-input>
+    <ht-select ht-id="supplyChainPdId" name="业务品种" disable="true" reg-exp="common.require" ng-model="otherform.supplyChainPdId" dictionary="productId"
+               datasource="productSource" datatrsoption="productName" dataoption="productId"></ht-select>
+    <ht-input name="先票/款后货协议号" reg-exp="common.require" ng-model="otherform.businessNo" disable="true"></ht-input>
+    <ht-select name="间接额度类型" reg-exp="common.require" ng-model="otherform.hasIndirectCredit" dictionary="hasIndirectCredit" disable="true"></ht-select>
+    <ht-input name="承担方名称" ng-model="otherform.assureCname" disable="true"></ht-input>
+    <ht-input name="间接额度可用余额" ng-model="otherform.indirectCreaditLastAmt" edit-type="currency" disable="true" hide="{{hidehide}}"></ht-input>
+    <ht-input name="监管公司名称" reg-exp="common.require" ng-model="otherform.moniName" disable="true"></ht-input>
+    <ht-input name="本笔风险敞口" reg-exp="common.require" ng-model="otherform.riskAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-legend>融资信息</ht-legend>
+    <ht-input name="借据号" reg-exp="common.require" ng-model="otherform.debetNo" disable="true"></ht-input>
+    <ht-input name="借据金额" reg-exp="common.require" ng-model="otherform.jjje" edit-type="currency" disable="true"></ht-input>
+    <ht-input name="起息日期" reg-exp="common.require" ng-model="otherform.qxrq" edit-type="date" disable="true"></ht-input>
+    <ht-input name="到期日" reg-exp="common.require" ng-model="otherform.dqrq" edit-type="date" disable="true"></ht-input>
+    <ht-input name="入账机构" ng-model="otherform.rzjgName" disable="true"></ht-input>
+    <ht-select name="还款方式" ng-model="otherform.hkfs" dictionary="rtnTyp" disable="true"></ht-select>
+    <ht-input name="宽限期" reg-exp="common.require" ng-model="otherform.kxq" disable="true"></ht-input>
+    <ht-input name="初始保证金总额" reg-exp="common.require" edit-type="currency" ng-model="otherform.csbzjje" disable="true"></ht-input>
+    <ht-input name="初始保证金比例(%)" reg-exp="common.require" ng-model="otherform.csbzjbl" disable="true"></ht-input>
+    <ht-input ht-id="csxjdjwbl" name="初始现金等价物金额" reg-exp="common.require" disable="{{disdis}}" ng-model="otherform.csxjdjwbl" edit-type="currency"></ht-input>
+
+    <ht-legend>利率信息</ht-legend>
+    <ht-input name="利率代码" reg-exp="common.require" ng-model="otherform.lldm" disable="true"></ht-input>
+    <ht-select name="利率浮动方式" reg-exp="common.require" ng-model="otherform.llfdfs" dictionary="intFltTyp" disable="true"></ht-select>
+    <ht-select name="利率调整方式" reg-exp="common.require" ng-model="otherform.fdlltzfs" dictionary="intAdj" disable="true"></ht-select>
+    <ht-input name="利率浮动值" reg-exp="common.require" ng-model="otherform.llfdz" disable="true"></ht-input>
+    <ht-input name="基准利率(%)" reg-exp="common.require" ng-model="otherform.jzlv" disable="true"></ht-input>
+    <ht-input name="执行利率(%)" reg-exp="common.require" ng-model="otherform.zxll" disable="true"></ht-input>
+</ht-form>
+
+<div id="gxht">
+    <ht-legend>购销合同信息列表</ht-legend>
+    <ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+            <ht-button-group>
+                <ht-button ht-id="add" class="btn-primary" hide="{{hid}}">新增</ht-button>
+                <ht-button ht-id="update" class="btn-primary" hide="{{hid}}">修改</ht-button>
+                <ht-button ht-id="delete" class="btn-primary" hide="{{hid}}">删除</ht-button>
+            </ht-button-group>
+        <!--<ht-column eg-name="tradeContno" zh-name="购销合同主键" hide="true"></ht-column>-->
+        <ht-column eg-name="tradeContcode" zh-name="购销合同号" ></ht-column>
+        <ht-column eg-name="startDate" zh-name="合同生效日" type="date"></ht-column>
+        <ht-column eg-name="endDate" zh-name="合同到期日" type="date"></ht-column>
+        <ht-column eg-name="contAmt" zh-name="合同金额" type="currency"></ht-column>
+        <ht-column eg-name="accuLoanAmt" zh-name="累计出账金额" type="currency"></ht-column>
+        <ht-column eg-name="loanAmt" zh-name="本次出账金额" type="currency"></ht-column>
+    </ht-table>
+    <ht-page conf="conf"></ht-page>
+</div>
+
+<div id="showIdea" style="display: none">
+    <ht-legend>历史审批意见</ht-legend>
+    <ht-table ht-id="tableId" datasource="datasourcetask" selected="selectedtask" docheckbox="true">
+        <ht-column eg-name="taskName" zh-name="任务名称"></ht-column>
+        <ht-column eg-name="taskComment" zh-name="审批意见"></ht-column>
+        <ht-column eg-name="name5" zh-name="处理人"></ht-column>
+        <ht-column eg-name="assignId" zh-name="处理人编号"></ht-column>
+        <ht-column eg-name="dealTime" zh-name="处理时间"></ht-column>
+    </ht-table>
+    <ht-page conf="conftask"></ht-page>
+    <!-- <ht-legend>审批意见</ht-legend>
+    <ht-form name="applyDtlForm">
+        <ht-text-area ht-id="taskComment" name="审批意见" height="70" ng-model="applyDtlForm.taskComment"></ht-text-area>
+    </ht-form> -->
+</div>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{hid}}" disable="{{savedisable}}">保存</ht-button>
+    <ht-button ht-id="submit" class="btn-primary" hide="{{hid}}" disable="{{sumbitdisable}}">提交</ht-button>
+</ht-button-group>

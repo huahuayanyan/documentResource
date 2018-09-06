@@ -1,0 +1,25 @@
+<ht-legend>表单信息</ht-legend>
+<ht-form name="bCntMprotform">
+    <ht-input name="货物名称" ng-model="bCntMprotform.mortgageName"  ht-id="mortgageName" reg-exp="common.require"></ht-input>
+<!--    <ht-select ht-id="mortgageLevelOneName" name="押品一级" on-change="mortgageLevelOneName" datasource="mortgageLevelOneSource"
+               dataOption="code" dataTrsOption="codeName" ng-model="mortgate.mortgageLevelOneName"></ht-select>-->
+    <ht-select ht-id="mortgageLevelOne" name="押品一级" on-change="mortgageLevelOneName" datasource="mortgageLevelOneSource"
+               dataOption="code" dataTrsOption="codeName" ng-model="bCntMprotform.mortgageLevelOne" reg-exp="common.require"></ht-select>
+<!--    <ht-select ht-id="mortgageLevelTwoName" name="押品二级" datasource="mortgageLevelTwoSource" dataOption="code" dataTrsOption="codeName"
+               ng-model="mortgate.mortgageLevelTwoName"></ht-select>-->
+    <!--<ht-select ht-id="mortgageLevelTwo" name="押品二级" datasource="mortgageLevelTwoSource" dataOption="code" dataTrsOption="codeName"-->
+               <!--ng-model="bCntMprotform.mortgageLevelTwo"></ht-select>-->
+    <ht-select ht-id="mortgageLevelTwo" name="押品二级" on-change="mortgageLevelTwoName"  datasource="mortgageLevelTwoSource"
+               dataOption="code" dataTrsOption="codeName" ng-model="bCntMprotform.mortgageLevelTwo" reg-exp="common.require"></ht-select>
+    <ht-input name="规格/型号" ng-model="bCntMprotform.mortgageModel"  ht-id="mortgageModel" reg-exp="common.require"></ht-input>
+    <ht-select name="单位" ng-model="bCntMprotform.mortgageUnits"  ht-id="mortgageUnits" dictionary="mortgageUnits"
+               datatrsoption="value" dataoption="key"  reg-exp="common.require"></ht-select>
+    <ht-input name="数量/重量" ng-model="bCntMprotform.quantity"  ht-id="quantity" edit-type="number" reg-exp="common.require"></ht-input>
+    <ht-input name="单价" ng-model="bCntMprotform.price"  ht-id="price" edit-type="currency" reg-exp="common.require"></ht-input>
+    <ht-input name="总价" ng-model="bCntMprotform.totPrice"  ht-id="totPrice" edit-type="currency" disable="true"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="mprotConfirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="mprotCloseDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

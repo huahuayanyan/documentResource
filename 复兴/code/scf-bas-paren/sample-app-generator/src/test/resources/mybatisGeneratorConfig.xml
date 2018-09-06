@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- <classPathEntry location="ojdbc14.jar" /> -->
+
+    <context id="OracleTables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+        <plugin type="com.istock.generate.plugin.TopSerializablePlugin"></plugin>
+        <plugin type="com.istock.generate.plugin.SqlMapUnMergePlugin"></plugin>
+        <!-- DAO的生成,带有分页标识 -->
+        <plugin type="com.istock.generate.plugin.PaginationAnnotaionPlugin">
+        	<property name="extends" value="com.ncf.base.ibatisEx.IbatisDaoAnnotation"/>
+        	<property name="pageClass" value="com.ncf.base.ibatisEx.bean.Page"/>
+        </plugin>
+
+        <commentGenerator type="com.istock.generate.plugin.DBCommentGenerator">
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@101.200.228.39:1521:vfinance"
+            userId="test" password="123">
+            <property name="remarksReporting" value="true" />
+        </jdbcConnection> -->
+        <jdbcConnection driverClass="org.gjt.mm.mysql.Driver" connectionURL="jdbc:mysql://130.252.10.252:3306/app_demo?useUnicode=true&amp;characterEncoding=UTF-8"
+            userId="root" password="123456">
+            <property name="remarksReporting" value="true" />
+        </jdbcConnection>
+		
+		<!-- POJO类生成配置 -->
+        <javaModelGenerator targetPackage="com.huateng.sample.model1" targetProject="../sample-app-dal/src/main/java">
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+		
+		<!-- SqlMap文件生成配置 -->
+        <sqlMapGenerator targetPackage="ibatis1" targetProject="../sample-app-dal/src/main/resources">
+        </sqlMapGenerator>
+		
+		<!-- Dao生成配置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.huateng.sample.dao1" targetProject="../sample-app-dal/src/main/java">
+        </javaClientGenerator>
+
+        <!-- 数据库表 -->
+        <table tableName="TEST_USER_INFO" domainObjectName="UserInfo">
+        	<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>
+    </context>
+
+</generatorConfiguration>

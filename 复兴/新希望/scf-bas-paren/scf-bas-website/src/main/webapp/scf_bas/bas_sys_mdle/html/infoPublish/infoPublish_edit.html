@@ -1,0 +1,29 @@
+<ht-form name="otherform">
+    <ht-input ht-id="title" name="信息标题" ng-model="otherform.title" reg-exp="common.require" disable="{{viewdisable}}"></ht-input>
+    <ht-input ht-id="publishDate" name="信息发布日期" ng-model="otherform.publishDate" edit-type="date" hide="{{addhide}}" disable="true"></ht-input>
+
+    <ht-text-area id="content" name="信息内容" ng-model="otherform.content" reg-exp="common.require"  height="70" disable="{{viewdisable}}" ></ht-text-area>
+    <ht-select ht-id="state" name="信息状态" dictionary="infoState" reg-exp="common.require"
+               ng-model="otherform.state" hide="{{addhide}}" disable="{{viewdisable}}" ></ht-select>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{viewhide}}">保存</ht-button>
+  <!--  <div id="fileupload" style="display: none">-->
+    <ht-file type="upload" option="uploadoption" hide="{{hide}}" name="附件上传"></ht-file>
+<!--    </div>-->
+    <ht-button ht-id="back" class="btn-primary" hide="{{homeHide}}">返回</ht-button>
+     <ht-button ht-id="homeBack" class="btn-primary" hide="{{homeBackHide}}" desc-name="返回主页"></ht-button>
+</ht-button-group>
+<ht-legend>相关附件列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="delete" class="btn-primary" hide="{{viewhide}}">删除</ht-button>
+        <ht-file type="download" name="附件下载" option="downloadoption"></ht-file>
+    </ht-button-group>
+    <ht-column eg-name="fileName" zh-name="附件名称"></ht-column>
+    <ht-column eg-name="fileExt" zh-name="附件类型"></ht-column>
+    <ht-column eg-name="uploadTlrnoName" zh-name="上传人"></ht-column>
+    <ht-column eg-name="uploadTimes" zh-name="上传时间"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+

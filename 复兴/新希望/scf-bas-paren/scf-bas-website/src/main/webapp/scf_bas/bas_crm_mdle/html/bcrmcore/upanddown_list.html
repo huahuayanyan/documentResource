@@ -1,0 +1,29 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="custcd" name="客户号" ng-model="conditionForm.custcd"></ht-input>
+    <!--<ht-input ht-id="cname" name="客户名称" ng-model="conditionForm.cname"></ht-input>class="center" -->
+    <ht-button-group >
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-legend>上下游关系客户信息表</ht-legend>
+<ht-button-group>
+    <ht-button ht-id="add" hide="{{hide}}" class="btn-primary">新增</ht-button>
+    <ht-button ht-id="delete" hide="{{hide}}" class="btn-primary">删除</ht-button>
+    <ht-button ht-id="update" hide="{{hide}}" class="btn-primary">修改</ht-button>
+</ht-button-group>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <!--<ht-column eg-name="id" zh-name="数据ID" href="true" docolumn="column" ></ht-column>-->
+    <ht-column eg-name="custcd" zh-name="客户号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="cname" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="orgCode" zh-name="组织机构代码" ></ht-column>
+    <ht-column eg-name="coreRelationFlg" zh-name="与核心厂商关系" dictionary="coreRelationFlg"></ht-column>
+    <ht-column eg-name="state" zh-name="状态" dictionary="validState"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="confuse" disable="{{disable}}" class="btn-primary">返回</ht-button>
+</ht-button-group>

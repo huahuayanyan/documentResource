@@ -1,0 +1,32 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="cnameSeller_Q" name="卖方名称" ng-model="conditionForm.cnameSeller_Q"></ht-input>
+    <ht-input ht-id="protocolNo" name="先票/款后货协议号" ng-model="conditionForm.protocolNo"></ht-input>
+    <br/>
+    <ht-input ht-id="startDate_Q" name="预警日期 从" ng-model="conditionForm.startDate_Q" edit-type="date"
+              high-date-id="endDate_Q"></ht-input>
+    <ht-input ht-id="endDate_Q" name=" 到" ng-model="conditionForm.endDate_Q" edit-type="date"
+              lower-date-id="startDate_Q"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+        <ht-button ht-id="homeBack" class="btn-primary" hide="{{homeBackHide}}" desc-name="返回主页"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>到期未发货预警</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="cnameBuyer" zh-name="买方名称"></ht-column>
+    <ht-column eg-name="cnameSeller" zh-name="卖方名称"></ht-column>
+    <ht-column eg-name="protocolNo" zh-name="先票/款后货协议号"></ht-column>
+    <ht-column eg-name="noticeNo" zh-name="收款确认函编号"></ht-column>
+    <ht-column eg-name="debetId" zh-name="借据号/银承协议号"></ht-column>
+    <ht-column eg-name="loanAmt" zh-name="收款金额"></ht-column>
+    <ht-column eg-name="confirmDate" zh-name="收款确认日期"></ht-column>
+    <ht-column eg-name="loanDate" zh-name="出账日"></ht-column>
+    <ht-column eg-name="endDate" zh-name="出账到期日"></ht-column>
+    <ht-column eg-name="deliveryAmt" zh-name="已发货金额"></ht-column>
+    <ht-column eg-name="balanceAmt" zh-name="未发货金额" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

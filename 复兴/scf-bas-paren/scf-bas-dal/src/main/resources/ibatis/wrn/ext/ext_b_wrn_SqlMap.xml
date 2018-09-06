@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_WRN" >
+  <resultMap id="BaseResultMap" class="java.util.HashMap" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PARAM_ID" property="paramId" jdbcType="VARCHAR" />
+    <result column="WARN_DATE" property="warnDate" jdbcType="CHAR" />
+    <result column="WARN_LEVEL" property="warnLevel" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="SUSPEND_DATE" property="suspendDate" jdbcType="CHAR" />
+    <result column="SUSPEND_DAYS" property="suspendDays" jdbcType="DECIMAL" />
+    <result column="SUSPEND_TLRNO" property="suspendTlrno" jdbcType="VARCHAR" />
+    <result column="PROCESS_TLRNO" property="processTlrno" jdbcType="VARCHAR" />
+    <result column="PROCESS_DATE" property="processDate" jdbcType="CHAR" />
+    <result column="CUST_MANAGER" property="custManager" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="WARN_DUE_DATE" property="warnDueDate" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="TOP_PRODUCT_ID" property="topProductId" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_DATE" property="lastUpdDate" jdbcType="TIMESTAMP" />
+    <result column="DEBT_ID" property="debtId" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="BILLS_TYPE" property="billsType" jdbcType="CHAR" />
+    <result column="BILLS_NO" property="billsNo" jdbcType="VARCHAR" />
+    <result column="BUSS_CONTCODE" property="bussContcode" jdbcType="VARCHAR" />
+    <result column="BILLS_DATE" property="billsDate" jdbcType="CHAR" />
+    <result column="DEBT_END" property="debtEnd" jdbcType="CHAR" />
+    <result column="DEADLINE" property="deadline" jdbcType="CHAR" />
+    <result column="BILLS_AMOUNT_VIEW" property="billsAmountView" jdbcType="DECIMAL" />
+    <result column="BILLS_AMOUNT" property="billsAmount" jdbcType="DECIMAL" />
+    <result column="REMAINING_AMOUNT" property="remainingAmount" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="DEBT_STATUS" property="debtStatus" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    wbi.ID, wbi.PARAM_ID, wbi.WARN_DATE, wbi.WARN_LEVEL, wbi.STATUS, wbi.SUSPEND_DATE, wbi.SUSPEND_DAYS, wbi.SUSPEND_TLRNO, 
+    wbi.PROCESS_TLRNO, wbi.PROCESS_DATE, wbi.CUST_MANAGER, wbi.BRCODE, wbi.WARN_DUE_DATE, wbi.PRODUCT_ID, wbi.TOP_PRODUCT_ID, 
+    wbi.CUSTCD, wbi.LAST_UPD_DATE
+  </sql>
+  <sql id="Debt_Column_List" >
+    twdi.ID DEBT_ID, twdi.WARN_ID, twdi.BILLS_TYPE, twdi.BILLS_NO, twdi.BUSS_CONTCODE, twdi.BILLS_DATE, twdi.DEBT_END, twdi.DEADLINE, 
+    twdi.BILLS_AMOUNT_VIEW, twdi.BILLS_AMOUNT, twdi.REMAINING_AMOUNT, twdi.CURCD, twdi.STATUS DEBT_STATUS, twdi.MEMO
+  </sql>
+  <select id="getAccountDebtPromptWarnInfo" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+    select 
+    <include refid="EXT_B_WRN.Base_Column_List" />,
+    <include refid="EXT_B_WRN.Debt_Column_List" />
+    from B_WRN_BASE_INFO wbi,B_WRN_DEBT_PDO_INFO twdi	
+    	where wbi.ID = twdi.WARN_ID
+    	<isNotEmpty prepend="and" property="paramId" >
+    		<![CDATA[wbi.PARAM_ID = #paramId:VARCHAR#]]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="billsNo" >
+    		<![CDATA[twdi.BILLS_NO like '%' || #billsNo# || '%']]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="bussContcode" >
+    		<![CDATA[twdi.BUSS_CONTCODE like '%' || #bussContcode# || '%']]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="startDate" >
+			<![CDATA[wbi.WARN_DATE >= #startDate:VARCHAR#]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endDate" >
+			<![CDATA[wbi.WARN_DATE <= #endDate:VARCHAR#]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="brcode" >
+			<isNotEmpty prepend="" property="state" >
+				exists (select 1 from B_CNT_DEBT_INFO tcdi,R_BCP_DEBT_BASE_INFO dbi 
+				where tcdi.DEBT_CONTNO = dbi.MAST_CONTNO 
+				and twdi.BILLS_NO=dbi.BILLS_NO
+				and tcdi.COOPERATION_BRCODE = #brcode:VARCHAR#)
+			</isNotEmpty>
+			<isEmpty prepend="" property="state" >
+				exists (select 1 from B_SYS_BCTL_AFFILIATION 
+				where CHILD_BRCODE = wbi.BRCODE
+				and PARENT_BRCODE = #brcode:VARCHAR#
+				and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+			</isEmpty>
+		</isNotEmpty>
+  </select>
+  <select id="countByHashMap" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(wbi.id)
+    from B_WRN_BASE_INFO wbi,B_WRN_DEBT_PDO_INFO twdi	
+    	where wbi.ID = twdi.WARN_ID
+    	<isNotEmpty prepend="and" property="paramId" >
+    		<![CDATA[wbi.PARAM_ID = #paramId:VARCHAR#]]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="billsNo" >
+    		<![CDATA[twdi.BILLS_NO like '%' || #billsNo# || '%']]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="bussContcode" >
+    		<![CDATA[twdi.BUSS_CONTCODE like '%' || #bussContcode# || '%']]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="startDate" >
+			<![CDATA[wbi.WARN_DATE >= #startDate:VARCHAR#]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endDate" >
+			<![CDATA[wbi.WARN_DATE <= #endDate:VARCHAR#]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="brcode" >
+			<isNotEmpty prepend="" property="state" >
+				exists (select 1 from B_CNT_DEBT_INFO tcdi,R_BCP_DEBT_BASE_INFO dbi 
+				where tcdi.DEBT_CONTNO = dbi.MAST_CONTNO 
+				and twdi.BILLS_NO=dbi.BILLS_NO
+				and tcdi.COOPERATION_BRCODE = #brcode:VARCHAR#)
+			</isNotEmpty>
+			<isEmpty prepend="" property="state" >
+				exists (select 1 from B_SYS_BCTL_AFFILIATION 
+				where CHILD_BRCODE = wbi.BRCODE
+				and PARENT_BRCODE = #brcode:VARCHAR#
+				and AFFILIATION_TYPE = #affiliationType:VARCHAR#)
+			</isEmpty>
+		</isNotEmpty>
+  </select>
+</sqlMap>

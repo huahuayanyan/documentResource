@@ -1,0 +1,24 @@
+
+<ht-form name="bCrrEqptInfo">
+    <ht-input name="设备类型" reg-exp="common.require" ng-model="bCrrEqptInfo.eqptTyp" disable="{{disableview}}"></ht-input>
+    <ht-input name="设备名称" reg-exp="common.require" ng-model="bCrrEqptInfo.eqptNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="供货商国家" reg-exp="common.require" ng-model="bCrrEqptInfo.prvdArea" disable="{{disableview}}"></ht-input>
+    <ht-input name="供货商名称" reg-exp="common.require" ng-model="bCrrEqptInfo.prvdNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="制造商国家" reg-exp="common.require" ng-model="bCrrEqptInfo.factArea" disable="{{disableview}}"></ht-input>
+    <ht-input name="制造商名称" reg-exp="common.require" ng-model="bCrrEqptInfo.factNm" dictionary="curcd" disable="{{disableview}}"></ht-input>
+    <ht-input name="租赁期末设备所有权转移价款" reg-exp="common.require" ng-model="bCrrEqptInfo.latValUe" edit-type="currency" disable="{{disableview}}"></ht-input>
+</ht-form>
+
+<ht-button-group>
+    <ht-button ht-id="close" class="btn-primary">关闭</ht-button>
+</ht-button-group>
+
+<ht-legend style="margin-top: 10px">保证金列表</ht-legend>
+<ht-table ht-id="tableIdInfo" datasource="datasourceinfo" selected="selectedinfo" docheckbox="true" minheit="10px">
+    <ht-column eg-name="accountNo" zh-name="保证金帐号" href="true" docolumn="columninfo"></ht-column>
+    <ht-column eg-name="amount" zh-name="保证金金额" type="currency"></ht-column>
+    <ht-column eg-name="bailFrozenAmt" zh-name="冻结金额" type="currency"></ht-column>
+    <ht-column eg-name="accountName" zh-name="保证金账号名称"></ht-column>
+    <ht-column eg-name="actBrNm" zh-name="开户机构" ></ht-column>
+</ht-table>
+<ht-page conf="confinfo" style="height: 50px;padding-top: 5px"></ht-page>

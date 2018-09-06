@@ -1,0 +1,70 @@
+
+<ht-form name="otherform">
+    <ht-legend>监管公司详细信息</ht-legend>
+    <!-- disable是对应的查看的时候，disable1是对应的是当单户模式的时候，disable2是对应的是集团成员的时候,hide1是查看页面跳转过来的时候不允许操作，没有功能按钮-->
+    <ht-select ht-id="levels" name="监管公司等级"  disable="{{disable}}" datasource="levels" datatrsoption="value"
+               dataoption="key" reg-exp="common.require" ng-model="otherform.levels"></ht-select>
+    <ht-select ht-id="monitorArea" name="监管区域"disable="{{disable}}" dictionary="monitorArea" reg-exp="common.require" ng-model="otherform.monitorArea"></ht-select>
+    <ht-checkbox ht-id="monitortype" name="监管模式" disable="{{disable}}" dictionary="monitortype" reg-exp="common.require" ng-model="otherform.monitortype"></ht-checkbox>
+    <ht-input ht-id="detailMonitorArea" name="具体监管区域" disable="{{disable}}" reg-exp="common.require" ng-model="otherform.detailMonitorArea"></ht-input>
+
+    <ht-input ht-id="limitSum" name="监管总限额（元）"disable="{{disable}}"dictionary="idtype" edit-type="currency" reg-exp="common.require" ng-model="otherform.limitSum"></ht-input>
+    <ht-input ht-id="limitSingle" name="单笔最大限额（元）" disable="{{disable}}"dictionary="idtype" edit-type="currency" ng-model="otherform.limitSingle"></ht-input>
+    <!--<ht-input ht-id="userdLimit" name="已监管限额" dictionary="idtype" ng-model="otherform.userdLimit"></ht-input>-->
+    <ht-input ht-id="inspectFrequence" name="巡库频率（天）" disable="{{disable}}" edit-type="number" reg-exp="common.require" ng-model="otherform.inspectFrequence"></ht-input>
+    <ht-select ht-id="bussControlFlag" name="业务受理控制" disable="{{disable}}" dictionary="bussControlFlag"
+               ng-model="otherform.bussControlFlag"></ht-select>
+    <ht-input ht-id="levelCogniDate" name="等级认定日" disable="{{disable}}" edit-type="date"
+              high-date-id="levelEndDate" reg-exp="common.require" ng-model="otherform.levelCogniDate"></ht-input>
+    <!-- min-date="2016-08-07"max-date="2016-08-22"-->
+    <ht-input ht-id="levelEndDate" name="等级到期日" disable="{{disable}}" edit-type="date"
+              lower-date-id="levelCogniDate" reg-exp="common.require" ng-model="otherform.levelEndDate"></ht-input>
+    <ht-select ht-id="grouped" name="是否集团公司" disable="{{disable}}" dictionary="grouped"  on-change="grouped_change"
+                ng-model="otherform.grouped"></ht-select>
+    <!-- 这里的是否集团成员 对应老系统中的公司类型，而现在这张监管公司表中的公司类型不是这个意思,现在监管公司类型monitoryType，01仓储02物流03期货经济-->
+    <ht-select ht-id="groupedMember" name="是否集团成员" disable="{{disable1}}" dictionary="checked" on-change="groupedMember_change"
+                ng-model="otherform.groupedMember"></ht-select>
+   <!-- <ht-select ht-id="monitoryType" name="监管公司类型"   ng-model="otherform.monitoryType"></ht-select>-->
+   <!-- <ht-select ht-id="parentId" name="上级监管公司" disable="{{disable1}}" 老的查询框
+               datasource="parentId"  datatrsoption="cname" dataoption="custcd"  ng-model="otherform.parentId"></ht-select>-->
+    <ht-input-extent ht-id="parentName" name="上级监管公司"  extent="parentIdContent" disable="{{disable1}}"
+               on-change="dooextent" ng-model="otherform.parentName"></ht-input-extent>
+    <!--<ht-input ht-id="parentId" name="上级监管公司"  hide="true" ng-model="otherform.parentId"></ht-input>-->
+
+    <!--<ht-select ht-id="warehouseAddrType" name="仓库所在地" disable="{{disable}}" dictionary="warehouseAddrType" ng-model="otherform.warehouseAddrType"></ht-select>
+    <ht-select ht-id="channelMode" name="渠道模式"  disable="{{disable}}" dictionary="channelMode" ng-model="otherform.channelMode"></ht-select>
+    <ht-select ht-id="bankCorporateMode" name="银企直连模式"disable="{{disable}}" dictionary="bankCorporateMode"  ng-model="otherform.bankCorporateMode"></ht-select>
+    -->
+    <ht-select ht-id="monitorStatus" name="合作状态"disable="{{disable}}" dictionary="monitorStatus"  reg-exp="common.require" ng-model="otherform.monitorStatus"></ht-select>
+    <ht-select ht-id="creditType" name="总对总标识"  disable="{{disable2}}"dictionary="creditType" ng-model="otherform.creditType"></ht-select>
+    <ht-input ht-id="createDate" name="建档日期"disable="{{disable}}" edit-type="date"
+              high-date-id="levelEndDate"   lower-date-id="levelCogniDate"
+              reg-exp="common.require"  ng-model="otherform.createDate"></ht-input>
+   <!-- <ht-input ht-id="tlrcd" name="经办人" disable="true"  ng-model="otherform.tlrcd"></ht-input>
+    <ht-input ht-id="brcode" name="经办机构" disable="true"  ng-model="otherform.brcode"></ht-input>-->
+    <ht-text-area ht-id="description" name="备注" disable="{{disable}}"  ng-model="otherform.description"></ht-text-area>
+    </ht-form>
+
+<ht-legend>监管公司年审记录</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-column eg-name="cname" zh-name="监管公司名称" ></ht-column>
+    <ht-column eg-name="levels" zh-name="监管公司等级"></ht-column>
+    <ht-column eg-name="monitorArea" zh-name="监管区域"dictionary="monitorArea" ></ht-column>
+    <ht-column eg-name="monitortype" zh-name="监管模式" dictionary="monitortype" ></ht-column>
+    <ht-column eg-name="detailMonitorArea" zh-name="具体监管区域（省/市）"></ht-column>
+    <ht-column eg-name="limitSum" zh-name="监管限额" type="currency" ></ht-column>
+    <ht-column eg-name="levelCogniDate" zh-name="等级认定日" type="date"></ht-column>
+    <ht-column eg-name="levelEndDate" zh-name="等级到期日" type="date"></ht-column>
+    <ht-column eg-name="monitorStatus" zh-name="监管状态"  dictionary="monitorStatus"></ht-column>
+    <ht-column eg-name="remark" zh-name="备注"></ht-column>
+    <ht-column eg-name="createDate" zh-name="生成日期" type="date"></ht-column>
+
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" hide="{{hide1}}" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="confirm"  hide="{{hide1}}" class="btn-primary">生成年审记录</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

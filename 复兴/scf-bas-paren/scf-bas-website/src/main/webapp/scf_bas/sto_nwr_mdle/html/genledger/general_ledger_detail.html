@@ -1,0 +1,79 @@
+<ht-legend>基本信息</ht-legend>
+<ht-form name="baseinfo">
+    <ht-input name="出质人名称" ng-model="baseinfo.cname" disable="true"></ht-input>
+    <ht-input name="监管公司名称" ng-model="baseinfo.moniNm" disable="true"></ht-input>
+    <ht-input name="监管合同号" ng-model="baseinfo.protocolNo" disable="true"></ht-input>
+    <ht-input name="质押合同号" ng-model="baseinfo.slaveContno" disable="true"></ht-input>
+    <ht-input name="质押率（%）" ng-model="baseinfo.ration" disable="true"></ht-input>
+    <ht-select name="业务品种" ng-model="baseinfo.supplyChainPdId" dictionary="vidBusTyp" disable="true"></ht-select>
+    <ht-input name="出账总金额" ng-model="baseinfo.totalLnciAmt" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="敞口余额" ng-model="baseinfo.openAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="库存押品总价值" ng-model="baseinfo.mortgageAmount" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="客户经理" ng-model="baseinfo.mgrnoNm" disable="true"></ht-input>
+    <ht-input name="最低控货价值" ng-model="baseinfo.lowPriceNew" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="业务归属机构" ng-model="baseinfo.brcodeName" disable="true"></ht-input>
+</ht-form>
+
+<ht-legend>信贷合同</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="false">
+    <ht-column eg-name="appId" zh-name="信贷合同号" ></ht-column>
+    <ht-column eg-name="lnAmt" zh-name="信贷合同金额" type="currency"></ht-column>
+    <ht-column eg-name="lnAmt" zh-name="信贷合同总敞口" type="currency"></ht-column>
+    <ht-column eg-name="avaliableRiskAmt" zh-name="信贷合同可用敞口" type="currency"></ht-column>
+    <ht-column eg-name="bailAmount" zh-name="保证金余额" type="currency"></ht-column>
+    <ht-column eg-name="cashEqtAmt" zh-name="现金等价物余额" type="currency"></ht-column>
+    <ht-column eg-name="lnStrtDt" zh-name="合同生效日" type="date"></ht-column>
+    <ht-column eg-name="lnEndDt" zh-name="合同到期日" type="date"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-legend>借据信息</ht-legend>
+<ht-table ht-id="tableId" datasource="datasourcelnci" selected="selectedlnci" docheckbox="false">
+    <ht-column eg-name="appno" zh-name="融资出账流水号"></ht-column>
+    <ht-column eg-name="debetId" zh-name="借据号"></ht-column>
+    <ht-column eg-name="mastContcode" zh-name="信贷合同号"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="startDate" zh-name="起始日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="借据金额" type="currency"></ht-column>
+    <ht-column eg-name="lnciBal" zh-name="借据余额" type="currency"></ht-column>
+    <ht-column eg-name="receivableInt" zh-name="欠息总额"></ht-column>
+    <ht-column eg-name="lnciStatus" zh-name="借据状态" dictionary="lnciStatus"></ht-column>
+    <ht-column eg-name="rate" zh-name="利率(%)"></ht-column>
+    <ht-column eg-name="firstBailRatio" zh-name="初始保证金比例" type="currency"></ht-column>
+    <ht-column eg-name="bailAmount" zh-name="保证金金额" type="currency"></ht-column>
+    <ht-column eg-name="initCashEqtAmt" zh-name="现金等价物金额" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conflnci" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-legend>质押仓单信息</ht-legend>
+<ht-table ht-id="tableId" datasource="datasourcebill" selected="selectedbill" docheckbox="false">
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="keeperName" zh-name="保管人名称"></ht-column>
+    <ht-column eg-name="startDate" zh-name="开具日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="截止日期" type="date"></ht-column>
+    <ht-column eg-name="insuranceNo" zh-name="保险单号"></ht-column>
+    <ht-column eg-name="storageAddress" zh-name="仓库地址"></ht-column>
+    <ht-column eg-name="status" zh-name="仓单状态" dictionary="billManageStatus"></ht-column>
+</ht-table>
+<ht-page conf="confbill" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-legend>库存押品列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasourcemort" selected="selectedmort" docheckbox="false">
+    <ht-column eg-name="billcode" zh-name="仓单号"></ht-column>
+    <ht-column eg-name="mortgageNo" zh-name="押品编号"></ht-column>
+    <ht-column eg-name="mortgageName" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="mortgageUnits" zh-name="单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column eg-name="quantity" zh-name="重量/数量" type="currency"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="核定单价" type="currency"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+<!--     <ht-column eg-name="manufacturer" zh-name="生产厂商(产地)"></ht-column> -->
+</ht-table>
+<ht-page conf="confmort" style="height: 50px;padding-top: 5px"></ht-page>
+
+
+
+

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_DCR" >
+   <resultMap id="CrNmResultMap" class="java.util.HashMap" >
+    <result column="CR_ID" property="crId" jdbcType="VARCHAR" />
+    <result column="CR_NM" property="crNm" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryCrNmSource" resultMap="CrNmResultMap"  parameterClass="java.util.Map" >
+    select CR_ID||'-'||CIRC_FLAG||'-'||CR_NM as CR_ID,CR_NM
+    from B_DCR_LIN_TYP
+    where STAT = #stat:VARCHAR#
+    order by CR_ID   
+  </select>
+  
+   <resultMap id="CustResultMap" class="java.util.HashMap" >
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryCustList" resultMap="CustResultMap"  parameterClass="java.util.Map" >
+    select CUSTCD,CNAME
+    from B_CRM_BASE_INFO  
+   <dynamic prepend="where" >
+      <isNotEmpty prepend="or" property="custcd" >
+        CUSTCD  like '%'|| #custcd:VARCHAR#||'%'
+      </isNotEmpty>
+      <isNotEmpty prepend="or" property="cname" >
+        CNAME  like '%'|| #cname:VARCHAR#||'%'    
+      </isNotEmpty>
+    </dynamic>
+    order by CUSTCD   
+  </select> 
+  
+  
+    <resultMap id="LinInfResultMap" class="com.huateng.scf.bas.dcr.model.BDcrLinInf" >
+    <result column="LIN_ID" property="linId" jdbcType="VARCHAR" />
+    <result column="LIN_TYP" property="linTyp" jdbcType="CHAR" />
+    <result column="BUS_NM" property="busNm" jdbcType="VARCHAR" />
+    <result column="BUS_TYP" property="busTyp" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="VARCHAR" />
+    <result column="CR_AMT" property="crAmt" jdbcType="DECIMAL" />
+    <result column="RISK_AMT" property="riskAmt" jdbcType="DECIMAL" />
+    <result column="CIRC_FLAG" property="circFlag" jdbcType="CHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="LIN_LVL" property="linLvl" jdbcType="DECIMAL" />
+  </resultMap>
+   <sql id="LinInf_Column_List" >
+    LIN_ID, LIN_TYP, BUS_NM, BUS_TYP, CURCD, CR_AMT, RISK_AMT, CIRC_FLAG, PARENT_ID, 
+    LIN_LVL
+  </sql>
+   <select id="selectTreeByRootId" resultMap="LinInfResultMap" parameterClass="String" >
+    select 
+    <include refid="EXT_DCR.LinInf_Column_List" />
+    from B_DCR_LIN_INF
+    start with  LIN_ID=#linId:VARCHAR#
+    connect by prior  LIN_ID=PARENT_ID order by  LIN_LVL   
+  </select>
+  
+  
+  
+  
+   <resultMap id="ExtBDcrLinInfResultMap" class="java.util.HashMap" >
+    <result column="LIN_ID" property="linId" jdbcType="VARCHAR" />
+    <result column="LIN_TYP" property="linTyp" jdbcType="CHAR" />
+    <result column="BUS_NM" property="busNm" jdbcType="VARCHAR" />
+    <result column="BUS_TYP" property="busTyp" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="VARCHAR" />
+    <result column="CR_AMT" property="crAmt" jdbcType="DECIMAL" />
+    <result column="RISK_AMT" property="riskAmt" jdbcType="DECIMAL" />
+    <result column="CIRC_FLAG" property="circFlag" jdbcType="CHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="LIN_LVL" property="linLvl" jdbcType="DECIMAL" />
+    <result column="USED_NUM" property="usedNum" jdbcType="DECIMAL" />
+    <result column="ABLE_NUM" property="ableNum" jdbcType="DECIMAL" />
+    <result column="BC_CR_ID" property="bcCrId" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="CUST_NM" property="custNm" jdbcType="VARCHAR" />    
+  </resultMap>
+   <select id="queryCusBDcrLinInf" resultMap="ExtBDcrLinInfResultMap" parameterClass="java.util.Map" >
+		select  a.LIN_ID, a.LIN_TYP, a.BUS_NM, a.BUS_TYP, a.CURCD, a.CR_AMT, a.RISK_AMT, a.CIRC_FLAG, a.PARENT_ID, a.LIN_LVL,a.USED_NUM,a.ABLE_NUM,a.BC_CR_ID,
+		b.CUST_ID,b.CUST_NM
+		from  B_DCR_LIN_INF a , B_DCR_LIN b   where  
+		a.BC_CR_ID=b.BC_CR_ID 
+		and 
+		a.LIN_TYP=#linTyp:VARCHAR# 
+		and 
+		b.STAT=#stat:VARCHAR#
+		and a.BUS_TYP=#prdId:VARCHAR#
+		and b.CUST_ID=#custId:VARCHAR#
+  </select>
+   
+  
+</sqlMap>

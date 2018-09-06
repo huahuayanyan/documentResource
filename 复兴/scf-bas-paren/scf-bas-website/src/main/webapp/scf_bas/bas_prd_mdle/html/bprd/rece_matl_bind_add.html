@@ -1,0 +1,26 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="receMatlName" name="应收材料名称" ng-model="conditionForm.receMatlName" ></ht-input>
+    <ht-select ht-id="receMatlType"  name="应收材料类型"  dictionary="receMatlType" ng-model="conditionForm.receMatlType" ></ht-select>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="清空"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>应收材料列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="receMatlName" zh-name="应收材料名称"  href="true" docolumn="column" ></ht-column>
+    <ht-column eg-name="origNum" zh-name="原件份数"></ht-column>
+    <ht-column eg-name="copyOrigNum" zh-name="复印件份数"></ht-column>
+    <ht-column eg-name="receMatlType" zh-name="应收材料类型"  dictionary="receMatlType" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>
+
+
+
+

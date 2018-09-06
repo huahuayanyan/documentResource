@@ -1,0 +1,50 @@
+<ht-panel>
+<ht-legend>抵质押合同信息</ht-legend>
+<ht-form name="gntyform">
+    <ht-input ht-id="conId" name="抵/质押合同内部编号" disable="true" ng-model="gntyform.conId"></ht-input>
+    <ht-input ht-id="prtclNo" name="监管合同号" disable="true" ng-model="gntyform.prtclNo"></ht-input>
+    <ht-input ht-id="vidPrdNm" name="业务品种" disable="true" ng-model="gntyform.vidPrdNm"></ht-input>
+    <ht-input ht-id="prtclBrNm" name="监管公司名称" disable="true" ng-model="gntyform.prtclBrNm"></ht-input>
+    <ht-input ht-id="ration" name="抵/质押率（%）" disable="true" ng-model="gntyform.ration" edit-type="currency"></ht-input>
+    <ht-input ht-id="guardRat" name="市值抵/质押率警戒线（%）" disable="true" ng-model="gntyform.guardRat" edit-type="currency"></ht-input>
+    <ht-input ht-id="conId" name="抵/质押合同号" disable="true" ng-model="gntyform.conId"></ht-input>
+    <ht-input ht-id="gutNm" name="出质人名称" disable="true" ng-model="gntyform.gutNm"></ht-input>
+    <ht-select ht-id="conTyp" name="担保类型" disable="true" ng-model="gntyform.conTyp" dictionary="gntyConTyp"></ht-select>
+    <ht-select ht-id="conStat" name="状态" disable="true" ng-model="gntyform.conStat" dictionary="appTyp"></ht-select>
+    <ht-select ht-id="curcd" name="币种" disable="true" ng-model="gntyform.gutCurcd" dictionary="curcd"></ht-select>
+    <ht-input ht-id="gutVal" name="合同金额" disable="true" ng-model="gntyform.gutVal" edit-type="currency"></ht-input>
+    <ht-input ht-id="strtDt" name="合同生效日" disable="true" ng-model="gntyform.strtDt" edit-type="date"></ht-input>
+    <ht-input ht-id="endDt" name="合同到期日" disable="true" ng-model="gntyform.endDt" edit-type="date"></ht-input>
+    <ht-input ht-id="tlrNm" name="客户经理" disable="true" ng-model="gntyform.tlrNm"></ht-input>
+    <ht-input ht-id="brNm" name="经办机构" disable="true" ng-model="gntyform.brNm"></ht-input>
+</ht-form>
+</ht-panel>
+<ht-panel>
+<ht-legend>保证金转出登记</ht-legend>
+<ht-form name="transferform">
+    <ht-input ht-id="bailAmount" reg-exp="common.require" name="账号金额" disable="true" ng-model="transferform.bailAmount" edit-type="currency"></ht-input>
+    <ht-input ht-id="bailAccountno" reg-exp="common.require" name="保证金账号" disable="{{disable}}" ng-model="transferform.bailAccountno"></ht-input>
+    <br>
+    <ht-input ht-id="amount" reg-exp="common.require" name="交易金额" disable="{{taskDisable}}" ng-model="transferform.amount" edit-type="currency"></ht-input>
+    <ht-button ht-id="doBalance" class="btn-primary" desc-name="查询核心保证金余额" disable="{{taskDisable}}"></ht-button>
+    <ht-input ht-id="amt" reg-exp="common.require" name="敞口余额" disable="true" ng-model="transferform.amt" edit-type="currency"></ht-input>
+    <ht-input ht-id="npsBailAmount" reg-exp="common.require" name="核心保证金余额" disable="true" ng-model="transferform.npsBailAmount" edit-type="currency"></ht-input>
+</ht-form>
+</ht-panel>
+<ht-button-group class="center">
+    <!-- 最高额保证金转出申请录入 -->
+    <ht-button ht-id="save" class="btn-primary" hide="{{Write}}" disable="{{flowsubmitdisable}}">保存</ht-button>
+    <!-- 保证金转出申请录入提交申请 -->
+    <ht-button ht-id="submit" class="btn-primary" hide="{{Write}}" disable="{{disableButton}}">提交审批</ht-button>
+    <!-- 保证金转出申请经办机构审查岗复核 -->
+    <ht-button ht-id="checkAgree" class="btn-primary" hide="{{Review}}" disable="{{ReviewDisable}}">同意</ht-button>
+    <!-- 保证金转出申请交易融资部贷权内控岗复核 -->
+    <ht-button ht-id="checkAgree" class="btn-primary" hide="{{Check}}" disable="{{CheckDisable}}">同意</ht-button>
+
+    <ht-button ht-id="ApproveAgree" class="btn-primary" hide="{{Approve}}" disable="{{ApproveDisable}}">同意</ht-button>
+
+    <ht-button ht-id="BackToModify" class="btn-primary" hide="{{backHide}}" disable="{{backHideDisable}}">退回</ht-button>
+
+    <ht-button ht-id="back" class="btn-primary" hide="{{hideButton}}">返回</ht-button>
+</ht-button-group>
+

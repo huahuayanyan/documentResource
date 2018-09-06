@@ -1,0 +1,69 @@
+
+<ht-legend>任务基本信息</ht-legend>
+<ht-form name="applitask">
+    <ht-input name="流程名称" ng-model="applitask.processTemplateName" disable="true"></ht-input>
+    <ht-input name="申请发起时间" ng-model="applitask.startTaskDate" edit-type="date" disable="true"></ht-input>
+    <ht-input ht-id="startTlrcdName" name="经办人" ng-model="applitask.startTlrcdName" disable="true"></ht-input>
+    <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="applitask.startBrcodeName" disable="true"></ht-input>
+</ht-form>
+<ht-form name="lnconform">
+    <ht-legend>主合同基本信息</ht-legend>
+    <ht-input ht-id="custId" reg-exp="common.require" name="客户号" disable="true" ng-model="lnconform.custId"></ht-input>
+    <ht-input ht-id="custNm" reg-exp="common.require" name="客户名称" disable="true" ng-model="lnconform.custNm"></ht-input>
+    <ht-input ht-id="appId" reg-exp="common.require" name="主合同号" disable="true" ng-model="lnconform.appId"></ht-input>
+    <!-- 由于信贷合同表中物协议类型字段，所以放款种类用产品名称暂代-->
+    <ht-input ht-id="supplyChainPdNm" reg-exp="common.require" name="放款种类" disable="true" ng-model="lnconform.supplyChainPdNm"></ht-input>
+    <ht-select ht-id="curcd" reg-exp="common.require" name="合同币种" disable="true" ng-model="lnconform.curcd" dictionary="curcd"></ht-select>
+    <ht-input ht-id="lnAmt" reg-exp="common.require" name="合同金额" disable="true" ng-model="lnconform.lnAmt" edit-type="currency"></ht-input>
+
+    <ht-input ht-id="bailAmount" name="保证金及现金等价物总额" disable="true" ng-model="lnconform.bailAmount" edit-type="currency"></ht-input>
+    <ht-input ht-id="firstBailRatio" name="自有资金比例" disable="true" ng-model="lnconform.firstBailRatio" edit-type="currency"></ht-input>
+    <ht-input ht-id="openAmount" name="敞口余额" disable="true" ng-model="lnconform.openAmount" edit-type="currency"></ht-input>
+    <ht-input ht-id="dismortBailAmount" name=" 解押总金额 " disable="true" ng-model="lnconform.dismortBailAmount" edit-type="currency"></ht-input>
+</ht-form>
+
+<ht-legend>融资列表</ht-legend>
+<ht-table datasource="datasourcelnci" selected="selectedlnci" docheckbox="true" minheit="10px">
+    <ht-column eg-name="debetId" zh-name="借据号/银承编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="融资类型" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="lnciStatus" zh-name="融资状态" dictionary="lnciStatus"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="融资金额" type="currency"></ht-column>
+    <ht-column eg-name="lnciBal" zh-name="融资余额" type="currency"></ht-column>
+
+    <ht-column eg-name="startDate" zh-name="出账日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="出账到期日" type="date"></ht-column>
+    <ht-column eg-name="bailAmount" zh-name="初始现金及其等价物金额" type="currency"></ht-column>
+    <ht-column eg-name="refundAmount" zh-name="追加现金及其等价物" type="currency"></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="本次解押现金及其等价物价值" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conflnci" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-legend>现金等价物列表信息</ht-legend>
+<ht-button-group >
+    <ht-button ht-id="edit" hide="{{hide}}" class="btn-primary">修改</ht-button>
+</ht-button-group>
+<ht-table datasource="datasourcecash" selected="selectedcash" docheckbox="true" minheit="10px">
+    <ht-column eg-name="bailType" zh-name="类型" dictionary="bailType"></ht-column>
+    <!--<ht-column eg-name="initType" zh-name="质押类型" dictionary="initType"></ht-column>-->
+    <ht-column eg-name="bailAccountno" zh-name="保证金等价物编号" href="true" docolumn="cashColumn"></ht-column>
+    <!--<ht-column eg-name="debetNo" zh-name="关联借据号/银承协议号"></ht-column>-->
+    <ht-column eg-name="bailAmount" zh-name="现金等价物金额" type="currency"></ht-column>
+    <ht-column eg-name="bailRate" zh-name="质押率(%)" type="currency"></ht-column>
+    <ht-column eg-name="value" zh-name="现金等价物质押价值" type="currency"></ht-column>
+    <ht-column eg-name="accountType" zh-name="解押用途" dictionary="accountTypeJy"></ht-column>
+</ht-table>
+<ht-page conf="confcash" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="submit" class="btn-primary" hide="{{Write}}" disable="{{WriteDisable}}">提交审批</ht-button>
+    <!-- 货权内控岗审批 -->
+    <ht-button ht-id="approveAgree" class="btn-primary" hide="{{approve}}" disable="{{approveDisable}}">同意</ht-button>
+    <!-- 复核岗审批 -->
+    <ht-button ht-id="confirmAgree" class="btn-primary" hide="{{Confirm}}" disable="{{ConfirmDisable}}">同意</ht-button>
+
+    <ht-button ht-id="endAgree" class="btn-primary" hide="{{end}}" disable="{{endDisable}}">同意</ht-button>
+
+    <ht-button ht-id="BackToModify" class="btn-primary" hide="{{backHide}}" disable="{{backHideDisable}}">退回</ht-button>
+
+    <ht-button ht-id="back" class="btn-primary" hide="{{hideButton}}" disable="{{hideDisable}}">返回</ht-button>
+</ht-button-group>

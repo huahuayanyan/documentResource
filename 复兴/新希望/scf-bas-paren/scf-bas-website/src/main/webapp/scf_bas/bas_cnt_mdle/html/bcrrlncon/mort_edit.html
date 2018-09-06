@@ -1,0 +1,13 @@
+
+<ht-form name="mort" style="height:100">
+    <ht-input-extent ht-id="mortgageLevelOneNm" name="押品一级" reg-exp="common.require" ng-model="mort.mortgageLevelOneNm"
+                     extent="levelOneContent" on-change="levelOnedooextent"></ht-input-extent>
+    <ht-input-extent ht-id="mortgageLevelTwoNm" name="押品二级" reg-exp="common.require" ng-model="mort.mortgageLevelTwoNm"
+                     extent="levelTwoContent" on-change="levelTwodooextent"></ht-input-extent>
+                     <br><br><br><br><br>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="mortConfirm" class="btn-primary" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="mortCloseDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

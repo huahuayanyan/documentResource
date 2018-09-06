@@ -1,0 +1,18 @@
+<ht-legend>池应收账款信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-column eg-name="cnameSeller" zh-name="卖方名称" ></ht-column>
+    <ht-column eg-name="cnameBuyer" zh-name="买方名称" ></ht-column>
+    <ht-column eg-name="mastContno" zh-name="池合同号" ></ht-column>
+    <ht-column eg-name="bussType" zh-name="业务品种" dictionary="vidBusTyp"></ht-column>
+    <ht-column eg-name="billsNo" zh-name="凭证编号" ></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType"></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同号" ></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期" type="date"></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="账面金额" type="currency"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="应收账款余额" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

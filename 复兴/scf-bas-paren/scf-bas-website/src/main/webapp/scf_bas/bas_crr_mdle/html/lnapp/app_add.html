@@ -1,0 +1,16 @@
+
+<ht-form name="otherform" columns="1">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input-extent ht-id="custNm" name="客户名称" reg-exp="common.require" extent="custcontent"
+                     on-change="dooextend" ng-model="otherform.custNm" disable="{{disable}}"></ht-input-extent>
+    <ht-input name="客户号" reg-exp="common.require" ng-model="otherform.custId" disable="true"></ht-input>
+    <ht-input-extent ht-id="prdNm" name="业务品种" reg-exp="common.require" extent="prdmdcontent"
+               on-change="prdmdextend" ng-model="otherform.prdNm" disable="{{disable}}"></ht-input-extent>
+    <ht-select name="发生类型" reg-exp="common.require" ng-model="otherform.lnTyp" dictionary="lnTyp" disable="true"></ht-select>
+    <ht-select name="主要担保方式" reg-exp="common.require" ng-model="otherform.guatTypMain" dictionary="gutTyp"></ht-select>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

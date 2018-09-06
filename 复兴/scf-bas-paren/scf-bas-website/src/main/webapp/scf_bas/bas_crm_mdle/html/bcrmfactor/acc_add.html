@@ -1,0 +1,20 @@
+
+
+
+<ht-form name="otherform">
+    <!--<ht-legend>客户新增</ht-legend>-->
+    <ht-select ht-id="accountType" name="账户类型" disable="{{disable}}" dictionary="accountType" reg-exp="common.require" ng-model="otherform.accountType"></ht-select>
+    <ht-input ht-id="accountName" name="账号名称" disable="{{disable}}" reg-exp="common.require" ng-model="otherform.accountName"></ht-input>
+    <ht-select ht-id="curcd" name="币种" reg-exp="common.require" disable="{{disable}}" dictionary="curcd" ng-model="otherform.curcd"></ht-select>
+    <ht-input ht-id="accountNo" name="账号" disable="{{disable1}}" reg-exp="common.require" edit-type="number"ng-model="otherform.accountNo"></ht-input>
+    <ht-input-extent ht-id="brName" name="经办机构" extent="brNameContent" on-change="brNameExtent" disable="true"
+                     ng-model="otherform.brName"></ht-input-extent>
+    <ht-input ht-id="mgrName" name="客户经理" disable="true" ng-model="otherform.mgrName"></ht-input>
+    <!--<ht-input-extent ht-id="cname" name="客户名称" extent="cnameContent" on-change="cnameExtent" disable="{{disable}}"
+                     reg-exp="common.require" ng-model="otherform.cname"></ht-input-extent>-->
+
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide}}" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"class="btn-primary">取消</ht-button>
+</ht-button-group>

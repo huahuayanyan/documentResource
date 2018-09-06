@@ -1,0 +1,26 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="bcopName" name="业务组件名称" ng-model="conditionForm.bcopName" ></ht-input>
+    <ht-input ht-id="id"  name="业务组件ID" ng-model="conditionForm.id"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="清空"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>业务组件列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+       <!-- <ht-button ht-id="fresh">刷新</ht-button>-->
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="bcopName" zh-name="业务组件名称"  href="true" docolumn="column" ></ht-column>
+    <ht-column eg-name="id" zh-name="业务组件ID"></ht-column>
+    <ht-column eg-name="status" zh-name="状态" reg-exp="common.require" dictionary="productStatus"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->

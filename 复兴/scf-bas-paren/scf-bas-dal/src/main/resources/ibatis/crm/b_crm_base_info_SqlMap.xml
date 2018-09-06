@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRM_BASE_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crm.dao.model.BCrmBaseInfo" >
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CUSTNO" property="custno" jdbcType="VARCHAR" />
+    <result column="CUST_TYPE" property="custType" jdbcType="CHAR" />
+    <result column="IDTYPE" property="idtype" jdbcType="VARCHAR" />
+    <result column="IDNO" property="idno" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="ENAME" property="ename" jdbcType="VARCHAR" />
+    <result column="ALIAS_NAME" property="aliasName" jdbcType="VARCHAR" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="SOC_CREDIT_NO" property="socCreditNo" jdbcType="VARCHAR" />
+    <result column="LICENSE_NO" property="licenseNo" jdbcType="VARCHAR" />
+    <result column="LICENSE_DATE" property="licenseDate" jdbcType="CHAR" />
+    <result column="OPEN_DATE" property="openDate" jdbcType="CHAR" />
+    <result column="CORE_OPEN_DATE" property="coreOpenDate" jdbcType="CHAR" />
+    <result column="CUST_STATUS" property="custStatus" jdbcType="CHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="CORE_FLAG" property="coreFlag" jdbcType="CHAR" />
+    <result column="MONI_FLAG" property="moniFlag" jdbcType="CHAR" />
+    <result column="FUTURES_FLAG" property="futuresFlag" jdbcType="CHAR" />
+    <result column="FLC_FLAG" property="flcFlag" jdbcType="CHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="CHAR" />
+    <result column="CREDIT_FLAG" property="creditFlag" jdbcType="CHAR" />
+    <result column="BLACK_FLAG" property="blackFlag" jdbcType="CHAR" />
+    <result column="INSURE_FLAG" property="insureFlag" jdbcType="CHAR" />
+    <result column="FACTOR_FLAG" property="factorFlag" jdbcType="CHAR" />
+    <result column="CCMS_CUSTCD" property="ccmsCustcd" jdbcType="VARCHAR" />
+    <result column="IMPORTANT_FLAG" property="importantFlag" jdbcType="CHAR" />
+    <result column="COMMERCIAL_FALG" property="commercialFalg" jdbcType="CHAR" />
+    <result column="OVERSEAS_FLAG" property="overseasFlag" jdbcType="CHAR" />
+    <result column="BANKS_CUST_FLAG" property="banksCustFlag" jdbcType="CHAR" />
+    <result column="EF_BUYER_FLAG" property="efBuyerFlag" jdbcType="CHAR" />
+    <result column="IF_SELLER_FLAG" property="ifSellerFlag" jdbcType="CHAR" />
+    <result column="IS_BANK" property="isBank" jdbcType="CHAR" />
+    <result column="FCI_CODE" property="fciCode" jdbcType="VARCHAR" />
+    <result column="IS_INTL" property="isIntl" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    CUSTCD, CUSTNO, CUST_TYPE, IDTYPE, IDNO, CNAME, ENAME, ALIAS_NAME, ORG_CODE, SOC_CREDIT_NO, 
+    LICENSE_NO, LICENSE_DATE, OPEN_DATE, CORE_OPEN_DATE, CUST_STATUS, MGRNO, CORE_FLAG, 
+    MONI_FLAG, FUTURES_FLAG, FLC_FLAG, CREATE_DATE, CREDIT_FLAG, BLACK_FLAG, INSURE_FLAG, 
+    FACTOR_FLAG, CCMS_CUSTCD, IMPORTANT_FLAG, COMMERCIAL_FALG, OVERSEAS_FLAG, BANKS_CUST_FLAG, 
+    EF_BUYER_FLAG, IF_SELLER_FLAG, IS_BANK, FCI_CODE, IS_INTL, TLRCD, CRT_TIME, BRCODE, 
+    LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmBaseInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRM_BASE_INFO.Base_Column_List" />
+    from B_CRM_BASE_INFO
+    <isParameterPresent >
+      <include refid="B_CRM_BASE_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmBaseInfoExample" >
+    delete from B_CRM_BASE_INFO
+    <include refid="B_CRM_BASE_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmBaseInfo" >
+    insert into B_CRM_BASE_INFO (CUSTCD, CUSTNO, CUST_TYPE, IDTYPE, IDNO, 
+      CNAME, ENAME, ALIAS_NAME, ORG_CODE, SOC_CREDIT_NO, 
+      LICENSE_NO, LICENSE_DATE, OPEN_DATE, CORE_OPEN_DATE, 
+      CUST_STATUS, MGRNO, CORE_FLAG, MONI_FLAG, FUTURES_FLAG, 
+      FLC_FLAG, CREATE_DATE, CREDIT_FLAG, BLACK_FLAG, INSURE_FLAG, 
+      FACTOR_FLAG, CCMS_CUSTCD, IMPORTANT_FLAG, COMMERCIAL_FALG, 
+      OVERSEAS_FLAG, BANKS_CUST_FLAG, EF_BUYER_FLAG, IF_SELLER_FLAG, 
+      IS_BANK, FCI_CODE, IS_INTL, TLRCD, CRT_TIME, 
+      BRCODE, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+      )
+    values (#custcd:VARCHAR#, #custno:VARCHAR#, #custType:CHAR#, #idtype:VARCHAR#, #idno:VARCHAR#, 
+      #cname:VARCHAR#, #ename:VARCHAR#, #aliasName:VARCHAR#, #orgCode:VARCHAR#, #socCreditNo:VARCHAR#, 
+      #licenseNo:VARCHAR#, #licenseDate:CHAR#, #openDate:CHAR#, #coreOpenDate:CHAR#, 
+      #custStatus:CHAR#, #mgrno:VARCHAR#, #coreFlag:CHAR#, #moniFlag:CHAR#, #futuresFlag:CHAR#, 
+      #flcFlag:CHAR#, #createDate:CHAR#, #creditFlag:CHAR#, #blackFlag:CHAR#, #insureFlag:CHAR#, 
+      #factorFlag:CHAR#, #ccmsCustcd:VARCHAR#, #importantFlag:CHAR#, #commercialFalg:CHAR#, 
+      #overseasFlag:CHAR#, #banksCustFlag:CHAR#, #efBuyerFlag:CHAR#, #ifSellerFlag:CHAR#, 
+      #isBank:CHAR#, #fciCode:VARCHAR#, #isIntl:CHAR#, #tlrcd:VARCHAR#, #crtTime:TIMESTAMP#, 
+      #brcode:VARCHAR#, #lastUpdTlrcd:VARCHAR#, #lastUpdTime:TIMESTAMP#, #lastUpdBrcode:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmBaseInfo" >
+    insert into B_CRM_BASE_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="custno" >
+        CUSTNO
+      </isNotNull>
+      <isNotNull prepend="," property="custType" >
+        CUST_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="idtype" >
+        IDTYPE
+      </isNotNull>
+      <isNotNull prepend="," property="idno" >
+        IDNO
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="ename" >
+        ENAME
+      </isNotNull>
+      <isNotNull prepend="," property="aliasName" >
+        ALIAS_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="orgCode" >
+        ORG_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="socCreditNo" >
+        SOC_CREDIT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="licenseNo" >
+        LICENSE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="licenseDate" >
+        LICENSE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="openDate" >
+        OPEN_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="coreOpenDate" >
+        CORE_OPEN_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="custStatus" >
+        CUST_STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        MGRNO
+      </isNotNull>
+      <isNotNull prepend="," property="coreFlag" >
+        CORE_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="moniFlag" >
+        MONI_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="futuresFlag" >
+        FUTURES_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="flcFlag" >
+        FLC_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        CREATE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="creditFlag" >
+        CREDIT_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="blackFlag" >
+        BLACK_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="insureFlag" >
+        INSURE_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="factorFlag" >
+        FACTOR_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="ccmsCustcd" >
+        CCMS_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="importantFlag" >
+        IMPORTANT_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="commercialFalg" >
+        COMMERCIAL_FALG
+      </isNotNull>
+      <isNotNull prepend="," property="overseasFlag" >
+        OVERSEAS_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="banksCustFlag" >
+        BANKS_CUST_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="efBuyerFlag" >
+        EF_BUYER_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="ifSellerFlag" >
+        IF_SELLER_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="isBank" >
+        IS_BANK
+      </isNotNull>
+      <isNotNull prepend="," property="fciCode" >
+        FCI_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="isIntl" >
+        IS_INTL
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        CRT_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        LAST_UPD_TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        LAST_UPD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custno" >
+        #custno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custType" >
+        #custType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="idtype" >
+        #idtype:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="idno" >
+        #idno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ename" >
+        #ename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="aliasName" >
+        #aliasName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orgCode" >
+        #orgCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="socCreditNo" >
+        #socCreditNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="licenseNo" >
+        #licenseNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="licenseDate" >
+        #licenseDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="openDate" >
+        #openDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreOpenDate" >
+        #coreOpenDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custStatus" >
+        #custStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        #mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreFlag" >
+        #coreFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniFlag" >
+        #moniFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="futuresFlag" >
+        #futuresFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flcFlag" >
+        #flcFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        #createDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditFlag" >
+        #creditFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="blackFlag" >
+        #blackFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insureFlag" >
+        #insureFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="factorFlag" >
+        #factorFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ccmsCustcd" >
+        #ccmsCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="importantFlag" >
+        #importantFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commercialFalg" >
+        #commercialFalg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="overseasFlag" >
+        #overseasFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="banksCustFlag" >
+        #banksCustFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="efBuyerFlag" >
+        #efBuyerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifSellerFlag" >
+        #ifSellerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isBank" >
+        #isBank:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fciCode" >
+        #fciCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isIntl" >
+        #isIntl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crtTime" >
+        #crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlrcd" >
+        #lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTime" >
+        #lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmBaseInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRM_BASE_INFO
+    <include refid="B_CRM_BASE_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRM_BASE_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custno" >
+        CUSTNO = #record.custno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custType" >
+        CUST_TYPE = #record.custType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.idtype" >
+        IDTYPE = #record.idtype:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.idno" >
+        IDNO = #record.idno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cname" >
+        CNAME = #record.cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ename" >
+        ENAME = #record.ename:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.aliasName" >
+        ALIAS_NAME = #record.aliasName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.orgCode" >
+        ORG_CODE = #record.orgCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.socCreditNo" >
+        SOC_CREDIT_NO = #record.socCreditNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.licenseNo" >
+        LICENSE_NO = #record.licenseNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.licenseDate" >
+        LICENSE_DATE = #record.licenseDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.openDate" >
+        OPEN_DATE = #record.openDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coreOpenDate" >
+        CORE_OPEN_DATE = #record.coreOpenDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custStatus" >
+        CUST_STATUS = #record.custStatus:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mgrno" >
+        MGRNO = #record.mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coreFlag" >
+        CORE_FLAG = #record.coreFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniFlag" >
+        MONI_FLAG = #record.moniFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.futuresFlag" >
+        FUTURES_FLAG = #record.futuresFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.flcFlag" >
+        FLC_FLAG = #record.flcFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.createDate" >
+        CREATE_DATE = #record.createDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditFlag" >
+        CREDIT_FLAG = #record.creditFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.blackFlag" >
+        BLACK_FLAG = #record.blackFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insureFlag" >
+        INSURE_FLAG = #record.insureFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.factorFlag" >
+        FACTOR_FLAG = #record.factorFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ccmsCustcd" >
+        CCMS_CUSTCD = #record.ccmsCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.importantFlag" >
+        IMPORTANT_FLAG = #record.importantFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.commercialFalg" >
+        COMMERCIAL_FALG = #record.commercialFalg:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overseasFlag" >
+        OVERSEAS_FLAG = #record.overseasFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.banksCustFlag" >
+        BANKS_CUST_FLAG = #record.banksCustFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.efBuyerFlag" >
+        EF_BUYER_FLAG = #record.efBuyerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ifSellerFlag" >
+        IF_SELLER_FLAG = #record.ifSellerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isBank" >
+        IS_BANK = #record.isBank:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fciCode" >
+        FCI_CODE = #record.fciCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isIntl" >
+        IS_INTL = #record.isIntl:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crtTime" >
+        CRT_TIME = #record.crtTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlrcd" >
+        LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTime" >
+        LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRM_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRM_BASE_INFO
+    set CUSTCD = #record.custcd:VARCHAR#,
+      CUSTNO = #record.custno:VARCHAR#,
+      CUST_TYPE = #record.custType:CHAR#,
+      IDTYPE = #record.idtype:VARCHAR#,
+      IDNO = #record.idno:VARCHAR#,
+      CNAME = #record.cname:VARCHAR#,
+      ENAME = #record.ename:VARCHAR#,
+      ALIAS_NAME = #record.aliasName:VARCHAR#,
+      ORG_CODE = #record.orgCode:VARCHAR#,
+      SOC_CREDIT_NO = #record.socCreditNo:VARCHAR#,
+      LICENSE_NO = #record.licenseNo:VARCHAR#,
+      LICENSE_DATE = #record.licenseDate:CHAR#,
+      OPEN_DATE = #record.openDate:CHAR#,
+      CORE_OPEN_DATE = #record.coreOpenDate:CHAR#,
+      CUST_STATUS = #record.custStatus:CHAR#,
+      MGRNO = #record.mgrno:VARCHAR#,
+      CORE_FLAG = #record.coreFlag:CHAR#,
+      MONI_FLAG = #record.moniFlag:CHAR#,
+      FUTURES_FLAG = #record.futuresFlag:CHAR#,
+      FLC_FLAG = #record.flcFlag:CHAR#,
+      CREATE_DATE = #record.createDate:CHAR#,
+      CREDIT_FLAG = #record.creditFlag:CHAR#,
+      BLACK_FLAG = #record.blackFlag:CHAR#,
+      INSURE_FLAG = #record.insureFlag:CHAR#,
+      FACTOR_FLAG = #record.factorFlag:CHAR#,
+      CCMS_CUSTCD = #record.ccmsCustcd:VARCHAR#,
+      IMPORTANT_FLAG = #record.importantFlag:CHAR#,
+      COMMERCIAL_FALG = #record.commercialFalg:CHAR#,
+      OVERSEAS_FLAG = #record.overseasFlag:CHAR#,
+      BANKS_CUST_FLAG = #record.banksCustFlag:CHAR#,
+      EF_BUYER_FLAG = #record.efBuyerFlag:CHAR#,
+      IF_SELLER_FLAG = #record.ifSellerFlag:CHAR#,
+      IS_BANK = #record.isBank:CHAR#,
+      FCI_CODE = #record.fciCode:VARCHAR#,
+      IS_INTL = #record.isIntl:CHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      CRT_TIME = #record.crtTime:TIMESTAMP#,
+      BRCODE = #record.brcode:VARCHAR#,
+      LAST_UPD_TLRCD = #record.lastUpdTlrcd:VARCHAR#,
+      LAST_UPD_TIME = #record.lastUpdTime:TIMESTAMP#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRM_BASE_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <!-- 放款申请客户验证 -->
+  <select id="selectById" resultMap="BaseResultMap" parameterClass="java.lang.String" >
+    select 
+    <include refid="B_CRM_BASE_INFO.Base_Column_List" />
+    from B_CRM_BASE_INFO
+    where CUSTCD = #custcd:VARCHAR#
+  </select>
+  <!-- 批量删除 -->
+    <delete id="batchDelete" parameterClass="java.util.List" >
+   	delete from  B_CRM_BASE_INFO where  custcd  in
+	<iterate conjunction="," open="(" close=")" >
+   		 #custcd2List[]#
+   	</iterate> 
+   </delete> 
+</sqlMap>

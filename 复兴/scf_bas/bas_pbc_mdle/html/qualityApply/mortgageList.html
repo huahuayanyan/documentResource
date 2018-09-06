@@ -1,0 +1,26 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form>
+    <ht-select ht-id="mortgageLevelOneName" name="押品一级" on-change="mortgageLevelOneName" datasource="mortgageLevelOneSource" dataOption="code" dataTrsOption="codeName" ng-model="mortgageList.mortgageLevelOneName"></ht-select>
+    <ht-select ht-id="mortgageLevelTwoName" name="押品二级" datasource="mortgageLevelTwoSource" dataOption="code" dataTrsOption="codeName" ng-model="mortgageList.mortgageLevelTwoName"></ht-select>
+    <ht-input ht-id="mortgageName" name="押品名称" ng-model="mortgageList.mortgageName"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="reset"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-table ht-id="tableId" selected="selected" datasource="datasource" docheckbox="true">
+    <ht-column eg-name="mortgageNo" zh-name="押品编号"></ht-column>
+    <ht-column eg-name="mortgageName" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="mortgageUnits" dictionary="mortgageUnits" zh-name="单位"></ht-column>
+    <ht-column eg-name="weightAll" zh-name="重量/数量"></ht-column>
+    <ht-column eg-name="originalPrice" zh-name="核定单价" type="currency"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="cancel1" class="btn-primary">关闭</ht-button>
+</ht-button-group>

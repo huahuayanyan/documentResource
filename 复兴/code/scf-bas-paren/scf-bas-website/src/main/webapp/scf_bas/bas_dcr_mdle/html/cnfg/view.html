@@ -1,0 +1,9 @@
+<ht-form name="viewForm">
+    <ht-input ht-id="typId" name="检查类型ID" ng-model="viewForm.typId"  disable="true"></ht-input>
+    <ht-input ht-id="typNm" name="检查类型说明" ng-model="viewForm.typNm"  disable="true"></ht-input>
+    <ht-input ht-id="chkExpr" name="检查器类名" ng-model="viewForm.chkExpr"  disable="true"></ht-input>
+    <ht-select  ht-id="rltTyp"  name="检查对象"  ng-model="viewForm.rltTyp"  dictionary="selectChkRltTyp" disable="true"></ht-select>   
+</ht-form>
+<ht-button-group align="center">
+    <ht-button ht-id="cancel" desc-name="关闭" class="btn-primary"></ht-button>
+</ht-button-group>

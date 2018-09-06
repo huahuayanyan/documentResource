@@ -1,0 +1,21 @@
+
+
+
+<ht-form name="otherform">
+    <ht-input-extent ht-id="cnameSeller" name="卖方名称" extent="sellerContent" on-change="sellerExtent"
+                     reg-exp="common.require" ng-model="otherform.cnameSeller"></ht-input-extent>
+
+    <ht-input-extent ht-id="mastContno" name="业务合同号" extent="debtContnoContent" on-change="debtContnoExtent"
+                     reg-exp="common.require" ng-model="otherform.mastContno"></ht-input-extent>
+
+    <ht-input-extent ht-id="cnameBuyer" name="买方名称" extent="buyerContent" on-change="buyerExtent"
+                     reg-exp="common.require" ng-model="otherform.cnameBuyer"></ht-input-extent>
+
+    <ht-input ht-id="bussTypeName" name="业务品种" disable="true" ng-model="otherform.bussTypeName"></ht-input>
+    <ht-select ht-id="loanWay" name="出账方式" reg-exp="common.require" dataoption="dataVal" datatrsoption="dataTrsVal" datasource="dataSource"  ng-model="otherform.loanWay"></ht-select>
+
+    </ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm"  class="btn-primary">应收账款回款处理</ht-button>
+    <ht-button ht-id="back"  class="btn-primary">返回</ht-button>
+</ht-button-group>

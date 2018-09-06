@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_MPROT_BASE_INFO_EXT" >
+   <resultMap id="MonitorProtocolVOMap" class="com.huateng.scf.bas.cnt.dao.model.ext.MonitorProtocolInfo" >
+    <result column="PROTOCOL_NO"  property="protocolNo"/>           
+    <result column="PROTOCOL_CODE"  property="protocolCode"/>           
+	<result column="MONI_OF_CUSTCD" property="moniOfCustCd"/>
+	<result column="PRODUCT_ID"     property="productId"/> 
+	<result column="SEC_NAME"     	property="secName"/> 
+	<result column="SEC_CUSTCD"     property="secCd"/> 
+	<result column="START_DATE"     property="startDate"/>  
+	<result column="END_DATE"   	property="endDate"/>
+	<result column="TLRNO"          property="tlrNo"/>  
+	<result column="BRCODE"         property="brcode"/> 
+	<result column="STATE"          property="state"/> 
+	<result column="THR_NAME"          property="thrName"/> 
+	<result column="PRODUCT_NAME"   property="productName"/> 
+	<result column="COOPERATION_BRCODE"   property="cooperationBrcode"/> 
+	
+	
+  </resultMap>
+<!--   <resultMap id="ThrNameInfo" class="com.huateng.scf.bas.cnt.dao.model.ext.MonitorProtocolInfo">
+	<result column="CNAME"         property="thrName"  />    
+	<result column="LEVELS"         property="levels"  />    
+	<result column="MONITOR_AREA"       property="monitorArea"  />  
+	<result column="MONITORTYPE"   property="monitortype"/>
+	<result column="DETAIL_MONITOR_AREA"          property="detailMonitorArea" />  
+	<result column="LIMIT_SUM"         property="limitSum" /> 
+	<result column="MONITOR_STATUS"         property="monitorStatus"/>   
+	<result column="LEVEL_COGNI_DATE"     property="levelCogniDate" />
+	<result column="LEVEL_END_DATE"               property="levelEndDate"/> 
+  </resultMap> -->
+<!--   <resultMap id="DataItems" class="com.huateng.scf.bas.cnt.dao.model.ext.DataItems">
+   	<result column="CUSTCD"  property="code"/>           
+	<result column="CNAME" property="codeName"/>   
+  </resultMap> -->
+  <resultMap id="MonitorProtocolInfo" class="com.huateng.scf.bas.cnt.dao.model.ext.MonitorProtocolInfo">
+	<result column="PROTOCOL_CODE"         property="protocolCode"  />    
+	<result column="PRODUCT_ID"       property="productId"  />  
+	<result column="MONI_TYPE"   property="moniType"/>
+	<result column="CURCD"          property="curcdNm" />  
+	<result column="CUSTCD"         property="secCd" /> 
+	<result column="CNAME"         property="secName" /> 
+	<result column="MONI_OF_CUSTCD"         property="thrCode"/>   
+	<result column="SELL_OFF_FLAG"     property="sellOffFlag" />
+	<result column="IS_PLEDGE"     property="isPledge" />
+	<result column="START_DATE"    property="startDate"/> 
+	<result column="END_DATE"      property="endDate"/> 
+	<result column="STATE"               property="state"/> 
+	<result column="COOPERATION_BRCODE"  property="cooperationBrcode"/> 
+	<result column="TLRNO"               property="tlrNo"/> 
+	<result column="BRCODE"              property="brcode"/> 
+	<result column="WAREHOUSE_TYPE"      property="warehouseType"/> 
+	<result column="PRICE_DROP_RATE"     property="priceDropRate"/> 
+	<result column="LOGISTICS_MONI_CONDITION" property="logisticsMoniCondition"/> 
+	<result column="OTHER_DES"               property="otherDes"/> 
+	<result column="THR_NAME"          property="thrName"/> 
+	<result column="OTHERPROTOCOL_NO"   property="otherprotocolNo"/> 
+  </resultMap>
+  <select id="queryMonitorProtocolList" resultMap="MonitorProtocolVOMap" parameterClass="java.util.HashMap" >
+	SELECT distinct
+	mpbi.PROTOCOL_NO,
+	mpbi.PROTOCOL_CODE,
+   	mpci.MONI_OF_CUSTCD,
+   	mpbi.PRODUCT_ID,
+   	mppi_2.CNAME as SEC_NAME,
+   	mppi_2.CUSTCD as SEC_CUSTCD,
+   	mpbi.START_DATE,
+   	mpbi.END_DATE,
+   	mpbi.TLRNO,
+   	mpbi.BRCODE,
+   	mpbi.STATE,
+   	bcbi.CNAME as THR_NAME,
+   	bpi.PRODUCT_NAME,
+   	mpbi.COOPERATION_BRCODE
+   	from 
+   	B_CNT_MPROT_BASE_INFO mpbi,
+   	B_CNT_MPROT_PART_INFO mppi,
+   	B_CNT_MPROT_PART_INFO mppi_2,
+   	B_CNT_MPROT_PART_INFO mppi_3,
+   	B_CNT_MPROT_CM_INFO mpci,
+   	B_PRD_INFO bpi,
+   	B_CRM_BASE_INFO bcbi,
+   	B_CRM_MONI_ENT_INFO bcmeni
+   	where 1=1
+   	<isNotNull prepend="AND" property="protocolCode" >
+        <![CDATA[mpbi.PROTOCOL_CODE like '%' || #protocolCode# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="secName" >
+        <![CDATA[mppi_2.CNAME like '%' || #secName# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="thrName" >
+        <![CDATA[bcbi.CNAME like '%' || #thrName# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="suppProductName" >
+        <![CDATA[mpbi.PRODUCT_ID=#suppProductName#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="parentId" >
+        <![CDATA[bpi.PARENT_ID=#parentId#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleBank" >
+        <![CDATA[mppi.role=#roleBank#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleCredit" >
+        <![CDATA[mppi_2.role=#roleCredit#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleMoni" >
+        <![CDATA[mppi_3.role=#roleMoni#]]>
+    </isNotNull>
+     <isNotNull prepend="AND" property="state" >
+        <![CDATA[mpbi.state=#state#]]>
+    </isNotNull>
+     <isNotNull prepend="AND" property="protocolType" >
+        <![CDATA[mpbi.PROTOCOL_TYPE=#protocolType#]]>
+    </isNotNull>
+	and mppi.Protocol_No=mpci.Protocol_No 
+	and mpbi.Protocol_No=mppi.Protocol_No
+	and mppi_2.Protocol_No=mpci.Protocol_No
+	and mpbi.Protocol_No=mppi_2.Protocol_No
+	and mppi_3.Protocol_No=mpci.Protocol_No
+	and mpbi.Protocol_No=mppi_3.Protocol_No
+	and bcbi.custcd = bcmeni.custcd
+	and bcbi.cust_type = '1'
+	and bcbi.cust_status='01'
+	and bcbi.moni_flag='1'
+	and mpci.moni_of_custcd = bcbi.custcd
+	and mpbi.PRODUCT_ID = bpi.PRODUCT_ID
+	order by mpbi.Protocol_No desc
+  </select>
+  
+<!--   <select id="getSecNamebyProtocol" resultMap="DataItems" parameterClass="java.util.HashMap">
+	select 
+	cbi.CUSTCD, 
+	cbi.CNAME
+  	from 
+  	B_CRM_BASE_INFO cbi, 
+  	B_CRM_ENT_INFO cei
+ 	where 1=1
+ 	<isNotNull prepend="AND" property="secName" >
+        <![CDATA[cbi.CNAME like '%' || #secName# || '%']]>
+    </isNotNull>
+ 	and cbi.custcd = cei.custcd
+ 	and cbi.cust_type='1'
+ 	and cbi.cust_status='01'
+ 	and cbi.credit_flag='1'
+ 	order by cbi.custcd desc
+  </select> -->
+  
+ <!--  <select id="getThrNamebyProtocol" resultMap="DataItems" parameterClass="java.util.HashMap">
+	select 
+	tcbi.CNAME,
+	tcbi.CUSTCD
+	from 
+	B_CRM_BASE_INFO tcbi, 
+	B_CRM_MONI_ENT_INFO tcmei
+	where 1=1
+	<isNotNull prepend="AND" property="thrName" >
+        <![CDATA[tcbi.CNAME like '%' || #thrName# || '%']]>
+    </isNotNull> 
+	and tcmei.custcd = tcbi.custcd
+	and tcbi.cust_type='1'
+	and tcbi.cust_status='01'
+	and tcbi.moni_flag='1'
+	order by tcbi.custcd desc
+  </select> -->
+  
+ <!--  <select id="queryProductIdListbycustCd" resultMap="ThrNameInfo">
+	select
+	cbbi.CNAME,
+	bcmei.LEVELS,
+	bcmei.MONITOR_AREA,
+	bcmei.MONITORTYPE,
+	bcmei.DETAIL_MONITOR_AREA,
+	bcmei.LIMIT_SUM,
+	bcmei.MONITOR_STATUS,
+	bcmei.LEVEL_COGNI_DATE,
+	bcmei.LEVEL_END_DATE
+	from B_CRM_BASE_INFO cbbi, 
+	B_CRM_MONI_ENT_INFO bcmei
+	where
+	bcmei.custcd = cbbi.custcd
+	<isNotNull prepend="AND">
+        <![CDATA[cbbi.custcd=#key#]]>
+	</isNotNull>
+	and cbbi.cust_type='1'
+	and cbbi.cust_status='01'
+	and cbbi.moni_flag='1'
+	order by cbbi.custcd desc
+  </select> -->
+  <select id="queryMonitorProtocolInfobyprotocolCode" resultMap="MonitorProtocolInfo">
+	SELECT   
+	mpbi.PROTOCOL_CODE,
+	mpbi.OTHERPROTOCOL_NO,
+	mpbi.PRODUCT_ID,
+	mpbi.MONI_TYPE,
+	mpbi.CURCD,
+	mppi_2.CUSTCD,
+	mppi_2.CNAME,
+	mpci.MONI_OF_CUSTCD,
+	mpbi.SELL_OFF_FLAG,
+	mpci.IS_PLEDGE,
+	mpbi.START_DATE,
+	mpbi.END_DATE,
+	mpbi.STATE,
+	mpbi.COOPERATION_BRCODE,
+	mpbi.TLRNO,
+	mpbi.BRCODE,
+	mpci.WAREHOUSE_TYPE,
+	mpbi.PRICE_DROP_RATE,
+	mpci.LOGISTICS_MONI_CONDITION,
+	mpbi.OTHER_DES,
+   	bcbi.CNAME as THR_NAME
+   	from 
+   	B_CNT_MPROT_BASE_INFO mpbi,
+   	B_CNT_MPROT_PART_INFO mppi,
+   	B_CNT_MPROT_PART_INFO mppi_2,
+   	B_CNT_MPROT_PART_INFO mppi_3,
+   	B_CNT_MPROT_CM_INFO mpci,
+   	B_CRM_BASE_INFO bcbi 
+   	where 1=1
+	and mppi.Protocol_No=mpci.Protocol_No 
+	and mpbi.Protocol_No=mppi.Protocol_No
+	and mppi_2.Protocol_No=mpci.Protocol_No
+	and mpbi.Protocol_No=mppi_2.Protocol_No
+	and mppi_3.Protocol_No=mpci.Protocol_No
+	and mpbi.Protocol_No=mppi_3.Protocol_No
+	and mpci.moni_of_custcd = bcbi.custcd
+	and mppi.role='01'
+	and mppi_2.role='03'
+	and mppi_3.role='02'
+	<isNotNull prepend="AND">
+        <![CDATA[mppi.Protocol_No=#protocolCode#]]>
+	</isNotNull>
+	order by mpbi.Protocol_No desc
+  </select>
+  <!-- 押品信息 -->
+  <resultMap id="BaseMortResultMap" class="java.util.HashMap" >
+    <result column="LEVELS" property="levels" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_CODE" property="mortgageCode" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+    <result column="PARENT_CODE" property="parentCode" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="queryBPbcMtgClassList" resultMap="BaseMortResultMap"  parameterClass="java.util.HashMap" >
+    select MORTGAGE_CODE,MORTGAGE_NAME,PARENT_CODE,LEVELS
+    from B_PBC_MTG_CLASS  
+   <dynamic prepend="where" >
+      <isNotEmpty prepend="and" property="levels" >
+        LEVELS = #levels:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="mortgageCode" >
+        MORTGAGE_CODE = #mortgageCode:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="mortgageName" >
+        MORTGAGE_NAME = #mortgageName:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="parentCode" >
+        PARENT_CODE = #parentCode:VARCHAR#  
+      </isNotEmpty>
+    </dynamic>
+  </select>
+  
+  <resultMap id="BaseMtgClassResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcMtgClass" >
+    <result column="MORTGAGE_CODE" property="mortgageCode" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+    <result column="PARENT_CODE" property="parentCode" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MORTGAGE_TYPE" property="mortgageType" jdbcType="CHAR" />
+    <result column="LEVELS" property="levels" jdbcType="CHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="EXT4" property="ext4" jdbcType="VARCHAR" />
+    <result column="EXT5" property="ext5" jdbcType="VARCHAR" />
+    <result column="EXT6" property="ext6" jdbcType="VARCHAR" />
+    <result column="EXT7" property="ext7" jdbcType="VARCHAR" />
+    <result column="EXT8" property="ext8" jdbcType="VARCHAR" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="UNITSNAME" property="unitsname" jdbcType="VARCHAR" />
+    <result column="REVALUATION_INTERVAL" property="revaluationInterval" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryBPbcMtgClassName" resultMap="BaseMtgClassResultMap"  parameterClass="java.util.HashMap" >
+    select *
+    from B_PBC_MTG_CLASS  
+   <dynamic prepend="where" >
+      <isNotEmpty prepend="and" property="mortgageCode" >
+        MORTGAGE_CODE = #mortgageCode:VARCHAR#  
+      </isNotEmpty>
+    </dynamic>
+  </select>
+  <!-- 查询监管合同子合同信息 -->
+  <resultMap id="BaseMrtPartResultMap" class="com.huateng.scf.bas.cnt.dao.model.BCntMprotPartInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="ROLE" property="role" jdbcType="CHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="LEGAL" property="legal" jdbcType="VARCHAR" />
+    <result column="ACT_BANKNO" property="actBankno" jdbcType="VARCHAR" />
+    <result column="ACTNO" property="actno" jdbcType="VARCHAR" />
+    <result column="BAIL_ACTNO" property="bailActno" jdbcType="VARCHAR" />
+    <result column="ATTN" property="attn" jdbcType="VARCHAR" />
+    <result column="ATTN_TEL" property="attnTel" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="CHAR" />
+    <result column="IDNO" property="idno" jdbcType="VARCHAR" />
+    <result column="LICENSE_NO" property="licenseNo" jdbcType="VARCHAR" />
+    <result column="WEBSITE" property="website" jdbcType="VARCHAR" />
+    <result column="MAILBOX" property="mailbox" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryMprotPart" resultMap="BaseMrtPartResultMap"  parameterClass="java.util.HashMap" >
+    select 
+    a.ID,a.PROTOCOL_NO,a.ROLE,a.CUSTCD,b.CNAME,
+    a.ADDRESS,a.LEGAL,a.ACT_BANKNO,a.ACTNO,a.BAIL_ACTNO,
+    a.ATTN,a.ATTN_TEL,a.FAX,a.POST_CODE,a.IDNO,
+    a.LICENSE_NO,a.WEBSITE,a.MAILBOX
+    from 
+    B_CNT_MPROT_PART_INFO  a,
+    B_CRM_BASE_INFO b
+  	where 
+  	a.CUSTCD = b.CUSTCD
+      <isNotEmpty prepend="and" property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#  
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="role" >
+        ROLE = #role:VARCHAR#  
+      </isNotEmpty>
+   
+  </select>
+  <select id="countMonitorProtocolList" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(distinct mpbi.PROTOCOL_NO)
+   	from 
+   	B_CNT_MPROT_BASE_INFO mpbi,
+   	B_CNT_MPROT_PART_INFO mppi,
+   	B_CNT_MPROT_PART_INFO mppi_2,
+   	B_CNT_MPROT_PART_INFO mppi_3,
+   	B_CNT_MPROT_CM_INFO mpci,
+   	B_PRD_INFO bpi,
+   	B_CRM_BASE_INFO bcbi,
+   	B_CRM_MONI_ENT_INFO bcmeni
+   	where 1=1
+   	<isNotNull prepend="AND" property="protocolCode" >
+        <![CDATA[mpbi.PROTOCOL_CODE like '%' || #protocolCode# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="secName" >
+        <![CDATA[mppi.CNAME like '%' || #secName# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="thrName" >
+        <![CDATA[bcbi.CNAME like '%' || #thrName# || '%']]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="suppProductName" >
+        <![CDATA[mpbi.PRODUCT_ID=#suppProductName#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="parentId" >
+        <![CDATA[bpi.PARENT_ID=#parentId#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleBank" >
+        <![CDATA[mppi.role=#roleBank#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleCredit" >
+        <![CDATA[mppi_2.role=#roleCredit#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="roleMoni" >
+        <![CDATA[mppi_3.role=#roleMoni#]]>
+    </isNotNull>
+	and mppi.Protocol_No=mpci.Protocol_No 
+	and mpbi.Protocol_No=mppi.Protocol_No
+	and mppi_2.Protocol_No=mpci.Protocol_No
+	and mpbi.Protocol_No=mppi_2.Protocol_No
+	and mppi_3.Protocol_No=mpci.Protocol_No
+	and mpbi.Protocol_No=mppi_3.Protocol_No
+	and bcbi.custcd = bcmeni.custcd
+	and bcbi.cust_type = '1'
+	and bcbi.cust_status='01'
+	and bcbi.moni_flag='1'
+	and mpci.moni_of_custcd = bcbi.custcd
+	and mpbi.PRODUCT_ID = bpi.PRODUCT_ID
+  </select>
+  
+  <!-- 监管协议下拉框 -->
+  <select id="getMutiProtDropDownInfo" resultMap="B_CNT_MPROT_BASE_INFO.BaseResultMap"  parameterClass="java.util.HashMap" >
+    select mpbi.* 
+    from B_CNT_MPROT_BASE_INFO mpbi,B_CNT_MPROT_PART_INFO mppi 
+    where 1=1
+    and mpbi.PROTOCOL_NO = mppi.PROTOCOL_NO
+    and mpbi.PROTOCOL_TYPE in 
+    	<iterate property="protocolType" conjunction="," open="(" close=")" >
+   		 $protocolType[]$
+   		</iterate> 
+    and mppi.ROLE = #role:VARCHAR#
+    and mpbi.STATE = #state:VARCHAR#
+      <isNotEmpty prepend="and" property="custcd" >
+        mppi.CUSTCD in 
+			<iterate property="custcd" conjunction="," open="(" close=")" >
+	   		 $custcd[]$
+	   		</iterate>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="protocolCode" >
+        <![CDATA[mpbi.PROTOCOL_CODE like '%' || #protocolCode:VARCHAR# || '%']]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="productId" >
+        <![CDATA[mpbi.PRODUCT_ID = #productId:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="moniType" >
+        <![CDATA[mpbi.moniType = #moniType:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="custcd2" >
+        (<![CDATA[mppi.CUSTCD = #custcd2:VARCHAR#]]> and <![CDATA[mppi.ROLE = #role2:VARCHAR#]]>)
+      </isNotEmpty>
+  </select>
+  <select id="countMutiProtDropDownInfo" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(mpbi.PROTOCOL_NO) 
+    from B_CNT_MPROT_BASE_INFO mpbi,B_CNT_MPROT_PART_INFO mppi 
+    where 1=1
+    and mpbi.PROTOCOL_NO = mppi.PROTOCOL_NO
+    and mpbi.PROTOCOL_TYPE in 
+    	<iterate property="protocolType" conjunction="," open="(" close=")" >
+   		 $protocolType[]$
+   		</iterate>
+    and mppi.ROLE = #role:VARCHAR#
+    and mpbi.STATE = #state:VARCHAR#
+      <isNotEmpty prepend="and" property="custcd" >
+		mppi.CUSTCD in 
+			<iterate property="custcd" conjunction="," open="(" close=")" >
+	   		 $custcd[]$
+	   		</iterate>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="protocolCode" >
+        <![CDATA[mpbi.PROTOCOL_CODE like '%' || #protocolCode:VARCHAR# || '%']]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="productId" >
+        <![CDATA[mpbi.PRODUCT_ID = #productId:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="moniType" >
+        <![CDATA[mpbi.moniType = #moniType:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="custcd2" >
+        (<![CDATA[mppi.CUSTCD = #custcd2:VARCHAR#]]> and <![CDATA[mppi.ROLE = #role2:VARCHAR#]]>)
+      </isNotEmpty>
+  </select>
+  
+  <select id="getMutiProtPartInfo" resultMap="B_CNT_MPROT_PART_INFO.BaseResultMap" parameterClass="java.util.HashMap" >
+    select tmpi.*
+    from B_CNT_MPROT_PART_INFO tmpi,B_CRR_GNTY_CON tcsi
+    where tmpi.PROTOCOL_NO = tcsi.PRTCL_NO
+      <isNotEmpty prepend="and" property="slaveContno" >
+        <![CDATA[tcsi.CON_ID = #slaveContno:VARCHAR# ]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="role" >
+        <![CDATA[tmpi.role = #role:VARCHAR#]]>
+      </isNotEmpty>
+  </select>
+<!-- 根据监管协议号查询监管公司客户号 -->
+	<resultMap id="CUSTCDResultMap" class="java.util.HashMap">
+		<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getMoniCustcdByMoniProtocolNo" resultMap="CUSTCDResultMap"
+		parameterClass="java.util.HashMap">
+		select T2.custcd
+		from B_CNT_MPROT_BASE_INFO T1,B_CNT_MPROT_PART_INFO T2
+		<isParameterPresent>
+			where T1.PROTOCOL_NO = T2.PROTOCOL_NO
+			<isNotEmpty prepend="and" property="protocolNo">
+        <![CDATA[T1.PROTOCOL_NO = #protocolNo:VARCHAR# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="protocolType">
+        <![CDATA[T1.PROTOCOL_TYPE = #protocolType:VARCHAR# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="roleMoni">
+        <![CDATA[T2.role = #roleMoni:VARCHAR#]]>
+			</isNotEmpty>
+		</isParameterPresent>
+	</select>
+  
+  <select id="getMonitorProtocolNoBySlaveContnoAppnoPt" resultMap="B_CNT_MPROT_BASE_INFO.BaseResultMap" parameterClass="java.util.HashMap" >
+    select mpbi.*
+    from B_CNT_MPROT_BASE_INFO mpbi
+    <dynamic prepend="where" >
+      <isNotEmpty prepend="and" property="protocolType" >
+        <![CDATA[mpbi.PROTOCOL_TYPE = #protocolType:VARCHAR#]]>
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="state" >
+        <![CDATA[mpbi.STATE = #state:VARCHAR#]]>
+      </isNotEmpty>
+      and mpbi.PROTOCOL_NO in (
+      	select t.PRTCL_NO from B_CRR_GNTY_CON t
+      	where 1=1
+	      	<isNotEmpty prepend="and" property="slaveContno" >
+	        <![CDATA[t.CON_ID = #slaveContno:VARCHAR# ]]>
+	      	</isNotEmpty>
+	      	<isNotEmpty prepend="and" property="status" >
+	        <![CDATA[t.CON_STAT = #status:VARCHAR# ]]>
+	      	</isNotEmpty>
+      )
+    </dynamic>
+  </select>
+  
+  <select id="countContSlaveByCustcdAndCore" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(csi.CON_ID)
+    from  B_CRR_GNTY_CON csi,B_CNT_MPROT_BASE_INFO mpbi,
+    	B_CNT_MPROT_PART_INFO tmppi1,B_CNT_MPROT_PART_INFO tmppi2
+    where 1=1
+    and csi.PRTCL_NO = mpbi.PROTOCOL_NO
+    and tmppi1.PROTOCOL_NO = mpbi.OTHERPROTOCOL_NO
+    and tmppi1.ROLE= #role1:VARCHAR#
+    and tmppi2.PROTOCOL_NO = mpbi.OTHERPROTOCOL_NO
+    and tmppi2.ROLE = #role2:VARCHAR#
+    <isNotEmpty prepend="and" property="custcd1">
+      <![CDATA[ tmppi1.CUSTCD = #custcd1:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="custcd2">
+      <![CDATA[ tmppi2.CUSTCD = #custcd2:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="otherprotocolNo">
+      <![CDATA[ mpbi.OTHERPROTOCOL_NO = #otherprotocolNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContcode">
+      <![CDATA[ csi.CON_ID like '%'|| #slaveContcode:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+  </select>
+  <select id="getContSlaveByCustcdAndCore" resultMap="B_CRR_GNTY_CON.BaseResultMap" parameterClass="java.util.HashMap" >
+    select csi.*
+    from  B_CRR_GNTY_CON csi,B_CNT_MPROT_BASE_INFO mpbi,
+    	B_CNT_MPROT_PART_INFO tmppi1,B_CNT_MPROT_PART_INFO tmppi2
+    where 1=1
+    and csi.PRTCL_NO = mpbi.PROTOCOL_NO
+    and tmppi1.PROTOCOL_NO = mpbi.OTHERPROTOCOL_NO
+    and tmppi1.ROLE= #role1:VARCHAR#
+    and tmppi2.PROTOCOL_NO = mpbi.OTHERPROTOCOL_NO
+    and tmppi2.ROLE = #role2:VARCHAR#
+    <isNotEmpty prepend="and" property="custcd1">
+      <![CDATA[ tmppi1.CUSTCD = #custcd1:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="custcd2">
+      <![CDATA[ tmppi2.CUSTCD = #custcd2:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="otherprotocolNo">
+      <![CDATA[ mpbi.OTHERPROTOCOL_NO = #otherprotocolNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContcode">
+      <![CDATA[ csi.CON_ID like '%'|| #slaveContcode:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+  </select>
+  
+  <resultMap id="BaseMoniProtocolResultMap" class="java.util.HashMap" >
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_TYPE" property="protocolType" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="TENOR" property="tenor" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="PROT_AMT" property="protAmt" jdbcType="DECIMAL" />
+    <result column="SIGN_IN" property="signIn" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <!-- <result column="OTHER_DES" property="otherDes" jdbcType="VARCHAR" /> -->
+    <result column="STATE" property="state" jdbcType="CHAR" />
+    <result column="TLRNO" property="tlrno" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="UPDATE_STATE" property="updateState" jdbcType="CHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="OTHERPROTOCOL_NO" property="otherprotocolNo" jdbcType="VARCHAR" />
+    <result column="OTHERPROTOCOL_CODE" property="otherprotocolCode" jdbcType="VARCHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="MONI_TYPE" property="moniType" jdbcType="CHAR" />
+    <!-- <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" /> -->
+    <result column="ARRIVED_MANAGE_MODE" property="arrivedManageMode" jdbcType="CHAR" />
+    <result column="SELL_OFF_FLAG" property="sellOffFlag" jdbcType="CHAR" />
+    <result column="PRICE_DROP_RATE" property="priceDropRate" jdbcType="DECIMAL" />
+    <result column="COOPERATION_BRCODE" property="cooperationBrcode" jdbcType="VARCHAR" />
+    <result column="CIRCLE_LOAN_FLAG" property="circleLoanFlag" jdbcType="CHAR" />
+    <result column="TRIPLE_PROTOCOL_TYPE" property="tripleProtocolType" jdbcType="CHAR" />
+    <result column="DELIVERY_MODE" property="deliveryMode" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="GROUPED" property="grouped" jdbcType="CHAR" />
+    <result column="GROUPED_MEMBER" property="groupedMember" jdbcType="CHAR" />
+    <!-- <result column="LOW_PRICE" property="lowPrice" jdbcType="DECIMAL" /> -->
+    <!-- <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" /> -->
+    <result column="MONI_WAREHOUSE_TYPE" property="moniWarehouseType" jdbcType="CHAR" />
+    <result column="MONI_AREA_TYPE" property="moniAreaType" jdbcType="CHAR" />
+    <result column="LOGISTICS_MONI_CONDITION" property="logisticsMoniCondition" jdbcType="VARCHAR" />
+    <result column="WAREHOUSEDRESS" property="warehousedress" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_PAY_TYPE" property="mortgagePayType" jdbcType="CHAR" />
+    <result column="SPECIAL_WAREHOUSE_CONDITION" property="specialWarehouseCondition" jdbcType="VARCHAR" />
+    <result column="COST_BEAR" property="costBear" jdbcType="VARCHAR" />
+    <result column="COST_STANDARD" property="costStandard" jdbcType="VARCHAR" />
+    <result column="MONI_COST" property="moniCost" jdbcType="DECIMAL" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="PAY_TIME" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="MONI_NAME" property="moniName" jdbcType="VARCHAR" />
+    <result column="MONI_TEL" property="moniTel" jdbcType="VARCHAR" />
+    <result column="MONI_PROTOCOL_TYPE" property="moniProtocolType" jdbcType="CHAR" />
+    <result column="IS_HIGHEST_LIMIT" property="isHighestLimit" jdbcType="CHAR" />
+    <result column="MONI_PRICE_MODEL" property="moniPriceModel" jdbcType="CHAR" />
+    <result column="MONI_MODEL" property="moniModel" jdbcType="CHAR" />
+    <result column="DEALLINE_RATE" property="deallineRate" jdbcType="DECIMAL" />
+    <result column="WAREHOUSE_TYPE" property="warehouseType" jdbcType="CHAR" />
+    <result column="WAREHOUSE_HIRE_PROTOCOL" property="warehouseHireProtocol" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_HIRE_START_DATE" property="warehouseHireStartDate" jdbcType="CHAR" />
+    <result column="WAREHOUSE_HIRE_END_DATE" property="warehouseHireEndDate" jdbcType="CHAR" />
+    <!-- <result column="OTHER_DES" property="otherDes" jdbcType="VARCHAR" /> -->
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="CHAR" />
+    <result column="SE_HIGHEST_PERCENT" property="seHighestPercent" jdbcType="DECIMAL" />
+    <result column="FIR_CD" property="firCd" jdbcType="VARCHAR" />
+    <result column="FIR_NAME" property="firName" jdbcType="VARCHAR" />
+    <result column="SEC_CD" property="secCd" jdbcType="VARCHAR" />
+    <result column="SEC_CNAME" property="secCname" jdbcType="VARCHAR" />
+    <result column="ACT_BANKNO" property="actBankno" jdbcType="VARCHAR" />
+    <result column="ACTNO" property="actno" jdbcType="VARCHAR" />
+    <result column="BAIL_ACTNO" property="bailActno" jdbcType="VARCHAR" />
+    <result column="THR_CD" property="thrCd" jdbcType="VARCHAR" />
+    <result column="THR_NAME" property="thrName" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="countMonitorProtocolQuery" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(mpbi.PROTOCOL_NO)
+	from B_CNT_MPROT_BASE_INFO mpbi,B_CNT_MPROT_PART_INFO mppi,B_CNT_MPROT_PART_INFO mppi_2,
+		B_CNT_MPROT_PART_INFO mppi_3,B_CNT_MPROT_CM_INFO mpci 
+	where 1=1
+	and mpbi.PROTOCOL_NO=mppi.PROTOCOL_NO
+	and mpbi.PROTOCOL_NO=mppi_2.PROTOCOL_NO
+	and mpbi.PROTOCOL_NO=mppi_3.PROTOCOL_NO
+	and mpbi.PROTOCOL_NO=mpci.PROTOCOL_NO
+	
+	and mppi.PROTOCOL_NO=mpci.PROTOCOL_NO
+	and mppi_2.PROTOCOL_NO=mpci.PROTOCOL_NO
+	and mppi_3.PROTOCOL_NO=mpci.PROTOCOL_NO
+	
+	and mppi.role = #role:VARCHAR#
+	and mppi_2.role = #role2:VARCHAR#
+	and mppi_3.role = #role3:VARCHAR#
+	
+    <isNotEmpty prepend="and" property="protocolNo">
+      <![CDATA[ mpbi.PROTOCOL_NO = #protocolNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="otherprotocolNo">
+      <![CDATA[ mpbi.otherprotocol_No = #otherprotocolNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="protocolType">
+      <![CDATA[ mpbi.PROTOCOL_TYPE = #protocolType:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="protocolCode">
+      <![CDATA[ mpbi.PROTOCOL_CODE like '%'|| #protocolCode:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="custcd1">
+      <![CDATA[ mpbi.PRODUCT_ID is not null and mpbi.PRODUCT_ID in (#productId:VARCHAR#) ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="supplyChainPdId">
+      <![CDATA[ mpbi.PRODUCT_ID = #supplyChainPdId:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate1">
+      <![CDATA[ mpbi.START_DATE >= #startDate1:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate2">
+      <![CDATA[ mpbi.START_DATE <= #startDate2:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="state">
+      <![CDATA[ mpbi.STATE = #state:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="custname">
+      <![CDATA[ mppi_2.CNAME like '%'|| #custname:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="cname">
+      <![CDATA[ mppi_3.CNAME like '%'|| #cname:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ mppi.CUSTCD = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="custcdList" > 
+        mppi_2.CUSTCD  in 
+        <iterate property="custcdList" conjunction="," open="(" close=")" >
+   		 $custcdList[]$
+   		</iterate> 
+    </isNotNull>
+	<isNotEmpty prepend="and" property="mgrno">
+      exists (select 1 from B_CRM_BASE_INFO t where t.CUSTCD = mppi_2.CUSTCD and t.MGRNO = #mgrno:VARCHAR#)
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="parentBrcode">
+      exists (select 1 from B_SYS_BCTL_AFFILIATION tt where tt.CHILD_BRCODE = mpbi.BRCODE
+      	and tt.PARENT_BRCODE = #parentBrcode:VARCHAR#
+      	and tt.AFFILIATION_TYPE = #affiliationType:VARCHAR#
+      )
+	</isNotEmpty>
+  </select>
+  <select id="getMonitorProtocolQuery" resultMap="BaseMoniProtocolResultMap" parameterClass="java.util.HashMap" >
+    select mppi.CUSTCD FIR_CD,mppi.CNAME FIR_NAME,
+    	   mpci.MONI_OF_CUSTCD, mpci.GROUPED, mpci.GROUPED_MEMBER, mpci.LOW_PRICE, mpci.LOW_PRICE_NEW, mpci.MONI_WAREHOUSE_TYPE, 
+    	   mpci.MONI_AREA_TYPE, mpci.LOGISTICS_MONI_CONDITION, mpci.WAREHOUSEDRESS, mpci.MORTGAGE_PAY_TYPE, mpci.SPECIAL_WAREHOUSE_CONDITION, 
+    	   mpci.COST_BEAR, mpci.COST_STANDARD, mpci.MONI_COST, mpci.PAY_WAY, mpci.PAY_TIME, mpci.MONI_NAME, mpci.MONI_TEL, mpci.MONI_PROTOCOL_TYPE, 
+    	   mpci.IS_HIGHEST_LIMIT, mpci.MONI_PRICE_MODEL, mpci.MONI_MODEL, mpci.DEALLINE_RATE, mpci.WAREHOUSE_TYPE, mpci.WAREHOUSE_HIRE_PROTOCOL, 
+    	   mpci.WAREHOUSE_HIRE_START_DATE, mpci.WAREHOUSE_HIRE_END_DATE, mpci.OTHER_DES, mpci.NOTICE_TYPE, mpci.SE_HIGHEST_PERCENT, 
+    	   mpci.IS_PLEDGE,
+    	   mpbi.PROTOCOL_NO, mpbi.PROTOCOL_CODE, mpbi.PROTOCOL_TYPE, mpbi.PRODUCT_ID, mpbi.SIGN_DATE, mpbi.START_DATE, mpbi.END_DATE, 
+    	   mpbi.TENOR, mpbi.CURCD, mpbi.PROT_AMT, mpbi.SIGN_IN, mpbi.STATUS, mpbi.STATE, mpbi.TLRNO, mpbi.BRCODE, mpbi.UPDATE_STATE, 
+    	   mpbi.UPDATE_DATE, mpbi.OTHERPROTOCOL_NO, mpbi.LOAN_PERCENT, MONI_TYPE, mpbi.ARRIVED_MANAGE_MODE, 
+    	   mpbi.SELL_OFF_FLAG, mpbi.PRICE_DROP_RATE, mpbi.COOPERATION_BRCODE, mpbi.CIRCLE_LOAN_FLAG, mpbi.TRIPLE_PROTOCOL_TYPE, 
+   	 	   mpbi.DELIVERY_MODE, mpbi.OTHERPROTOCOL_NO AS OTHERPROTOCOL_CODE,
+    	   mppi_2.CUSTCD SEC_CD,mppi_2.CNAME SEC_CNAME,mppi_2.ACT_BANKNO,mppi_2.ACTNO,mppi_2.BAIL_ACTNO,
+    	   mppi_3.CUSTCD THR_CD,mppi_3.CNAME THR_NAME
+	from B_CNT_MPROT_BASE_INFO mpbi,B_CNT_MPROT_PART_INFO mppi,B_CNT_MPROT_PART_INFO mppi_2,
+		 B_CNT_MPROT_PART_INFO mppi_3,B_CNT_MPROT_CM_INFO mpci 
+	where 1=1
+	and mpbi.PROTOCOL_NO=mppi.PROTOCOL_NO
+	and mpbi.PROTOCOL_NO=mppi_2.PROTOCOL_NO
+	and mpbi.PROTOCOL_NO=mppi_3.PROTOCOL_NO
+	and mpbi.PROTOCOL_NO=mpci.PROTOCOL_NO
+	
+	and mppi.PROTOCOL_NO=mpci.PROTOCOL_NO
+	and mppi_2.PROTOCOL_NO=mpci.PROTOCOL_NO
+	and mppi_3.PROTOCOL_NO=mpci.PROTOCOL_NO
+	
+	and mppi.role = #role:VARCHAR#
+	and mppi_2.role = #role2:VARCHAR#
+	and mppi_3.role = #role3:VARCHAR#
+	
+    <isNotEmpty prepend="and" property="protocolNo">
+      <![CDATA[ mpbi.PROTOCOL_NO = #protocolNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="otherprotocolNo">
+      <![CDATA[ mpbi.OTHERPROTOCOL_NO = #otherprotocolNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="protocolType">
+      <![CDATA[ mpbi.PROTOCOL_TYPE = #protocolType:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="protocolCode">
+      <![CDATA[ mpbi.PROTOCOL_CODE like '%'|| #protocolCode:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="custcd1">
+      <![CDATA[ mpbi.PRODUCT_ID is not null and mpbi.PRODUCT_ID in (#productId:VARCHAR#) ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="supplyChainPdId">
+      <![CDATA[ mpbi.PRODUCT_ID = #supplyChainPdId:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate1">
+      <![CDATA[ mpbi.START_DATE >= #startDate1:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate2">
+      <![CDATA[ mpbi.START_DATE <= #startDate2:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="state">
+      <![CDATA[ mpbi.STATE = #state:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="custname">
+      <![CDATA[ mppi_2.CNAME like '%'|| #custname:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="cname">
+      <![CDATA[ mppi_3.CNAME like '%'|| #cname:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="custcd">
+      <![CDATA[ mppi.CUSTCD = #custcd:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="custcdList" > 
+        mppi_2.CUSTCD  in 
+        <iterate property="custcdList" conjunction="," open="(" close=")" >
+   		 $custcdList[]$
+   		</iterate> 
+    </isNotNull>
+	<isNotEmpty prepend="and" property="mgrno">
+      exists (select 1 from B_CRM_BASE_INFO t where t.CUSTCD = mppi_2.CUSTCD and t.MGRNO = #mgrno:VARCHAR#)
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="parentBrcode">
+      exists (select 1 from B_SYS_BCTL_AFFILIATION tt where tt.CHILD_BRCODE = mpbi.BRCODE
+      	and tt.PARENT_BRCODE = #parentBrcode:VARCHAR#
+      	and tt.AFFILIATION_TYPE = #affiliationType:VARCHAR#
+      )
+	</isNotEmpty>
+  </select>
+</sqlMap>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ------------公共css--------------------- -->
+    <script src="../../scube_ui/common/importCs.js"></script>
+    <!-- ------------业务css--------------------- -->
+
+</head>
+<body>
+<div ng-controller="nrecBcpImpairmentGuideController">
+    <!--<ht-legend>任务基本信息</ht-legend>-->
+    <!--<ht-form name="taskform">-->
+        <!--<ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>-->
+        <!--<ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>-->
+        <!--<ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>-->
+        <!--<ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>-->
+    <!--</ht-form>-->
+    <ht-tabs>
+        <ht-pane title="应收账款减值"  ui-sref="{{baseurl}}">
+        </ht-pane>
+        <ht-pane title="附件上传"  ui-sref="fileupload">
+        </ht-pane>
+    </ht-tabs>
+</div>
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+<script src="../../config.js"></script>
+
+<!-- ------------公共js--------------------- -->
+<script src="../../scube_ui/common/myBrowser.js"></script>
+<script src="../../scube_ui/common/importJs.js"></script>
+
+<!-- ------------业务js--------------------- -->
+<script src="../js/debtImpairment/bcp_impairment_guide_controller.js"></script>
+<script src="../js/debtImpairment/bcp_impairment_edit_controller.js"></script>
+<script src="../js/debtImpairment/bcp_impairment_pooledit_controller.js"></script>
+<script src="../js/debtImpairment/bcp_impairment_fileupload_controller.js"></script>
+<script src="../js/bcp_impairmentguide_mdle.js"></script>
+</body>
+</html>
+
+

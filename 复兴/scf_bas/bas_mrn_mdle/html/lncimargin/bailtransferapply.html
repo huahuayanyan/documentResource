@@ -1,0 +1,12 @@
+<ht-legend colorId="lawngreen">保证金转入登记</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input-extent ht-id="custNm" name="客户名"  reg-exp="common.require"   extent="custcontent" on-change="doextend" ng-model="conditionForm.custNm"></ht-input-extent>
+     <ht-input-extent ht-id="prdNm" name="供应链产品" reg-exp="common.require"  extent="productNameContent" on-change="productNamedooextent"  ng-model="conditionForm.prdNm" >
+    </ht-input-extent>   
+     <ht-input-extent ht-id="mastContCode" name="主合同" reg-exp="common.require"  extent="loanContent" on-change="doloanContent"  ng-model="conditionForm.mastContCode" >
+    </ht-input-extent>   
+    <ht-button-group class="center">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="发起申请"></ht-button>
+    </ht-button-group>
+</ht-form>
+

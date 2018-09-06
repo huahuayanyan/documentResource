@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PRD_COST_BIND" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.prd.dao.model.BPrdCostBind" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="COST_CODE" property="costCode" jdbcType="CHAR" />
+    <result column="COST_NAME" property="costName" jdbcType="VARCHAR" />
+    <result column="COST_PHASE" property="costPhase" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, COST_CODE, COST_NAME, COST_PHASE, PRODUCT_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCostBindExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PRD_COST_BIND.Base_Column_List" />
+    from B_PRD_COST_BIND
+    <isParameterPresent >
+      <include refid="B_PRD_COST_BIND.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCostBind" >
+    select 
+    <include refid="B_PRD_COST_BIND.Base_Column_List" />
+    from B_PRD_COST_BIND
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCostBind" >
+    delete from B_PRD_COST_BIND
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCostBindExample" >
+    delete from B_PRD_COST_BIND
+    <include refid="B_PRD_COST_BIND.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCostBind" >
+    insert into B_PRD_COST_BIND (ID, COST_CODE, COST_NAME, COST_PHASE, PRODUCT_ID
+      )
+    values (#id:VARCHAR#, #costCode:CHAR#, #costName:VARCHAR#, #costPhase:VARCHAR#, #productId:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCostBind" >
+    insert into B_PRD_COST_BIND
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="costCode" >
+        COST_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="costName" >
+        COST_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="costPhase" >
+        COST_PHASE
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costCode" >
+        #costCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costName" >
+        #costName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costPhase" >
+        #costPhase:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        #productId:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCostBindExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PRD_COST_BIND
+    <include refid="B_PRD_COST_BIND.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PRD_COST_BIND
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costCode" >
+        COST_CODE = #record.costCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costName" >
+        COST_NAME = #record.costName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costPhase" >
+        COST_PHASE = #record.costPhase:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productId" >
+        PRODUCT_ID = #record.productId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PRD_COST_BIND.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PRD_COST_BIND
+    set ID = #record.id:VARCHAR#,
+      COST_CODE = #record.costCode:CHAR#,
+      COST_NAME = #record.costName:VARCHAR#,
+      COST_PHASE = #record.costPhase:VARCHAR#,
+      PRODUCT_ID = #record.productId:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_PRD_COST_BIND.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCostBind" >
+    update B_PRD_COST_BIND
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="costCode" >
+        COST_CODE = #costCode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costName" >
+        COST_NAME = #costName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costPhase" >
+        COST_PHASE = #costPhase:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID = #productId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.prd.dao.model.BPrdCostBind" >
+    update B_PRD_COST_BIND
+    set COST_CODE = #costCode:CHAR#,
+      COST_NAME = #costName:VARCHAR#,
+      COST_PHASE = #costPhase:VARCHAR#,
+      PRODUCT_ID = #productId:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

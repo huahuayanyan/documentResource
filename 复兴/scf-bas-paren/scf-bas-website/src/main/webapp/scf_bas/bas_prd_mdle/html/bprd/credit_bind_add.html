@@ -1,0 +1,21 @@
+
+<ht-form name="otherform">
+    <ht-legend>额度信息</ht-legend>
+    <!--产品名称已确定，不能修改-->
+    <ht-input ht-id="productName" name="产品名称" disable="true"reg-exp="common.require"  ng-model="otherform.productName"></ht-input>
+    <!--该字段关联表B_ICR_INFO-->
+     <ht-input-extent ht-id="creditType" name="额度类型" extent="creditTypeContent"  disable="{{disable}}"
+                      reg-exp="common.require" ng-model="otherform.creditType"></ht-input-extent>
+    <ht-select ht-id="creditPhase" name="额度阶段" disable="{{disable}}" reg-exp="common.require" dictionary="creditPhase" ng-model="otherform.creditPhase"></ht-select>
+    <ht-select ht-id="oprType" name="操作类型" disable="{{disable}}"reg-exp="common.require" dictionary="oprType" ng-model="otherform.oprType"></ht-select>
+    <ht-select ht-id="oprField" name="额度操作金额类型"  disable="{{disable}}" reg-exp="common.require" dictionary="oprField" ng-model="otherform.oprField"></ht-select>
+    <ht-select ht-id="oprMode" name="操作模式"  disable="{{disable}}" reg-exp="common.require" dictionary="oprMode" ng-model="otherform.oprMode"></ht-select>
+    <ht-input ht-id="funNo" name="功能编号" disable="{{disable}}"reg-exp="common.require"  ng-model="otherform.funNo"></ht-input>
+</ht-form>
+<!-- self_hide，当查看的时候，确定键隐藏。-->
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{self_hide}}" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"class="btn-primary">取消</ht-button>
+</ht-button-group>
+
+

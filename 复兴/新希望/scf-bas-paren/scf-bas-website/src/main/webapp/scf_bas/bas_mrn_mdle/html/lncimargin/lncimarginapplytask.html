@@ -1,0 +1,28 @@
+<ht-legend>借据信息</ht-legend>
+<ht-form name="infoform">
+     <ht-input ht-id="loanAppno" name="出账流水号"      disable="true"   ng-model="infoform.loanAppno"></ht-input>
+     <ht-input ht-id="debetId" name="借据号/承兑协议号"      disable="true"    ng-model="infoform.debetId"></ht-input>
+      <ht-input ht-id="custcd" name="客户号"      disable="true"    ng-model="infoform.custcd"></ht-input>
+     <ht-input ht-id="mastContcode" name="信贷合同号"     disable="true"     ng-model="infoform.mastContcode"></ht-input>
+     <ht-select ht-id="lnciType" name="出账方式"   disable="true"     dictionary="loanWay"    ng-model="infoform.lnciType"></ht-select>
+      <ht-input ht-id="startDate" name="起始日"    disable="true"   edit-type="date" ng-model="infoform.startDate"></ht-input>
+      <ht-input ht-id="endDate" name="到期日"   disable="true"  edit-type="date" ng-model="infoform.endDate"></ht-input>
+      <ht-input ht-id="lnciAmt" name="借据金额"     disable="true"    ng-model="infoform.lnciAmt"  edit-type="currency"  ></ht-input>
+      <ht-input ht-id="lnciBal" name="借据余额"      disable="true"   ng-model="infoform.lnciBal"  edit-type="currency"  ></ht-input>
+       <ht-input ht-id="firstBailRatio"   name="初始保证金比例(%)"   disable="true"    ng-model="infoform.firstBailRatio"></ht-input>
+       <ht-input ht-id="totBailAmt"   name="保证金金额"    disable="true"   ng-model="infoform.totBailAmt"  edit-type="currency"  ></ht-input>
+       <ht-input ht-id="totCashEqualAmt"   name="现金等价物金额"    disable="true"   ng-model="infoform.totCashEqualAmt"  edit-type="currency"  ></ht-input>
+  </ht-form>
+  <ht-legend>保证金转入信息</ht-legend>
+  <ht-form name="updateForm">
+      <ht-input-extent ht-id="bailAccountno" name="保证金账号" extent="bailAcctNoContent"  reg-exp="common.require" 
+                     on-change="bailAcctNodooextent" ng-model="updateForm.bailAccountno"  disable="{{viewdisable}}" >
+    </ht-input-extent>
+     <ht-input ht-id="bailAmount"  name="转入金额"     disable="{{viewdisable}}" reg-exp="common.require"   ng-model="updateForm.bailAmount" edit-type="currency" ></ht-input>
+     <ht-input ht-id="npsBailAmount" name="核心保证金余额"    disable="{{viewdisable}}"  reg-exp="common.require"     ng-model="updateForm.npsBailAmount"  edit-type="currency" ></ht-input>
+  </ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary"   hide="{{viewhide}}">保存</ht-button>
+</ht-button-group>
+

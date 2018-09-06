@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_MPROT_CHG_HIS" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.cnt.dao.model.BCntMprotChgHis" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="OLD_PROTOCOL_NO" property="oldProtocolNo" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="TIME" property="time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PROTOCOL_NO, OLD_PROTOCOL_NO, TLRCD, TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotChgHisExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_MPROT_CHG_HIS.Base_Column_List" />
+    from B_CNT_MPROT_CHG_HIS
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_CHG_HIS.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotChgHis" >
+    select 
+    <include refid="B_CNT_MPROT_CHG_HIS.Base_Column_List" />
+    from B_CNT_MPROT_CHG_HIS
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotChgHis" >
+    delete from B_CNT_MPROT_CHG_HIS
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotChgHisExample" >
+    delete from B_CNT_MPROT_CHG_HIS
+    <include refid="B_CNT_MPROT_CHG_HIS.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotChgHis" >
+    insert into B_CNT_MPROT_CHG_HIS (ID, PROTOCOL_NO, OLD_PROTOCOL_NO, TLRCD, 
+      TIME)
+    values (#id:VARCHAR#, #protocolNo:VARCHAR#, #oldProtocolNo:VARCHAR#, #tlrcd:VARCHAR#, 
+      #time:TIMESTAMP#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotChgHis" >
+    insert into B_CNT_MPROT_CHG_HIS
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="oldProtocolNo" >
+        OLD_PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="time" >
+        TIME
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldProtocolNo" >
+        #oldProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="time" >
+        #time:TIMESTAMP#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotChgHisExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_MPROT_CHG_HIS
+    <include refid="B_CNT_MPROT_CHG_HIS.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_MPROT_CHG_HIS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldProtocolNo" >
+        OLD_PROTOCOL_NO = #record.oldProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.time" >
+        TIME = #record.time:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_CHG_HIS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_MPROT_CHG_HIS
+    set ID = #record.id:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      OLD_PROTOCOL_NO = #record.oldProtocolNo:VARCHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      TIME = #record.time:TIMESTAMP#
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_CHG_HIS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotChgHis" >
+    update B_CNT_MPROT_CHG_HIS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldProtocolNo" >
+        OLD_PROTOCOL_NO = #oldProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="time" >
+        TIME = #time:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotChgHis" >
+    update B_CNT_MPROT_CHG_HIS
+    set PROTOCOL_NO = #protocolNo:VARCHAR#,
+      OLD_PROTOCOL_NO = #oldProtocolNo:VARCHAR#,
+      TLRCD = #tlrcd:VARCHAR#,
+      TIME = #time:TIMESTAMP#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

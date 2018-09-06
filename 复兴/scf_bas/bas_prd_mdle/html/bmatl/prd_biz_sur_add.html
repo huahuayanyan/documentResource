@@ -1,0 +1,20 @@
+
+<ht-form name="otherform">
+    <ht-legend>业务调查材料信息</ht-legend>
+    <ht-input ht-id="matlName" name="材料名称" disable="{{disable}}" reg-exp="common.require"  ng-model="otherform.matlName"></ht-input>
+    <ht-select ht-id="matlType" name="材料类型" disable="{{disable}}"reg-exp="common.require" dictionary="matlType"  ng-model="otherform.matlType"></ht-select>
+<!-- //todo 此处应是上传文件功能，后期完善
+     <ht-file ht-id="fileName" name="文件名称" disable="{{disable}}"  reg-exp="common.require"  ng-model="otherform.fileName"></ht-file>
+-->
+    <ht-input ht-id="fileName" name="文件名称" disable="{{disable}}"  reg-exp="common.require"  ng-model="otherform.fileName"></ht-input>
+    <ht-input-extent ht-id="productName" name="产品大类名称" extent="productNameContent" on-change="productNameExtent" disable="{{disable}}"
+                     reg-exp="common.require" ng-model="otherform.productName"></ht-input-extent>
+    <ht-text-area ht-id="remark" name="备注"  disable="{{disable}}"  ng-model="otherform.remark"></ht-text-area>
+   </ht-form>
+<!-- hide1，当查看的时候，确定键隐藏。-->
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide}}" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"class="btn-primary">取消</ht-button>
+</ht-button-group>
+
+

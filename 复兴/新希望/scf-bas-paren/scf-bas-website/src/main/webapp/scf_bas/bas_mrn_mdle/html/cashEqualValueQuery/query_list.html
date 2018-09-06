@@ -1,0 +1,27 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-select ht-id="applyType" name="类型" ng-model="conditionForm.applyType" dictionary="cashEqualValueApplyType"></ht-select>
+    <ht-input-extent ht-id="cname" name="客户名称" extent="custcontent" on-change="dooextend"
+                     ng-model="conditionForm.cname"></ht-input-extent>
+    <ht-input name="放款合同号" ng-model="conditionForm.subContno"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>查询结果信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="applyType" zh-name="类型" dictionary="cashEqualValueApplyType"></ht-column>
+    <ht-column eg-name="appno" zh-name="申请编号"></ht-column>
+    <ht-column eg-name="cnameBuyer" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="subContno" zh-name="放款合同号/协议号"></ht-column>
+    <ht-column eg-name="amount" zh-name="金额" type="currency"></ht-column>
+    <ht-column eg-name="appDate" zh-name="日期" type="date"></ht-column>
+</ht-table>
+
+<ht-page conf="conf"></ht-page>
+
+
+
+

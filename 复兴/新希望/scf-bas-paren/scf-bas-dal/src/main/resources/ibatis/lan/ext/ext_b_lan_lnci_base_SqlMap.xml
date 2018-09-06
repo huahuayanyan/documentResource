@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_LAN_LNCI_BASE" >
+  <resultMap id="BaseResultVOMap" class="com.huateng.scf.bas.lan.dao.model.BLanLnciBaseVO"  extends="B_LAN_LNCI_BASE.BaseResultMap" >
+ 	<result column="TLRNO" property="tlrno" jdbcType="VARCHAR" />
+ 	<result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+ 	<result column="SELLER_CUSTCD" property="sellerCustcd" jdbcType="VARCHAR" />
+   	<result column="CORE_CUSTCD" property="coreCustcd" jdbcType="VARCHAR" />
+   	<result column="SELLER_CNAME" property="sellerCname" jdbcType="VARCHAR" />
+   	<result column="CORE_CNAME" property="coreCname" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  
+   <!-- 根据借据号查询借据信息 -->
+  <select id="findBLanLnciBaseByDebtId" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass="java.lang.String" >
+    select 
+    <include refid="B_LAN_LNCI_BASE.Base_Column_List" />
+    from B_LAN_LNCI_BASE
+     where DEBET_ID = #debetId:VARCHAR#
+  </select>
+
+   <!-- 根据供应链借据号查询借据信息 -->
+  <select id="findBLanLnciBaseByDebtNo" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass="java.lang.String" >
+    select 
+    <include refid="B_LAN_LNCI_BASE.Base_Column_List" />
+    from B_LAN_LNCI_BASE
+     where DEBET_No = #debetNo:VARCHAR#
+  </select>
+  
+     <!-- 查询未结清且有效的借据 -->
+  <select id="queryValidLnciBaseInfo" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass="java.util.HashMap" >
+    select 
+    <include refid="B_LAN_LNCI_BASE.Base_Column_List" />
+    from B_LAN_LNCI_BASE
+     where 1=1
+     <isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ MAST_CONTNO=#mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+     <isNotEmpty prepend="and" property="state"> 
+	    <![CDATA[ STATE=#state:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isSettle"> 
+	    <![CDATA[ IS_SETTLE=#isSettle:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  <resultMap id="FinAmtDistribResultMap" class="com.huateng.scf.bas.lan.dao.vo.FinAmtDistrib" >
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="REGION_NAME" property="regionName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="FinAmtProductResultMap" class="com.huateng.scf.bas.lan.dao.vo.FinAmtDistrib" >
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="FinAmtTopResultMap" class="com.huateng.scf.bas.lan.dao.vo.FinAmtDistrib" >
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="REGION_NAME" property="regionName" jdbcType="VARCHAR" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <!-- 查询融资金额-地图分布 -->
+  <select id="queryFinAmtDistribList" resultMap="FinAmtDistribResultMap" parameterClass="java.util.HashMap" >
+  <![CDATA[
+	  SELECT 
+	  	   max(e.province) area,
+	       max(r.region_name) region_name,
+	       t.product_id,
+	       max(p.product_name) product_name,
+	       sum(t.lnci_amt) lnci_amt
+	  FROM B_LAN_LNCI_BASE t,
+	       B_CRM_BASE_INFO b,
+	       B_CRM_ENT_INFO  e,
+	       B_PRD_INFO      p,
+	       B_SYS_REGION    r
+	 WHERE 1 = 1
+	   AND b.custcd = e.custcd
+	   AND e.area is not null
+	   AND b.custcd = t.custcd
+	   AND t.product_id = p.product_id
+	   AND e.province = r.region_code 
+	 GROUP BY t.product_id, e.province
+	 ORDER BY sum(t.lnci_amt) desc
+	 
+	 ]]>
+  </select>
+  <!-- 查询融资金额-地图分布-产品列表 -->
+  <select id="queryFinAmtProductList" resultMap="FinAmtProductResultMap" parameterClass="java.util.HashMap" >
+  <![CDATA[
+	  SELECT distinct f.product_id,f.product_name FROM (
+		SELECT 
+		       e.province area,
+		       max(r.region_name) region_name,
+		       t.product_id,
+		       max(p.product_name) product_name,
+		       sum(t.lnci_amt) lnci_amt
+		  FROM B_LAN_LNCI_BASE t,
+		       B_CRM_BASE_INFO b,
+		       B_CRM_ENT_INFO  e,
+		       B_PRD_INFO      p,
+		       B_SYS_REGION    r
+		 WHERE 1 = 1
+		   AND b.custcd = e.custcd
+		   AND e.area is not null
+		   AND b.custcd = t.custcd
+		   AND t.product_id = p.product_id
+		   AND e.province = r.region_code 
+		 GROUP BY t.product_id, e.province 
+		 ORDER BY sum(t.lnci_amt) desc
+	) f
+	 
+	 ]]>
+  </select>
+    <!-- 查询融资金额-地图分布TOP10-产品列表 -->
+  <select id="queryFinAmtTopList" resultMap="FinAmtTopResultMap" parameterClass="java.util.HashMap" >
+  <![CDATA[
+      SELECT f.area, f.region_name, sum(f.lnci_amt) lnci_amt 
+	  FROM (SELECT e.province area,
+	               max(r.region_name) region_name,
+	               t.product_id,
+	               max(p.product_name) product_name,
+	               sum(t.lnci_amt) lnci_amt
+	          FROM B_LAN_LNCI_BASE t,
+	               B_CRM_BASE_INFO b,
+	               B_CRM_ENT_INFO  e,
+	               B_PRD_INFO      p,
+	               B_SYS_REGION    r 
+	         WHERE 1 = 1 
+	           AND b.custcd = e.custcd
+	           AND e.area is not null 
+	           AND b.custcd = t.custcd
+	           AND t.product_id = p.product_id 
+	           AND e.province = r.region_code
+	         GROUP BY t.product_id, e.province 
+	         ORDER BY sum(t.lnci_amt) desc) f 
+	 GROUP BY f.area, f.region_name 
+	 ORDER BY sum(f.lnci_amt) desc 
+      
+  ]]>
+  </select>
+   <!-- 担保提货的借据信息查询-->
+  <select id="selectThreeLnciInfoList" resultMap="BaseResultVOMap" parameterClass ="java.util.HashMap">
+	SELECT T1.TLRNO, T1.BRCODE,T3.CUSTCD SELLER_CUSTCD, T3.CNAME SELLER_CNAME, T4.CUSTCD CORE_CUSTCD, T4.CNAME CORE_CNAME, T2.*
+	FROM B_CNT_MPROT_BASE_INFO T1, B_LAN_LNCI_BASE T2, B_CNT_MPROT_PART_INFO T3, B_CNT_MPROT_PART_INFO T4
+    		WHERE 1 = 1 AND T1.PROTOCOL_NO  = T2.PROTOCOL_NO AND
+			T1.PROTOCOL_NO = T3.PROTOCOL_NO AND T3.ROLE = '03' AND 
+			T1.PROTOCOL_NO = T4.PROTOCOL_NO AND T4.ROLE = '04' AND
+			T1.PROTOCOL_TYPE = '07' AND T1.STATE = '1' AND
+			T2.STATE = '0' AND T2.LNCI_STATUS = '0'	
+			<isNotNull prepend="and" property="arrBr" >
+			 T1.BRCODE in 
+		    <iterate conjunction="," open="(" close=")" property="arrBr">
+		 	      #arrBr[]#
+		 	</iterate>
+		 	</isNotNull>
+			<isNotEmpty prepend="and" property="sellerNm" >
+				<![CDATA[T3.CNAME like '%'||#sellerNm:VARCHAR#||'%' ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="coreNm" >
+				<![CDATA[T4.CNAME like '%'||#coreNm:VARCHAR#||'%' ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="debetId" >
+				<![CDATA[T2.DEBET_ID like '%'||#debetId:VARCHAR#||'%']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="protocolNo" >
+				<![CDATA[T2.PROTOCOL_NO like '%'||#protocolNo:VARCHAR#||'%']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="tradeContno" >
+				<![CDATA[T2.MAST_CONTNO  like '%'||#tradeContno:VARCHAR#||'%']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="loanWay" >
+				T2.LNCI_TYPE = #loanWay:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty property="startDate1" prepend="and" >
+				<![CDATA[T2.START_DATE>= #startDate1:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="startDate2" prepend="and">
+				<![CDATA[T2.START_DATE<= #startDate2:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="startDate3"  prepend="and">
+				<![CDATA[T2.END_DATE >= #startDate3:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="startDate4" prepend="and">
+				<![CDATA[T2.END_DATE <= #startDate4:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="amount1"  prepend="and">
+				<![CDATA[T2.AMOUNT_OUT >= #amount1:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="amount2" prepend="and">
+				<![CDATA[T2.AMOUNT_OUT <= #amount2:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="status" >
+				T2.CONFIRM_STATUS = #status:VARCHAR#
+			</isNotEmpty>
+  </select>
+  
+   <!-- 担保提货的借据信息条目数查询-->
+  <select id="selectThreeLnciInfoCount" resultClass="java.lang.Integer" parameterClass ="java.util.HashMap">
+  	SELECT count(*) FROM (
+	SELECT T1.TLRNO, T1.BRCODE,T3.CUSTCD SELLER_CUSTCD, T3.CNAME SELLER_CNAME, T4.CUSTCD CORE_CUSTCD, T4.CNAME CORE_CNAME, T2.*
+	FROM B_CNT_MPROT_BASE_INFO T1, B_LAN_LNCI_BASE T2, B_CNT_MPROT_PART_INFO T3, B_CNT_MPROT_PART_INFO T4
+    		WHERE 1 = 1 AND T1.PROTOCOL_NO  = T2.PROTOCOL_NO AND
+			T1.PROTOCOL_NO = T3.PROTOCOL_NO AND T3.ROLE = '03' AND 
+			T1.PROTOCOL_NO = T4.PROTOCOL_NO AND T4.ROLE = '04' AND
+			T1.PROTOCOL_TYPE = '07' AND T1.STATE = '1' AND
+			T2.STATE = '0' AND T2.LNCI_STATUS = '0'
+			<isNotEmpty prepend="and" property="sellerNm" >
+				<![CDATA[T3.CNAME like '%'||#sellerNm:VARCHAR#||'%' ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="coreNm" >
+				<![CDATA[T4.CNAME like '%'||#coreNm:VARCHAR#||'%' ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="debetId" >
+				T2.DEBET_ID = #debetId:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="protocolNo" >
+				T2.PROTOCOL_NO = #protocolNo:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="tradeContno" >
+				T2.MAST_CONTNO = #tradeContno:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="loanWay" >
+				T2.LNCI_TYPE = #loanWay:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty property="startDate1" prepend="and" >
+				<![CDATA[T2.START_DATE<= #startDate1:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="startDate2" prepend="and">
+				<![CDATA[T2.START_DATE>= #startDate2:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="startDate3"  prepend="and">
+				<![CDATA[T2.END_DATE >= #startDate3:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="startDate4" prepend="and">
+				<![CDATA[T2.END_DATE <= #startDate4:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="amount1"  prepend="and">
+				<![CDATA[T2.AMOUNT_OUT >= #amount1:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="amount2" prepend="and">
+				<![CDATA[T2.AMOUNT_OUT <= #amount2:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="status" >
+				T2.CONFIRM_STATUS = #status:VARCHAR#
+			</isNotEmpty>
+			)
+  </select>
+  
+  <select id="queryLnciInfoByBusinessNo" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass="java.util.HashMap" >
+    select tlbi.* 
+    from B_LAN_LNCI_BASE tlbi,B_CRR_LN_CON tcbi 
+    where tlbi.MAST_CONTNO = tcbi.APP_ID
+    <isNotEmpty prepend="and" property="businessNo" >
+		tcbi.VID_NO = #businessNo:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isLocked" >
+		(tlbi.IS_LOCKED is null or	  tlbi.IS_LOCKED = #isLocked:VARCHAR# 
+		<isNotEmpty prepend="or" property="lockAppno" >
+			tlbi.LOCK_APPNO = #lockAppno:VARCHAR#
+		</isNotEmpty>
+	)
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetIdList" > 
+        tlbi.DEBET_ID  NOT IN 
+        <iterate property="debetIdList" conjunction="," open="(" close=")" >
+   		 $debetIdList[]$ 
+   		</iterate> 
+     </isNotEmpty>
+	<isNotEmpty prepend="and" property="lnciType" >
+		tlbi.LNCI_TYPE = #lnciType:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="loanAppno" >
+		tlbi.LOAN_APPNO = #loanAppno:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startDate" >
+		tlbi.START_DATE = #startDate:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="debetId" >
+		tlbi.DEBET_ID = #debetId:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="state" >
+		tlbi.STATE != #state:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isSettle" >
+		tlbi.IS_SETTLE = #isSettle:VARCHAR#
+	</isNotEmpty>
+	order by tlbi.DEBET_ID
+  </select>
+  <select id="countNoPoolBLanLnciBaseByDebtIdList" resultClass="java.lang.Integer" parameterClass ="java.util.HashMap" >
+    select count( distinct tlbi.DEBET_ID) 
+    from B_LAN_LNCI_BASE tlbi,R_BCP_APPLI_BUSS_DTL abdt
+    where 1=1
+    <isNotNull prepend="and" property="debtIdList" > 
+        abdt.DEBT_ID in 
+        <iterate property="debtIdList" conjunction="," open="(" close=")" >
+   		 #debtIdList[]#
+   		</iterate> 
+    </isNotNull>
+    and abdt.DEBET_NO = tlbi.DEBET_ID
+    and tlbi.STATE != '1'
+    and tlbi.IS_SETTLE ='0'
+    order by tlbi.DEBET_ID
+  </select>
+  <select id="getNoPoolBLanLnciBaseByDebtIdList" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass="java.util.HashMap" >
+    select distinct tlbi.* 
+    from B_LAN_LNCI_BASE tlbi,R_BCP_APPLI_BUSS_DTL abdt
+    where 1=1
+    <isNotNull prepend="and" property="debtIdList" > 
+        abdt.DEBT_ID in 
+        <iterate property="debtIdList" conjunction="," open="(" close=")" >
+   		 #debtIdList[]#
+   		</iterate> 
+    </isNotNull>
+    and abdt.DEBET_NO = tlbi.DEBET_ID
+    and tlbi.STATE != '1'
+    and tlbi.IS_SETTLE ='0'
+    order by tlbi.DEBET_ID
+  </select>
+  
+  <!--  台账中借据信息查询   四方保兑仓协议 -->
+   <select id="selectFourLnciInfoList" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass ="java.util.HashMap">
+	select tlbi.*
+	from B_LAN_LNCI_BASE tlbi,B_CNT_MPROT_BASE_INFO tmpbi,B_CRR_LN_CON tcbi where 1=1 
+	and tlbi.mast_contno=tcbi.APP_ID and tcbi.VID_NO = tmpbi.protocol_no 
+	and tmpbi.protocol_type='02' 
+	<isNotEmpty prepend="and" property="protocolNo" >
+		<![CDATA[tmpbi.protocol_no = #protocolNo:VARCHAR#]]>
+	</isNotEmpty>
+  </select>
+  <!-- 质押合同下出账总金额 -->
+  <select id="queryLnciAmtBySlaveContno" resultClass="java.util.HashMap" parameterClass ="java.util.HashMap">
+	select sum(tlbi.lnci_amt) as LNCIAMT
+	from B_LAN_LNCI_BASE tlbi
+	where 1=1
+	<isNotEmpty prepend="and" property="state" >
+		<![CDATA[tlbi.state != #state:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno" >
+		<![CDATA[tlbi.SLAVE_CONTNO = #slaveContno:VARCHAR#]]>
+	</isNotEmpty>
+  </select>
+
+  <!-- 质押合同下出账总金额 -->
+  <select id="getKindsOfSum" resultClass="java.util.HashMap" parameterClass ="java.util.HashMap">
+	select sum(T1.LNCI_AMT) LNCI_AMT,sum(T1.LNCI_BAL) LNCI_BAL,sum(T1.AMOUNT_IN) AMOUNT_IN,sum(T1.AMOUNT_OUT) AMOUNT_OUT,sum( nvl(T1.AMOUNT_UP_OUT, 0)) AMOUNT_UP_OUT 
+		from B_LAN_LNCI_BASE T1 
+		where T1.state != '1' and T1.IS_SETTLE = 0
+		<isNotEmpty prepend="and" property="slaveContno" >
+		 	T1.SLAVE_CONTNO = #slaveContno:VARCHAR# 
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="oldThrCd" >
+			 T1.CREDIT_CUSTCD =#oldThrCd:VARCHAR#
+		</isNotEmpty>
+  </select>
+  
+  <select id="getTblLnciBaseInfo" resultMap="B_LAN_LNCI_BASE.BaseResultMap" parameterClass ="java.util.HashMap">
+	select po.* from B_LAN_LNCI_BASE po WHERE po.state != 1 and po.is_Settle = 0
+		<isNotEmpty prepend="and" property="creditCustcd" >
+		 	po.CREDIT_CUSTCD = #creditCustcd:VARCHAR# 
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="custcd" >
+			 po.CUSTCD =#custcd:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="slaveContno" >
+			 po.SLAVE_CONTNO =#slaveContno:VARCHAR#
+		</isNotEmpty>
+  </select>
+  
+</sqlMap>

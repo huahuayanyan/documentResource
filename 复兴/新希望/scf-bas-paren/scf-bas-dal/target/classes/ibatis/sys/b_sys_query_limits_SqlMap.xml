@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_SYS_QUERY_LIMITS" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.sys.dao.model.BSysQueryLimits" >
+    <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+    <result column="ROLE_NO" property="roleNo" jdbcType="VARCHAR" />
+    <result column="ROLE_MODEL" property="roleModel" jdbcType="CHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ROLE_ID, ROLE_NO, ROLE_MODEL, INP_DT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysQueryLimitsExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_SYS_QUERY_LIMITS.Base_Column_List" />
+    from B_SYS_QUERY_LIMITS
+    <isParameterPresent >
+      <include refid="B_SYS_QUERY_LIMITS.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysQueryLimits" >
+    select 
+    <include refid="B_SYS_QUERY_LIMITS.Base_Column_List" />
+    from B_SYS_QUERY_LIMITS
+    where ROLE_ID = #roleId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysQueryLimits" >
+    delete from B_SYS_QUERY_LIMITS
+    where ROLE_ID = #roleId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysQueryLimitsExample" >
+    delete from B_SYS_QUERY_LIMITS
+    <include refid="B_SYS_QUERY_LIMITS.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysQueryLimits" >
+    insert into B_SYS_QUERY_LIMITS (ROLE_ID, ROLE_NO, ROLE_MODEL, INP_DT)
+    values (#roleId:VARCHAR#, #roleNo:VARCHAR#, #roleModel:CHAR#, #inpDt:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysQueryLimits" >
+    insert into B_SYS_QUERY_LIMITS
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="roleId" >
+        ROLE_ID
+      </isNotNull>
+      <isNotNull prepend="," property="roleNo" >
+        ROLE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="roleModel" >
+        ROLE_MODEL
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="roleId" >
+        #roleId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="roleNo" >
+        #roleNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="roleModel" >
+        #roleModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        #inpDt:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysQueryLimitsExample" resultClass="java.lang.Integer" >
+    select count(*) from B_SYS_QUERY_LIMITS
+    <include refid="B_SYS_QUERY_LIMITS.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_SYS_QUERY_LIMITS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.roleId" >
+        ROLE_ID = #record.roleId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.roleNo" >
+        ROLE_NO = #record.roleNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.roleModel" >
+        ROLE_MODEL = #record.roleModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inpDt" >
+        INP_DT = #record.inpDt:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_SYS_QUERY_LIMITS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_SYS_QUERY_LIMITS
+    set ROLE_ID = #record.roleId:VARCHAR#,
+      ROLE_NO = #record.roleNo:VARCHAR#,
+      ROLE_MODEL = #record.roleModel:CHAR#,
+      INP_DT = #record.inpDt:CHAR#
+    <isParameterPresent >
+      <include refid="B_SYS_QUERY_LIMITS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysQueryLimits" >
+    update B_SYS_QUERY_LIMITS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="roleNo" >
+        ROLE_NO = #roleNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="roleModel" >
+        ROLE_MODEL = #roleModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT = #inpDt:CHAR#
+      </isNotNull>
+    </dynamic>
+    where ROLE_ID = #roleId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysQueryLimits" >
+    update B_SYS_QUERY_LIMITS
+    set ROLE_NO = #roleNo:VARCHAR#,
+      ROLE_MODEL = #roleModel:CHAR#,
+      INP_DT = #inpDt:CHAR#
+    where ROLE_ID = #roleId:VARCHAR#
+  </update>
+</sqlMap>

@@ -1,0 +1,18 @@
+
+<ht-form name="flowform">
+    <ht-input ht-id="productName" name="业务品种" ng-model="flowform.productName" reg-exp="common.require" disable="true"></ht-input>
+    <ht-select ht-id="invokPhase" name="调用阶段" ng-model="flowform.invokPhase" reg-exp="common.require" dictionary="invokPhase"
+            disable="{{disable}}"></ht-select>
+    <ht-input-extent ht-id="modelName" name="流程分类" extent="modelContent" on-change="modeldooextent"
+                     ng-model="flowform.modelName" disable="{{disable}}"></ht-input-extent>
+   <ht-input ht-id="callerClasspath" name="调用路径" disable="{{disable}}" ng-model="flowform.callerClasspath"></ht-input>
+    <ht-input ht-id="url" name="页面跳转路径" disable="{{disable}}" ng-model="flowform.url"></ht-input>
+    <ht-radio ht-id="status" name="状态" ng-model="flowform.status" dictionary="intStat"
+              disable="{{disable}}" reg-exp="common.require"></ht-radio>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm"  class="btn-primary" desc-name="确定" hide="{{hide}}"></ht-button>
+    <ht-button ht-id="close" class="btn-primary" desc-name="返回"></ht-button>
+</ht-button-group>
+
+

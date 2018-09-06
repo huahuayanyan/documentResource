@@ -1,0 +1,33 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <!--<ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>-->
+    <ht-input ht-id="prdId" name="业务编号" ng-model="conditionForm.prdId"></ht-input>
+    <ht-input ht-id="prdNm"  name="业务品种" ng-model="conditionForm.prdNm"></ht-input>
+    <ht-select ht-id="stat" name="是否表外业务" ng-model="conditionForm.stat" dictionary="checked"></ht-select>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>产品配置列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="prdId" zh-name="模版编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="prdNm" zh-name="模版名称"></ht-column>
+    <ht-column eg-name="obj" zh-name="对象参数"></ht-column>
+    <ht-column eg-name="stat" zh-name="是否表外业务" dictionary="checked"></ht-column>
+    <ht-column eg-name="isList" zh-name="是否列表显示" dictionary="checked"></ht-column>
+    <ht-column eg-name="statu" zh-name="是否有效" dictionary="validState"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->
+
+
+
+

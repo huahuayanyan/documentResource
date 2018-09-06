@@ -1,0 +1,31 @@
+
+<ht-form name ="conditionForm">
+   <ht-input ht-id="billsDateFrom" name="应收账款日期从" edit-type="date" ng-model="conditionForm.billsDate_from_Q"></ht-input>
+    <ht-input ht-id="billsDateTo"  name="应收账款日期到"  edit-type="date" ng-model="conditionForm.billsDate_to_Q"></ht-input>
+    <ht-input ht-id="debtEndFrom" name="到期日从" edit-type="date" ng-model="conditionForm.debtEnd_from_Q"></ht-input>
+    <ht-input ht-id="debtEndTo"  name="到期日到"  edit-type="date" ng-model="conditionForm.debtEnd_to_Q"></ht-input>
+    <ht-select ht-id="billsType"  name="凭证类型" dictionary="billsType" ng-model="conditionForm.billsType_Q"></ht-select>
+    <ht-input ht-id="billsNo" name="凭证编号" ng-model="conditionForm.billsNo_Q"></ht-input>
+    <ht-button-group>
+        <ht-button ht-id="serch"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="billsNo" zh-name="凭证编号" ></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType" ></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同号" ></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期" type="date"></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="账面金额" type="currency"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="应收账款余额" type="currency"></ht-column>
+</ht-table>
+
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

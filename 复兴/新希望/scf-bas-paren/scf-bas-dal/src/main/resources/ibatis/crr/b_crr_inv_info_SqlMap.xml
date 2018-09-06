@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRR_INV_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrInvInfo" >
+    <result column="INV_ID" property="invId" jdbcType="VARCHAR" />
+    <result column="EXT_ID" property="extId" jdbcType="VARCHAR" />
+    <result column="RELA_TYP" property="relaTyp" jdbcType="VARCHAR" />
+    <result column="RELA_NO" property="relaNo" jdbcType="VARCHAR" />
+    <result column="INV_NO" property="invNo" jdbcType="VARCHAR" />
+    <result column="INV_CURCD" property="invCurcd" jdbcType="VARCHAR" />
+    <result column="PRCH_ID" property="prchId" jdbcType="VARCHAR" />
+    <result column="PRCH_NM" property="prchNm" jdbcType="VARCHAR" />
+    <result column="SELL_ID" property="sellId" jdbcType="VARCHAR" />
+    <result column="SELL_NM" property="sellNm" jdbcType="VARCHAR" />
+    <result column="TRD_TYP" property="trdTyp" jdbcType="VARCHAR" />
+    <result column="TRD_PRD" property="trdPrd" jdbcType="VARCHAR" />
+    <result column="INV_DT" property="invDt" jdbcType="VARCHAR" />
+    <result column="INV_SUM" property="invSum" jdbcType="DECIMAL" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    INV_ID, EXT_ID, RELA_TYP, RELA_NO, INV_NO, INV_CURCD, PRCH_ID, PRCH_NM, SELL_ID, 
+    SELL_NM, TRD_TYP, TRD_PRD, INV_DT, INV_SUM, TLR_NO, TLR_NM, BR_CD, BR_NM, INP_DT, 
+    LST_UPD_TLR, LST_UPD_TLR_NM, LST_UPD_BR_CD, LST_UPD_BR_NM, LST_UPD_DT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRR_INV_INFO.Base_Column_List" />
+    from B_CRR_INV_INFO
+    <isParameterPresent >
+      <include refid="B_CRR_INV_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfo" >
+    select 
+    <include refid="B_CRR_INV_INFO.Base_Column_List" />
+    from B_CRR_INV_INFO
+    where INV_ID = #invId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfo" >
+    delete from B_CRR_INV_INFO
+    where INV_ID = #invId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfoExample" >
+    delete from B_CRR_INV_INFO
+    <include refid="B_CRR_INV_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfo" >
+    insert into B_CRR_INV_INFO (INV_ID, EXT_ID, RELA_TYP, RELA_NO, INV_NO, 
+      INV_CURCD, PRCH_ID, PRCH_NM, SELL_ID, SELL_NM, 
+      TRD_TYP, TRD_PRD, INV_DT, INV_SUM, TLR_NO, 
+      TLR_NM, BR_CD, BR_NM, INP_DT, LST_UPD_TLR, 
+      LST_UPD_TLR_NM, LST_UPD_BR_CD, LST_UPD_BR_NM, LST_UPD_DT
+      )
+    values (#invId:VARCHAR#, #extId:VARCHAR#, #relaTyp:VARCHAR#, #relaNo:VARCHAR#, #invNo:VARCHAR#, 
+      #invCurcd:VARCHAR#, #prchId:VARCHAR#, #prchNm:VARCHAR#, #sellId:VARCHAR#, #sellNm:VARCHAR#, 
+      #trdTyp:VARCHAR#, #trdPrd:VARCHAR#, #invDt:VARCHAR#, #invSum:DECIMAL#, #tlrNo:VARCHAR#, 
+      #tlrNm:VARCHAR#, #brCd:VARCHAR#, #brNm:VARCHAR#, #inpDt:VARCHAR#, #lstUpdTlr:VARCHAR#, 
+      #lstUpdTlrNm:VARCHAR#, #lstUpdBrCd:VARCHAR#, #lstUpdBrNm:VARCHAR#, #lstUpdDt:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfo" >
+    insert into B_CRR_INV_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="invId" >
+        INV_ID
+      </isNotNull>
+      <isNotNull prepend="," property="extId" >
+        EXT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="relaTyp" >
+        RELA_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="relaNo" >
+        RELA_NO
+      </isNotNull>
+      <isNotNull prepend="," property="invNo" >
+        INV_NO
+      </isNotNull>
+      <isNotNull prepend="," property="invCurcd" >
+        INV_CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="prchId" >
+        PRCH_ID
+      </isNotNull>
+      <isNotNull prepend="," property="prchNm" >
+        PRCH_NM
+      </isNotNull>
+      <isNotNull prepend="," property="sellId" >
+        SELL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="sellNm" >
+        SELL_NM
+      </isNotNull>
+      <isNotNull prepend="," property="trdTyp" >
+        TRD_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="trdPrd" >
+        TRD_PRD
+      </isNotNull>
+      <isNotNull prepend="," property="invDt" >
+        INV_DT
+      </isNotNull>
+      <isNotNull prepend="," property="invSum" >
+        INV_SUM
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="invId" >
+        #invId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="extId" >
+        #extId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relaTyp" >
+        #relaTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relaNo" >
+        #relaNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="invNo" >
+        #invNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="invCurcd" >
+        #invCurcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prchId" >
+        #prchId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prchNm" >
+        #prchNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellId" >
+        #sellId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellNm" >
+        #sellNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trdTyp" >
+        #trdTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trdPrd" >
+        #trdPrd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="invDt" >
+        #invDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="invSum" >
+        #invSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRR_INV_INFO
+    <include refid="B_CRR_INV_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRR_INV_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.invId" >
+        INV_ID = #record.invId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.extId" >
+        EXT_ID = #record.extId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.relaTyp" >
+        RELA_TYP = #record.relaTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.relaNo" >
+        RELA_NO = #record.relaNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.invNo" >
+        INV_NO = #record.invNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.invCurcd" >
+        INV_CURCD = #record.invCurcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prchId" >
+        PRCH_ID = #record.prchId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prchNm" >
+        PRCH_NM = #record.prchNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sellId" >
+        SELL_ID = #record.sellId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sellNm" >
+        SELL_NM = #record.sellNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.trdTyp" >
+        TRD_TYP = #record.trdTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.trdPrd" >
+        TRD_PRD = #record.trdPrd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.invDt" >
+        INV_DT = #record.invDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.invSum" >
+        INV_SUM = #record.invSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNo" >
+        TLR_NO = #record.tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNm" >
+        TLR_NM = #record.tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brCd" >
+        BR_CD = #record.brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brNm" >
+        BR_NM = #record.brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inpDt" >
+        INP_DT = #record.inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlr" >
+        LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrCd" >
+        LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrNm" >
+        LST_UPD_BR_NM = #record.lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdDt" >
+        LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRR_INV_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRR_INV_INFO
+    set INV_ID = #record.invId:VARCHAR#,
+      EXT_ID = #record.extId:VARCHAR#,
+      RELA_TYP = #record.relaTyp:VARCHAR#,
+      RELA_NO = #record.relaNo:VARCHAR#,
+      INV_NO = #record.invNo:VARCHAR#,
+      INV_CURCD = #record.invCurcd:VARCHAR#,
+      PRCH_ID = #record.prchId:VARCHAR#,
+      PRCH_NM = #record.prchNm:VARCHAR#,
+      SELL_ID = #record.sellId:VARCHAR#,
+      SELL_NM = #record.sellNm:VARCHAR#,
+      TRD_TYP = #record.trdTyp:VARCHAR#,
+      TRD_PRD = #record.trdPrd:VARCHAR#,
+      INV_DT = #record.invDt:VARCHAR#,
+      INV_SUM = #record.invSum:DECIMAL#,
+      TLR_NO = #record.tlrNo:VARCHAR#,
+      TLR_NM = #record.tlrNm:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      BR_NM = #record.brNm:VARCHAR#,
+      INP_DT = #record.inpDt:VARCHAR#,
+      LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #record.lstUpdBrNm:VARCHAR#,
+      LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRR_INV_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfo" >
+    update B_CRR_INV_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="extId" >
+        EXT_ID = #extId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relaTyp" >
+        RELA_TYP = #relaTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="relaNo" >
+        RELA_NO = #relaNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="invNo" >
+        INV_NO = #invNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="invCurcd" >
+        INV_CURCD = #invCurcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prchId" >
+        PRCH_ID = #prchId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prchNm" >
+        PRCH_NM = #prchNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellId" >
+        SELL_ID = #sellId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellNm" >
+        SELL_NM = #sellNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trdTyp" >
+        TRD_TYP = #trdTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trdPrd" >
+        TRD_PRD = #trdPrd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="invDt" >
+        INV_DT = #invDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="invSum" >
+        INV_SUM = #invSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO = #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM = #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD = #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM = #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT = #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR = #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM = #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT = #lstUpdDt:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where INV_ID = #invId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfo" >
+    update B_CRR_INV_INFO
+    set EXT_ID = #extId:VARCHAR#,
+      RELA_TYP = #relaTyp:VARCHAR#,
+      RELA_NO = #relaNo:VARCHAR#,
+      INV_NO = #invNo:VARCHAR#,
+      INV_CURCD = #invCurcd:VARCHAR#,
+      PRCH_ID = #prchId:VARCHAR#,
+      PRCH_NM = #prchNm:VARCHAR#,
+      SELL_ID = #sellId:VARCHAR#,
+      SELL_NM = #sellNm:VARCHAR#,
+      TRD_TYP = #trdTyp:VARCHAR#,
+      TRD_PRD = #trdPrd:VARCHAR#,
+      INV_DT = #invDt:VARCHAR#,
+      INV_SUM = #invSum:DECIMAL#,
+      TLR_NO = #tlrNo:VARCHAR#,
+      TLR_NM = #tlrNm:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      BR_NM = #brNm:VARCHAR#,
+      INP_DT = #inpDt:VARCHAR#,
+      LST_UPD_TLR = #lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #lstUpdBrNm:VARCHAR#,
+      LST_UPD_DT = #lstUpdDt:VARCHAR#
+    where INV_ID = #invId:VARCHAR#
+  </update>
+  <!-- 自定义方法 -->
+  <select id="selectByExtId" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfo" >
+    select 
+    <include refid="B_CRR_INV_INFO.Base_Column_List" />
+    from B_CRR_INV_INFO
+    where EXT_ID = #extId:VARCHAR#
+  </select>
+  <delete id="deleteByExtId" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrInvInfo" >
+    delete from B_CRR_INV_INFO
+    where EXT_ID = #extId:VARCHAR#
+  </delete>
+</sqlMap>

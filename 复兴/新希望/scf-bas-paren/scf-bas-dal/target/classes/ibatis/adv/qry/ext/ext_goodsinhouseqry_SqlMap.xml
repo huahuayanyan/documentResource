@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_GOODSINHOUSEQUERY">
+
+	<!-- 库存现货查询 -->
+	<select id="queryGoodsInHouse" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT  * FROM (
+        SELECT
+            *
+        FROM
+            (
+                SELECT
+                    mbi.mortgage_No,
+                    mbi.mortgage_Name,
+                    cbi.CNAME,
+                    cgc.CON_ID,
+                    mbi.monitor_Protocol_No ,
+                    mbi.mortgage_Model,
+                    mbi.mortgage_Units,
+                    mbi.mortgage_Level_One,
+                    mbi.mortgage_Level_Two,
+                    mbi.mortgage_Level_Three ,
+                    pmc.MORTGAGE_NAME one_name,
+                    pmc2.MORTGAGE_NAME two_name,
+                    pmc3.MORTGAGE_NAME THREe_name,
+                    mbi.quantity,
+                    mbi.confirm_Price,
+                    mbi.tot_Price,
+                    mbi.manufacturer,
+                    mbi.curcd,
+                    mbi.warehouse,
+                    mbi.freightarea,
+                    mbi.freightlot,
+                    mbi.ext1,
+                    mbi.price ,
+                    mbi.certification_No,
+                    mbi.chassis_No,
+                    mbi.engine_No,
+                    mbi.manufacture_Date,
+                    mbi.is_Sl_Exibition ,
+                    mbi.join_Batch,
+                    mbi.warehouse_Address,
+                    mbi.confirm_According,
+                    mbi.fix_Mortgage_No,
+                    mbi.market_Price,
+                    mbi.memo ,
+                    mbi.description ,
+                    mbi.moni_Warehouse_Type,
+                    cgc.BR_CD,
+                    p.product_name,
+                    mbi.billno,
+                    cgc.TLR_NM
+                FROM
+                    B_PBC_MTG_BASE_INFO mbi
+                    join B_CRR_GNTY_CON cgc on mbi.slave_Contno =cgc.CON_ID
+                    left join B_CRM_BASE_INFO cbi on cbi.CUSTNO = cgc.GUT_ID
+                    left join B_PRD_INFO p on p.product_id = cgc.VID_PRD_ID
+                    left join B_PBC_MTG_CLASS pmc on pmc.MORTGAGE_CODE = mbi.MORTGAGE_LEVEL_ONE 
+                    left join B_PBC_MTG_CLASS pmc2 on pmc2.MORTGAGE_CODE = mbi.MORTGAGE_LEVEL_TWO
+                    left join B_PBC_MTG_CLASS pmc3 on pmc3.MORTGAGE_CODE = mbi.MORTGAGE_LEVEL_THREE 
+                    where 
+                		mbi.quantity > 0 
+                	<isNotEmpty prepend="AND" property="cName">
+						cbi.cname like '%$cName$%'
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="conId">
+						lower(cgc.con_Id) like '%$conId$%'
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="productId">
+						cgc.VID_PRD_ID = '$productId$'
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="One">
+						mbi.mortgage_Level_One = '$One$'
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="Two">
+						mbi.mortgage_Level_two = '$Two$'
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="brCode">
+						cgc.BR_CD = '$brCode$'
+					</isNotEmpty>
+					<isNotEmpty prepend="AND" property="moniMd">
+						mbi.moni_Warehouse_Type = '$moniMd$'
+					</isNotEmpty>
+					order by cgc.CON_ID desc
+                )	a
+	        	JOIN (
+		                SELECT
+		                    pb.protocol_no ,
+		                    pb.protocol_code,
+		                    pp.custcd jg,
+		                    cb.cname  monit_Cname
+		                FROM
+		                    B_CNT_MPROT_BASE_INFO pb ,
+		                    B_CNT_MPROT_PART_INFO pp,
+		                    B_CRM_BASE_INFO cb
+		                WHERE
+		                    pp.protocol_no = pb.protocol_no
+		                AND pp.role ='02'
+		                AND cb.custcd =pp.custcd 
+		                <isNotEmpty prepend="AND" property="moniName">
+							cb.cname like '%$moniName$%'
+						</isNotEmpty>
+						) b
+		                ON b.protocol_no = a.MONITOR_PROTOCOL_NO 
+                ) temp LEFT JOIN S_BCP_BILL_NORMAL_IN_OUT bill ON bill.billno= temp.billno
+	</select>
+</sqlMap>

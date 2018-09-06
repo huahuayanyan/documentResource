@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_INSPECTWHSEMNG">
+<resultMap id="BPbcWhseInspectVo" class="com.huateng.scf.adv.fcs.model.BPbcWhseInspectVo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUST_CD" property="custCd" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT1" property="inspectElement1" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT2" property="inspectElement2" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT3" property="inspectElement3" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT4" property="inspectElement4" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT5" property="inspectElement5" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT6" property="inspectElement6" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT7" property="inspectElement7" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT8" property="inspectElement8" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT9" property="inspectElement9" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT10" property="inspectElement10" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT11" property="inspectElement11" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT12" property="inspectElement12" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT13" property="inspectElement13" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT14" property="inspectElement14" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT15" property="inspectElement15" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT16" property="inspectElement16" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT17" property="inspectElement17" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT18" property="inspectElement18" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT19" property="inspectElement19" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT20" property="inspectElement20" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT21" property="inspectElement21" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT31" property="inspectElement31" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT30" property="inspectElement30" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT29" property="inspectElement29" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT28" property="inspectElement28" jdbcType="DECIMAL" />
+    <result column="INSPECT_ELEMENT27" property="inspectElement27" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT26" property="inspectElement26" jdbcType="DECIMAL" />
+    <result column="INSPECT_ELEMENT25" property="inspectElement25" jdbcType="DECIMAL" />
+    <result column="INSPECT_ELEMENT24" property="inspectElement24" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT23" property="inspectElement23" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT22" property="inspectElement22" jdbcType="VARCHAR" />
+    <result column="RESULTS" property="results" jdbcType="VARCHAR" />
+    <result column="APP_DATE" property="appDate" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="IDEA" property="idea" jdbcType="VARCHAR" />
+    <result column="REINSPECT" property="reinspect" jdbcType="VARCHAR" />
+    <result column="INSPECT_REPORT_NO" property="inspectReportNo" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT32" property="inspectElement32" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT33" property="inspectElement33" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT34" property="inspectElement34" jdbcType="VARCHAR" />
+    <result column="INSPECT_ELEMENT35" property="inspectElement35" jdbcType="DECIMAL" />
+    <result column="INSPECT_ELEMENT36" property="inspectElement36" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_NAME" property="warehouseName" jdbcType="VARCHAR" />
+    <result column="LOAN_AMT" property="loanAmt" jdbcType="DECIMAL" />
+    <result column="LOAN_RISK_AMT" property="loanRiskAmt" jdbcType="DECIMAL" />
+    <result column="OPER_TYPE" property="operType" jdbcType="CHAR" />
+  </resultMap>
+
+	<!-- 巡库管理查询 -->
+	<select id="queryCheckStockByPage" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT
+		   wi.id, wi.PROTOCOL_NO,  wi.MONI_CUSTCD, wi.INSPECT_ELEMENT22, wi.PRODUCT_ID, wi.APP_DATE,
+		   wi.STATUS, wi.RESULTS,wi.TLRCD,wi.BRCODE, cgc.CON_ID,
+		   mci.MONI_OF_CUSTCD,cgc.MONI_MD, cgc.PRTCL_NO, p.product_name,
+		   cb1.cname, cb3.cname CUSTNAME
+		FROM
+		    B_PBC_WHSE_INSPECT wi, B_CRR_GNTY_CON cgc, B_CNT_MPROT_BASE_INFO mbi, 
+		    B_CNT_MPROT_CM_INFO mci, B_CRM_BASE_INFO cb1, B_CRM_BASE_INFO cb3, B_PRD_INFO p
+		WHERE 	wi.inspect_Element31 =cgc.CON_ID
+				AND mbi.PROTOCOL_NO=cgc.PRTCL_NO
+				AND cgc.PRTCL_NO=mci.PROTOCOL_NO
+				AND cb1.custcd =wi.MONI_CUSTCD
+				AND cb3.custcd =wi.INSPECT_ELEMENT22
+				and p.product_id =wi.PRODUCT_ID
+				and wi.OPER_TYPE = 0
+		<isNotEmpty prepend="AND" property="moniCustName">
+			cb1.cname like '%$moniCustName$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="results">
+			wi.RESULTS = #results#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="custName">
+			cb3.cname like '%$custName$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="protNo">
+			lower(cgc.CON_ID) like '%$protNo$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="dateFrom"> 
+			<![CDATA[ wi.APP_DATE >= #dateFrom# ]]> 
+		</isNotEmpty> 
+		<isNotEmpty prepend="AND" property="dateTo"> 
+			<![CDATA[ wi.APP_DATE <= #dateTo# ]]> 
+		</isNotEmpty> 
+		<isNotNull prepend="AND" property="brCode">
+			wi.BRCODE = #brCode#
+		</isNotNull>
+		<isNotNull prepend="AND" property="productId">
+			wi.PRODUCT_ID = #productId#
+		</isNotNull>
+		<isNotNull prepend="AND" property="prdName">
+			p.product_name like '%$prdName$%'
+		</isNotNull>
+		order by wi.APP_DATE desc
+	</select>
+
+	<!-- 待选抵质押合同 -->
+	<select id="queryPclInfoByPage" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT 
+	        cgc.con_id, cgc.PRTCL_NO, cgc.RATION, cgc.MONI_MD, mpi.CUSTCD, mpi.cname, mpi.LEGAL, mbi.START_DATE,mbi.end_DATE,
+	        mbi.CURCD, mbi.PROT_AMT, mbi.BRCODE, mbi.TLRNO, cbi.CNAME CUSTname, cgc.GUT_ID, cgc.gut_val
+	        
+		FROM
+		    B_CNT_MPROT_BASE_INFO mbi
+		    join B_CRR_GNTY_CON cgc on mbi.PROTOCOL_NO = cgc.PRTCL_NO
+		    left JOIN B_CNT_MPROT_PART_INFO mpi on mpi.PROTOCOL_NO=mbi.PROTOCOL_NO
+		    LEFT join B_CRM_BASE_INFO cbi on cbi.CUSTCD = cgc.GUT_ID
+		WHERE
+		    mbi.state = 1
+		AND mpi.role= '02'
+		AND cgc.con_stat= 1
+		AND EXISTS
+		    (  SELECT  m.SLAVE_CONTNO 
+		    	FROM B_PBC_MTG_BASE_INFO m
+		        WHERE m.SLAVE_CONTNO = cgc.CON_ID AND m.quantity > 0)
+		<isNotEmpty prepend="AND" property="cname">
+			mpi.CNAME like '%$cname$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="legal">
+			cbi.cname like '%$legal$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="conId">
+			lower(cgc.con_id) like '%$conId$%'
+		</isNotEmpty>
+		<isNotNull prepend="AND" property="productId">
+			cgc.VID_PRD_ID = #productId#
+		</isNotNull>
+		order by cgc.con_id desc
+	</select>
+
+	<!-- 查询详情页面 -->
+	<select id="queryCekStkDetailById" resultMap="BPbcWhseInspectVo" parameterClass="java.util.HashMap">
+		SELECT
+		    pwi.*
+		FROM
+		    B_PBC_WHSE_INSPECT pwi,
+		    B_CRR_GNTY_CON cgc,
+		    B_CNT_MPROT_BASE_INFO mbi,
+		    B_CNT_MPROT_CM_INFO mci
+		WHERE
+		     pwi.inspect_Element31 =cgc.CON_ID and mbi.protocol_No=cgc.PRTCL_NO 
+		     and cgc.PRTCL_NO=mci.PROTOCOL_NO
+		<isNotEmpty prepend="AND" property="id">
+			pwi.id = #id#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="cname">
+			mpi.CNAME like '%$cname$%'
+		</isNotEmpty>
+	</select>
+
+	<!-- 获取总数量总金额 -->
+	<select id="getMortgageSumCountPriceByParam" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT
+		    SUM(mbi.quantity) sumamount,
+		    SUM(mbi.tot_Price) sumprice
+		FROM
+		    B_PBC_MTG_BASE_INFO mbi
+		WHERE
+		    mbi.quantity > 0
+		<isNotEmpty prepend="AND" property="slaveContno">
+			mbi.SLAVE_CONTNO = #slaveContno#
+		</isNotEmpty>
+	</select>
+	
+	<!-- 查询库存押品信息 -->
+	<select id="queryMortInfo" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT
+		    mbi.*, mc.MORTGAGE_NAME mortgageLevelOne,  mc2.MORTGAGE_NAME mortgageLevelTwo
+		FROM
+		    B_PBC_MTG_BASE_INFO mbi
+		    left join B_PBC_MTG_CLASS mc on mbi.MORTGAGE_LEVEL_ONE = mc.MORTGAGE_CODE
+		    left join B_PBC_MTG_CLASS mc2 on mbi.MORTGAGE_LEVEL_ONE = mc2.MORTGAGE_CODE
+		where mbi.quantity > 0
+		<isNotEmpty prepend="AND" property="conId">
+			mbi.SLAVE_CONTNO = #conId#
+		</isNotEmpty>
+	</select>
+	
+	<!-- 查询库存押品信息 -->
+	<select id="queryInspectMortInfo" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT
+		    mbi.MORTGAGE_NO,mbi.MORTGAGE_NAME,mbi.MORTGAGE_MODEL,mbi.QUANTITY,mbi.CONFIRM_PRICE,mbi.TOT_PRICE
+		FROM
+		    B_PBC_MTG_BASE_INFO mbi inner join B_PBC_MTG_CHK_STOCK_DTL csd on mbi.mortgage_No=csd.MORTGAGE_NO
+		<isNotEmpty prepend="AND" property="conId">
+			mbi.SLAVE_CONTNO = #conId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="tblId">
+			csd.tbl_Id = #tblId#
+		</isNotEmpty>
+	</select>
+
+</sqlMap>

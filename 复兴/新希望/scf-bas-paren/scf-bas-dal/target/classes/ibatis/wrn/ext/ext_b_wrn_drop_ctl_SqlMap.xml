@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_WRN_DROP_CTL">
+	<resultMap id="DownLowPriceNewVOMap" class="com.huateng.scf.adv.wrn.dao.model.DownLowPriceNewVO">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+		<result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+		<result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+		<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+		<result column="CNAME" property="cname" jdbcType="VARCHAR" />
+		<result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+		<result column="MONI_CNAME" property="moniCname" jdbcType="VARCHAR" />
+		<result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+		<result column="LEAST_MORT_AMT" property="leastMortAmt" jdbcType="DECIMAL" />
+		<result column="MORT_AMT" property="mortAmt" jdbcType="DECIMAL" />
+		<result column="RATIO" property="ratio" jdbcType="DECIMAL" />
+		<result column="CURRENT_RATIO" property="currentRatio" jdbcType="DECIMAL" />
+		<result column="WARN_LINE" property="warnLine" jdbcType="DECIMAL" />
+		<result column="MORT_BALANCE" property="mortBalance" jdbcType="DECIMAL" />
+		<result column="RISK_BAL" property="riskBal" jdbcType="DECIMAL" />
+		<result column="WARN_DATE" property="warnDate" jdbcType="VARCHAR" />
+		<result column="CUST_MANAGER" property="custManager" jdbcType="VARCHAR" />
+		<result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+		<result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, WARN_ID, SLAVE_CONTNO, SLAVE_CONTCODE, CUSTCD, CNAME, MONI_CUSTCD,
+		MONI_CNAME,
+		PROTOCOL_NO, LEAST_MORT_AMT, MORT_AMT, RATIO, CURRENT_RATIO, WARN_LINE,
+		MORT_BALANCE,
+		RISK_BAL
+	</sql>
+
+	<!-- 选取最低控货价值预警 -->
+	<select id="selectDownLowPriceNew" resultMap="DownLowPriceNewVOMap" parameterClass="java.util.Map">
+			select distinct
+			twdi.*,wbi.warn_date,wbi.cust_manager,wbi.brcode,wbi.product_id
+			from B_WRN_BASE_INFO wbi,B_WRN_DROP_CTL_INFO twdi,B_CRM_BASE_INFO
+			tcbi1,B_CNT_MPROT_PART_INFO tmppi,B_CRM_BASE_INFO tcbi2
+			where wbi.id = twdi.warn_id and twdi.custcd = tcbi1.custcd and tmppi.custcd
+			= tcbi2.custcd
+			and tmppi.protocol_no =twdi.protocol_no and tmppi.role= #role:VARCHAR#
+			<isNotNull property="warnNo" prepend="and">
+				wbi.param_id = #warnNo:VARCHAR#
+			</isNotNull>
+			<isNotNull property="warnLevel" prepend="and">
+				wbi.warn_level = #warnLevel:VARCHAR#
+			</isNotNull>
+			<isNotNull property="custName" prepend="and">
+				tcbi1.cname like '%'||#custName:VARCHAR#||'%'
+			</isNotNull>
+			<isNotNull property="slaveContcode" prepend="and">
+				twdi.slave_contcode like '%'||#slaveContcode:VARCHAR#||'%'
+			</isNotNull>
+			<isNotNull property="moniCname" prepend="and">
+				tcbi2.cname like '%'||#moniCname:VARCHAR#||'%'
+			</isNotNull>
+			<isNotNull property="startDate" prepend="and">
+				<![CDATA[wbi.warn_date >= #startDate:VARCHAR#]]>
+			</isNotNull>
+			<isNotNull property="endDate" prepend="and">
+				<![CDATA[wbi.warn_date <= #endDate:VARCHAR#]]>
+			</isNotNull>
+			<isNotNull property="custcd" prepend="and">
+				wbi.custcd = #custcd:VARCHAR#
+			</isNotNull>
+			<!-- <isNotNull property="brcode" prepend="and">
+				<isEqual property="brattr" compareValue="1">
+					 exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where
+					tmbi.protocol_no = tmppi.protocol_no
+					and tmbi.cooperation_brcode = #brcode:VARCHAR#)
+				</isEqual>
+				<isNotEqual property="brattr" compareValue="1">
+					exits(select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =
+					wbi.brcode
+					and parent_brcode = #brcode:VARCHAR# and affiliation_type ='1')
+				</isNotEqual>
+			</isNotNull> -->
+
+	</select>
+
+	<!-- 计算条目数 -->
+	<select id="countDownLowPriceNew" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+		select count(id) from (
+			select distinct
+			twdi.*,wbi.warn_date,wbi.cust_manager,wbi.brcode,wbi.product_id
+			from B_WRN_BASE_INFO wbi,B_WRN_DROP_CTL_INFO twdi,B_CRM_BASE_INFO
+			tcbi1,B_CNT_MPROT_PART_INFO tmppi,B_CRM_BASE_INFO tcbi2
+			where wbi.id = twdi.warn_id and twdi.custcd = tcbi1.custcd and tmppi.custcd
+			= tcbi2.custcd
+			and tmppi.protocol_no =twdi.protocol_no and tmppi.role= #role:VARCHAR#
+			<isNotNull property="warnNo" prepend="and">
+				wbi.param_id = #warnNo:VARCHAR#
+			</isNotNull>
+			<isNotNull property="warnLevel" prepend="and">
+				wbi.warn_level = #warnLevel:VARCHAR#
+			</isNotNull>
+			<isNotNull property="custName" prepend="and">
+				tcbi1.cname like '%'||#custName:VARCHAR#||'%'
+			</isNotNull>
+			<isNotNull property="slaveContcode" prepend="and">
+				twdi.slave_contcode like '%'||#slaveContcode:VARCHAR#||'%'
+			</isNotNull>
+			<isNotNull property="moniCname" prepend="and">
+				tcbi2.cname like '%'||#moniCname:VARCHAR#||'%'
+			</isNotNull>
+			<isNotNull property="startDate" prepend="and">
+				<![CDATA[wbi.warn_date >= #startDate:VARCHAR#]]>
+			</isNotNull>
+			<isNotNull property="endDate" prepend="and">
+				<![CDATA[wbi.warn_date <= #endDate:VARCHAR#]]>
+			</isNotNull>
+			<isNotNull property="custcd" prepend="and">
+				wbi.custcd = #custcd:VARCHAR#
+			</isNotNull>
+			<isEqual property="brattr" compareValue="1">
+				and exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where
+				tmbi.protocol_no = tmppi.protocol_no
+				and tmbi.cooperation_brcode = #brcode:VARCHAR#)
+			</isEqual>
+			<isNotEqual property="brattr" compareValue="1">
+				and exits(select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =
+				wbi.brcode
+				and parent_brcode = #brcode:VARCHAR# and affiliation_type ='1')
+			</isNotEqual>
+		)
+	</select>
+
+</sqlMap>

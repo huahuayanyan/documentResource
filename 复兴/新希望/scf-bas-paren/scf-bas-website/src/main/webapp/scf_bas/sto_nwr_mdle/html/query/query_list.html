@@ -1,0 +1,34 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="slaveContno" name="担保合同号" ng-model="conditionForm.slaveContno"></ht-input>
+    <ht-input-extent ht-id="cname" name="出质人名称" extent="gutcontent" on-change="gutextend"
+                     ng-model="conditionForm.cname"></ht-input-extent>
+    <ht-select ht-id="status" name="仓单状态" ng-model="conditionForm.status" dictionary="billManageStatus"></ht-select>
+    <ht-input ht-id="startDate" name="开始日期" ng-model="conditionForm.startDate" edit-type="date"></ht-input>
+    <ht-input ht-id="endDate" name="结束日期" ng-model="conditionForm.endDate" edit-type="date"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>仓单信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="view" class="btn-primary">仓单详情</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="slaveContno" zh-name="担保合同号"></ht-column>
+    <ht-column eg-name="cname" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="startDate" zh-name="仓单有效日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="仓单结束日期" type="date"></ht-column>
+    <ht-column eg-name="status" zh-name="仓单状态" dictionary="billManageStatus"></ht-column>
+    <ht-column eg-name="tlrname" zh-name="经办人名称"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+
+
+
+

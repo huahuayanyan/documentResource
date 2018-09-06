@@ -1,0 +1,17 @@
+
+<ht-form name="baseinfo">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input ht-id="cname" name="融资企业" reg-exp="common.require" ng-model="baseinfo.cname" disable="true"></ht-input>
+    <ht-select ht-id="supplyChainPdId" name="业务品种" datasource="productselect" dataOption="code"
+               dataTrsOption="codeName" ng-model="baseinfo.supplyChainPdId" disable="true"></ht-select>
+    <ht-input-extent ht-id="businessCname" name="贸易对手" reg-exp="common.require" extent="custcontent"
+                     on-change="dooextend" ng-model="baseinfo.businessCname" disable="{{disable}}"></ht-input-extent>
+    <ht-input ht-id="stratDate" name="申请日期" ng-model="baseinfo.stratDate" disable="true" edit-type="date"></ht-input>
+    <ht-input ht-id="startTlrNm" name="创建人" ng-model="baseinfo.startTlrNm" disable="true"></ht-input>
+    <ht-input ht-id="startBrName" name="创建机构" ng-model="baseinfo.startBrName" disable="true"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{savedisable}}">保存</ht-button>
+    <ht-button ht-id="submitApply" class="btn-primary" hide="{{hide}}" disable="{{disableButton}}">提交</ht-button>
+</ht-button-group>

@@ -1,0 +1,19 @@
+
+<ht-form name="otherform">
+    <!--disable1修改的时候客户名称是不可以修改的，状态在修改的时候是可以修改的，新增的时候，状态是默认为有效的，1，hide是true，hide1在修改的时候是隐藏的 -->
+    <ht-legend>上下游客户关联关系信息</ht-legend>
+    <ht-input-extent ht-id="cname" name="客户名称" extent="cnameContent" on-change="cnameExtent" disable="{{disable1}}"
+                     reg-exp="common.require" ng-model="otherform.cname"></ht-input-extent>
+    <!--<ht-input ht-id="custcd" name="客户号" disable="{{disable1}}" reg-exp="common.require" ng-model="otherform.custcd"></ht-input>-->
+    <ht-input ht-id="coreCustName" name="核心厂商名称" disable="true" ng-model="otherform.coreCustName"></ht-input>
+    <ht-input ht-id="orgCode" name="组织机构代码" disable="true" reg-exp="common.require" ng-model="otherform.orgCode"></ht-input>
+    <ht-select ht-id="coreRelationFlg" name="与核心厂商关系" disable="{{disable}}" dictionary="coreRelationFlg" reg-exp="common.require"
+              ng-model="otherform.coreRelationFlg"></ht-select>
+    <ht-select ht-id="state" name="状态"disable="{{disable2}}"  dictionary="validState" reg-exp="common.require" ng-model="otherform.state"></ht-select>
+    <ht-input ht-id="tlrName" name="经办人" hide="{{hide}}" disable="true" ng-model="otherform.tlrName"></ht-input>
+    <ht-input ht-id="brName" name="经办机构"  hide="{{hide}}" disable="true" ng-model="otherform.brName"></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide1}}"class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

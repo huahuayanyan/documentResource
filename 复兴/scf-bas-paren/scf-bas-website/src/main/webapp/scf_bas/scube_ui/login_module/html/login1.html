@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="loginModule" ng-controller="loginController1">
+<head>
+    <meta charset="utf-8" />
+    <title>登录</title>
+    <meta name="description" content="User login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- basic styles -->
+    <link href="../../images/yeoman.png" rel="icon" type="image/x-icon">
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/font-awesome.css" />
+    <link rel="stylesheet" href="../../css/ace-fonts.css" />
+    <link rel="stylesheet" href="../../css/ace.min.css" />
+    <link rel="stylesheet" href="../../css/ngDialog.css" />
+    <link rel="stylesheet" href="../../css/ngDialog-theme-plain.css"/>
+    <link rel="stylesheet" href="../../css/components-green.css"/>
+    <!--默认登录窗口样式-绿色风格-->
+    <link rel="stylesheet" href="../../css/login-box-green.css"/>
+    <script>
+        if(!!window.ActiveXObject || "ActiveXObject" in window){//判斷ie 包括 ie10 11
+            document.write("<link href='../../css/ie8.css' rel='stylesheet'>"+"<"+"/script>");
+            window.jQuery || document.write("<script src='../../lib/bower_components/jquery-1.10.2.js'>"+"<"+"/script>");
+            window.console = window.console||{log:function(a){}};
+        }else{
+            window.jQuery || document.write("<script src='../../lib/bower_components/jquery-2.0.3.js'>"+"<"+"/script>");
+        };
+    </script>
+</head>
+<body>
+<div class="login">
+    <div class="login-header">
+        <img src="../../images/1-login_03.png">
+        <span class="login-title" ng-bind="sysName"></span>
+        <button class="skin" title="切换皮肤"></button>
+    </div>
+    <div class="login-main position-top">
+        <div login-box></div>
+    </div>
+    <div class="login-footer">
+        <span class="login-copyright">Copyright&copy;2004-2016 华腾.com 版权所有</span>
+    </div>
+</div>
+<script src="../../config.js"></script>
+<!--<script>-->
+<!--window._HTTP_IP_PORT = "requestPath";-->
+<!--</script>-->
+<!--[if !IE]> -->
+<script type="text/javascript">
+    //window.jQuery || document.write("<script src='../../lib/bower_components/jquery-2.0.3.js'>"+"<"+"/script>");
+</script>
+<!-- <![endif]-->
+<!--[if gte IE 8]>
+<script type="text/javascript">
+    // window.jQuery || document.write("<script src='../../lib/bower_components/jquery-1.10.2.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+<!--<script src="../../lib/bower_components/jquery-2.0.3.js"></script>-->
+<script src="../../lib/bower_components/bootstrap.js" charset="utf-8"></script>
+
+<!--<script src="../../lib/bower_components/placeholderfriend.js"></script>-->
+<script src="../../lib/bower_components/angular.min.js" charset="utf-8"></script>
+<script src="../../lib/bower_components/ngDialog.js" charset="utf-8"></script>
+<script src="../../lib/bower_components/angular-cookies.min.js" charset="utf-8"></script>
+<script src="../../common_module/js/services/common.js" charset="utf-8"></script>
+<script src="../js/controllers/loginController1.js" charset="utf-8"></script>
+<script src="../js/loginModule1.js" charset="utf-8"></script>
+<script src="../js/directives/loginDirective1.js" charset="utf-8"></script>
+
+
+
+<script type="text/javascript">
+    function show_box(id) {
+        jQuery('.widget-box.visible').removeClass('visible');
+        jQuery('#'+id).addClass('visible');
+    }
+    $(function () {
+        $('.skin').click(function () {
+            $('.login-main').toggleClass('position-center');
+        });
+    })
+</script>
+</body>
+</html>

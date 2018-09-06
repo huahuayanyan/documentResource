@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+		<artifactId>loan-cnTemplate</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	
+ <parent>
+		<groupId>com.newhope</groupId>
+		<artifactId>bussiness-root</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+  <name>loan-cnTemplate</name>
+  <url>http://maven.apache.org</url>
+  
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<scube.version>2.2.0-SNAPSHOT</scube.version>
+	</properties>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.newhope</groupId>
+			<artifactId>common-utils</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.newhope</groupId>
+			<artifactId>loan-model</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
+	 <dependency>
+	  		<groupId>com.newhope</groupId>
+	  		<artifactId>loan-base</artifactId>
+	  		<version>1.0.0</version>
+		</dependency> 
+
+		<dependency>
+			<groupId>com.huateng.authority-app</groupId>
+			<artifactId>authority-app-api</artifactId>
+			<version>2.5.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.huateng.sso</groupId>
+			<artifactId>sso-api</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.huateng.base</groupId>
+			<artifactId>data-dictionary-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>scube-service-api</artifactId>
+					<groupId>com.huateng.scube</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.huateng.base</groupId>
+					<artifactId>database-base</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- iccs-cf -->
+		<dependency>
+			<groupId>com.huateng.iccs-cf</groupId>
+			<artifactId>iccs-cf-api</artifactId>
+		 	<exclusions>
+				<exclusion>
+						<groupId>com.huateng.scube</groupId>
+						<artifactId>scube-service-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>authority-app-api</artifactId>
+					<groupId>com.huateng.authority-app</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>flowsharp-api</artifactId>
+					<groupId>com.huateng.flowsharp</groupId>
+				</exclusion>
+			</exclusions> 
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.baidu.disconf</groupId>
+			<artifactId>disconf-core</artifactId>
+			<version>2.6.35</version>
+		</dependency>
+		<!-- scube依赖 -->
+		<dependency>
+			<groupId>com.huateng.scube</groupId>
+			<artifactId>scube-core</artifactId>
+			<version>${scube.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.huateng.scube</groupId>
+			<artifactId>scube-client-api</artifactId>
+			<version>${scube.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.huateng.scube</groupId>
+			<artifactId>scube-client-core</artifactId>
+			<version>${scube.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.huateng.scube</groupId>
+			<artifactId>scube-channel</artifactId>
+			<version>${scube.version}</version>
+		</dependency>
+		
+	</dependencies>
+</project>

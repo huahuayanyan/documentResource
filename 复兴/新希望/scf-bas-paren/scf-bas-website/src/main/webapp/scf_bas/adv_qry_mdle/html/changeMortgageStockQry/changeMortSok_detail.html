@@ -1,0 +1,35 @@
+<ht-form name="otherform">
+    <ht-legend>货物详情</ht-legend>
+    <ht-panel>
+        <ht-input name="押品编号"  ng-model="otherform.mortgageNo" disable="true"></ht-input>
+        <ht-input ht-id="mortgageName" name="押品名称" disable="true" ng-model="otherform.mortgageName"></ht-input>
+        <ht-input ht-id="mortgageModel" name="规格/型号" disable="true"  ng-model="otherform.mortgageModel"></ht-input>
+        <ht-select name="单位" id="mortgageUnits" disable="true" reg-exp="common.require" ng-model="otherform.mortgageUnits" dictionary="mortgageUnits" ></ht-select>
+        <ht-input ht-id="manufacturer" name="生产厂家" disable="true"  ng-model="otherform.manufacturer"></ht-input>
+        <ht-input ht-id="manufactureDate" disable="true" edit-type="date" name="出厂日期"   reg-exp="common.require"
+                  ng-model="otherform.manufactureDate"></ht-input>
+        <ht-input ht-id="quantity" name="调整后的库存数量" disable="true" ng-model="otherform.quantity"></ht-input>
+         <ht-input ht-id="mortgageLevelOneName" name="押品一级" disable="true" disable="true" ng-model="otherform.mortgageLevelOneName" reg-exp="common.require"></ht-input>
+        <ht-input ht-id="mortgageLevelTwoName" name="押品二级" disable="true" ng-model="otherform.mortgageLevelTwoName" reg-exp="common.require"></ht-input>
+        <ht-input ht-id="mortgageLevelThreeName" name="押品三级"  disable="true" ng-model="otherform.mortgageLevelThreeName" reg-exp="common.require"></ht-input>
+        <ht-input ht-id="price" name="买入单价" disable="true"  ng-model="otherform.price"></ht-input>
+        <ht-select ht-id="curcd" name="币种" disable="true" reg-exp="common.require" ng-model="otherform.curcd" dictionary="curcd"></ht-select>
+        <ht-input ht-id="warehouse" name="仓库名称" disable="true"  ng-model="otherform.warehouse"></ht-input>
+        <ht-input ht-id="warehouseAddress" name="仓库地址" disable="true"  ng-model="otherform.warehouseAddress"></ht-input>
+        <ht-select ht-id="moniWarehouseType" name="监管模式" disable="true" reg-exp="common.require" ng-model="otherform.moniWarehouseType" dictionary="monitortype" ></ht-select>
+        <ht-input ht-id="description" name="押品其他描述"  disable="true" ng-model="otherform.description"></ht-input>
+        <ht-input ht-id="freightarea" name="货区号" disable="true"  ng-model="otherform.freightarea"></ht-input>
+        <ht-input ht-id="freightlot" name="货位号" disable="true"  ng-model="otherform.freightlot"></ht-input>
+        <ht-input ht-id="confirmPrice" name="核定单价" disable="true"  ng-model="otherform.confirmPrice"></ht-input>
+        <ht-text-area ht-id="confirmAccording" disable="true" name="核准依据" ng-model="otherform.confirmAccording" ></ht-text-area>
+        <ht-input ht-id="fixMortgageNo"  name="盯市产品编号"  disable="true" ng-model="otherform.fixMortgageNo"></ht-input>
+		    <ht-button ht-id="bound" class="btn-primary" disable="true">绑定市价</ht-button>
+		    <ht-button ht-id="unBound" class="btn-primary" disable="true">取消绑定</ht-button>
+        <ht-input ht-id="marketPrice" name="当前市场价" disable="true"  ng-model="otherform.marketPrice"></ht-input>
+        <<ht-select ht-id="joinBatch" name="是否参与核定价格批量调整" disable="true"  ng-model="otherform.joinBatch" dictionary="joinBatch"></ht-select>
+        <ht-text-area ht-id="memo" disable="true" name="备注" ng-model="otherform.memo" ></ht-text-area>
+    </ht-panel>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

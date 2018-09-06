@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+	define all Files Load .
+	
+	@author : Ranger
+	@date : 2005-03-10
+	@version : 1.0.0
+-->
+
+<BatchCoreFiles>
+
+	<files>
+		<!--自然人客户黑名单1-->
+			<item file="CITSLT1X" table="BH_CORE_BLACKLIST1" hasDeleteCondition="false"/>
+		<!--自然人客户黑名单2-->
+			<item file="CITSLT2X" table="BH_CORE_BLACKLIST2" hasDeleteCondition="false"/>
+		<!--自然人通讯信息-->
+			<item file="CITCOMMR" table="BH_CORE_CITCOMM" hasDeleteCondition="false"/>
+		<!--自然人详细信息-->
+			<item file="CITCUPDR" table="BH_CORE_CITCUPD" hasDeleteCondition="false"/>
+		<!--自然人基本信息-->
+			<item file="CITCUSPR" table="BH_CORE_CITCUSP" hasDeleteCondition="false"/>
+		<!--换卡文件-->
+			<item file="CITCDNOR" table="BH_CORE_CHGACTNO" hasDeleteCondition="false"/>
+		<!--计提文件-->
+			<item file="PLQDI01X" table="BH_CORE_INTR_DTL" hasDeleteCondition="false"/>
+		<!--扣款文件-->
+			<item file="PLQBTPOX" table="BH_CORE_RTN_DTL" hasDeleteCondition="false"/>
+		<!--非应计转应计-->
+			<item file="PLQDI19X" table="BH_CORE_OWETOON" hasDeleteCondition="false"/>
+		<!--应计转非应计文件-->
+			<item file="PLQDI18X" table="BH_CORE_OWETOOFF" hasDeleteCondition="false"/>
+		<!--转逾(正常->逾期90天内)-->
+			<item file="PLQDI13X" table="BH_CORE_OVERDUE" hasDeleteCondition="false"/>
+		<!--转逾(逾期90天内 ====〉 逾期180天内)-->
+			<item file="PLQDI14X" table="BH_CORE_OVERDUE2" hasDeleteCondition="false"/>
+		<!--转逾(逾期180天内 ====〉逾期270天内)-->
+			<item file="PLQDI15X" table="BH_CORE_OVERDUE3" hasDeleteCondition="false"/>
+		<!--转逾(逾期270天内 ====〉逾期360天内)-->
+			<item file="PLQDI16X" table="BH_CORE_OVERDUE4" hasDeleteCondition="false"/>
+		<!--转呆滞(逾期360天内 ====〉逾期 360天以上)-->
+			<item file="PLQDI17X" table="BH_CORE_IDLE" hasDeleteCondition="false"/>
+		<!--贷款合作利率更新文件-->
+			<item file="PLQDIRAT" table="BH_CORE_RATE_CHANGE" hasDeleteCondition="false"/>
+		<!--贷款合同信息文件-->
+			<item file="PLTLOANX" table="BH_CORE_PLTLOAN" hasDeleteCondition="false"/>
+		<!--沃德自动贷款信息文件-->
+		    <item file="PLQBPLO" table="BH_CORE_OTO_INFO" hasDeleteCondition="false"/>
+		
+	</files>
+
+</BatchCoreFiles>

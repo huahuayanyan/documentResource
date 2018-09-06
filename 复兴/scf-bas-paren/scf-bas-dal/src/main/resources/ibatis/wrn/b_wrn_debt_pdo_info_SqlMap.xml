@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_WRN_DEBT_PDO_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="BILLS_TYPE" property="billsType" jdbcType="CHAR" />
+    <result column="BILLS_NO" property="billsNo" jdbcType="VARCHAR" />
+    <result column="BUSS_CONTCODE" property="bussContcode" jdbcType="VARCHAR" />
+    <result column="BILLS_DATE" property="billsDate" jdbcType="CHAR" />
+    <result column="DEBT_END" property="debtEnd" jdbcType="CHAR" />
+    <result column="DEADLINE" property="deadline" jdbcType="CHAR" />
+    <result column="BILLS_AMOUNT_VIEW" property="billsAmountView" jdbcType="DECIMAL" />
+    <result column="BILLS_AMOUNT" property="billsAmount" jdbcType="DECIMAL" />
+    <result column="REMAINING_AMOUNT" property="remainingAmount" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMap1" class="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfoDetail" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="BILLS_TYPE" property="billsType" jdbcType="CHAR" />
+    <result column="BILLS_NO" property="billsNo" jdbcType="VARCHAR" />
+    <result column="BUSS_CONTCODE" property="bussContcode" jdbcType="VARCHAR" />
+    <result column="BILLS_DATE" property="billsDate" jdbcType="CHAR" />
+    <result column="DEBT_END" property="debtEnd" jdbcType="CHAR" />
+    <result column="DEADLINE" property="deadline" jdbcType="CHAR" />
+    <result column="BILLS_AMOUNT_VIEW" property="billsAmountView" jdbcType="DECIMAL" />
+    <result column="BILLS_AMOUNT" property="billsAmount" jdbcType="DECIMAL" />
+    <result column="REMAINING_AMOUNT" property="remainingAmount" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="CUST_MANAGER" property="custManager" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, BILLS_TYPE, BILLS_NO, BUSS_CONTCODE, BILLS_DATE, DEBT_END, DEADLINE, 
+    BILLS_AMOUNT_VIEW, BILLS_AMOUNT, REMAINING_AMOUNT, CURCD, STATUS, MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_WRN_DEBT_PDO_INFO.Base_Column_List" />
+    from B_WRN_DEBT_PDO_INFO
+    <isParameterPresent >
+      <include refid="B_WRN_DEBT_PDO_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfo" >
+    select 
+    <include refid="B_WRN_DEBT_PDO_INFO.Base_Column_List" />
+    from B_WRN_DEBT_PDO_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <!-- 应收账款到期提示 -->
+  <select id="getAccountDebtPromptWarnInfo" resultMap="BaseResultMap1" parameterClass="java.util.Map" >
+    select a.BRCODE,a.CUST_MANAGER,b.ID,b.BILLS_NO,b.BILLS_TYPE,b.BUSS_CONTCODE,b.BILLS_DATE, b.DEBT_END,
+    	b.DEADLINE,b.BILLS_AMOUNT_VIEW,b.BILLS_AMOUNT,b.REMAINING_AMOUNT,b.CURCD,b.STATUS,b.MEMO
+    from B_WRN_BASE_INFO a,B_WRN_DEBT_PDO_INFO b	
+    	where a.ID = b.WARN_ID
+    	and a.PARAM_ID in(#p1#,#p2#,#p3#)
+    	<isNotEmpty prepend="and" property="billsNo" >
+    		<![CDATA[b.BILLS_NO like '%' || #billsNo# || '%']]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="bussContcode" >
+    		<![CDATA[b.BUSS_CONTCODE like '%' || #bussContcode# || '%']]>
+    	</isNotEmpty>
+    	<isNotEmpty prepend="and" property="startYj" >
+			<![CDATA[a.WARN_DATE >= #startYj:VARCHAR#]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endYj" >
+			<![CDATA[a.WARN_DATE <= #endYj:VARCHAR#]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="brcode" >
+			a.BRCODE = #brcode:VARCHAR#
+		</isNotEmpty>
+		order by a.WARN_DATE DESC
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfo" >
+    delete from B_WRN_DEBT_PDO_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfoExample" >
+    delete from B_WRN_DEBT_PDO_INFO
+    <include refid="B_WRN_DEBT_PDO_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfo" >
+    insert into B_WRN_DEBT_PDO_INFO (ID, WARN_ID, BILLS_TYPE, BILLS_NO, BUSS_CONTCODE, 
+      BILLS_DATE, DEBT_END, DEADLINE, BILLS_AMOUNT_VIEW, BILLS_AMOUNT, 
+      REMAINING_AMOUNT, CURCD, STATUS, MEMO)
+    values (#id:VARCHAR#, #warnId:VARCHAR#, #billsType:CHAR#, #billsNo:VARCHAR#, #bussContcode:VARCHAR#, 
+      #billsDate:CHAR#, #debtEnd:CHAR#, #deadline:CHAR#, #billsAmountView:DECIMAL#, #billsAmount:DECIMAL#, 
+      #remainingAmount:DECIMAL#, #curcd:CHAR#, #status:CHAR#, #memo:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfo" >
+    insert into B_WRN_DEBT_PDO_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID
+      </isNotNull>
+      <isNotNull prepend="," property="billsType" >
+        BILLS_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="billsNo" >
+        BILLS_NO
+      </isNotNull>
+      <isNotNull prepend="," property="bussContcode" >
+        BUSS_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="billsDate" >
+        BILLS_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="debtEnd" >
+        DEBT_END
+      </isNotNull>
+      <isNotNull prepend="," property="deadline" >
+        DEADLINE
+      </isNotNull>
+      <isNotNull prepend="," property="billsAmountView" >
+        BILLS_AMOUNT_VIEW
+      </isNotNull>
+      <isNotNull prepend="," property="billsAmount" >
+        BILLS_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="remainingAmount" >
+        REMAINING_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsType" >
+        #billsType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsNo" >
+        #billsNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bussContcode" >
+        #bussContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsDate" >
+        #billsDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debtEnd" >
+        #debtEnd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deadline" >
+        #deadline:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsAmountView" >
+        #billsAmountView:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="billsAmount" >
+        #billsAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remainingAmount" >
+        #remainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_WRN_DEBT_PDO_INFO
+    <include refid="B_WRN_DEBT_PDO_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_WRN_DEBT_PDO_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnId" >
+        WARN_ID = #record.warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billsType" >
+        BILLS_TYPE = #record.billsType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billsNo" >
+        BILLS_NO = #record.billsNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bussContcode" >
+        BUSS_CONTCODE = #record.bussContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billsDate" >
+        BILLS_DATE = #record.billsDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debtEnd" >
+        DEBT_END = #record.debtEnd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deadline" >
+        DEADLINE = #record.deadline:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billsAmountView" >
+        BILLS_AMOUNT_VIEW = #record.billsAmountView:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billsAmount" >
+        BILLS_AMOUNT = #record.billsAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remainingAmount" >
+        REMAINING_AMOUNT = #record.remainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_WRN_DEBT_PDO_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_WRN_DEBT_PDO_INFO
+    set ID = #record.id:VARCHAR#,
+      WARN_ID = #record.warnId:VARCHAR#,
+      BILLS_TYPE = #record.billsType:CHAR#,
+      BILLS_NO = #record.billsNo:VARCHAR#,
+      BUSS_CONTCODE = #record.bussContcode:VARCHAR#,
+      BILLS_DATE = #record.billsDate:CHAR#,
+      DEBT_END = #record.debtEnd:CHAR#,
+      DEADLINE = #record.deadline:CHAR#,
+      BILLS_AMOUNT_VIEW = #record.billsAmountView:DECIMAL#,
+      BILLS_AMOUNT = #record.billsAmount:DECIMAL#,
+      REMAINING_AMOUNT = #record.remainingAmount:DECIMAL#,
+      CURCD = #record.curcd:CHAR#,
+      STATUS = #record.status:CHAR#,
+      MEMO = #record.memo:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_WRN_DEBT_PDO_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfo" >
+    update B_WRN_DEBT_PDO_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID = #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsType" >
+        BILLS_TYPE = #billsType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsNo" >
+        BILLS_NO = #billsNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bussContcode" >
+        BUSS_CONTCODE = #bussContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsDate" >
+        BILLS_DATE = #billsDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debtEnd" >
+        DEBT_END = #debtEnd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deadline" >
+        DEADLINE = #deadline:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsAmountView" >
+        BILLS_AMOUNT_VIEW = #billsAmountView:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="billsAmount" >
+        BILLS_AMOUNT = #billsAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remainingAmount" >
+        REMAINING_AMOUNT = #remainingAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnDebtPdoInfo" >
+    update B_WRN_DEBT_PDO_INFO
+    set WARN_ID = #warnId:VARCHAR#,
+      BILLS_TYPE = #billsType:CHAR#,
+      BILLS_NO = #billsNo:VARCHAR#,
+      BUSS_CONTCODE = #bussContcode:VARCHAR#,
+      BILLS_DATE = #billsDate:CHAR#,
+      DEBT_END = #debtEnd:CHAR#,
+      DEADLINE = #deadline:CHAR#,
+      BILLS_AMOUNT_VIEW = #billsAmountView:DECIMAL#,
+      BILLS_AMOUNT = #billsAmount:DECIMAL#,
+      REMAINING_AMOUNT = #remainingAmount:DECIMAL#,
+      CURCD = #curcd:CHAR#,
+      STATUS = #status:CHAR#,
+      MEMO = #memo:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

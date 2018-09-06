@@ -1,0 +1,83 @@
+
+<ht-legend style="text-align: center">{{otherform.mdlNm}}</ht-legend>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+<table   class="table table-bordered table-hover table-condensed"  >
+				<tbody>
+					<tr>
+					     <td>
+					     	  <a class="glyphicon-edit" ng-if="!otherform.$edit" ng-click="otherform.$edit=true" />
+					         <a class="glyphicon-save" ng-if="otherform.$edit" ng-click="savebFinCnfgDef(0,otherform)" />
+					          <a  class="glyphicon-plus" ng-if="otherform.$edit" ng-click="addbFinCnfgDef(0)" />
+						</td>
+						<td style="text-align:center;font-weight: bold;" >
+						<pre>序号</pre>
+						</td>
+						<td ng-repeat="rhead in rheads" style="text-align:center;font-weight: bold;{{rhead.style}}">
+							<pre>{{rhead.name}}</pre>
+						</td>
+									
+                        <td ng-if="otherform.cotes>=2" >	
+						</td>
+					</tr>				
+					<tr   ng-repeat="bFinCnfgDef in bFinCnfgDefList"  align="center">
+					     <td>
+				             <a class="glyphicon-edit"   ng-if="!bFinCnfgDef.$edit"    ng-click="bFinCnfgDef.$edit=true" />
+					         <a class="glyphicon-save"   ng-if="bFinCnfgDef.$edit"    ng-click="savebFinCnfgDef($index,bFinCnfgDef)" />
+					          <a class="glyphicon-minus"   ng-if="bFinCnfgDef.$edit"    ng-click="deletebFinCnfgDef($index)" />
+					          <a  class="glyphicon-plus"   ng-if="bFinCnfgDef.$edit"    ng-click="addbFinCnfgDef($index,bFinCnfgDef)" />
+						</td>
+						 <td>
+							<pre>{{$index+1}}</pre>
+						</td>
+						<td   align="left">
+							<span ng-if="!bFinCnfgDef.$edit" ><pre>{{bFinCnfgDef.subjNm}}</pre></span>
+							<button ng-if="bFinCnfgDef.$edit" ng-click="updatebFinCnfgDef(bFinCnfgDef)">..</button>
+						</td>
+
+						<td >
+							<span ng-if="!bFinCnfgDef.$edit">{{bFinCnfgDef.colVal1}}</span>
+						</td>
+						<td   ng-if="otherform.col>1" >
+						    <span ng-if="!bFinCnfgDef.$edit">{{bFinCnfgDef.colVal2}}</span>
+						</td>
+						
+						
+						
+																	
+						    <td  ng-if="otherform.cotes>=2" >
+								<span ng-if="!bFinCnfgDef.child.$edit">	<pre>{{bFinCnfgDef.child.subjNm}}</pre></span>
+								<button ng-if="bFinCnfgDef.child.$edit"  ng-click="updatebFinCnfgDef(bFinCnfgDef.child)">..</button>
+							</td>
+							<td ng-if="otherform.cotes>=2" >
+								<span ng-if="!bFinCnfgDef.child.$edit">{{bFinCnfgDef.child.colVal1}}</span>
+							</td>
+							<td  ng-if="otherform.cotes>=2&&otherform.col>1" >
+							    <span ng-if="!bFinCnfgDef.child.$edit">{{bFinCnfgDef.child.colVal2}}</span>
+							</td>
+							<td  ng-if="otherform.cotes>=2" >
+					             <a class="glyphicon-edit"    ng-if="!bFinCnfgDef.child.$edit"    ng-click="bFinCnfgDef.child.$edit=true" />
+						         <a class="glyphicon-save"  ng-if="bFinCnfgDef.child.$edit"    ng-click="savebFinCnfgDef($index,bFinCnfgDef.child)" />
+						          <a  class="glyphicon-minus" ng-if="bFinCnfgDef.child.$edit"    ng-click="deletebFinCnfgDef($index)" />
+						          <a class="glyphicon-plus"    ng-if="bFinCnfgDef.child.$edit"    ng-click="addbFinCnfgDef($index,bFinCnfgDef)" />
+							</td>
+								
+						
+
+	
+					</tr>
+					</tbody>
+			</table>
+		</div>
+	</div>
+</div>			
+
+ <style>
+
+pre{display:block;padding:0px;margin:0 0 0px;word-break:break-all;word-wrap:break-word;white-space:pre;white-space:pre-wrap;border:0;background-color:transparent;font-size: 13px;line-height: 20px;}
+ </style>
+
+<ht-button-group class="center">
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

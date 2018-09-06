@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd" default-autowire="no">
+
+	<!-- 内部服务依赖注入 -->
+	<context:annotation-config />
+		<context:component-scan base-package="
+								com.huateng.sso.service.impl;
+								com.huateng.scf.bas.icr.service.impl;
+								com.huateng.scf.bas.crm.service.impl;
+								com.huateng.scf.bas.sys.service.impl;
+								com.huateng.scf.bas.crg.service.impl;
+								com.huateng.scf.bas.fin.service.impl;
+								com.huateng.scf.bas.crr.service.impl;
+								com.huateng.scf.bas.dcr.service.impl;
+								com.huateng.scf.bas.prd.service.impl;
+								com.huateng.scf.bas.acc.service.impl;
+								com.huateng.scf.bas.brp.service.impl;
+								com.huateng.scf.bas.cnt.service.impl;
+								com.huateng.scf.bas.lan.service.impl;
+								com.huateng.scf.bas.mrn.service.impl;
+								com.huateng.scf.bas.pbc.service.impl;
+								com.huateng.scf.bas.nte.service.impl;
+								com.huateng.scf.adv.tcs.service.impl;
+								com.huateng.scf.rec.bcp.service.impl;
+								com.huateng.scf.rec.nte.service.impl;
+								com.huateng.scf.adv.bcp.service.impl;
+								com.huateng.scf.bas.com.service.impl;
+								com.huateng.scf.sto.dmp.service.impl;
+								com.huateng.scf.bas.qry.service.impl;
+								com.huateng.scf.rec.qry.service.impl;
+								com.huateng.scf.bas.wrn.service.impl;
+								com.huateng.scf.rec.wrn.service.impl;
+								com.huateng.scf.bas.bcp.service.impl;
+								com.huateng.scf.adv.nte.service.impl;
+								com.huateng.scf.adv.qry.service.impl;
+								com.huateng.scf.adv.fcs.service.impl;
+								com.huateng.scf.sto.bcp.service.impl;
+								com.huateng.scf.sto.nwr.service.impl;								
+								com.huateng.scf.adv.wrn.service.impl;
+								com.huateng.scf.sto.wrn.service.impl;
+								com.huateng.scf.sto.smp.service.impl;
+								com.huateng.scf.sto.pbc.service.impl;
+								com.huateng.scf.nrec.bcp.service.impl;
+								com.huateng.scf.bas.batch.autotask;
+								com.huateng.scf.nbas.prd.service.impl;
+								com.huateng.scf.bas.autotask.serviceImpl;
+								" />
+		
+	
+	<!-- scube rpc 服务端配置 -->
+	<bean class="com.huateng.scube.common.ScubeServiceConfig" init-method="init">
+		<property name="application" value="${scube.application}"/>
+		<property name="address" value="${scube.registries.address}"/>
+		<property name="minWorkerThread" value="${scube.service.minWorkerThread:5}"/>
+		<property name="maxWorkerThread" value="${scube.service.maxWorkerThread:5}"/>
+		<property name="transMaxSize" value="${scube.server.transMaxSize}"/>
+	</bean>
+	
+	<bean class="com.huateng.scube.server.impl.ScubeServiceAnnotationScan" init-method="doScan">
+		<property name="packList">
+			<list>
+				<value>com.huateng.sso.service.impl</value>
+			    <value>com.huateng.scf.bas.lan.service.impl</value>
+				<value>com.huateng.scf.bas.mrn.service.impl</value>
+				<value>com.huateng.scf.bas.dcr.service.impl</value>
+				<value>com.huateng.scf.bas.icr.service.impl</value>  
+				<value>com.huateng.scf.bas.crm.service.impl</value>
+				<value>com.huateng.scf.bas.sys.service.impl</value>
+			    <value>com.huateng.scf.bas.crg.service.impl</value>
+				<value>com.huateng.scf.bas.fin.service.impl</value>
+				<value>com.huateng.scf.bas.crr.service.impl</value> 
+				<value>com.huateng.scf.bas.acc.service.impl</value>
+				<value>com.huateng.scf.bas.brp.service.impl</value>
+        		<value>com.huateng.scf.bas.prd.service.impl</value>
+				<value>com.huateng.scf.bas.cnt.service.impl</value> 
+				<value>com.huateng.scf.bas.pbc.service.impl</value>
+				<value>com.huateng.scf.bas.nte.service.impl</value>
+				<value>com.huateng.scf.bas.com.service.impl</value>
+				<!-- 预付类begin -->
+				<value>com.huateng.scf.adv.tcs.service.impl</value>
+				<value>com.huateng.scf.adv.fcs.service.impl</value>
+				<!-- 预付类end -->
+				<!-- 应收类 -->
+				<value>com.huateng.scf.rec.bcp.service.impl</value>
+				<value>com.huateng.scf.rec.nte.service.impl</value>
+				<value>com.huateng.scf.nrec.bcp.service.impl</value>
+				<!-- 应收类 -->
+				<!-- 发货对账 -->
+				<value>com.huateng.scf.adv.bcp.service.impl</value>
+				<!-- 监管下限调整申请表 -->
+				<value>com.huateng.scf.sto.dmp.service.impl</value>
+				<!-- 借据信息查询 -->
+				<value>com.huateng.scf.bas.qry.service.impl</value>
+				<value>com.huateng.scf.rec.qry.service.impl</value>
+				<!-- 预警提示 -->
+				<value>com.huateng.scf.bas.wrn.service.impl</value>
+				<value>com.huateng.scf.rec.wrn.service.impl</value>
+				<!-- 担保提货 -->
+				<value>com.huateng.scf.adv.nte.service.impl</value>
+				<value>com.huateng.scf.adv.qry.service.impl</value>
+				<!--现货动态质押-->
+				<value>com.huateng.scf.sto.bcp.service.impl</value>
+				<!--非标仓单-->
+				<value>com.huateng.scf.sto.nwr.service.impl</value>
+				<!--预付类预警 -->
+				<value>com.huateng.scf.adv.wrn.service.impl</value>
+				<!-- 存货类预警 -->
+				<value>com.huateng.scf.sto.wrn.service.impl</value>
+				<!-- 现货静态 -->
+				<value>com.huateng.scf.sto.smp.service.impl</value>
+				<!-- 现货静态质押 -->
+				<value>com.huateng.scf.sto.pbc.service.impl</value>	
+				<!-- 定时任务 -->
+				<value>com.huateng.scf.bas.batch.autotask</value>
+				<!-- 产品配置 -->
+				<value>com.huateng.scf.nbas.prd.service.impl</value>
+				<value>com.huateng.scf.bas.autotask.serviceImpl</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="memCachedClient" class="com.whalin.MemCached.MemCachedClient">    
+        <constructor-arg>    
+            <value>memcachedPool</value>    
+        </constructor-arg>   
+    </bean>
+	<bean id="memcachedPool" class="com.whalin.MemCached.SockIOPool"
+        factory-method="getInstance" init-method="initialize" destroy-method="shutDown">
+        <constructor-arg>  
+            <value>memcachedPool</value>  
+        </constructor-arg>
+        <property name="servers">
+            <list>
+                <value>${cache.address}</value>
+            </list>
+        </property>
+        <property name="initConn">  
+            <value>${cache.initConn:5}</value>
+        </property>
+        <property name="minConn">
+            <value>${cache.minConn:5}</value>  
+        </property>
+        <property name="maxConn">  
+            <value>${cache.maxConn:10}</value>  
+        </property>
+    </bean>
+    
+    <!-- memcached service config -->
+    <bean id="memcacheManager" class="com.huateng.base.cache.memcached.MemcachedManager">
+    	<property name="cacheClient" ref="memCachedClient"></property>
+    </bean>
+    
+    <bean id="memcacheService" class="com.huateng.base.cache.impl.CacheServiceImpl">
+    	<property name="cacheManager" ref="memcacheManager"></property>
+    </bean>
+	
+</beans>

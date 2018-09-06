@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_DCR_CHK_DETAIL">
+	<resultMap id="BaseResultMap" class="com.huateng.scf.bas.dcr.model.BDcrChkDetail">
+		<result column="CHK_DETAIL_ID" property="chkDetailId" jdbcType="VARCHAR" />
+		<result column="CHK_DIR_ID" property="chkDirId" jdbcType="VARCHAR" />
+		<result column="RLT_VL" property="rltVl" jdbcType="VARCHAR" />
+		<result column="RLT_NM" property="rltNm" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<iterate property="oredCriteria" conjunction="or" prepend="where"
+			removeFirstPrepend="iterate">
+			<isEqual property="oredCriteria[].valid" compareValue="true">
+				(
+				<iterate prepend="and" property="oredCriteria[].criteriaWithoutValue"
+					conjunction="and">
+					$oredCriteria[].criteriaWithoutValue[]$
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue"
+					conjunction="and">
+					$oredCriteria[].criteriaWithSingleValue[].condition$
+					#oredCriteria[].criteriaWithSingleValue[].value#
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithListValue"
+					conjunction="and">
+					$oredCriteria[].criteriaWithListValue[].condition$
+					<iterate property="oredCriteria[].criteriaWithListValue[].values"
+						open="(" close=")" conjunction=",">
+						#oredCriteria[].criteriaWithListValue[].values[]#
+					</iterate>
+				</iterate>
+				<iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue"
+					conjunction="and">
+					$oredCriteria[].criteriaWithBetweenValue[].condition$
+					#oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+					#oredCriteria[].criteriaWithBetweenValue[].values[1]#
+				</iterate>
+				)
+			</isEqual>
+		</iterate>
+	</sql>
+	<sql id="Base_Column_List">
+		CHK_DETAIL_ID, CHK_DIR_ID, RLT_VL, RLT_NM
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDetailExample">
+		select
+		<isParameterPresent>
+			<isEqual property="distinct" compareValue="true">
+				distinct
+			</isEqual>
+		</isParameterPresent>
+		<include refid="B_DCR_CHK_DETAIL.Base_Column_List" />
+		from B_DCR_CHK_DETAIL
+		<isParameterPresent>
+			<include refid="B_DCR_CHK_DETAIL.Example_Where_Clause" />
+			<isNotNull property="orderByClause">
+				order by $orderByClause$
+			</isNotNull>
+		</isParameterPresent>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDetail">
+		select
+		<include refid="B_DCR_CHK_DETAIL.Base_Column_List" />
+		from B_DCR_CHK_DETAIL
+		where CHK_DETAIL_ID = #chkDetailId:VARCHAR#
+	</select>
+	<delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDetail">
+		delete from B_DCR_CHK_DETAIL
+		where CHK_DETAIL_ID = #chkDetailId:VARCHAR#
+	</delete>
+	<delete id="deleteByExample" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDetailExample">
+		delete from B_DCR_CHK_DETAIL
+		<include refid="B_DCR_CHK_DETAIL.Example_Where_Clause" />
+	</delete>
+	<insert id="insert" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDetail">
+		insert into B_DCR_CHK_DETAIL (CHK_DETAIL_ID, CHK_DIR_ID, RLT_VL,
+		RLT_NM
+		)
+		values (#chkDetailId:VARCHAR#, #chkDirId:VARCHAR#, #rltVl:VARCHAR#,
+		#rltNm:VARCHAR#
+		)
+	</insert>
+	<insert id="insertSelective" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDetail">
+		insert into B_DCR_CHK_DETAIL
+		<dynamic prepend="(">
+			<isNotNull prepend="," property="chkDetailId">
+				CHK_DETAIL_ID
+			</isNotNull>
+			<isNotNull prepend="," property="chkDirId">
+				CHK_DIR_ID
+			</isNotNull>
+			<isNotNull prepend="," property="rltVl">
+				RLT_VL
+			</isNotNull>
+			<isNotNull prepend="," property="rltNm">
+				RLT_NM
+			</isNotNull>
+			)
+		</dynamic>
+		values
+		<dynamic prepend="(">
+			<isNotNull prepend="," property="chkDetailId">
+				#chkDetailId:VARCHAR#
+			</isNotNull>
+			<isNotNull prepend="," property="chkDirId">
+				#chkDirId:VARCHAR#
+			</isNotNull>
+			<isNotNull prepend="," property="rltVl">
+				#rltVl:VARCHAR#
+			</isNotNull>
+			<isNotNull prepend="," property="rltNm">
+				#rltNm:VARCHAR#
+			</isNotNull>
+			)
+		</dynamic>
+	</insert>
+	<select id="countByExample" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDetailExample"
+		resultClass="java.lang.Integer">
+		select count(*) from B_DCR_CHK_DETAIL
+		<include refid="B_DCR_CHK_DETAIL.Example_Where_Clause" />
+	</select>
+	<update id="updateByExampleSelective">
+		update B_DCR_CHK_DETAIL
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="record.chkDetailId">
+				CHK_DETAIL_ID = #record.chkDetailId:VARCHAR#
+			</isNotNull>
+			<isNotNull prepend="," property="record.chkDirId">
+				CHK_DIR_ID = #record.chkDirId:VARCHAR#
+			</isNotNull>
+			<isNotNull prepend="," property="record.rltVl">
+				RLT_VL = #record.rltVl:VARCHAR#
+			</isNotNull>
+			<isNotNull prepend="," property="record.rltNm">
+				RLT_NM = #record.rltNm:VARCHAR#
+			</isNotNull>
+		</dynamic>
+		<isParameterPresent>
+			<include refid="B_DCR_CHK_DETAIL.Example_Where_Clause" />
+		</isParameterPresent>
+	</update>
+	<update id="updateByExample">
+		update B_DCR_CHK_DETAIL
+		set CHK_DETAIL_ID = #record.chkDetailId:VARCHAR#,
+		CHK_DIR_ID = #record.chkDirId:VARCHAR#,
+		RLT_VL = #record.rltVl:VARCHAR#,
+		RLT_NM = #record.rltNm:VARCHAR#
+		<isParameterPresent>
+			<include refid="B_DCR_CHK_DETAIL.Example_Where_Clause" />
+		</isParameterPresent>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDetail">
+		update B_DCR_CHK_DETAIL
+		<dynamic prepend="set">
+			<isNotNull prepend="," property="chkDirId">
+				CHK_DIR_ID = #chkDirId:VARCHAR#
+			</isNotNull>
+			<isNotNull prepend="," property="rltVl">
+				RLT_VL = #rltVl:VARCHAR#
+			</isNotNull>
+			<isNotNull prepend="," property="rltNm">
+				RLT_NM = #rltNm:VARCHAR#
+			</isNotNull>
+		</dynamic>
+		where CHK_DETAIL_ID = #chkDetailId:VARCHAR#
+	</update>
+	<update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDetail">
+		update B_DCR_CHK_DETAIL
+		set CHK_DIR_ID = #chkDirId:VARCHAR#,
+		RLT_VL = #rltVl:VARCHAR#,
+		RLT_NM = #rltNm:VARCHAR#
+		where CHK_DETAIL_ID = #chkDetailId:VARCHAR#
+	</update>
+</sqlMap>

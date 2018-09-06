@@ -1,0 +1,45 @@
+<ht-legend>购销合同基本信息</ht-legend>
+<ht-form name="cntInfoViewForm">
+
+    <ht-input name="购销合同号" ng-model="cntInfoViewForm.tradeContcode" disable="true"></ht-input>
+    <ht-input name="业务品种" ng-model="cntInfoViewForm.supplyChainPdId" disable="true"></ht-input>
+    <ht-input name="买方名称" ng-model="cntInfoViewForm.cname" disable="true"></ht-input>
+    <ht-input name="担保提货协议号" ng-model="cntInfoViewForm.protocolNo" disable="true"></ht-input>
+
+    <ht-input name="卖方名称" ng-model="cntInfoViewForm.secCname" disable="true"></ht-input>
+    <ht-select name="合同币种"  ng-model="cntInfoViewForm.curcd" dictionary="curcd" disable="true"></ht-select>
+    <ht-input name="合同金额" ng-model="cntInfoViewForm.amt" disable="true" edit-type="currency"></ht-input>
+    <ht-input name="累计出账金额" ng-model="cntInfoViewForm.totAmt" edit-type="currency" disable="true"></ht-input>
+
+    <ht-input name="合同生效日" ng-model="cntInfoViewForm.startDate" edit-type="date" disable="true"></ht-input>
+    <ht-input name="合同到期日" ng-model="cntInfoViewForm.endDate" edit-type="date" disable="true"></ht-input>
+    <ht-input name="其他费用" ng-model="cntInfoViewForm.costMoney" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="firName"  name="收货人" ng-model="cntInfoViewForm.firName" reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="address"  name="收货地址" ng-model="cntInfoViewForm.address"  reg-exp="common.require" disable="true"></ht-input>
+    <ht-input ht-id="transportType"  name="交货方式" ng-model="cntInfoViewForm.transportType" reg-exp="common.require" disable="true"></ht-input>
+    <ht-legend>备注</ht-legend>
+    <ht-text-area ht-id="textarea" name="备注" height="70" ng-model="cntInfoViewForm.memo" disable="true"></ht-text-area>
+</ht-form>
+
+<ht-legend>采购商品信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="mprotdatasource" selected="mprotselected" docheckbox="true">
+
+    <ht-column eg-name="mortgageName" zh-name="货物名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="mortgageUnits" zh-name="单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column eg-name="quantity" zh-name="数量/重量"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+    <ht-column eg-name="price" zh-name="单价" type="currency"></ht-column>
+
+</ht-table>
+
+<ht-button-group class="center">
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>
+
+
+
+
+

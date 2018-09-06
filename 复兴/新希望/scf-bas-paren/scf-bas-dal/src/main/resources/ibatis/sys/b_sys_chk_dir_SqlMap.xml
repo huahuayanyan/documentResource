@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_SYS_CHK_DIR" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.sys.dao.model.BSysChkDir" >
+    <result column="MDL_ID" property="mdlId" jdbcType="VARCHAR" />
+    <result column="MDL_NM" property="mdlNm" jdbcType="VARCHAR" />
+    <result column="STAT" property="stat" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    MDL_ID, MDL_NM, STAT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysChkDirExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_SYS_CHK_DIR.Base_Column_List" />
+    from B_SYS_CHK_DIR
+    <isParameterPresent >
+      <include refid="B_SYS_CHK_DIR.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysChkDir" >
+    select 
+    <include refid="B_SYS_CHK_DIR.Base_Column_List" />
+    from B_SYS_CHK_DIR
+    where MDL_ID = #mdlId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysChkDir" >
+    delete from B_SYS_CHK_DIR
+    where MDL_ID = #mdlId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysChkDirExample" >
+    delete from B_SYS_CHK_DIR
+    <include refid="B_SYS_CHK_DIR.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysChkDir" >
+    insert into B_SYS_CHK_DIR (MDL_ID, MDL_NM, STAT)
+    values (#mdlId:VARCHAR#, #mdlNm:VARCHAR#, #stat:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysChkDir" >
+    insert into B_SYS_CHK_DIR
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="mdlId" >
+        MDL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="mdlNm" >
+        MDL_NM
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        STAT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="mdlId" >
+        #mdlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mdlNm" >
+        #mdlNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        #stat:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysChkDirExample" resultClass="java.lang.Integer" >
+    select count(*) from B_SYS_CHK_DIR
+    <include refid="B_SYS_CHK_DIR.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_SYS_CHK_DIR
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.mdlId" >
+        MDL_ID = #record.mdlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mdlNm" >
+        MDL_NM = #record.mdlNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stat" >
+        STAT = #record.stat:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_SYS_CHK_DIR.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_SYS_CHK_DIR
+    set MDL_ID = #record.mdlId:VARCHAR#,
+      MDL_NM = #record.mdlNm:VARCHAR#,
+      STAT = #record.stat:CHAR#
+    <isParameterPresent >
+      <include refid="B_SYS_CHK_DIR.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysChkDir" >
+    update B_SYS_CHK_DIR
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="mdlNm" >
+        MDL_NM = #mdlNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        STAT = #stat:CHAR#
+      </isNotNull>
+    </dynamic>
+    where MDL_ID = #mdlId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysChkDir" >
+    update B_SYS_CHK_DIR
+    set MDL_NM = #mdlNm:VARCHAR#,
+      STAT = #stat:CHAR#
+    where MDL_ID = #mdlId:VARCHAR#
+  </update>
+</sqlMap>

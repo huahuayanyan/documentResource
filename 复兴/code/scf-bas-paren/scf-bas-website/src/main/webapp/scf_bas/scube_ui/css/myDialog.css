@@ -1,0 +1,17 @@
+.ngdialog.ngdialog-theme-plain .ngdialog-content{
+    text-align: center;
+    background: rgba(51,51,51,0.7);
+    font-size: 14px;
+    color: #fff;
+    padding: 1rem;
+}
+.ngdialog-content p{
+    margin: 0;
+}
+.ngdialog-content li{
+    padding: 10px;
+}
+.ngdialog-content li:hover{
+    background-color: rgba(255,255,255,0.1);
+    cursor: pointer;
+}

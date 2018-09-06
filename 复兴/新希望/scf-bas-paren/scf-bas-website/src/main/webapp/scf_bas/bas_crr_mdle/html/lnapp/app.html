@@ -1,0 +1,22 @@
+<div  style="position:absolute;z-index:12;float:right;top:12px;right:12px;">
+    <ht-button ht-id="back" class="btn-primary" desc-name="返回"></ht-button>
+</div>
+<!--两个<ht-tabs>影响金额数据类型-->
+<!--<div id="no">
+    <ht-tabs>
+        <ht-pane title="基本信息"  ui-sref="{{baseparam}}">
+        </ht-pane>
+        <ht-pane title="担保合同"  ui-sref="lnapp.gnty">
+        </ht-pane>
+    </ht-tabs>
+</div>-->
+<div id="yes">
+    <ht-tabs>
+        <ht-pane title="基本信息"  ui-sref="{{baseparam}}">
+        </ht-pane>
+        <ht-pane title="{{title}}"  ui-sref="{{param}}" hide="{{hide}}">
+        </ht-pane>
+        <ht-pane title="担保合同"  ui-sref="lnapp.gnty">
+        </ht-pane>
+    </ht-tabs>
+</div>

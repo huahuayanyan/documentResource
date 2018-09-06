@@ -1,0 +1,28 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <br/>
+    <ht-input ht-id="moniCname_Q" name="监管公司名称" ng-model="conditionForm.moniCname_Q"></ht-input>
+    <br/>
+    <ht-input ht-id="startDate_Q" name="预警日期 从" ng-model="conditionForm.startDate_Q" edit-type="date"
+            high-date-id="endDate_Q"></ht-input>
+    <ht-input ht-id="endDate_Q" name=" 到" ng-model="conditionForm.endDate_Q" edit-type="date"
+            lower-date-id="startDate_Q"></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+        <ht-button ht-id="homeBack" class="btn-primary" hide="{{homeBackHide}}" desc-name="返回主页"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>`突破监管限额预警列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="moniCname" zh-name="监管公司名称"></ht-column>
+    <ht-column eg-name="levels" zh-name="监管公司等级"></ht-column>
+    <ht-column eg-name="monitorArea" zh-name="监管区域"></ht-column>
+    <ht-column eg-name="detailMonitorArea" zh-name="具体监管区域（省/市）"></ht-column>
+    <ht-column eg-name="limitSum" zh-name="监管限额"></ht-column>
+    <ht-column eg-name="mortAmt" zh-name="监管押品总价值" ></ht-column>
+    <ht-column eg-name="warnDate" zh-name="预警日期"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

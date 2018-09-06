@@ -1,0 +1,15 @@
+<ht-legend>系统日期信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+    <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+    <ht-button ht-id="refresh" class="btn-primary">刷新</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="sysCode"   zh-name="系统代码"  docolumn="column"></ht-column>
+    <ht-column eg-name="systemName" zh-name="系统简称"></ht-column>
+    <ht-column eg-name="tbsdy" zh-name="交易日期"  type="date"></ht-column>
+    <ht-column eg-name="bhdate" zh-name="批量日期" type="date" ></ht-column>
+    <ht-column eg-name="lbhdate" zh-name="上一批量日期"  type="date"></ht-column>
+    <ht-column eg-name="status" zh-name="系统状态" ></ht-column>
+    <ht-column eg-name="systemType" zh-name="系统类型"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

@@ -1,0 +1,19 @@
+
+<ht-form name="otherform">
+<ht-input-extent ht-id="custNm" name="客户名称" reg-exp="common.require" extent="custcontent"
+                     on-change="dooextend" ng-model="otherform.custNm" disable="{{disable}}"></ht-input-extent>
+    <ht-input name="客户号" reg-exp="common.require" ng-model="otherform.custId" disable="true"></ht-input>
+    <ht-input name="财报日期" reg-exp="common.require" ng-model="otherform.finDt" edit-type="date"></ht-input>
+    <ht-select ht-id="finScp" name="财报口径" reg-exp="common.require" ng-model="otherform.finScp" dictionary="finScpCode"></ht-select>
+    <ht-select ht-id="finPd" name="财报周期" reg-exp="common.require" ng-model="otherform.finPd" dictionary="finPdCode"></ht-select>
+    <ht-select ht-id="finCy" name="财报币种" reg-exp="common.require" ng-model="otherform.finCy" dictionary="curcd"></ht-select>
+    <ht-select ht-id="finUn" name="财报单位" reg-exp="common.require" ng-model="otherform.finUn" dictionary="finUnCode"></ht-select>
+    <ht-input name="审计单位" ng-model="otherform.audUn" reg-exp="common.require"></ht-input>
+    <ht-select ht-id="audFlg" name="审计标志" reg-exp="common.require" ng-model="otherform.audFlg" dictionary="audFlgCode"></ht-select>
+    <ht-input ht-id="rptNo" name="财报期次" reg-exp="common.require" ng-model="otherform.rptNo"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="R_BCP_DUEBILL_APP" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.nrec.bcp.dao.model.RBcpDuebillApp" >
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="APP_STAT" property="appStat" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="BUSINESS_CUSTCD" property="businessCustcd" jdbcType="VARCHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="TRM_MON" property="trmMon" jdbcType="DECIMAL" />
+    <result column="TRM_DAY" property="trmDay" jdbcType="DECIMAL" />
+    <result column="LN_AMT" property="lnAmt" jdbcType="DECIMAL" />
+    <result column="LN_SUM" property="lnSum" jdbcType="DECIMAL" />
+    <result column="RETURN_ACCOUNT" property="returnAccount" jdbcType="VARCHAR" />
+    <result column="ACT_INT" property="actInt" jdbcType="DECIMAL" />
+    <result column="FEE_RATE" property="feeRate" jdbcType="DECIMAL" />
+    <result column="BL_FEE_RATE" property="blFeeRate" jdbcType="DECIMAL" />
+    <result column="JX_PERIOD" property="jxPeriod" jdbcType="VARCHAR" />
+    <result column="JX_DAY" property="jxDay" jdbcType="DECIMAL" />
+    <result column="RETURN_TYPE" property="returnType" jdbcType="VARCHAR" />
+    <result column="YQ_DAY" property="yqDay" jdbcType="DECIMAL" />
+    <result column="YQ_RATE" property="yqRate" jdbcType="DECIMAL" />
+    <result column="ACT_BR_CD" property="actBrCd" jdbcType="VARCHAR" />
+    <result column="PAY_ACT_NO" property="payActNo" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="CR_NO" property="crNo" jdbcType="VARCHAR" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="INDRCT_CRDT" property="indrctCrdt" jdbcType="VARCHAR" />
+    <result column="CRDT_CUST_CD" property="crdtCustCd" jdbcType="VARCHAR" />
+    <result column="CRDT_CUST_NM" property="crdtCustNm" jdbcType="VARCHAR" />
+    <result column="CRDT_CR_NO" property="crdtCrNo" jdbcType="VARCHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="EXT4" property="ext4" jdbcType="VARCHAR" />
+    <result column="EXT5" property="ext5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    APPNO, MAST_CONTNO, APP_STAT, CUSTCD, BUSINESS_CUSTCD, SUPPLY_CHAIN_PD_ID, ACCOUNT_NO, 
+    START_DATE, END_DATE, TRM_MON, TRM_DAY, LN_AMT, LN_SUM, RETURN_ACCOUNT, ACT_INT, 
+    FEE_RATE, BL_FEE_RATE, JX_PERIOD, JX_DAY, RETURN_TYPE, YQ_DAY, YQ_RATE, ACT_BR_CD, 
+    PAY_ACT_NO, CURCD, CR_NO, TLR_NO, TLR_NM, BR_CD, BR_NM, INP_DT, LST_UPD_TLR, LST_UPD_TLR_NM, 
+    LST_UPD_BR_CD, LST_UPD_BR_NM, LST_UPD_DT, INDRCT_CRDT, CRDT_CUST_CD, CRDT_CUST_NM, 
+    CRDT_CR_NO, EXT1, EXT2, EXT3, EXT4, EXT5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.nrec.bcp.dao.model.RBcpDuebillAppExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="R_BCP_DUEBILL_APP.Base_Column_List" />
+    from R_BCP_DUEBILL_APP
+    <isParameterPresent >
+      <include refid="R_BCP_DUEBILL_APP.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.nrec.bcp.dao.model.RBcpDuebillApp" >
+    select 
+    <include refid="R_BCP_DUEBILL_APP.Base_Column_List" />
+    from R_BCP_DUEBILL_APP
+    where APPNO = #appno:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.nrec.bcp.dao.model.RBcpDuebillApp" >
+    delete from R_BCP_DUEBILL_APP
+    where APPNO = #appno:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.nrec.bcp.dao.model.RBcpDuebillAppExample" >
+    delete from R_BCP_DUEBILL_APP
+    <include refid="R_BCP_DUEBILL_APP.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.nrec.bcp.dao.model.RBcpDuebillApp" >
+    insert into R_BCP_DUEBILL_APP (APPNO, MAST_CONTNO, APP_STAT, CUSTCD, 
+      BUSINESS_CUSTCD, SUPPLY_CHAIN_PD_ID, ACCOUNT_NO, START_DATE, 
+      END_DATE, TRM_MON, TRM_DAY, LN_AMT, LN_SUM, 
+      RETURN_ACCOUNT, ACT_INT, FEE_RATE, BL_FEE_RATE, 
+      JX_PERIOD, JX_DAY, RETURN_TYPE, YQ_DAY, YQ_RATE, 
+      ACT_BR_CD, PAY_ACT_NO, CURCD, CR_NO, TLR_NO, 
+      TLR_NM, BR_CD, BR_NM, INP_DT, LST_UPD_TLR, 
+      LST_UPD_TLR_NM, LST_UPD_BR_CD, LST_UPD_BR_NM, LST_UPD_DT, 
+      INDRCT_CRDT, CRDT_CUST_CD, CRDT_CUST_NM, CRDT_CR_NO, 
+      EXT1, EXT2, EXT3, EXT4, EXT5)
+    values (#appno:VARCHAR#, #mastContno:VARCHAR#, #appStat:VARCHAR#, #custcd:VARCHAR#, 
+      #businessCustcd:VARCHAR#, #supplyChainPdId:VARCHAR#, #accountNo:VARCHAR#, #startDate:CHAR#, 
+      #endDate:CHAR#, #trmMon:DECIMAL#, #trmDay:DECIMAL#, #lnAmt:DECIMAL#, #lnSum:DECIMAL#, 
+      #returnAccount:VARCHAR#, #actInt:DECIMAL#, #feeRate:DECIMAL#, #blFeeRate:DECIMAL#, 
+      #jxPeriod:VARCHAR#, #jxDay:DECIMAL#, #returnType:VARCHAR#, #yqDay:DECIMAL#, #yqRate:DECIMAL#, 
+      #actBrCd:VARCHAR#, #payActNo:VARCHAR#, #curcd:CHAR#, #crNo:VARCHAR#, #tlrNo:VARCHAR#, 
+      #tlrNm:VARCHAR#, #brCd:VARCHAR#, #brNm:VARCHAR#, #inpDt:VARCHAR#, #lstUpdTlr:VARCHAR#, 
+      #lstUpdTlrNm:VARCHAR#, #lstUpdBrCd:VARCHAR#, #lstUpdBrNm:VARCHAR#, #lstUpdDt:VARCHAR#, 
+      #indrctCrdt:VARCHAR#, #crdtCustCd:VARCHAR#, #crdtCustNm:VARCHAR#, #crdtCrNo:VARCHAR#, 
+      #ext1:VARCHAR#, #ext2:VARCHAR#, #ext3:VARCHAR#, #ext4:VARCHAR#, #ext5:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.nrec.bcp.dao.model.RBcpDuebillApp" >
+    insert into R_BCP_DUEBILL_APP
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="appStat" >
+        APP_STAT
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="businessCustcd" >
+        BUSINESS_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="trmMon" >
+        TRM_MON
+      </isNotNull>
+      <isNotNull prepend="," property="trmDay" >
+        TRM_DAY
+      </isNotNull>
+      <isNotNull prepend="," property="lnAmt" >
+        LN_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="lnSum" >
+        LN_SUM
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccount" >
+        RETURN_ACCOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="actInt" >
+        ACT_INT
+      </isNotNull>
+      <isNotNull prepend="," property="feeRate" >
+        FEE_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="blFeeRate" >
+        BL_FEE_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="jxPeriod" >
+        JX_PERIOD
+      </isNotNull>
+      <isNotNull prepend="," property="jxDay" >
+        JX_DAY
+      </isNotNull>
+      <isNotNull prepend="," property="returnType" >
+        RETURN_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="yqDay" >
+        YQ_DAY
+      </isNotNull>
+      <isNotNull prepend="," property="yqRate" >
+        YQ_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="actBrCd" >
+        ACT_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="payActNo" >
+        PAY_ACT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="crNo" >
+        CR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      <isNotNull prepend="," property="indrctCrdt" >
+        INDRCT_CRDT
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCustCd" >
+        CRDT_CUST_CD
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCustNm" >
+        CRDT_CUST_NM
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCrNo" >
+        CRDT_CR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3
+      </isNotNull>
+      <isNotNull prepend="," property="ext4" >
+        EXT4
+      </isNotNull>
+      <isNotNull prepend="," property="ext5" >
+        EXT5
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appStat" >
+        #appStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessCustcd" >
+        #businessCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        #supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trmMon" >
+        #trmMon:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="trmDay" >
+        #trmDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnAmt" >
+        #lnAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnSum" >
+        #lnSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccount" >
+        #returnAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actInt" >
+        #actInt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="feeRate" >
+        #feeRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="blFeeRate" >
+        #blFeeRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="jxPeriod" >
+        #jxPeriod:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="jxDay" >
+        #jxDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnType" >
+        #returnType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="yqDay" >
+        #yqDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="yqRate" >
+        #yqRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="actBrCd" >
+        #actBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payActNo" >
+        #payActNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crNo" >
+        #crNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="indrctCrdt" >
+        #indrctCrdt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCustCd" >
+        #crdtCustCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCustNm" >
+        #crdtCustNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCrNo" >
+        #crdtCrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        #ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext4" >
+        #ext4:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext5" >
+        #ext5:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.nrec.bcp.dao.model.RBcpDuebillAppExample" resultClass="java.lang.Integer" >
+    select count(*) from R_BCP_DUEBILL_APP
+    <include refid="R_BCP_DUEBILL_APP.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update R_BCP_DUEBILL_APP
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appStat" >
+        APP_STAT = #record.appStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.businessCustcd" >
+        BUSINESS_CUSTCD = #record.businessCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID = #record.supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accountNo" >
+        ACCOUNT_NO = #record.accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.trmMon" >
+        TRM_MON = #record.trmMon:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.trmDay" >
+        TRM_DAY = #record.trmDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lnAmt" >
+        LN_AMT = #record.lnAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lnSum" >
+        LN_SUM = #record.lnSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnAccount" >
+        RETURN_ACCOUNT = #record.returnAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.actInt" >
+        ACT_INT = #record.actInt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.feeRate" >
+        FEE_RATE = #record.feeRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.blFeeRate" >
+        BL_FEE_RATE = #record.blFeeRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.jxPeriod" >
+        JX_PERIOD = #record.jxPeriod:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.jxDay" >
+        JX_DAY = #record.jxDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnType" >
+        RETURN_TYPE = #record.returnType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.yqDay" >
+        YQ_DAY = #record.yqDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.yqRate" >
+        YQ_RATE = #record.yqRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.actBrCd" >
+        ACT_BR_CD = #record.actBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payActNo" >
+        PAY_ACT_NO = #record.payActNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crNo" >
+        CR_NO = #record.crNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNo" >
+        TLR_NO = #record.tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNm" >
+        TLR_NM = #record.tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brCd" >
+        BR_CD = #record.brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brNm" >
+        BR_NM = #record.brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inpDt" >
+        INP_DT = #record.inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlr" >
+        LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrCd" >
+        LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrNm" >
+        LST_UPD_BR_NM = #record.lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdDt" >
+        LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.indrctCrdt" >
+        INDRCT_CRDT = #record.indrctCrdt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crdtCustCd" >
+        CRDT_CUST_CD = #record.crdtCustCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crdtCustNm" >
+        CRDT_CUST_NM = #record.crdtCustNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.crdtCrNo" >
+        CRDT_CR_NO = #record.crdtCrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1" >
+        EXT1 = #record.ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext2" >
+        EXT2 = #record.ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext3" >
+        EXT3 = #record.ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext4" >
+        EXT4 = #record.ext4:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext5" >
+        EXT5 = #record.ext5:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="R_BCP_DUEBILL_APP.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update R_BCP_DUEBILL_APP
+    set APPNO = #record.appno:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      APP_STAT = #record.appStat:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      BUSINESS_CUSTCD = #record.businessCustcd:VARCHAR#,
+      SUPPLY_CHAIN_PD_ID = #record.supplyChainPdId:VARCHAR#,
+      ACCOUNT_NO = #record.accountNo:VARCHAR#,
+      START_DATE = #record.startDate:CHAR#,
+      END_DATE = #record.endDate:CHAR#,
+      TRM_MON = #record.trmMon:DECIMAL#,
+      TRM_DAY = #record.trmDay:DECIMAL#,
+      LN_AMT = #record.lnAmt:DECIMAL#,
+      LN_SUM = #record.lnSum:DECIMAL#,
+      RETURN_ACCOUNT = #record.returnAccount:VARCHAR#,
+      ACT_INT = #record.actInt:DECIMAL#,
+      FEE_RATE = #record.feeRate:DECIMAL#,
+      BL_FEE_RATE = #record.blFeeRate:DECIMAL#,
+      JX_PERIOD = #record.jxPeriod:VARCHAR#,
+      JX_DAY = #record.jxDay:DECIMAL#,
+      RETURN_TYPE = #record.returnType:VARCHAR#,
+      YQ_DAY = #record.yqDay:DECIMAL#,
+      YQ_RATE = #record.yqRate:DECIMAL#,
+      ACT_BR_CD = #record.actBrCd:VARCHAR#,
+      PAY_ACT_NO = #record.payActNo:VARCHAR#,
+      CURCD = #record.curcd:CHAR#,
+      CR_NO = #record.crNo:VARCHAR#,
+      TLR_NO = #record.tlrNo:VARCHAR#,
+      TLR_NM = #record.tlrNm:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      BR_NM = #record.brNm:VARCHAR#,
+      INP_DT = #record.inpDt:VARCHAR#,
+      LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #record.lstUpdBrNm:VARCHAR#,
+      LST_UPD_DT = #record.lstUpdDt:VARCHAR#,
+      INDRCT_CRDT = #record.indrctCrdt:VARCHAR#,
+      CRDT_CUST_CD = #record.crdtCustCd:VARCHAR#,
+      CRDT_CUST_NM = #record.crdtCustNm:VARCHAR#,
+      CRDT_CR_NO = #record.crdtCrNo:VARCHAR#,
+      EXT1 = #record.ext1:VARCHAR#,
+      EXT2 = #record.ext2:VARCHAR#,
+      EXT3 = #record.ext3:VARCHAR#,
+      EXT4 = #record.ext4:VARCHAR#,
+      EXT5 = #record.ext5:VARCHAR#
+    <isParameterPresent >
+      <include refid="R_BCP_DUEBILL_APP.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.nrec.bcp.dao.model.RBcpDuebillApp" >
+    update R_BCP_DUEBILL_APP
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appStat" >
+        APP_STAT = #appStat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessCustcd" >
+        BUSINESS_CUSTCD = #businessCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyChainPdId" >
+        SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO = #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trmMon" >
+        TRM_MON = #trmMon:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="trmDay" >
+        TRM_DAY = #trmDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnAmt" >
+        LN_AMT = #lnAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnSum" >
+        LN_SUM = #lnSum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccount" >
+        RETURN_ACCOUNT = #returnAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="actInt" >
+        ACT_INT = #actInt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="feeRate" >
+        FEE_RATE = #feeRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="blFeeRate" >
+        BL_FEE_RATE = #blFeeRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="jxPeriod" >
+        JX_PERIOD = #jxPeriod:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="jxDay" >
+        JX_DAY = #jxDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnType" >
+        RETURN_TYPE = #returnType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="yqDay" >
+        YQ_DAY = #yqDay:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="yqRate" >
+        YQ_RATE = #yqRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="actBrCd" >
+        ACT_BR_CD = #actBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payActNo" >
+        PAY_ACT_NO = #payActNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crNo" >
+        CR_NO = #crNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO = #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM = #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD = #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM = #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT = #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR = #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM = #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT = #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="indrctCrdt" >
+        INDRCT_CRDT = #indrctCrdt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCustCd" >
+        CRDT_CUST_CD = #crdtCustCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCustNm" >
+        CRDT_CUST_NM = #crdtCustNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="crdtCrNo" >
+        CRDT_CR_NO = #crdtCrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1 = #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2 = #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3 = #ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext4" >
+        EXT4 = #ext4:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext5" >
+        EXT5 = #ext5:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where APPNO = #appno:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.nrec.bcp.dao.model.RBcpDuebillApp" >
+    update R_BCP_DUEBILL_APP
+    set MAST_CONTNO = #mastContno:VARCHAR#,
+      APP_STAT = #appStat:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      BUSINESS_CUSTCD = #businessCustcd:VARCHAR#,
+      SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR#,
+      ACCOUNT_NO = #accountNo:VARCHAR#,
+      START_DATE = #startDate:CHAR#,
+      END_DATE = #endDate:CHAR#,
+      TRM_MON = #trmMon:DECIMAL#,
+      TRM_DAY = #trmDay:DECIMAL#,
+      LN_AMT = #lnAmt:DECIMAL#,
+      LN_SUM = #lnSum:DECIMAL#,
+      RETURN_ACCOUNT = #returnAccount:VARCHAR#,
+      ACT_INT = #actInt:DECIMAL#,
+      FEE_RATE = #feeRate:DECIMAL#,
+      BL_FEE_RATE = #blFeeRate:DECIMAL#,
+      JX_PERIOD = #jxPeriod:VARCHAR#,
+      JX_DAY = #jxDay:DECIMAL#,
+      RETURN_TYPE = #returnType:VARCHAR#,
+      YQ_DAY = #yqDay:DECIMAL#,
+      YQ_RATE = #yqRate:DECIMAL#,
+      ACT_BR_CD = #actBrCd:VARCHAR#,
+      PAY_ACT_NO = #payActNo:VARCHAR#,
+      CURCD = #curcd:CHAR#,
+      CR_NO = #crNo:VARCHAR#,
+      TLR_NO = #tlrNo:VARCHAR#,
+      TLR_NM = #tlrNm:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      BR_NM = #brNm:VARCHAR#,
+      INP_DT = #inpDt:VARCHAR#,
+      LST_UPD_TLR = #lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #lstUpdBrNm:VARCHAR#,
+      LST_UPD_DT = #lstUpdDt:VARCHAR#,
+      INDRCT_CRDT = #indrctCrdt:VARCHAR#,
+      CRDT_CUST_CD = #crdtCustCd:VARCHAR#,
+      CRDT_CUST_NM = #crdtCustNm:VARCHAR#,
+      CRDT_CR_NO = #crdtCrNo:VARCHAR#,
+      EXT1 = #ext1:VARCHAR#,
+      EXT2 = #ext2:VARCHAR#,
+      EXT3 = #ext3:VARCHAR#,
+      EXT4 = #ext4:VARCHAR#,
+      EXT5 = #ext5:VARCHAR#
+    where APPNO = #appno:VARCHAR#
+  </update>
+</sqlMap>

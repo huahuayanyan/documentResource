@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="A_BCP_IMPREST_BUSS_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.bcp.dao.model.ABcpImprestBussInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="UP_CUSTCD" property="upCustcd" jdbcType="VARCHAR" />
+    <result column="MONI_CUSTCD" property="moniCustcd" jdbcType="VARCHAR" />
+    <result column="GUARANTEE_CUSTCD" property="guaranteeCustcd" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="MONI_PROTOCOL_NO" property="moniProtocolNo" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="COMMON_AMT" property="commonAmt" jdbcType="DECIMAL" />
+    <result column="COLLECTED_AMT" property="collectedAmt" jdbcType="DECIMAL" />
+    <result column="DELIVERY_AMT" property="deliveryAmt" jdbcType="DECIMAL" />
+    <result column="UNDELIVERY_AMT" property="undeliveryAmt" jdbcType="DECIMAL" />
+    <result column="PAYBACK_TERM" property="paybackTerm" jdbcType="DECIMAL" />
+    <result column="PAYEE" property="payee" jdbcType="VARCHAR" />
+    <result column="PAYBACK_ACCT_NO" property="paybackAcctNo" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_BANK" property="depositBank" jdbcType="VARCHAR" />
+    <result column="PAYBACK_REASON" property="paybackReason" jdbcType="VARCHAR" />
+    <result column="PICK_AMT" property="pickAmt" jdbcType="DECIMAL" />
+    <result column="ADD_BAIL_AMT" property="addBailAmt" jdbcType="DECIMAL" />
+    <result column="CORE_BAIL_AMT" property="coreBailAmt" jdbcType="DECIMAL" />
+    <result column="INIT_AMT_PERCENT" property="initAmtPercent" jdbcType="DECIMAL" />
+    <result column="CASH_EQT_AMT" property="cashEqtAmt" jdbcType="DECIMAL" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+    <result column="LNCI_BAL" property="lnciBal" jdbcType="DECIMAL" />
+    <result column="RISK_AMT" property="riskAmt" jdbcType="DECIMAL" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="CONFIG_NO" property="configNo" jdbcType="VARCHAR" />
+    <result column="INSERT_DATE" property="insertDate" jdbcType="CHAR" />
+    <result column="FIRST_BAIL_TYPE" property="firstBailType" jdbcType="CHAR" />
+    <result column="APPLY_TYPE" property="applyType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, CUSTCD, UP_CUSTCD, MONI_CUSTCD, GUARANTEE_CUSTCD, DEBET_NO, MAST_CONTNO, 
+    PROTOCOL_NO, MONI_PROTOCOL_NO, SLAVE_CONTNO, COMMON_AMT, COLLECTED_AMT, DELIVERY_AMT, 
+    UNDELIVERY_AMT, PAYBACK_TERM, PAYEE, PAYBACK_ACCT_NO, DEPOSIT_BANK, PAYBACK_REASON, 
+    PICK_AMT, ADD_BAIL_AMT, CORE_BAIL_AMT, INIT_AMT_PERCENT, CASH_EQT_AMT, LNCI_AMT, 
+    LNCI_BAL, RISK_AMT, MGRNO, BRCODE, CONFIG_NO, INSERT_DATE, FIRST_BAIL_TYPE, APPLY_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.bcp.dao.model.ABcpImprestBussInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="A_BCP_IMPREST_BUSS_INFO.Base_Column_List" />
+    from A_BCP_IMPREST_BUSS_INFO
+    <isParameterPresent >
+      <include refid="A_BCP_IMPREST_BUSS_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.bcp.dao.model.ABcpImprestBussInfo" >
+    select 
+    <include refid="A_BCP_IMPREST_BUSS_INFO.Base_Column_List" />
+    from A_BCP_IMPREST_BUSS_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.adv.bcp.dao.model.ABcpImprestBussInfo" >
+    delete from A_BCP_IMPREST_BUSS_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.adv.bcp.dao.model.ABcpImprestBussInfoExample" >
+    delete from A_BCP_IMPREST_BUSS_INFO
+    <include refid="A_BCP_IMPREST_BUSS_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.adv.bcp.dao.model.ABcpImprestBussInfo" >
+    insert into A_BCP_IMPREST_BUSS_INFO (ID, APPNO, CUSTCD, UP_CUSTCD, MONI_CUSTCD, 
+      GUARANTEE_CUSTCD, DEBET_NO, MAST_CONTNO, PROTOCOL_NO, 
+      MONI_PROTOCOL_NO, SLAVE_CONTNO, COMMON_AMT, COLLECTED_AMT, 
+      DELIVERY_AMT, UNDELIVERY_AMT, PAYBACK_TERM, PAYEE, 
+      PAYBACK_ACCT_NO, DEPOSIT_BANK, PAYBACK_REASON, PICK_AMT, 
+      ADD_BAIL_AMT, CORE_BAIL_AMT, INIT_AMT_PERCENT, CASH_EQT_AMT, 
+      LNCI_AMT, LNCI_BAL, RISK_AMT, MGRNO, BRCODE, 
+      CONFIG_NO, INSERT_DATE, FIRST_BAIL_TYPE, APPLY_TYPE)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #custcd:VARCHAR#, #upCustcd:VARCHAR#, #moniCustcd:VARCHAR#, 
+      #guaranteeCustcd:VARCHAR#, #debetNo:VARCHAR#, #mastContno:VARCHAR#, #protocolNo:VARCHAR#, 
+      #moniProtocolNo:VARCHAR#, #slaveContno:VARCHAR#, #commonAmt:DECIMAL#, #collectedAmt:DECIMAL#, 
+      #deliveryAmt:DECIMAL#, #undeliveryAmt:DECIMAL#, #paybackTerm:DECIMAL#, #payee:VARCHAR#, 
+      #paybackAcctNo:VARCHAR#, #depositBank:VARCHAR#, #paybackReason:VARCHAR#, #pickAmt:DECIMAL#, 
+      #addBailAmt:DECIMAL#, #coreBailAmt:DECIMAL#, #initAmtPercent:DECIMAL#, #cashEqtAmt:DECIMAL#, 
+      #lnciAmt:DECIMAL#, #lnciBal:DECIMAL#, #riskAmt:DECIMAL#, #mgrno:VARCHAR#, #brcode:VARCHAR#, 
+      #configNo:VARCHAR#, #insertDate:CHAR#, #firstBailType:CHAR#, #applyType:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.adv.bcp.dao.model.ABcpImprestBussInfo" >
+    insert into A_BCP_IMPREST_BUSS_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="upCustcd" >
+        UP_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="guaranteeCustcd" >
+        GUARANTEE_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="moniProtocolNo" >
+        MONI_PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="commonAmt" >
+        COMMON_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="collectedAmt" >
+        COLLECTED_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmt" >
+        DELIVERY_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="undeliveryAmt" >
+        UNDELIVERY_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="paybackTerm" >
+        PAYBACK_TERM
+      </isNotNull>
+      <isNotNull prepend="," property="payee" >
+        PAYEE
+      </isNotNull>
+      <isNotNull prepend="," property="paybackAcctNo" >
+        PAYBACK_ACCT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="depositBank" >
+        DEPOSIT_BANK
+      </isNotNull>
+      <isNotNull prepend="," property="paybackReason" >
+        PAYBACK_REASON
+      </isNotNull>
+      <isNotNull prepend="," property="pickAmt" >
+        PICK_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="addBailAmt" >
+        ADD_BAIL_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="coreBailAmt" >
+        CORE_BAIL_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="initAmtPercent" >
+        INIT_AMT_PERCENT
+      </isNotNull>
+      <isNotNull prepend="," property="cashEqtAmt" >
+        CASH_EQT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="lnciAmt" >
+        LNCI_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="lnciBal" >
+        LNCI_BAL
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        RISK_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        MGRNO
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="configNo" >
+        CONFIG_NO
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        INSERT_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailType" >
+        FIRST_BAIL_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="applyType" >
+        APPLY_TYPE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="upCustcd" >
+        #upCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="guaranteeCustcd" >
+        #guaranteeCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniProtocolNo" >
+        #moniProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commonAmt" >
+        #commonAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="collectedAmt" >
+        #collectedAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmt" >
+        #deliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="undeliveryAmt" >
+        #undeliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="paybackTerm" >
+        #paybackTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="payee" >
+        #payee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paybackAcctNo" >
+        #paybackAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="depositBank" >
+        #depositBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paybackReason" >
+        #paybackReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pickAmt" >
+        #pickAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="addBailAmt" >
+        #addBailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="coreBailAmt" >
+        #coreBailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="initAmtPercent" >
+        #initAmtPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cashEqtAmt" >
+        #cashEqtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnciAmt" >
+        #lnciAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnciBal" >
+        #lnciBal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        #riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        #mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="configNo" >
+        #configNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        #insertDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailType" >
+        #firstBailType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyType" >
+        #applyType:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.adv.bcp.dao.model.ABcpImprestBussInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from A_BCP_IMPREST_BUSS_INFO
+    <include refid="A_BCP_IMPREST_BUSS_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update A_BCP_IMPREST_BUSS_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.upCustcd" >
+        UP_CUSTCD = #record.upCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCustcd" >
+        MONI_CUSTCD = #record.moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.guaranteeCustcd" >
+        GUARANTEE_CUSTCD = #record.guaranteeCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetNo" >
+        DEBET_NO = #record.debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniProtocolNo" >
+        MONI_PROTOCOL_NO = #record.moniProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveContno" >
+        SLAVE_CONTNO = #record.slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.commonAmt" >
+        COMMON_AMT = #record.commonAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.collectedAmt" >
+        COLLECTED_AMT = #record.collectedAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deliveryAmt" >
+        DELIVERY_AMT = #record.deliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.undeliveryAmt" >
+        UNDELIVERY_AMT = #record.undeliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.paybackTerm" >
+        PAYBACK_TERM = #record.paybackTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payee" >
+        PAYEE = #record.payee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.paybackAcctNo" >
+        PAYBACK_ACCT_NO = #record.paybackAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.depositBank" >
+        DEPOSIT_BANK = #record.depositBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.paybackReason" >
+        PAYBACK_REASON = #record.paybackReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pickAmt" >
+        PICK_AMT = #record.pickAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.addBailAmt" >
+        ADD_BAIL_AMT = #record.addBailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coreBailAmt" >
+        CORE_BAIL_AMT = #record.coreBailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.initAmtPercent" >
+        INIT_AMT_PERCENT = #record.initAmtPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cashEqtAmt" >
+        CASH_EQT_AMT = #record.cashEqtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lnciAmt" >
+        LNCI_AMT = #record.lnciAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lnciBal" >
+        LNCI_BAL = #record.lnciBal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.riskAmt" >
+        RISK_AMT = #record.riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mgrno" >
+        MGRNO = #record.mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.configNo" >
+        CONFIG_NO = #record.configNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insertDate" >
+        INSERT_DATE = #record.insertDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.firstBailType" >
+        FIRST_BAIL_TYPE = #record.firstBailType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.applyType" >
+        APPLY_TYPE = #record.applyType:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="A_BCP_IMPREST_BUSS_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update A_BCP_IMPREST_BUSS_INFO
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      UP_CUSTCD = #record.upCustcd:VARCHAR#,
+      MONI_CUSTCD = #record.moniCustcd:VARCHAR#,
+      GUARANTEE_CUSTCD = #record.guaranteeCustcd:VARCHAR#,
+      DEBET_NO = #record.debetNo:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      MONI_PROTOCOL_NO = #record.moniProtocolNo:VARCHAR#,
+      SLAVE_CONTNO = #record.slaveContno:VARCHAR#,
+      COMMON_AMT = #record.commonAmt:DECIMAL#,
+      COLLECTED_AMT = #record.collectedAmt:DECIMAL#,
+      DELIVERY_AMT = #record.deliveryAmt:DECIMAL#,
+      UNDELIVERY_AMT = #record.undeliveryAmt:DECIMAL#,
+      PAYBACK_TERM = #record.paybackTerm:DECIMAL#,
+      PAYEE = #record.payee:VARCHAR#,
+      PAYBACK_ACCT_NO = #record.paybackAcctNo:VARCHAR#,
+      DEPOSIT_BANK = #record.depositBank:VARCHAR#,
+      PAYBACK_REASON = #record.paybackReason:VARCHAR#,
+      PICK_AMT = #record.pickAmt:DECIMAL#,
+      ADD_BAIL_AMT = #record.addBailAmt:DECIMAL#,
+      CORE_BAIL_AMT = #record.coreBailAmt:DECIMAL#,
+      INIT_AMT_PERCENT = #record.initAmtPercent:DECIMAL#,
+      CASH_EQT_AMT = #record.cashEqtAmt:DECIMAL#,
+      LNCI_AMT = #record.lnciAmt:DECIMAL#,
+      LNCI_BAL = #record.lnciBal:DECIMAL#,
+      RISK_AMT = #record.riskAmt:DECIMAL#,
+      MGRNO = #record.mgrno:VARCHAR#,
+      BRCODE = #record.brcode:VARCHAR#,
+      CONFIG_NO = #record.configNo:VARCHAR#,
+      INSERT_DATE = #record.insertDate:CHAR#,
+      FIRST_BAIL_TYPE = #record.firstBailType:CHAR#,
+      APPLY_TYPE = #record.applyType:CHAR#
+    <isParameterPresent >
+      <include refid="A_BCP_IMPREST_BUSS_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.adv.bcp.dao.model.ABcpImprestBussInfo" >
+    update A_BCP_IMPREST_BUSS_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="upCustcd" >
+        UP_CUSTCD = #upCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCustcd" >
+        MONI_CUSTCD = #moniCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="guaranteeCustcd" >
+        GUARANTEE_CUSTCD = #guaranteeCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO = #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniProtocolNo" >
+        MONI_PROTOCOL_NO = #moniProtocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveContno" >
+        SLAVE_CONTNO = #slaveContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commonAmt" >
+        COMMON_AMT = #commonAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="collectedAmt" >
+        COLLECTED_AMT = #collectedAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmt" >
+        DELIVERY_AMT = #deliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="undeliveryAmt" >
+        UNDELIVERY_AMT = #undeliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="paybackTerm" >
+        PAYBACK_TERM = #paybackTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="payee" >
+        PAYEE = #payee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paybackAcctNo" >
+        PAYBACK_ACCT_NO = #paybackAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="depositBank" >
+        DEPOSIT_BANK = #depositBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paybackReason" >
+        PAYBACK_REASON = #paybackReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pickAmt" >
+        PICK_AMT = #pickAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="addBailAmt" >
+        ADD_BAIL_AMT = #addBailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="coreBailAmt" >
+        CORE_BAIL_AMT = #coreBailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="initAmtPercent" >
+        INIT_AMT_PERCENT = #initAmtPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cashEqtAmt" >
+        CASH_EQT_AMT = #cashEqtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnciAmt" >
+        LNCI_AMT = #lnciAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnciBal" >
+        LNCI_BAL = #lnciBal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        RISK_AMT = #riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mgrno" >
+        MGRNO = #mgrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="configNo" >
+        CONFIG_NO = #configNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        INSERT_DATE = #insertDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailType" >
+        FIRST_BAIL_TYPE = #firstBailType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyType" >
+        APPLY_TYPE = #applyType:CHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.adv.bcp.dao.model.ABcpImprestBussInfo" >
+    update A_BCP_IMPREST_BUSS_INFO
+    set APPNO = #appno:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      UP_CUSTCD = #upCustcd:VARCHAR#,
+      MONI_CUSTCD = #moniCustcd:VARCHAR#,
+      GUARANTEE_CUSTCD = #guaranteeCustcd:VARCHAR#,
+      DEBET_NO = #debetNo:VARCHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      MONI_PROTOCOL_NO = #moniProtocolNo:VARCHAR#,
+      SLAVE_CONTNO = #slaveContno:VARCHAR#,
+      COMMON_AMT = #commonAmt:DECIMAL#,
+      COLLECTED_AMT = #collectedAmt:DECIMAL#,
+      DELIVERY_AMT = #deliveryAmt:DECIMAL#,
+      UNDELIVERY_AMT = #undeliveryAmt:DECIMAL#,
+      PAYBACK_TERM = #paybackTerm:DECIMAL#,
+      PAYEE = #payee:VARCHAR#,
+      PAYBACK_ACCT_NO = #paybackAcctNo:VARCHAR#,
+      DEPOSIT_BANK = #depositBank:VARCHAR#,
+      PAYBACK_REASON = #paybackReason:VARCHAR#,
+      PICK_AMT = #pickAmt:DECIMAL#,
+      ADD_BAIL_AMT = #addBailAmt:DECIMAL#,
+      CORE_BAIL_AMT = #coreBailAmt:DECIMAL#,
+      INIT_AMT_PERCENT = #initAmtPercent:DECIMAL#,
+      CASH_EQT_AMT = #cashEqtAmt:DECIMAL#,
+      LNCI_AMT = #lnciAmt:DECIMAL#,
+      LNCI_BAL = #lnciBal:DECIMAL#,
+      RISK_AMT = #riskAmt:DECIMAL#,
+      MGRNO = #mgrno:VARCHAR#,
+      BRCODE = #brcode:VARCHAR#,
+      CONFIG_NO = #configNo:VARCHAR#,
+      INSERT_DATE = #insertDate:CHAR#,
+      FIRST_BAIL_TYPE = #firstBailType:CHAR#,
+      APPLY_TYPE = #applyType:CHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

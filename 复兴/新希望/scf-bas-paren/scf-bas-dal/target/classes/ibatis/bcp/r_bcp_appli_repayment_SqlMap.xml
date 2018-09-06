@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="R_BCP_APPLI_REPAYMENT" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepayment" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="RETURN_ID" property="returnId" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="AMOUNT_OVER" property="amountOver" jdbcType="DECIMAL" />
+    <result column="RETURN_TYPE" property="returnType" jdbcType="CHAR" />
+    <result column="RETURN_METHOD" property="returnMethod" jdbcType="VARCHAR" />
+    <result column="TO_SALLER_AMOUNT" property="toSallerAmount" jdbcType="DECIMAL" />
+    <result column="TO_POOL_AMOUNT" property="toPoolAmount" jdbcType="DECIMAL" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="DEBT_APPNO" property="debtAppno" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="REPAY_INTAMT" property="repayIntamt" jdbcType="DECIMAL" />
+    <result column="REPAY_BALAMT" property="repayBalamt" jdbcType="DECIMAL" />
+    <result column="REPAY_AMOUNT" property="repayAmount" jdbcType="DECIMAL" />
+    <result column="REPAY_DATE" property="repayDate" jdbcType="CHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="PAY_AMOUNT" property="payAmount" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, RETURN_ID, DEBET_NO, AMOUNT_OVER, RETURN_TYPE, RETURN_METHOD, TO_SALLER_AMOUNT, 
+    TO_POOL_AMOUNT, CUSTCD, DEBT_APPNO, CURCD, COMMON_DATE, TLRCD, BRCODE, REPAY_INTAMT, 
+    REPAY_BALAMT, REPAY_AMOUNT, REPAY_DATE, MAST_CONTNO, DEBET_ID, PAY_AMOUNT, ACCOUNT_NO, 
+    MEMO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepaymentExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="R_BCP_APPLI_REPAYMENT.Base_Column_List" />
+    from R_BCP_APPLI_REPAYMENT
+    <isParameterPresent >
+      <include refid="R_BCP_APPLI_REPAYMENT.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepayment" >
+    select 
+    <include refid="R_BCP_APPLI_REPAYMENT.Base_Column_List" />
+    from R_BCP_APPLI_REPAYMENT
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepayment" >
+    delete from R_BCP_APPLI_REPAYMENT
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepaymentExample" >
+    delete from R_BCP_APPLI_REPAYMENT
+    <include refid="R_BCP_APPLI_REPAYMENT.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepayment" >
+    insert into R_BCP_APPLI_REPAYMENT (ID, APPNO, RETURN_ID, DEBET_NO, AMOUNT_OVER, 
+      RETURN_TYPE, RETURN_METHOD, TO_SALLER_AMOUNT, TO_POOL_AMOUNT, 
+      CUSTCD, DEBT_APPNO, CURCD, COMMON_DATE, TLRCD, 
+      BRCODE, REPAY_INTAMT, REPAY_BALAMT, REPAY_AMOUNT, 
+      REPAY_DATE, MAST_CONTNO, DEBET_ID, PAY_AMOUNT, 
+      ACCOUNT_NO, MEMO)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #returnId:VARCHAR#, #debetNo:VARCHAR#, #amountOver:DECIMAL#, 
+      #returnType:CHAR#, #returnMethod:VARCHAR#, #toSallerAmount:DECIMAL#, #toPoolAmount:DECIMAL#, 
+      #custcd:VARCHAR#, #debtAppno:VARCHAR#, #curcd:CHAR#, #commonDate:CHAR#, #tlrcd:VARCHAR#, 
+      #brcode:VARCHAR#, #repayIntamt:DECIMAL#, #repayBalamt:DECIMAL#, #repayAmount:DECIMAL#, 
+      #repayDate:CHAR#, #mastContno:VARCHAR#, #debetId:VARCHAR#, #payAmount:DECIMAL#, 
+      #accountNo:VARCHAR#, #memo:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepayment" >
+    insert into R_BCP_APPLI_REPAYMENT
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="returnId" >
+        RETURN_ID
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO
+      </isNotNull>
+      <isNotNull prepend="," property="amountOver" >
+        AMOUNT_OVER
+      </isNotNull>
+      <isNotNull prepend="," property="returnType" >
+        RETURN_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="returnMethod" >
+        RETURN_METHOD
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerAmount" >
+        TO_SALLER_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="toPoolAmount" >
+        TO_POOL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="debtAppno" >
+        DEBT_APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="commonDate" >
+        COMMON_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="repayIntamt" >
+        REPAY_INTAMT
+      </isNotNull>
+      <isNotNull prepend="," property="repayBalamt" >
+        REPAY_BALAMT
+      </isNotNull>
+      <isNotNull prepend="," property="repayAmount" >
+        REPAY_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="repayDate" >
+        REPAY_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        DEBET_ID
+      </isNotNull>
+      <isNotNull prepend="," property="payAmount" >
+        PAY_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnId" >
+        #returnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amountOver" >
+        #amountOver:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnType" >
+        #returnType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnMethod" >
+        #returnMethod:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerAmount" >
+        #toSallerAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="toPoolAmount" >
+        #toPoolAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debtAppno" >
+        #debtAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commonDate" >
+        #commonDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="repayIntamt" >
+        #repayIntamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="repayBalamt" >
+        #repayBalamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="repayAmount" >
+        #repayAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="repayDate" >
+        #repayDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        #debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payAmount" >
+        #payAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepaymentExample" resultClass="java.lang.Integer" >
+    select count(*) from R_BCP_APPLI_REPAYMENT
+    <include refid="R_BCP_APPLI_REPAYMENT.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update R_BCP_APPLI_REPAYMENT
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnId" >
+        RETURN_ID = #record.returnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetNo" >
+        DEBET_NO = #record.debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amountOver" >
+        AMOUNT_OVER = #record.amountOver:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnType" >
+        RETURN_TYPE = #record.returnType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnMethod" >
+        RETURN_METHOD = #record.returnMethod:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.toSallerAmount" >
+        TO_SALLER_AMOUNT = #record.toSallerAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.toPoolAmount" >
+        TO_POOL_AMOUNT = #record.toPoolAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debtAppno" >
+        DEBT_APPNO = #record.debtAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.commonDate" >
+        COMMON_DATE = #record.commonDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.repayIntamt" >
+        REPAY_INTAMT = #record.repayIntamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.repayBalamt" >
+        REPAY_BALAMT = #record.repayBalamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.repayAmount" >
+        REPAY_AMOUNT = #record.repayAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.repayDate" >
+        REPAY_DATE = #record.repayDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetId" >
+        DEBET_ID = #record.debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payAmount" >
+        PAY_AMOUNT = #record.payAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accountNo" >
+        ACCOUNT_NO = #record.accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="R_BCP_APPLI_REPAYMENT.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update R_BCP_APPLI_REPAYMENT
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      RETURN_ID = #record.returnId:VARCHAR#,
+      DEBET_NO = #record.debetNo:VARCHAR#,
+      AMOUNT_OVER = #record.amountOver:DECIMAL#,
+      RETURN_TYPE = #record.returnType:CHAR#,
+      RETURN_METHOD = #record.returnMethod:VARCHAR#,
+      TO_SALLER_AMOUNT = #record.toSallerAmount:DECIMAL#,
+      TO_POOL_AMOUNT = #record.toPoolAmount:DECIMAL#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      DEBT_APPNO = #record.debtAppno:VARCHAR#,
+      CURCD = #record.curcd:CHAR#,
+      COMMON_DATE = #record.commonDate:CHAR#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      BRCODE = #record.brcode:VARCHAR#,
+      REPAY_INTAMT = #record.repayIntamt:DECIMAL#,
+      REPAY_BALAMT = #record.repayBalamt:DECIMAL#,
+      REPAY_AMOUNT = #record.repayAmount:DECIMAL#,
+      REPAY_DATE = #record.repayDate:CHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      DEBET_ID = #record.debetId:VARCHAR#,
+      PAY_AMOUNT = #record.payAmount:DECIMAL#,
+      ACCOUNT_NO = #record.accountNo:VARCHAR#,
+      MEMO = #record.memo:VARCHAR#
+    <isParameterPresent >
+      <include refid="R_BCP_APPLI_REPAYMENT.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepayment" >
+    update R_BCP_APPLI_REPAYMENT
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnId" >
+        RETURN_ID = #returnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO = #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amountOver" >
+        AMOUNT_OVER = #amountOver:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnType" >
+        RETURN_TYPE = #returnType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnMethod" >
+        RETURN_METHOD = #returnMethod:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerAmount" >
+        TO_SALLER_AMOUNT = #toSallerAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="toPoolAmount" >
+        TO_POOL_AMOUNT = #toPoolAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debtAppno" >
+        DEBT_APPNO = #debtAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commonDate" >
+        COMMON_DATE = #commonDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="repayIntamt" >
+        REPAY_INTAMT = #repayIntamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="repayBalamt" >
+        REPAY_BALAMT = #repayBalamt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="repayAmount" >
+        REPAY_AMOUNT = #repayAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="repayDate" >
+        REPAY_DATE = #repayDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        DEBET_ID = #debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payAmount" >
+        PAY_AMOUNT = #payAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO = #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliRepayment" >
+    update R_BCP_APPLI_REPAYMENT
+    set APPNO = #appno:VARCHAR#,
+      RETURN_ID = #returnId:VARCHAR#,
+      DEBET_NO = #debetNo:VARCHAR#,
+      AMOUNT_OVER = #amountOver:DECIMAL#,
+      RETURN_TYPE = #returnType:CHAR#,
+      RETURN_METHOD = #returnMethod:VARCHAR#,
+      TO_SALLER_AMOUNT = #toSallerAmount:DECIMAL#,
+      TO_POOL_AMOUNT = #toPoolAmount:DECIMAL#,
+      CUSTCD = #custcd:VARCHAR#,
+      DEBT_APPNO = #debtAppno:VARCHAR#,
+      CURCD = #curcd:CHAR#,
+      COMMON_DATE = #commonDate:CHAR#,
+      TLRCD = #tlrcd:VARCHAR#,
+      BRCODE = #brcode:VARCHAR#,
+      REPAY_INTAMT = #repayIntamt:DECIMAL#,
+      REPAY_BALAMT = #repayBalamt:DECIMAL#,
+      REPAY_AMOUNT = #repayAmount:DECIMAL#,
+      REPAY_DATE = #repayDate:CHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      DEBET_ID = #debetId:VARCHAR#,
+      PAY_AMOUNT = #payAmount:DECIMAL#,
+      ACCOUNT_NO = #accountNo:VARCHAR#,
+      MEMO = #memo:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

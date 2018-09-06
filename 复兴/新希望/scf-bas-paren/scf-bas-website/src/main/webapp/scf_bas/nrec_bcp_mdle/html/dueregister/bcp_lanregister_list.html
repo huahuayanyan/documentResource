@@ -1,0 +1,53 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="appno" name="放款编号" ng-model="conditionForm.appno"></ht-input>
+    <ht-input ht-id="mastContno" name="合同编号" ng-model="conditionForm.mastContno"></ht-input>
+    <ht-input-extent ht-id="cname" name="融资企业" extent="custcontent"
+                     on-change="dooextend" ng-model="conditionForm.cname"></ht-input-extent>
+    <ht-input-extent ht-id="businessName" name="贸易对手" extent="busiContent" on-change="busiExtent"
+                     ng-model="conditionForm.businessName"></ht-input-extent>
+    <ht-select ht-id="supplyChainPdId" name="业务品种" datasource="productselect" dataOption="code" dataTrsOption="codeName"
+               ng-model="conditionForm.supplyChainPdId"></ht-select>
+    <ht-input ht-id="startDate" name="起始日期" edit-type="date" ng-model="conditionForm.startDate"></ht-input>
+    <ht-input ht-id="endDate"  name="到期日期"  edit-type="date" ng-model="conditionForm.endDate"></ht-input>
+    <ht-select ht-id="state"  name="状态" dictionary="dueRegisterState" ng-model="conditionForm.state"></ht-select>
+    <ht-button-group>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>出账登记信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">出账登记</ht-button>
+        <ht-button ht-id="edit" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">撤销</ht-button>
+        <ht-button ht-id="view" class="btn-primary">查看</ht-button>
+        <ht-button ht-id="print" class="btn-primary">打印</ht-button>
+        <ht-button ht-id="submitApply" class="btn-primary" disable="{{flowsubmitdisable}}">出账确认</ht-button>
+        <ht-button ht-id="bank" class="btn-primary" disable="{{bankdisable}}">银行出账</ht-button>
+    </ht-button-group>
+
+    <!--<ht-column eg-name="receiveNo" zh-name="出账凭证号"></ht-column>-->
+    <ht-column eg-name="appno" zh-name="放款编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="mastContno" zh-name="合同编号"></ht-column>
+    <ht-column eg-name="cname" zh-name="融资企业"></ht-column>
+    <ht-column eg-name="businessName" zh-name="贸易对手"></ht-column>
+    <ht-column eg-name="supplyChainPdId" zh-name="业务品种" dictionary="vidBusTyp"></ht-column>
+    <ht-column eg-name="lnAmt" zh-name="放款金额" type="currency"></ht-column>
+    <ht-column eg-name="startDate" zh-name="起始日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日期" type="date"></ht-column>
+    <ht-column eg-name="state" zh-name="出账状态" dictionary="dueRegisterState"></ht-column>
+    <ht-column eg-name="tlrNm" zh-name="创建人"></ht-column>
+    <ht-column eg-name="brNm" zh-name="创建机构"></ht-column>
+    <ht-column eg-name="inpDt" zh-name="创建时间" type="date"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+
+
+

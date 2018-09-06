@@ -1,0 +1,60 @@
+
+<ht-form name="otherform">
+    <ht-legend>协议基本信息</ht-legend>
+    <ht-input ht-id="protocolCode" name="协议名称" ng-model="otherform.protocolCode" disable="true"></ht-input>
+    <ht-input ht-id="productName" name="业务品种"  ng-model="otherform.productName" disable="true"></ht-input>
+    <ht-input ht-id="sellerNm" name="买方名称" ng-model="otherform.sellerNm" disable="true"  ></ht-input>
+    <ht-input ht-id="coreNm" name="卖方名称" ng-model="otherform.coreNm" disable="true"  ></ht-input>
+    <ht-input ht-id="tlrno" name="客户经理" ng-model="otherform.tlrno" disable="true"></ht-input>
+    <ht-input ht-id="brcode" name="经办机构" ng-model="otherform.brcode" disable="true" ></ht-input>
+    <ht-input ht-id="startDate" edit-type="date" name="协议生效日"
+              ng-model="otherform.startDate" disable="true"></ht-input>
+    <ht-input ht-id="endDate" edit-type="date" name="协议到期日"
+              ng-model="otherform.endDate" disable="true"></ht-input>
+    <ht-input ht-id="totLnciAmt" name="融资金额" ng-model="otherform.totLnciAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="totLnciBal" name="融资余额" ng-model="otherform.totLnciBal" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="totBailAmount" name="保证金金额汇总" ng-model="otherform.totBailAmount" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="totCashEqtAmt" name="现金等价物金额" ng-model="otherform.totCashEqtAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="loanAmt" name="收款总金额" ng-model="otherform.loanAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="amountOut" name="已发货金额" ng-model="otherform.amountOut" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="undeliveryAmt" name="未发货金额" ng-model="otherform.undeliveryAmt" edit-type="currency" disable="true"></ht-input>
+</ht-form>
+<ht-legend>信贷合同</ht-legend>
+<ht-table ht-id="credittableId" datasource="creditdatasource" selected="creditselected" docheckbox="false">
+    <ht-column eg-name="mastContcode" zh-name="信贷合同号" ></ht-column>
+    <ht-column eg-name="contAmount" zh-name="信贷合同金额" type="currency"></ht-column>
+    <ht-column eg-name="riskAmt" zh-name="信贷合同总敞口" type="currency"></ht-column>
+    <ht-column eg-name="avaliableRiskAmt" zh-name="信贷合同可用敞口" type="currency"></ht-column>
+    <ht-column eg-name="totBailAmount" zh-name="保证金余额" type="currency"></ht-column>
+    <ht-column eg-name="totCashEqtAmt" zh-name="现金等价物余额" type="currency"></ht-column>
+    <ht-column eg-name="startDate" zh-name="合同生效日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="合同到期日" type="date"></ht-column>
+</ht-table>
+<ht-page conf="creditconf"></ht-page>
+<ht-legend>借据信息</ht-legend>
+<ht-table ht-id="lncitableId" datasource="lncidatasource" selected="lnciselected" docheckbox="false">
+    <ht-column eg-name="loanAppno" zh-name="出账流水号"></ht-column>
+    <ht-column eg-name="debetId" zh-name="借据号/承兑协议号	"></ht-column>
+    <ht-column eg-name="mastContno" zh-name="信贷合同号"></ht-column>
+    <ht-column eg-name="lnciType" zh-name="出账方式" dictionary="loanWay"></ht-column>
+    <ht-column eg-name="startDate" zh-name="发放日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="借据金额" type="currency"></ht-column>
+    <ht-column eg-name="lnciBal" zh-name="借据余额" type="currency"></ht-column>
+    <ht-column eg-name="totalRateRemainAmount" zh-name="欠息总额" type="currency"></ht-column>
+    <ht-column eg-name="lnciStatus" zh-name="借据状态" dictionary="lnciStatus"></ht-column>
+    <ht-column eg-name="firstBailRatio" zh-name="最低保证金比例（%）	" type="number"></ht-column>
+    <ht-column eg-name="totBailAmount" zh-name="保证金金额" type="currency"></ht-column>
+    <ht-column eg-name="totCashEqtAmt" zh-name="现金等价物金额" type="currency"></ht-column>
+    <ht-column eg-name="confirmStatus" zh-name="收款确认状态" dictionary="lnciConfirmStatus"></ht-column>
+    <ht-column eg-name="commonDate" zh-name="收款确认日期" type="date"></ht-column>
+    <!--<ht-column eg-name="amountIn" zh-name="剩余可提货金额" type="currency"></ht-column>-->
+    <!--<ht-column eg-name="amountOut" zh-name="累计已提货金额" type="currency"></ht-column>-->
+</ht-table>
+<ht-page conf="lnciconf"></ht-page>
+
+
+
+
+
+

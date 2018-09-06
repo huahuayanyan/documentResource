@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ------------公共css--------------------- -->
+    <script src="../../scube_ui/common/importCs.js"></script>
+    <!-- ------------业务css--------------------- -->
+
+</head>
+<body>
+<div ng-controller="repayStaticMtgGuideController">
+    <ht-legend>任务基本信息</ht-legend>
+    <ht-form name="taskform">
+        <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+        <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+        <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+        <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+    </ht-form>
+    <ht-tabs>
+        <ht-pane title="放款申请"  ui-sref="repaybilldetail">
+        </ht-pane>
+        <ht-pane title="票据信息"  ui-sref="repaybill">
+        </ht-pane>
+        <ht-pane title="保证金列表"  ui-sref="repayacct">
+        </ht-pane>
+        <ht-pane title="押品清单"  ui-sref="repayyp">
+        </ht-pane>
+        <ht-pane title="抵质押合同查询"  ui-sref="repaygntycon" >
+        </ht-pane>
+        <ht-pane title="核库"  ui-sref="repayhk" >
+        </ht-pane>
+        <ht-pane title="信贷合同"  ui-sref="repaylncon">
+        </ht-pane>
+    </ht-tabs>
+</div>
+
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+<script src="../../config.js"></script>
+
+<!-- ------------公共js--------------------- -->
+<script src="../../scube_ui/common/myBrowser.js"></script>
+<script src="../../scube_ui/common/importJs.js"></script>
+
+<!-- ------------业务js--------------------- -->
+<script src="../js/blan_staticMtg_guide.js"></script>
+<script src="../js/staticmtg/repay_staticmtg_guide_controller.js"></script>
+<script src="../js/staticmtg/repay_staticmtg_edit_controller.js"></script>
+<script src="../js/info/repayhk_controller.js"></script>
+<script src="../js/info/repayyp_controller.js"></script>
+<script src="../js/info/bill_controller.js"></script>
+<script src="../js/info/acct_controller.js"></script>
+<script src="../js/info/lncon_controller.js"></script>
+<script src="../js/info/gntycon_controller.js"></script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRR_GNTY_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrGntyInfo" >
+    <result column="GNTY_ID" property="gntyId" jdbcType="VARCHAR" />
+    <result column="GNTY_NM" property="gntyNm" jdbcType="VARCHAR" />
+    <result column="GNTY_TYP" property="gntyTyp" jdbcType="VARCHAR" />
+    <result column="CERT_TYP" property="certTyp" jdbcType="VARCHAR" />
+    <result column="CERT_ID" property="certId" jdbcType="VARCHAR" />
+    <result column="OWNER_NM" property="ownerNm" jdbcType="VARCHAR" />
+    <result column="CERT_LN_NO" property="certLnNo" jdbcType="VARCHAR" />
+    <result column="OWNER_TYP" property="ownerTyp" jdbcType="VARCHAR" />
+    <result column="GNTY_RID" property="gntyRid" jdbcType="VARCHAR" />
+    <result column="GNTY_SUB_TYP" property="gntySubTyp" jdbcType="VARCHAR" />
+    <result column="GNTY_SUB_NM" property="gntySubNm" jdbcType="VARCHAR" />
+    <result column="GNTY_LOC" property="gntyLoc" jdbcType="VARCHAR" />
+    <result column="GNTY_AREA" property="gntyArea" jdbcType="DECIMAL" />
+    <result column="GNTY_ATTR" property="gntyAttr" jdbcType="VARCHAR" />
+    <result column="GNTY_OWN_WAY" property="gntyOwnWay" jdbcType="VARCHAR" />
+    <result column="GNTY_USING" property="gntyUsing" jdbcType="VARCHAR" />
+    <result column="GNTY_PRC" property="gntyPrc" jdbcType="DECIMAL" />
+    <result column="EVAL_MTHD" property="evalMthd" jdbcType="VARCHAR" />
+    <result column="EVAL_ORG_NM" property="evalOrgNm" jdbcType="VARCHAR" />
+    <result column="EVAL_DT" property="evalDt" jdbcType="VARCHAR" />
+    <result column="EVAL_NET_VAL" property="evalNetVal" jdbcType="DECIMAL" />
+    <result column="CONFIRM_VAL" property="confirmVal" jdbcType="DECIMAL" />
+    <result column="GNTY_AMT" property="gntyAmt" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="VARCHAR" />
+    <result column="GNTY_REG_ORG" property="gntyRegOrg" jdbcType="VARCHAR" />
+    <result column="GNTY_REG_DT" property="gntyRegDt" jdbcType="VARCHAR" />
+    <result column="GNTY_WO_DT" property="gntyWoDt" jdbcType="VARCHAR" />
+    <result column="ABT_AMT" property="abtAmt" jdbcType="DECIMAL" />
+    <result column="ABT_SUM1" property="abtSum1" jdbcType="DECIMAL" />
+    <result column="ABT_SUM2" property="abtSum2" jdbcType="DECIMAL" />
+    <result column="ABT_SUM3" property="abtSum3" jdbcType="DECIMAL" />
+    <result column="ABT_RATE" property="abtRate" jdbcType="DECIMAL" />
+    <result column="OT_RTN_NO" property="otRtnNo" jdbcType="VARCHAR" />
+    <result column="FLG1" property="flg1" jdbcType="VARCHAR" />
+    <result column="FLG2" property="flg2" jdbcType="VARCHAR" />
+    <result column="FLG3" property="flg3" jdbcType="VARCHAR" />
+    <result column="IFRM_BAK" property="ifrmBak" jdbcType="VARCHAR" />
+    <result column="CFRM_BAK" property="cfrmBak" jdbcType="VARCHAR" />
+    <result column="ABT_NM" property="abtNm" jdbcType="VARCHAR" />
+    <result column="PAY_NM" property="payNm" jdbcType="VARCHAR" />
+    <result column="CFRM_AREA" property="cfrmArea" jdbcType="VARCHAR" />
+    <result column="SAP_VCH_TYP" property="sapVchTyp" jdbcType="VARCHAR" />
+    <result column="ABT_TYP" property="abtTyp" jdbcType="VARCHAR" />
+    <result column="REM" property="rem" jdbcType="VARCHAR" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="CHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    GNTY_ID, GNTY_NM, GNTY_TYP, CERT_TYP, CERT_ID, OWNER_NM, CERT_LN_NO, OWNER_TYP, GNTY_RID, 
+    GNTY_SUB_TYP, GNTY_SUB_NM, GNTY_LOC, GNTY_AREA, GNTY_ATTR, GNTY_OWN_WAY, GNTY_USING, 
+    GNTY_PRC, EVAL_MTHD, EVAL_ORG_NM, EVAL_DT, EVAL_NET_VAL, CONFIRM_VAL, GNTY_AMT, CURCD, 
+    GNTY_REG_ORG, GNTY_REG_DT, GNTY_WO_DT, ABT_AMT, ABT_SUM1, ABT_SUM2, ABT_SUM3, ABT_RATE, 
+    OT_RTN_NO, FLG1, FLG2, FLG3, IFRM_BAK, CFRM_BAK, ABT_NM, PAY_NM, CFRM_AREA, SAP_VCH_TYP, 
+    ABT_TYP, REM, TLR_NO, TLR_NM, BR_CD, BR_NM, INP_DT, LST_UPD_TLR, LST_UPD_TLR_NM, 
+    LST_UPD_BR_CD, LST_UPD_BR_NM, LST_UPD_DT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRR_GNTY_INFO.Base_Column_List" />
+    from B_CRR_GNTY_INFO
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyInfo" >
+    select 
+    <include refid="B_CRR_GNTY_INFO.Base_Column_List" />
+    from B_CRR_GNTY_INFO
+    where GNTY_ID = #gntyId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyInfo" >
+    delete from B_CRR_GNTY_INFO
+    where GNTY_ID = #gntyId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyInfoExample" >
+    delete from B_CRR_GNTY_INFO
+    <include refid="B_CRR_GNTY_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyInfo" >
+    insert into B_CRR_GNTY_INFO (GNTY_ID, GNTY_NM, GNTY_TYP, CERT_TYP, 
+      CERT_ID, OWNER_NM, CERT_LN_NO, OWNER_TYP, GNTY_RID, 
+      GNTY_SUB_TYP, GNTY_SUB_NM, GNTY_LOC, GNTY_AREA, 
+      GNTY_ATTR, GNTY_OWN_WAY, GNTY_USING, GNTY_PRC, 
+      EVAL_MTHD, EVAL_ORG_NM, EVAL_DT, EVAL_NET_VAL, 
+      CONFIRM_VAL, GNTY_AMT, CURCD, GNTY_REG_ORG, 
+      GNTY_REG_DT, GNTY_WO_DT, ABT_AMT, ABT_SUM1, ABT_SUM2, 
+      ABT_SUM3, ABT_RATE, OT_RTN_NO, FLG1, FLG2, 
+      FLG3, IFRM_BAK, CFRM_BAK, ABT_NM, PAY_NM, 
+      CFRM_AREA, SAP_VCH_TYP, ABT_TYP, REM, TLR_NO, 
+      TLR_NM, BR_CD, BR_NM, INP_DT, LST_UPD_TLR, 
+      LST_UPD_TLR_NM, LST_UPD_BR_CD, LST_UPD_BR_NM, LST_UPD_DT
+      )
+    values (#gntyId:VARCHAR#, #gntyNm:VARCHAR#, #gntyTyp:VARCHAR#, #certTyp:VARCHAR#, 
+      #certId:VARCHAR#, #ownerNm:VARCHAR#, #certLnNo:VARCHAR#, #ownerTyp:VARCHAR#, #gntyRid:VARCHAR#, 
+      #gntySubTyp:VARCHAR#, #gntySubNm:VARCHAR#, #gntyLoc:VARCHAR#, #gntyArea:DECIMAL#, 
+      #gntyAttr:VARCHAR#, #gntyOwnWay:VARCHAR#, #gntyUsing:VARCHAR#, #gntyPrc:DECIMAL#, 
+      #evalMthd:VARCHAR#, #evalOrgNm:VARCHAR#, #evalDt:VARCHAR#, #evalNetVal:DECIMAL#, 
+      #confirmVal:DECIMAL#, #gntyAmt:DECIMAL#, #curcd:VARCHAR#, #gntyRegOrg:VARCHAR#, 
+      #gntyRegDt:VARCHAR#, #gntyWoDt:VARCHAR#, #abtAmt:DECIMAL#, #abtSum1:DECIMAL#, #abtSum2:DECIMAL#, 
+      #abtSum3:DECIMAL#, #abtRate:DECIMAL#, #otRtnNo:VARCHAR#, #flg1:VARCHAR#, #flg2:VARCHAR#, 
+      #flg3:VARCHAR#, #ifrmBak:VARCHAR#, #cfrmBak:VARCHAR#, #abtNm:VARCHAR#, #payNm:VARCHAR#, 
+      #cfrmArea:VARCHAR#, #sapVchTyp:VARCHAR#, #abtTyp:VARCHAR#, #rem:VARCHAR#, #tlrNo:VARCHAR#, 
+      #tlrNm:VARCHAR#, #brCd:VARCHAR#, #brNm:VARCHAR#, #inpDt:VARCHAR#, #lstUpdTlr:VARCHAR#, 
+      #lstUpdTlrNm:VARCHAR#, #lstUpdBrCd:VARCHAR#, #lstUpdBrNm:CHAR#, #lstUpdDt:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyInfo" >
+    insert into B_CRR_GNTY_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="gntyId" >
+        GNTY_ID
+      </isNotNull>
+      <isNotNull prepend="," property="gntyNm" >
+        GNTY_NM
+      </isNotNull>
+      <isNotNull prepend="," property="gntyTyp" >
+        GNTY_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="certTyp" >
+        CERT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="certId" >
+        CERT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="ownerNm" >
+        OWNER_NM
+      </isNotNull>
+      <isNotNull prepend="," property="certLnNo" >
+        CERT_LN_NO
+      </isNotNull>
+      <isNotNull prepend="," property="ownerTyp" >
+        OWNER_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="gntyRid" >
+        GNTY_RID
+      </isNotNull>
+      <isNotNull prepend="," property="gntySubTyp" >
+        GNTY_SUB_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="gntySubNm" >
+        GNTY_SUB_NM
+      </isNotNull>
+      <isNotNull prepend="," property="gntyLoc" >
+        GNTY_LOC
+      </isNotNull>
+      <isNotNull prepend="," property="gntyArea" >
+        GNTY_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="gntyAttr" >
+        GNTY_ATTR
+      </isNotNull>
+      <isNotNull prepend="," property="gntyOwnWay" >
+        GNTY_OWN_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="gntyUsing" >
+        GNTY_USING
+      </isNotNull>
+      <isNotNull prepend="," property="gntyPrc" >
+        GNTY_PRC
+      </isNotNull>
+      <isNotNull prepend="," property="evalMthd" >
+        EVAL_MTHD
+      </isNotNull>
+      <isNotNull prepend="," property="evalOrgNm" >
+        EVAL_ORG_NM
+      </isNotNull>
+      <isNotNull prepend="," property="evalDt" >
+        EVAL_DT
+      </isNotNull>
+      <isNotNull prepend="," property="evalNetVal" >
+        EVAL_NET_VAL
+      </isNotNull>
+      <isNotNull prepend="," property="confirmVal" >
+        CONFIRM_VAL
+      </isNotNull>
+      <isNotNull prepend="," property="gntyAmt" >
+        GNTY_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="gntyRegOrg" >
+        GNTY_REG_ORG
+      </isNotNull>
+      <isNotNull prepend="," property="gntyRegDt" >
+        GNTY_REG_DT
+      </isNotNull>
+      <isNotNull prepend="," property="gntyWoDt" >
+        GNTY_WO_DT
+      </isNotNull>
+      <isNotNull prepend="," property="abtAmt" >
+        ABT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="abtSum1" >
+        ABT_SUM1
+      </isNotNull>
+      <isNotNull prepend="," property="abtSum2" >
+        ABT_SUM2
+      </isNotNull>
+      <isNotNull prepend="," property="abtSum3" >
+        ABT_SUM3
+      </isNotNull>
+      <isNotNull prepend="," property="abtRate" >
+        ABT_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="otRtnNo" >
+        OT_RTN_NO
+      </isNotNull>
+      <isNotNull prepend="," property="flg1" >
+        FLG1
+      </isNotNull>
+      <isNotNull prepend="," property="flg2" >
+        FLG2
+      </isNotNull>
+      <isNotNull prepend="," property="flg3" >
+        FLG3
+      </isNotNull>
+      <isNotNull prepend="," property="ifrmBak" >
+        IFRM_BAK
+      </isNotNull>
+      <isNotNull prepend="," property="cfrmBak" >
+        CFRM_BAK
+      </isNotNull>
+      <isNotNull prepend="," property="abtNm" >
+        ABT_NM
+      </isNotNull>
+      <isNotNull prepend="," property="payNm" >
+        PAY_NM
+      </isNotNull>
+      <isNotNull prepend="," property="cfrmArea" >
+        CFRM_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="sapVchTyp" >
+        SAP_VCH_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="abtTyp" >
+        ABT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        REM
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="gntyId" >
+        #gntyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyNm" >
+        #gntyNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyTyp" >
+        #gntyTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="certTyp" >
+        #certTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="certId" >
+        #certId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ownerNm" >
+        #ownerNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="certLnNo" >
+        #certLnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ownerTyp" >
+        #ownerTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyRid" >
+        #gntyRid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntySubTyp" >
+        #gntySubTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntySubNm" >
+        #gntySubNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyLoc" >
+        #gntyLoc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyArea" >
+        #gntyArea:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyAttr" >
+        #gntyAttr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyOwnWay" >
+        #gntyOwnWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyUsing" >
+        #gntyUsing:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyPrc" >
+        #gntyPrc:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="evalMthd" >
+        #evalMthd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalOrgNm" >
+        #evalOrgNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalDt" >
+        #evalDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalNetVal" >
+        #evalNetVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmVal" >
+        #confirmVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyAmt" >
+        #gntyAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyRegOrg" >
+        #gntyRegOrg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyRegDt" >
+        #gntyRegDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyWoDt" >
+        #gntyWoDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="abtAmt" >
+        #abtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="abtSum1" >
+        #abtSum1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="abtSum2" >
+        #abtSum2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="abtSum3" >
+        #abtSum3:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="abtRate" >
+        #abtRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="otRtnNo" >
+        #otRtnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flg1" >
+        #flg1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flg2" >
+        #flg2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flg3" >
+        #flg3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifrmBak" >
+        #ifrmBak:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cfrmBak" >
+        #cfrmBak:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="abtNm" >
+        #abtNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payNm" >
+        #payNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cfrmArea" >
+        #cfrmArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sapVchTyp" >
+        #sapVchTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="abtTyp" >
+        #abtTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        #rem:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        #lstUpdBrNm:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRR_GNTY_INFO
+    <include refid="B_CRR_GNTY_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRR_GNTY_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.gntyId" >
+        GNTY_ID = #record.gntyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyNm" >
+        GNTY_NM = #record.gntyNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyTyp" >
+        GNTY_TYP = #record.gntyTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.certTyp" >
+        CERT_TYP = #record.certTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.certId" >
+        CERT_ID = #record.certId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ownerNm" >
+        OWNER_NM = #record.ownerNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.certLnNo" >
+        CERT_LN_NO = #record.certLnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ownerTyp" >
+        OWNER_TYP = #record.ownerTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyRid" >
+        GNTY_RID = #record.gntyRid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntySubTyp" >
+        GNTY_SUB_TYP = #record.gntySubTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntySubNm" >
+        GNTY_SUB_NM = #record.gntySubNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyLoc" >
+        GNTY_LOC = #record.gntyLoc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyArea" >
+        GNTY_AREA = #record.gntyArea:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyAttr" >
+        GNTY_ATTR = #record.gntyAttr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyOwnWay" >
+        GNTY_OWN_WAY = #record.gntyOwnWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyUsing" >
+        GNTY_USING = #record.gntyUsing:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyPrc" >
+        GNTY_PRC = #record.gntyPrc:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evalMthd" >
+        EVAL_MTHD = #record.evalMthd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evalOrgNm" >
+        EVAL_ORG_NM = #record.evalOrgNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evalDt" >
+        EVAL_DT = #record.evalDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evalNetVal" >
+        EVAL_NET_VAL = #record.evalNetVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.confirmVal" >
+        CONFIRM_VAL = #record.confirmVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyAmt" >
+        GNTY_AMT = #record.gntyAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyRegOrg" >
+        GNTY_REG_ORG = #record.gntyRegOrg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyRegDt" >
+        GNTY_REG_DT = #record.gntyRegDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyWoDt" >
+        GNTY_WO_DT = #record.gntyWoDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.abtAmt" >
+        ABT_AMT = #record.abtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.abtSum1" >
+        ABT_SUM1 = #record.abtSum1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.abtSum2" >
+        ABT_SUM2 = #record.abtSum2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.abtSum3" >
+        ABT_SUM3 = #record.abtSum3:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.abtRate" >
+        ABT_RATE = #record.abtRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otRtnNo" >
+        OT_RTN_NO = #record.otRtnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.flg1" >
+        FLG1 = #record.flg1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.flg2" >
+        FLG2 = #record.flg2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.flg3" >
+        FLG3 = #record.flg3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ifrmBak" >
+        IFRM_BAK = #record.ifrmBak:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cfrmBak" >
+        CFRM_BAK = #record.cfrmBak:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.abtNm" >
+        ABT_NM = #record.abtNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payNm" >
+        PAY_NM = #record.payNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cfrmArea" >
+        CFRM_AREA = #record.cfrmArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sapVchTyp" >
+        SAP_VCH_TYP = #record.sapVchTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.abtTyp" >
+        ABT_TYP = #record.abtTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rem" >
+        REM = #record.rem:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNo" >
+        TLR_NO = #record.tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNm" >
+        TLR_NM = #record.tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brCd" >
+        BR_CD = #record.brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brNm" >
+        BR_NM = #record.brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inpDt" >
+        INP_DT = #record.inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlr" >
+        LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrCd" >
+        LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrNm" >
+        LST_UPD_BR_NM = #record.lstUpdBrNm:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdDt" >
+        LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRR_GNTY_INFO
+    set GNTY_ID = #record.gntyId:VARCHAR#,
+      GNTY_NM = #record.gntyNm:VARCHAR#,
+      GNTY_TYP = #record.gntyTyp:VARCHAR#,
+      CERT_TYP = #record.certTyp:VARCHAR#,
+      CERT_ID = #record.certId:VARCHAR#,
+      OWNER_NM = #record.ownerNm:VARCHAR#,
+      CERT_LN_NO = #record.certLnNo:VARCHAR#,
+      OWNER_TYP = #record.ownerTyp:VARCHAR#,
+      GNTY_RID = #record.gntyRid:VARCHAR#,
+      GNTY_SUB_TYP = #record.gntySubTyp:VARCHAR#,
+      GNTY_SUB_NM = #record.gntySubNm:VARCHAR#,
+      GNTY_LOC = #record.gntyLoc:VARCHAR#,
+      GNTY_AREA = #record.gntyArea:DECIMAL#,
+      GNTY_ATTR = #record.gntyAttr:VARCHAR#,
+      GNTY_OWN_WAY = #record.gntyOwnWay:VARCHAR#,
+      GNTY_USING = #record.gntyUsing:VARCHAR#,
+      GNTY_PRC = #record.gntyPrc:DECIMAL#,
+      EVAL_MTHD = #record.evalMthd:VARCHAR#,
+      EVAL_ORG_NM = #record.evalOrgNm:VARCHAR#,
+      EVAL_DT = #record.evalDt:VARCHAR#,
+      EVAL_NET_VAL = #record.evalNetVal:DECIMAL#,
+      CONFIRM_VAL = #record.confirmVal:DECIMAL#,
+      GNTY_AMT = #record.gntyAmt:DECIMAL#,
+      CURCD = #record.curcd:VARCHAR#,
+      GNTY_REG_ORG = #record.gntyRegOrg:VARCHAR#,
+      GNTY_REG_DT = #record.gntyRegDt:VARCHAR#,
+      GNTY_WO_DT = #record.gntyWoDt:VARCHAR#,
+      ABT_AMT = #record.abtAmt:DECIMAL#,
+      ABT_SUM1 = #record.abtSum1:DECIMAL#,
+      ABT_SUM2 = #record.abtSum2:DECIMAL#,
+      ABT_SUM3 = #record.abtSum3:DECIMAL#,
+      ABT_RATE = #record.abtRate:DECIMAL#,
+      OT_RTN_NO = #record.otRtnNo:VARCHAR#,
+      FLG1 = #record.flg1:VARCHAR#,
+      FLG2 = #record.flg2:VARCHAR#,
+      FLG3 = #record.flg3:VARCHAR#,
+      IFRM_BAK = #record.ifrmBak:VARCHAR#,
+      CFRM_BAK = #record.cfrmBak:VARCHAR#,
+      ABT_NM = #record.abtNm:VARCHAR#,
+      PAY_NM = #record.payNm:VARCHAR#,
+      CFRM_AREA = #record.cfrmArea:VARCHAR#,
+      SAP_VCH_TYP = #record.sapVchTyp:VARCHAR#,
+      ABT_TYP = #record.abtTyp:VARCHAR#,
+      REM = #record.rem:VARCHAR#,
+      TLR_NO = #record.tlrNo:VARCHAR#,
+      TLR_NM = #record.tlrNm:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      BR_NM = #record.brNm:VARCHAR#,
+      INP_DT = #record.inpDt:VARCHAR#,
+      LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #record.lstUpdBrNm:CHAR#,
+      LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyInfo" >
+    update B_CRR_GNTY_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="gntyNm" >
+        GNTY_NM = #gntyNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyTyp" >
+        GNTY_TYP = #gntyTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="certTyp" >
+        CERT_TYP = #certTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="certId" >
+        CERT_ID = #certId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ownerNm" >
+        OWNER_NM = #ownerNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="certLnNo" >
+        CERT_LN_NO = #certLnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ownerTyp" >
+        OWNER_TYP = #ownerTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyRid" >
+        GNTY_RID = #gntyRid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntySubTyp" >
+        GNTY_SUB_TYP = #gntySubTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntySubNm" >
+        GNTY_SUB_NM = #gntySubNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyLoc" >
+        GNTY_LOC = #gntyLoc:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyArea" >
+        GNTY_AREA = #gntyArea:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyAttr" >
+        GNTY_ATTR = #gntyAttr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyOwnWay" >
+        GNTY_OWN_WAY = #gntyOwnWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyUsing" >
+        GNTY_USING = #gntyUsing:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyPrc" >
+        GNTY_PRC = #gntyPrc:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="evalMthd" >
+        EVAL_MTHD = #evalMthd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalOrgNm" >
+        EVAL_ORG_NM = #evalOrgNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalDt" >
+        EVAL_DT = #evalDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalNetVal" >
+        EVAL_NET_VAL = #evalNetVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmVal" >
+        CONFIRM_VAL = #confirmVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyAmt" >
+        GNTY_AMT = #gntyAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyRegOrg" >
+        GNTY_REG_ORG = #gntyRegOrg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyRegDt" >
+        GNTY_REG_DT = #gntyRegDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyWoDt" >
+        GNTY_WO_DT = #gntyWoDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="abtAmt" >
+        ABT_AMT = #abtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="abtSum1" >
+        ABT_SUM1 = #abtSum1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="abtSum2" >
+        ABT_SUM2 = #abtSum2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="abtSum3" >
+        ABT_SUM3 = #abtSum3:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="abtRate" >
+        ABT_RATE = #abtRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="otRtnNo" >
+        OT_RTN_NO = #otRtnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flg1" >
+        FLG1 = #flg1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flg2" >
+        FLG2 = #flg2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="flg3" >
+        FLG3 = #flg3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifrmBak" >
+        IFRM_BAK = #ifrmBak:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cfrmBak" >
+        CFRM_BAK = #cfrmBak:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="abtNm" >
+        ABT_NM = #abtNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payNm" >
+        PAY_NM = #payNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cfrmArea" >
+        CFRM_AREA = #cfrmArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sapVchTyp" >
+        SAP_VCH_TYP = #sapVchTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="abtTyp" >
+        ABT_TYP = #abtTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        REM = #rem:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO = #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM = #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD = #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM = #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT = #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR = #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM = #lstUpdBrNm:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT = #lstUpdDt:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where GNTY_ID = #gntyId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyInfo" >
+    update B_CRR_GNTY_INFO
+    set GNTY_NM = #gntyNm:VARCHAR#,
+      GNTY_TYP = #gntyTyp:VARCHAR#,
+      CERT_TYP = #certTyp:VARCHAR#,
+      CERT_ID = #certId:VARCHAR#,
+      OWNER_NM = #ownerNm:VARCHAR#,
+      CERT_LN_NO = #certLnNo:VARCHAR#,
+      OWNER_TYP = #ownerTyp:VARCHAR#,
+      GNTY_RID = #gntyRid:VARCHAR#,
+      GNTY_SUB_TYP = #gntySubTyp:VARCHAR#,
+      GNTY_SUB_NM = #gntySubNm:VARCHAR#,
+      GNTY_LOC = #gntyLoc:VARCHAR#,
+      GNTY_AREA = #gntyArea:DECIMAL#,
+      GNTY_ATTR = #gntyAttr:VARCHAR#,
+      GNTY_OWN_WAY = #gntyOwnWay:VARCHAR#,
+      GNTY_USING = #gntyUsing:VARCHAR#,
+      GNTY_PRC = #gntyPrc:DECIMAL#,
+      EVAL_MTHD = #evalMthd:VARCHAR#,
+      EVAL_ORG_NM = #evalOrgNm:VARCHAR#,
+      EVAL_DT = #evalDt:VARCHAR#,
+      EVAL_NET_VAL = #evalNetVal:DECIMAL#,
+      CONFIRM_VAL = #confirmVal:DECIMAL#,
+      GNTY_AMT = #gntyAmt:DECIMAL#,
+      CURCD = #curcd:VARCHAR#,
+      GNTY_REG_ORG = #gntyRegOrg:VARCHAR#,
+      GNTY_REG_DT = #gntyRegDt:VARCHAR#,
+      GNTY_WO_DT = #gntyWoDt:VARCHAR#,
+      ABT_AMT = #abtAmt:DECIMAL#,
+      ABT_SUM1 = #abtSum1:DECIMAL#,
+      ABT_SUM2 = #abtSum2:DECIMAL#,
+      ABT_SUM3 = #abtSum3:DECIMAL#,
+      ABT_RATE = #abtRate:DECIMAL#,
+      OT_RTN_NO = #otRtnNo:VARCHAR#,
+      FLG1 = #flg1:VARCHAR#,
+      FLG2 = #flg2:VARCHAR#,
+      FLG3 = #flg3:VARCHAR#,
+      IFRM_BAK = #ifrmBak:VARCHAR#,
+      CFRM_BAK = #cfrmBak:VARCHAR#,
+      ABT_NM = #abtNm:VARCHAR#,
+      PAY_NM = #payNm:VARCHAR#,
+      CFRM_AREA = #cfrmArea:VARCHAR#,
+      SAP_VCH_TYP = #sapVchTyp:VARCHAR#,
+      ABT_TYP = #abtTyp:VARCHAR#,
+      REM = #rem:VARCHAR#,
+      TLR_NO = #tlrNo:VARCHAR#,
+      TLR_NM = #tlrNm:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      BR_NM = #brNm:VARCHAR#,
+      INP_DT = #inpDt:VARCHAR#,
+      LST_UPD_TLR = #lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #lstUpdBrNm:CHAR#,
+      LST_UPD_DT = #lstUpdDt:VARCHAR#
+    where GNTY_ID = #gntyId:VARCHAR#
+  </update>
+</sqlMap>

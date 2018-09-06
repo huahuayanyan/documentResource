@@ -1,0 +1,292 @@
+.GooFlow{
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 4px 2px 2px #9F9F9F;
+    font: 12px Arial, Helvetica, sans-serif;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+}
+.GooFlow i{
+    font-size: 1.33em;
+}
+/*头部*/
+.GooFlow_head{
+    clear:both;
+    width: auto;
+    height:38px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #e3e3e3;
+}
+.GooFlow_head_title{
+    width: 320px;
+    height: 38px;
+    overflow: hidden;
+    float: left;
+    clear: left;
+}
+.GooFlow_head_title_content{
+    width: auto;
+    height: 20px;
+    margin: 0px 4px 0px 20px;
+    overflow: hidden;
+    float: left;
+    clear: left;
+    border-bottom: 2px solid #32b16c;
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    padding: 14px 3px 2px 3px;
+    color: #333333;
+    box-sizing: content-box;
+}
+.GooFlow_head_title_point{
+    display: inline-block;
+    border: 2px solid #32b16c;
+    border-radius: 50%;
+    margin: 20px 0 3px 0;
+}
+.GooFlow_head i{
+    width: 25px;
+    height: 25px;
+    margin: 7px 7px 6px 7px;
+    text-align:center;
+    display: inline-block;
+    overflow: hidden;
+    color: #086CA2;
+    vertical-align:middle;
+}
+/*工具栏*/
+.GooFlow_tool{
+    width: 83px;
+    background-color: #ffffff;
+    float: left;
+    clear: left;
+    border-right: #e3e3e3 1px solid;
+    margin: 0px 0px 3px 0;
+    overflow: hidden;
+    text-align: center;
+}
+.GooFlow_tool label{
+    font-size: 12px;
+    color: #666666;
+    text-align: center;
+    margin: 0 0 12px 0;
+}
+.GooFlow_tool span{
+    height: 0px;
+    overflow: hidden;
+    border-bottom: #9AC6FF 1px solid;
+    border-top: 1px solid #FFFFFF;
+    margin: 8px 0 0 0;
+    clear: both;
+    display: block;
+}
+.GooFlow_tool i{
+    width: 52px;
+    height: 52px;
+    margin: 10px 15px 4px 16px;
+    overflow: hidden;
+    display: inline-block;
+    text-align:center;
+    vertical-align:middle;
+    color: #086CA2;
+}
+.GooFlow_head i:hover, .GooFlow_tool i:hover {
+
+}
+.GooFlow a{
+    outline: none;
+}
+/*工作区-画布*/
+.GooFlow_work {
+    float: right;
+    clear: right;
+    overflow: auto;
+    position: relative;
+}
+.GooFlow_work .GooFlow_work_inner {
+    background-color: #FCFCFC;
+    /*background-image: -webkit-linear-gradient(45deg, #DDD 25%, transparent 25%, transparent 75%, #DDD 75%, #DDD),*/
+                        /*-webkit-linear-gradient(45deg, #DDD 25%, transparent 25%, transparent 75%, #DDD 75%, #DDD);*/
+    /*background-image: -moz-linear-gradient(45deg, #DDD 25%, transparent 25%, transparent 75%, #DDD 75%, #DDD),*/
+                      /*-moz-linear-gradient(45deg, #DDD 25%, transparent 25%, transparent 75%, #DDD 75%, #DDD);*/
+    /*background-image: -o-linear-gradient(45deg, #DDD 25%, transparent 25%, transparent 75%, #DDD 75%, #DDD),*/
+                      /*-o-linear-gradient(45deg, #DDD 25%, transparent 25%, transparent 75%, #DDD 75%, #DDD);*/
+    /*background-image: -ms-linear-gradient(45deg, #DDD 25%, transparent 25%, transparent 75%, #DDD 75%, #DDD),*/
+                      /*-ms-linear-gradient(45deg, #DDD 25%, transparent 25%, transparent 75%, #DDD 75%, #DDD);*/
+    /*background-size:20px 20px;*/
+    /*background-position: 0 0, 10px 10px;*/
+    position: relative;
+    overflow: hidden
+}
+.GooFlow_property {
+    width: 335px;
+    float: right;
+    clear: right;
+}
+.GooFlow_property label{
+    margin: 0px 0px 10px 0px;
+    width: 100%;
+}
+.GooFlow_detail {
+    margin: 3px 3px 3px 3px;
+    border: #99B1CE 1px solid;
+    overflow: auto;
+}
+
+/*svg、vml样式*/
+v\:group,v\:rect,v\:imagedata,v\:oval,v\:line,v\:polyline,v\:stroke,v\:textbox {
+    display:inline-block;
+    background:transparent
+}
+.GooFlow_work svg{display:block;position:absolute}
+.GooFlow_work v\:group{position:relative;display:block}
+.GooFlow_work v\:group v\:line{overflow:visible}
+.GooFlow_work v\:group v\:polyline{overflow:visible}
+.GooFlow_work v\:group div {
+    cursor: text;
+    position: absolute;
+    overflow: visible;
+    display: inline;
+    float: left;
+    white-space: nowrap
+}
+.GooFlow_work .draw {
+    color: #ff3300
+}
+
+/*元素*/
+.GooFlow_item {
+    position: absolute;
+    color: #15428B;
+    text-align: center;
+}
+.GooFlow_item .icoDiv {
+    width: 54px;
+    height: 54px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: move;
+}
+/*.GooFlow_item .icoDiv .i{*/
+    /*width: 52px;*/
+    /*height: 52px;*/
+/*}*/
+.GooFlow_item label {
+    font-style: normal;
+}
+/*方形元素(删除角标)*/
+.GooFlow div .rs_close {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 7px;
+    height: 7px;
+    overflow: hidden;
+    cursor: pointer;
+    background: url(image/gooflow_tip.png) no-repeat 0px 0px
+}
+
+/*遮罩层*/
+.GooFlow .rs_ghost {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    display: none;
+    overflow: hidden;
+    text-align: center;
+    border: #8EA4C1 1px dashed;
+    background: #D9E8FB;
+    filter: Alpha(Opacity=60);
+    -moz-opacity: 0.6;
+    opacity: 0.6;
+    z-index: 10;
+}
+.GooFlow .item_focus {
+    border: #5068AE 1px solid;
+    border-radius: 27px;
+    -moz-border-radius: 27px;
+    -webkit-border-radius: 27px;
+}
+.GooFlow .item_mark {
+    border: #ff3300 1px solid;
+    border-radius: 27px;
+    -moz-border-radius: 27px;
+    -webkit-border-radius: 27px;
+    cursor: crosshair
+}
+/*.GooFlow .item_mark td{*/
+/*}*/
+/*线条工具栏*/
+.GooFlow .GooFlow_line_oper {
+    width: 80px;
+    height: 15px;
+    background-color: #D8E8FC;
+    border: #7DA2CE 1px solid;
+    position: absolute;
+    filter: Alpha(Opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    z-index: 10000;
+}
+.GooFlow .GooFlow_line_move {
+    filter: Alpha(Opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    overflow: hidden;
+    position: absolute;
+    z-index: 9999
+}
+.GooFlow .GooFlow_line_oper b {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-left: 2px;
+    cursor: pointer
+}
+.GooFlow .GooFlow_line_oper .b_l1 {
+    background: url(image/GooFlow_line_oper.png) no-repeat 1px 1px
+}
+.GooFlow .GooFlow_line_oper .b_l2 {
+    background: url(image/GooFlow_line_oper.png) no-repeat 1px -14px
+}
+.GooFlow .GooFlow_line_oper .b_l3 {
+    background: url(image/GooFlow_line_oper.png) no-repeat 1px -29px
+}
+.GooFlow .GooFlow_line_oper .b_x {
+    background: url(image/GooFlow_line_oper.png) no-repeat 1px -44px;
+    margin-left: 10px
+}
+.GooFlow .GooFlow_line_oper b[class^="b_"]:hover{
+    background-color: #7DA2CE;
+}
+/*左侧工具栏按钮*/
+/*操作按钮*/
+.GooFlow .ico_cursor:before{content: url(image/GooFlow_cursor.png);}
+.GooFlow .ico_cursor_down:before{content: url(image/GooFlow_cursor_down.png);}
+.GooFlow .ico_direct:before{content: url(image/GooFlow_direct.png);}
+.GooFlow .ico_direct_down:before{content: url(image/GooFlow_direct_down.png);}
+/*节点按钮*/
+.GooFlow .ico_base:before{content: url(image/GooFlow-base.png);}
+.GooFlow .ico_base_down:before{content: url(image/GooFlow-base_down.png);}
+.GooFlow .ico_task:before{content: url(image/GooFlow-task.png);}
+.GooFlow .ico_task_down:before{content: url(image/GooFlow-task_down.png);}
+.GooFlow .ico_end:before{content: url(image/GooFlow-end.png);}
+.GooFlow .ico_end_down:before{content: url(image/GooFlow-end_down.png);}
+.GooFlow .ico_appro:before{content: url(image/GooFlow-appro.png);}
+.GooFlow .ico_appro_down:before{content: url(image/GooFlow-appro_down.png);}
+.GooFlow .ico_auto:before{content: url(image/GooFlow-auto.png);}
+.GooFlow .ico_auto_down:before{content: url(image/GooFlow-auto_down.png);}
+/*顶部按钮*/
+.GooFlow .ico_new:before{content: url(image/GooFlow-new.png);}
+.GooFlow .ico_open:before{content: url(image/GooFlow-open.png);}
+.GooFlow .ico_save:before{content: url(image/GooFlow-save.png);}
+.GooFlow .ico_reload:before{content: url(image/GooFlow-reload.png);}
+.GooFlow .ico_undo:before{content: url(image/GooFlow-undo.png);}
+.GooFlow .ico_redo:before{content: url(image/GooFlow-redo.png);}
+.GooFlow .ico_expand:before{content: url(image/GooFlow-expand.png);}
+.GooFlow .ico_import:before{content: url(image/GooFlow-import.png);}
+.GooFlow .ico_export:before{content: url(image/GooFlow-export.png);}

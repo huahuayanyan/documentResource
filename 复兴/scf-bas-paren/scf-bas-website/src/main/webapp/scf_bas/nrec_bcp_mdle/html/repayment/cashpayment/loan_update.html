@@ -1,0 +1,14 @@
+<ht-form name="loaninfo">
+	<ht-input ht-id="debetId" name="借据号/承兑协议号" disable="true" ng-model="loaninfo.debetId"></ht-input>
+    <ht-select ht-id="lnciType"  name="出账方式" disable ="true" dictionary="loanWay"    ng-model="loaninfo.lnciType"></ht-select>
+    <ht-input ht-id="lnciBal" name="借据余额" disable="true"  edit-type="currency"  ng-model="loaninfo.lnciBal"></ht-input>
+    <ht-input ng-model="loaninfo.inTableInt" name="欠息总额" type="currency" disable="true"></ht-input>
+    <ht-input ht-id="startDate" name="起始日" disable="true" edit-type="date" ng-model="loaninfo.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="到期日" disable="true" edit-type="date" ng-model="loaninfo.endDate"></ht-input>
+    <ht-input ht-id="repayAmount" reg-exp="common.require" name="还款金额" ng-model="loaninfo.repayAmount" edit-type="currency" ></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>
+

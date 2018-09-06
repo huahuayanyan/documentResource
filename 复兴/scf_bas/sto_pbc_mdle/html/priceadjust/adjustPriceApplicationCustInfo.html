@@ -1,0 +1,29 @@
+<ht-form name="otherform">
+    <ht-legend>基本信息</ht-legend>
+    <ht-input ht-id="custcd" name="客户号"  disable="true" ng-model="otherform.custcd"></ht-input>
+    <ht-input ht-id="cname" name="客户名称"disable="{{disable}}" reg-exp="common.require" ng-model="otherform.cname"></ht-input>
+    <ht-input ht-id="custno" name="核心客户号"  disable ="true"  ng-model="otherform.custno"></ht-input>
+    <ht-input ht-id="orgCode" name="组织机构代码"  disable="true" reg-exp="common.require,OrgCodeValidate" ng-model="otherform.orgCode"></ht-input>
+    <ht-select ht-id="idtype" name="证件类型" disable="{{disable}}" reg-exp="common.require" dictionary="idtype" ng-model="otherform.idtype"></ht-select>
+    <ht-input ht-id="idno" name="证件号码"  disable="{{disable}}" reg-exp="common.require" ng-model="otherform.idno"></ht-input>
+    <ht-input-extent ht-id="industryTypeName" name="国际行业分类" disable="{{disable}}" extent="industryTypeContent" on-change="industryTypeExtent"
+                     ng-model="otherform.industryTypeName"></ht-input-extent>
+    <ht-select ht-id="enterpriseScope" name="企业规模" disable="{{disable}}" dictionary="enterpriseScope" ng-model="otherform.enterpriseScope"></ht-select>
+    <ht-radio ht-id="isMarketCorp" name="是否上市公司" disable="{{disable}}" dictionary="checked" ng-model="otherform.isMarketCorp"></ht-radio>
+    <ht-input ht-id="establishDate" name="企业成立日期" disable="{{disable}}" edit-type="date" ng-model="otherform.establishDate"></ht-input>
+    <ht-input ht-id="regCapital" name="注册资本" disable="{{disable}}" edit-type="currency" ng-model="otherform.regCapital"></ht-input>
+    <ht-input-extent ht-id="areaName" name="省份、直辖市、自治区" disable="{{disable}}" extent="areaContent"
+                     on-change="dooextent" ng-model="otherform.areaName"></ht-input-extent>
+    <ht-input ht-id="tlrName" name="经办人"  disable="true" ng-model="otherform.tlrName"></ht-input>
+    <ht-input ht-id="brName" name="经办机构"  disable="true" ng-model="otherform.brName"></ht-input>
+    
+    <ht-legend>补录信息</ht-legend>
+    <ht-radio ht-id="creditFlag" name="授信客户标识"disable="true" reg-exp="common.require"  dictionary="checked" ng-model="otherform.creditFlag"></ht-radio>
+    <ht-radio ht-id="importantFlag" name="是否供应链融资重点客户" disable="{{disable}}"reg-exp="common.require" dictionary="checked" ng-model="otherform.importantFlag"></ht-radio>
+    <ht-radio ht-id="isIntl" name="是否国际保理客户" disable="{{disable}}"  reg-exp="common.require" dictionary="checked"  ng-model="otherform.isIntl"></ht-radio>
+    <ht-input ht-id="ename" name="客户英文名" disable="{{disable}}" ng-model="otherform.ename"></ht-input>
+    <ht-input ht-id="contactName" name="联系人" disable="{{disable}}" ng-model="otherform.contactName"></ht-input>
+    <ht-input ht-id="contactTel" name="电话" disable="{{disable}}" ng-model="otherform.contactTel"></ht-input>
+    <ht-input ht-id="fax" name="传真号码" disable="{{disable}}" ng-model="otherform.fax"></ht-input>
+    <ht-input ht-id="contactAddr" name="通讯地址" disable="{{disable}}" ng-model="otherform.contactAddr"></ht-input>
+</ht-form>

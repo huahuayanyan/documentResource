@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_PBC_APPLI_MTG_INFO" >
+	<resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfo" >
+	    <result column="ID" property="id" jdbcType="VARCHAR" />
+	    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+	    <result column="APPLI_MORT_BIZ_TYPE" property="appliMortBizType" jdbcType="CHAR" />
+	    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+	    <result column="MORTGAGE_BIZ_TYPE" property="mortgageBizType" jdbcType="CHAR" />
+	    <result column="MORTGAGE_CLASS" property="mortgageClass" jdbcType="CHAR" />
+	    <result column="MORTGAGE_SUB_CLASS" property="mortgageSubClass" jdbcType="CHAR" />
+	    <result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+	    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+	    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+	    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+	    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+	    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+	    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+	    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+	    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+	    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+	    <result column="MANUFACTURER" property="manufacturer" jdbcType="VARCHAR" />
+	    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+	    <result column="FLAG" property="flag" jdbcType="CHAR" />
+	    <result column="BAL_QUANTITY" property="balQuantity" jdbcType="DECIMAL" />
+	    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+	    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+	    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+	    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+	    <result column="MORTGAGE_LEVEL_FOUR" property="mortgageLevelFour" jdbcType="VARCHAR" />
+	    <result column="MORTGAGE_LEVEL_FIVE" property="mortgageLevelFive" jdbcType="VARCHAR" />
+	    <result column="MORTGAGE_LEVEL_SIX" property="mortgageLevelSix" jdbcType="VARCHAR" />
+	    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+	    <result column="ORIGINAL_PRICE" property="originalPrice" jdbcType="DECIMAL" />
+	    <result column="ORIGINAL_TOT_PRICE" property="originalTotPrice" jdbcType="DECIMAL" />
+	    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+	    <result column="CONFIRM_PRICE" property="confirmPrice" jdbcType="DECIMAL" />
+	    <result column="STOCK_STATUS" property="stockStatus" jdbcType="CHAR" />
+	    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+	    <result column="VENDER" property="vender" jdbcType="VARCHAR" />
+	    <result column="PRODUCT_AREA" property="productArea" jdbcType="VARCHAR" />
+	    <result column="INCOME_NO" property="incomeNo" jdbcType="VARCHAR" />
+	    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+	    <result column="QUALITY_LEVEL" property="qualityLevel" jdbcType="VARCHAR" />
+	    <result column="SN" property="sn" jdbcType="VARCHAR" />
+	    <result column="YEAR" property="year" jdbcType="VARCHAR" />
+	    <result column="BILL_TYPE" property="billType" jdbcType="VARCHAR" />
+	    <result column="WEIGHT_ALL" property="weightAll" jdbcType="DECIMAL" />
+	    <result column="UP_DOWN_MONEY" property="upDownMoney" jdbcType="DECIMAL" />
+	    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+	    <result column="BILL_QUANTITY" property="billQuantity" jdbcType="DECIMAL" />
+	    <result column="FUTURE_CUSTCD" property="futureCustcd" jdbcType="VARCHAR" />
+	    <result column="BILL_DUE_DATE" property="billDueDate" jdbcType="CHAR" />
+	    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+	    <result column="WAREHOUSE_ADDRESS" property="warehouseAddress" jdbcType="VARCHAR" />
+	    <result column="OLD_CONFIRM_PRICE" property="oldConfirmPrice" jdbcType="DECIMAL" />
+	    <result column="CONFIRM_ACCORDING" property="confirmAccording" jdbcType="VARCHAR" />
+	    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+	    <result column="FREIGHTAREA" property="freightarea" jdbcType="VARCHAR" />
+	    <result column="FREIGHTLOT" property="freightlot" jdbcType="VARCHAR" />
+	    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+	    <result column="WAREHOUSE" property="warehouse" jdbcType="VARCHAR" />
+	    <result column="MORTGAGE_CODE" property="mortgageCode" jdbcType="DECIMAL" />
+	    <result column="WEIGHT_UNITS" property="weightUnits" jdbcType="VARCHAR" />
+	    <result column="ENGINE_NO" property="engineNo" jdbcType="VARCHAR" />
+	    <result column="CHASSIS_NO" property="chassisNo" jdbcType="VARCHAR" />
+	    <result column="CERTIFICATION_NO" property="certificationNo" jdbcType="VARCHAR" />
+	    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+	    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+	    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+	    <result column="FIX_MORTGAGE_NO" property="fixMortgageNo" jdbcType="VARCHAR" />
+	    <result column="JOIN_BATCH" property="joinBatch" jdbcType="CHAR" />
+	    <result column="UP_DOWN_MONEY_FLAG" property="upDownMoneyFlag" jdbcType="VARCHAR" />
+	    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+	    <result column="OUT_QUANTITY" property="outQuantity" jdbcType="DECIMAL" />
+	    <result column="IS_SL_EXIBITION" property="isSlExibition" jdbcType="CHAR" />
+	    <result column="MANUFACTURE_DATE" property="manufactureDate" jdbcType="CHAR" />
+	    <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR" />
+	    <result column="MONI_WAREHOUSE_TYPE" property="moniWarehouseType" jdbcType="CHAR" />
+	    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+	    <result column="DELIVERY_NUM" property="deliveryNum" jdbcType="VARCHAR" />
+	    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+	    <result column="PACKAGEW" property="packagew" jdbcType="VARCHAR" />
+	    <result column="ADD_QUANTITY" property="addQuantity" jdbcType="DECIMAL" />
+	  </resultMap>
+	  <sql id="Base_Column_List" >
+	    ID, APPNO, APPLI_MORT_BIZ_TYPE, MORTGAGE_NO, MORTGAGE_BIZ_TYPE, MORTGAGE_CLASS, MORTGAGE_SUB_CLASS, 
+	    MONITOR_PROTOCOL_NO, OTHER_PROTOCOL_NO, MORTGAGE_MODEL, SLAVE_CONTNO, CUSTCD, MORTGAGE_UNITS, 
+	    QUANTITY, PRICE, TOT_PRICE, DESCRIPTION, MANUFACTURER, WAREHOUSE_ID, FLAG, BAL_QUANTITY, 
+	    CURCD, MORTGAGE_LEVEL_ONE, MORTGAGE_LEVEL_TWO, MORTGAGE_LEVEL_THREE, MORTGAGE_LEVEL_FOUR, 
+	    MORTGAGE_LEVEL_FIVE, MORTGAGE_LEVEL_SIX, MAST_CONTNO, ORIGINAL_PRICE, ORIGINAL_TOT_PRICE, 
+	    MARKET_PRICE, CONFIRM_PRICE, STOCK_STATUS, MONI_OF_CUSTCD, VENDER, PRODUCT_AREA, 
+	    INCOME_NO, RATION, QUALITY_LEVEL, SN, YEAR, BILL_TYPE, WEIGHT_ALL, UP_DOWN_MONEY, 
+	    BILLNO, BILL_QUANTITY, FUTURE_CUSTCD, BILL_DUE_DATE, STATUS, WAREHOUSE_ADDRESS, OLD_CONFIRM_PRICE, 
+	    CONFIRM_ACCORDING, MORTGAGE_NAME, FREIGHTAREA, FREIGHTLOT, MEMO, WAREHOUSE, MORTGAGE_CODE, 
+	    WEIGHT_UNITS, ENGINE_NO, CHASSIS_NO, CERTIFICATION_NO, START_DATE, END_DATE, BRCODE, 
+	    FIX_MORTGAGE_NO, JOIN_BATCH, UP_DOWN_MONEY_FLAG, TRADE_CONTNO, OUT_QUANTITY, IS_SL_EXIBITION, 
+	    MANUFACTURE_DATE, DOCUMENT_NO, MONI_WAREHOUSE_TYPE, REASON, DELIVERY_NUM, PRODUCT_NAME, 
+	    PACKAGEW, ADD_QUANTITY
+	  </sql>
+	  <select id="selectByAppno" resultMap="BaseResultMap">
+	    select 
+	    <include refid="B_PBC_APPLI_MTG_INFO.Base_Column_List" />
+	    from B_PBC_APPLI_MTG_INFO
+	    where appno = #appno:VARCHAR#
+	  </select>
+	  <resultMap id="TradeAppliMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcAppliMtgInfo" >
+	    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+	    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+	  </resultMap>
+	   <select id="getTradeAppliTotPriceByAppno" resultMap="TradeAppliMap">
+	    select 
+	        TRADE_CONTNO,
+	    	SUM(TOT_PRICE) AS TOT_PRICE
+	    from B_PBC_APPLI_MTG_INFO
+	    where appno = #appno:VARCHAR#
+	    GROUP BY TRADE_CONTNO
+	  </select>
+</sqlMap>

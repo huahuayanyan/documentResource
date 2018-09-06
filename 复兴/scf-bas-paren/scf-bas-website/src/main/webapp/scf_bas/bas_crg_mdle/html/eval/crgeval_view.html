@@ -1,0 +1,33 @@
+<ht-legend>查看评估记录</ht-legend>
+<ht-form name="mdfyform">
+    <ht-panel>
+        <ht-input name="客户编号" ng-model="mdfyform.rltId" disable="true"></ht-input>
+        <ht-input name="客户名称" ng-model="mdfyform.cname" disable="true"></ht-input>
+        <ht-select name="客户类型" ng-model="mdfyform.rltTyp" dictionary="custType" disable="true"></ht-select>
+        <ht-input name="评估模型编号" ng-model="mdfyform.mdlId" disable="true"></ht-input>
+        <ht-select name="评估模型名" ng-model="mdfyform.mdlNm" dictionary="evalModel"  disable="true"></ht-select>
+        <ht-input name="机评得分" ng-model="mdfyform.evalScr"disable="true"></ht-input>
+        <ht-input name="机评级别" ng-model="mdfyform.evalRslt" disable="true"></ht-input>
+        <ht-input name="认定得分" ng-model="mdfyform.cognScr" disable="true"></ht-input>
+        <ht-input name="认定级别" ng-model="mdfyform.cognRslt" disable="true"></ht-input>
+        <ht-input name="认定有效期" ng-model="mdfyform.eftDt" disable="true"></ht-input>
+        <ht-input name="认定理由" ng-model="mdfyform.rem" disable="true"></ht-input>
+        <ht-input name="会计月份" ng-model="mdfyform.finDt" disable="true"></ht-input>
+        <ht-select name="有效状态" ng-model="mdfyform.isVld" dictionary="validState" disable="true"></ht-select>
+        <ht-select name="审核状态" ng-model="mdfyform.stat" dictionary="stat" disable="true"></ht-select>
+    </ht-panel>
+
+    <ht-panel>
+        <ht-input  name="评估机构" ht-id="brNm" ng-model="mdfyform.brNm" disable="true"></ht-input>
+        <ht-input  name="更新机构" ht-id="lstUpdBrNm"  ng-model="mdfyform.lstUpdBrNm" disable="true"></ht-input>
+        <ht-input  name="评估人" ht-id="tlrNm" ng-model="mdfyform.tlrNm" disable="true"></ht-input>
+        <ht-input  name="更新人" ht-id="lastUpdTlrNm" ng-model="mdfyform.lastUpdTlrNm" disable="true"></ht-input>
+        <ht-input  name="评估日期"  ht-id="evalDt"  ng-model="mdfyform.evalDt" disable="true" edit-type="date"></ht-input>
+        <ht-input  name="更新日期" ht-id="lstUpdDt"  ng-model="mdfyform.lstUpdDt" disable="true" edit-type="date"></ht-input>
+    </ht-panel>
+</ht-form>
+
+<ht-button-group class="center">
+    <!--<ht-button ht-id="confirmApply" class="btn-primary">评估</ht-button>-->
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

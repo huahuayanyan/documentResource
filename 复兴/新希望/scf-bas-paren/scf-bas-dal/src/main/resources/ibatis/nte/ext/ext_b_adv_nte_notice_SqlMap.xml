@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_ADV_NTE_NOTICE">
+	<select id="findBNteNoticeMtgByAppno" resultMap="B_NTE_NOTICE_MTG.BaseResultMap">
+		select
+		<include refid="B_NTE_NOTICE_MTG.Base_Column_List" />
+		from B_NTE_NOTICE_MTG
+		where appno = #appno:VARCHAR#
+	</select>
+	<!-- 根据押品编号查询发货通知押品信息 -->
+	<resultMap id="DeliveryNotifyMortMap" class="com.huateng.scf.adv.nte.dao.model.FourWareConfirmNoticeVO">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+		<result column="NUM" property="num" jdbcType="VARCHAR" />
+		<result column="NOTICE_TYPE" property="noticeType" jdbcType="VARCHAR" />
+		<result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+		<result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+		<result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+		<result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+		<result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+		<result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+		<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+		<result column="OTHER_CUST_NAME" property="otherCustName" jdbcType="VARCHAR" />
+		<result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+		<result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+		<result column="MONI_OF_NAME" property="moniOfName" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="CHAR" />
+		<result column="TLRN" property="tlrn" jdbcType="VARCHAR" />
+		<result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+		<result column="LNCI_TYPE" property="lnciType" jdbcType="CHAR" />
+		<result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+		<result column="CONFIRM_STATUS" property="confirmStatus" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 收款确认通知书 -->
+	<select id="selectAcctConfirmNoticeByPage" resultMap="DeliveryNotifyMortMap" parameterClass="java.util.Map">
+		select tnbi.ID,tnbi.APPNO, tnbi.NUM,tnbi.NOTICE_TYPE,tnbi.SIGN_DATE,tnbi.COMMON_DATE,tnbi.PROTOCOL_CODE,tnbi.PROTOCOL_NO,tnbi.DEBET_ID,
+		tnbi.CUST_NAME,tnbi.CUSTCD,tnbi.OTHER_CUST_NAME,tnbi.OTHER_CUSTCD,
+		tnbi.MONI_OF_CUSTCD,tnbi.MONI_OF_NAME,tnbi.STATUS,tnbi.TLRN,tnbi.BRCODE,tlbi.LNCI_TYPE,
+		tlbi.LNCI_AMT,tlbi.CONFIRM_STATUS
+		from B_LAN_LNCI_BASE tlbi, B_NTE_NOTICE_BASE tnbi
+		where tlbi.debet_no=tnbi.debet_no
+		and tnbi.sign_date is not null
+		and (tnbi.notice_type='77' or tnbi.notice_type='79')
+		<isNotNull property="noticeType" prepend="and">
+			tnbi.notice_type=#noticeType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="bussType" prepend="and">
+			tnbi.buss_type = #bussType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="status" prepend="and">
+			tnbi.status = #status:VARCHAR#
+		</isNotNull>
+		<isNotNull property="brNo" prepend="and">
+			tnbi.brcode = #brNo:VARCHAR#
+		</isNotNull>
+		<isNotNull property="cname" prepend="and">
+			tnbi.custcd = (select tcbi.custcd from B_CRM_BASE_INFO tcbi where
+			tcbi.custcd=tnbi.custcd and tcbi.cname like
+			'%'||#cname:VARCHAR#||'%')
+		</isNotNull>
+		<isNotNull property="coreCustName" prepend="and">
+			tnbi.moni_of_custcd = (select tcbi.custcd from B_CRM_BASE_INFO tcbi
+			where tcbi.custcd=tnbi.moni_of_custcd and tcbi.cname like
+			'%'||#coreCustName:VARCHAR#||'%')
+		</isNotNull>
+		<isNotNull property="protocolNo" prepend="and">
+			tnbi.protocol_no like '%'||#protocolNo:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="signDate1" prepend="and">
+			<![CDATA[tnbi.sign_date >= #signDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="signDate2" prepend="and">
+			<![CDATA[tnbi.sign_date <= #signDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate1" prepend="and">
+			<![CDATA[tnbi.common_date >= #commonDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate2" prepend="and">
+			<![CDATA[tnbi.common_date <= #commonDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="brcode" prepend="and">
+			<isEqual property="brattr" compareValue="1">
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where
+				tmbi.protocol_no = tnbi.protocol_no
+				and tmbi.cooperation_brcode = #brcode:VARCHAR#)
+			</isEqual>
+			<isNotEqual property="brattr" compareValue="1">
+				exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode
+				=tnbi.brcode and parent_brcode =#brcode:VARCHAR# and affiliation_type ='1')
+			</isNotEqual>
+		</isNotNull>
+		order by tnbi.NUM desc
+	</select>
+	
+	<select id="selectAcctConfirmNoticeCount" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+		select count(NUM) from(
+		select tnbi.ID,tnbi.APPNO,tnbi.NUM,tnbi.NOTICE_TYPE,tnbi.SIGN_DATE,tnbi.COMMON_DATE,tnbi.PROTOCOL_CODE,tnbi.PROTOCOL_NO,tnbi.DEBET_ID,
+		tnbi.OTHER_CUST_NAME,tnbi.OTHER_CUSTCD,tnbi.MONI_OF_CUSTCD,tnbi.MONI_OF_NAME,tnbi.STATUS,tnbi.TLRN,tnbi.BRCODE,
+		tlbi.LNCI_TYPE,tlbi.LNCI_AMT,tlbi.CONFIRM_STATUS
+		from B_LAN_LNCI_BASE tlbi, B_NTE_NOTICE_BASE tnbi
+		where tlbi.debet_no=tnbi.debet_no
+		and tnbi.sign_date is not null
+		and (tnbi.notice_type='77' or tnbi.notice_type='79')
+		<isNotNull property="noticeType" prepend="and">
+			tnbi.notice_type=#noticeType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="bussType" prepend="and">
+			tnbi.buss_type = #bussType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="status" prepend="and">
+			tnbi.status = #status:VARCHAR#
+		</isNotNull>
+		<isNotNull property="brNo" prepend="and">
+			tnbi.brcode = #brNo:VARCHAR#
+		</isNotNull>
+		<isNotNull property="cname" prepend="and">
+			tnbi.custcd = (select tcbi.custcd from B_CRM_BASE_INFO tcbi where
+			tcbi.custcd=tnbi.custcd and tcbi.cname like
+			'%'||#cname:VARCHAR#||'%')
+		</isNotNull>
+		<isNotNull property="coreCustName" prepend="and">
+			tnbi.moni_of_custcd = (select tcbi.custcd from B_CRM_BASE_INFO tcbi
+			where tcbi.custcd=tnbi.moni_of_custcd and tcbi.cname like
+			'%'||#coreCustName:VARCHAR#||'%')
+		</isNotNull>
+		<isNotNull property="protocolNo" prepend="and">
+			tnbi.protocol_no like '%'||#protocolNo:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="signDate1" prepend="and">
+			<![CDATA[tnbi.sign_date >= #signDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="signDate2" prepend="and">
+			<![CDATA[tnbi.sign_date <= #signDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate1" prepend="and">
+			<![CDATA[tnbi.common_date >= #commonDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate2" prepend="and">
+			<![CDATA[tnbi.common_date <= #commonDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="brcode" prepend="and">
+			<isEqual property="brattr" compareValue="1">
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where
+				tmbi.protocol_no = tnbi.protocol_no
+				and tmbi.cooperation_brcode = #brcode:VARCHAR#)
+			</isEqual>
+			<isNotEqual property="brattr" compareValue="1">
+				exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode
+				=tnbi.brcode and parent_brcode =#brcode:VARCHAR# and affiliation_type ='1')
+			</isNotEqual>
+		</isNotNull>
+		)
+	</select>
+	
+	<resultMap id="FourDeliveryNotifyVOMap" class="com.huateng.scf.adv.nte.dao.model.FourDeliveryNotifyVO">
+		<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+		<result column="NUM" property="num" jdbcType="VARCHAR" />
+		<result column="NOTICE_TYPE" property="noticeType" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="CHAR" />
+		<result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+		<result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+		<result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+		<result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+		<result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+		<result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+		<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+		<result column="OTHER_CUST_NAME" property="otherCustName" jdbcType="VARCHAR" />
+		<result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+		<result column="TLRN" property="tlrn" jdbcType="VARCHAR" />
+		<result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+		<result column="CNAME" property="moniCname" jdbcType="VARCHAR" />
+	</resultMap>
+		
+	<!-- 发货入库通知书 -->
+	<select id="selectFourDeliveryNotify" resultMap="FourDeliveryNotifyVOMap" parameterClass="java.util.Map">
+		SELECT n.*,tcbi.cname
+		FROM B_NTE_NOTICE_BASE n ,B_CNT_MPROT_PART_INFO m,B_CRM_BASE_INFO tcbi
+		WHERE n.notice_type ='122' and
+		n.monitor_protocol_no = m.protocol_no and m.role ='02'
+		and n.ext2 ='01'
+		and tcbi.custcd = m.custcd
+		and n.sign_date is not null
+		<isNotNull property="cname" prepend="and">
+			m.cname like '%'||#cname:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="status" prepend="and">
+			n.status = #status:VARCHAR#
+		</isNotNull>
+		<isNotNull property="bussType" prepend="and">
+			n.buss_type = #bussType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="brcode" prepend="and">
+			n.brcode = #brcode:VARCHAR#
+		</isNotNull>
+		<isNotNull property="signDate1" prepend="and">
+			<![CDATA[n.sign_date >= #signDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="signDate2" prepend="and">
+			<![CDATA[n.sign_date <= #signDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate1" prepend="and">
+			<![CDATA[n.common_date >= #commonDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate2" prepend="and">
+			<![CDATA[n.common_date <= #commonDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="brNo" prepend="and">
+			<isEqual property="brattr" compareValue="1">
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = n.protocol_no	
+				and tmbi.cooperation_brcode = #brNo:VARCHAR#)
+			</isEqual>
+			<isNotEqual property="brattr" compareValue="1">
+				exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =n.brcode and parent_brcode =
+				#brNo:VARCHAR# and affiliation_type ='1')
+			</isNotEqual>
+		</isNotNull>
+		order by n.num desc
+	</select>
+	
+	<select id="countFourDeliveryNotify" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+		SELECT COUNT(NUM) FROM(
+		SELECT n.*,tcbi.cname
+		FROM B_NTE_NOTICE_BASE n ,B_CNT_MPROT_PART_INFO m,B_CRM_BASE_INFO tcbi
+		WHERE n.notice_type ='122' and
+		n.monitor_protocol_no = m.protocol_no and m.role ='02'
+		and n.ext2 ='01'
+		and tcbi.custcd = m.custcd
+		and n.sign_date is not null
+		<isNotNull property="cname" prepend="and">
+			m.cname like '%'||#cname:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="status" prepend="and">
+			n.status = #status:VARCHAR#
+		</isNotNull>
+		<isNotNull property="bussType" prepend="and">
+			n.buss_type = #bussType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="brcode" prepend="and">
+			n.brcode = #brcode:VARCHAR#
+		</isNotNull>
+		<isNotNull property="signDate1" prepend="and">
+			<![CDATA[n.sign_date >= #signDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="signDate2" prepend="and">
+			<![CDATA[n.sign_date <= #signDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate1" prepend="and">
+			<![CDATA[n.common_date >= #commonDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate2" prepend="and">
+			<![CDATA[n.common_date <= #commonDate2:VARCHAR#]]>
+		</isNotNull>
+		<!-- brNo -->
+		<isNotNull property="brNo" prepend="and">
+			<isEqual property="brattr" compareValue="1">
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = n.protocol_no	
+				and tmbi.cooperation_brcode = #brNo:VARCHAR#)
+			</isEqual>
+			<isNotEqual property="brattr" compareValue="1">
+				exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =n.brcode and parent_brcode =
+				#brNo:VARCHAR# and affiliation_type ='1')
+			</isNotEqual>
+		</isNotNull>
+		)
+	</select>
+	
+	<resultMap id="QuantityNoticeVOMap" class="com.huateng.scf.bas.nte.dao.model.NoticeResultVO">
+		<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+		<result column="NUM" property="num" jdbcType="VARCHAR" />
+		<result column="NOTICE_TYPE" property="noticeType" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="CHAR" />
+		<result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+		<result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+		<result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+		<result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+		<result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+		<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+		<result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+		<result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+		<result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+		<result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+		<result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIAML" />
+		<result column="COMMON_AMT" property="commonAmt" jdbcType="DECIAML" />
+		<result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+		<result column="TLRN" property="tlrn" jdbcType="VARCHAR" />
+		<result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+		<result column="MONI_OF_NAME" property="moniOfName" jdbcType="VARCHAR" />
+		<result column="MONI_OF_NAME" property="moniOfName" jdbcType="VARCHAR" />
+		<result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 质物价格确定调整通知书 -->
+	<select id="selectQuantityNoticeList" resultMap="QuantityNoticeVOMap" parameterClass="java.util.Map">
+		SELECT distinct nbi.APPNO,nbi.NUM,nbi.NOTICE_TYPE, nbi.STATUS,nbi.SIGN_DATE, nbi.COMMON_DATE,
+		nbi.PROTOCOL_CODE, nbi.PROTOCOL_NO, nbi.DEBET_ID, nbi.CUSTCD, nbi.OTHER_CUSTCD, nbi.BRCODE,
+		nbi.SLAVE_CONTCODE,nbi.SLAVE_CONTNO, nbi.BUSS_TYPE, nbi.BAIL_AMOUNT, nbi.COMMON_AMT,nbi.MONITOR_PROTOCOL_NO,
+		nbi.MONI_OF_CUSTCD, tcbi2.cname CUST_NAME,tcbi.cname MONI_OF_NAME,nbi.TLRN TLRN
+		FROM B_NTE_NOTICE_BASE nbi,B_CRR_GNTY_CON tcsi,B_CRM_BASE_INFO tcbi,
+		B_CRM_BASE_INFO tcbi2
+		WHERE 1=1 and nbi.slave_contno =tcsi.con_id and tcbi.custcd =nbi.moni_of_custcd 
+		and tcbi2.custcd = tcsi.gut_id AND nbi.sign_date is not null AND tcsi.VID_PRD_ID is not null
+		<isNotNull property="bussType" prepend="and">
+			tcsi.vid_prd_id = #bussType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="noticeType" prepend="and">
+			nbi.notice_type = #noticeType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="noticeTypeSet" prepend="and">
+			nbi.notice_type in
+			<iterate conjunction="," open="(" close=")" property="noticeTypeSet">
+			 #noticeTypeSet[]#
+			</iterate>
+		</isNotNull>
+		<isNotNull property="slaveContcode" prepend="and">
+			nbi.slave_contcode LIKE '%'||#slaveContcode:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="cname" prepend="and">
+			tcbi.cname like '%'||#cname:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="status" prepend="and">
+			nbi.status = #status:VARCHAR#
+		</isNotNull>
+		<isNotNull property="signDate1" prepend="and">
+			<![CDATA[nbi.sign_date >= #signDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="signDate2" prepend="and">
+			<![CDATA[nbi.sign_date <= #signDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate1" prepend="and">
+			<![CDATA[nbi.common_date >= #commonDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate2" prepend="and">
+			<![CDATA[nbi.common_date <= #commonDate2:VARCHAR#]]>
+		</isNotNull>
+<!-- 		delete by gongzhao 20170524 -->
+<!-- 		<isNotNull property="brNo" prepend="and">
+			<isEqual property="brattr" compareValue="1">
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = tcsi.prtcl_no	
+				and tmbi.cooperation_brcode = #brNo:VARCHAR#)
+			</isEqual>
+			<isNotEqual property="brattr" compareValue="1">
+				exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =nbi.brcode and parent_brcode =
+				#brNo:VARCHAR# and affiliation_type ='1')
+			</isNotEqual>
+		</isNotNull> -->
+		order by NUM desc
+	</select>
+	
+	<select id="countQuantityNotice" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+	SELECT COUNT(NUM) FROM(
+		SELECT distinct nbi.APPNO,nbi.NUM,nbi.NOTICE_TYPE, nbi.STATUS,nbi.SIGN_DATE, nbi.COMMON_DATE,
+		nbi.PROTOCOL_CODE, nbi.PROTOCOL_NO, nbi.DEBET_ID, nbi.CUSTCD, nbi.OTHER_CUSTCD, nbi.BRCODE,
+		nbi.SLAVE_CONTCODE,nbi.SLAVE_CONTNO, nbi.BUSS_TYPE, nbi.BAIL_AMOUNT, nbi.COMMON_AMT,
+		nbi.MONI_OF_CUSTCD, tcbi2.cname CUST_NAME,tcbi.cname MONI_OF_NAME,nbi.TLRN TLRN
+		FROM B_NTE_NOTICE_BASE nbi,B_CRR_GNTY_CON tcsi,B_CRM_BASE_INFO tcbi,
+		B_CRM_BASE_INFO tcbi2
+		WHERE 1=1 and nbi.slave_contno =tcsi.con_id and tcbi.custcd =nbi.moni_of_custcd 
+		and tcbi2.custcd = tcsi.gut_id AND nbi.sign_date is not null AND tcsi.VID_PRD_ID is not null
+		<isNotNull property="bussType" prepend="and">
+			tcsi.vid_prd_id = #bussType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="noticeType" prepend="and">
+			nbi.notice_type = #noticeType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="noticeTypeSet" prepend="and">
+			nbi.notice_type in
+			<iterate conjunction="," open="(" close=")" property="noticeTypeSet">
+				 #noticeTypeSet[]#
+			</iterate>
+		</isNotNull>
+		<isNotNull property="slaveContcode" prepend="and">
+			nbi.slave_contcode LIKE '%'||#slaveContcode:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="cname" prepend="and">
+			tcbi.cname like '%'||#cname:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="status" prepend="and">
+			nbi.status = #status:VARCHAR#
+		</isNotNull>
+		<isNotNull property="signDate1" prepend="and">
+			<![CDATA[nbi.sign_date >= #signDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="signDate2" prepend="and">
+			<![CDATA[nbi.sign_date <= #signDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate1" prepend="and">
+			<![CDATA[nbi.common_date >= #commonDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate2" prepend="and">
+			<![CDATA[nbi.common_date <= #commonDate2:VARCHAR#]]>
+		</isNotNull>
+<!-- 		delete by gongzhao 20170524 -->
+<!-- 		<isNotNull property="brNo" prepend="and">
+			<isEqual property="brattr" compareValue="1">
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = tcsi.prtcl_no	
+				and tmbi.cooperation_brcode = #brNo:VARCHAR#)
+			</isEqual>
+			<isNotEqual property="brattr" compareValue="1">
+				exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =nbi.brcode and parent_brcode =
+				#brNo:VARCHAR# and affiliation_type ='1')
+			</isNotEqual>
+		</isNotNull> -->
+		)
+	</select>
+	
+		<resultMap id="FourWareGuaranBuyNteVO" class="com.huateng.scf.bas.nte.dao.model.NoticeResultVO">
+		<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+		<result column="NUM" property="num" jdbcType="VARCHAR" />
+		<result column="NOTICE_TYPE" property="noticeType" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="CHAR" />
+		<result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+		<result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+		<result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+		<result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+		<result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+		<result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+		<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+		<result column="OTHER_CUST_NAME" property="otherCustName" jdbcType="VARCHAR" />
+		<result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+		<result column="TLRN" property="tlrn" jdbcType="VARCHAR" />
+		<result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+		<result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+		<result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+		<result column="MONI_OF_NAME" property="moniOfName" jdbcType="VARCHAR" />
+		<result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+		<result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIAML" />
+		<result column="COMMON_AMT" property="commonAmt" jdbcType="DECIAML" />
+		<result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+		<result column="MONI_OF_NAME" property="moniOfName" jdbcType="VARCHAR" />
+		<result column="CORE_NAME" property="coreName" jdbcType="VARCHAR" />
+		<result column="CORE_CUSTCD" property="coreCustcd" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 差额退款通知书 -->
+	<select id="selectFourWareGuaranBuyNte" resultMap="FourWareGuaranBuyNteVO" parameterClass="java.util.Map">
+		SELECT tnbi.*,tcbi.cname as CORE_NAME,tmppi.custcd as CORE_CUSTCD
+		FROM B_NTE_NOTICE_BASE tnbi ,B_CNT_MPROT_PART_INFO tmppi,B_CRM_BASE_INFO tcbi
+		WHERE 
+		tnbi.protocol_no = tmppi.protocol_no and tmppi.role ='04'
+	 	and tnbi.sign_date is not null and tmppi.custcd = tcbi.custcd
+		<isNotNull property="noticeType" prepend="and">
+			tnbi.notice_type =#noticeType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="bussType" prepend="and">
+			tnbi.buss_type = #bussType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="appno" prepend="and">
+			tnbi.appno like '%'||#appno:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="custcd" prepend="and">
+			tnbi.custcd = #custcd:VARCHAR#
+		</isNotNull>
+		<isNotNull property="cname" prepend="and">
+			tnbi.custcd = (select cbi.custcd from B_CRM_BASE_INFO cbi where tnbi.custcd=tcbi.custcd and cbi.cname like '%'||#cname:VARCHAR#||'%') 
+		</isNotNull>
+		<isNotNull property="coreCustcd" prepend="and">
+			tmppi.custcd = #coreCustcd:VARCHAR#
+		</isNotNull>
+		<isNotNull property="coreName" prepend="and">
+			tmppi.cname like '%'||#coreName:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="moneyFrom" prepend="and">
+			<![CDATA[tnbi.common_amt >= #moneyFrom:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="moneyTo" prepend="and">
+			<![CDATA[tnbi.common_amt <= #moneyTo:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="signDate1" prepend="and">
+			<![CDATA[tnbi.sign_date >= #signDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="signDate2" prepend="and">
+			<![CDATA[tnbi.sign_date <= #signDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate1" prepend="and">
+			<![CDATA[tnbi.common_date >= #commonDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate2" prepend="and">
+			<![CDATA[tnbi.common_date <= #commonDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="status" prepend="and">
+			tnbi.status = #status:VARCHAR#
+		</isNotNull>
+		<isNotNull property="brcode" prepend="and">
+			tnbi.brcode = #brcode:VARCHAR#
+		</isNotNull>
+		<isNotNull property="brNo" prepend="and">
+			<isEqual property="brAttr" compareValue="1">
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = tnbi.protocol_no	
+				and tmbi.cooperation_brcode = #brNo:VARCHAR#)
+			</isEqual>
+			<isNotEqual property="brAttr" compareValue="1">
+				exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =tnbi.brcode and parent_brcode =
+				#brNo:VARCHAR# and affiliation_type ='1')
+			</isNotEqual>
+		</isNotNull>
+	</select>
+	
+	<select id="countFourWareGuaranBuyNte" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+	SELECT COUNT(NUM) FROM(
+		SELECT tnbi.*,tcbi.cname as CORE_NAME,tmppi.custcd as CORE_CUSTCD
+		FROM B_NTE_NOTICE_BASE tnbi ,B_CNT_MPROT_PART_INFO tmppi,B_CRM_BASE_INFO tcbi
+		WHERE 
+		tnbi.protocol_no = tmppi.protocol_no and tmppi.role ='04'
+	 	and tnbi.sign_date is not null and tmppi.custcd = tcbi.custcd
+		<isNotNull property="noticeType" prepend="and">
+			tnbi.notice_type =#noticeType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="bussType" prepend="and">
+			tnbi.buss_type = #bussType:VARCHAR#
+		</isNotNull>
+		<isNotNull property="appno" prepend="and">
+			tnbi.appno like '%'||#appno:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="custcd" prepend="and">
+			tnbi.custcd = #custcd:VARCHAR#
+		</isNotNull>
+		<isNotNull property="cname" prepend="and">
+			tnbi.custcd = (select cbi.custcd from B_CRM_BASE_INFO cbi where tnbi.custcd=cbi.custcd and cbi.cname like '%'||#cname:VARCHAR#||'%') 
+		</isNotNull>
+		<isNotNull property="coreCustcd" prepend="and">
+			tmppi.custcd = #coreCustcd:VARCHAR#
+		</isNotNull>
+		<isNotNull property="coreName" prepend="and">
+			tmppi.cname like '%'||#coreName:VARCHAR#||'%'
+		</isNotNull>
+		<isNotNull property="moneyFrom" prepend="and">
+			<![CDATA[tnbi.common_amt >= #moneyFrom:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="moneyTo" prepend="and">
+			<![CDATA[tnbi.common_amt <= #moneyTo:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="signDate1" prepend="and">
+			<![CDATA[tnbi.sign_date >= #signDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="signDate2" prepend="and">
+			<![CDATA[tnbi.sign_date <= #signDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate1" prepend="and">
+			<![CDATA[tnbi.common_date >= #commonDate1:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="commonDate2" prepend="and">
+			<![CDATA[tnbi.common_date <= #commonDate2:VARCHAR#]]>
+		</isNotNull>
+		<isNotNull property="status" prepend="and">
+			tnbi.status = #status:VARCHAR#
+		</isNotNull>
+		<isNotNull property="brcode" prepend="and">
+			tnbi.brcode = #brcode:VARCHAR#
+		</isNotNull>
+		<isNotNull property="brNo" prepend="and">
+			<isEqual property="brAttr" compareValue="1">
+				exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = tnbi.protocol_no	
+				and tmbi.cooperation_brcode = #brNo:VARCHAR#)
+			</isEqual>
+			<isNotEqual property="brAttr" compareValue="1">
+				exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode =tnbi.brcode and parent_brcode =
+				#brNo:VARCHAR# and affiliation_type ='1')
+			</isNotEqual>
+		</isNotNull>
+		)
+	</select>
+</sqlMap>

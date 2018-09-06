@@ -1,0 +1,29 @@
+
+<ht-form name="bCrrBillInfo">
+    <ht-input name="票据编号" reg-exp="BillCodeValidate" ng-model="bCrrBillInfo.billNo" disable="{{disableview}}"></ht-input>
+    <ht-input name="票面金额" reg-exp="common.require" ng-model="bCrrBillInfo.billSum" edit-type="currency" disable="{{disableview}}"></ht-input>
+    <ht-input ht-id="wrtDt" name="票据签发日" reg-exp="common.require" ng-model="bCrrBillInfo.wrtDt" edit-type="date"
+              disable="{{disableview}}" high-date-id="mtrDt"></ht-input>
+    <ht-input ht-id="mtrDt" name="票据到期日" reg-exp="common.require" ng-model="bCrrBillInfo.mtrDt" edit-type="date"
+              disable="{{disableview}}" lower-date-id="wrtDt"></ht-input>
+    <ht-input name="出票人名称" reg-exp="common.require" ng-model="bCrrBillInfo.wrtNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="承兑人名称" reg-exp="common.require" ng-model="bCrrBillInfo.acptNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="出票人帐号" reg-exp="BillCodeValidate" ng-model="bCrrBillInfo.wrtId" disable="{{disableview}}"></ht-input>
+    <ht-input name="收款人名称" reg-exp="common.require" ng-model="bCrrBillInfo.gatrNm" disable="{{disableview}}"></ht-input>
+    <ht-input name="贸易合同号" reg-exp="BillCodeValidate" ng-model="bCrrBillInfo.tradConNo" disable="{{disableview}}"></ht-input>
+    <ht-input name="贸易合同名称" reg-exp="common.require" ng-model="bCrrBillInfo.tradConNm" disable="{{disableview}}"></ht-input>
+    <!--<ht-input name="归档日期" ng-model="bCrrBillInfo.finDt" edit-type="date" disable="{{disableview}}"></ht-input>-->
+    <ht-input name="贸易合同金额" reg-exp="common.require" ng-model="bCrrBillInfo.tradConAmt" disable="{{disableview}}" edit-type="currency"></ht-input>
+    <ht-select name="对应合同收款人是承兑汇票收款人" reg-exp="common.require" ng-model="bCrrBillInfo.flg1"
+               disable="{{disableview}}" dictionary="checked"></ht-select>
+    <ht-select name="上次在我行办理银行承兑汇票增值税发票是否提交" reg-exp="common.require" ng-model="bCrrBillInfo.flg2"
+               disable="{{disableview}}" dictionary="checked"></ht-select>
+    <ht-text-area name="用途" reg-exp="common.require" ng-model="bCrrBillInfo.prps" disable="{{disableview}}"></ht-text-area>
+    <ht-text-area name="其他条件和要求(限500个汉字)" reg-exp="common.require" ng-model="bCrrBillInfo.othRem" disable="{{disableview}}"></ht-text-area>
+    <ht-text-area name="备注" reg-exp="common.require" ng-model="bCrrBillInfo.rem" disable="{{disableview}}"></ht-text-area>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{disableconfirm}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary" hide="{{hideback}}">返回</ht-button>
+</ht-button-group>

@@ -1,0 +1,32 @@
+<ht-legend colorId="lawngreen">监管合同基本信息</ht-legend>
+<ht-form name ="protocolInfo">
+	<ht-input ht-id="protocolCode" name="监管合同号" disable="true" ng-model="protocolInfo.protocolCode"></ht-input>
+    <ht-select name="业务品种" ng-model="protocolInfo.productId" dictionary="vidBusTyp" disable="true"></ht-select>
+    <ht-select ht-id="moniType" name="货押模式" disable="true" dictionary="moniType" ng-model="protocolInfo.moniType"></ht-select>
+    <ht-select ht-id="curcdNm" name="币种" disable="true" dictionary="curcd" ng-model="protocolInfo.curcdNm"></ht-select>
+    <ht-input-extent ht-id="secName" name="出质人名称" reg-exp="common.require" disable="true" extent="secNameList" on-change="secName" ng-model="protocolInfo.secName"></ht-input-extent>
+    <ht-input-extent ht-id="thrName" name="监管公司名称" reg-exp="common.require" disable="true" extent="thrNameList" on-change="thrName" ng-model="protocolInfo.thrName"></ht-input-extent>
+    <ht-input ht-id="startDate" name="合同生效日" reg-exp="common.require" disable="true" edit-type="date" ng-model="protocolInfo.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="合同到期日" reg-exp="common.require" disable="true" edit-type="date" ng-model="protocolInfo.endDate"></ht-input>
+    <ht-select ht-id="sellOffFlag" name="是否签订委托变卖协议" reg-exp="common.require" disable="true" dictionary="sellOffFlag" ng-model="protocolInfo.sellOffFlag"></ht-select>
+    <ht-select ht-id="isPledge" name="是否抵押" disable="true" dictionary="isPledge" ng-model="protocolInfo.isPledge"></ht-select>
+    <ht-select ht-id="state" name="合同状态" disable="true" dictionary="contraceState" ng-model="protocolInfo.state"></ht-select>
+    <ht-input-extent ht-id="cooperationBrcodeNm" name="合作机构" disable="true" on-change="cooperationBrcodeNm" extent="cooperationBrcodeNmList" ng-model="protocolInfo.cooperationBrcodeNm"></ht-input-extent>
+    <ht-input ht-id="tlrName" name="客户经理" reg-exp="common.require" disable="true" ng-model="protocolInfo.tlrName"></ht-input>
+    <ht-input ht-id="brcodeNm" name="经办机构" disable="true" ng-model="protocolInfo.brcodeNm"></ht-input>
+<ht-legend>监管信息</ht-legend>
+    <ht-select ht-id="warehouseType" name="场地权属类型" reg-exp="common.require" disable="true" dictionary="warehouseType" ng-model="protocolInfo.warehouseType"></ht-select>
+    <ht-input ht-id="priceDropRate" name="价格跌幅预警(%)" reg-exp="common.require" disable="true" ng-model="protocolInfo.priceDropRate"></ht-input>
+    <ht-text-area ht-id="logisticsMoniCondition" disable="true" name="物流监管条件" ng-model="protocolInfo.logisticsMoniCondition"></ht-text-area>
+<!--<ht-legend>监管公司详细信息</ht-legend>-->
+    <!--<ht-input ht-id="levels" name="监管公司等级" reg-exp="common.require" disable="true" ng-model="protocolInfo.levels"></ht-input>-->
+    <!--<ht-select ht-id="monitorArea" name="监管区域" reg-exp="common.require" disable="true"  dictionary="monitorArea"ng-model="protocolInfo.monitorArea"></ht-select>-->
+    <!--<ht-checkbox ht-id="monitortype" name="监管模式" reg-exp="common.require" disable="true" dictionary="moniWarehouseType" ng-model="protocolInfo.monitortype"></ht-checkbox>-->
+    <!--<ht-input ht-id="detailMonitorArea" name="具体监管区域(省/市)" reg-exp="common.require" disable="true" ng-model="protocolInfo.detailMonitorArea"></ht-input>-->
+    <!--<ht-input ht-id="limitSum" name="监管限额(元)" reg-exp="common.require" disable="true" ng-model="protocolInfo.limitSum"></ht-input>-->
+    <!--<ht-select ht-id="monitorStatus" name="合作状态" reg-exp="common.require" disable="true" dictionary="monitorStatus" ng-model="protocolInfo.monitorStatus"></ht-select>-->
+    <!--<ht-input ht-id="levelCogniDate" name="等级认定日" reg-exp="common.require" disable="true" edit-type="date" ng-model="protocolInfo.levelCogniDate"></ht-input>-->
+    <!--<ht-input ht-id="levelEndDate" name="等级到期日" reg-exp="common.require" disable="true" edit-type="date" ng-model="protocolInfo.levelEndDate"></ht-input>-->
+<ht-legend>备注</ht-legend>
+    <ht-text-area ht-id="otherDes" name="备注" disable="true" ng-model="protocolInfo.otherDes"></ht-text-area>
+</ht-form>

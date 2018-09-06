@@ -1,0 +1,10 @@
+<ht-form name="mtgClass">
+    <ht-legend>押品信息编辑</ht-legend>
+    <ht-input ht-id="mortgageName" reg-exp="common.require" name="押品类型名称" ng-model="mtgClass.mortgageName"></ht-input>
+    <ht-input ht-id="revaluationInterval" reg-exp="common.require" name="重估市价间隔(天)" ng-model="mtgClass.revaluationInterval"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

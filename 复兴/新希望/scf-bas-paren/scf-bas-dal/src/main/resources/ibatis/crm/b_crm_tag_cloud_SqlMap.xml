@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRM_TAG_CLOUD" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crm.dao.model.BCrmTagCloud" >
+    <result column="CUST_CD" property="custCd" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_TYPE" property="industryType" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_TYPE_NM" property="industryTypeNm" jdbcType="VARCHAR" />
+    <result column="ENT_SCOPE" property="entScope" jdbcType="VARCHAR" />
+    <result column="ENT_SCOPE_NM" property="entScopeNm" jdbcType="VARCHAR" />
+    <result column="ENT_TYPE" property="entType" jdbcType="VARCHAR" />
+    <result column="ENT_TYPE_NM" property="entTypeNm" jdbcType="VARCHAR" />
+    <result column="CREDIT_LEVEL" property="creditLevel" jdbcType="VARCHAR" />
+    <result column="CREDIT_SCR" property="creditScr" jdbcType="DECIMAL" />
+    <result column="SCF_AGE_LIM" property="scfAgeLim" jdbcType="VARCHAR" />
+    <result column="SCF_AGE_LIM_NM" property="scfAgeLimNm" jdbcType="VARCHAR" />
+    <result column="CUST_QUALITY" property="custQuality" jdbcType="VARCHAR" />
+    <result column="CUST_QUALITY_NM" property="custQualityNm" jdbcType="VARCHAR" />
+    <result column="CUST_RELATION" property="custRelation" jdbcType="VARCHAR" />
+    <result column="CUST_RELATION_NM" property="custRelationNm" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    CUST_CD, INDUSTRY_TYPE, INDUSTRY_TYPE_NM, ENT_SCOPE, ENT_SCOPE_NM, ENT_TYPE, ENT_TYPE_NM, 
+    CREDIT_LEVEL, CREDIT_SCR, SCF_AGE_LIM, SCF_AGE_LIM_NM, CUST_QUALITY, CUST_QUALITY_NM, 
+    CUST_RELATION, CUST_RELATION_NM
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmTagCloudExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRM_TAG_CLOUD.Base_Column_List" />
+    from B_CRM_TAG_CLOUD
+    <isParameterPresent >
+      <include refid="B_CRM_TAG_CLOUD.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmTagCloud" >
+    select 
+    <include refid="B_CRM_TAG_CLOUD.Base_Column_List" />
+    from B_CRM_TAG_CLOUD
+    where CUST_CD = #custCd:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmTagCloud" >
+    delete from B_CRM_TAG_CLOUD
+    where CUST_CD = #custCd:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmTagCloudExample" >
+    delete from B_CRM_TAG_CLOUD
+    <include refid="B_CRM_TAG_CLOUD.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmTagCloud" >
+    insert into B_CRM_TAG_CLOUD (CUST_CD, INDUSTRY_TYPE, INDUSTRY_TYPE_NM, ENT_SCOPE, 
+      ENT_SCOPE_NM, ENT_TYPE, ENT_TYPE_NM, CREDIT_LEVEL, 
+      CREDIT_SCR, SCF_AGE_LIM, SCF_AGE_LIM_NM, CUST_QUALITY, 
+      CUST_QUALITY_NM, CUST_RELATION, CUST_RELATION_NM)
+    values (#custCd:VARCHAR#, #industryType:VARCHAR#, #industryTypeNm:VARCHAR#, #entScope:VARCHAR#, 
+      #entScopeNm:VARCHAR#, #entType:VARCHAR#, #entTypeNm:VARCHAR#, #creditLevel:VARCHAR#, 
+      #creditScr:DECIMAL#, #scfAgeLim:VARCHAR#, #scfAgeLimNm:VARCHAR#, #custQuality:VARCHAR#, 
+      #custQualityNm:VARCHAR#, #custRelation:VARCHAR#, #custRelationNm:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmTagCloud" >
+    insert into B_CRM_TAG_CLOUD
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="custCd" >
+        CUST_CD
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        INDUSTRY_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="industryTypeNm" >
+        INDUSTRY_TYPE_NM
+      </isNotNull>
+      <isNotNull prepend="," property="entScope" >
+        ENT_SCOPE
+      </isNotNull>
+      <isNotNull prepend="," property="entScopeNm" >
+        ENT_SCOPE_NM
+      </isNotNull>
+      <isNotNull prepend="," property="entType" >
+        ENT_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="entTypeNm" >
+        ENT_TYPE_NM
+      </isNotNull>
+      <isNotNull prepend="," property="creditLevel" >
+        CREDIT_LEVEL
+      </isNotNull>
+      <isNotNull prepend="," property="creditScr" >
+        CREDIT_SCR
+      </isNotNull>
+      <isNotNull prepend="," property="scfAgeLim" >
+        SCF_AGE_LIM
+      </isNotNull>
+      <isNotNull prepend="," property="scfAgeLimNm" >
+        SCF_AGE_LIM_NM
+      </isNotNull>
+      <isNotNull prepend="," property="custQuality" >
+        CUST_QUALITY
+      </isNotNull>
+      <isNotNull prepend="," property="custQualityNm" >
+        CUST_QUALITY_NM
+      </isNotNull>
+      <isNotNull prepend="," property="custRelation" >
+        CUST_RELATION
+      </isNotNull>
+      <isNotNull prepend="," property="custRelationNm" >
+        CUST_RELATION_NM
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="custCd" >
+        #custCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryType" >
+        #industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryTypeNm" >
+        #industryTypeNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entScope" >
+        #entScope:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entScopeNm" >
+        #entScopeNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entType" >
+        #entType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entTypeNm" >
+        #entTypeNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditLevel" >
+        #creditLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditScr" >
+        #creditScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="scfAgeLim" >
+        #scfAgeLim:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="scfAgeLimNm" >
+        #scfAgeLimNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custQuality" >
+        #custQuality:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custQualityNm" >
+        #custQualityNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custRelation" >
+        #custRelation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custRelationNm" >
+        #custRelationNm:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmTagCloudExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRM_TAG_CLOUD
+    <include refid="B_CRM_TAG_CLOUD.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRM_TAG_CLOUD
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.custCd" >
+        CUST_CD = #record.custCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryType" >
+        INDUSTRY_TYPE = #record.industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryTypeNm" >
+        INDUSTRY_TYPE_NM = #record.industryTypeNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.entScope" >
+        ENT_SCOPE = #record.entScope:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.entScopeNm" >
+        ENT_SCOPE_NM = #record.entScopeNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.entType" >
+        ENT_TYPE = #record.entType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.entTypeNm" >
+        ENT_TYPE_NM = #record.entTypeNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditLevel" >
+        CREDIT_LEVEL = #record.creditLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditScr" >
+        CREDIT_SCR = #record.creditScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.scfAgeLim" >
+        SCF_AGE_LIM = #record.scfAgeLim:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.scfAgeLimNm" >
+        SCF_AGE_LIM_NM = #record.scfAgeLimNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custQuality" >
+        CUST_QUALITY = #record.custQuality:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custQualityNm" >
+        CUST_QUALITY_NM = #record.custQualityNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custRelation" >
+        CUST_RELATION = #record.custRelation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custRelationNm" >
+        CUST_RELATION_NM = #record.custRelationNm:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRM_TAG_CLOUD.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRM_TAG_CLOUD
+    set CUST_CD = #record.custCd:VARCHAR#,
+      INDUSTRY_TYPE = #record.industryType:VARCHAR#,
+      INDUSTRY_TYPE_NM = #record.industryTypeNm:VARCHAR#,
+      ENT_SCOPE = #record.entScope:VARCHAR#,
+      ENT_SCOPE_NM = #record.entScopeNm:VARCHAR#,
+      ENT_TYPE = #record.entType:VARCHAR#,
+      ENT_TYPE_NM = #record.entTypeNm:VARCHAR#,
+      CREDIT_LEVEL = #record.creditLevel:VARCHAR#,
+      CREDIT_SCR = #record.creditScr:DECIMAL#,
+      SCF_AGE_LIM = #record.scfAgeLim:VARCHAR#,
+      SCF_AGE_LIM_NM = #record.scfAgeLimNm:VARCHAR#,
+      CUST_QUALITY = #record.custQuality:VARCHAR#,
+      CUST_QUALITY_NM = #record.custQualityNm:VARCHAR#,
+      CUST_RELATION = #record.custRelation:VARCHAR#,
+      CUST_RELATION_NM = #record.custRelationNm:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRM_TAG_CLOUD.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmTagCloud" >
+    update B_CRM_TAG_CLOUD
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="industryType" >
+        INDUSTRY_TYPE = #industryType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryTypeNm" >
+        INDUSTRY_TYPE_NM = #industryTypeNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entScope" >
+        ENT_SCOPE = #entScope:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entScopeNm" >
+        ENT_SCOPE_NM = #entScopeNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entType" >
+        ENT_TYPE = #entType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entTypeNm" >
+        ENT_TYPE_NM = #entTypeNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditLevel" >
+        CREDIT_LEVEL = #creditLevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditScr" >
+        CREDIT_SCR = #creditScr:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="scfAgeLim" >
+        SCF_AGE_LIM = #scfAgeLim:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="scfAgeLimNm" >
+        SCF_AGE_LIM_NM = #scfAgeLimNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custQuality" >
+        CUST_QUALITY = #custQuality:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custQualityNm" >
+        CUST_QUALITY_NM = #custQualityNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custRelation" >
+        CUST_RELATION = #custRelation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custRelationNm" >
+        CUST_RELATION_NM = #custRelationNm:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where CUST_CD = #custCd:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crm.dao.model.BCrmTagCloud" >
+    update B_CRM_TAG_CLOUD
+    set INDUSTRY_TYPE = #industryType:VARCHAR#,
+      INDUSTRY_TYPE_NM = #industryTypeNm:VARCHAR#,
+      ENT_SCOPE = #entScope:VARCHAR#,
+      ENT_SCOPE_NM = #entScopeNm:VARCHAR#,
+      ENT_TYPE = #entType:VARCHAR#,
+      ENT_TYPE_NM = #entTypeNm:VARCHAR#,
+      CREDIT_LEVEL = #creditLevel:VARCHAR#,
+      CREDIT_SCR = #creditScr:DECIMAL#,
+      SCF_AGE_LIM = #scfAgeLim:VARCHAR#,
+      SCF_AGE_LIM_NM = #scfAgeLimNm:VARCHAR#,
+      CUST_QUALITY = #custQuality:VARCHAR#,
+      CUST_QUALITY_NM = #custQualityNm:VARCHAR#,
+      CUST_RELATION = #custRelation:VARCHAR#,
+      CUST_RELATION_NM = #custRelationNm:VARCHAR#
+    where CUST_CD = #custCd:VARCHAR#
+  </update>
+</sqlMap>

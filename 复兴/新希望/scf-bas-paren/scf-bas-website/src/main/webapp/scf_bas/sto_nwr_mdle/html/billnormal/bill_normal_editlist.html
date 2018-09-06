@@ -1,0 +1,38 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="row">
+    <ht-input ht-id="cname" name="出质人名称" ng-model="row.cname" disable="true"></ht-input>
+    <ht-input ht-id="slaveContno" name="抵/质押合同号" ng-model="row.slaveContno" disable="true"></ht-input>
+    <ht-input ht-id="brcodeName" name="质押人/质权人" ng-model="row.brcodeName" disable="true"></ht-input>
+    <ht-input ht-id="registrationNum" name="批次号" reg-exp="common.require" ng-model="row.registrationNum"></ht-input>
+</ht-form>
+
+<ht-legend>普通仓单列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="billType" zh-name="仓单类型" dictionary="billType"></ht-column>
+    <ht-column eg-name="address" zh-name="仓库地址"></ht-column>
+    <ht-column eg-name="postno" zh-name="邮编"></ht-column>
+    <ht-column eg-name="storageAddress" zh-name="存储地址"></ht-column>
+    <ht-column eg-name="signDate" zh-name="签约日期" type="date"></ht-column>
+    <ht-column eg-name="phone" zh-name="经办人电话"></ht-column>
+    <ht-column eg-name="fax" zh-name="经办人传真"></ht-column>
+    <ht-column eg-name="startDate" zh-name="开具日期" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="截止日期" type="date"></ht-column>
+    <ht-column eg-name="standLose" zh-name="标准损耗"></ht-column>
+    <ht-column eg-name="storageCostEndDate" zh-name="存储费用截止日"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save"  class="btn-primary" desc-name="保存"></ht-button>
+    <ht-button ht-id="back"  class="btn-primary" desc-name="返回"></ht-button>
+</ht-button-group>
+
+
+
+

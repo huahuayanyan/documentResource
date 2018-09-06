@@ -1,0 +1,30 @@
+<ht-legend colorId="lawngreen">应收账款减值明细信息</ht-legend>
+<ht-form name ="otherform">
+    <ht-input ht-id="billsNo" name="凭证编号" ng-model="otherform.billsNo" disable="true"></ht-input>
+    <ht-select ht-id="billsType" name="凭证类型"dictionary="billsType" ng-model="otherform.billsType"  disable="true"></ht-select>
+    <ht-input ht-id="insertDate" name="应收账款登记日期" edit-type="date" ng-model="otherform.insertDate" disable="true"></ht-input>
+    <ht-input ht-id="purchaseDate" name="应收账款转让日期" edit-type="date" ng-model="otherform.purchaseDate" disable="true"></ht-input>
+    <ht-input ht-id="billsDate" name="应收账款日期" edit-type="date" ng-model="otherform.billsDate" disable="true"></ht-input>
+    <ht-input ht-id="aging" name="账期" ng-model="otherform.aging" disable="true"></ht-input>
+    <ht-input ht-id="debtEnd" name="到期日" edit-type="date" ng-model="otherform.debtEnd" disable="true"></ht-input>
+    <ht-select ht-id="curcd" name="币种" dictionary="curcd"  ng-model="otherform.curcd" disable="true"></ht-select>
+    <ht-input ht-id="billsAmount" name="有效金额" edit-type="currency"  ng-model="otherform.billsAmount" disable="true"></ht-input>
+    <ht-input ht-id="remainingAmount" name="应收账款余额" edit-type="currency" ng-model="otherform.remainingAmount" disable="true"></ht-input>
+    <ht-input ht-id="loanPercent" name="融资比例" ng-model="otherform.loanPercent" disable="true"></ht-input>
+    <ht-input ht-id="remainingUseableAmount" name="可用融资余额" edit-type="currency"  ng-model="otherform.remainingUseableAmount" disable="true"></ht-input>
+    <ht-input ht-id="rebateAmount" name="已减值金额" edit-type="currency" ng-model="otherform.rebateAmount" disable="true"></ht-input>
+    <ht-input ht-id="rebateAmounts" name="减值金额" edit-type="currency"  ng-model="otherform.rebateAmounts"  reg-exp="common.require" onkeyup="this.value=this.value.replace(/[^\d]/g ,'')"></ht-input>
+    <ht-input ht-id="rebatebalance" name="减值后余额" edit-type="currency" ng-model="otherform.rebatebalance" disable="true"></ht-input>
+    <ht-select ht-id="status" name="应收账款状态" dictionary="debtBussStatus" ng-model="otherform.status"  disable="true"></ht-select>
+
+</ht-form>
+
+<ht-button-group class="center">
+     <ht-button ht-id="save"  class="btn-primary" >确认</ht-button>
+    <ht-button ht-id="back"  class="btn-primary" >返回</ht-button>
+</ht-button-group>
+
+
+
+
+

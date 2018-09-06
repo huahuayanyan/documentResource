@@ -1,0 +1,21 @@
+/** --------------
+ * 进度条Progressbar css
+ *  --------------
+ */
+.ui--progressbar {
+	opacity:1;
+	position:absolute;
+	background-color:initial;
+	background-image:url(../images/block.png);
+	z-index:50000
+}
+.ui-progressbar-subwrap {
+	position:absolute;
+}
+.ui-progressbar-content {
+	height:22px;
+	width:100%;
+	text-align:center;
+	position:absolute;
+	background-image:url(../images/pbar-ani.gif);
+}

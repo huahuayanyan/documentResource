@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_A_BCP_APPLI_IMPREST_BUSS" >
+<!-- 根据申请编号查询预付款流水表 -->
+  <select id="queryAppliImprestBussByAppno" resultMap="A_BCP_APPLI_IMPREST_BUSS.BaseResultMap">
+    select 
+    <include refid="A_BCP_APPLI_IMPREST_BUSS.Base_Column_List" />
+    from A_BCP_APPLI_IMPREST_BUSS
+    where appno = #appno:VARCHAR#
+  </select>
+</sqlMap>

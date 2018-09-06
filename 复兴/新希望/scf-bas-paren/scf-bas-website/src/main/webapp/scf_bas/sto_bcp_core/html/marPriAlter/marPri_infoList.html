@@ -1,0 +1,34 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+        <ht-input-extent ht-id="mortgageLevelOneName" name="押品一级" ng-model="conditionForm.mortgageLevelOneName"
+                         extent="levelOneContent" on-change="levelOneDoExtent"></ht-input-extent>
+        <ht-input-extent hi-id="mortgageLevelTwoName" name="押品二级" extent="levelTwoContent" on-change="levelTwoDoExtend"
+                         ng-model="conditionForm.mortgageLevelTwoName"  disable="{{disable}}"></ht-input-extent>
+        <ht-input-extent ht-id="mortgageThreeName" name="押品三级"  extent="levelThreeContent" on-change="levelThreeDoExtend"
+                         ng-model="conditionForm.mortgageThreeName" ></ht-input-extent>
+        <ht-input ht-id="productName_Q" name="产品名称" ng-model="conditionForm.productName_Q"></ht-input>
+        <ht-input ht-id="productId_Q" name="盯市编号" ng-model="conditionForm.productId_Q"></ht-input>
+        <ht-button-group>
+            <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+            <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+        </ht-button-group>
+</ht-form>
+
+<ht-legend>查询市场价格列表</ht-legend>
+<ht-button-group>
+    <ht-button ht-id="add" class="btn-primary" desc-name="新增"></ht-button>
+    <ht-button ht-id="update" class="btn-primary" desc-name="修改"></ht-button>
+    <ht-button ht-id="history" class="btn-primary" desc-name="历史价格查看"></ht-button>
+</ht-button-group>
+<ht-table ht-id="" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级" dictionary=""></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级" dictionary=""></ht-column>
+    <ht-column eg-name="mortgageThreeName" zh-name="押品三级" dictionary=""></ht-column>
+    <ht-column eg-name="productName" zh-name="产品名称"></ht-column>
+    <ht-column eg-name="mortgageUnits" zh-name="计量单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column eg-name="price" zh-name="市场价格" type="currency"></ht-column>
+    <ht-column eg-name="priceDate" zh-name="价格日期" type="date"></ht-column>
+    <ht-column eg-name="productId" zh-name="盯市编号" ></ht-column>
+    <ht-column eg-name="marketPriceSrc" zh-name="市价来源" dictionary="marketPriceSrc"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

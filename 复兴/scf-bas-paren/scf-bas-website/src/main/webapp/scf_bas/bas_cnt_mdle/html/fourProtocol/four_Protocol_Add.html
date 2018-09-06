@@ -1,0 +1,74 @@
+<ht-form name="threeProtocolForm">
+    <ht-legend>基本信息</ht-legend>
+    <ht-panel>
+    <ht-input ht-id="protocolNo" name="先票后货协议号" ng-model="threeProtocolForm.protocolNo" disable="true"></ht-input>
+        <!--<ht-select ht-id="productId" name="业务品种" disable="true" reg-exp="common.require" ng-model="threeProtocolForm.productId" dictionary="productId"
+            datasource="productSource" datatrsoption="productName" dataoption="productId"></ht-select>-->
+    <ht-select ht-id="productId" name="业务品种" datasource="selectSource" datatrsoption="value" dataoption="key"
+               disable="true" ng-model="threeProtocolForm.productId"></ht-select>
+    <ht-input-extent ht-id="sellerNm" name="买方名称" reg-exp="common.require"  extent="sellerNmContent" disable="{{update}}"
+         on-change="dooextent" ng-model="threeProtocolForm.sellerNm">
+    </ht-input-extent>
+    <ht-input ht-id="goodsNm" name="押品名称" ng-model="threeProtocolForm.goodsNm" disable="{{view}}"></ht-input>
+    <ht-checkbox ht-id="loanWay" name="出账方式" disable="{{view}}"ng-model="threeProtocolForm.loanWay" dictionary="loanWay">
+    </ht-checkbox>
+    <ht-input ht-id="startDate" edit-type="date"
+              name="协议生效日"
+              disable="{{update}}"
+              high-date-id="endDate"
+              reg-exp="common.require"
+              ng-model="threeProtocolForm.startDate"></ht-input>
+    <ht-input ht-id="endDate" edit-type="date"
+              name="协议到期日"
+              disable="{{update}}"
+              lower-date-id="startDate"
+              reg-exp="common.require"
+              ng-model="threeProtocolForm.endDate"></ht-input>
+
+    <ht-select ht-id="isInsurance" name="是否购买保险" disable="{{update}}" reg-exp="common.require" ng-model="threeProtocolForm.isInsurance" dictionary="isInsurance"></ht-select>
+    <ht-select ht-id="sellOffFlag" name="是否签订委托变卖协议" disable="{{update}}" reg-exp="common.require" ng-model="threeProtocolForm.sellOffFlag" dictionary="checked"></ht-select>
+    <ht-input ht-id="consignmentDays" name="发货期限（天）" reg-exp="common.number"  ng-model="threeProtocolForm.consignmentDays" disable="{{view}}"></ht-input>
+    <ht-input ht-id="firstBailRatio" name="最低保证金比例（%）" reg-exp="common.require"  ng-model="threeProtocolForm.firstBailRatio" disable="{{view}}"></ht-input>
+        <ht-input-extent ht-id="cooperationBrcodeNm" name="合作机构"  extent="cooperationBrcodeNmContent" disable="{{view}}"
+         on-change="cooperationBrcodeNmExtent" ng-model="threeProtocolForm.cooperationBrcodeNm">
+    </ht-input-extent>
+    <ht-select ht-id="deliveryMode" name="提货模式" disable="{{view}}" reg-exp="common.require" ng-model="threeProtocolForm.deliveryMode" dictionary="deliveryMode"></ht-select>
+
+    <!--<ht-input ht-id="tlrName" name="客户经理" ng-model="threeProtocolForm.tlrName" disable="true"></ht-input>
+    <ht-select ht-id="inputorgname" name="经办机构" reg-exp="common.require"
+               datasource="selectbrcode" datatrsoption="brName" dataoption="brNo"
+               ng-model="threeProtocolForm.brcode" disable="true" ></ht-select>-->
+    <ht-input ht-id="tlrName" name="客户经理"  disable="true" ng-model="threeProtocolForm.tlrName"></ht-input>
+    <ht-input ht-id="brName" name="经办机构"  disable="true" ng-model="threeProtocolForm.brName"></ht-input>
+
+    </ht-panel>
+    <ht-legend>参与方信息</ht-legend>
+    <ht-panel>
+    <ht-input-extent ht-id="coreNm" name="卖方名称" reg-exp="common.require"  extent="coreNmContent" disable="{{update}}"
+                     on-change="coreNmExtent" ng-model="threeProtocolForm.coreNm">
+    </ht-input-extent>
+    <ht-input ht-id="otherCustName" name="其他参与方" disable="{{view}}" ng-model="threeProtocolForm.otherCustName"></ht-input>
+    <ht-input-extent ht-id="fouName" name="承担方名称" reg-exp="common.require"  extent="fouNameContent" disable="{{view}}"
+                     on-change="fouNameExtent" ng-model="threeProtocolForm.fouName">
+    </ht-input-extent>
+    <ht-checkbox ht-id="dutyAssumeType" name="卖方责任承担方式" disable="{{view}}" ng-model="threeProtocolForm.dutyAssumeType" dictionary="dutyAssumeType">
+    </ht-checkbox>
+        </ht-panel>
+    <ht-legend>发货信息</ht-legend>
+    <ht-panel>
+    <ht-input ht-id="condignee" name="收货人" disable="{{update}}" reg-exp="common.require" ng-model="threeProtocolForm.condignee"></ht-input>
+    <ht-input ht-id="trasportationMode" name="货物运输方式" disable="{{update}}" reg-exp="common.require" ng-model="threeProtocolForm.trasportationMode"></ht-input>
+    <ht-input ht-id="deliveryPoints" name="货物交付地点" disable="{{update}}" reg-exp="common.require" ng-model="threeProtocolForm.deliveryPoints"></ht-input>
+    <ht-input ht-id="destination" name="目的港/站/地" disable="{{update}}" reg-exp="common.require" ng-model="threeProtocolForm.destination"></ht-input>
+
+    <ht-input-extent ht-id="moniNm" name="监管公司名称" reg-exp="common.require"  extent="moniNmContent" disable="{{view}}"
+                     on-change="moniNmExtent" ng-model="threeProtocolForm.moniNm">
+    </ht-input-extent>
+    </ht-panel>
+    <ht-legend>备注</ht-legend>
+    <ht-text-area ht-id="otherDes" name="备注" disable="{{view}}" height="70" ng-model="threeProtocolForm.otherDes">
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="save" hide="{{view}}" class="btn-primary" >保存</ht-button>
+    <ht-button ht-id="back" hide={{back}}  class="btn-primary" >返回</ht-button>
+</ht-button-group>

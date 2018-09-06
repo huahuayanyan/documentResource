@@ -1,0 +1,20 @@
+
+<ht-form name="billnormal">
+    <ht-legend>仓单信息</ht-legend>
+    <ht-input ht-id="billcode" name="仓单编号" ng-model="billnormal.billcode" reg-exp="common.require" disable="{{disableview}}"></ht-input>
+    <ht-input ht-id="slaveContno" name="抵/质押合同号" ng-model="billnormal.slaveContno" disable="{{disable}}"></ht-input>
+    <ht-input ht-id="cname" name="出质人名称" ng-model="billnormal.cname" disable="{{disable}}"></ht-input>
+    <ht-input ht-id="keeperName" name="保管人名称" ng-model="billnormal.keeperName" reg-exp="common.require" disable="{{disableview}}"></ht-input>
+    <ht-select ht-id="billType" name="仓单类型" ng-model="billnormal.billType" reg-exp="common.require" dictionary="billType" disable="{{disableview}}"></ht-select>
+    <ht-input ht-id="startDate" name="开具日期" ng-model="billnormal.startDate" reg-exp="common.require"
+              edit-type="date" high-date-id="endDate" disable="{{disableview}}"></ht-input>
+    <ht-input ht-id="endDate" name="截止日期" ng-model="billnormal.endDate" reg-exp="common.require"
+              edit-type="date" lower-date-id="startDate" disable="{{disableview}}"></ht-input>
+    <ht-input ht-id="address" name="仓库地址" ng-model="billnormal.address" reg-exp="common.require" disable="{{disableview}}"></ht-input>
+    <ht-input ht-id="insuranceNo" name="保险单号" ng-model="billnormal.insuranceNo" reg-exp="common.require" disable="{{disableview}}"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{hide}}" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <ht-button ht-id="close" class="btn-primary" hide="{{hideclose}}">关闭</ht-button>
+</ht-button-group>

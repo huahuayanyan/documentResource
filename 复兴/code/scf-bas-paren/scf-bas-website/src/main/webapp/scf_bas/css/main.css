@@ -1,0 +1,40 @@
+/*main Ö÷Ò³css*/
+
+/*.element.style {
+    height: 100%;
+    padding: 3px;
+}*/
+
+.innerTable {
+    overflow-x: auto;
+    height: 35px;
+    background-color: #fff;
+    border: 1px #dce2e9 solid;
+    -webkit-box-shadow: 3px 3px 3px #ccc;
+    -moz-box-shadow: 3px 3px 3px #ccc;
+    box-shadow: 3px 3px 3px #ccc;
+    min-height: 200px;
+}
+.myTable-footer{
+    background-color: #fff;
+    border:1px #dce2e9 solid;
+    height: 45px;
+    padding-top: 5px;
+    /*border-radius:0 0 5px 5px;*/
+    -webkit-box-shadow: 3px 3px 3px #ccc;
+    -moz-box-shadow: 3px 3px 3px #ccc;
+    box-shadow: 3px 3px 3px #ccc;
+}
+
+.outTable {
+    width: 100%;
+    font-size: 11px;
+}
+body {
+    padding-bottom: 0;
+    background-color: #ffffff;
+    min-height: 100%;
+    font-size: 11px;
+    color: #393939;
+    line-height: 1.5;
+}

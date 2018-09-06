@@ -1,0 +1,40 @@
+<!--<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="appId" name="合同流水号" ng-model="conditionForm.appId"></ht-input>
+    <ht-input-extent ht-id="custNm" name="客户名称" extent="custcontent" on-change="dooextend" readonly="true"
+                     ng-model="conditionForm.custNm"></ht-input-extent>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>-->
+
+<ht-form>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="conview" class="btn-primary">查看合同详情</ht-button>
+        <ht-button ht-id="prdview" class="btn-primary">查看业务详情</ht-button>
+        <ht-button ht-id="gntyview" class="btn-primary">查看担保详情</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="appId" zh-name="合同流水号"></ht-column>
+    <ht-column eg-name="custNm" zh-name="客户名称"></ht-column>
+    <ht-column eg-name="prdNm" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="lnAmt" zh-name="金额" type="currency"></ht-column>
+    <ht-column eg-name="lnSum" zh-name="可用余额" type="currency"></ht-column>
+    <ht-column eg-name="appStat" zh-name="生效状态" dictionary="appTyp"></ht-column>
+    <ht-column eg-name="tlrNm" zh-name="经办人"></ht-column>
+    <ht-column eg-name="brNm" zh-name="经办机构"></ht-column>
+    <ht-column eg-name="inpDt" zh-name="经办日期"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+    <ht-button-group align="center">
+        <ht-button ht-id="choose" class="btn-primary" disable="{{flowsubmitdisable}}">确定</ht-button>
+        <ht-button ht-id="closeThisDialog" class="btn-primary">关闭</ht-button>
+    </ht-button-group>
+</ht-form>
+
+
+

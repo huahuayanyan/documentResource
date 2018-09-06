@@ -1,0 +1,106 @@
+.myTable{
+    width:70%;
+    margin: 0 auto;
+}
+.myTable-title {
+    height: 48px;
+    background-color: #18a754;
+    padding-left: 14px;
+}
+.myTable-title h2{
+    line-height: 48px;
+    color: #fff;
+    font-size: 18px;
+}
+.myTable-container{
+    padding-top: 20px;
+}
+.myTable-header{
+    padding-bottom: 8px;
+}
+.button-active{
+    background-color: #22c064;
+    color:#fff;
+}
+.myTable-header-button button{
+    width:60px;
+    height:30px;
+    line-height: 30px;
+    border: none;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    color:#333;
+    float:left;
+    margin-right: 4px;
+    outline: none;
+}
+.myTable-header-button button:focus{
+    background-color: #22c064;
+    color:#fff;
+}
+.myTable-header-search{
+    float:right;
+    position: relative;
+}
+.search{
+    width:100%;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    border: 2px solid #ddd;
+    border-radius:3px;
+    outline: none;
+}
+.search:focus{
+    border: 2px solid #22c064;
+}
+.myTable-header-search:after{
+    content: url("../images/search_01.png");
+    display: block;
+    position: absolute;
+    top:8px;
+    right:8px;
+}
+.table{
+    margin-bottom: 12px;
+}
+.table tr:nth-of-type(even){
+    background-color: #f9f9f9;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+    line-height: 2.72rem;
+    text-align: center;
+}
+.myTable-footer-left p{
+    float:left;
+    margin-left: 5px;
+}
+.myTable-footer-right button {
+    width: 30px;
+    line-height: 30px;
+    float: left;
+    border: 1px solid #ddd;
+    margin-right: 2px;
+    font-size: 16px;
+    text-align: center;
+    color: #333;
+    background-color: #fff;
+    outline: none;
+}
+.myTable-footer-right button:first-child:focus,.myTable-footer-right button:last-child:focus{
+    border: 1px solid #18a754;
+}
+.myTable-footer-right button:nth-child(2):focus,.myTable-footer-right button:nth-child(3):focus,.myTable-footer-right button:nth-child(4):focus{
+    background-color: #22c064;
+    color: #fff;
+    border: 1px solid #18a754;
+}
+@media (max-width : 1024px){
+    .myTable-header-search{
+        width:100%;
+    }
+    .myTable-header-button button{
+        width:31%;
+        margin: 1% 1%;
+    }
+}

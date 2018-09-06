@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_PBC_MTG_CHK_STOCK_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.ext.BPbcMtgChkStockInfoVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="CHECK_STOCK_DATE" property="checkStockDate" jdbcType="CHAR" />
+    <result column="CHECK_STOCK_WAY" property="checkStockWay" jdbcType="CHAR" />
+    <result column="CHECK_STOCK_RESULTS" property="checkStockResults" jdbcType="CHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="CHECK_STOCK_CONFIRM_DATE" property="checkStockConfirmDate" jdbcType="CHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="vidPrdNm" property="vidPrdNm" jdbcType="VARCHAR" />
+    <result column="CURRENT_CREDIT_AMT" property="currentCreditAmt" jdbcType="DECIMAL" />
+    <result column="MONI_PRINCIPAL" property="moniPrincipal" jdbcType="VARCHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <resultMap id="BaseResultMap2" class="com.huateng.scf.bas.crr.dao.model.BCrrGntyConVO" >
+    <result column="CON_ID" property="conId" jdbcType="VARCHAR" />
+    <result column="GUT_CURCD" property="gutCurcd" jdbcType="VARCHAR" />
+    <result column="GUT_NM" property="gutNm" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="GUT_VAL" property="gutVal" jdbcType="DECIMAL" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="PRTCL_BR_NM" property="prtclBrNm" jdbcType="VARCHAR" />
+    <result column="STRT_DT" property="strtDt" jdbcType="VARCHAR" />
+    <result column="END_DT" property="endDt" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+  </resultMap>
+   <!-- 对账信息查询-->
+  <select id="selectBPbcMtgChkStockInfo" resultMap="BaseResultMap" parameterClass ="java.util.HashMap">
+	select  
+	bpmcsi.ID,
+	bpmcsi.SLAVE_CONTNO,
+	bpmcsi.CUSTCD,
+	bpmcsi.MONI_OF_CUSTCD,
+	bpmcsi.OTHER_PROTOCOL_NO,
+	bcmbi.PRODUCT_ID,
+	bpmcsi.CURRENT_CREDIT_AMT,
+	bpmcsi.CHECK_STOCK_DATE,
+	bpmcsi.CHECK_STOCK_CONFIRM_DATE,
+	bpmcsi.CHECK_STOCK_WAY,
+	bpmcsi.CHECK_STOCK_RESULTS,
+	bpmcsi.MONI_PRINCIPAL,
+	bpmcsi.REASON,
+	bpmcsi.status,
+	bcgc.TLR_NM,
+	bcgc.BR_NM,
+	prd.PRODUCT_NAME AS vidPrdNm
+	from B_PBC_MTG_CHK_STOCK_INFO bpmcsi, B_CRR_GNTY_CON bcgc, B_CNT_MPROT_BASE_INFO bcmbi,B_PRD_INFO prd where 1=1
+	 and  bcgc.CON_ID = bpmcsi.SLAVE_CONTNO and bcgc.PRTCL_NO =bcmbi.PROTOCOL_NO
+	 and prd.PRODUCT_ID = bcmbi.PRODUCT_ID
+			<isNotNull prepend="and" property="checkStockType" >
+				bpmcsi.check_stock_type=#checkStockType:VARCHAR#
+		 	</isNotNull>
+			<isNotEmpty prepend="and" property="cname" >
+			   bpmcsi.custcd is not null and bpmcsi.custcd in( select bcbi.custcd from B_CRM_BASE_INFO bcbi where  bcbi.CNAME like '%$cname$%' ) 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="prtclBrNm" >
+				bcgc.PRTCL_BR_NM like '%$prtclBrNm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="productId" >
+				bcmbi.PRODUCT_ID=#productId:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="conId" >
+				bcgc.CON_ID like  '%$conId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="checkStockResults" >
+				bpmcsi.CHECK_STOCK_RESULTS = #checkStockResults:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty property="checkStockDate1" prepend="and" >
+				<![CDATA[bpmcsi.CHECK_STOCK_DATE>= #checkStockDate1:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="checkStockDate2" prepend="and">
+				<![CDATA[bpmcsi.CHECK_STOCK_DATE<= #checkStockDate2:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="status"  prepend="and">
+				bpmcsi.STATUS = #status:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty property="recordBrcode" prepend="and">
+				bpmcsi.RECORD_BRCODE=#recordBrcode:VARCHAR#
+			</isNotEmpty>
+  </select>
+  
+  <!-- 对账信息查询统计-->
+  <select id="countBPbcMtgChkStockInfo" resultClass="java.lang.Integer" parameterClass ="java.util.HashMap">
+	select count(bpmcsi.MAST_CONTNO) from B_PBC_MTG_CHK_STOCK_INFO bpmcsi, B_CRR_GNTY_CON bcgc, B_CNT_MPROT_BASE_INFO bcmbi where 1=1
+	 and  bcgc.CON_ID = bpmcsi.SLAVE_CONTNO and bcgc.PRTCL_NO =bcmbi.PROTOCOL_NO
+			<isNotNull prepend="and" property="checkStockType" >
+				bpmcsi.check_stock_type=#checkStockType:VARCHAR#
+		 	</isNotNull>
+			<isNotEmpty prepend="and" property="cname" >
+			   bpmcsi.custcd is not null and bpmcsi.custcd in( select bcbi.custcd from B_CRM_BASE_INFO bcbi where  bcbi.CNAME like '%$cname$%' ) 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="prtclBrNm" >
+				bcmbi.PRTCL_BR_NM like '%$prtclBrNm$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="productId" >
+				bcmbi.PRODUCT_ID=#productId:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="conId" >
+				bcgc.CON_ID like  '%$conId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="checkStockResults" >
+				bpmcsi.CHECK_STOCK_RESULTS = #checkStockResults:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty property="checkStockDate1" prepend="and" >
+				<![CDATA[bpmcsi.CHECK_STOCK_DATE>= #checkStockDate1:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="checkStockDate2" prepend="and">
+				<![CDATA[bpmcsi.CHECK_STOCK_DATE<= #checkStockDate2:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty property="status"  prepend="and">
+				bpmcsi.STATUS = #status:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty property="recordBrcode" prepend="and">
+				bpmcsi.RECORD_BRCODE=#recordBrcode:VARCHAR#
+			</isNotEmpty>
+  </select>
+  
+     <!-- 抵质押合同列表查询-->
+  <select id="getContSlaveInfoByProduct" resultMap="BaseResultMap2" parameterClass ="java.util.HashMap">
+		SELECT
+		bcgc.con_id,
+		bcgc.gut_nm,
+		bcgc.PRTCL_BR_NM,
+		bcgc.STRT_DT,
+		bcgc.END_DT,
+		bcgc.GUT_CURCD,
+		bcgc.GUT_VAL,
+		bcgc.BR_NM,
+		bcgc.TLR_NM,
+		bcmbi.PROTOCOL_NO
+	FROM
+	    B_CRR_GNTY_CON bcgc ,
+	    B_CNT_MPROT_BASE_INFO bcmbi
+	WHERE 1=1
+	     and bcgc.prtcl_no=bcmbi.protocol_no
+			<isNotNull prepend="and" property="conStat" >
+				bcgc.con_stat=#conStat:VARCHAR#
+		 	</isNotNull>
+			<isNotEmpty prepend="and" property="state" >
+				bcmbi.state=#state:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="productId" >
+				bcmbi.product_id=#productId:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="conId" >
+			  bcgc.con_id like '%$conId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gutName" >
+				bcgc.gut_name like '%$gutName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="prtclBrNm" >
+				bcgc.PRTCL_BR_NM like '%$prtclBrNm$%'
+			</isNotEmpty>
+			ORDER BY bcgc.LST_UPD_DT DESC ,bcgc.PRTCL_NO DESC
+  </select>
+     <!-- 抵质押合同列表查询个数-->
+  <select id="countContSlaveInfoByProduct" resultClass="java.lang.Integer" parameterClass ="java.util.HashMap">
+		SELECT
+		count(bcgc.con_id)
+	FROM
+	    B_CRR_GNTY_CON bcgc ,
+	    B_CNT_MPROT_BASE_INFO bcmbi
+	WHERE 1=1
+	     and bcgc.prtcl_no=bcmbi.protocol_no
+			<isNotNull prepend="and" property="conStat" >
+				bcgc.con_stat=#conStat:VARCHAR#
+		 	</isNotNull>
+			<isNotEmpty prepend="and" property="state" >
+				bcmbi.state=#state:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="productId" >
+				bcmbi.product_id=#productId:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="conId" >
+			  bcgc.con_id like '%$conId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="gutName" >
+				bcgc.gut_name like '%$gutName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="prtclBrNm" >
+				bcgc.PRTCL_BR_NM like '%$prtclBrNm$%'
+			</isNotEmpty>
+  </select>
+  
+  	<!-- 查询库存押品信息 -->
+	<select id="getTblMortgageBaseInfoPageByParam" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		SELECT
+		    mbi.MORTGAGE_NO, mbi.MORTGAGE_NAME, mc.MORTGAGE_NAME mortgageLevelOneName,  mc2.MORTGAGE_NAME mortgageLevelTwoName,
+		    mbi.MORTGAGE_LEVEL_ONE,mbi.MORTGAGE_LEVEL_TWO,mbi.MORTGAGE_LEVEL_THREE,mbi.PRODUCT_AREA,mbi.VENDER,
+		    mbi.MORTGAGE_MODEL,mbi.CURCD,mbi.MANUFACTURE_DATE,mbi.WAREHOUSE,mbi.WAREHOUSE_ADDRESS, mbi.MORTGAGE_UNITS, mbi.QUANTITY,mbi.CONFIRM_PRICE,mbi.TOT_PRICE
+		FROM
+		    B_PBC_MTG_BASE_INFO mbi
+		    left join B_PBC_MTG_CLASS mc on mbi.MORTGAGE_LEVEL_ONE = mc.MORTGAGE_CODE
+		    left join B_PBC_MTG_CLASS mc2 on mbi.MORTGAGE_LEVEL_TWO = mc2.MORTGAGE_CODE
+		where mbi.quantity > 0
+		<isNotEmpty prepend="AND" property="conId">
+			mbi.SLAVE_CONTNO = #conId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="protocolNo">
+			mbi.MONITOR_PROTOCOL_NO = #protocolNo#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="supplyChainPdId">
+			mbi.SUPPLY_CHAIN_PD_ID = #supplyChainPdId#
+		</isNotEmpty>
+	</select>
+	
+	<!-- 统计押品总价 -->
+	<select id="getSumTblMortgageBaseInfoByParam" resultClass="java.math.BigDecimal" parameterClass="java.util.HashMap">
+		SELECT sum(mbi.TOT_PRICE) SUMTOTPRICE
+		FROM
+		    B_PBC_MTG_BASE_INFO mbi
+		    left join B_PBC_MTG_CLASS mc on mbi.MORTGAGE_LEVEL_ONE = mc.MORTGAGE_CODE
+		    left join B_PBC_MTG_CLASS mc2 on mbi.MORTGAGE_LEVEL_TWO = mc2.MORTGAGE_CODE
+		where mbi.quantity > 0
+		<isNotEmpty prepend="AND" property="conId">
+			mbi.SLAVE_CONTNO = #conId#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="protocolNo">
+			mbi.MONITOR_PROTOCOL_NO = #protocolNo#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="supplyChainPdId">
+			mbi.SUPPLY_CHAIN_PD_ID = #supplyChainPdId#
+		</isNotEmpty>
+	</select>
+ 
+</sqlMap>

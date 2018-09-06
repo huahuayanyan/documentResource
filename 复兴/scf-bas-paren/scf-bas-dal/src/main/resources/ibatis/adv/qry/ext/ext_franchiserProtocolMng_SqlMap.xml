@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_FRANCHISERPROTOCOLMNG">
+	<!-- 台帐综合查询 -->
+	<select id="queryFranchiserProtocol" resultClass="java.util.HashMap"
+		parameterClass="java.util.HashMap">
+		SELECT
+		BCMBI.PROTOCOL_NO protocolNo,
+		A.CNAME buyerNM,
+		B.CNAME coreNm,
+		BCMBI.START_DATE startDate,
+		BCMBI.END_DATE endDate,
+		BCMBI.STATE state,
+		BCMBI.TLRNO,
+		BSAB.BRNAME
+		FROM
+		B_CNT_MPROT_BASE_INFO BCMBI,
+		B_CNT_MPROT_DEAL_INFO BCMDI,
+		B_CNT_MPROT_PART_INFO A,
+		B_CNT_MPROT_PART_INFO B,
+		B_CNT_MPROT_PART_INFO C,
+		B_CNT_MPROT_PART_INFO D,
+		B_SYS_ACCT_BCTL BSAB
+		WHERE 1=1
+		AND BCMBI.PROTOCOL_NO=BCMDI.PROTOCOL_NO
+		AND BCMBI.PROTOCOL_NO=A.PROTOCOL_NO
+		AND BCMBI.PROTOCOL_NO=B.PROTOCOL_NO
+		AND BCMBI.PROTOCOL_NO=C.PROTOCOL_NO
+		AND BCMBI.PROTOCOL_NO=D.PROTOCOL_NO
+		AND BSAB.BRCODE=BCMBI.BRCODE
+		<isNotEmpty prepend="AND" property="roleCredit">
+			A.ROLE = #roleCredit#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="roleCore">
+			B.ROLE = #roleCore#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="roleBackcore">
+			C.ROLE = #roleBackcore#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="roleMoni">
+			D.ROLE = #roleMoni#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="buyerNm">
+			A.CNAME LIKE '%$buyerNm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="coreNm">
+			B.CNAME LIKE '%$coreNm$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="protocolCode">
+			BCMBI.PROTOCOL_NO LIKE '%$protocolCode$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="state">
+			BCMBI.STATE = #state#
+		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="BRCNAME">
+			BSAB.BRCNAME LIKE '%$BRCNAME$%'
+		</isNotEmpty>
+	</select>
+
+</sqlMap>

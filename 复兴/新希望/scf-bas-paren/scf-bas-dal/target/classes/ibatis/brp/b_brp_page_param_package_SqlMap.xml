@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_BRP_PAGE_PARAM_PACKAGE" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.brp.dao.model.BBrpPageParamPackage" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SUPER_ID" property="superId" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, NAME, SUPER_ID, REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPageParamPackageExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_BRP_PAGE_PARAM_PACKAGE.Base_Column_List" />
+    from B_BRP_PAGE_PARAM_PACKAGE
+    <isParameterPresent >
+      <include refid="B_BRP_PAGE_PARAM_PACKAGE.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPageParamPackage" >
+    select 
+    <include refid="B_BRP_PAGE_PARAM_PACKAGE.Base_Column_List" />
+    from B_BRP_PAGE_PARAM_PACKAGE
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPageParamPackage" >
+    delete from B_BRP_PAGE_PARAM_PACKAGE
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPageParamPackageExample" >
+    delete from B_BRP_PAGE_PARAM_PACKAGE
+    <include refid="B_BRP_PAGE_PARAM_PACKAGE.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPageParamPackage" >
+    insert into B_BRP_PAGE_PARAM_PACKAGE (ID, NAME, SUPER_ID, REMARK)
+    values (#id:VARCHAR#, #name:VARCHAR#, #superId:VARCHAR#, #remark:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPageParamPackage" >
+    insert into B_BRP_PAGE_PARAM_PACKAGE
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="name" >
+        NAME
+      </isNotNull>
+      <isNotNull prepend="," property="superId" >
+        SUPER_ID
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        REMARK
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="name" >
+        #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="superId" >
+        #superId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        #remark:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPageParamPackageExample" resultClass="java.lang.Integer" >
+    select count(*) from B_BRP_PAGE_PARAM_PACKAGE
+    <include refid="B_BRP_PAGE_PARAM_PACKAGE.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_BRP_PAGE_PARAM_PACKAGE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name" >
+        NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.superId" >
+        SUPER_ID = #record.superId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remark" >
+        REMARK = #record.remark:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_BRP_PAGE_PARAM_PACKAGE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_BRP_PAGE_PARAM_PACKAGE
+    set ID = #record.id:VARCHAR#,
+      NAME = #record.name:VARCHAR#,
+      SUPER_ID = #record.superId:VARCHAR#,
+      REMARK = #record.remark:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_BRP_PAGE_PARAM_PACKAGE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPageParamPackage" >
+    update B_BRP_PAGE_PARAM_PACKAGE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="name" >
+        NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="superId" >
+        SUPER_ID = #superId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        REMARK = #remark:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpPageParamPackage" >
+    update B_BRP_PAGE_PARAM_PACKAGE
+    set NAME = #name:VARCHAR#,
+      SUPER_ID = #superId:VARCHAR#,
+      REMARK = #remark:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

@@ -1,0 +1,34 @@
+<!--基本信息页-->
+<ht-form name="baseinfo">
+    <ht-panel>
+        <ht-legend>产品基本信息</ht-legend>
+        <ht-select ht-id="parentId" name="产品大类" disable="{{disable}}" reg-exp="common.require" dictionary="parentProduct" ng-model="baseinfo.parentId"></ht-select>
+        <ht-input ht-id="productId" name="产品编号" disable="{{disable}}" reg-exp="common.require" ng-model="baseinfo.productId"></ht-input>
+        <ht-input ht-id="productName" name="产品名称" disable="{{disable}}" reg-exp="common.require" ng-model="baseinfo.productName"></ht-input>
+        <ht-select ht-id="ext1" name="利率定价模型" disable="{{disable}}" ng-model="baseinfo.ext1" dictionary="pricbMd"></ht-select>
+        <ht-text-area ht-id="memo" name="产品介绍"  disable="{{disable}}" ng-model="baseinfo.memo"></ht-text-area>
+    </ht-panel>
+    <ht-panel>
+        <ht-legend>行业信息</ht-legend>
+        <ht-text-area ht-id="industryTypeName" name="行业信息" disable="true" ng-model="baseinfo.industryTypeName"></ht-text-area>
+        <ht-button ht-id="choose" hide="{{hide}}" class="btn-primary" desc-name="选择行业"></ht-button>
+    </ht-panel>
+</ht-form>
+<ht-legend>文件模版列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary" hide="{{hide}}">新增</ht-button>
+        <ht-button ht-id="delete" class="btn-primary" hide="{{hide}}">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="contCode" zh-name="类型编号"></ht-column>
+    <ht-column eg-name="contName" zh-name="类型名称" ></ht-column>
+    <ht-column eg-name="inpDt" zh-name="创建日期"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="next" class="btn-primary" desc-name="下一步"></ht-button>
+    <ht-button ht-id="complete" class="btn-primary" desc-name="完成"></ht-button>
+</ht-button-group>
+
+

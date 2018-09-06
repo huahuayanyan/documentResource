@@ -1,0 +1,384 @@
+<style type="text/css">
+form {
+	font-size: 0px;
+}
+
+.form-control:focus, select:focus {
+    color: #696969;
+    border-color: #66afe9;
+    background-color: #fff;
+    outline: 0;
+}
+.form-control{
+	font-size:12px;
+}
+span {
+	font-size: 12px;
+}
+#otherformTwo input{
+	width:100% !important;
+	height:32px !important;
+}
+.control-span {
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+	display: inline-block;
+	line-height: 32px;
+}
+
+.form-group {
+	margin-bottom: 0px;
+}
+
+.mt0 {
+	margin-top: 0px !important;
+}
+
+.form-group>div {
+	padding: 5px;
+	border-top: 1px solid #d7d7d7;
+	border-left: 1px solid #d7d7d7;
+	border-bottom: 1px solid #d7d7d7;
+	min-height: 44px;
+}
+.row>.form-group:first-child>div:first-child {
+	padding-left: 25px;
+}
+
+.row>.form-group:nth-child(4)>div:last-child {
+	border-right: 1px solid #d7d7d7;
+}
+
+.border_r{
+	border-right: 1px solid #d7d7d7;
+}
+
+.pl0 {
+	padding-left: 0px;
+}
+
+.pr0 {
+	padding-right: 0px;
+}
+
+.bg {
+	background-color: #f9f9f9;
+}
+
+.no-bg {
+	background-color: white;
+}
+
+.list-group {
+	padding-left: 15px;
+	margin: -1px 0px 0px 0px;
+}
+
+.list-group-item {
+	padding: 0px 15px;
+}
+
+.item_header {
+	background-color: #f9f9f9;
+}
+
+.rule-font {
+	position: absolute;
+	font-size: 16px;
+	top: 13px;
+	left: 10px;
+	color: #888888;
+}
+
+form[name='otherform']>.row {
+	margin-top: 10px;
+}
+form[name='otherformTwo']>.row>.form-group {
+	margin-top: -1px;
+}
+
+.row>.form-group:first-child {
+	cursor: pointer;
+}
+
+.rule-hide {
+	display: none;
+}
+
+.rule-selected {
+	background-color: #e9f5ff;
+}
+</style>
+
+<ht-form name="evalform">
+	<ht-legend>基本信息</ht-legend>
+    <ht-panel>
+        <!--custType-->
+
+        <!--custno-->
+        <!--<ht-input name="客户编号" ng-model="evalform.cname" disable="true"></ht-input>-->
+        <ht-input name="客户名称" ng-model="evalform.cname" disable="true"></ht-input>
+<!--        <ht-select name="客户类型"  ht-id="rltTyp" ng-model="evalform.rltTyp" dictionary="custType" disable="true"  reg-exp="common.require">
+        </ht-select>-->
+        <!--<ht-input name="客户名称" ng-model="evalform.cname" disable="true"></ht-input>-->
+        <!-- <ht-input name="会计月份" ht-id="finDt"  ng-model="evalform.finDt" disable="{{disable1}}"></ht-input>
+        <ht-select  name="评估模型名" ht-id="mdlNm" dictionary="checked" datasource="selectMdlNms" datatrsoption="value"
+                    dataoption="key" ng-model="evalform.mdlNm" on-change="chooseMdlNm" reg-exp="MdlNmValidate,common.require"
+                    disable="{{disable1}}">
+        </ht-select>
+        <ht-input name="评估模型编号" ht-id="mdlId"  ng-model="evalform.mdlId"  disable="true"></ht-input> -->
+<!--         <ht-input name="机评得分" ht-id="evalScr"  ng-model="evalform.evalScr"  disable="true"></ht-input> -->
+<!--         <ht-input name="机评级别" ht-id="evalRslt"  ng-model="evalform.evalRslt" disable="true"></ht-input> -->
+<!--         <ht-input name="认定得分" ht-id="cognScr"  ng-model="evalform.cognScr" reg-exp="credictEvalScore" disable="{{disable1}}"></ht-input> -->
+<!--         <ht-input name="认定级别" ht-id="cognRslt"  ng-model="evalform.cognRslt" reg-exp="credictEvalLeval" disable="{{disable1}}"></ht-input> -->
+        <ht-input name="认定有效期" ht-id="eftDt" edit-type="date" ng-model="evalform.eftDt" disable="true"></ht-input>
+        <ht-input name="认定理由" ht-id="rem"  ng-model="evalform.rem" disable="true"></ht-input>
+
+        <ht-select name="有效状态" ht-id="isVld"  ng-model="evalform.isVld" datatrsoption="value"  dataoption="key" dictionary="status"
+                   disable="true"></ht-select>
+        <ht-select name="审核状态" ht-id="stat"  ng-model="evalform.stat"  datatrsoption="value"  dataoption="key" dictionary="stat"
+                   disable="true"></ht-select>
+    </ht-panel>
+<!--  
+    <br/>
+
+    <ht-panel>
+
+        <ht-input  name="评估机构" ht-id="brNm" ng-model="evalform.brNm" disable="true"></ht-input>
+        <ht-input  name="更新机构" ht-id="lstUpdBrNm"  ng-model="evalform.lstUpdBrNm" disable="true"></ht-input>
+        <ht-input  name="评估人" ht-id="tlrNm" ng-model="evalform.tlrNm" disable="true"></ht-input>
+        <ht-input  name="更新人" ht-id="lastUpdTlrNm" ng-model="evalform.lastUpdTlrNm" disable="true"></ht-input>
+        <ht-input  name="评估日期"  ht-id="evalDt" ng-model="evalform.evalDt" disable="true" edit-type="date"></ht-input>
+        <ht-input  name="更新日期"  ht-id="lstUpdDt" ng-model="evalform.lstUpdDt" disable="true" edit-type="date"></ht-input>
+    </ht-panel>
+-->    
+</ht-form>
+<form class="myForm clearfix" name="otherform" id="otherform">
+<span class="">暂无评分模型，请先选择客户！</span>	
+</form>
+<form class="myForm clearfix" name="otherformTwo" id="otherformTwo">
+	<div class="legend">
+		<div class="legendSpan">
+			<div class="legendText">
+				<span class="">评分结果</span>
+			</div>
+		</div>
+	</div>
+	<div class="row mt0">
+		<div class="form-group col-xs-6 pr0">
+			<div class="col-xs-4 text-right bg">
+				<span class="control-span">模型得分</span>
+			</div>
+			<div class="col-xs-8">
+				<span class="control-span crgeval-score"></span>
+			</div>
+		</div>
+		<div class="form-group col-xs-6 pl0">
+			<div class="col-xs-4 text-right bg">
+				<span class="control-span">信用等级</span>
+			</div>
+			<div class="col-xs-8 border_r">
+				<span class="control-span crgeval-level"></span>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-xs-6 pr0">
+			<div class="col-xs-4 text-right bg">
+				<span class="control-span">手工调整得分</span>
+			</div>
+			<div class="col-xs-8">
+				<span class="control-span cogn_scr"></span>
+			</div>
+		</div>
+		<div class="form-group col-xs-6 pl0">
+			<div class="col-xs-4 text-right bg">
+				<span class="control-span">手工调整信用等级</span>
+			</div>
+			<div class="col-xs-8 border_r">
+				<span class="control-span cogn_rslt"></span>
+			</div>
+		</div>
+	</div>	
+</form>
+<script>
+    var crgveallevel;
+	$(function() {
+		$("#otherform").on("click", ".row>.form-group:first-child", function() {
+			var dom = $(this).siblings(".list-group");
+			dom.slideToggle(200);
+			$(this).find(".rule-font").toggleClass("glyphicon-chevron-down");
+		});
+		var content=$("#otherform");
+		var todo=crgveallevel=function(res){
+			var _content=$("<div></div>");
+			for(var title in res){
+				var _j_titile=$('<div class="legend">'+
+									'<div class="legendSpan">'+
+										'<div class="legendText">'+
+											'<span class="">'+title+'</span>'+
+										'</div>'+
+									'</div>'+
+								'</div>');
+				_content.append(_j_titile);
+				var list=res[title];
+				for(var i=0,len=list.length;i<len;i++){
+					var _j_p=null,obj=list[i];
+					if(i==0){
+						_j_p=$('<div class="row mt0"></div>');
+					}else{
+						_j_p=$('<div class="row"></div>');
+					}
+					var _j_p1=null,_j_p2=null,_j_p3=null,_j_p4=null,_j_list=null;
+					if(obj.write=='true'){
+						var options = "";
+						for(var m = 0; m < obj.list.length; m++){
+						    var op = obj.list[m];
+							var option = '<option value="' + op.value + '">' + op.name + '</option>';
+							options += option;
+						}
+						
+						_j_p1=$('<div class="form-group col-xs-6 pr0" id="'+obj.en+'">'+
+									'<div class="col-xs-3 text-right bg">'+
+										'<span class="glyphicon glyphicon-chevron-right rule-font"></span> '+
+										'<span class="control-span"><b style="color: red;" class="">*</b>'+obj.cn+'</span>'+
+									'</div>'+
+									'<div class="col-xs-9">'+
+										'<span class="control-span" title="'+obj.remark+'">'+obj.remark+'</span>'+
+									'</div>'+
+								'</div>');
+						_j_p2=$('<div class="form-group col-xs-3 pl0 pr0">'+
+									'<div class="col-xs-2 text-right bg">'+
+										'<span class="control-span">值</span>'+
+									'</div>'+
+									'<div class="col-xs-10">'+
+										'<select class="form-control requied">'+
+										'<option value="">请选择</option>'+
+										options +
+										'</select>'+
+									'</div>'+
+								'</div>');
+					}else{
+						_j_p1=$('<div class="form-group col-xs-6 pr0" id="'+obj.en+'">'+
+									'<div class="col-xs-3 text-right bg">'+
+										'<span class="glyphicon glyphicon-chevron-right rule-font"></span> '+
+										'<span class="control-span">'+obj.cn+'</span>'+
+									'</div>'+
+									'<div class="col-xs-9">'+
+										'<span class="control-span" title="'+obj.remark+'">'+obj.remark+'</span>'+
+									'</div>'+
+								'</div>');
+						_j_p2=$('<div class="form-group col-xs-3 pl0 pr0">'+
+									'<div class="col-xs-2 text-right bg">'+
+										'<span class="control-span">值</span>'+
+									'</div>'+
+									'<div class="col-xs-10">'+
+										'<span class="control-span" title="'+obj.eval+'">'+obj.eval+'</span>'+
+									'</div>'+
+								'</div>');
+					}
+					_j_p4=$('<div class="form-group col-xs-1 pl0 pr0">'+
+							'<div class="col-xs-6 text-right bg">'+
+								'<span class="control-span">权重</span>'+
+							'</div>'+
+							'<div class="col-xs-6">'+
+								'<span class="control-span">' + obj.weight + '</span>'+
+							'</div>'+
+						'</div>');
+					_j_p3=$('<div class="form-group col-xs-2 pl0">'+
+								'<div class="col-xs-6 text-right bg">'+
+									'<span class="control-span">计算结果</span>'+
+								'</div>'+
+								'<div class="col-xs-6">'+
+									'<span class="control-span crgevalres">'+obj.score+'</span>'+
+								'</div>'+
+							'</div>');
+					if(obj.flag=='2'){
+						_j_list=$('<ul class="list-group rule-hide col-xs-12">'+
+								'<li class="list-group-item item_header">'+
+									'<div class="row">'+
+										'<div class="col-xs-6">'+
+											'<div class="col-xs-6 pl0"><span class="control-span">'+obj.cn+'（下限）</span></div>'+
+											'<div class="col-xs-6 pl0"><span class="control-span">'+obj.cn+'（上限）</span></div>'+
+										'</div>'+
+										'<div class="col-xs-6">'+
+											'<span class="control-span">分数</span>'+
+										'</div>'+
+									'</div>'+
+								'</li>'+
+							'</ul>');
+						for(var k=0,len2=obj.list.length;k<len2;k++){
+							var _j_item=null,_item=obj.list[k];
+								_j_item=$('<li class="list-group-item">'+
+											'<div class="row">'+
+												'<div class="col-xs-6">'+
+													'<div class="col-xs-6 pl0"><span class="control-span">'+_item.name1+'</span></div>'+
+													'<div class="col-xs-6 pl0"><span class="control-span">'+_item.name2+'</span></div>'+
+												'</div>'+
+												'<div class="col-xs-6">'+
+													'<span class="control-span card-value">'+_item.value+'</span>'+
+												'</div>'+
+											'</div>'+
+										'</li>');
+							if(_item.selected === 'true'){
+								_j_item.addClass("rule-selected");
+							}
+							_j_list.append(_j_item);
+						}
+					}else{
+						
+						_j_list=$('<ul class="list-group rule-hide col-xs-12">'+
+								'<li class="list-group-item item_header">'+
+									'<div class="row">'+
+										'<div class="col-xs-6">'+
+											'<span class="control-span">'+obj.cn+'</span>'+
+										'</div>'+
+											'<div class="col-xs-6">'+
+											'<span class="control-span">分数</span>'+
+										'</div>'+
+									'</div>'+
+								'</li>'+
+							'</ul>');
+						for(var k=0,len2=obj.list.length;k<len2;k++){
+							var _j_item=null,_item=obj.list[k];
+								_j_item=$('<li class="list-group-item">'+
+											'<div class="row">'+
+												'<div class="col-xs-6">'+
+													'<span class="control-span">'+_item.name+'</span>'+
+												'</div>'+
+												'<div class="col-xs-6">'+
+													'<span class="control-span card-value">'+_item.value+'</span>'+
+												'</div>'+
+											'</div>'+
+										'</li>');
+								if(_item.selected === 'true'){
+									_j_item.addClass("rule-selected");
+								}
+							_j_list.append(_j_item);
+						}
+					}
+					
+					
+					_j_p.append(_j_p1).append(_j_p4).append(_j_p2).append(_j_p3).append(_j_list);
+					_content.append(_j_p);
+				}
+			}
+			content.empty().append(_content.html());
+		}
+		
+		/*var res={'企业财政':[{cn:'年收入',en:'yearincome',write:'true',remark:'企业年净产值(财务部提供原数据)',list:[{name:'>=5000w',value:'10'},{name:'>=2000w',value:'7'},{name:'<2000w',value:'4'}]},
+		                  {cn:'年收入1',en:'yearincome1',write:'true',remark:'企业年净产值(财务部提供原数据)111',list:[{name:'>=5000w',value:'110'},{name:'>=2000w',value:'71'},{name:'<2000w',value:'41'}]},
+		                  {cn:'年收入2',en:'yearincome2',write:'false',remark:'企业年净产值(财务部提供原数据)222',list:[{name:'>=5000w',value:'120'},{name:'>=2000w',value:'72'},{name:'<2000w',value:'42'}]}
+		                 ],
+		         '企业信用':[{cn:'有无不良记录',en:'badrecord',write:'true',remark:'中国人民银行系统中是否存在不良记录(企业贷款、企业信用等)',list:[{name:'>=10条',value:'-10'},{name:'<10条',value:'0'},{name:'无',value:'5'}]},
+		                 {cn:'有无不良记录1',en:'badrecord1',write:'false',remark:'中国人民银行系统中是否存在不良记录(企业贷款、企业信用等)111',list:[{name:'>=10条',value:'-110'},{name:'<10条',value:'10'},{name:'无',value:'15'}]}
+		                 ]     
+		};
+		todo(res);
+		*/
+		
+	});
+</script>

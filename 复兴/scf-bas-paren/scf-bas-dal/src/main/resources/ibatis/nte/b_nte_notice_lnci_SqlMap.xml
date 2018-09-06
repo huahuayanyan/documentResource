@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_NTE_NOTICE_LNCI" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnci" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="THR_CD" property="thrCd" jdbcType="VARCHAR" />
+    <result column="THR_NAME" property="thrName" jdbcType="VARCHAR" />
+    <result column="FOU_CD" property="fouCd" jdbcType="VARCHAR" />
+    <result column="FOU_NAME" property="fouName" jdbcType="VARCHAR" />
+    <result column="CREDIT_AMOUNT" property="creditAmount" jdbcType="DECIMAL" />
+    <result column="LOW_PRICE" property="lowPrice" jdbcType="DECIMAL" />
+    <result column="TOT_RISK_AMOUNT" property="totRiskAmount" jdbcType="DECIMAL" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="CHAR" />
+    <result column="SLAVE_LIMIT" property="slaveLimit" jdbcType="VARCHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="BAIL_ACCOUNT_NO" property="bailAccountNo" jdbcType="VARCHAR" />
+    <result column="FIRST_BAIL_RATIO" property="firstBailRatio" jdbcType="DECIMAL" />
+    <result column="RISK_AMOUNT" property="riskAmount" jdbcType="DECIMAL" />
+    <result column="COST" property="cost" jdbcType="DECIMAL" />
+    <result column="USED_CREDIT_AMT" property="usedCreditAmt" jdbcType="DECIMAL" />
+    <result column="TOTAL_MORT_AMT" property="totalMortAmt" jdbcType="DECIMAL" />
+    <result column="MORT_BAIL_ACCOUNTNO" property="mortBailAccountno" jdbcType="VARCHAR" />
+    <result column="MORT_BAIL_AMOUNT" property="mortBailAmount" jdbcType="DECIMAL" />
+    <result column="BAIL_RATE" property="bailRate" jdbcType="DECIMAL" />
+    <result column="INSURANCE_AMT" property="insuranceAmt" jdbcType="DECIMAL" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="RATE" property="rate" jdbcType="DECIMAL" />
+    <result column="AUDIT_RATE" property="auditRate" jdbcType="DECIMAL" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="DELIVERY_QUANTITY" property="deliveryQuantity" jdbcType="DECIMAL" />
+    <result column="DELIVERY_VALUE" property="deliveryValue" jdbcType="DECIMAL" />
+    <result column="DELIVERY_CLASS" property="deliveryClass" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, CUSTCD, CNAME, THR_CD, THR_NAME, FOU_CD, FOU_NAME, CREDIT_AMOUNT, LOW_PRICE, 
+    TOT_RISK_AMOUNT, LNCI_AMT, START_DATE, END_DATE, DEBET_NO, LOAN_WAY, SLAVE_LIMIT, 
+    BAIL_AMOUNT, BAIL_ACCOUNT_NO, FIRST_BAIL_RATIO, RISK_AMOUNT, COST, USED_CREDIT_AMT, 
+    TOTAL_MORT_AMT, MORT_BAIL_ACCOUNTNO, MORT_BAIL_AMOUNT, BAIL_RATE, INSURANCE_AMT, 
+    RATION, RATE, AUDIT_RATE, PID, DEBET_ID, DELIVERY_QUANTITY, DELIVERY_VALUE, DELIVERY_CLASS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnciExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_NTE_NOTICE_LNCI.Base_Column_List" />
+    from B_NTE_NOTICE_LNCI
+    <isParameterPresent >
+      <include refid="B_NTE_NOTICE_LNCI.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnci" >
+    select 
+    <include refid="B_NTE_NOTICE_LNCI.Base_Column_List" />
+    from B_NTE_NOTICE_LNCI
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnci" >
+    delete from B_NTE_NOTICE_LNCI
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnciExample" >
+    delete from B_NTE_NOTICE_LNCI
+    <include refid="B_NTE_NOTICE_LNCI.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnci" >
+    insert into B_NTE_NOTICE_LNCI (ID, APPNO, CUSTCD, CNAME, THR_CD, 
+      THR_NAME, FOU_CD, FOU_NAME, CREDIT_AMOUNT, 
+      LOW_PRICE, TOT_RISK_AMOUNT, LNCI_AMT, START_DATE, 
+      END_DATE, DEBET_NO, LOAN_WAY, SLAVE_LIMIT, BAIL_AMOUNT, 
+      BAIL_ACCOUNT_NO, FIRST_BAIL_RATIO, RISK_AMOUNT, COST, 
+      USED_CREDIT_AMT, TOTAL_MORT_AMT, MORT_BAIL_ACCOUNTNO, MORT_BAIL_AMOUNT, 
+      BAIL_RATE, INSURANCE_AMT, RATION, RATE, AUDIT_RATE, 
+      PID, DEBET_ID, DELIVERY_QUANTITY, DELIVERY_VALUE, 
+      DELIVERY_CLASS)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #custcd:VARCHAR#, #cname:VARCHAR#, #thrCd:VARCHAR#, 
+      #thrName:VARCHAR#, #fouCd:VARCHAR#, #fouName:VARCHAR#, #creditAmount:DECIMAL#, 
+      #lowPrice:DECIMAL#, #totRiskAmount:DECIMAL#, #lnciAmt:DECIMAL#, #startDate:CHAR#, 
+      #endDate:CHAR#, #debetNo:VARCHAR#, #loanWay:CHAR#, #slaveLimit:VARCHAR#, #bailAmount:DECIMAL#, 
+      #bailAccountNo:VARCHAR#, #firstBailRatio:DECIMAL#, #riskAmount:DECIMAL#, #cost:DECIMAL#, 
+      #usedCreditAmt:DECIMAL#, #totalMortAmt:DECIMAL#, #mortBailAccountno:VARCHAR#, #mortBailAmount:DECIMAL#, 
+      #bailRate:DECIMAL#, #insuranceAmt:DECIMAL#, #ration:DECIMAL#, #rate:DECIMAL#, #auditRate:DECIMAL#, 
+      #pid:VARCHAR#, #debetId:VARCHAR#, #deliveryQuantity:DECIMAL#, #deliveryValue:DECIMAL#, 
+      #deliveryClass:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnci" >
+    insert into B_NTE_NOTICE_LNCI
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME
+      </isNotNull>
+      <isNotNull prepend="," property="thrCd" >
+        THR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="thrName" >
+        THR_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="fouCd" >
+        FOU_CD
+      </isNotNull>
+      <isNotNull prepend="," property="fouName" >
+        FOU_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="creditAmount" >
+        CREDIT_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="lowPrice" >
+        LOW_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="totRiskAmount" >
+        TOT_RISK_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="lnciAmt" >
+        LNCI_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="slaveLimit" >
+        SLAVE_LIMIT
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="bailAccountNo" >
+        BAIL_ACCOUNT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailRatio" >
+        FIRST_BAIL_RATIO
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmount" >
+        RISK_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="cost" >
+        COST
+      </isNotNull>
+      <isNotNull prepend="," property="usedCreditAmt" >
+        USED_CREDIT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="totalMortAmt" >
+        TOTAL_MORT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="mortBailAccountno" >
+        MORT_BAIL_ACCOUNTNO
+      </isNotNull>
+      <isNotNull prepend="," property="mortBailAmount" >
+        MORT_BAIL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        BAIL_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceAmt" >
+        INSURANCE_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        RATION
+      </isNotNull>
+      <isNotNull prepend="," property="rate" >
+        RATE
+      </isNotNull>
+      <isNotNull prepend="," property="auditRate" >
+        AUDIT_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="pid" >
+        PID
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        DEBET_ID
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryQuantity" >
+        DELIVERY_QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryValue" >
+        DELIVERY_VALUE
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryClass" >
+        DELIVERY_CLASS
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="thrCd" >
+        #thrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="thrName" >
+        #thrName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fouCd" >
+        #fouCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fouName" >
+        #fouName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditAmount" >
+        #creditAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPrice" >
+        #lowPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totRiskAmount" >
+        #totRiskAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnciAmt" >
+        #lnciAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        #loanWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveLimit" >
+        #slaveLimit:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAccountNo" >
+        #bailAccountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailRatio" >
+        #firstBailRatio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmount" >
+        #riskAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cost" >
+        #cost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="usedCreditAmt" >
+        #usedCreditAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalMortAmt" >
+        #totalMortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortBailAccountno" >
+        #mortBailAccountno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortBailAmount" >
+        #mortBailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        #bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceAmt" >
+        #insuranceAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        #ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rate" >
+        #rate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="auditRate" >
+        #auditRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="pid" >
+        #pid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        #debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryQuantity" >
+        #deliveryQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryValue" >
+        #deliveryValue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryClass" >
+        #deliveryClass:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnciExample" resultClass="java.lang.Integer" >
+    select count(*) from B_NTE_NOTICE_LNCI
+    <include refid="B_NTE_NOTICE_LNCI.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_NTE_NOTICE_LNCI
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcd" >
+        CUSTCD = #record.custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cname" >
+        CNAME = #record.cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.thrCd" >
+        THR_CD = #record.thrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.thrName" >
+        THR_NAME = #record.thrName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fouCd" >
+        FOU_CD = #record.fouCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fouName" >
+        FOU_NAME = #record.fouName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.creditAmount" >
+        CREDIT_AMOUNT = #record.creditAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lowPrice" >
+        LOW_PRICE = #record.lowPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totRiskAmount" >
+        TOT_RISK_AMOUNT = #record.totRiskAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lnciAmt" >
+        LNCI_AMT = #record.lnciAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.startDate" >
+        START_DATE = #record.startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetNo" >
+        DEBET_NO = #record.debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanWay" >
+        LOAN_WAY = #record.loanWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.slaveLimit" >
+        SLAVE_LIMIT = #record.slaveLimit:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAmount" >
+        BAIL_AMOUNT = #record.bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAccountNo" >
+        BAIL_ACCOUNT_NO = #record.bailAccountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.firstBailRatio" >
+        FIRST_BAIL_RATIO = #record.firstBailRatio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.riskAmount" >
+        RISK_AMOUNT = #record.riskAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cost" >
+        COST = #record.cost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.usedCreditAmt" >
+        USED_CREDIT_AMT = #record.usedCreditAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalMortAmt" >
+        TOTAL_MORT_AMT = #record.totalMortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortBailAccountno" >
+        MORT_BAIL_ACCOUNTNO = #record.mortBailAccountno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortBailAmount" >
+        MORT_BAIL_AMOUNT = #record.mortBailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailRate" >
+        BAIL_RATE = #record.bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insuranceAmt" >
+        INSURANCE_AMT = #record.insuranceAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ration" >
+        RATION = #record.ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rate" >
+        RATE = #record.rate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.auditRate" >
+        AUDIT_RATE = #record.auditRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pid" >
+        PID = #record.pid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetId" >
+        DEBET_ID = #record.debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deliveryQuantity" >
+        DELIVERY_QUANTITY = #record.deliveryQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deliveryValue" >
+        DELIVERY_VALUE = #record.deliveryValue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deliveryClass" >
+        DELIVERY_CLASS = #record.deliveryClass:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_NTE_NOTICE_LNCI.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_NTE_NOTICE_LNCI
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      CUSTCD = #record.custcd:VARCHAR#,
+      CNAME = #record.cname:VARCHAR#,
+      THR_CD = #record.thrCd:VARCHAR#,
+      THR_NAME = #record.thrName:VARCHAR#,
+      FOU_CD = #record.fouCd:VARCHAR#,
+      FOU_NAME = #record.fouName:VARCHAR#,
+      CREDIT_AMOUNT = #record.creditAmount:DECIMAL#,
+      LOW_PRICE = #record.lowPrice:DECIMAL#,
+      TOT_RISK_AMOUNT = #record.totRiskAmount:DECIMAL#,
+      LNCI_AMT = #record.lnciAmt:DECIMAL#,
+      START_DATE = #record.startDate:CHAR#,
+      END_DATE = #record.endDate:CHAR#,
+      DEBET_NO = #record.debetNo:VARCHAR#,
+      LOAN_WAY = #record.loanWay:CHAR#,
+      SLAVE_LIMIT = #record.slaveLimit:VARCHAR#,
+      BAIL_AMOUNT = #record.bailAmount:DECIMAL#,
+      BAIL_ACCOUNT_NO = #record.bailAccountNo:VARCHAR#,
+      FIRST_BAIL_RATIO = #record.firstBailRatio:DECIMAL#,
+      RISK_AMOUNT = #record.riskAmount:DECIMAL#,
+      COST = #record.cost:DECIMAL#,
+      USED_CREDIT_AMT = #record.usedCreditAmt:DECIMAL#,
+      TOTAL_MORT_AMT = #record.totalMortAmt:DECIMAL#,
+      MORT_BAIL_ACCOUNTNO = #record.mortBailAccountno:VARCHAR#,
+      MORT_BAIL_AMOUNT = #record.mortBailAmount:DECIMAL#,
+      BAIL_RATE = #record.bailRate:DECIMAL#,
+      INSURANCE_AMT = #record.insuranceAmt:DECIMAL#,
+      RATION = #record.ration:DECIMAL#,
+      RATE = #record.rate:DECIMAL#,
+      AUDIT_RATE = #record.auditRate:DECIMAL#,
+      PID = #record.pid:VARCHAR#,
+      DEBET_ID = #record.debetId:VARCHAR#,
+      DELIVERY_QUANTITY = #record.deliveryQuantity:DECIMAL#,
+      DELIVERY_VALUE = #record.deliveryValue:DECIMAL#,
+      DELIVERY_CLASS = #record.deliveryClass:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_NTE_NOTICE_LNCI.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnci" >
+    update B_NTE_NOTICE_LNCI
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcd" >
+        CUSTCD = #custcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cname" >
+        CNAME = #cname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="thrCd" >
+        THR_CD = #thrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="thrName" >
+        THR_NAME = #thrName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fouCd" >
+        FOU_CD = #fouCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fouName" >
+        FOU_NAME = #fouName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditAmount" >
+        CREDIT_AMOUNT = #creditAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPrice" >
+        LOW_PRICE = #lowPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totRiskAmount" >
+        TOT_RISK_AMOUNT = #totRiskAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnciAmt" >
+        LNCI_AMT = #lnciAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="startDate" >
+        START_DATE = #startDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO = #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY = #loanWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="slaveLimit" >
+        SLAVE_LIMIT = #slaveLimit:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT = #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAccountNo" >
+        BAIL_ACCOUNT_NO = #bailAccountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailRatio" >
+        FIRST_BAIL_RATIO = #firstBailRatio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmount" >
+        RISK_AMOUNT = #riskAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cost" >
+        COST = #cost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="usedCreditAmt" >
+        USED_CREDIT_AMT = #usedCreditAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalMortAmt" >
+        TOTAL_MORT_AMT = #totalMortAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortBailAccountno" >
+        MORT_BAIL_ACCOUNTNO = #mortBailAccountno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortBailAmount" >
+        MORT_BAIL_AMOUNT = #mortBailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailRate" >
+        BAIL_RATE = #bailRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="insuranceAmt" >
+        INSURANCE_AMT = #insuranceAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ration" >
+        RATION = #ration:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rate" >
+        RATE = #rate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="auditRate" >
+        AUDIT_RATE = #auditRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="pid" >
+        PID = #pid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        DEBET_ID = #debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryQuantity" >
+        DELIVERY_QUANTITY = #deliveryQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryValue" >
+        DELIVERY_VALUE = #deliveryValue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryClass" >
+        DELIVERY_CLASS = #deliveryClass:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnci" >
+    update B_NTE_NOTICE_LNCI
+    set APPNO = #appno:VARCHAR#,
+      CUSTCD = #custcd:VARCHAR#,
+      CNAME = #cname:VARCHAR#,
+      THR_CD = #thrCd:VARCHAR#,
+      THR_NAME = #thrName:VARCHAR#,
+      FOU_CD = #fouCd:VARCHAR#,
+      FOU_NAME = #fouName:VARCHAR#,
+      CREDIT_AMOUNT = #creditAmount:DECIMAL#,
+      LOW_PRICE = #lowPrice:DECIMAL#,
+      TOT_RISK_AMOUNT = #totRiskAmount:DECIMAL#,
+      LNCI_AMT = #lnciAmt:DECIMAL#,
+      START_DATE = #startDate:CHAR#,
+      END_DATE = #endDate:CHAR#,
+      DEBET_NO = #debetNo:VARCHAR#,
+      LOAN_WAY = #loanWay:CHAR#,
+      SLAVE_LIMIT = #slaveLimit:VARCHAR#,
+      BAIL_AMOUNT = #bailAmount:DECIMAL#,
+      BAIL_ACCOUNT_NO = #bailAccountNo:VARCHAR#,
+      FIRST_BAIL_RATIO = #firstBailRatio:DECIMAL#,
+      RISK_AMOUNT = #riskAmount:DECIMAL#,
+      COST = #cost:DECIMAL#,
+      USED_CREDIT_AMT = #usedCreditAmt:DECIMAL#,
+      TOTAL_MORT_AMT = #totalMortAmt:DECIMAL#,
+      MORT_BAIL_ACCOUNTNO = #mortBailAccountno:VARCHAR#,
+      MORT_BAIL_AMOUNT = #mortBailAmount:DECIMAL#,
+      BAIL_RATE = #bailRate:DECIMAL#,
+      INSURANCE_AMT = #insuranceAmt:DECIMAL#,
+      RATION = #ration:DECIMAL#,
+      RATE = #rate:DECIMAL#,
+      AUDIT_RATE = #auditRate:DECIMAL#,
+      PID = #pid:VARCHAR#,
+      DEBET_ID = #debetId:VARCHAR#,
+      DELIVERY_QUANTITY = #deliveryQuantity:DECIMAL#,
+      DELIVERY_VALUE = #deliveryValue:DECIMAL#,
+      DELIVERY_CLASS = #deliveryClass:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  
+  <select id="selectByDebetNo" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.nte.dao.model.BNteNoticeLnci" >
+    select 
+    <include refid="B_NTE_NOTICE_LNCI.Base_Column_List" />
+    from B_NTE_NOTICE_LNCI
+    where DEBET_NO = #debetNo:VARCHAR#
+  </select>
+</sqlMap>

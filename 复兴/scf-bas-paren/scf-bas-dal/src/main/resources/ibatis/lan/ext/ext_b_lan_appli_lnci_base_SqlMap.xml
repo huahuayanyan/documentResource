@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_LAN_APPLI_LNCI_BASE" >
+ 
+    <select id="findBLanAppliLnciBaseByDebtId" resultMap="B_LAN_APPLI_LNCI_BASE.BaseResultMap" parameterClass="java.lang.String" >
+    select 
+    <include refid="B_LAN_APPLI_LNCI_BASE.Base_Column_List" />
+    from B_LAN_APPLI_LNCI_BASE
+     where DEBET_ID = #debetId:VARCHAR#
+  </select>
+  
+  <select id="queryBLanAppliLnciBaseByDebtNo" resultMap="B_LAN_APPLI_LNCI_BASE.BaseResultMap" parameterClass="java.lang.String" >
+    select 
+    <include refid="B_LAN_APPLI_LNCI_BASE.Base_Column_List" />
+    from B_LAN_APPLI_LNCI_BASE
+     where DEBET_NO = #debetNo:VARCHAR#
+  </select>
+  
+  <select id="getTblAppliLnciBaseInfo" resultMap="B_LAN_APPLI_LNCI_BASE.BaseResultMap" parameterClass ="java.util.HashMap">
+	select po.* from SCF.B_LAN_APPLI_LNCI_BASE po,SCF.B_PBC_APPLI_BASE_INFO tabi where tabi.appno = po.APPNO
+        and tabi.APPLI_STATUS_DTL in ('010', '011')
+		<isNotEmpty prepend="and" property="creditCustcd" >
+		 	po.CREDIT_CUSTCD = #creditCustcd:VARCHAR# 
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="custcd" >
+			 po.CUSTCD =#custcd:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="slaveContno" >
+			 po.SLAVE_CONTNO =#slaveContno:VARCHAR#
+		</isNotEmpty>
+  </select>
+  
+</sqlMap>

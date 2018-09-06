@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_PBC_MTG_MKT_PRICE" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcMtgMktPrice" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_SUB_CLASS" property="mortgageSubClass" jdbcType="CHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="CHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_CLASS_NO" property="mortgageClassNo" jdbcType="CHAR" />
+    <result column="MARKET_PRICE_SRC" property="marketPriceSrc" jdbcType="CHAR" />
+    <result column="SRC_DESCRIPTION" property="srcDescription" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="CHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_THREE_NAME" property="mortgageThreeName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PRICE_DATE" property="priceDate" jdbcType="CHAR" />
+    <result column="UP_DOWN_PRICE" property="upDownPrice" jdbcType="DECIMAL" />
+    <result column="ADD_DATE" property="addDate" jdbcType="CHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="MORT_UNITS_NAME" property="mortUnitsName" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+<select id="getBaiInfoMarketPri" resultMap="BaseResultMap" parameterClass="java.util.HashMap" >
+    select
+    	mbi.*
+    from B_PBC_MTG_MKT_PRICE mbi,
+    (select tmp.PRODUCT_ID ,max(tmp.PRICE_DATE) as maxtime from B_PBC_MTG_MKT_PRICE tmp group by tmp.PRODUCT_ID) bb
+    
+    where 
+    mbi.PRODUCT_ID = bb.PRODUCT_ID 
+    and mbi.PRICE_DATE=bb.maxtime
+    <!--00为手工录入，01为excel导入  -->
+    and mbi.MARKET_PRICE_SRC='01'
+    
+	<isNotEmpty prepend="and" property="productName">
+         <![CDATA[mbi.PRODUCT_NAME like '%'|| #productName:VARCHAR#||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mortgageLevelThreeName">
+         <![CDATA[mbi.MORTGAGE_THREE_NAME like '%'|| #mortgageLevelThreeName:VARCHAR#||'%' ]]>
+	</isNotEmpty>
+	order by mbi.PRICE_DATE desc
+  </select>
+</sqlMap>

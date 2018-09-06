@@ -1,0 +1,21 @@
+
+
+
+<ht-form name="otherform">
+    <ht-input ht-id="billsNo" name="凭证编号" disable="true" ng-model="otherform.billsNo"></ht-input>
+    <ht-select ht-id="billsType" name="凭证类型" disable="true" dictionary="billsType"  ng-model="otherform.billsType"></ht-select>
+    <ht-input ht-id="insertDate" name="应收账款登记日期" disable="true" edit-type="date"  ng-model="otherform.insertDate"></ht-input>
+    <ht-input ht-id="billsDate" name="应收账款日期" disable="true" edit-type="date" ng-model="otherform.billsDate"></ht-input>
+
+    <ht-input ht-id="aging" name="账期" disable="true" ng-model="otherform.aging"></ht-input>
+    <ht-input ht-id="debtEnd" name="到期日" disable="true" edit-type="date" ng-model="otherform.debtEnd"></ht-input>
+    <ht-input ht-id="gracePeriod" name="宽限期" disable="true" edit-type="number"  ng-model="otherform.gracePeriod"></ht-input>
+    <ht-input ht-id="deadline" name="最迟付款日" disable="true" edit-type="date"  ng-model="otherform.deadline"></ht-input>
+    <ht-select ht-id="curcd" name="币种"  disable="true" dictionary="curcd"  ng-model="otherform.curcd"></ht-select>
+    <ht-input ht-id="billsAmountView" name="账面金额" disable="true" edit-type="currency"  ng-model="otherform.billsAmountView"></ht-input>
+    <ht-input ht-id="billsAmount" name="有效金额" disable="true" edit-type="currency"  ng-model="otherform.billsAmount"></ht-input>
+    <ht-input ht-id="remainingAmount" name="应收账款余额" disable="true" edit-type="currency" ng-model="otherform.remainingAmount"></ht-input>
+    <ht-input ht-id="loanPercent" name="融资比例(%)" disable="true" hide="{{poolhide}}" ng-model="otherform.loanPercent"></ht-input>
+    <ht-input ht-id="remainingUseableAmount" name="可融资余额" disable="true" hide="{{poolhide}}" edit-type="currency"
+              ng-model="otherform.remainingUseableAmount"></ht-input>
+</ht-form>

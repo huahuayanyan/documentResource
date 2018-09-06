@@ -1,0 +1,14 @@
+
+
+
+<ht-form name="otherform">
+    <ht-text-area ht-id="manageQual" name="企业经营管理素质" disable="{{disable}}" edit-type="textarea" ng-model="otherform.manageQual"></ht-text-area>
+    <ht-text-area ht-id="marketEnvir" name="经营环境和市场环境"  disable="{{disable}}"edit-type="textarea" ng-model="otherform.marketEnvir"></ht-text-area>
+    <ht-text-area ht-id="remarks" name="备注"disable="{{disable}}" edit-type="textarea" ng-model="otherform.remarks"></ht-text-area>
+    <ht-input ht-id="registerN" name="登记人" disable="true" ng-model="otherform.registerN"></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide1}}"class="btn-primary">确定</ht-button>
+    <!--<ht-button ht-id="confuse" class="btn-primary">返回</ht-button>-->
+    <ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>
+</ht-button-group>

@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Oct 17 11:38:48 CST 2017
+http\://127.0.0.1\:8081/nexus/content/groups/public/.error=Could not transfer artifact com.huateng.toprules\:toprules-common\:jar\:sources\:2.5.9 from/to nexus (http\://127.0.0.1\:8081/nexus/content/groups/public)\: Connection refused\: connect
+14399ca34b73858bd6485939a9872a7cea402a07@default-nexus-http\://127.0.0.1\:8081/nexus/content/groups/public/.lastUpdated=1508211528901

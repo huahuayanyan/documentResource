@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRG_EVAL_DTL" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crg.dao.model.BCrgEvalDtl" >
+    <result column="EVAL_DTL_ID" property="evalDtlId" jdbcType="VARCHAR" />
+    <result column="EVAL_ID" property="evalId" jdbcType="VARCHAR" />
+    <result column="RLT_TYP" property="rltTyp" jdbcType="VARCHAR" />
+    <result column="RLT_ID" property="rltId" jdbcType="VARCHAR" />
+    <result column="IT_NO" property="itNo" jdbcType="VARCHAR" />
+    <result column="IT_VAL" property="itVal" jdbcType="VARCHAR" />
+    <result column="CHG_VAL" property="chgVal" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    EVAL_DTL_ID, EVAL_ID, RLT_TYP, RLT_ID, IT_NO, IT_VAL, CHG_VAL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalDtlExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRG_EVAL_DTL.Base_Column_List" />
+    from B_CRG_EVAL_DTL
+    <isParameterPresent >
+      <include refid="B_CRG_EVAL_DTL.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalDtl" >
+    select 
+    <include refid="B_CRG_EVAL_DTL.Base_Column_List" />
+    from B_CRG_EVAL_DTL
+    where EVAL_DTL_ID = #evalDtlId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalDtl" >
+    delete from B_CRG_EVAL_DTL
+    where EVAL_DTL_ID = #evalDtlId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalDtlExample" >
+    delete from B_CRG_EVAL_DTL
+    <include refid="B_CRG_EVAL_DTL.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalDtl" >
+    insert into B_CRG_EVAL_DTL (EVAL_DTL_ID, EVAL_ID, RLT_TYP, RLT_ID, 
+      IT_NO, IT_VAL, CHG_VAL)
+    values (#evalDtlId:VARCHAR#, #evalId:VARCHAR#, #rltTyp:VARCHAR#, #rltId:VARCHAR#, 
+      #itNo:VARCHAR#, #itVal:VARCHAR#, #chgVal:DECIMAL#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalDtl" >
+    insert into B_CRG_EVAL_DTL
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="evalDtlId" >
+        EVAL_DTL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="evalId" >
+        EVAL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="rltTyp" >
+        RLT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="rltId" >
+        RLT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="itNo" >
+        IT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="itVal" >
+        IT_VAL
+      </isNotNull>
+      <isNotNull prepend="," property="chgVal" >
+        CHG_VAL
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="evalDtlId" >
+        #evalDtlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalId" >
+        #evalId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rltTyp" >
+        #rltTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rltId" >
+        #rltId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="itNo" >
+        #itNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="itVal" >
+        #itVal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chgVal" >
+        #chgVal:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalDtlExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRG_EVAL_DTL
+    <include refid="B_CRG_EVAL_DTL.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRG_EVAL_DTL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.evalDtlId" >
+        EVAL_DTL_ID = #record.evalDtlId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evalId" >
+        EVAL_ID = #record.evalId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rltTyp" >
+        RLT_TYP = #record.rltTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rltId" >
+        RLT_ID = #record.rltId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.itNo" >
+        IT_NO = #record.itNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.itVal" >
+        IT_VAL = #record.itVal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.chgVal" >
+        CHG_VAL = #record.chgVal:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRG_EVAL_DTL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRG_EVAL_DTL
+    set EVAL_DTL_ID = #record.evalDtlId:VARCHAR#,
+      EVAL_ID = #record.evalId:VARCHAR#,
+      RLT_TYP = #record.rltTyp:VARCHAR#,
+      RLT_ID = #record.rltId:VARCHAR#,
+      IT_NO = #record.itNo:VARCHAR#,
+      IT_VAL = #record.itVal:VARCHAR#,
+      CHG_VAL = #record.chgVal:DECIMAL#
+    <isParameterPresent >
+      <include refid="B_CRG_EVAL_DTL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalDtl" >
+    update B_CRG_EVAL_DTL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="evalId" >
+        EVAL_ID = #evalId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rltTyp" >
+        RLT_TYP = #rltTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rltId" >
+        RLT_ID = #rltId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="itNo" >
+        IT_NO = #itNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="itVal" >
+        IT_VAL = #itVal:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chgVal" >
+        CHG_VAL = #chgVal:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where EVAL_DTL_ID = #evalDtlId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crg.dao.model.BCrgEvalDtl" >
+    update B_CRG_EVAL_DTL
+    set EVAL_ID = #evalId:VARCHAR#,
+      RLT_TYP = #rltTyp:VARCHAR#,
+      RLT_ID = #rltId:VARCHAR#,
+      IT_NO = #itNo:VARCHAR#,
+      IT_VAL = #itVal:VARCHAR#,
+      CHG_VAL = #chgVal:DECIMAL#
+    where EVAL_DTL_ID = #evalDtlId:VARCHAR#
+  </update>
+</sqlMap>

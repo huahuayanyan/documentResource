@@ -1,0 +1,18 @@
+
+
+
+<ht-form name="otherform">
+    <!--经办机构新增查看的时候只读，修改的时候可以修改。-->
+    <ht-select ht-id="accountType" name="账户类型" disable="{{disable}}" dictionary="accountType" reg-exp="common.require" ng-model="otherform.accountType"></ht-select>
+    <ht-input ht-id="accountName" name="账号名称" disable="{{disable}}" reg-exp="common.require" ng-model="otherform.accountName"></ht-input>
+    <ht-select ht-id="curcd" name="币种" disable="{{disable}}" dictionary="curcd" ng-model="otherform.curcd"></ht-select>
+    <ht-input ht-id="accountNo" name="账号" disable="{{disable}}" reg-exp="common.require,common.number" ng-model="otherform.accountNo"></ht-input>
+    <ht-input-extent ht-id="brName" name="经办机构	" extent="brNameContent" on-change="brNameExtent" disable="{{disable1}}"
+                     ng-model="otherform.brName"></ht-input-extent>
+    <ht-input-extent ht-id="cname" name="客户名称" extent="cnameContent" on-change="cnameExtent" disable="{{disable}}"
+                     reg-exp="common.require" ng-model="otherform.cname"></ht-input-extent>
+    </ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide}}" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"class="btn-primary">取消</ht-button>
+</ht-button-group>

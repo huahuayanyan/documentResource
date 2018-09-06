@@ -1,0 +1,18 @@
+<!--费用参数详情页面-->
+<ht-form name="otherform">
+    <ht-legend>费用参数信息</ht-legend>
+    <ht-input ht-id="costCode" name="费用代码" disable="true" reg-exp="common.require"  ng-model="otherform.costCode"></ht-input>
+    <ht-input ht-id="costName" name="费用名称" disable="true" reg-exp="common.require"  ng-model="otherform.costName"></ht-input>
+    <ht-checkbox ht-id="costType" name="允许收取方式" dictionary="costType" disable="true" reg-exp="common.require" ng-model="otherform.costType"></ht-checkbox>
+    <ht-checkbox ht-id="costCalcType" name="允许计算方式" dictionary="costCalcType" disable="true" reg-exp="common.require" ng-model="otherform.costCalcType"></ht-checkbox>
+    <ht-input name="允许最小比率" disable="true" ng-model="otherform.minRate"></ht-input>
+    <ht-input name="允许最小比率" disable="true" ng-model="otherform.minRate"></ht-input>
+    <ht-checkbox ht-id="chargeType" name="允许扣取方式" dictionary="costChargeType" disable="true" reg-exp="common.require" ng-model="otherform.chargeType"></ht-checkbox>
+    <ht-checkbox ht-id="costClass" name="允许收取种类" dictionary="costClass" disable="true" reg-exp="common.require"  ng-model="otherform.costClass"></ht-checkbox>
+    <ht-text-area ht-id="costDesc" name="备注" disable="true"  ng-model="otherform.costDesc"></ht-text-area>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="back"class="btn-primary">返回</ht-button>
+</ht-button-group>
+
+

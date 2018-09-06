@@ -1,0 +1,41 @@
+<ht-button-group>
+    <ht-button ht-id="jdxxButton"  class="btn-primary">跳转</ht-button>
+</ht-button-group>
+<ht-table datasource="datasource" selected="selected" docheckbox="true">
+    <ht-legend>查询条件</ht-legend>
+    <ht-form name ="otherform2">
+        <ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>
+        <ht-input ht-id="jghth" name="监管合同号" ng-model="otherform.jghth" reg-exp="common.require"></ht-input>
+        <ht-input ht-id="czrmc"  name="出质人名称" ng-model="otherform.czrmc"></ht-input>
+        <ht-input ht-id="jggsmc" name="监管公司名称" ng-model="otherform.jggsmc"></ht-input>
+        <ht-select  ht-id="ywpz" name="业务品种" dictionary="checked" ng-model="otherform.ywpz"></ht-select>
+        <ht-button-group>
+            <ht-button ht-id="submitew" desc-name="撤销"></ht-button>
+            <ht-button ht-id="submitwe" desc-name="恢复"></ht-button>
+            <ht-button ht-id="submitde" desc-name="重置"></ht-button>
+            <ht-button ht-id="submit" desc-name="查询"></ht-button>
+        </ht-button-group>
+    </ht-form>
+
+    <ht-legend colorId="orangered">监管合同列表</ht-legend>
+    <ht-button-group>
+        <ht-button ht-id="excel" class="btn-primary">导表</ht-button>
+        <ht-button ht-id="fresh" class="btn-primary">刷新</ht-button>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="detail" class="btn-primary">查看明细</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="jghth" zh-name="监管合同号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="jggsmc" zh-name="监管公司名称"></ht-column>
+    <ht-column eg-name="ywpz" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="htsxrq" zh-name="合同生效日期"></ht-column>
+    <ht-column eg-name="htxxrq" zh-name="合同失效日期"></ht-column>
+    <ht-column eg-name="khjl" zh-name="客户经理"></ht-column>
+    <ht-column eg-name="jbjg" zh-name="经办机构"></ht-column>
+    <ht-column eg-name="htzt" zh-name="合同状态"  dictionary="checked"></ht-column>
+    <ht-column eg-name="remark1" zh-name="备注1"></ht-column>
+    <ht-column eg-name="remark2" zh-name="备注2"></ht-column>
+    <ht-column eg-name="remark3" zh-name="备注3"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

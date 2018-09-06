@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_SYS_UPLOAD_FILE" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.sys.dao.model.BSysUploadFile" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+    <result column="FILE_EXT" property="fileExt" jdbcType="VARCHAR" />
+    <result column="FILE_TYPE" property="fileType" jdbcType="CHAR" />
+    <result column="FILE_SIZE" property="fileSize" jdbcType="VARCHAR" />
+    <result column="UPLOAD_TLRNO" property="uploadTlrno" jdbcType="VARCHAR" />
+    <result column="UPLOAD_TIME" property="uploadTime" jdbcType="TIMESTAMP" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="FILE_CLASS" property="fileClass" jdbcType="VARCHAR" />
+    <result column="FILE_FLAG" property="fileFlag" jdbcType="CHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="FILE_PRO" property="filePro" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" class="com.huateng.scf.bas.sys.dao.model.BSysUploadFile" extends="B_SYS_UPLOAD_FILE.BaseResultMap" >
+    <result column="FILE_CONTENT" property="fileContent" jdbcType="BLOB" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, FILE_NAME, FILE_EXT, FILE_TYPE, FILE_SIZE, UPLOAD_TLRNO, UPLOAD_TIME, EXT1, EXT2, 
+    EXT3, FILE_CLASS, FILE_FLAG, APPNO, FILE_PRO
+  </sql>
+  <sql id="Blob_Column_List" >
+    FILE_CONTENT
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFileExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_SYS_UPLOAD_FILE.Base_Column_List" />
+    ,
+    <include refid="B_SYS_UPLOAD_FILE.Blob_Column_List" />
+    from B_SYS_UPLOAD_FILE
+    <isParameterPresent >
+      <include refid="B_SYS_UPLOAD_FILE.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFileExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_SYS_UPLOAD_FILE.Base_Column_List" />
+    from B_SYS_UPLOAD_FILE
+    <isParameterPresent >
+      <include refid="B_SYS_UPLOAD_FILE.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFile" >
+    select 
+    <include refid="B_SYS_UPLOAD_FILE.Base_Column_List" />
+    ,
+    <include refid="B_SYS_UPLOAD_FILE.Blob_Column_List" />
+    from B_SYS_UPLOAD_FILE
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFile" >
+    delete from B_SYS_UPLOAD_FILE
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFileExample" >
+    delete from B_SYS_UPLOAD_FILE
+    <include refid="B_SYS_UPLOAD_FILE.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFile" >
+    insert into B_SYS_UPLOAD_FILE (ID, FILE_NAME, FILE_EXT, FILE_TYPE, FILE_SIZE, 
+      UPLOAD_TLRNO, UPLOAD_TIME, EXT1, EXT2, 
+      EXT3, FILE_CLASS, FILE_FLAG, APPNO, FILE_PRO, 
+      FILE_CONTENT)
+    values (#id:VARCHAR#, #fileName:VARCHAR#, #fileExt:VARCHAR#, #fileType:CHAR#, #fileSize:VARCHAR#, 
+      #uploadTlrno:VARCHAR#, #uploadTime:TIMESTAMP#, #ext1:VARCHAR#, #ext2:VARCHAR#, 
+      #ext3:VARCHAR#, #fileClass:VARCHAR#, #fileFlag:CHAR#, #appno:VARCHAR#, #filePro:VARCHAR#, 
+      #fileContent:BLOB#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFile" >
+    insert into B_SYS_UPLOAD_FILE
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="fileName" >
+        FILE_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="fileExt" >
+        FILE_EXT
+      </isNotNull>
+      <isNotNull prepend="," property="fileType" >
+        FILE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="fileSize" >
+        FILE_SIZE
+      </isNotNull>
+      <isNotNull prepend="," property="uploadTlrno" >
+        UPLOAD_TLRNO
+      </isNotNull>
+      <isNotNull prepend="," property="uploadTime" >
+        UPLOAD_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3
+      </isNotNull>
+      <isNotNull prepend="," property="fileClass" >
+        FILE_CLASS
+      </isNotNull>
+      <isNotNull prepend="," property="fileFlag" >
+        FILE_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="filePro" >
+        FILE_PRO
+      </isNotNull>
+      <isNotNull prepend="," property="fileContent" >
+        FILE_CONTENT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileName" >
+        #fileName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileExt" >
+        #fileExt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileType" >
+        #fileType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileSize" >
+        #fileSize:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="uploadTlrno" >
+        #uploadTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="uploadTime" >
+        #uploadTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        #ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileClass" >
+        #fileClass:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileFlag" >
+        #fileFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="filePro" >
+        #filePro:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileContent" >
+        #fileContent:BLOB#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFileExample" resultClass="java.lang.Integer" >
+    select count(*) from B_SYS_UPLOAD_FILE
+    <include refid="B_SYS_UPLOAD_FILE.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_SYS_UPLOAD_FILE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fileName" >
+        FILE_NAME = #record.fileName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fileExt" >
+        FILE_EXT = #record.fileExt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fileType" >
+        FILE_TYPE = #record.fileType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fileSize" >
+        FILE_SIZE = #record.fileSize:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.uploadTlrno" >
+        UPLOAD_TLRNO = #record.uploadTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.uploadTime" >
+        UPLOAD_TIME = #record.uploadTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1" >
+        EXT1 = #record.ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext2" >
+        EXT2 = #record.ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext3" >
+        EXT3 = #record.ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fileClass" >
+        FILE_CLASS = #record.fileClass:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fileFlag" >
+        FILE_FLAG = #record.fileFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.filePro" >
+        FILE_PRO = #record.filePro:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fileContent" >
+        FILE_CONTENT = #record.fileContent:BLOB#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_SYS_UPLOAD_FILE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExampleWithBLOBs" >
+    update B_SYS_UPLOAD_FILE
+    set ID = #record.id:VARCHAR#,
+      FILE_NAME = #record.fileName:VARCHAR#,
+      FILE_EXT = #record.fileExt:VARCHAR#,
+      FILE_TYPE = #record.fileType:CHAR#,
+      FILE_SIZE = #record.fileSize:VARCHAR#,
+      UPLOAD_TLRNO = #record.uploadTlrno:VARCHAR#,
+      UPLOAD_TIME = #record.uploadTime:TIMESTAMP#,
+      EXT1 = #record.ext1:VARCHAR#,
+      EXT2 = #record.ext2:VARCHAR#,
+      EXT3 = #record.ext3:VARCHAR#,
+      FILE_CLASS = #record.fileClass:VARCHAR#,
+      FILE_FLAG = #record.fileFlag:CHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      FILE_PRO = #record.filePro:VARCHAR#,
+      FILE_CONTENT = #record.fileContent:BLOB#
+    <isParameterPresent >
+      <include refid="B_SYS_UPLOAD_FILE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_SYS_UPLOAD_FILE
+    set ID = #record.id:VARCHAR#,
+      FILE_NAME = #record.fileName:VARCHAR#,
+      FILE_EXT = #record.fileExt:VARCHAR#,
+      FILE_TYPE = #record.fileType:CHAR#,
+      FILE_SIZE = #record.fileSize:VARCHAR#,
+      UPLOAD_TLRNO = #record.uploadTlrno:VARCHAR#,
+      UPLOAD_TIME = #record.uploadTime:TIMESTAMP#,
+      EXT1 = #record.ext1:VARCHAR#,
+      EXT2 = #record.ext2:VARCHAR#,
+      EXT3 = #record.ext3:VARCHAR#,
+      FILE_CLASS = #record.fileClass:VARCHAR#,
+      FILE_FLAG = #record.fileFlag:CHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      FILE_PRO = #record.filePro:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_SYS_UPLOAD_FILE.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFile" >
+    update B_SYS_UPLOAD_FILE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="fileName" >
+        FILE_NAME = #fileName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileExt" >
+        FILE_EXT = #fileExt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileType" >
+        FILE_TYPE = #fileType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileSize" >
+        FILE_SIZE = #fileSize:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="uploadTlrno" >
+        UPLOAD_TLRNO = #uploadTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="uploadTime" >
+        UPLOAD_TIME = #uploadTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1 = #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2 = #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3 = #ext3:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileClass" >
+        FILE_CLASS = #fileClass:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileFlag" >
+        FILE_FLAG = #fileFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="filePro" >
+        FILE_PRO = #filePro:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fileContent" >
+        FILE_CONTENT = #fileContent:BLOB#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFile" >
+    update B_SYS_UPLOAD_FILE
+    set FILE_NAME = #fileName:VARCHAR#,
+      FILE_EXT = #fileExt:VARCHAR#,
+      FILE_TYPE = #fileType:CHAR#,
+      FILE_SIZE = #fileSize:VARCHAR#,
+      UPLOAD_TLRNO = #uploadTlrno:VARCHAR#,
+      UPLOAD_TIME = #uploadTime:TIMESTAMP#,
+      EXT1 = #ext1:VARCHAR#,
+      EXT2 = #ext2:VARCHAR#,
+      EXT3 = #ext3:VARCHAR#,
+      FILE_CLASS = #fileClass:VARCHAR#,
+      FILE_FLAG = #fileFlag:CHAR#,
+      APPNO = #appno:VARCHAR#,
+      FILE_PRO = #filePro:VARCHAR#,
+      FILE_CONTENT = #fileContent:BLOB#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysUploadFile" >
+    update B_SYS_UPLOAD_FILE
+    set FILE_NAME = #fileName:VARCHAR#,
+      FILE_EXT = #fileExt:VARCHAR#,
+      FILE_TYPE = #fileType:CHAR#,
+      FILE_SIZE = #fileSize:VARCHAR#,
+      UPLOAD_TLRNO = #uploadTlrno:VARCHAR#,
+      UPLOAD_TIME = #uploadTime:TIMESTAMP#,
+      EXT1 = #ext1:VARCHAR#,
+      EXT2 = #ext2:VARCHAR#,
+      EXT3 = #ext3:VARCHAR#,
+      FILE_CLASS = #fileClass:VARCHAR#,
+      FILE_FLAG = #fileFlag:CHAR#,
+      APPNO = #appno:VARCHAR#,
+      FILE_PRO = #filePro:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

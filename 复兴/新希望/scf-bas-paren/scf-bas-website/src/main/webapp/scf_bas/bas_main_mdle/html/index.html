@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>企业供应链金融-主页</title>
+		<link href="../css/main/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../css/main/scfbase.css" rel="stylesheet" type="text/css">
+		<link href="../css/main/scfmain.css" rel="stylesheet" type="text/css">
+		<link href="../css/main/scffont.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="../js/echarts.js"></script>
+	</head>
+	<body>
+		<div class="main-index">
+			<!--业务处理-->
+			<div class="ywcl">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="panel-title pr20 mr20">
+							<span class="rmgyl rmgyl-ywcli tjfx-font"></span>
+							业务处理
+						</span>
+						<span class="ywcl-top-adv">
+							<span class="ywcl-top-adv0">公告</span>
+							<span>恭贺华腾企业供应链金融4.0正式上线！</span>
+						</span>
+					</div>
+					
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-3 ywcl-dbrw">
+								<div class="col-md-3 p0 ywcl-dbrw-div0">
+									<span class="rmgyl rmgyl-daiban ywcl-dbrw-font"></span>
+								</div>
+								<div class="col-md-3 p0 ywcl-dbrw-div1">
+									<div class="col-md-3 p0 ywcl-dbrw-div2">
+										<span class="ywcl-dbrw-text0">待办任务</span>
+									</div>
+									<div class="col-md-3 p0 ywcl-dbrw-div2">
+										<span class="ywcl-dbrw-text1"><span class="ywcl-dbrw-text01">12</span>笔</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-3 ywcl-sptg">
+								<div class="col-md-3 p0 ywcl-dbrw-div0">
+									<span class="rmgyl rmgyl-tongguo ywcl-dbrw-font"></span>
+								</div>
+								<div class="col-md-3 p0 ywcl-dbrw-div1">
+									<div class="col-md-3 p0 ywcl-dbrw-div2">
+										<span class="ywcl-dbrw-text0">审批通过</span>
+									</div>
+									<div class="col-md-3 p0 ywcl-dbrw-div2">
+										<span class="ywcl-dbrw-text1"><span class="ywcl-dbrw-text01">60</span>笔</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-3 ywcl-yqx">
+								<div class="col-md-3 p0 ywcl-dbrw-div0">
+									<span class="rmgyl rmgyl-quxiao ywcl-dbrw-font"></span>
+								</div>
+								<div class="col-md-3 p0 ywcl-dbrw-div1">
+									<div class="col-md-3 p0 ywcl-dbrw-div2">
+										<span class="ywcl-dbrw-text0">已驳回</span>
+									</div>
+									<div class="col-md-3 p0 ywcl-dbrw-div2">
+										<span class="ywcl-dbrw-text1"><span class="ywcl-dbrw-text01">8</span>笔</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-3 ywcl-yjj">
+								<div class="col-md-3 p0 ywcl-dbrw-div0">
+									<span class="rmgyl rmgyl-jujue ywcl-dbrw-font"></span>
+								</div>
+								<div class="col-md-3 p0 ywcl-dbrw-div1">
+									<div class="col-md-3 p0 ywcl-dbrw-div2">
+										<span class="ywcl-dbrw-text0">已拒绝</span>
+									</div>
+									<div class="col-md-3 p0 ywcl-dbrw-div2">
+										<span class="ywcl-dbrw-text1"><span class="ywcl-dbrw-text01">5</span>笔</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--统计分析-->
+			<div class="tjfx">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="panel-title pr20 mr20">
+							<span class="rmgyl rmgyl-tongjichaxun tjfx-font"></span>
+							统计分析
+						</span>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-4 pl0" id="myChart" style="width:460px;height:320px;">
+								
+							</div>
+							<div class="col-xs-3 pr0">
+								<span>汇总</span></br>
+								<span class="tjfx-huizong-span0">
+									<span class="rmgyl rmgyl-yskqren tjfx-font1"></span>&nbsp;
+									总成交量: 134,576,153.60<span class="tjfx-huizong-span1">元</span>
+								</span></br>
+								<span class="tjfx-huizong-span0">
+									<span class="rmgyl rmgyl-yskqren tjfx-font1"></span>&nbsp;
+									总支出：4,629,863,767.52<span class="tjfx-huizong-span1">元</span>
+								</span></br>
+								<span class="tjfx-huizong-span0">
+									<span class="rmgyl rmgyl-yskqren tjfx-font1"></span>&nbsp;
+									损失金额：0<span class="tjfx-huizong-span1">元</span>
+								</span></br>
+								<span class="tjfx-huizong-span0">
+									<span class="rmgyl rmgyl-yskqren tjfx-font1"></span>&nbsp;
+									总利润：4,764,439,921.12<span class="tjfx-huizong-span1">元</span>
+								</span></br>
+							</div>
+							<div class="col-xs-5 pr0 tjfx-prod0">
+								<span class="table-title">产品收入</span>
+								<table class="table">
+							        <thead>
+							          <tr>
+							            <th></th>
+							            <th>项目</th>
+							            <th>金额</th>
+							          </tr>
+							        </thead>
+							        <tbody>
+							          <tr>
+							            <th scope="row">
+							            	<span class="rmgyl rmgyl-alertcg tjfx-font0"></span>
+							            </th>
+							            <td>应收账款质押</td>
+							            <td>10,000.00</td>
+							          </tr>
+							          <tr>
+							            <th scope="row"><span class="rmgyl rmgyl-alertcg tjfx-font0"></span></th>
+							            <td>国内保理</td>
+							            <td>20,000.00</td>
+							          </tr>
+							          <tr>
+							            <th scope="row"><span class="rmgyl rmgyl-alertcg tjfx-font0"></span></th>
+							            <td>非标准仓单</td>
+							            <td>30,000.00</td>
+							          </tr>
+							          <tr>
+							            <th scope="row"><span class="rmgyl rmgyl-alertcg tjfx-font0"></span></th>
+							            <td>应收账款质押</td>
+							            <td>10,000.00</td>
+							          </tr>
+							          <tr>
+							            <th scope="row"><span class="rmgyl rmgyl-alertcg tjfx-font0"></span></th>
+							            <td>国内保理</td>
+							            <td>20,000.00</td>
+							          </tr>
+							          <tr>
+							            <th scope="row"><span class="rmgyl rmgyl-alertcg tjfx-font0"></span></th>
+							            <td>非标准仓单</td>
+							            <td>30,000.00</td>
+							          </tr>
+							        </tbody>
+						      </table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--预警和融资分布-->
+			<div class="yujrzfb">
+				<div class="yjxx">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<span class="panel-title pr20 mr20">
+								<span class="rmgyl rmgyl-yjing tjfx-font"></span>
+								预警信息
+							</span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-6 pl0" id="warnChart" style="width:530px;height:300px">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="rzjefb">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<span class="panel-title pr20 mr20">
+								<span class="rmgyl rmgyl-ditu tjfx-font"></span>
+								融资金额分布
+							</span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-6 pl0" id="finMapChart" style="width:490px;height:300px">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+		 	var theme={
+		       color : [
+		           '#D87A80','#8D98B3','#E5CF0D',
+		           '#2EC7C9','#B6A2DE','#60C0DD','#FFB980'
+		        ]
+		
+		    };
+    		var myChart = echarts.init(document.getElementById('myChart'),theme);
+		    option = {
+		        tooltip : {
+		            trigger: 'item',
+		            formatter: "{a} <br/>{b} : {c} ({d}%)"
+		        },
+		        legend: {
+		           // orient : 'vertical',
+		            x : 'center',
+		            itemWidth:15, //图例图像宽度 默认20
+		            itemHight:10, //图例图像高度 默认14
+		            textStyle:{
+		                fontSize:8
+		            }, //文本标签样式
+		            data:['池余额','应收账款','应收租金','押品价值']
+		        },
+		        toolbox: {
+		            show : true,
+		            feature : {
+		                mark : {show: false}, //辅助线开关
+		                dataView : {show: false, readOnly: false}, //数据视图
+		                magicType : {   //动态类型切换
+		                    show: false,
+		                    type: ['pie', 'funnel']
+		                },
+		                restore : {show: false}, // 还原
+		                saveAsImage : {show: false} //保存为图片
+		            }
+		        },
+		        calculable : false,
+		        series : [
+		            {
+		                name:'', //内环
+		                type:'pie',
+		                center:['50%','55%'],
+		                selectedMode: 'single',
+		                //radius : [0, 60],
+		                radius : [0, '30%'],
+		
+		                // for funnel
+		              /*  x: '20%',
+		                width: '40%',
+		                funnelAlign: 'right',
+		                max: 1148,*/
+		
+		                itemStyle : {
+		                    normal : {
+		                        //颜色
+		
+		                        label : {
+		                            position : 'inner',
+		                            textStyle:{
+		                                fontSize:8
+		                            } //文本标签样式
+		
+		                        },
+		                        labelLine : {
+		                            show : false
+		                        }
+		                    }
+		                },
+		                data:[
+		                    {value:535, name:'预付类'},
+		                    {value:679, name:'存货类'},
+		                    {value:1148, name:'应收类'}
+		
+		                ]
+		            },
+		            {
+		               name:'',
+		                type:'pie',
+		                center:['50%','55%'],
+		                //radius : [100, 140],
+		                radius : ['40%', '55%'],
+		
+		                // for funnel
+		             /*   x: '60%',
+		                width: '35%',
+		                funnelAlign: 'left',
+		                max: 234,*/
+		
+		                data:[
+		                    {value:335, name:'池余额'},
+		                    {value:310, name:'应收账款'},
+		                    {value:234, name:'应收租金'},
+		                    {value:135, name:'押品价值'}
+		
+		                ]
+		            }
+		        ]
+		    };
+		    // 使用刚指定的配置项和数据显示图表。
+		    myChart.setOption(option);
+		    
+		//预警信息图表展示
+		var warnChartTheme={
+	        color : [
+	            '#23bfaa','#9bbb58','#d38483'
+	        ]
+	    };
+	    var warnChart = echarts.init(document.getElementById('warnChart'),warnChartTheme);
+	    warnoption = {
+	        tooltip : {
+	            trigger: 'axis',
+	            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+	                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+	            }
+	        },
+	        legend: {
+	            itemWidth:15, //图例图像宽度 默认20
+	            itemHight:10, //图例图像高度 默认14
+	            textStyle:{
+	                fontSize:8
+	            }, //文本标签样式
+	            //data:['直接访问', '邮件营销','联盟广告','视频广告','搜索引擎']
+	            data:['高级预警', '中级预警','低级预警']
+	        },
+	        toolbox: {
+	            show : true,
+	            feature : {
+	                mark : {show: false},//辅助线开关
+	                dataView : {show: false, readOnly: false},//数据视图
+	                magicType : {show: false, type: ['line', 'bar', 'stack', 'tiled']},//动态类型切换
+	                restore : {show: false}, // 还原
+	                saveAsImage : {show: false} //保存为图片
+	            }
+	        },
+	        calculable : true,
+	        grid:{'x':20,'x2':10},
+	        xAxis : [
+	            {
+	                type : 'category',
+	                // data : ['周一','周二','周三','周四','周五','周六','周日']
+	                data : ['未巡库预警','应收账款到期预警','对账不平预警','价格波动预警','敞口无法覆盖预警'],
+	                axisLabel:{
+	                    textStyle:{
+	                        fontSize:5
+	                    }, //文本标签样式
+	                    interval:0,//横轴信息全部显示
+	                    //rotate:30 //角度
+	                }
+	
+	            }
+	        ],
+	        yAxis : [
+	            {
+	                type : 'value',
+	                boundaryGap: [0, 0.1]
+	            }
+	        ],
+	        series : [
+	            {
+	                name:'低级预警',
+	                type:'bar',
+	                stack: '总量',
+	                itemStyle : { normal: {label : {show: false, position: 'insideRight'}}},
+	                //data:[320, 302, 301, 334, 390, 330, 320]
+	                data:[3, 2, 1, 4, 0]
+	            },
+	            {
+	                name:'中级预警',
+	                type:'bar',
+	                stack: '总量',
+	                itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+	                //data:[120, 132, 101, 134, 90, 230, 210]
+	                data:[1, 1, 1, 3, 9]
+	            },
+	            {
+	                name:'高级预警',
+	                type:'bar',
+	                stack: '总量',
+	                barWidth:40,// 柱形宽度
+	                barGap:'10%',// 柱间距离，默认为 柱形宽度的30%
+	                itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+	                //data:[220, 182, 191, 234, 290, 330, 310]
+	                data:[2, 8, 1, 3, 2]
+	            }/*,
+	            {
+	                name:'视频广告',
+	                type:'bar',
+	                stack: '总量',
+	                itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+	                data:[150, 212, 201, 154, 190, 330, 410]
+	            },
+	            {
+	                name:'搜索引擎',
+	                type:'bar',
+	                stack: '总量',
+	                itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+	                data:[820, 832, 901, 934, 1290, 1330, 1320]
+	            }*/
+	        ]
+	    };
+	
+	    // 为echarts对象加载数据
+	    warnChart.setOption(warnoption);
+	    
+	    //融资金额分布
+	     var finMapChartTheme={
+        color : [
+            '#FF7F50','#87CEFA','#DA70D6'
+        ]
+    };
+    var finMapChart = echarts.init(document.getElementById('finMapChart'),finMapChartTheme);
+    finMapChartOption = {
+	    title : {
+	        text: '融资金额分布',
+	        subtext: '',
+	        x:'center'
+	    },
+	    tooltip : {
+	        trigger: 'item'
+	    },
+	    legend: {
+	        orient: 'vertical',
+	        x:'left',
+	        data:['国内保理','担保提货','非标仓单']
+	    },
+	    dataRange: {
+	        min: 0,
+	        max: 2500,
+	        x: 'left',
+	        y: 'bottom',
+	        text:['高','低'],           // 文本，默认为数值文本
+	        calculable : true
+	    },
+	    toolbox: {
+	        show: true,
+	        orient : 'vertical',
+	        x: 'right',
+	        y: 'center',
+	        feature : {
+	            mark : {show: false},
+	            dataView : {show: false, readOnly: false},
+	            restore : {show: false},
+	            saveAsImage : {show: false}
+	        }
+	    },
+	    roamController: {
+	        show: false,
+	        x: 'right',
+	        mapTypeControl: {
+	            'china': false
+	        }
+	    },
+	    series : [
+	        {
+	            name: '国内保理',
+	            type: 'map',
+	            mapType: 'china',
+	            roam: false,
+	            itemStyle:{
+	                normal:{label:{show:true}},
+	                emphasis:{label:{show:true}}
+	            },
+	            data:[
+	                {name: '北京',value: Math.round(Math.random()*1000)},
+	                {name: '天津',value: Math.round(Math.random()*1000)},
+	                {name: '上海',value: Math.round(Math.random()*1000)},
+	                {name: '重庆',value: Math.round(Math.random()*1000)},
+	                {name: '河北',value: Math.round(Math.random()*1000)},
+	                {name: '河南',value: Math.round(Math.random()*1000)},
+	                {name: '云南',value: Math.round(Math.random()*1000)},
+	                {name: '辽宁',value: Math.round(Math.random()*1000)},
+	                {name: '黑龙江',value: Math.round(Math.random()*1000)},
+	                {name: '湖南',value: Math.round(Math.random()*1000)},
+	                {name: '安徽',value: Math.round(Math.random()*1000)},
+	                {name: '山东',value: Math.round(Math.random()*1000)},
+	                {name: '新疆',value: Math.round(Math.random()*1000)},
+	                {name: '江苏',value: Math.round(Math.random()*1000)},
+	                {name: '浙江',value: Math.round(Math.random()*1000)},
+	                {name: '江西',value: Math.round(Math.random()*1000)},
+	                {name: '湖北',value: Math.round(Math.random()*1000)},
+	                {name: '广西',value: Math.round(Math.random()*1000)},
+	                {name: '甘肃',value: Math.round(Math.random()*1000)},
+	                {name: '山西',value: Math.round(Math.random()*1000)},
+	                {name: '内蒙古',value: Math.round(Math.random()*1000)},
+	                {name: '陕西',value: Math.round(Math.random()*1000)},
+	                {name: '吉林',value: Math.round(Math.random()*1000)},
+	                {name: '福建',value: Math.round(Math.random()*1000)},
+	                {name: '贵州',value: Math.round(Math.random()*1000)},
+	                {name: '广东',value: Math.round(Math.random()*1000)},
+	                {name: '青海',value: Math.round(Math.random()*1000)},
+	                {name: '西藏',value: Math.round(Math.random()*1000)},
+	                {name: '四川',value: Math.round(Math.random()*1000)},
+	                {name: '宁夏',value: Math.round(Math.random()*1000)},
+	                {name: '海南',value: Math.round(Math.random()*1000)},
+	                {name: '台湾',value: Math.round(Math.random()*1000)},
+	                {name: '香港',value: Math.round(Math.random()*1000)},
+	                {name: '澳门',value: Math.round(Math.random()*1000)}
+	            ]
+	        },
+	        {
+	            name: '担保提货',
+	            type: 'map',
+	            mapType: 'china',
+	            itemStyle:{
+	                normal:{label:{show:true}},
+	                emphasis:{label:{show:true}}
+	            },
+	            data:[
+	                {name: '北京',value: Math.round(Math.random()*1000)},
+	                {name: '天津',value: Math.round(Math.random()*1000)},
+	                {name: '上海',value: Math.round(Math.random()*1000)},
+	                {name: '重庆',value: Math.round(Math.random()*1000)},
+	                {name: '河北',value: Math.round(Math.random()*1000)},
+	                {name: '安徽',value: Math.round(Math.random()*1000)},
+	                {name: '新疆',value: Math.round(Math.random()*1000)},
+	                {name: '浙江',value: Math.round(Math.random()*1000)},
+	                {name: '江西',value: Math.round(Math.random()*1000)},
+	                {name: '山西',value: Math.round(Math.random()*1000)},
+	                {name: '内蒙古',value: Math.round(Math.random()*1000)},
+	                {name: '吉林',value: Math.round(Math.random()*1000)},
+	                {name: '福建',value: Math.round(Math.random()*1000)},
+	                {name: '广东',value: Math.round(Math.random()*1000)},
+	                {name: '西藏',value: Math.round(Math.random()*1000)},
+	                {name: '四川',value: Math.round(Math.random()*1000)},
+	                {name: '宁夏',value: Math.round(Math.random()*1000)},
+	                {name: '香港',value: Math.round(Math.random()*1000)},
+	                {name: '澳门',value: Math.round(Math.random()*1000)}
+	            ]
+	        },
+	        {
+	            name: '非标仓单',
+	            type: 'map',
+	            mapType: 'china',
+	            itemStyle:{
+	                normal:{label:{show:true}},
+	                emphasis:{label:{show:true}}
+	            },
+	            data:[
+	                {name: '北京',value: Math.round(Math.random()*1000)},
+	                {name: '天津',value: Math.round(Math.random()*1000)},
+	                {name: '上海',value: Math.round(Math.random()*1000)},
+	                {name: '广东',value: Math.round(Math.random()*1000)},
+	                {name: '台湾',value: Math.round(Math.random()*1000)},
+	                {name: '香港',value: Math.round(Math.random()*1000)},
+	                {name: '澳门',value: Math.round(Math.random()*1000)}
+	            ]
+	        }
+	    ]
+	};
+    // 为echarts对象加载数据
+    finMapChart.setOption(finMapChartOption);
+</script>
+		
+	</body>
+</html>

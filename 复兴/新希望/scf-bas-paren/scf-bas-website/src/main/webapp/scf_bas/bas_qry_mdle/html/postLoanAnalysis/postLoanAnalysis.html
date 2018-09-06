@@ -1,0 +1,33 @@
+<style type="text/css">
+ 
+</style>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="cname"  name="公司名称" ng-model="conditionForm.cname"></ht-input>
+
+    <ht-button-group>
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-legend>公司风险承受能力</ht-legend>
+<!-- <ht-form name ="otherform">
+		<ht-input name="逾期金额" disable="true" ng-model="otherform.totalIncome" edit_type="currency"></ht-input>
+		<ht-input name="逾期金额比例  " disable="true" ng-model="otherform.totalOutcome" edit_type="currency"></ht-input>
+		<ht-input name="本息损失  " disable="true" ng-model="otherform.totalLossAmt" edit_type="currency"></ht-input>
+
+</ht-form> -->
+<ht-table ht-id="tableId" datasource="riskdatasource" selected="riskselected" docheckbox="false">
+    <ht-column eg-name="cname" zh-name="公司名称"></ht-column>
+    <ht-column eg-name="overdueAmount" zh-name="逾期金额" type="currency"></ht-column>
+    <ht-column eg-name="overdueRate" zh-name="逾期金额比例" type="currency"></ht-column>
+    <ht-column eg-name="principalLossAmt" zh-name="本息损失" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="riskconf"></ht-page>
+<ht-legend>本年/月风险预警总览</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="false">
+    <ht-column eg-name="cname" zh-name="公司名称" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="postLoanWarnType" zh-name="预警类型" dictionary="postLoanWarnType"></ht-column>
+    <ht-column eg-name="warnNum" zh-name="预警条数" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+

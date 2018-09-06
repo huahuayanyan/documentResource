@@ -1,0 +1,26 @@
+    <ht-form name ="conditionForm">
+        <ht-input  name="授信协议号" ng-model="conditionForm.bcCrId"></ht-input>
+        <ht-input  name="客户名称" ng-model="conditionForm.custNm"></ht-input>
+        
+        <ht-button-group align="left">
+             <ht-button ht-id="submit" class="btn-primary"  desc-name="查询" ></ht-button>
+             <ht-button ht-id="reset"  class="btn-primary" desc-name="重置"></ht-button>  
+         </ht-button-group>
+    </ht-form>
+
+    <ht-button-group>
+           <ht-button ht-id="freeze" class="btn-primary">冻结</ht-button>
+    </ht-button-group>
+    <ht-table  datasource="datasource" selected="selected" docheckbox="true" >
+    <ht-column  eg-name="bcCrId" zh-name="授信协议号" href="true" docolumn="column"></ht-column>
+    <ht-column  eg-name="crNm" zh-name="授信类型"></ht-column>
+    <ht-column  eg-name="custId" zh-name="客户编号"></ht-column> 
+    <ht-column  eg-name="custNm" zh-name="客户名称"></ht-column>
+    <ht-column  eg-name="curcd" zh-name="币种"   dictionary="curcd" ></ht-column>    
+    <ht-column  eg-name="crAmt" zh-name="额度金额"   type="currency"></ht-column>        
+    <ht-column  eg-name="stat" zh-name="状态"   dictionary="crdLinStat" ></ht-column>
+     <ht-column  eg-name="effectDt" zh-name="生效日期"  type="date"></ht-column>        
+     <ht-column  eg-name="tlrNm" zh-name="经办人" ></ht-column>        
+     <ht-column  eg-name="brNm" zh-name="经办机构" ></ht-column>         
+</ht-table>
+<ht-page conf="conf"></ht-page>

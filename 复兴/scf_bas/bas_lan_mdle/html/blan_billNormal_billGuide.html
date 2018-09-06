@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ------------公共css--------------------- -->
+    <script src="../../scube_ui/common/importCs.js"></script>
+    <!-- ------------业务css--------------------- -->
+
+</head>
+<body>
+<div ng-controller="repayBillNormalGuideController">
+    <ht-legend>任务基本信息</ht-legend>
+    <ht-form name="taskform">
+        <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+        <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+        <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+        <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+    </ht-form>
+    <ht-tabs>
+        <ht-pane title="放款申请"  ui-sref="repaydetail">
+        </ht-pane>
+        <ht-pane title="仓单清单"  ui-sref="repaymort" >
+        </ht-pane>
+        <ht-pane title="保证金列表"  ui-sref="repayacct">
+        </ht-pane>
+        <ht-pane title="核库信息"  ui-sref="repaystock" >
+        </ht-pane>
+        <ht-pane title="抵质押合同查询"  ui-sref="repaygntycon" >
+        </ht-pane>
+        <ht-pane title="信贷合同"  ui-sref="repaylncon">
+        </ht-pane>
+    </ht-tabs>
+</div>
+
+<!-- ------------配置文件js，初始化全局变量--------------------- -->
+<script src="../../config.js"></script>
+
+<!-- ------------公共js--------------------- -->
+<script src="../../scube_ui/common/myBrowser.js"></script>
+<script src="../../scube_ui/common/importJs.js"></script>
+
+<!-- ------------业务js--------------------- -->
+<script src="../js/blan_billNormal_billGuide.js"></script>
+<script src="../js/billnormal/repay_billnormal_guide_controller.js"></script>
+<script src="../js/billnormal/repay_billnormal_mort_controller.js"></script>
+<script src="../js/billnormal/repay_billnormal_stock_controller.js"></script>
+<script src="../js/billnormal/repay_billnormal_edit_controller.js"></script>
+<script src="../js/info/acct_controller.js"></script>
+<script src="../js/info/lncon_controller.js"></script>
+<script src="../js/info/gntycon_controller.js"></script>
+
+
+
+</body>
+</html>
+
+

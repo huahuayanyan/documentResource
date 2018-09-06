@@ -1,0 +1,13 @@
+<ht-legend>树控件</ht-legend>
+<treecontrol class="tree-classic"
+             options="treeOptions"
+             tree-model="dataForTheTree"
+             on-selection="showSelected(node)"
+             selected-node="selectedNode"
+             selected-nodes="selectedNodes">
+    {{node.treeName}}
+</treecontrol>
+<ht-button ht-id="addTree" class="btn-primary" desc-name="新增"></ht-button>
+<ht-button ht-id="save" class="btn-primary" desc-name="保存"></ht-button>
+<ht-legend>autotree树</ht-legend>
+<ht-autotree option="autotree"></ht-autotree>

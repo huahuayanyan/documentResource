@@ -1,0 +1,33 @@
+
+<ht-legend>发票信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true" minheit="10px">
+    <ht-column eg-name="invId" zh-name="发票流水号"></ht-column>
+    <ht-column eg-name="invNo" zh-name="发票号码"></ht-column>
+    <ht-column eg-name="invCurcd" zh-name="发票币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="invSum" zh-name="金额" type="currency"></ht-column>
+    <ht-column eg-name="invDt" zh-name="开票日期" type="date"></ht-column>
+    <ht-column eg-name="tlrNm" zh-name="经办人"></ht-column>
+    <ht-column eg-name="brNm" zh-name="经办机构"></ht-column>
+    <ht-column eg-name="inpDt" zh-name="经办日期"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 40px;padding-top: 1px"></ht-page>
+
+<!--<div id="billinfo" style="display: none">-->
+<ht-legend style="margin-top: 10px">保证金列表</ht-legend>
+<ht-table ht-id="tableIdInfo" datasource="datasourceinfo" selected="selectedinfo" docheckbox="true" minheit="10px">
+    <ht-column eg-name="accountNo" zh-name="保证金帐号" href="true" docolumn="columninfo"></ht-column>
+    <ht-column eg-name="amount" zh-name="保证金金额" type="currency"></ht-column>
+    <ht-column eg-name="bailFrozenAmt" zh-name="冻结金额" type="currency"></ht-column>
+    <ht-column eg-name="accountName" zh-name="保证金账号名称"></ht-column>
+    <ht-column eg-name="actBrNm" zh-name="开户机构" ></ht-column>
+</ht-table>
+<ht-page conf="confinfo" style="height: 40px;padding-top: 1px"></ht-page>
+<!--</div>-->
+<ht-button-group align="center">
+    <ht-button ht-id="viewinv" class="btn-primary">查看</ht-button>
+    <ht-button ht-id="close" class="btn-primary">关闭</ht-button>
+</ht-button-group>
+
+
+
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_ICR_APPLI_BRCODE_LIST" >
+<typeAlias alias="BIcrAppliBrcodeList" type="com.huateng.scf.bas.icr.dao.model.BIcrAppliBrcodeList"></typeAlias>
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.icr.dao.model.BIcrAppliBrcodeList" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CREDIT_NO" property="creditNo" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+  </resultMap>
+<!-- 根据申请编号和额度编号删除业务申请额度适用机构映射 -->
+  <delete id="deleteAppliBrcodeListByNo" parameterClass="com.huateng.scf.bas.icr.dao.model.BIcrAppliBrcodeList" >
+    delete from B_ICR_APPLI_BRCODE_LIST
+    <isNotEmpty prepend="where" property="creditNo" >
+    CREDIT_NO = #creditNo:VARCHAR#
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="appno" >
+    APPNO = #appno:VARCHAR#
+    </isNotEmpty>
+  </delete>
+	<!-- 根据额度编号查询额度业务申请额度适用机构映射-->
+  	 <select id="selectBIcrAppliBrcodeLisBycreditNo" resultMap="B_ICR_APPLI_BRCODE_LIST.BaseResultMap" parameterClass="BIcrAppliBrcodeList">
+	 	  select 
+	   <include refid="B_ICR_APPLI_INFO.Base_Column_List" />
+	 	 from B_ICR_APPLI_BRCODE_LIST a where a.CREDIT_NO = #creditNo:VARCHAR#
+  </select>
+</sqlMap>

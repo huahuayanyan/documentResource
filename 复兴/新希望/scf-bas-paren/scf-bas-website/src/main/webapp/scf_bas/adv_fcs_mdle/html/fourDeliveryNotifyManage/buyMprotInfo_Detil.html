@@ -1,0 +1,22 @@
+
+<ht-legend>发货明细</ht-legend>
+<ht-form name ="otherform">
+    <ht-input ht-id="mortgageName" name="货品名称" reg-exp="common.require" ng-model="otherform.mortgageName"></ht-input>
+    <ht-input ht-id="mortgageModel" name="规格/型号" reg-exp="common.require" ng-model="otherform.mortgageModel"></ht-input>
+    <ht-input ht-id="mortgageLevelOneNm" name="押品一级" reg-exp="common.require" ng-model="otherform.mortgageLevelOneNm" disable="true"></ht-input>
+    <ht-input-extent ht-id="mortgageLevelTwoNm" name="押品二级"  reg-exp="common.require" ng-model="otherform.mortgageLevelTwoNm"
+                     extent="levelTwoContent" on-change="levelTwodooextent" disable="true"></ht-input-extent>
+    <ht-input ht-id="manufacturer" name="生产厂家"  reg-exp="common.require" ng-model="otherform.manufacturer"></ht-input>
+    <ht-input ht-id="manufactureDate" name="出厂日期"  reg-exp="common.require" ng-model="otherform.manufactureDate" edit-type="date"></ht-input>
+    <ht-select ht-id="mortgageUnits" name="单位"  reg-exp="common.require" ng-model="otherform.mortgageUnits"  dictionary="mortgageUnits"></ht-select>
+    <ht-input ht-id="quantity" reg-exp="common.number" name="数量/重量" ng-model="otherform.quantity"></ht-input>
+    <ht-select name="币种" dictionary="curcd" reg-exp="common.require" ng-model="otherform.curcd" disable="true"></ht-select>
+
+    <ht-input ht-id="price" name="买入单价" reg-exp="common.require" ng-model="otherform.price" type="currency"></ht-input>
+    <ht-input ht-id="deliveryAmt" name="发货金额" reg-exp="common.require" ng-model="otherform.deliveryAmt" type="currency"disable="true"></ht-input>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

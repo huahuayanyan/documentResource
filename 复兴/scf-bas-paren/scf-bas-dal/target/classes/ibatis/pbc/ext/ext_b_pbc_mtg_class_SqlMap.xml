@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_PBC_MTG_CLASS" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcMtgClass" >
+    <result column="MORTGAGE_CODE" property="mortgageCode" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+    <result column="PARENT_CODE" property="parentCode" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="MORTGAGE_TYPE" property="mortgageType" jdbcType="CHAR" />
+    <result column="LEVELS" property="levels" jdbcType="CHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="EXT4" property="ext4" jdbcType="VARCHAR" />
+    <result column="EXT5" property="ext5" jdbcType="VARCHAR" />
+    <result column="EXT6" property="ext6" jdbcType="VARCHAR" />
+    <result column="EXT7" property="ext7" jdbcType="VARCHAR" />
+    <result column="EXT8" property="ext8" jdbcType="VARCHAR" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="UNITS" property="units" jdbcType="VARCHAR" />
+    <result column="UNITSNAME" property="unitsname" jdbcType="VARCHAR" />
+    <result column="REVALUATION_INTERVAL" property="revaluationInterval" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BCntSlaveMtgRel" class="com.huateng.scf.bas.cnt.dao.model.BCntSlaveMtgRel" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE_NM" property="mortgageLevelOneNm" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO_NM" property="mortgageLevelTwoNm" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 将页面一级二级押品名称转译 -->
+  <select id="findBPbcMtgClassForMortageDao" resultMap="BCntSlaveMtgRel"  parameterClass="java.util.Map" >
+    select
+   	REL.ID,REL.SLAVE_CONTNO,REL.MORTGAGE_LEVEL_ONE,REL.MORTGAGE_LEVEL_TWO,
+   	A.MORTGAGE_NAME AS MORTGAGE_LEVEL_ONE_NM,
+   	B.MORTGAGE_NAME AS MORTGAGE_LEVEL_TWO_NM
+   	
+    from B_CNT_SLAVE_MTG_REL REL,
+    B_PBC_MTG_CLASS A,
+    B_PBC_MTG_CLASS B
+    
+    where 1=1
+    AND REL.MORTGAGE_LEVEL_ONE=A.MORTGAGE_CODE
+    AND REL.MORTGAGE_LEVEL_TWO=B.MORTGAGE_CODE
+    <isNotEmpty prepend="and" property="slaveContno" >
+         SLAVE_CONTNO=#slaveContno:VARCHAR# 
+    </isNotEmpty> 
+       
+    order by SLAVE_CONTNO DESC
+  </select> 
+</sqlMap>

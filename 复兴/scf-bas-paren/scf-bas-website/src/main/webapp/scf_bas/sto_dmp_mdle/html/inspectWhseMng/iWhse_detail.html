@@ -1,0 +1,146 @@
+<ht-form name="detailForm">
+    <ht-legend colorId="lawngreen">巡库基本信息</ht-legend>
+    <ht-panel>
+        <ht-input ht-id="inspectReportNo" name="巡库编号" ng-model="detailForm.inspectReportNo" disable="true"></ht-input>
+        <ht-input ht-id="CON_ID" name="抵/质押合同号" ng-model="detailForm.CON_ID" disable="true"></ht-input>
+        <ht-input ht-id="PRTCL_NO" name="监管合同号" ng-model="detailForm.PRTCL_NO"disable="true"></ht-input>
+        <ht-input ht-id="CUSTNAME" name="出质人名称" ng-model="detailForm.CUSTNAME" disable="true"></ht-input>
+        <ht-input ht-id="CNAME" name="监管公司名称" ng-model="detailForm.CNAME" disable="true"></ht-input>
+        <ht-select ht-id="inspectElement23" name="货押模式" ng-model="detailForm.inspectElement23" disable="true" dictionary = 'moniType'></ht-select>
+        <ht-select ht-id="productId" name="业务品种" ng-model="detailForm.productId"
+        datasource="selectSource" datatrsoption="value" dataoption="key" disable="true"></ht-select>
+        <ht-select ht-id="moniWarehouseType" name="监管模式" ng-model="detailForm.moniWarehouseType" reg-exp="common.require"
+                   disable="{{view}}" dictionary="moniWarehouseType"></ht-select>
+        <ht-input ht-id="warehouseName" name="监管仓库名称" ng-model="detailForm.warehouseName" reg-exp="common.require" disable="{{view}}"></ht-input>
+        <ht-input ht-id="inspectElement30" name="地址" ng-model="detailForm.inspectElement30" reg-exp="common.require" disable="{{view}}"></ht-input>
+        <ht-input ht-id="inspectElement26" name="本次巡库总价值" ng-model="detailForm.inspectElement26"
+                   edit-type="currency" disable="true"></ht-input>
+        <ht-input ht-id="inspectElement25" name="本次巡库总数量" ng-model="detailForm.inspectElement25"
+                   edit-type="currency" disable="true"></ht-input>
+        <ht-input ht-id="inspectElement34" name="当前查库总价值" ng-model="detailForm.inspectElement34"
+                   edit-type="currency" disable="{{view}}"></ht-input>
+        <ht-input ht-id="inspectElement35" name="当前查库总数量" ng-model="detailForm.inspectElement35"
+                   edit-type="currency" disable="{{view}}"></ht-input>
+        <ht-input ht-id="inspectElement33" name="本次巡库占比(%)" ng-model="detailForm.inspectElement33" edit-type="currency" disable="true"></ht-input>
+
+    </ht-panel>
+    <ht-legend colorId="lawngreen">巡库押品清单</ht-legend>
+    <ht-button-group class="left">
+        <ht-button ht-id="add" class="btn-primary" desc-name="新增" hide="{{view}}"></ht-button>
+        <ht-button ht-id="delete" class="btn-primary" desc-name="删除" hide="{{view}}"></ht-button>
+    </ht-button-group>
+    <ht-table ht-id="tableId" datasource="dataMort" selected="selectedMort" docheckbox="true">
+        <ht-column eg-name="MORTGAGE_NO" zh-name="押品编号"></ht-column>
+        <ht-column eg-name="MORTGAGE_NAME" zh-name="押品名称"></ht-column>
+        <ht-column eg-name="MORTGAGE_MODEL" zh-name="规格/型号"></ht-column>
+        <ht-column eg-name="QUANTITY" zh-name="重量/数量" type="currency"></ht-column>
+        <ht-column eg-name="CONFIRM_PRICE" zh-name="核定单价" type="currency"></ht-column>
+        <ht-column eg-name="TOT_PRICE" zh-name="总价" type="currency"></ht-column>
+    </ht-table>
+    <ht-legend colorId="lawngreen">监管公司内部控制</ht-legend>
+    <ht-panel>
+        <ht-radio ht-id="inspectElement1" name="是否制定安全保卫制度" ng-model="detailForm.inspectElement1"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement2" name="是否设定验货、入库、出库等内部操作岗位" ng-model="detailForm.inspectElement2"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement3" name="以往客户货物进出手续是否齐全" ng-model="detailForm.inspectElement3"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+
+    </ht-panel>
+
+    <ht-legend colorId="lawngreen">监管公司人员素质</ht-legend>
+    <ht-panel>
+        <ht-radio ht-id="inspectElement4" name="管理人员综合素质" ng-model="detailForm.inspectElement4"
+                  dictionary="manner" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement5" name="操作人员行业经验" ng-model="detailForm.inspectElement5"
+                  dictionary="experience" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement6" name="监管公司对我行巡库配合" ng-model="detailForm.inspectElement6"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+
+    </ht-panel>
+
+    <ht-legend colorId="lawngreen">仓储条件</ht-legend>
+    <ht-panel>
+        <ht-radio ht-id="inspectElement7" name="仓储环境是否适合质押货物保管" ng-model="detailForm.inspectElement7"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement8" name="仓库是否具备基本仓储设施" ng-model="detailForm.inspectElement8"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement9" name="安保体系是否落实" ng-model="detailForm.inspectElement9"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement36" name="第三方（或授信客户）对监管的配合" ng-model="detailForm.inspectElement36"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+
+    </ht-panel>
+
+    <ht-legend colorId="lawngreen">仓位和标识</ht-legend>
+    <ht-panel>
+        <ht-radio ht-id="inspectElement10" name="押品保管是否有明确的仓位" ng-model="detailForm.inspectElement10"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement11" name="押品是否悬挂质押标识" ng-model="detailForm.inspectElement11"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+
+    </ht-panel>
+
+    <ht-legend colorId="lawngreen">出质合法性</ht-legend>
+    <ht-panel>
+        <ht-radio ht-id="inspectElement12" name="押品运输单据、入库单与监管公司账务记载货主是否相符" ng-model="detailForm.inspectElement12"
+                   dictionary="yesOrNo" reg-exp="common.require"></ht-radio>
+
+    </ht-panel>
+
+    <ht-legend colorId="lawngreen">抵质押货物相符性</ht-legend>
+    <ht-panel>
+        <ht-radio ht-id="inspectElement13" name="质物运输单据、入库单、监管方账务与质物清单是否相符" ng-model="detailForm.inspectElement13"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+
+    </ht-panel>
+
+    <ht-legend colorId="lawngreen">未来货权抵质押到货情况</ht-legend>
+    <ht-panel>
+        <ht-radio ht-id="inspectElement14" name="与购销合同（单证）约定货物是否相符" ng-model="detailForm.inspectElement14"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement15" name="到货时间、收货人、到货港（站）与购销合同约定是否相符" ng-model="detailForm.inspectElement15"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+
+    </ht-panel>
+
+    <ht-legend colorId="lawngreen">核定库存抵质押监管情况</ht-legend>
+    <ht-panel>
+        <ht-radio ht-id="inspectElement16" name="监管公司是否进驻" ng-model="detailForm.inspectElement16"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement17" name="货物进出库记录是否齐全" ng-model="detailForm.inspectElement17"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement18" name="适时审核监督是否落实" ng-model="detailForm.inspectElement18"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement19" name="是否按我行最低控货价值进行监管" ng-model="detailForm.inspectElement19"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement20" name="在库质押货物与质物清单是否相符" ng-model="detailForm.inspectElement20"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+        <ht-radio ht-id="inspectElement21" name="第三方或授信客户是否配合监管" ng-model="detailForm.inspectElement21"
+                   dictionary="yesOrNo" reg-exp="common.require" disable="{{view}}"></ht-radio>
+
+    </ht-panel>
+
+    <ht-legend colorId="lawngreen">巡库结果</ht-legend>
+    <ht-panel>
+        <ht-select ht-id="results" name="巡库结果" ng-model="detailForm.results" reg-exp="common.require"
+                   dictionary="inspectResults" disable="{{view}}"></ht-select>
+        <ht-input ht-id="appDate" name="巡库日期" ng-model="detailForm.appDate" edit-type="date"
+                  disable="{{view}}" reg-exp="common.require"></ht-input>
+        <ht-input ht-id="tlrName" name="巡库人" ng-model="detailForm.tlrName" 
+                  disable="true"></ht-input>
+        <ht-input ht-id="brName" name="巡库机构" ng-model="detailForm.brName" 
+                  disable="true"></ht-input>
+        <ht-select ht-id="status" name="处理状态" ng-model="detailForm.status" reg-exp="common.require"
+                   dictionary="inspectStatus" disable="{{view}}"></ht-select>
+        <ht-text-area ht-id="idea" name="巡库意见" ng-model="detailForm.idea"  disable="{{view}}"></ht-text-area>
+
+    </ht-panel>
+</ht-form>
+<ht-radio ng-model="detailForm.null" l-width = 0.5></ht-radio>
+<!--<ht-page conf="conf"></ht-page>-->
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" desc-name="保存" hide="{{view}}"></ht-button>
+    <ht-button ht-id="back" class="btn-primary" desc-name="返回"></ht-button>
+</ht-button-group>
+<!--<ht--position batchNo="1" bindName="abc"/>-->

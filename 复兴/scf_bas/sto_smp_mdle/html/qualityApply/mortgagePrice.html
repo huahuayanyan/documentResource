@@ -1,0 +1,36 @@
+<ht-form name="mortgagePrice">
+    <ht-input ht-id="mortgageNo" name="押品编号" disable="true"  reg-exp="common.require" ng-model="mortgagePrice.mortgageNo"></ht-input>
+    <ht-input ht-id="mortgageName" name="押品名称" disable="true"  reg-exp="common.require" ng-model="mortgagePrice.mortgageName"></ht-input>
+    <ht-input ht-id="mortgageModel" name="规格/型号" disable="true"  reg-exp="common.require" ng-model="mortgagePrice.mortgageModel"></ht-input>
+    <ht-input ht-id="manufacturer" name="生产厂家"  disable="true"  reg-exp="common.require" ng-model="mortgagePrice.manufacturer"></ht-input>
+    <ht-input ht-id="manufactureDate" name="出厂日期"  disable="true"  reg-exp="common.require" edit-type="date" ng-model="mortgagePrice.manufactureDate"></ht-input>
+    <ht-select ht-id="mortgageUnits" name="单位"  disable="true"  reg-exp="common.require" dictionary="mortgageUnits" ng-model="mortgagePrice.mortgageUnits"></ht-select>
+    <ht-input ht-id="invQuantity" name="数量/重量"  disable="true" reg-exp="common.require" ng-model="mortgagePrice.invQuantity"></ht-input>
+
+    <ht-select ht-id="mortgageLevelOne" name="押品一级"  disable="true"  reg-exp="common.require" on-change="mortgageLevelOneName" datasource="mortgageLevelOneSource" dataOption="code" dataTrsOption="codeName"  ng-model="mortgagePrice.mortgageLevelOne"></ht-select>
+    <ht-select ht-id="mortgageLevelTwo" name="押品二级" disable="true"  reg-exp="common.require"on-change="mortgageLevelTwoName" datasource="mortgageLevelTwoSource" dataOption="code" dataTrsOption="codeName" ng-model="mortgagePrice.mortgageLevelTwo"></ht-select>
+    <ht-select ht-id="mortgageLevelThree" name="押品三级"  disable="true" datasource="mortgageLevelThreeSource" dataOption="code" dataTrsOption="codeName" ng-model="mortgagePrice.mortgageLevelThree"></ht-select>
+    <ht-text-area ht-id="description" name="押品其他描述"  disable="true" ng-model="mortgagePrice.description" height="70"></ht-text-area>
+    <ht-input ht-id="price" name="买入单价"  disable="true"  reg-exp="common.require" edit-type="currency" ng-model="mortgagePrice.price"></ht-input>
+    <ht-select ht-id="curcd" name="币种" reg-exp="common.require" disable="true" dictionary="curcd" ng-model="mortgagePrice.curcd"></ht-select>
+    <ht-input ht-id="warehouse" name="仓库名称"  disable="true" reg-exp="common.require" ng-model="mortgagePrice.warehouse"></ht-input>
+    <ht-input ht-id="warehouseAddress" name="仓库地址"  disable="true" reg-exp="common.require" ng-model="mortgagePrice.warehouseAddress"></ht-input>
+    <ht-select ht-id="moniWarehouseType" name="监管模式"  disable="true" reg-exp="common.require" dictionary="monitortype" ng-model="mortgagePrice.moniWarehouseType"></ht-select>
+    <ht-input ht-id="confirmPrice" name="核定单价"  disable="{{disable}}"  reg-exp="common.require" edit-type="currency" ng-model="mortgagePrice.confirmPrice"></ht-input>
+    <ht-input ht-id="freightarea" name="货区号"  disable="true" ng-model="mortgagePrice.freightarea"></ht-input>
+    <ht-input ht-id="freightlot" name="货位号"  disable="true" ng-model="mortgagePrice.freightlot"></ht-input>
+  <!--  <ht-input ht-id="documentNo" name="提货凭证号"  disable="true" ng-model="mortgagePrice.documentNo"></ht-input>-->
+    <ht-input ht-id="fixMortgageNo" name="盯市产品编号"  disable="true" ng-model="mortgagePrice.fixMortgageNo"></ht-input>
+    <ht-input ht-id="confirmAccording" name="核准依据"  disable="{{disable}}" reg-exp="common.require" ng-model="mortgagePrice.confirmAccording"></ht-input>
+    <ht-input ht-id="marketPrice" name="市场价"  disable="{{disable}}" edit-type="currency" reg-exp="common.require" ng-model="mortgagePrice.marketPrice"></ht-input>
+    <ht-button ht-id="bindMarketPrice" class="btn-primary" hide="{{hide}}">绑定市价</ht-button>
+    <ht-button ht-id="unBindMarketPrice" class="btn-primary" hide="{{hide}}">取消绑定</ht-button>
+
+
+   <ht-select ht-id="joinBatch" name="是否参与核定价格批量调整"  disable="true" reg-exp="common.require" dictionary="joinBatch" ng-model="mortgagePrice.joinBatch"></ht-select>
+    <ht-text-area ht-id="memo" name="备注"  disable="{{disable}}" ng-model="mortgagePrice.memo"  height="70"></ht-text-area>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{hide}}">保存</ht-button>
+    <ht-button ht-id="cancel" class="btn-primary">返回</ht-button>
+</ht-button-group>

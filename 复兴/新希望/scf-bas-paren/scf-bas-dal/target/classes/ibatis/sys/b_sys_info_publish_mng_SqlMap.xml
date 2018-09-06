@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_SYS_INFO_PUBLISH_MNG" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.sys.dao.model.BSysInfoPublishMng" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="AUTHOR_TLRNO" property="authorTlrno" jdbcType="VARCHAR" />
+    <result column="PUBLISH_DATE" property="publishDate" jdbcType="CHAR" />
+    <result column="INFO_DELETE_DATE" property="infoDeleteDate" jdbcType="CHAR" />
+    <result column="STATE" property="state" jdbcType="CHAR" />
+    <result column="INFO_DEL_TLRNO" property="infoDelTlrno" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_TEXT" property="protocolText" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TITLE, CONTENT, AUTHOR_TLRNO, PUBLISH_DATE, INFO_DELETE_DATE, STATE, INFO_DEL_TLRNO, 
+    PROTOCOL_TEXT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysInfoPublishMngExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_SYS_INFO_PUBLISH_MNG.Base_Column_List" />
+    from B_SYS_INFO_PUBLISH_MNG
+    <isParameterPresent >
+      <include refid="B_SYS_INFO_PUBLISH_MNG.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysInfoPublishMng" >
+    select 
+    <include refid="B_SYS_INFO_PUBLISH_MNG.Base_Column_List" />
+    from B_SYS_INFO_PUBLISH_MNG
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysInfoPublishMng" >
+    delete from B_SYS_INFO_PUBLISH_MNG
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysInfoPublishMngExample" >
+    delete from B_SYS_INFO_PUBLISH_MNG
+    <include refid="B_SYS_INFO_PUBLISH_MNG.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysInfoPublishMng" >
+    insert into B_SYS_INFO_PUBLISH_MNG (ID, TITLE, CONTENT, AUTHOR_TLRNO, 
+      PUBLISH_DATE, INFO_DELETE_DATE, STATE, INFO_DEL_TLRNO, 
+      PROTOCOL_TEXT)
+    values (#id:VARCHAR#, #title:VARCHAR#, #content:VARCHAR#, #authorTlrno:VARCHAR#, 
+      #publishDate:CHAR#, #infoDeleteDate:CHAR#, #state:CHAR#, #infoDelTlrno:VARCHAR#, 
+      #protocolText:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysInfoPublishMng" >
+    insert into B_SYS_INFO_PUBLISH_MNG
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="title" >
+        TITLE
+      </isNotNull>
+      <isNotNull prepend="," property="content" >
+        CONTENT
+      </isNotNull>
+      <isNotNull prepend="," property="authorTlrno" >
+        AUTHOR_TLRNO
+      </isNotNull>
+      <isNotNull prepend="," property="publishDate" >
+        PUBLISH_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="infoDeleteDate" >
+        INFO_DELETE_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        STATE
+      </isNotNull>
+      <isNotNull prepend="," property="infoDelTlrno" >
+        INFO_DEL_TLRNO
+      </isNotNull>
+      <isNotNull prepend="," property="protocolText" >
+        PROTOCOL_TEXT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="title" >
+        #title:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="content" >
+        #content:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="authorTlrno" >
+        #authorTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="publishDate" >
+        #publishDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="infoDeleteDate" >
+        #infoDeleteDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        #state:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="infoDelTlrno" >
+        #infoDelTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolText" >
+        #protocolText:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysInfoPublishMngExample" resultClass="java.lang.Integer" >
+    select count(*) from B_SYS_INFO_PUBLISH_MNG
+    <include refid="B_SYS_INFO_PUBLISH_MNG.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_SYS_INFO_PUBLISH_MNG
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.title" >
+        TITLE = #record.title:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.content" >
+        CONTENT = #record.content:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.authorTlrno" >
+        AUTHOR_TLRNO = #record.authorTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.publishDate" >
+        PUBLISH_DATE = #record.publishDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.infoDeleteDate" >
+        INFO_DELETE_DATE = #record.infoDeleteDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.state" >
+        STATE = #record.state:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.infoDelTlrno" >
+        INFO_DEL_TLRNO = #record.infoDelTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolText" >
+        PROTOCOL_TEXT = #record.protocolText:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_SYS_INFO_PUBLISH_MNG.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_SYS_INFO_PUBLISH_MNG
+    set ID = #record.id:VARCHAR#,
+      TITLE = #record.title:VARCHAR#,
+      CONTENT = #record.content:VARCHAR#,
+      AUTHOR_TLRNO = #record.authorTlrno:VARCHAR#,
+      PUBLISH_DATE = #record.publishDate:CHAR#,
+      INFO_DELETE_DATE = #record.infoDeleteDate:CHAR#,
+      STATE = #record.state:CHAR#,
+      INFO_DEL_TLRNO = #record.infoDelTlrno:VARCHAR#,
+      PROTOCOL_TEXT = #record.protocolText:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_SYS_INFO_PUBLISH_MNG.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysInfoPublishMng" >
+    update B_SYS_INFO_PUBLISH_MNG
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="title" >
+        TITLE = #title:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="content" >
+        CONTENT = #content:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="authorTlrno" >
+        AUTHOR_TLRNO = #authorTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="publishDate" >
+        PUBLISH_DATE = #publishDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="infoDeleteDate" >
+        INFO_DELETE_DATE = #infoDeleteDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        STATE = #state:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="infoDelTlrno" >
+        INFO_DEL_TLRNO = #infoDelTlrno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolText" >
+        PROTOCOL_TEXT = #protocolText:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysInfoPublishMng" >
+    update B_SYS_INFO_PUBLISH_MNG
+    set TITLE = #title:VARCHAR#,
+      CONTENT = #content:VARCHAR#,
+      AUTHOR_TLRNO = #authorTlrno:VARCHAR#,
+      PUBLISH_DATE = #publishDate:CHAR#,
+      INFO_DELETE_DATE = #infoDeleteDate:CHAR#,
+      STATE = #state:CHAR#,
+      INFO_DEL_TLRNO = #infoDelTlrno:VARCHAR#,
+      PROTOCOL_TEXT = #protocolText:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

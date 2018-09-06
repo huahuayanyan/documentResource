@@ -1,0 +1,14 @@
+<ht-form name="otherform">
+   <ht-legend>系统日期信息</ht-legend>
+    <ht-input name="系统代码"  ng-model="otherform.sysCode" ></ht-input>
+    <ht-input name="系统简称" ng-model="otherform.systemName" ></ht-input>
+    <ht-input name="交易日期"    ng-model="otherform.tbsdy" edit-type="date"></ht-input>
+    <ht-input name="批量日期"    ng-model="otherform.bhdate" edit-type="date"></ht-input>
+    <ht-input name="上一批量日期" ng-model="otherform.lbhdate" edit-type="date"></ht-input>
+    <ht-input name="系统状态"  ng-model="otherform.status" ></ht-input>
+    <ht-input name="系统类型"  ng-model="otherform.systemType" ></ht-input>
+</ht-form>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

@@ -1,0 +1,15 @@
+
+<ht-form name="otherform">
+    <ht-legend>选择通知书类型</ht-legend>
+   <!--  <ht-select  name="通知书类型" reg-exp="common.require" dictionary="nteType"  ng-model="otherform.noticeType" on-change="changeNoticeType"></ht-select> -->
+   <ht-input-extent ht-id="noticeType" name="通知书类型" reg-exp="common.require"  extent="noticeTypeValContent"
+                     on-change="noticeTypeValdooextent" ng-model="otherform.noticeTypeVal">
+    </ht-input-extent>
+
+   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <ht-file type="upload" option="uploadoption"></ht-file>
+    <br><br><br><br><br><br><br>    
+   </ht-form>
+
+
+

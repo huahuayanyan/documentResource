@@ -1,0 +1,17 @@
+
+<ht-form name="poolRePay">
+    <ht-legend>回款专户转出申请</ht-legend>
+    <ht-input-extent ht-id="cname" name="借款企业" reg-exp="IsNotNull" extent="cnameContent" on-change="cnameChange" ng-model="poolRePay.cname"></ht-input-extent>
+    <ht-select ht-id="returnAccount" name="回款专户" reg-exp="IsNotNull" datasource="returnAccountSource" dataOption="code" dataTrsOption="codeName" ng-model="poolRePay.returnAccount"></ht-select>
+    <div  style="position:absolute;z-index:12;left:42%;">
+        <ht-button ht-id="queryAmount"  class="btn-primary" hide="{{viewhide}}"  desc-name="实时查询"></ht-button>
+    </div>
+    <ht-input ht-id="returnAmount" name="回款专户可用余额"  edit-type="currency"disable="true" ng-model="poolRePay.returnAmount"></ht-input>
+    <ht-input ht-id="amount" name="转出金额"  reg-exp="IsNotNull" edit-type="currency" ng-model="poolRePay.amount"></ht-input>
+    <ht-select ht-id="balanceAccount" name="客户结算帐号"  reg-exp="IsNotNull" datasource="balanceAccountSource" dataOption="code" dataTrsOption="codeName" ng-model="poolRePay.balanceAccount"></ht-select>
+    <ht-text-area ht-id="reason" name="转账原因"  reg-exp="IsNotNull" ng-model="poolRePay.reason"></ht-text-area>
+    <ht-button-group class="center">
+        <ht-button ht-id="save" class="btn-primary" hide="{{hide}}" desc-name="保存"></ht-button>
+        <ht-button ht-id="submit" class="btn-primary" hide="{{hide}}" disable={{submit}} desc-name="提交"></ht-button>
+    </ht-button-group>
+</ht-form>

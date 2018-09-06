@@ -1,0 +1,39 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="title" name="信息标题" ng-model="conditionForm.title"></ht-input>
+  <!--  <ht-input ht-id="authorTlrno" name="发布人" ng-model="conditionForm.authorTlrno"></ht-input>-->
+    <ht-input ht-id="publishDate" name="发布日期" edit-type="date" ng-model="conditionForm.publishDate"></ht-input>
+    <ht-select ht-id="state" name="状态" ng-model="conditionForm.state" dictionary="infoState"></ht-select>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+        <ht-button ht-id="homeBack" class="btn-primary" hide="{{homeBackHide}}" desc-name="返回主页"></ht-button>
+    </ht-button-group>
+</ht-form>
+<ht-legend>信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+        <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="title" zh-name="信息标题" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="authorTlrnoName" zh-name="信息发布人"></ht-column>
+    <ht-column eg-name="publishDate" zh-name="信息发布日期" type="date" ></ht-column>
+    <ht-column eg-name="state" zh-name="信息状态" dictionary="infoState"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--
+
+<ht-legend>相关附件列表</ht-legend>
+<ht-table ht-id="uptableId" datasource="updatasource" selected="upselected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="deletefile" class="btn-primary">删除</ht-button>
+        <ht-file type="download" name="附件下载" option="downloadoption"></ht-file>
+    </ht-button-group>
+    <ht-column eg-name="fileName" zh-name="附件名称"></ht-column>
+    <ht-column eg-name="fileExt" zh-name="附件类型"></ht-column>
+    <ht-column eg-name="uploadTlrnoName" zh-name="上传人"></ht-column>
+    <ht-column eg-name="uploadTime" zh-name="上传时间" type="date" ></ht-column>
+</ht-table>
+<ht-page conf="upconf"></ht-page>-->

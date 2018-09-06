@@ -1,0 +1,168 @@
+<!--------------------------------产品概要 ----------------------------------------------------->
+<style type="text/css">
+.prd_report input{
+	background-color:white !important;
+	border:none !important;
+}
+.prd_report #parentId{
+	background-color:white !important;
+	border:none ;	
+}
+.prd_report #status{
+	background-color:white !important;
+	border:none ;	
+}
+.prd_report #isUseAccessFlag{
+	background-color:white !important;
+	border:none ;	
+}
+.prd_report #traStrue{
+	background-color:white !important;
+	border:none ;	
+}
+.prd_report #finModel{
+	background-color:white !important;
+	border:none ;	
+}
+.input--select:after {
+    content: url();
+}
+.input-date:after {
+    content: url();
+}
+.myForm label .input {
+    border: none;
+}
+.myForm {
+    -webkit-box-shadow:none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    padding:0px;
+}
+textarea{
+	resize: none;
+}
+.myForm label div textarea.input {
+    color: #848484 !important;
+}
+label{
+	font-size:12px;
+}
+.innerTable {
+    -webkit-box-shadow:none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.legendPlot {
+    display: none;
+}
+.legendSpan {
+    border-bottom: none;
+}
+.table > thead > tr > th {
+    /* background-color: #f1f1f1; */
+}
+.caret {
+    display: none;
+}
+</style>
+<ht-legend>产品概要</ht-legend>
+<ht-form name="otherform" class="prd_report">
+    <ht-select ht-id="parentId" name="产品大类:" disable="true"
+               datasource="parentId" datatrsoption="productName" dataoption="productId" ng-model="otherform.parentId"></ht-select>
+    <ht-select ht-id="status" name="状态:"  disable="true"  dictionary="productStatus" ng-model="otherform.status"></ht-select>
+    <ht-input ht-id="productId" name="产品代码:" disable="true" ng-model="otherform.productId"></ht-input>
+    <ht-input ht-id="productName" name="产品名称:" disable="true" ng-model="otherform.productName"></ht-input>
+    <ht-input ht-id="startDate" name="启用日期:"  disable="true" edit-type="date"
+              high-date-id="endDate" ng-model="otherform.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="终止日期:" disable="true" edit-type="date"
+              lower-date-id="startDate" ng-model="otherform.endDate"></ht-input>
+    <ht-text-area ht-id="memo" name="产品介绍:"  disable="true" ng-model="otherform.memo" style="height:25px;color: #848484 !important;"></ht-text-area> 
+</ht-form>
+
+<!--------------------------------基础定义 ----------------------------------------------------->
+<ht-legend  >基础定义</ht-legend>
+<ht-form name="prdBaseForm" class="prd_report">
+    <ht-checkbox ht-id="loanWay" name="出账方式:" disable="true"  dictionary="loanWay"
+                 ng-model="prdBaseForm.loanWay"></ht-checkbox>
+</ht-form>
+<!--------------------行业信息---------------------->
+<ht-form name="industryForm" class="prd_report">
+    <ht-select ht-id="isUseAccessFlag" name="是否使用准入:" disable="true"dictionary="productChecked"
+              ng-model="prdBaseForm.isUseAccessFlag"></ht-select>
+    <ht-text-area ht-id="industryTypeName" name="行业信息:" disable="true"   ng-model="industryForm.industryTypeName"  style="height:25px;"></ht-text-area>
+</ht-form>
+
+<!--------------------交易结构---------------------->
+<ht-form name="prdBaseForm" class="prd_report">
+<ht-select ht-id="traStrue" name="交易结构:" disable="true"  dictionary="traStrue"
+          ng-model="prdBaseForm.traStrue"></ht-select>
+
+<ht-select ht-id="finModel" name="融资模式:" disable="true" dictionary="finModel"
+          ng-model="prdBaseForm.finModel"></ht-select>
+</ht-form>
+   <!--------------------费用信息--------------->
+<ht-legend >费用信息</ht-legend>
+<ht-table ht-id="costTable" datasource="costDatasource" selected="costSelected" docheckbox="false">
+    <ht-column eg-name="costCode" zh-name="费用代码"></ht-column>
+    <ht-column eg-name="costName" zh-name="费用名称"></ht-column>
+    <ht-column eg-name="costPhase" zh-name="费用收取阶段" dictionary="costPhase"></ht-column>
+</ht-table>
+
+<!--------------------风险信息------------------>
+<ht-legend>风险信息</ht-legend>
+<ht-table ht-id="warnTable" datasource="warnDatasource" selected="warnSelected" docheckbox="false">
+    <ht-column eg-name="warnNo" zh-name="预警编号"></ht-column>
+    <ht-column eg-name="warnName" zh-name="预警名称"></ht-column>
+</ht-table>
+
+<!--------------------------------授信政策 ----------------------------------------------------->
+   <!--------------------应收材料------------------>
+<ht-legend>应收材料</ht-legend>
+<ht-table ht-id="receMatlTableId" datasource="receMatlDatasource" selected="receMatlSelected" docheckbox="false">
+    <ht-column eg-name="receMatlName" zh-name="应收材料名称"   ></ht-column>
+    <ht-column eg-name="origNum" zh-name="原件份数"></ht-column>
+    <ht-column eg-name="copyOrigNum" zh-name="复印件份数"></ht-column>
+    <ht-column eg-name="receMatlType" zh-name="应收材料类型"  dictionary="receMatlType" ></ht-column>
+</ht-table>
+<!--------------------准入条件---------------------->
+<ht-legend>准入条件</ht-legend>
+<ht-form name="prdCreditPlyForm">
+    <ht-text-area ht-id="entAcs" name="准入条件:" disable="true"   ng-model="prdCreditPlyForm.entAcs"  style="height:25px;"></ht-text-area>
+</ht-form>
+
+<!--------------------业务调查材料---------------------->
+<ht-legend>业务调查材料</ht-legend>
+<ht-table ht-id="bizSurBindTableId" datasource="bizSurBindDatasource" selected="bizSurBindSelected" docheckbox="false">
+    <ht-column eg-name="bProdBizSurId" zh-name="业务材料ID"   ></ht-column>
+    <ht-column eg-name="bProdBizSurName" zh-name="材料名称"></ht-column>
+    <ht-column eg-name="matlType" zh-name="材料类型"  dictionary="matlType" ></ht-column>
+</ht-table>
+
+<!--------------------------------额度设置 ----------------------------------------------------->
+<!--------------------产品额度列表---------------------->
+<ht-legend>产品额度设置</ht-legend>
+<ht-table ht-id="icrTableId" datasource="icrDatasource" selected="icrSelected" docheckbox="false">
+    <ht-column eg-name="creditType" zh-name="额度类型" ></ht-column>
+    <ht-column eg-name="productName" zh-name="产品名称"></ht-column>
+    <ht-column eg-name="creditPhase" zh-name="额度阶段" dictionary="creditPhase"></ht-column>
+    <ht-column eg-name="oprType" zh-name="操作类型" dictionary="oprType"></ht-column>
+    <ht-column eg-name="oprField" zh-name="额度操作金额类型" dictionary="oprField"></ht-column>
+    <ht-column eg-name="oprMode" zh-name="操作模式" dictionary="oprMode"></ht-column>
+    <ht-column eg-name="funNo" zh-name="功能编号"></ht-column>
+</ht-table>
+<!--------------------------------组件定义 ----------------------------------------------------->
+<ht-legend>组件定义</ht-legend>
+<!--------------------------------组件定义 ----------------------------------------------------->
+<ht-table ht-id="copTableId" datasource="copDatasource" selected="copSelected" docheckbox="false">
+    <ht-column eg-name="copOrder" zh-name="顺序"></ht-column>
+    <ht-column eg-name="copName" zh-name="组件名称" ></ht-column>
+    <ht-column eg-name="copType" zh-name="组件类型" dictionary="copType"></ht-column>
+    <ht-column eg-name="status" zh-name="状态" dictionary="productStatus"></ht-column>
+</ht-table>
+<!---------------------------------按钮--------------------------------------------------------->
+<ht-button-group class="center">
+    <ht-button ht-id="complete"  class="btn-primary" desc-name="完成"></ht-button>
+</ht-button-group>
+
+

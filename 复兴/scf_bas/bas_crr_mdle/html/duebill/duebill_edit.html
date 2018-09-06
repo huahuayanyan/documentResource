@@ -1,0 +1,100 @@
+
+<ht-form name="otherform">
+    <ht-panel>
+    <ht-legend hidden="true">台帐信息</ht-legend>
+    <ht-input name="客户名称" reg-exp="common.require" ng-model="otherform.custNm" disable="true"></ht-input>
+    <ht-input name="客户号" reg-exp="common.require" ng-model="otherform.custCd" disable="true"></ht-input>
+    <ht-input name="合同号" reg-exp="common.require" ng-model="otherform.conNo" disable="true"></ht-input>
+    <ht-input name="业务品种" reg-exp="common.require" ng-model="otherform.prdNm" disable="true"></ht-input>
+    <ht-input name="结算账号" reg-exp="common.require" ng-model="otherform.lnNo" disable="true"></ht-input>
+    <ht-input name="出账金额" reg-exp="common.require" ng-model="otherform.lnAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-select name="币种" reg-exp="common.require" ng-model="otherform.curcd" dictionary="curcd" disable="true"></ht-select>
+    <ht-input ht-id="isDt" name="放款日期" reg-exp="common.require" ng-model="otherform.isDt" edit-type="date"
+              disable="true" high-date-id="teDt"></ht-input>
+    <ht-input ht-id="teDt" name="到期日期" reg-exp="common.require" ng-model="otherform.teDt" edit-type="date" disable="true"></ht-input>
+    <ht-input name="贷款期限" reg-exp="common.require" ng-model="otherform.trm" disable="true"></ht-input>
+    <ht-input name="赎货期限" reg-exp="common.require" ng-model="otherform.drawbackTerm" hide="{{hidden}}" disable="true"></ht-input>
+    </ht-panel>
+    <ht-panel>
+    <ht-legend>利率信息</ht-legend>
+    <ht-input name="利率代码" reg-exp="common.require" ng-model="otherform.intId" disable="true"></ht-input>
+    <ht-input name="基准利率(%)" reg-exp="common.require" ng-model="otherform.basInt" disable="true"></ht-input>
+    <ht-select name="利率浮动方式" reg-exp="common.require" ng-model="otherform.intFltTyp" dictionary="intFltTyp" disable="true"></ht-select>
+    <ht-input name="执行利率(%)" reg-exp="common.require" ng-model="otherform.actInt" disable="true"></ht-input>
+    <ht-select name="计息周期" reg-exp="common.require" ng-model="otherform.rtnIntInvl" dictionary="rtnIntInvl" disable="true"></ht-select>
+    <ht-select name="还款方式" reg-exp="common.require" ng-model="otherform.rtnTyp" disable="true" dictionary="rtnTyp"></ht-select>
+    <ht-select name="利率调整方式" reg-exp="common.require" ng-model="otherform.intAdj" dictionary="intAdj" disable="true"></ht-select>
+    <ht-input name="利率调整日期" reg-exp="common.require" ng-model="otherform.intAdjDt" edit-type="date" disable="true" hide="{{hideadj}}"></ht-input>
+    </ht-panel>
+    <!--<ht-input name="清分日期" ng-model="otherform.clrDt" edit-type="date" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="最早逾期日期" ng-model="otherform.longOweDt" edit-type="date" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="逾期天数状态" ng-model="otherform.ovdDaysStat" reg-exp="char2Validate" disable="{{disable}}">两位</ht-input>-->
+    <!--<ht-input name="放款形态" ng-model="otherform.trmCls" reg-exp="char1Validate" disable="{{disable}}">一位</ht-input>-->
+    <!--<ht-input name="月初放款形态" ng-model="otherform.monTrmCls" reg-exp="char1Validate" disable="{{disable}}">一位</ht-input>-->
+    <!--<ht-input name="贷款结清类型" ng-model="otherform.clsTyp" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="结转日期" ng-model="otherform.trsfDt" edit-type="date" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计逾期次数" ng-model="otherform.totOvdTms" edit-type="number" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="当前逾期期数" ng-model="otherform.ovdPer" edit-type="number" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="最高逾期期数" ng-model="otherform.maxOvdTms" edit-type="number" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="已还款期数" ng-model="otherform.rtnPers" edit-type="number" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计已还本金" ng-model="otherform.totRtnAmt" edit-type="currency" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计已还利息" ng-model="otherform.totRtnInt" edit-type="currency" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计已还利息复利" ng-model="otherform.totRtnCint" edit-type="currency" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计已还罚息" ng-model="otherform.totRtnPint" edit-type="currency" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计已还罚息复利" ng-model="otherform.totRtnCpint" edit-type="currency" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计未还罚息复利" ng-model="otherform.totOweCpint" edit-type="currency" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计未还罚息" ng-model="otherform.totOwePint" edit-type="currency" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计未还利息复利" ng-model="otherform.totOweCint" edit-type="currency" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计未还利息" ng-model="otherform.totOweInt" edit-type="currency" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="累计未还本金" ng-model="otherform.totOweAmt" edit-type="currency" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="展期次数" ng-model="otherform.extCnt" edit-type="number" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="延期次数" ng-model="otherform.deferCnt" edit-type="number" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="缩期次数" ng-model="otherform.shortenCnt" edit-type="number" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="加按次数" ng-model="otherform.addCnt" edit-type="number" disable="{{disable}}"></ht-input>-->
+    <!--<ht-select name="是否允许非本机构账号" ng-model="otherform.isSelfBrno" dictionary="checked" disable="{{disable}}"></ht-select>-->
+    <!--<ht-input name="最后一次扣款日" ng-model="otherform.lplanRtnDt" edit-type="date" disable="{{disable}}"></ht-input>-->
+    <!--<ht-input name="最后一次结息日" ng-model="otherform.lplanRtnIntDt" edit-type="date" disable="{{disable}}"></ht-input>-->
+    <ht-panel>
+    <ht-legend>其他信息</ht-legend>
+    <ht-input-extent ht-id="actBrNm" name="账务机构" extent="brnameContent" on-change="brnameExtent"
+                     reg-exp="common.require" ng-model="otherform.actBrNm" disable="true"></ht-input-extent>
+    <!--<ht-input name="账务机构" reg-exp="common.require" ng-model="otherform.actBrCd" disable="true"></ht-input>-->
+    <ht-select name="逾期计息方式" reg-exp="common.require" ng-model="otherform.ovdRatTyp" dictionary="ovdRatTyp" disable="true"></ht-select>
+    <ht-select name="记复息标志" reg-exp="common.require" ng-model="otherform.isComint" dictionary="isComint" disable="true"></ht-select>
+    <ht-select name="五级分类标志" reg-exp="common.require" ng-model="otherform.clrCls" disable="true" dictionary="clrCls"></ht-select>
+    <ht-select name="借据状态" reg-exp="common.require" ng-model="otherform.lnStat" dictionary="lnStat" disable="true"></ht-select>
+    <ht-input name="账务机构" reg-exp="common.require" ng-model="otherform.actBrCd" disable="true"></ht-input>
+    <ht-input ht-id="tlrNm" name="经办人" ng-model="otherform.tlrNm" disable="true"></ht-input>
+    <ht-input ht-id="brNm" name="经办机构" ng-model="otherform.brNm" disable="true"></ht-input>
+    <ht-input ht-id="inpDt" name="经办日期" ng-model="otherform.inpDt" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdTlrNm" name="更新人" ng-model="otherform.lstUpdTlrNm" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdBrNm" name="更新机构" ng-model="otherform.lstUpdBrNm" disable="true"></ht-input>
+    <ht-input ht-id="lstUpdDt" name="更新日期" ng-model="otherform.lstUpdDt" disable="true"></ht-input>
+    </ht-panel>
+</ht-form>
+<div id="gxht">
+ <ht-legend>购销合同信息列表</ht-legend>
+ <ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+  <ht-button-group>
+   <ht-button ht-id="fresh">刷新</ht-button>
+   <ht-button ht-id="add">新增</ht-button>
+   <ht-button ht-id="delete">删除</ht-button>
+   <ht-button ht-id="update">修改</ht-button>
+  </ht-button-group>
+
+  <ht-column eg-name="tradeContno" zh-name="购销合同号" ></ht-column>
+  <ht-column eg-name="startDate" zh-name="合同生效日" ></ht-column>
+  <ht-column eg-name="endDate" zh-name="合同到期日"></ht-column>
+  <ht-column eg-name="contAmt" zh-name="合同金额"></ht-column>
+  <ht-column eg-name="accuLoanAmt" zh-name="累计出账金额" ></ht-column>
+  <ht-column eg-name="loanAmt" zh-name="本次出账金额" ></ht-column>
+  <!--<ht-column eg-name="brcode" zh-name="经办机构"></ht-column>-->
+
+ </ht-table>
+ <ht-page conf="conf"></ht-page>
+</div>
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}" disable="{{flowsubmitdisable}}">确定</ht-button>
+    <!--<ht-button ht-id="closeThisDialog" class="btn-primary">返回</ht-button>-->
+</ht-button-group>

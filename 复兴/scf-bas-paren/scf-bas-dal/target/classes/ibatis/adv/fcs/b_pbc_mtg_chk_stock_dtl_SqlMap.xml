@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PBC_MTG_CHK_STOCK_DTL" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.fcs.model.BPbcMtgChkStockDtl" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TBL_ID" property="tblId" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_CLASS_NO" property="mortgageClassNo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+    <result column="ENTITY_QUANTITY" property="entityQuantity" jdbcType="DECIMAL" />
+    <result column="STOCK_QUANTITY" property="stockQuantity" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FOUR" property="mortgageLevelFour" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FIVE" property="mortgageLevelFive" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_SIX" property="mortgageLevelSix" jdbcType="VARCHAR" />
+    <result column="CONFIRM_PRICE" property="confirmPrice" jdbcType="DECIMAL" />
+    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+    <result column="VENDER" property="vender" jdbcType="VARCHAR" />
+    <result column="PRODUCT_AREA" property="productArea" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_ADDRESS" property="warehouseAddress" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="CHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="QUANTITYUNIT" property="quantityunit" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TBL_ID, MORTGAGE_CLASS_NO, MORTGAGE_MODEL, ENTITY_QUANTITY, STOCK_QUANTITY, MORTGAGE_NO, 
+    MORTGAGE_LEVEL_ONE, MORTGAGE_LEVEL_TWO, MORTGAGE_LEVEL_THREE, MORTGAGE_LEVEL_FOUR, 
+    MORTGAGE_LEVEL_FIVE, MORTGAGE_LEVEL_SIX, CONFIRM_PRICE, TOT_PRICE, VENDER, PRODUCT_AREA, 
+    WAREHOUSE_ADDRESS, TYPE, MORTGAGE_UNITS, QUANTITYUNIT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.fcs.model.BPbcMtgChkStockDtlExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PBC_MTG_CHK_STOCK_DTL.Base_Column_List" />
+    from B_PBC_MTG_CHK_STOCK_DTL
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_CHK_STOCK_DTL.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.fcs.model.BPbcMtgChkStockDtl" >
+    select 
+    <include refid="B_PBC_MTG_CHK_STOCK_DTL.Base_Column_List" />
+    from B_PBC_MTG_CHK_STOCK_DTL
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.adv.fcs.model.BPbcMtgChkStockDtl" >
+    delete from B_PBC_MTG_CHK_STOCK_DTL
+    where ID = #id:VARCHAR#
+  </delete>
+  
+  <delete id="deleteByTblId" parameterClass="java.lang.String" >
+    delete from B_PBC_MTG_CHK_STOCK_DTL
+    where tbl_id = #tblId:VARCHAR#
+  </delete>
+  
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.adv.fcs.model.BPbcMtgChkStockDtlExample" >
+    delete from B_PBC_MTG_CHK_STOCK_DTL
+    <include refid="B_PBC_MTG_CHK_STOCK_DTL.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.adv.fcs.model.BPbcMtgChkStockDtl" >
+    insert into B_PBC_MTG_CHK_STOCK_DTL (ID, TBL_ID, MORTGAGE_CLASS_NO, MORTGAGE_MODEL, 
+      ENTITY_QUANTITY, STOCK_QUANTITY, MORTGAGE_NO, MORTGAGE_LEVEL_ONE, 
+      MORTGAGE_LEVEL_TWO, MORTGAGE_LEVEL_THREE, MORTGAGE_LEVEL_FOUR, 
+      MORTGAGE_LEVEL_FIVE, MORTGAGE_LEVEL_SIX, CONFIRM_PRICE, 
+      TOT_PRICE, VENDER, PRODUCT_AREA, WAREHOUSE_ADDRESS, 
+      TYPE, MORTGAGE_UNITS, QUANTITYUNIT)
+    values (#id:VARCHAR#, #tblId:VARCHAR#, #mortgageClassNo:VARCHAR#, #mortgageModel:VARCHAR#, 
+      #entityQuantity:DECIMAL#, #stockQuantity:DECIMAL#, #mortgageNo:VARCHAR#, #mortgageLevelOne:VARCHAR#, 
+      #mortgageLevelTwo:VARCHAR#, #mortgageLevelThree:VARCHAR#, #mortgageLevelFour:VARCHAR#, 
+      #mortgageLevelFive:VARCHAR#, #mortgageLevelSix:VARCHAR#, #confirmPrice:DECIMAL#, 
+      #totPrice:DECIMAL#, #vender:VARCHAR#, #productArea:VARCHAR#, #warehouseAddress:VARCHAR#, 
+      #type:CHAR#, #mortgageUnits:VARCHAR#, #quantityunit:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.adv.fcs.model.BPbcMtgChkStockDtl" >
+    insert into B_PBC_MTG_CHK_STOCK_DTL
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="tblId" >
+        TBL_ID
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageClassNo" >
+        MORTGAGE_CLASS_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        MORTGAGE_MODEL
+      </isNotNull>
+      <isNotNull prepend="," property="entityQuantity" >
+        ENTITY_QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="stockQuantity" >
+        STOCK_QUANTITY
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFour" >
+        MORTGAGE_LEVEL_FOUR
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFive" >
+        MORTGAGE_LEVEL_FIVE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelSix" >
+        MORTGAGE_LEVEL_SIX
+      </isNotNull>
+      <isNotNull prepend="," property="confirmPrice" >
+        CONFIRM_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        TOT_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="vender" >
+        VENDER
+      </isNotNull>
+      <isNotNull prepend="," property="productArea" >
+        PRODUCT_AREA
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddress" >
+        WAREHOUSE_ADDRESS
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS
+      </isNotNull>
+      <isNotNull prepend="," property="quantityunit" >
+        QUANTITYUNIT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tblId" >
+        #tblId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageClassNo" >
+        #mortgageClassNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        #mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entityQuantity" >
+        #entityQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="stockQuantity" >
+        #stockQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        #mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        #mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        #mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFour" >
+        #mortgageLevelFour:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFive" >
+        #mortgageLevelFive:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelSix" >
+        #mortgageLevelSix:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmPrice" >
+        #confirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        #totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="vender" >
+        #vender:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productArea" >
+        #productArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddress" >
+        #warehouseAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        #type:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        #mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="quantityunit" >
+        #quantityunit:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.adv.fcs.model.BPbcMtgChkStockDtlExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PBC_MTG_CHK_STOCK_DTL
+    <include refid="B_PBC_MTG_CHK_STOCK_DTL.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PBC_MTG_CHK_STOCK_DTL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tblId" >
+        TBL_ID = #record.tblId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageClassNo" >
+        MORTGAGE_CLASS_NO = #record.mortgageClassNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageModel" >
+        MORTGAGE_MODEL = #record.mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.entityQuantity" >
+        ENTITY_QUANTITY = #record.entityQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stockQuantity" >
+        STOCK_QUANTITY = #record.stockQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageNo" >
+        MORTGAGE_NO = #record.mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE = #record.mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO = #record.mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE = #record.mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelFour" >
+        MORTGAGE_LEVEL_FOUR = #record.mortgageLevelFour:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelFive" >
+        MORTGAGE_LEVEL_FIVE = #record.mortgageLevelFive:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageLevelSix" >
+        MORTGAGE_LEVEL_SIX = #record.mortgageLevelSix:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.confirmPrice" >
+        CONFIRM_PRICE = #record.confirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totPrice" >
+        TOT_PRICE = #record.totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.vender" >
+        VENDER = #record.vender:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productArea" >
+        PRODUCT_AREA = #record.productArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseAddress" >
+        WAREHOUSE_ADDRESS = #record.warehouseAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.type" >
+        TYPE = #record.type:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageUnits" >
+        MORTGAGE_UNITS = #record.mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.quantityunit" >
+        QUANTITYUNIT = #record.quantityunit:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_CHK_STOCK_DTL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PBC_MTG_CHK_STOCK_DTL
+    set ID = #record.id:VARCHAR#,
+      TBL_ID = #record.tblId:VARCHAR#,
+      MORTGAGE_CLASS_NO = #record.mortgageClassNo:VARCHAR#,
+      MORTGAGE_MODEL = #record.mortgageModel:VARCHAR#,
+      ENTITY_QUANTITY = #record.entityQuantity:DECIMAL#,
+      STOCK_QUANTITY = #record.stockQuantity:DECIMAL#,
+      MORTGAGE_NO = #record.mortgageNo:VARCHAR#,
+      MORTGAGE_LEVEL_ONE = #record.mortgageLevelOne:VARCHAR#,
+      MORTGAGE_LEVEL_TWO = #record.mortgageLevelTwo:VARCHAR#,
+      MORTGAGE_LEVEL_THREE = #record.mortgageLevelThree:VARCHAR#,
+      MORTGAGE_LEVEL_FOUR = #record.mortgageLevelFour:VARCHAR#,
+      MORTGAGE_LEVEL_FIVE = #record.mortgageLevelFive:VARCHAR#,
+      MORTGAGE_LEVEL_SIX = #record.mortgageLevelSix:VARCHAR#,
+      CONFIRM_PRICE = #record.confirmPrice:DECIMAL#,
+      TOT_PRICE = #record.totPrice:DECIMAL#,
+      VENDER = #record.vender:VARCHAR#,
+      PRODUCT_AREA = #record.productArea:VARCHAR#,
+      WAREHOUSE_ADDRESS = #record.warehouseAddress:VARCHAR#,
+      TYPE = #record.type:CHAR#,
+      MORTGAGE_UNITS = #record.mortgageUnits:VARCHAR#,
+      QUANTITYUNIT = #record.quantityunit:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_CHK_STOCK_DTL.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.adv.fcs.model.BPbcMtgChkStockDtl" >
+    update B_PBC_MTG_CHK_STOCK_DTL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="tblId" >
+        TBL_ID = #tblId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageClassNo" >
+        MORTGAGE_CLASS_NO = #mortgageClassNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageModel" >
+        MORTGAGE_MODEL = #mortgageModel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="entityQuantity" >
+        ENTITY_QUANTITY = #entityQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="stockQuantity" >
+        STOCK_QUANTITY = #stockQuantity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO = #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelThree" >
+        MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFour" >
+        MORTGAGE_LEVEL_FOUR = #mortgageLevelFour:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelFive" >
+        MORTGAGE_LEVEL_FIVE = #mortgageLevelFive:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageLevelSix" >
+        MORTGAGE_LEVEL_SIX = #mortgageLevelSix:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmPrice" >
+        CONFIRM_PRICE = #confirmPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totPrice" >
+        TOT_PRICE = #totPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="vender" >
+        VENDER = #vender:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productArea" >
+        PRODUCT_AREA = #productArea:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseAddress" >
+        WAREHOUSE_ADDRESS = #warehouseAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        TYPE = #type:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageUnits" >
+        MORTGAGE_UNITS = #mortgageUnits:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="quantityunit" >
+        QUANTITYUNIT = #quantityunit:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.adv.fcs.model.BPbcMtgChkStockDtl" >
+    update B_PBC_MTG_CHK_STOCK_DTL
+    set TBL_ID = #tblId:VARCHAR#,
+      MORTGAGE_CLASS_NO = #mortgageClassNo:VARCHAR#,
+      MORTGAGE_MODEL = #mortgageModel:VARCHAR#,
+      ENTITY_QUANTITY = #entityQuantity:DECIMAL#,
+      STOCK_QUANTITY = #stockQuantity:DECIMAL#,
+      MORTGAGE_NO = #mortgageNo:VARCHAR#,
+      MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#,
+      MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#,
+      MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#,
+      MORTGAGE_LEVEL_FOUR = #mortgageLevelFour:VARCHAR#,
+      MORTGAGE_LEVEL_FIVE = #mortgageLevelFive:VARCHAR#,
+      MORTGAGE_LEVEL_SIX = #mortgageLevelSix:VARCHAR#,
+      CONFIRM_PRICE = #confirmPrice:DECIMAL#,
+      TOT_PRICE = #totPrice:DECIMAL#,
+      VENDER = #vender:VARCHAR#,
+      PRODUCT_AREA = #productArea:VARCHAR#,
+      WAREHOUSE_ADDRESS = #warehouseAddress:VARCHAR#,
+      TYPE = #type:CHAR#,
+      MORTGAGE_UNITS = #mortgageUnits:VARCHAR#,
+      QUANTITYUNIT = #quantityunit:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_WRN_UNPATROL_STORE" >
+	<resultMap id="WarnUnPatrolStoreVOMap" class="com.huateng.scf.sto.wrn.dao.model.WarnUnPatrolStoreVO">
+		<result column="slave_contcode" property="slaveContcode" jdbcType="VARCHAR" />
+		<result column="custcd" property="custcd" jdbcType="VARCHAR" />
+		<result column="cname" property="cname" jdbcType="VARCHAR" />
+		<result column="moni_custcd" property="moniCustcd" jdbcType="VARCHAR" />
+		<result column="moni_cname" property="moniCname" jdbcType="VARCHAR" />	
+		<result column="protocol_no" property="protocolNo" jdbcType="VARCHAR" />
+		<result column="warn_date" property="warnDate" jdbcType="VARCHAR" />
+		<result column="cust_manager" property="custManager" jdbcType="VARCHAR" />
+		<result column="brcode" property="brcode" jdbcType="VARCHAR" />		
+		<result column="inspect_frequence" property="inspectFrequence" jdbcType="VARCHAR" />		
+		<!-- <result column="last_date" property="lastDate" jdbcType="VARCHAR" /> -->		
+	</resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, CUSTCD_SELLER, CNAME_SELLER, CUSTCD_BUYER, CNAME_BUYER, PROTOCOL_NO, 
+    START_DATE, CONFIRM_DATE, CHECK_TYPE, CHECK_RESULT, CHECK_STATUS
+  </sql>
+  
+  <!-- 未巡库提示信息列表 -->
+  <select id="selectUnPatrolStoreWarning" parameterClass="java.util.HashMap" resultMap="WarnUnPatrolStoreVOMap">
+	select tcsi.con_id as slave_contcode,tcsi.gut_id as custcd,tcsi.gut_nm as cname, tcme.custcd as moni_custcd,
+	tcbi.cname as moni_cname,
+	tmppi.protocol_no,tcme.inspect_frequence,twbi.warn_date,twbi.cust_manager,twbi.brcode
+	from B_WRN_BASE_INFO twbi,B_WRN_DUE_INFO twdi,B_CRR_GNTY_CON tcsi,
+	B_CNT_MPROT_PART_INFO tmppi,B_CRM_MONI_ENT_INFO tcme,B_CRM_BASE_INFO tcbi
+	where tcbi.custcd = tcme.custcd and twbi.id=twdi.warn_id and twdi.businessno_type ='06'and twdi.businessno=tcsi.con_id 
+	and tcsi.prtcl_no=tmppi.protocol_no and twbi.status='1' and tmppi.role='02' and tmppi.custcd =tcme.custcd and 1=1
+	<isNotNull property="paramId" prepend="and">
+		twbi.param_id = #paramId:VARCHAR#
+	</isNotNull>
+	<isNotNull property="cname" prepend="and">
+		tcsi.gut_id is not null and tcsi.gut_id in (select t1.custcd from B_CRM_BASE_INFO t1 where t1.cname like '%'||#cname:VARCHAR#||'%' )
+	</isNotNull>
+	<isNotNull property="moniName" prepend="and">
+		tmppi.custcd is not null and tmppi.custcd in (select t2.custcd from B_CRM_BASE_INFO t2 where t2.cname like '%'||#moniName:VARCHAR#||'%' )
+	</isNotNull>
+	<isNotNull property="slaveContCode" prepend="and">
+		tcsi.con_id like '%'||#slaveContCode:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="startDate" prepend="and">
+		<![CDATA[twbi.warn_date >= #startDate:VARCHAR# ]]>
+	</isNotNull>
+	<isNotNull property="endDate" prepend="and">
+		<![CDATA[twbi.warn_date <= #endDate:VARCHAR# ]]>
+	</isNotNull>
+	<!-- <isParameterPresent>
+		<isEqual property="brattr" compareValue="1" prepend="and">
+			exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = tcsi.prtcl_no and 
+			tmbi.cooperation_brcode = #brcode:VARCHAR#)
+		</isEqual>
+		<isNotEqual property="brattr" compareValue="1" prepend="and">
+			exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode = twbi.brcode and parent_brcode =  #brcode:VARCHAR#
+								and affiliation_type = '1')
+		</isNotEqual>
+	</isParameterPresent> -->					
+  </select>
+  
+  <!-- 未巡库提示信息的条目数 -->
+  <select id="countUnPatrolStoreWarning" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+	select count(slave_contcode) from (
+	select tcsi.con_id as slave_contcode,tcsi.gut_id as custcd,tcsi.gut_nm as cname, tcme.custcd as moni_custcd,
+	tcbi.cname as moni_cname,
+	tmppi.protocol_no,tcme.inspect_frequence,twbi.warn_date,twbi.cust_manager,twbi.brcode
+	from B_WRN_BASE_INFO twbi,B_WRN_DUE_INFO twdi,B_CRR_GNTY_CON tcsi,
+	B_CNT_MPROT_PART_INFO tmppi,B_CRM_MONI_ENT_INFO tcme,B_CRM_BASE_INFO tcbi
+	where tcbi.custcd = tcme.custcd and twbi.id=twdi.warn_id and twdi.businessno_type ='06'and twdi.businessno=tcsi.con_id 
+	and tcsi.prtcl_no=tmppi.protocol_no and twbi.status='1' and tmppi.role='02' and tmppi.custcd =tcme.custcd and 1=1
+	<isNotNull property="paramId" prepend="and">
+		twbi.param_id = #paramId:VARCHAR#
+	</isNotNull>
+	<isNotNull property="cname" prepend="and">
+		tcsi.gut_id is not null and tcsi.gut_id in (select t1.custcd from B_CRM_BASE_INFO t1 where t1.cname like '%'||#cname:VARCHAR#||'%' )
+	</isNotNull>
+	<isNotNull property="moniName" prepend="and">
+		tmppi.custcd is not null and tmppi.custcd in (select t2.custcd from B_CRM_BASE_INFO t2 where t2.cname like '%'||#moniName:VARCHAR#||'%' )
+	</isNotNull>
+	<isNotNull property="slaveContCode" prepend="and">
+		tcsi.con_id like '%'||#slaveContCode:VARCHAR#||'%'
+	</isNotNull>
+	<isNotNull property="startDate" prepend="and">
+		<![CDATA[twbi.warn_date >= #startDate:VARCHAR# ]]>
+	</isNotNull>
+	<isNotNull property="endDate" prepend="and">
+		<![CDATA[twbi.warn_date <= #endDate:VARCHAR# ]]>
+	</isNotNull>
+	<!-- <isParameterPresent>
+		<isEqual property="brattr" compareValue="1" prepend="and">
+			exists (select 1 from B_CNT_MPROT_BASE_INFO tmbi where tmbi.protocol_no = tcsi.prtcl_no and tmbi.cooperation_brcode = #brcode:VARCHAR#)
+		</isEqual>
+		<isNotEqual property="brattr" compareValue="1" prepend="and">
+			exists (select 1 from B_SYS_BCTL_AFFILIATION where child_brcode = twbi.brcode and parent_brcode =  #brcode:VARCHAR#
+								and affiliation_type = '1')
+		</isNotEqual>
+	</isParameterPresent>	 -->
+  	)
+  </select>
+  
+  <!-- 根据质押合同查询最近一次巡库信时间 -->
+  <select id="selectLastAppDateInWhseInspect" parameterClass="java.util.HashMap" resultClass="java.lang.String">
+  select max(t.app_date) as lastDate from B_PBC_WHSE_INSPECT t WHERE t.oper_type='0' 
+	  <isNotNull property="slaveContno" prepend="and">
+	  	t.inspect_element31 = #slaveContno:VARCHAR#
+	  </isNotNull>
+  </select>
+
+</sqlMap>

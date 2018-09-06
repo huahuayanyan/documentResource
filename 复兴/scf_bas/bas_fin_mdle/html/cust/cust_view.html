@@ -1,0 +1,107 @@
+
+<ht-form name="otherform">
+	<ht-input name="客户名称"  ng-model="otherform.custNm" disable="true"></ht-input>
+    <ht-input name="财报日期" ng-model="otherform.finDt" disable="true" edit-type="date"></ht-input>
+    <ht-select ht-id="finPd" name="财报周期" dictionary="finPdCode" ng-model="otherform.finPd" disable="true"></ht-select>
+	<ht-select ht-id="finCy" name="财报币种" dictionary="curcd" ng-model="otherform.finCy" disable="true"></ht-select>
+</ht-form>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+<table class="table table-bordered table-hover table-condensed"  >
+				<tbody>
+					<tr>
+						<td style="text-align:center;font-weight: bold;background-color: #f8f9fe;" >
+						<pre>序号</pre>
+						</td>
+						<td ng-repeat="rhead in rheads" style="text-align:center;background-color: #f8f9fe;font-weight: bold;{{rhead.style}}">
+							<pre>{{rhead.name}}</pre>
+						</td>
+					</tr>	
+			
+					<tr ng-repeat="bFinCustDs in bFinCustDsList" align="center">
+						 <td>
+							<pre>{{$index+1}}</pre>
+						</td>
+						<td align="left">
+						      <pre>{{bFinCustDs.subjNm}}</pre>
+						</td>
+						<td>
+							<span ng-if="!bFinCustDs.flagM">{{bFinCustDs.colVal1}}</span>
+							<div ng-if="bFinCustDs.flagM" >
+								<input id="{{bFinCustDs.subjId}}1" value="{{bFinCustDs.colVal1}}" style="width: 80%;" ng-blur="checkNum(bFinCustDs)"/>
+								<!--<ht-input ng-model="bFinCustDs.colVal1" edit-type="currency" onblur="checkNum(bFinCustDs,'1')"></ht-input>-->
+							</div>
+							<div ng-if="!bFinCustDs.flagM && bFinCustDs.edTyp=='2'" >
+								<input id="{{bFinCustDs.subjId}}1" value="{{bFinCustDs.colVal1}}"  type="hidden" style="width: 80%;"/>
+							</div>
+						</td>
+						<td  ng-if="otherform.col>1" >
+						    <span ng-if="!bFinCustDs.flagM">{{bFinCustDs.colVal2}}</span>
+							<div ng-if="bFinCustDs.flagM" >
+								<input id="{{bFinCustDs.subjId}}2" value="{{bFinCustDs.colVal2}}" style="width: 80%;" ng-blur="checkNum(bFinCustDs)"/>
+								<!--<ht-input ng-model="bFinCustDs.colVal2" edit-type="currency" onblur="checkNum(bFinCustDs,2)"></ht-input>-->
+							</div>
+							<div ng-if="!bFinCustDs.flagM && bFinCustDs.edTyp=='2'" >
+								<input id="{{bFinCustDs.subjId}}2" value="{{bFinCustDs.colVal2}}"  type="hidden" style="width: 80%;"/>
+							</div>
+						</td>
+
+						    <td ng-if="otherform.cotes>=2" >
+								<pre>{{bFinCustDs.child.subjNm}}</pre>
+							</td>
+							<td ng-if="otherform.cotes>=2" >
+							    <span ng-if="!bFinCustDs.child.flagM">{{bFinCustDs.child.colVal1}}</span>
+							    <div ng-if="bFinCustDs.child.flagM" >
+									<input id="{{bFinCustDs.child.subjId}}1" value="{{bFinCustDs.child.colVal1}}" style="width: 80%;" ng-blur="checkNum(bFinCustDs.child)"/>
+									<!--<ht-input ng-model="bFinCustDs.child.colVal1" edit-type="currency" onblur="checkNum(bFinCustDs.child,3)"></ht-input>-->
+								</div>
+								<div ng-if="!bFinCustDs.child.flagM && bFinCustDs.child.edTyp=='2'" >
+									<input id="{{bFinCustDs.child.subjId}}1" value="{{bFinCustDs.child.colVal1}}"  type="hidden" style="width: 80%;"/>
+								</div>
+							</td>
+							<td   ng-if="otherform.cotes>=2&&otherform.col>1" >
+							    <span ng-if="!bFinCustDs.child.flagM">{{bFinCustDs.child.colVal2}}</span>
+								<div ng-if="bFinCustDs.child.flagM" >
+									<input id="{{bFinCustDs.child.subjId}}2" value="{{bFinCustDs.child.colVal2}}" style="width: 80%;" ng-blur="checkNum(bFinCustDs.child)"/>
+									<!--<ht-input ng-model="bFinCustDs.child.colVal2" edit-type="currency" onblur="checkNum(bFinCustDs.child,4)"></ht-input>-->
+								</div>
+								<div ng-if="!bFinCustDs.child.flagM && bFinCustDs.child.edTyp=='2'" >
+									<input id="{{bFinCustDs.child.subjId}}2" value="{{bFinCustDs.child.colVal2}}"  type="hidden" style="width: 80%;"/>
+								</div>
+							</td>
+					</tr>
+					</tbody>
+			</table>
+		</div>
+	</div>
+	<!--<span style="color: red;font-size: 10px;">双击数字编辑，单击项目名称取消编辑状态</span>-->
+</div>
+
+ <style>
+	pre {
+		display: block;
+		padding: 0px;
+		margin: 0 0 0px;
+		word-break: break-all;
+		word-wrap: break-word;
+		white-space: pre;
+		/*white-space: pre-wrap;*/
+		border: 0;
+		background-color: transparent;
+		font-size: 13px;
+		line-height: 20px;
+	}
+	.table {
+	    margin-bottom: 0;
+	    border: 1px #dddddd solid;
+	 }
+</style>
+
+<ht-button-group class="center">
+    <!--<ht-button ht-id="calCheck" class="btn-primary" disable="{{flowsubmitdisable}}">计算</ht-button>-->
+    <ht-button ng-if="otherform.mdlId=='CWZB'"  ht-id="analy" class="btn-primary">财务指标分析</ht-button>
+    <ht-button ht-id="save" class="btn-primary" disable="{{flowsubmitdisable}}">临时保存</ht-button>
+    <ht-button ht-id="confirm" class="btn-primary" disable="{{flowsubmitdisable}}">保存</ht-button>
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

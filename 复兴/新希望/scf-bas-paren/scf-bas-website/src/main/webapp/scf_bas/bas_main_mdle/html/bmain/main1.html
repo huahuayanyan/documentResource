@@ -1,0 +1,38 @@
+<div style="display: flex;">
+        <div class="mainIframe-left pull-left clearfix">
+            <ht-table datasource="mainTableLeft" selected="selected" docheckbox="true" dooption="false">
+                <ht-legend>
+                    <i class="icon-circle-arrow-down"></i>
+                    待处理任务
+                    <ht-button id="refresh" class="btn-primary pull-right">刷新</ht-button>
+                </ht-legend>
+                <ht-column eg-name="number" zh-name="申请编号" href="true" docolumn="column"></ht-column>
+                <ht-column eg-name="company" zh-name="申请公司"></ht-column>
+                <ht-column eg-name="task" zh-name="任务名"></ht-column>
+            </ht-table>
+            <ht-page conf="conf" noselectpage="true"></ht-page>
+        </div>
+        <div class="mainIframe-right pull-right clearfix">
+            <div class="mainIframe-right-top">
+                <ht-table datasource="mainTableRight" selected="selected2" docheckbox="true" dooption="false">
+                    <ht-legend>
+                        <i class="icon-circle"></i>
+                        公告栏
+                    </ht-legend>
+                    <ht-column eg-name="number" zh-name="#" href="true" docolumn="column"></ht-column>
+                    <ht-column eg-name="them" zh-name="公告主题"></ht-column>
+                    <ht-column eg-name="task" zh-name="主题内容"></ht-column>
+                    <ht-column eg-name="people" zh-name="操作员"></ht-column>
+                    <ht-column eg-name="time" zh-name="发布时间"></ht-column>
+                </ht-table>
+                <ht-page conf="conf2"></ht-page>
+            </div>
+            <div class="mainIframe-right-bottom">
+                <ht-legend>
+                    <i class=" icon-exclamation-sign"></i>
+                    预警信息
+                </ht-legend>
+                <ht-chart chart-type="line" chardata="chartData" size="{width:600,height:300}"></ht-chart>
+            </div>
+        </div>
+</div>

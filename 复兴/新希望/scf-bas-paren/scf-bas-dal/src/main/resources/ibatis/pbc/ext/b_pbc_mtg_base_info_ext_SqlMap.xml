@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PBC_MTG_BASE_INFO_EXT" >
+   <resultMap id="MortgageEnteringMap" class="com.huateng.scf.bas.pbc.dao.model.ext.BPbcMtgBaseInfoVO" >
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_CLASS_NO" property="mortgageClassNo" jdbcType="CHAR" />
+    <result column="MORTGAGE_BIZ_TYPE" property="mortgageBizType" jdbcType="CHAR" />
+    <result column="MORTGAGE_CLASS" property="mortgageClass" jdbcType="CHAR" />
+    <result column="MORTGAGE_SUB_CLASS" property="mortgageSubClass" jdbcType="CHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FOUR" property="mortgageLevelFour" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FIVE" property="mortgageLevelFive" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_SIX" property="mortgageLevelSix" jdbcType="VARCHAR" />
+    <result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="FIRST_APPNO" property="firstAppno" jdbcType="VARCHAR" />
+    <result column="FIRST_STORAGE_DATE" property="firstStorageDate" jdbcType="CHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="WEIGHT_UNITS" property="weightUnits" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+    <result column="ORIGINAL_PRICE" property="originalPrice" jdbcType="DECIMAL" />
+    <result column="ORIGINAL_TOT_PRICE" property="originalTotPrice" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="CONFIRM_PRICE" property="confirmPrice" jdbcType="DECIMAL" />
+    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+    <result column="STOCK_STATUS" property="stockStatus" jdbcType="CHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="MANUFACTURER" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+    <result column="VENDER" property="vender" jdbcType="VARCHAR" />
+    <result column="PRODUCT_AREA" property="productArea" jdbcType="VARCHAR" />
+    <result column="INCOME_NO" property="incomeNo" jdbcType="VARCHAR" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="PACKAGEW" property="packagew" jdbcType="VARCHAR" />
+    <result column="QUALITY_LEVEL" property="qualityLevel" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="YEAR" property="year" jdbcType="VARCHAR" />
+    <result column="BILL_TYPE" property="billType" jdbcType="VARCHAR" />
+    <result column="WEIGHT_ALL" property="weightAll" jdbcType="DECIMAL" />
+    <result column="UP_DOWN_MONEY" property="upDownMoney" jdbcType="DECIMAL" />
+    <result column="WAREHOUSE_ADDRESS" property="warehouseAddress" jdbcType="VARCHAR" />
+    <result column="BILL_QUANTITY" property="billQuantity" jdbcType="DECIMAL" />
+    <result column="OLD_CONFIRM_PRICE" property="oldConfirmPrice" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_CODE" property="mortgageCode" jdbcType="DECIMAL" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="FREIGHTAREA" property="freightarea" jdbcType="VARCHAR" />
+    <result column="FREIGHTLOT" property="freightlot" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE" property="warehouse" jdbcType="VARCHAR" />
+    <result column="ENGINE_NO" property="engineNo" jdbcType="VARCHAR" />
+    <result column="CHASSIS_NO" property="chassisNo" jdbcType="VARCHAR" />
+    <result column="CERTIFICATION_NO" property="certificationNo" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="JOIN_BATCH" property="joinBatch" jdbcType="CHAR" />
+    <result column="FIX_MORTGAGE_NO" property="fixMortgageNo" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="IS_LOCKED" property="isLocked" jdbcType="CHAR" />
+    <result column="LOCK_APPNO" property="lockAppno" jdbcType="VARCHAR" />
+    <result column="IS_SL_EXIBITION" property="isSlExibition" jdbcType="CHAR" />
+    <result column="MANUFACTURE_DATE" property="manufactureDate" jdbcType="CHAR" />
+    <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="CONFIRM_ACCORDING" property="confirmAccording" jdbcType="VARCHAR" />
+    <result column="MONI_WAREHOUSE_TYPE" property="moniWarehouseType" jdbcType="CHAR" />
+    <result column="INV_QUANTITY" property="invQuantity" jdbcType="DECIMAL" />
+    <result column="PRICE_DATE" property="priceDate" jdbcType="CHAR" />
+    <result column="EBANK_APPNO" property="ebankAppno" jdbcType="VARCHAR" />
+    <result column="CHANNEL_FLAG" property="channelFlag" jdbcType="CHAR" />
+    <result column="UP_DOWN_MONEY_FLAG" property="upDownMoneyFlag" jdbcType="CHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="moniOfCustName"  property="moniOfCustName"/> 
+    <result column="SUPPLY_CHAIN_PD_ID_NAME"     property="supplyChainPdIdName"/> 
+    <result column="MORTGAGE_LEVEL_ONE_NAME"     property="mortgageLevelOneName"/> 
+    <result column="MORTGAGE_LEVEL_TWO_NAME"   	property="mortgageLevelTwoName"/> 
+    <result column="CNAME" property="custName" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryMortgageEnteringList" resultMap="MortgageEnteringMap" parameterClass="java.util.HashMap" >
+	SELECT
+		
+	 pmbi.*,
+	
+    cbi1.CNAME,
+    cbi2.CNAME as moniOfCustName,
+    mtg1.MORTGAGE_NAME as MORTGAGE_LEVEL_ONE_NAME,
+    mtg2.MORTGAGE_NAME as MORTGAGE_LEVEL_TWO_NAME,
+    prd.PRODUCT_NAME as SUPPLY_CHAIN_PD_ID_NAME
+    
+	FROM
+	    B_PBC_MTG_BASE_INFO pmbi,
+	    B_CRM_BASE_INFO cbi1,
+	    B_CRM_BASE_INFO cbi2,
+	    B_CRR_GNTY_CON cgc,
+	    B_PRD_INFO prd,
+	    B_PBC_MTG_CLASS mtg1,
+	    B_PBC_MTG_CLASS mtg2
+	    
+	WHERE
+	    1=1
+	AND pmbi.custcd = cbi1.custcd
+	AND pmbi.moni_Of_Custcd =cbi2.custcd
+	AND pmbi.slave_Contno = cgc.CON_ID
+	AND prd.PRODUCT_ID = pmbi.SUPPLY_CHAIN_PD_ID
+	AND mtg1.MORTGAGE_CODE = pmbi.MORTGAGE_LEVEL_ONE
+	AND mtg2.MORTGAGE_CODE = pmbi.MORTGAGE_LEVEL_TWO
+	
+	<isNotNull prepend="AND" property="cname" >
+        <![CDATA[cbi1.cname like '%' || #cname# || '%']]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="moniCname" >
+        <![CDATA[cbi2.cname like '%' || #moniCname# || '%']]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="slaveContcode" >
+        <![CDATA[pmbi.SLAVE_CONTNO like '%' ||  #slaveContcode# || '%']]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="mortgageLevelOneName" >
+        <![CDATA[pmbi.mortgage_Level_One =#mortgageLevelOneName#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="mortgageLevelTwoName" >
+        <![CDATA[pmbi.mortgage_Level_Two =#mortgageLevelTwoName#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="mortgageName" >
+        <![CDATA[pmbi.mortgage_Name like '%' || #mortgageName# || '%']]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="suppProductName" >
+        <![CDATA[pmbi.supply_Chain_Pd_Id =#suppProductName#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="monitorType" >
+        <![CDATA[pmbi.MONI_WAREHOUSE_TYPE =#monitorType#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="isLocked" >
+        <![CDATA[pmbi.IS_LOCKED =#isLocked#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="stockStatus" >
+        <![CDATA[pmbi.STOCK_STATUS =#stockStatus#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="gutId" >
+        <![CDATA[cgc.GUT_ID =#gutId#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="slaveContno" >
+        <![CDATA[pmbi.slave_Contno like '%' ||  #slaveContno# || '%']]>
+    </isNotNull>
+    order by pmbi.LAST_UPD_TIME DESC 
+  </select>
+  
+  <resultMap id="BaseAppliParaResultMap" class="com.huateng.scf.bas.pbc.dao.vo.BPbcAppliMtgInfoVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="APPLI_MORT_BIZ_TYPE" property="appliMortBizType" jdbcType="CHAR" />
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_BIZ_TYPE" property="mortgageBizType" jdbcType="CHAR" />
+    <result column="MORTGAGE_CLASS" property="mortgageClass" jdbcType="CHAR" />
+    <result column="MORTGAGE_SUB_CLASS" property="mortgageSubClass" jdbcType="CHAR" />
+    <result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="MANUFACTURER" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="CHAR" />
+    <result column="BAL_QUANTITY" property="balQuantity" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE_NAME" property="mortgageLevelOneName" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO_NAME" property="mortgageLevelTwoName" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FOUR" property="mortgageLevelFour" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FIVE" property="mortgageLevelFive" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_SIX" property="mortgageLevelSix" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="ORIGINAL_PRICE" property="originalPrice" jdbcType="DECIMAL" />
+    <result column="ORIGINAL_TOT_PRICE" property="originalTotPrice" jdbcType="DECIMAL" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="CONFIRM_PRICE" property="confirmPrice" jdbcType="DECIMAL" />
+    <result column="STOCK_STATUS" property="stockStatus" jdbcType="CHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="VENDER" property="vender" jdbcType="VARCHAR" />
+    <result column="PRODUCT_AREA" property="productArea" jdbcType="VARCHAR" />
+    <result column="INCOME_NO" property="incomeNo" jdbcType="VARCHAR" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="QUALITY_LEVEL" property="qualityLevel" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="YEAR" property="year" jdbcType="VARCHAR" />
+    <result column="BILL_TYPE" property="billType" jdbcType="VARCHAR" />
+    <result column="WEIGHT_ALL" property="weightAll" jdbcType="DECIMAL" />
+    <result column="UP_DOWN_MONEY" property="upDownMoney" jdbcType="DECIMAL" />
+    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+    <result column="BILL_QUANTITY" property="billQuantity" jdbcType="DECIMAL" />
+    <result column="FUTURE_CUSTCD" property="futureCustcd" jdbcType="VARCHAR" />
+    <result column="BILL_DUE_DATE" property="billDueDate" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_ADDRESS" property="warehouseAddress" jdbcType="VARCHAR" />
+    <result column="OLD_CONFIRM_PRICE" property="oldConfirmPrice" jdbcType="DECIMAL" />
+    <result column="CONFIRM_ACCORDING" property="confirmAccording" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+    <result column="FREIGHTAREA" property="freightarea" jdbcType="VARCHAR" />
+    <result column="FREIGHTLOT" property="freightlot" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE" property="warehouse" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_CODE" property="mortgageCode" jdbcType="DECIMAL" />
+    <result column="WEIGHT_UNITS" property="weightUnits" jdbcType="VARCHAR" />
+    <result column="ENGINE_NO" property="engineNo" jdbcType="VARCHAR" />
+    <result column="CHASSIS_NO" property="chassisNo" jdbcType="VARCHAR" />
+    <result column="CERTIFICATION_NO" property="certificationNo" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="FIX_MORTGAGE_NO" property="fixMortgageNo" jdbcType="VARCHAR" />
+    <result column="JOIN_BATCH" property="joinBatch" jdbcType="CHAR" />
+    <result column="UP_DOWN_MONEY_FLAG" property="upDownMoneyFlag" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="OUT_QUANTITY" property="outQuantity" jdbcType="DECIMAL" />
+    <result column="IS_SL_EXIBITION" property="isSlExibition" jdbcType="CHAR" />
+    <result column="MANUFACTURE_DATE" property="manufactureDate" jdbcType="CHAR" />
+    <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR" />
+    <result column="MONI_WAREHOUSE_TYPE" property="moniWarehouseType" jdbcType="CHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="DELIVERY_NUM" property="deliveryNum" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PACKAGEW" property="packagew" jdbcType="VARCHAR" />
+    <result column="ADD_QUANTITY" property="addQuantity" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="getTblAppliMortgageBaseInfoByPara" resultMap="BaseAppliParaResultMap" parameterClass="java.util.HashMap" >
+    SELECT ambi.* ,omtg.MORTGAGE_NAME MORTGAGE_LEVEL_ONE_NAME, tmtg.MORTGAGE_NAME MORTGAGE_LEVEL_TWO_NAME
+    FROM B_PBC_APPLI_MTG_INFO ambi , B_PBC_MTG_CLASS omtg, B_PBC_MTG_CLASS tmtg
+    WHERE 1=1
+    and ambi.MORTGAGE_LEVEL_ONE = omtg.MORTGAGE_CODE
+    and ambi.MORTGAGE_LEVEL_TWO = tmtg.MORTGAGE_CODE
+    <isNotEmpty prepend="and" property="appno">
+      <![CDATA[ ambi.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ ambi.BILLNO = #billno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="billnoList" > 
+        ambi.BILLNO  in 
+        <iterate property="billnoList" conjunction="," open="(" close=")" >
+   		 $billnoList[]$
+   		</iterate> 
+    </isNotNull>
+	<isNotEmpty prepend="and" property="flag">
+      <![CDATA[ 1=2 ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ ambi.MAST_CONTNO = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ ambi.SLAVE_CONTNO = #slaveContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="appliMortBizType">
+      <![CDATA[ ambi.APPLI_MORT_BIZ_TYPE = #appliMortBizType:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+      <![CDATA[ ambi.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="id">
+      <![CDATA[ ambi.ID = #id:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="countTblAppliMortgageBaseInfoByPara" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    SELECT count(ambi.ID) 
+    FROM B_PBC_APPLI_MTG_INFO ambi 
+    WHERE 1=1
+    <isNotEmpty prepend="and" property="appno">
+      <![CDATA[ ambi.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ ambi.BILLNO = #cname:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="billnoList" > 
+        ambi.BILLNO  in 
+        <iterate property="billnoList" conjunction="," open="(" close=")" >
+   		 $billnoList[]$
+   		</iterate> 
+    </isNotNull>
+	<isNotEmpty prepend="and" property="flag">
+      <![CDATA[ 1=2 ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ ambi.MAST_CONTNO = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ ambi.SLAVE_CONTNO = #slaveContno:VARCHAR# ||'%' ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="appliMortBizType">
+      <![CDATA[ ambi.APPLI_MORT_BIZ_TYPE = #appliMortBizType:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status">
+      <![CDATA[ ambi.STATUS = #status:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="id">
+      <![CDATA[ ambi.ID = #id:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  
+  <resultMap id="BaseMortResultMap" class="com.huateng.scf.bas.pbc.dao.vo.BPbcMtgBaseInfoVO" >
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="SUPPLY_CHAIN_PD_ID" property="supplyChainPdId" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_CLASS_NO" property="mortgageClassNo" jdbcType="CHAR" />
+    <result column="MORTGAGE_BIZ_TYPE" property="mortgageBizType" jdbcType="CHAR" />
+    <result column="MORTGAGE_CLASS" property="mortgageClass" jdbcType="CHAR" />
+    <result column="MORTGAGE_SUB_CLASS" property="mortgageSubClass" jdbcType="CHAR" />
+    <result column="MORTGAGE_LEVEL_ONE" property="mortgageLevelOne" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO" property="mortgageLevelTwo" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_ONE_NAME" property="mortgageLevelOneName" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_TWO_NAME" property="mortgageLevelTwoName" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_THREE" property="mortgageLevelThree" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FOUR" property="mortgageLevelFour" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_FIVE" property="mortgageLevelFive" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_LEVEL_SIX" property="mortgageLevelSix" jdbcType="VARCHAR" />
+    <result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+    <result column="OTHER_PROTOCOL_NO" property="otherProtocolNo" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="FIRST_APPNO" property="firstAppno" jdbcType="VARCHAR" />
+    <result column="FIRST_STORAGE_DATE" property="firstStorageDate" jdbcType="CHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="WEIGHT_UNITS" property="weightUnits" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NAME" property="mortgageName" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_UNITS" property="mortgageUnits" jdbcType="VARCHAR" />
+    <result column="QUANTITY" property="quantity" jdbcType="DECIMAL" />
+    <result column="ORIGINAL_PRICE" property="originalPrice" jdbcType="DECIMAL" />
+    <result column="ORIGINAL_TOT_PRICE" property="originalTotPrice" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="CONFIRM_PRICE" property="confirmPrice" jdbcType="DECIMAL" />
+    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+    <result column="STOCK_STATUS" property="stockStatus" jdbcType="CHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_MODEL" property="mortgageModel" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="MANUFACTURER" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="BILLNO" property="billno" jdbcType="VARCHAR" />
+    <result column="VENDER" property="vender" jdbcType="VARCHAR" />
+    <result column="PRODUCT_AREA" property="productArea" jdbcType="VARCHAR" />
+    <result column="INCOME_NO" property="incomeNo" jdbcType="VARCHAR" />
+    <result column="RATION" property="ration" jdbcType="DECIMAL" />
+    <result column="PACKAGEW" property="packagew" jdbcType="VARCHAR" />
+    <result column="QUALITY_LEVEL" property="qualityLevel" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="YEAR" property="year" jdbcType="VARCHAR" />
+    <result column="BILL_TYPE" property="billType" jdbcType="VARCHAR" />
+    <result column="WEIGHT_ALL" property="weightAll" jdbcType="DECIMAL" />
+    <result column="UP_DOWN_MONEY" property="upDownMoney" jdbcType="DECIMAL" />
+    <result column="WAREHOUSE_ADDRESS" property="warehouseAddress" jdbcType="VARCHAR" />
+    <result column="BILL_QUANTITY" property="billQuantity" jdbcType="DECIMAL" />
+    <result column="OLD_CONFIRM_PRICE" property="oldConfirmPrice" jdbcType="DECIMAL" />
+    <result column="MORTGAGE_CODE" property="mortgageCode" jdbcType="DECIMAL" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="FREIGHTAREA" property="freightarea" jdbcType="VARCHAR" />
+    <result column="FREIGHTLOT" property="freightlot" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE" property="warehouse" jdbcType="VARCHAR" />
+    <result column="ENGINE_NO" property="engineNo" jdbcType="VARCHAR" />
+    <result column="CHASSIS_NO" property="chassisNo" jdbcType="VARCHAR" />
+    <result column="CERTIFICATION_NO" property="certificationNo" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="JOIN_BATCH" property="joinBatch" jdbcType="CHAR" />
+    <result column="FIX_MORTGAGE_NO" property="fixMortgageNo" jdbcType="VARCHAR" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="IS_LOCKED" property="isLocked" jdbcType="CHAR" />
+    <result column="LOCK_APPNO" property="lockAppno" jdbcType="VARCHAR" />
+    <result column="IS_SL_EXIBITION" property="isSlExibition" jdbcType="CHAR" />
+    <result column="MANUFACTURE_DATE" property="manufactureDate" jdbcType="CHAR" />
+    <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="CONFIRM_ACCORDING" property="confirmAccording" jdbcType="VARCHAR" />
+    <result column="MONI_WAREHOUSE_TYPE" property="moniWarehouseType" jdbcType="CHAR" />
+    <result column="INV_QUANTITY" property="invQuantity" jdbcType="DECIMAL" />
+    <result column="PRICE_DATE" property="priceDate" jdbcType="CHAR" />
+    <result column="EBANK_APPNO" property="ebankAppno" jdbcType="VARCHAR" />
+    <result column="CHANNEL_FLAG" property="channelFlag" jdbcType="CHAR" />
+    <result column="UP_DOWN_MONEY_FLAG" property="upDownMoneyFlag" jdbcType="CHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="findBillstandardMortgageQuery" resultMap="BaseMortResultMap" parameterClass="java.util.HashMap" >
+    SELECT ambi.* ,omtg.MORTGAGE_NAME MORTGAGE_LEVEL_ONE_NAME, tmtg.MORTGAGE_NAME MORTGAGE_LEVEL_TWO_NAME
+	FROM B_PBC_MTG_BASE_INFO ambi, B_PBC_MTG_CLASS omtg, B_PBC_MTG_CLASS tmtg
+    WHERE 1=1
+    and ambi.MORTGAGE_LEVEL_ONE = omtg.MORTGAGE_CODE
+    and ambi.MORTGAGE_LEVEL_TWO = tmtg.MORTGAGE_CODE
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ ambi.BILLNO = #billno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="billnoList" > 
+        ambi.BILLNO  in 
+        <iterate property="billnoList" conjunction="," open="(" close=")" >
+   		 $billnoList[]$
+   		</iterate> 
+    </isNotNull>
+	<isNotEmpty prepend="and" property="flag">
+      <![CDATA[ 1=2 ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mortgageNo">
+      <![CDATA[ ambi.MORTGAGE_NO = #mortgageNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="custcdList" > 
+        ambi.CUSTCD in 
+        <iterate property="custcdList" conjunction="," open="(" close=")" >
+   		 $custcdList[]$
+   		</iterate> 
+    </isNotNull>
+  </select>
+  
+  <select id="countBillstandardMortgageQuery" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    SELECT count(ambi.MORTGAGE_NO) 
+    FROM B_PBC_MTG_BASE_INFO ambi, B_PBC_MTG_CLASS omtg, B_PBC_MTG_CLASS tmtg
+    WHERE 1=1
+    and ambi.MORTGAGE_LEVEL_ONE = omtg.MORTGAGE_CODE
+    and ambi.MORTGAGE_LEVEL_TWO = tmtg.MORTGAGE_CODE
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ ambi.BILLNO = #billno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="billnoList" > 
+        ambi.BILLNO  in 
+        <iterate property="billnoList" conjunction="," open="(" close=")" >
+   		 $billnoList[]$
+   		</iterate> 
+    </isNotNull>
+	<isNotEmpty prepend="and" property="flag">
+      <![CDATA[ 1=2 ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mortgageNo">
+      <![CDATA[ ambi.MORTGAGE_NO = #mortgageNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="custcdList" > 
+        ambi.CUSTCD  in 
+        <iterate property="custcdList" conjunction="," open="(" close=")" >
+   		 $custcdList[]$
+   		</iterate> 
+    </isNotNull>
+  </select>
+  
+  <resultMap id="BaseSumPriceResultMap" class="java.util.HashMap" >
+	    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="getMortgageSumPriceByBillMastno" resultMap="BaseSumPriceResultMap" parameterClass="java.util.HashMap" >
+    select coalesce(sum(mbi.TOT_PRICE),0) TOT_PRICE
+	from B_PBC_MTG_BASE_INFO mbi,S_BCP_MORT_BILL_NORMAL a 
+	where mbi.QUANTITY > 0 
+	and mbi.BILLNO=a.BILLNO
+	<isNotNull prepend="and" property="statusList" > 
+        a.status  in 
+        <iterate property="statusList" conjunction="," open="(" close=")" >
+   		 $statusList[]$
+   		</iterate> 
+    </isNotNull>
+	<isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ a.MAST_CONTNO = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="getBillstandardMorgByBillno" resultMap="BaseMortResultMap" parameterClass="java.util.HashMap" >
+    SELECT ambi.* ,omtg.MORTGAGE_NAME MORTGAGE_LEVEL_ONE_NAME, tmtg.MORTGAGE_NAME MORTGAGE_LEVEL_TWO_NAME
+    FROM B_PBC_MTG_BASE_INFO ambi, B_PBC_MTG_CLASS omtg, B_PBC_MTG_CLASS tmtg
+    WHERE 1=1
+    and ambi.MORTGAGE_LEVEL_ONE = omtg.MORTGAGE_CODE
+    and ambi.MORTGAGE_LEVEL_TWO = tmtg.MORTGAGE_CODE
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ ambi.BILLNO = #billno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="findByConditionException" resultMap="B_PBC_APPLI_MTG_INFO.BaseResultMap" parameterClass="java.util.HashMap" >
+    select ambi.*
+    from B_PBC_APPLI_MTG_INFO ambi
+    where 1=1
+	<isNotEmpty prepend="and" property="appno">
+      <![CDATA[ ambi.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="appliMortBizType">
+      <![CDATA[ ambi.APPLI_MORT_BIZ_TYPE = #appliMortBizType:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+    
+  <resultMap id="getMortgageSumPriceResultMap" class="java.util.HashMap" >
+	    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="getMortgageSumPriceByParam" resultMap="getMortgageSumPriceResultMap" parameterClass="java.util.HashMap" >
+    select coalesce(sum(T1.TOT_PRICE),0) TOT_PRICE
+	from B_PBC_MTG_BASE_INFO T1
+	where T1.QUANTITY > 0 
+	<isNotEmpty prepend="and" property="mastContno">
+      <![CDATA[ T1.MAST_CONTNO = #mastContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ T1.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="otherProtocolNo">
+      <![CDATA[ T1.OTHER_PROTOCOL_NO = #otherProtocolNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="stockStatus">
+      <![CDATA[ T1.STOCK_STATUS = #stockStatus:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  
+  <resultMap id="BaseAppliTotalPriceResultMap" class="java.util.HashMap" >
+    <result column="TOT_PRICE" property="totPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="getAppliMortgageTotalPrice" resultMap="BaseAppliTotalPriceResultMap" parameterClass="java.util.HashMap" >
+   select coalesce(sum(ambi.TOT_PRICE),0) TOT_PRICE 
+   from B_PBC_APPLI_MTG_INFO ambi 
+   where 1=1
+	<isNotEmpty prepend="and" property="appno">
+      <![CDATA[ ambi.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="appliMortBizType">
+      <![CDATA[ ambi.APPLI_MORT_BIZ_TYPE = #appliMortBizType:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ ambi.slave_Contno = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="getEffectTotPrice" resultMap="BaseSumPriceResultMap" parameterClass="java.util.HashMap" >
+    select coalesce(sum(b.TOT_PRICE),0) TOT_PRICE
+	from B_PBC_MTG_BASE_INFO b,S_BCP_MORT_BILL_NORMAL a 
+	where b.BILLNO = a.BILLNO
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ b.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="monitorProtocolNo">
+      <![CDATA[ b.MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<!-- 表中无该字段 -->
+	<!-- <isNotEmpty prepend="and" property="isSlExibition">
+      <![CDATA[ b.isSlExibition = #isSlExibition:VARCHAR#  ]]>
+	</isNotEmpty> -->
+	<isNotNull prepend="and" property="status" > 
+	  <![CDATA[ a.STATUS = #status:VARCHAR#  ]]>
+    </isNotNull>
+    <isNotNull prepend="and" property="statusList" > 
+        a.STATUS not in 
+        <iterate property="statusList" conjunction="," open="(" close=")" >
+   		 $statusList[]$
+   		</iterate> 
+    </isNotNull>
+  </select>
+  
+  <select id="getPriceAdjustSlaveContGetter" resultMap="EXT_B_CRR_GNTY_CON.BaseResultMap" parameterClass="java.util.HashMap" >
+    select distinct tcsi.*, p.product_name vidPrdNm, '' as MONI_CUSTCD
+    from B_CRR_GNTY_CON tcsi, B_PBC_MTG_BASE_INFO tmbi ,B_PRD_INFO p
+    where 
+    tcsi.CON_ID = tmbi.SLAVE_CONTNO 
+    and tmbi.SUPPLY_CHAIN_PD_ID = p.product_id	
+    and tmbi.QUANTITY > 0
+    <!-- 正常状态的质押合同 -->
+    and tcsi.CON_STAT ='1'
+    <!-- 参与跑批-->
+    and tmbi.JOIN_BATCH= '1'
+    <!-- 不是approve的任务名称，就需要查询未被锁定的信息。-->
+    <isNotEqual prepend="and" property="taskName" compareValue="Approve">
+ 		(tmbi.IS_LOCKED is null or tmbi.IS_LOCKED !='1') 
+	   </isNotEqual>
+	<isNotEmpty prepend="and" property="supplyChainPdId">
+      <![CDATA[ tmbi.SUPPLY_CHAIN_PD_ID = #supplyChainPdId:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mortgageLevelOne">
+      <![CDATA[ tmbi.MORTGAGE_LEVEL_ONE = #mortgageLevelOne:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mortgageLevelTwo">
+      <![CDATA[ tmbi.MORTGAGE_LEVEL_TWO = #mortgageLevelTwo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="mortgageLevelThree">
+      <![CDATA[ tmbi.MORTGAGE_LEVEL_THREE = #mortgageLevelThree:VARCHAR#  ]]>
+	</isNotEmpty>
+	order by tcsi.LST_UPD_DT desc
+  </select>
+  
+  <select id="countBillNormalUnlockedByBillno" parameterClass="java.util.HashMap" resultClass="java.lang.Integer" >
+    select count(a.MORTGAGE_NO) 
+    from B_PBC_MTG_BASE_INFO a
+	where 1=1
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ a.BILLNO = #billno#  ]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="billnoList" > 
+        a.BILLNO in 
+        <iterate property="billnoList" conjunction="," open="(" close=")" >
+   		 $billnoList[]$
+   		</iterate> 
+    </isNotNull>
+	and (a.IS_LOCKED is null or a.IS_LOCKED = #isLocked:VARCHAR#
+	<isNotEmpty prepend="or" property="lockAppno" > 
+	  <![CDATA[ a.LOCK_APPNO = #lockAppno:VARCHAR#  ]]>
+    </isNotEmpty>
+    )
+  </select>
+  <select id="getBillNormalUnlockedByBillno" resultMap="B_PBC_MTG_BASE_INFO.BaseResultMap" parameterClass="java.util.HashMap" >
+    select a.* 
+    from B_PBC_MTG_BASE_INFO a
+	where 1=1
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ a.BILLNO = #billno#  ]]>
+	</isNotEmpty>
+	and (a.IS_LOCKED is null or a.IS_LOCKED = #isLocked:VARCHAR#
+	<isNotEmpty prepend="or" property="lockAppno" > 
+	  <![CDATA[ a.LOCK_APPNO = #lockAppno:VARCHAR#  ]]>
+    </isNotEmpty>
+    )
+  </select>
+  
+  <select id="getAppliReceiptPledgeAmountBybillno" resultMap="BaseSumPriceResultMap" parameterClass="java.util.HashMap" >
+    select coalesce(sum(mbi.TOT_PRICE),0) TOT_PRICE
+	from B_PBC_MTG_BASE_INFO mbi
+	where mbi.QUANTITY > 0 
+	<isNotEmpty prepend="and" property="billno">
+      <![CDATA[ mbi.BILLNO = #billno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="getExchangeTotalPrice" resultMap="BaseSumPriceResultMap" parameterClass="java.util.HashMap" >
+    select coalesce(sum(ambi.TOT_PRICE),0) TOT_PRICE
+	from B_PBC_APPLI_MTG_INFO ambi,S_BCP_APPLI_MORT_BILL_NORMAL ambn 
+	where ambi.BILLNO=ambn.BILLNO 
+	and ambi.APPNO = ambn.APPNO
+	<isNotEmpty prepend="and" property="appno">
+      <![CDATA[ ambi.APPNO = #appno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="appliMortBizType">
+      <![CDATA[ ambi.APPLI_MORT_BIZ_TYPE = #appliMortBizType:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="status" > 
+	  <![CDATA[ ambn.STATUS = #status:VARCHAR#  ]]>
+    </isNotEmpty>
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ ambi.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="getTotPriceByParam" resultMap="BaseSumPriceResultMap" parameterClass="java.util.HashMap" >
+    select coalesce(sum(T1.TOT_PRICE),0) TOT_PRICE
+	from B_PBC_MTG_BASE_INFO T1
+	where 1=1
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ T1.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="monitorProtocolNo">
+      <![CDATA[ T1.MONITOR_PROTOCOL_NO = #monitorProtocolNo:VARCHAR#  ]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="isSlExibition">
+      <![CDATA[ T1.IS_SL_EXIBITION = #isSlExibition:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <select id="getSumPriceByslaveContno" resultMap="BaseSumPriceResultMap" parameterClass="java.util.HashMap" >
+    select coalesce(sum(mbi.TOT_PRICE),0) TOT_PRICE
+	from B_PBC_MTG_BASE_INFO mbi
+	where mbi.quantity > 0
+	<isNotEmpty prepend="and" property="slaveContno">
+      <![CDATA[ mbi.SLAVE_CONTNO = #slaveContno:VARCHAR#  ]]>
+	</isNotEmpty>
+  </select>
+  
+  <!-- 存货类出质入库新增押品页面-->
+    <select id="getMortgageEnteringAddList" resultMap="B_PBC_MTG_BASE_INFO.BaseResultMap"  parameterClass="java.util.Map" >
+    select
+   <include refid="B_PBC_MTG_BASE_INFO.Base_Column_List" />
+    from 
+    
+    B_PBC_MTG_BASE_INFO  
+    
+    where 
+    	INV_QUANTITY > 0
+    AND (IS_LOCKED is null or  IS_LOCKED!='1'
+       <isNotEmpty prepend="or" property="lockAppno" >
+       LOCK_APPNO = #lockAppno:VARCHAR#
+       </isNotEmpty>
+          )
+       <isNotEmpty prepend="and" property="mortgageNoList" > 
+       MORTGAGE_NO  NOT in 
+       <iterate property="mortgageNoList" conjunction="," open="(" close=")" >
+  		 $mortgageNoList[]$ 
+  		</iterate> 
+   	 </isNotEmpty>
+       <isNotEmpty prepend="and" property="slaveContno" >
+        SLAVE_CONTNO=#slaveContno:VARCHAR#
+       </isNotEmpty>        
+       <isNotEmpty prepend="and" property="mortgageLevelOne" >
+        MORTGAGE_LEVEL_ONE=#mortgageLevelOne:VARCHAR#
+       </isNotEmpty>    
+       <isNotEmpty prepend="and" property="mortgageLevelTwo" >
+        MORTGAGE_LEVEL_TWO=#mortgageLevelTwo:VARCHAR#
+       </isNotEmpty> 
+        <isNotEmpty prepend="and" property="mortgageName" >
+         <![CDATA[ MORTGAGE_NAME LIKE '%'||#mortgageName:VARCHAR# || '%' ]]>
+       </isNotEmpty>  
+    ORDER BY MORTGAGE_NO DESC
+  </select>
+  <!-- add by gongzhao priceAdjust -->
+    <select id="queryMortgageEnteringListByPriceAdjust" resultMap="MortgageEnteringMap" parameterClass="java.util.HashMap" >
+	SELECT
+	 pmbi.*,
+    cbi1.CNAME,
+    cbi2.CNAME as moniOfCustName,
+    mtg1.MORTGAGE_NAME as MORTGAGE_LEVEL_ONE_NAME,
+    mtg2.MORTGAGE_NAME as MORTGAGE_LEVEL_TWO_NAME,
+    prd.PRODUCT_NAME as SUPPLY_CHAIN_PD_ID_NAME
+    
+	FROM
+	    B_PBC_MTG_BASE_INFO pmbi,
+	    B_CRM_BASE_INFO cbi1,
+	    B_CRM_BASE_INFO cbi2,
+	    B_CRR_GNTY_CON cgc,
+	    B_PRD_INFO prd,
+	    B_PBC_MTG_CLASS mtg1,
+	    B_PBC_MTG_CLASS mtg2
+	    
+	WHERE
+	    1=1
+	AND pmbi.custcd = cbi1.custcd
+	AND pmbi.moni_Of_Custcd =cbi2.custcd
+	AND pmbi.slave_Contno = cgc.CON_ID
+	AND prd.PRODUCT_ID = pmbi.SUPPLY_CHAIN_PD_ID
+	AND mtg1.MORTGAGE_CODE = pmbi.MORTGAGE_LEVEL_ONE
+	AND mtg2.MORTGAGE_CODE = pmbi.MORTGAGE_LEVEL_TWO
+	AND pmbi.QUANTITY >0
+	<isNotNull prepend="AND" property="cname" >
+        <![CDATA[cbi1.cname like '%' || #cname# || '%']]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="moniCname" >
+        <![CDATA[cbi2.cname like '%' || #moniCname# || '%']]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="slaveContcode" >
+        <![CDATA[pmbi.SLAVE_CONTNO like '%' ||  #slaveContcode# || '%']]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="mortgageLevelOneName" >
+        <![CDATA[pmbi.mortgage_Level_One =#mortgageLevelOneName#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="mortgageLevelTwoName" >
+        <![CDATA[pmbi.mortgage_Level_Two =#mortgageLevelTwoName#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="mortgageName" >
+        <![CDATA[pmbi.mortgage_Name like '%' || #mortgageName# || '%']]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="suppProductName" >
+        <![CDATA[pmbi.supply_Chain_Pd_Id =#suppProductName#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="monitorType" >
+        <![CDATA[pmbi.MONI_WAREHOUSE_TYPE =#monitorType#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="isLocked" >
+        <![CDATA[pmbi.IS_LOCKED =#isLocked#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="stockStatus" >
+        <![CDATA[pmbi.STOCK_STATUS =#stockStatus#]]>
+    </isNotNull>
+	<isNotNull prepend="AND" property="gutId" >
+        <![CDATA[cgc.GUT_ID =#gutId#]]>
+    </isNotNull>
+    <isNotNull prepend="AND" property="slaveContno" >
+        <![CDATA[pmbi.slave_Contno like '%' ||  #slaveContno# || '%']]>
+    </isNotNull>
+    order by pmbi.LAST_UPD_TIME DESC 
+  </select>
+</sqlMap>

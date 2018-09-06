@@ -1,0 +1,43 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="moniCustName" name="监管公司名称" ng-model="conditionForm.moniCustName"></ht-input>
+    <ht-select ht-id="results" name="核库结果" ng-model="conditionForm.results" dictionary="whseResults"></ht-select>
+    <ht-input ht-id="custName" name="出质人名称" ng-model="conditionForm.custName"></ht-input>
+    <ht-input ht-id="protNo" name="抵/质押合同号" ng-model="conditionForm.protNo"></ht-input>
+    <ht-input ht-id="dateFrom" name="核库日期 从" ng-model="conditionForm.dateFrom"
+    edit-type="date" ></ht-input>
+    <ht-input ht-id="dateTo" name="核库日期 到" ng-model="conditionForm.dateTo"
+    edit-type="date" ></ht-input>
+    <ht-input-extent ht-id="prdName" name="业务品种" ng-model="conditionForm.prdName"
+                     on-change="doSupply" extent='supply' dataoption="key"></ht-input-extent>
+    <ht-input-extent name='经办机构' ht-id ='brName' extent='content' on-change="dooextent"
+            checkedHiden="true" ng-model='conditionForm.brName'></ht-input-extent>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>历次核库信息列表</ht-legend>
+<ht-button-group class="left">
+    <ht-button ht-id="addBtn" class="btn-primary" desc-name="新增核库"></ht-button>
+    <ht-button ht-id="updateBtn" class="btn-primary" desc-name="核库修改"></ht-button>
+    <ht-button ht-id="viewBtn" class="btn-primary" desc-name="核库详情"></ht-button>
+    <ht-button ht-id="noticeBtn" class="btn-primary" desc-name="查看通知书"></ht-button>
+</ht-button-group>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="INSPECT_ELEMENT31" zh-name="抵/质押合同号"></ht-column>
+    <ht-column eg-name="CNAME" zh-name="监管公司名称"></ht-column>
+    <ht-column eg-name="CUSTNAME" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="PRODUCT_NAME" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="APP_DATE" zh-name="核库日期"></ht-column>
+    <ht-column eg-name="RESULTS" zh-name="核库结果"dictionary="whseResults"></ht-column>
+    <ht-column eg-name="TLRNAME" zh-name="核库负责人"></ht-column>
+    <ht-column eg-name="BRNAME" zh-name="核库机构"></ht-column>
+    <ht-column eg-name="TLRNAME" zh-name="客户经理"></ht-column>
+    <ht-column eg-name="BRNAME" zh-name="经办机构"></ht-column>
+    <ht-column eg-name="STATUS" zh-name="处理状态" dictionary="whseStatus"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->

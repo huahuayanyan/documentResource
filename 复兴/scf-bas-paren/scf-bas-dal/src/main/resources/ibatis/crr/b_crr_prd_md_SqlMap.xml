@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRR_PRD_MD" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrPrdMd" >
+    <result column="PRD_ID" property="prdId" jdbcType="VARCHAR" />
+    <result column="PRD_NM" property="prdNm" jdbcType="VARCHAR" />
+    <result column="PRD_TYP" property="prdTyp" jdbcType="VARCHAR" />
+    <result column="ADD_URL" property="addUrl" jdbcType="VARCHAR" />
+    <result column="UPD_URL" property="updUrl" jdbcType="VARCHAR" />
+    <result column="FIN_URL" property="finUrl" jdbcType="VARCHAR" />
+    <result column="STAT" property="stat" jdbcType="CHAR" />
+    <result column="TIT_NM" property="titNm" jdbcType="VARCHAR" />
+    <result column="OBJ" property="obj" jdbcType="VARCHAR" />
+    <result column="PAGE_URL" property="pageUrl" jdbcType="VARCHAR" />
+    <result column="TLR_NO" property="tlrNo" jdbcType="VARCHAR" />
+    <result column="TLR_NM" property="tlrNm" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="BR_NM" property="brNm" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR" property="lstUpdTlr" jdbcType="VARCHAR" />
+    <result column="LST_UPD_TLR_NM" property="lstUpdTlrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_CD" property="lstUpdBrCd" jdbcType="VARCHAR" />
+    <result column="LST_UPD_BR_NM" property="lstUpdBrNm" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="STATU" property="statu" jdbcType="CHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="IS_LIST" property="isList" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    PRD_ID, PRD_NM, PRD_TYP, ADD_URL, UPD_URL, FIN_URL, STAT, TIT_NM, OBJ, PAGE_URL, 
+    TLR_NO, TLR_NM, BR_CD, BR_NM, INP_DT, LST_UPD_TLR, LST_UPD_TLR_NM, LST_UPD_BR_CD, 
+    LST_UPD_BR_NM, LST_UPD_DT, STATU, LOAN_WAY, IS_LIST
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMdExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRR_PRD_MD.Base_Column_List" />
+    from B_CRR_PRD_MD
+    <isParameterPresent >
+      <include refid="B_CRR_PRD_MD.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMd" >
+    select 
+    <include refid="B_CRR_PRD_MD.Base_Column_List" />
+    from B_CRR_PRD_MD
+    where PRD_ID = #prdId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMd" >
+    delete from B_CRR_PRD_MD
+    where PRD_ID = #prdId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMdExample" >
+    delete from B_CRR_PRD_MD
+    <include refid="B_CRR_PRD_MD.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMd" >
+    insert into B_CRR_PRD_MD (PRD_ID, PRD_NM, PRD_TYP, ADD_URL, UPD_URL, 
+      FIN_URL, STAT, TIT_NM, OBJ, PAGE_URL, 
+      TLR_NO, TLR_NM, BR_CD, BR_NM, INP_DT, 
+      LST_UPD_TLR, LST_UPD_TLR_NM, LST_UPD_BR_CD, LST_UPD_BR_NM, 
+      LST_UPD_DT, STATU, LOAN_WAY, IS_LIST)
+    values (#prdId:VARCHAR#, #prdNm:VARCHAR#, #prdTyp:VARCHAR#, #addUrl:VARCHAR#, #updUrl:VARCHAR#, 
+      #finUrl:VARCHAR#, #stat:CHAR#, #titNm:VARCHAR#, #obj:VARCHAR#, #pageUrl:VARCHAR#, 
+      #tlrNo:VARCHAR#, #tlrNm:VARCHAR#, #brCd:VARCHAR#, #brNm:VARCHAR#, #inpDt:VARCHAR#, 
+      #lstUpdTlr:VARCHAR#, #lstUpdTlrNm:VARCHAR#, #lstUpdBrCd:VARCHAR#, #lstUpdBrNm:VARCHAR#, 
+      #lstUpdDt:VARCHAR#, #statu:CHAR#, #loanWay:VARCHAR#, #isList:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMd" >
+    insert into B_CRR_PRD_MD
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="prdId" >
+        PRD_ID
+      </isNotNull>
+      <isNotNull prepend="," property="prdNm" >
+        PRD_NM
+      </isNotNull>
+      <isNotNull prepend="," property="prdTyp" >
+        PRD_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="addUrl" >
+        ADD_URL
+      </isNotNull>
+      <isNotNull prepend="," property="updUrl" >
+        UPD_URL
+      </isNotNull>
+      <isNotNull prepend="," property="finUrl" >
+        FIN_URL
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        STAT
+      </isNotNull>
+      <isNotNull prepend="," property="titNm" >
+        TIT_NM
+      </isNotNull>
+      <isNotNull prepend="," property="obj" >
+        OBJ
+      </isNotNull>
+      <isNotNull prepend="," property="pageUrl" >
+        PAGE_URL
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      <isNotNull prepend="," property="statu" >
+        STATU
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="isList" >
+        IS_LIST
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="prdId" >
+        #prdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prdNm" >
+        #prdNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prdTyp" >
+        #prdTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="addUrl" >
+        #addUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="updUrl" >
+        #updUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finUrl" >
+        #finUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        #stat:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="titNm" >
+        #titNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="obj" >
+        #obj:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pageUrl" >
+        #pageUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="statu" >
+        #statu:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isList" >
+        #isList:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMdExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRR_PRD_MD
+    <include refid="B_CRR_PRD_MD.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRR_PRD_MD
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.prdId" >
+        PRD_ID = #record.prdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prdNm" >
+        PRD_NM = #record.prdNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.prdTyp" >
+        PRD_TYP = #record.prdTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.addUrl" >
+        ADD_URL = #record.addUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.updUrl" >
+        UPD_URL = #record.updUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.finUrl" >
+        FIN_URL = #record.finUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stat" >
+        STAT = #record.stat:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.titNm" >
+        TIT_NM = #record.titNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.obj" >
+        OBJ = #record.obj:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pageUrl" >
+        PAGE_URL = #record.pageUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNo" >
+        TLR_NO = #record.tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrNm" >
+        TLR_NM = #record.tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brCd" >
+        BR_CD = #record.brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brNm" >
+        BR_NM = #record.brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inpDt" >
+        INP_DT = #record.inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlr" >
+        LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrCd" >
+        LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdBrNm" >
+        LST_UPD_BR_NM = #record.lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdDt" >
+        LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.statu" >
+        STATU = #record.statu:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanWay" >
+        LOAN_WAY = #record.loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isList" >
+        IS_LIST = #record.isList:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRR_PRD_MD.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRR_PRD_MD
+    set PRD_ID = #record.prdId:VARCHAR#,
+      PRD_NM = #record.prdNm:VARCHAR#,
+      PRD_TYP = #record.prdTyp:VARCHAR#,
+      ADD_URL = #record.addUrl:VARCHAR#,
+      UPD_URL = #record.updUrl:VARCHAR#,
+      FIN_URL = #record.finUrl:VARCHAR#,
+      STAT = #record.stat:CHAR#,
+      TIT_NM = #record.titNm:VARCHAR#,
+      OBJ = #record.obj:VARCHAR#,
+      PAGE_URL = #record.pageUrl:VARCHAR#,
+      TLR_NO = #record.tlrNo:VARCHAR#,
+      TLR_NM = #record.tlrNm:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      BR_NM = #record.brNm:VARCHAR#,
+      INP_DT = #record.inpDt:VARCHAR#,
+      LST_UPD_TLR = #record.lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #record.lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #record.lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #record.lstUpdBrNm:VARCHAR#,
+      LST_UPD_DT = #record.lstUpdDt:VARCHAR#,
+      STATU = #record.statu:CHAR#,
+      LOAN_WAY = #record.loanWay:VARCHAR#,
+      IS_LIST = #record.isList:CHAR#
+    <isParameterPresent >
+      <include refid="B_CRR_PRD_MD.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMd" >
+    update B_CRR_PRD_MD
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="prdNm" >
+        PRD_NM = #prdNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="prdTyp" >
+        PRD_TYP = #prdTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="addUrl" >
+        ADD_URL = #addUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="updUrl" >
+        UPD_URL = #updUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="finUrl" >
+        FIN_URL = #finUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stat" >
+        STAT = #stat:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="titNm" >
+        TIT_NM = #titNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="obj" >
+        OBJ = #obj:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pageUrl" >
+        PAGE_URL = #pageUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNo" >
+        TLR_NO = #tlrNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrNm" >
+        TLR_NM = #tlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD = #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brNm" >
+        BR_NM = #brNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT = #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlr" >
+        LST_UPD_TLR = #lstUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdTlrNm" >
+        LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrCd" >
+        LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdBrNm" >
+        LST_UPD_BR_NM = #lstUpdBrNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT = #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="statu" >
+        STATU = #statu:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY = #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isList" >
+        IS_LIST = #isList:CHAR#
+      </isNotNull>
+    </dynamic>
+    where PRD_ID = #prdId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMd" >
+    update B_CRR_PRD_MD
+    set PRD_NM = #prdNm:VARCHAR#,
+      PRD_TYP = #prdTyp:VARCHAR#,
+      ADD_URL = #addUrl:VARCHAR#,
+      UPD_URL = #updUrl:VARCHAR#,
+      FIN_URL = #finUrl:VARCHAR#,
+      STAT = #stat:CHAR#,
+      TIT_NM = #titNm:VARCHAR#,
+      OBJ = #obj:VARCHAR#,
+      PAGE_URL = #pageUrl:VARCHAR#,
+      TLR_NO = #tlrNo:VARCHAR#,
+      TLR_NM = #tlrNm:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      BR_NM = #brNm:VARCHAR#,
+      INP_DT = #inpDt:VARCHAR#,
+      LST_UPD_TLR = #lstUpdTlr:VARCHAR#,
+      LST_UPD_TLR_NM = #lstUpdTlrNm:VARCHAR#,
+      LST_UPD_BR_CD = #lstUpdBrCd:VARCHAR#,
+      LST_UPD_BR_NM = #lstUpdBrNm:VARCHAR#,
+      LST_UPD_DT = #lstUpdDt:VARCHAR#,
+      STATU = #statu:CHAR#,
+      LOAN_WAY = #loanWay:VARCHAR#,
+      IS_LIST = #isList:CHAR#
+    where PRD_ID = #prdId:VARCHAR#
+  </update>
+  <!-- 自定义 -->
+  <select id="selectByPrdNm" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMd" >
+    select 
+    <include refid="B_CRR_PRD_MD.Base_Column_List" />
+    from B_CRR_PRD_MD
+    where PRD_NM = #prdNm:VARCHAR#
+  </select>
+  <select id="selectByPrdMd" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrPrdMd" >
+    select 
+    <include refid="B_CRR_PRD_MD.Base_Column_List" />
+    from B_CRR_PRD_MD
+    where PRD_NM = #prdNm:VARCHAR#
+    and PRD_ID not in #prdId:VARCHAR#
+  </select>
+</sqlMap>

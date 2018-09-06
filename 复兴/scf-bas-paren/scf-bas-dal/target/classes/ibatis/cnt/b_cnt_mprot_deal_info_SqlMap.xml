@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_MPROT_DEAL_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.cnt.dao.model.BCntMprotDealInfo" >
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="FIRST_BAIL_RATIO" property="firstBailRatio" jdbcType="DECIMAL" />
+    <result column="FIRST_BAIL_TYPE" property="firstBailType" jdbcType="CHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="LOAN_DAYS" property="loanDays" />
+    <result column="ARRIVED_MANAGE_MODE" property="arrivedManageMode" jdbcType="CHAR" />
+    <result column="GOODS_NM" property="goodsNm" jdbcType="VARCHAR" />
+    <result column="TAKE_MODE" property="takeMode" jdbcType="VARCHAR" />
+    <result column="CORE_CUST_DUTY" property="coreCustDuty" jdbcType="CHAR" />
+    <result column="MORTGAGE_MANAGE_MODE" property="mortgageManageMode" jdbcType="CHAR" />
+    <result column="IS_INSURANCE" property="isInsurance" jdbcType="CHAR" />
+    <result column="FOU_ADDRESS" property="fouAddress" jdbcType="CHAR" />
+    <result column="TRI_CONVENTIONS" property="triConventions" jdbcType="VARCHAR" />
+    <result column="CONDIGNEE" property="condignee" jdbcType="VARCHAR" />
+    <result column="TRASPORTATION_MODE" property="trasportationMode" jdbcType="VARCHAR" />
+    <result column="DELIVERY_POINTS" property="deliveryPoints" jdbcType="VARCHAR" />
+    <result column="DESTINATION" property="destination" jdbcType="VARCHAR" />
+    <result column="DELIVERY_AMOUNT" property="deliveryAmount" jdbcType="DECIMAL" />
+    <result column="AMOUNT_IN" property="amountIn" jdbcType="DECIMAL" />
+    <result column="AMOUNT_OUT" property="amountOut" jdbcType="DECIMAL" />
+    <result column="AMOUNT_UP_OUT" property="amountUpOut" jdbcType="DECIMAL" />
+    <result column="LOAN_AMT" property="loanAmt" jdbcType="DECIMAL" />
+    <result column="PLEDGE_AMT" property="pledgeAmt" jdbcType="DECIMAL" />
+    <result column="DUTY_ASSUME_TYPE" property="dutyAssumeType" jdbcType="VARCHAR" />
+    <result column="CONSIGNMENT_DAYS" property="consignmentDays" jdbcType="DECIMAL" />
+    <result column="OTHER_CUST_NAME" property="otherCustName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    PROTOCOL_NO, BAIL_AMOUNT, FIRST_BAIL_RATIO, FIRST_BAIL_TYPE, LOAN_WAY, LOAN_DAYS, 
+    ARRIVED_MANAGE_MODE, GOODS_NM, TAKE_MODE, CORE_CUST_DUTY, MORTGAGE_MANAGE_MODE, IS_INSURANCE, 
+    FOU_ADDRESS, TRI_CONVENTIONS, CONDIGNEE, TRASPORTATION_MODE, DELIVERY_POINTS, DESTINATION, 
+    DELIVERY_AMOUNT, AMOUNT_IN, AMOUNT_OUT, AMOUNT_UP_OUT, LOAN_AMT, PLEDGE_AMT, DUTY_ASSUME_TYPE, 
+    CONSIGNMENT_DAYS, OTHER_CUST_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotDealInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_MPROT_DEAL_INFO.Base_Column_List" />
+    from B_CNT_MPROT_DEAL_INFO
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_DEAL_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotDealInfo" >
+    select 
+    <include refid="B_CNT_MPROT_DEAL_INFO.Base_Column_List" />
+    from B_CNT_MPROT_DEAL_INFO
+    where PROTOCOL_NO = #protocolNo:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotDealInfo" >
+    delete from B_CNT_MPROT_DEAL_INFO
+    where PROTOCOL_NO = #protocolNo:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotDealInfoExample" >
+    delete from B_CNT_MPROT_DEAL_INFO
+    <include refid="B_CNT_MPROT_DEAL_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotDealInfo" >
+    insert into B_CNT_MPROT_DEAL_INFO (PROTOCOL_NO, BAIL_AMOUNT, FIRST_BAIL_RATIO, FIRST_BAIL_TYPE, 
+      LOAN_WAY, LOAN_DAYS, ARRIVED_MANAGE_MODE, GOODS_NM, 
+      TAKE_MODE, CORE_CUST_DUTY, MORTGAGE_MANAGE_MODE, IS_INSURANCE, 
+      FOU_ADDRESS, TRI_CONVENTIONS, CONDIGNEE, TRASPORTATION_MODE, 
+      DELIVERY_POINTS, DESTINATION, DELIVERY_AMOUNT, AMOUNT_IN, 
+      AMOUNT_OUT, AMOUNT_UP_OUT, LOAN_AMT, PLEDGE_AMT, 
+      DUTY_ASSUME_TYPE, CONSIGNMENT_DAYS, OTHER_CUST_NAME)
+    values (#protocolNo:VARCHAR#, #bailAmount:DECIMAL#, #firstBailRatio:DECIMAL#, #firstBailType:CHAR#, 
+      #loanWay:VARCHAR#, #loanDays:DECIMAL#, #arrivedManageMode:CHAR#, #goodsNm:VARCHAR#, 
+      #takeMode:VARCHAR#, #coreCustDuty:CHAR#, #mortgageManageMode:CHAR#, #isInsurance:CHAR#, 
+      #fouAddress:CHAR#, #triConventions:VARCHAR#, #condignee:VARCHAR#, #trasportationMode:VARCHAR#, 
+      #deliveryPoints:VARCHAR#, #destination:VARCHAR#, #deliveryAmount:DECIMAL#, #amountIn:DECIMAL#, 
+      #amountOut:DECIMAL#, #amountUpOut:DECIMAL#, #loanAmt:DECIMAL#, #pledgeAmt:DECIMAL#, 
+      #dutyAssumeType:VARCHAR#, #consignmentDays:DECIMAL#, #otherCustName:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotDealInfo" >
+    insert into B_CNT_MPROT_DEAL_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailRatio" >
+        FIRST_BAIL_RATIO
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailType" >
+        FIRST_BAIL_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="loanDays" >
+        LOAN_DAYS
+      </isNotNull>
+      <isNotNull prepend="," property="arrivedManageMode" >
+        ARRIVED_MANAGE_MODE
+      </isNotNull>
+      <isNotNull prepend="," property="goodsNm" >
+        GOODS_NM
+      </isNotNull>
+      <isNotNull prepend="," property="takeMode" >
+        TAKE_MODE
+      </isNotNull>
+      <isNotNull prepend="," property="coreCustDuty" >
+        CORE_CUST_DUTY
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageManageMode" >
+        MORTGAGE_MANAGE_MODE
+      </isNotNull>
+      <isNotNull prepend="," property="isInsurance" >
+        IS_INSURANCE
+      </isNotNull>
+      <isNotNull prepend="," property="fouAddress" >
+        FOU_ADDRESS
+      </isNotNull>
+      <isNotNull prepend="," property="triConventions" >
+        TRI_CONVENTIONS
+      </isNotNull>
+      <isNotNull prepend="," property="condignee" >
+        CONDIGNEE
+      </isNotNull>
+      <isNotNull prepend="," property="trasportationMode" >
+        TRASPORTATION_MODE
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryPoints" >
+        DELIVERY_POINTS
+      </isNotNull>
+      <isNotNull prepend="," property="destination" >
+        DESTINATION
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmount" >
+        DELIVERY_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="amountIn" >
+        AMOUNT_IN
+      </isNotNull>
+      <isNotNull prepend="," property="amountOut" >
+        AMOUNT_OUT
+      </isNotNull>
+      <isNotNull prepend="," property="amountUpOut" >
+        AMOUNT_UP_OUT
+      </isNotNull>
+      <isNotNull prepend="," property="loanAmt" >
+        LOAN_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="pledgeAmt" >
+        PLEDGE_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="dutyAssumeType" >
+        DUTY_ASSUME_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="consignmentDays" >
+        CONSIGNMENT_DAYS
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustName" >
+        OTHER_CUST_NAME
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmount" >
+        #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailRatio" >
+        #firstBailRatio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailType" >
+        #firstBailType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanDays" >
+        #loanDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="arrivedManageMode" >
+        #arrivedManageMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="goodsNm" >
+        #goodsNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="takeMode" >
+        #takeMode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreCustDuty" >
+        #coreCustDuty:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageManageMode" >
+        #mortgageManageMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isInsurance" >
+        #isInsurance:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fouAddress" >
+        #fouAddress:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="triConventions" >
+        #triConventions:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="condignee" >
+        #condignee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trasportationMode" >
+        #trasportationMode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryPoints" >
+        #deliveryPoints:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="destination" >
+        #destination:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmount" >
+        #deliveryAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="amountIn" >
+        #amountIn:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="amountOut" >
+        #amountOut:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="amountUpOut" >
+        #amountUpOut:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="loanAmt" >
+        #loanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="pledgeAmt" >
+        #pledgeAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="dutyAssumeType" >
+        #dutyAssumeType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="consignmentDays" >
+        #consignmentDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustName" >
+        #otherCustName:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotDealInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_MPROT_DEAL_INFO
+    <include refid="B_CNT_MPROT_DEAL_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_MPROT_DEAL_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAmount" >
+        BAIL_AMOUNT = #record.bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.firstBailRatio" >
+        FIRST_BAIL_RATIO = #record.firstBailRatio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.firstBailType" >
+        FIRST_BAIL_TYPE = #record.firstBailType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanWay" >
+        LOAN_WAY = #record.loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanDays" >
+        LOAN_DAYS = #record.loanDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.arrivedManageMode" >
+        ARRIVED_MANAGE_MODE = #record.arrivedManageMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.goodsNm" >
+        GOODS_NM = #record.goodsNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.takeMode" >
+        TAKE_MODE = #record.takeMode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coreCustDuty" >
+        CORE_CUST_DUTY = #record.coreCustDuty:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageManageMode" >
+        MORTGAGE_MANAGE_MODE = #record.mortgageManageMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isInsurance" >
+        IS_INSURANCE = #record.isInsurance:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fouAddress" >
+        FOU_ADDRESS = #record.fouAddress:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.triConventions" >
+        TRI_CONVENTIONS = #record.triConventions:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.condignee" >
+        CONDIGNEE = #record.condignee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.trasportationMode" >
+        TRASPORTATION_MODE = #record.trasportationMode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deliveryPoints" >
+        DELIVERY_POINTS = #record.deliveryPoints:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.destination" >
+        DESTINATION = #record.destination:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deliveryAmount" >
+        DELIVERY_AMOUNT = #record.deliveryAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amountIn" >
+        AMOUNT_IN = #record.amountIn:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amountOut" >
+        AMOUNT_OUT = #record.amountOut:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amountUpOut" >
+        AMOUNT_UP_OUT = #record.amountUpOut:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanAmt" >
+        LOAN_AMT = #record.loanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pledgeAmt" >
+        PLEDGE_AMT = #record.pledgeAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.dutyAssumeType" >
+        DUTY_ASSUME_TYPE = #record.dutyAssumeType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.consignmentDays" >
+        CONSIGNMENT_DAYS = #record.consignmentDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherCustName" >
+        OTHER_CUST_NAME = #record.otherCustName:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_DEAL_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_MPROT_DEAL_INFO
+    set PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      BAIL_AMOUNT = #record.bailAmount:DECIMAL#,
+      FIRST_BAIL_RATIO = #record.firstBailRatio:DECIMAL#,
+      FIRST_BAIL_TYPE = #record.firstBailType:CHAR#,
+      LOAN_WAY = #record.loanWay:VARCHAR#,
+      LOAN_DAYS = #record.loanDays:DECIMAL#,
+      ARRIVED_MANAGE_MODE = #record.arrivedManageMode:CHAR#,
+      GOODS_NM = #record.goodsNm:VARCHAR#,
+      TAKE_MODE = #record.takeMode:VARCHAR#,
+      CORE_CUST_DUTY = #record.coreCustDuty:CHAR#,
+      MORTGAGE_MANAGE_MODE = #record.mortgageManageMode:CHAR#,
+      IS_INSURANCE = #record.isInsurance:CHAR#,
+      FOU_ADDRESS = #record.fouAddress:CHAR#,
+      TRI_CONVENTIONS = #record.triConventions:VARCHAR#,
+      CONDIGNEE = #record.condignee:VARCHAR#,
+      TRASPORTATION_MODE = #record.trasportationMode:VARCHAR#,
+      DELIVERY_POINTS = #record.deliveryPoints:VARCHAR#,
+      DESTINATION = #record.destination:VARCHAR#,
+      DELIVERY_AMOUNT = #record.deliveryAmount:DECIMAL#,
+      AMOUNT_IN = #record.amountIn:DECIMAL#,
+      AMOUNT_OUT = #record.amountOut:DECIMAL#,
+      AMOUNT_UP_OUT = #record.amountUpOut:DECIMAL#,
+      LOAN_AMT = #record.loanAmt:DECIMAL#,
+      PLEDGE_AMT = #record.pledgeAmt:DECIMAL#,
+      DUTY_ASSUME_TYPE = #record.dutyAssumeType:VARCHAR#,
+      CONSIGNMENT_DAYS = #record.consignmentDays:DECIMAL#,
+      OTHER_CUST_NAME = #record.otherCustName:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_DEAL_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotDealInfo" >
+    update B_CNT_MPROT_DEAL_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="bailAmount" >
+        BAIL_AMOUNT = #bailAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailRatio" >
+        FIRST_BAIL_RATIO = #firstBailRatio:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="firstBailType" >
+        FIRST_BAIL_TYPE = #firstBailType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY = #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanDays" >
+        LOAN_DAYS = #loanDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="arrivedManageMode" >
+        ARRIVED_MANAGE_MODE = #arrivedManageMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="goodsNm" >
+        GOODS_NM = #goodsNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="takeMode" >
+        TAKE_MODE = #takeMode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coreCustDuty" >
+        CORE_CUST_DUTY = #coreCustDuty:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageManageMode" >
+        MORTGAGE_MANAGE_MODE = #mortgageManageMode:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isInsurance" >
+        IS_INSURANCE = #isInsurance:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fouAddress" >
+        FOU_ADDRESS = #fouAddress:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="triConventions" >
+        TRI_CONVENTIONS = #triConventions:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="condignee" >
+        CONDIGNEE = #condignee:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="trasportationMode" >
+        TRASPORTATION_MODE = #trasportationMode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryPoints" >
+        DELIVERY_POINTS = #deliveryPoints:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="destination" >
+        DESTINATION = #destination:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmount" >
+        DELIVERY_AMOUNT = #deliveryAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="amountIn" >
+        AMOUNT_IN = #amountIn:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="amountOut" >
+        AMOUNT_OUT = #amountOut:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="amountUpOut" >
+        AMOUNT_UP_OUT = #amountUpOut:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="loanAmt" >
+        LOAN_AMT = #loanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="pledgeAmt" >
+        PLEDGE_AMT = #pledgeAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="dutyAssumeType" >
+        DUTY_ASSUME_TYPE = #dutyAssumeType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="consignmentDays" >
+        CONSIGNMENT_DAYS = #consignmentDays:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="otherCustName" >
+        OTHER_CUST_NAME = #otherCustName:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where PROTOCOL_NO = #protocolNo:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotDealInfo" >
+    update B_CNT_MPROT_DEAL_INFO
+    set BAIL_AMOUNT = #bailAmount:DECIMAL#,
+      FIRST_BAIL_RATIO = #firstBailRatio:DECIMAL#,
+      FIRST_BAIL_TYPE = #firstBailType:CHAR#,
+      LOAN_WAY = #loanWay:VARCHAR#,
+      LOAN_DAYS = #loanDays:DECIMAL#,
+      ARRIVED_MANAGE_MODE = #arrivedManageMode:CHAR#,
+      GOODS_NM = #goodsNm:VARCHAR#,
+      TAKE_MODE = #takeMode:VARCHAR#,
+      CORE_CUST_DUTY = #coreCustDuty:CHAR#,
+      MORTGAGE_MANAGE_MODE = #mortgageManageMode:CHAR#,
+      IS_INSURANCE = #isInsurance:CHAR#,
+      FOU_ADDRESS = #fouAddress:CHAR#,
+      TRI_CONVENTIONS = #triConventions:VARCHAR#,
+      CONDIGNEE = #condignee:VARCHAR#,
+      TRASPORTATION_MODE = #trasportationMode:VARCHAR#,
+      DELIVERY_POINTS = #deliveryPoints:VARCHAR#,
+      DESTINATION = #destination:VARCHAR#,
+      DELIVERY_AMOUNT = #deliveryAmount:DECIMAL#,
+      AMOUNT_IN = #amountIn:DECIMAL#,
+      AMOUNT_OUT = #amountOut:DECIMAL#,
+      AMOUNT_UP_OUT = #amountUpOut:DECIMAL#,
+      LOAN_AMT = #loanAmt:DECIMAL#,
+      PLEDGE_AMT = #pledgeAmt:DECIMAL#,
+      DUTY_ASSUME_TYPE = #dutyAssumeType:VARCHAR#,
+      CONSIGNMENT_DAYS = #consignmentDays:DECIMAL#,
+      OTHER_CUST_NAME = #otherCustName:VARCHAR#
+    where PROTOCOL_NO = #protocolNo:VARCHAR#
+  </update>
+</sqlMap>

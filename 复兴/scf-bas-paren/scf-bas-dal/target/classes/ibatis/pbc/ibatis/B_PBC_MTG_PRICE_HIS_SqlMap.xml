@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PBC_MTG_PRICE_HIS" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcMtgPriceHis" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_NO" property="mortgageNo" jdbcType="VARCHAR" />
+    <result column="申请号" property="申请号" jdbcType="VARCHAR" />
+    <result column="TXDATE" property="txdate" jdbcType="CHAR" />
+    <result column="PRICE_WAY" property="priceWay" jdbcType="CHAR" />
+    <result column="EVAL_ORG" property="evalOrg" jdbcType="VARCHAR" />
+    <result column="EVAL_TIME" property="evalTime" jdbcType="CHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="PRICE_BASIS" property="priceBasis" jdbcType="CHAR" />
+    <result column="PRICE_SOURCE" property="priceSource" jdbcType="CHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="PRICE_OLD" property="priceOld" jdbcType="DECIMAL" />
+    <result column="PRICE_NEW" property="priceNew" jdbcType="DECIMAL" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, MORTGAGE_NO, 申请号, TXDATE, PRICE_WAY, EVAL_ORG, EVAL_TIME, CURCD, PRICE, TLRCD, 
+    PRICE_BASIS, PRICE_SOURCE, DESCRIPTION, PRICE_OLD, PRICE_NEW, EXT1, EXT2, EXT3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgPriceHisExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PBC_MTG_PRICE_HIS.Base_Column_List" />
+    from B_PBC_MTG_PRICE_HIS
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_PRICE_HIS.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgPriceHis" >
+    select 
+    <include refid="B_PBC_MTG_PRICE_HIS.Base_Column_List" />
+    from B_PBC_MTG_PRICE_HIS
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgPriceHis" >
+    delete from B_PBC_MTG_PRICE_HIS
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgPriceHisExample" >
+    delete from B_PBC_MTG_PRICE_HIS
+    <include refid="B_PBC_MTG_PRICE_HIS.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgPriceHis" >
+    insert into B_PBC_MTG_PRICE_HIS (ID, MORTGAGE_NO, 申请号, TXDATE, PRICE_WAY, 
+      EVAL_ORG, EVAL_TIME, CURCD, PRICE, TLRCD, 
+      PRICE_BASIS, PRICE_SOURCE, DESCRIPTION, PRICE_OLD, 
+      PRICE_NEW, EXT1, EXT2, EXT3)
+    values (#id:VARCHAR#, #mortgageNo:VARCHAR#, #申请号:VARCHAR#, #txdate:CHAR#, #priceWay:CHAR#, 
+      #evalOrg:VARCHAR#, #evalTime:CHAR#, #curcd:CHAR#, #price:DECIMAL#, #tlrcd:VARCHAR#, 
+      #priceBasis:CHAR#, #priceSource:CHAR#, #description:VARCHAR#, #priceOld:DECIMAL#, 
+      #priceNew:DECIMAL#, #ext1:VARCHAR#, #ext2:VARCHAR#, #ext3:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgPriceHis" >
+    insert into B_PBC_MTG_PRICE_HIS
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="申请号" >
+        申请号
+      </isNotNull>
+      <isNotNull prepend="," property="txdate" >
+        TXDATE
+      </isNotNull>
+      <isNotNull prepend="," property="priceWay" >
+        PRICE_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="evalOrg" >
+        EVAL_ORG
+      </isNotNull>
+      <isNotNull prepend="," property="evalTime" >
+        EVAL_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="priceBasis" >
+        PRICE_BASIS
+      </isNotNull>
+      <isNotNull prepend="," property="priceSource" >
+        PRICE_SOURCE
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION
+      </isNotNull>
+      <isNotNull prepend="," property="priceOld" >
+        PRICE_OLD
+      </isNotNull>
+      <isNotNull prepend="," property="priceNew" >
+        PRICE_NEW
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgageNo" >
+        #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="申请号" >
+        #申请号:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txdate" >
+        #txdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceWay" >
+        #priceWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalOrg" >
+        #evalOrg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalTime" >
+        #evalTime:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        #price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceBasis" >
+        #priceBasis:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceSource" >
+        #priceSource:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        #description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceOld" >
+        #priceOld:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="priceNew" >
+        #priceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        #ext3:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgPriceHisExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PBC_MTG_PRICE_HIS
+    <include refid="B_PBC_MTG_PRICE_HIS.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PBC_MTG_PRICE_HIS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgageNo" >
+        MORTGAGE_NO = #record.mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.申请号" >
+        申请号 = #record.申请号:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.txdate" >
+        TXDATE = #record.txdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.priceWay" >
+        PRICE_WAY = #record.priceWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evalOrg" >
+        EVAL_ORG = #record.evalOrg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.evalTime" >
+        EVAL_TIME = #record.evalTime:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.price" >
+        PRICE = #record.price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.priceBasis" >
+        PRICE_BASIS = #record.priceBasis:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.priceSource" >
+        PRICE_SOURCE = #record.priceSource:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.description" >
+        DESCRIPTION = #record.description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.priceOld" >
+        PRICE_OLD = #record.priceOld:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.priceNew" >
+        PRICE_NEW = #record.priceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext1" >
+        EXT1 = #record.ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext2" >
+        EXT2 = #record.ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ext3" >
+        EXT3 = #record.ext3:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_PRICE_HIS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PBC_MTG_PRICE_HIS
+    set ID = #record.id:VARCHAR#,
+      MORTGAGE_NO = #record.mortgageNo:VARCHAR#,
+      申请号 = #record.申请号:VARCHAR#,
+      TXDATE = #record.txdate:CHAR#,
+      PRICE_WAY = #record.priceWay:CHAR#,
+      EVAL_ORG = #record.evalOrg:VARCHAR#,
+      EVAL_TIME = #record.evalTime:CHAR#,
+      CURCD = #record.curcd:CHAR#,
+      PRICE = #record.price:DECIMAL#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      PRICE_BASIS = #record.priceBasis:CHAR#,
+      PRICE_SOURCE = #record.priceSource:CHAR#,
+      DESCRIPTION = #record.description:VARCHAR#,
+      PRICE_OLD = #record.priceOld:DECIMAL#,
+      PRICE_NEW = #record.priceNew:DECIMAL#,
+      EXT1 = #record.ext1:VARCHAR#,
+      EXT2 = #record.ext2:VARCHAR#,
+      EXT3 = #record.ext3:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_PBC_MTG_PRICE_HIS.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgPriceHis" >
+    update B_PBC_MTG_PRICE_HIS
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="mortgageNo" >
+        MORTGAGE_NO = #mortgageNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="申请号" >
+        申请号 = #申请号:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="txdate" >
+        TXDATE = #txdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceWay" >
+        PRICE_WAY = #priceWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalOrg" >
+        EVAL_ORG = #evalOrg:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="evalTime" >
+        EVAL_TIME = #evalTime:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="price" >
+        PRICE = #price:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceBasis" >
+        PRICE_BASIS = #priceBasis:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceSource" >
+        PRICE_SOURCE = #priceSource:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION = #description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="priceOld" >
+        PRICE_OLD = #priceOld:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="priceNew" >
+        PRICE_NEW = #priceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ext1" >
+        EXT1 = #ext1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext2" >
+        EXT2 = #ext2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ext3" >
+        EXT3 = #ext3:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcMtgPriceHis" >
+    update B_PBC_MTG_PRICE_HIS
+    set MORTGAGE_NO = #mortgageNo:VARCHAR#,
+      申请号 = #申请号:VARCHAR#,
+      TXDATE = #txdate:CHAR#,
+      PRICE_WAY = #priceWay:CHAR#,
+      EVAL_ORG = #evalOrg:VARCHAR#,
+      EVAL_TIME = #evalTime:CHAR#,
+      CURCD = #curcd:CHAR#,
+      PRICE = #price:DECIMAL#,
+      TLRCD = #tlrcd:VARCHAR#,
+      PRICE_BASIS = #priceBasis:CHAR#,
+      PRICE_SOURCE = #priceSource:CHAR#,
+      DESCRIPTION = #description:VARCHAR#,
+      PRICE_OLD = #priceOld:DECIMAL#,
+      PRICE_NEW = #priceNew:DECIMAL#,
+      EXT1 = #ext1:VARCHAR#,
+      EXT2 = #ext2:VARCHAR#,
+      EXT3 = #ext3:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

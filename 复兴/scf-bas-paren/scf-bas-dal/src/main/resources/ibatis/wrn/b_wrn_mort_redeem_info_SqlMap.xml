@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_WRN_MORT_REDEEM_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="VARCHAR" />
+    <result column="CUSTCD_SELLER" property="custcdSeller" jdbcType="VARCHAR" />
+    <result column="CNAME_SELLER" property="cnameSeller" jdbcType="VARCHAR" />
+    <result column="CUSTCD_BUYER" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="CNAME_BUYER" property="cnameBuyer" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="LOAN_AMT" property="loanAmt" jdbcType="DECIMAL" />
+    <result column="LOAN_DATE" property="loanDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="REDEEM_TERM" property="redeemTerm" jdbcType="DECIMAL" />
+    <result column="DUE_REDEEM_DATE" property="dueRedeemDate" jdbcType="CHAR" />
+    <result column="NOTICE_NO" property="noticeNo" jdbcType="VARCHAR" />
+    <result column="RISK_AMT" property="riskAmt" jdbcType="DECIMAL" />
+    <result column="CONFIRM_DATE" property="confirmDate" jdbcType="CHAR" />
+    <result column="DELIVERY_AMT" property="deliveryAmt" jdbcType="DECIMAL" />
+    <result column="BALANCE_AMT" property="balanceAmt" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, CUSTCD_SELLER, CNAME_SELLER, CUSTCD_BUYER, CNAME_BUYER, PROTOCOL_NO, 
+    LOAN_WAY, DEBET_NO, DEBET_ID, CURCD, LOAN_AMT, LOAN_DATE, END_DATE, REDEEM_TERM, 
+    DUE_REDEEM_DATE, NOTICE_NO, RISK_AMT, CONFIRM_DATE, DELIVERY_AMT, BALANCE_AMT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_WRN_MORT_REDEEM_INFO.Base_Column_List" />
+    from B_WRN_MORT_REDEEM_INFO
+    <isParameterPresent >
+      <include refid="B_WRN_MORT_REDEEM_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfo" >
+    select 
+    <include refid="B_WRN_MORT_REDEEM_INFO.Base_Column_List" />
+    from B_WRN_MORT_REDEEM_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfo" >
+    delete from B_WRN_MORT_REDEEM_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfoExample" >
+    delete from B_WRN_MORT_REDEEM_INFO
+    <include refid="B_WRN_MORT_REDEEM_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfo" >
+    insert into B_WRN_MORT_REDEEM_INFO (ID, WARN_ID, CUSTCD_SELLER, CNAME_SELLER, 
+      CUSTCD_BUYER, CNAME_BUYER, PROTOCOL_NO, LOAN_WAY, 
+      DEBET_NO, DEBET_ID, CURCD, LOAN_AMT, LOAN_DATE, 
+      END_DATE, REDEEM_TERM, DUE_REDEEM_DATE, NOTICE_NO, 
+      RISK_AMT, CONFIRM_DATE, DELIVERY_AMT, BALANCE_AMT
+      )
+    values (#id:VARCHAR#, #warnId:VARCHAR#, #custcdSeller:VARCHAR#, #cnameSeller:VARCHAR#, 
+      #custcdBuyer:VARCHAR#, #cnameBuyer:VARCHAR#, #protocolNo:VARCHAR#, #loanWay:VARCHAR#, 
+      #debetNo:VARCHAR#, #debetId:VARCHAR#, #curcd:CHAR#, #loanAmt:DECIMAL#, #loanDate:CHAR#, 
+      #endDate:CHAR#, #redeemTerm:DECIMAL#, #dueRedeemDate:CHAR#, #noticeNo:VARCHAR#, 
+      #riskAmt:DECIMAL#, #confirmDate:CHAR#, #deliveryAmt:DECIMAL#, #balanceAmt:DECIMAL#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfo" >
+    insert into B_WRN_MORT_REDEEM_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSeller" >
+        CUSTCD_SELLER
+      </isNotNull>
+      <isNotNull prepend="," property="cnameSeller" >
+        CNAME_SELLER
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        CUSTCD_BUYER
+      </isNotNull>
+      <isNotNull prepend="," property="cnameBuyer" >
+        CNAME_BUYER
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        DEBET_ID
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="loanAmt" >
+        LOAN_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="loanDate" >
+        LOAN_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="redeemTerm" >
+        REDEEM_TERM
+      </isNotNull>
+      <isNotNull prepend="," property="dueRedeemDate" >
+        DUE_REDEEM_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="noticeNo" >
+        NOTICE_NO
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        RISK_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="confirmDate" >
+        CONFIRM_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmt" >
+        DELIVERY_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="balanceAmt" >
+        BALANCE_AMT
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSeller" >
+        #custcdSeller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cnameSeller" >
+        #cnameSeller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        #custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cnameBuyer" >
+        #cnameBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        #debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanAmt" >
+        #loanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="loanDate" >
+        #loanDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="redeemTerm" >
+        #redeemTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="dueRedeemDate" >
+        #dueRedeemDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeNo" >
+        #noticeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        #riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmDate" >
+        #confirmDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmt" >
+        #deliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="balanceAmt" >
+        #balanceAmt:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_WRN_MORT_REDEEM_INFO
+    <include refid="B_WRN_MORT_REDEEM_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_WRN_MORT_REDEEM_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnId" >
+        WARN_ID = #record.warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcdSeller" >
+        CUSTCD_SELLER = #record.custcdSeller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cnameSeller" >
+        CNAME_SELLER = #record.cnameSeller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcdBuyer" >
+        CUSTCD_BUYER = #record.custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cnameBuyer" >
+        CNAME_BUYER = #record.cnameBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanWay" >
+        LOAN_WAY = #record.loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetNo" >
+        DEBET_NO = #record.debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetId" >
+        DEBET_ID = #record.debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanAmt" >
+        LOAN_AMT = #record.loanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanDate" >
+        LOAN_DATE = #record.loanDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.endDate" >
+        END_DATE = #record.endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.redeemTerm" >
+        REDEEM_TERM = #record.redeemTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.dueRedeemDate" >
+        DUE_REDEEM_DATE = #record.dueRedeemDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.noticeNo" >
+        NOTICE_NO = #record.noticeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.riskAmt" >
+        RISK_AMT = #record.riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.confirmDate" >
+        CONFIRM_DATE = #record.confirmDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deliveryAmt" >
+        DELIVERY_AMT = #record.deliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.balanceAmt" >
+        BALANCE_AMT = #record.balanceAmt:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_WRN_MORT_REDEEM_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_WRN_MORT_REDEEM_INFO
+    set ID = #record.id:VARCHAR#,
+      WARN_ID = #record.warnId:VARCHAR#,
+      CUSTCD_SELLER = #record.custcdSeller:VARCHAR#,
+      CNAME_SELLER = #record.cnameSeller:VARCHAR#,
+      CUSTCD_BUYER = #record.custcdBuyer:VARCHAR#,
+      CNAME_BUYER = #record.cnameBuyer:VARCHAR#,
+      PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      LOAN_WAY = #record.loanWay:VARCHAR#,
+      DEBET_NO = #record.debetNo:VARCHAR#,
+      DEBET_ID = #record.debetId:VARCHAR#,
+      CURCD = #record.curcd:CHAR#,
+      LOAN_AMT = #record.loanAmt:DECIMAL#,
+      LOAN_DATE = #record.loanDate:CHAR#,
+      END_DATE = #record.endDate:CHAR#,
+      REDEEM_TERM = #record.redeemTerm:DECIMAL#,
+      DUE_REDEEM_DATE = #record.dueRedeemDate:CHAR#,
+      NOTICE_NO = #record.noticeNo:VARCHAR#,
+      RISK_AMT = #record.riskAmt:DECIMAL#,
+      CONFIRM_DATE = #record.confirmDate:CHAR#,
+      DELIVERY_AMT = #record.deliveryAmt:DECIMAL#,
+      BALANCE_AMT = #record.balanceAmt:DECIMAL#
+    <isParameterPresent >
+      <include refid="B_WRN_MORT_REDEEM_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfo" >
+    update B_WRN_MORT_REDEEM_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID = #warnId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSeller" >
+        CUSTCD_SELLER = #custcdSeller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cnameSeller" >
+        CNAME_SELLER = #cnameSeller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        CUSTCD_BUYER = #custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cnameBuyer" >
+        CNAME_BUYER = #cnameBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO = #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY = #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetNo" >
+        DEBET_NO = #debetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        DEBET_ID = #debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanAmt" >
+        LOAN_AMT = #loanAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="loanDate" >
+        LOAN_DATE = #loanDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="endDate" >
+        END_DATE = #endDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="redeemTerm" >
+        REDEEM_TERM = #redeemTerm:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="dueRedeemDate" >
+        DUE_REDEEM_DATE = #dueRedeemDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeNo" >
+        NOTICE_NO = #noticeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        RISK_AMT = #riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="confirmDate" >
+        CONFIRM_DATE = #confirmDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deliveryAmt" >
+        DELIVERY_AMT = #deliveryAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="balanceAmt" >
+        BALANCE_AMT = #balanceAmt:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.adv.wrn.dao.model.BWrnMortRedeemInfo" >
+    update B_WRN_MORT_REDEEM_INFO
+    set WARN_ID = #warnId:VARCHAR#,
+      CUSTCD_SELLER = #custcdSeller:VARCHAR#,
+      CNAME_SELLER = #cnameSeller:VARCHAR#,
+      CUSTCD_BUYER = #custcdBuyer:VARCHAR#,
+      CNAME_BUYER = #cnameBuyer:VARCHAR#,
+      PROTOCOL_NO = #protocolNo:VARCHAR#,
+      LOAN_WAY = #loanWay:VARCHAR#,
+      DEBET_NO = #debetNo:VARCHAR#,
+      DEBET_ID = #debetId:VARCHAR#,
+      CURCD = #curcd:CHAR#,
+      LOAN_AMT = #loanAmt:DECIMAL#,
+      LOAN_DATE = #loanDate:CHAR#,
+      END_DATE = #endDate:CHAR#,
+      REDEEM_TERM = #redeemTerm:DECIMAL#,
+      DUE_REDEEM_DATE = #dueRedeemDate:CHAR#,
+      NOTICE_NO = #noticeNo:VARCHAR#,
+      RISK_AMT = #riskAmt:DECIMAL#,
+      CONFIRM_DATE = #confirmDate:CHAR#,
+      DELIVERY_AMT = #deliveryAmt:DECIMAL#,
+      BALANCE_AMT = #balanceAmt:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

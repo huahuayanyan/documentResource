@@ -1,0 +1,81 @@
+<ht-legend>基本信息</ht-legend>
+<ht-legend colorId="orangered">基本信息</ht-legend>
+<ht-form name="myform">
+	<!--reg-string="UserService.getLogin.userName"-->
+
+	<ht-select  ht-id="sqkhmc" name="授权客户" dictionary="checked"  disable="true"
+				ng-model="myform.sqkhmc"></ht-select>
+	<ht-input ht-id="xdhth" name="信贷合同号" disable="{{disable}}"
+			  reg-exp="UserService.getLogin.userName,common.require"
+			  ng-model="myform.xdhth">
+	</ht-input>
+	<ht-input-extent ht-id="jghth" name="监管合同号" extent="content"
+					 disable="{{disable}}" on-change="dooextent" ng-model="myform.jghth">
+	</ht-input-extent>
+
+	<ht-select  ht-id="xthtzt" name="信贷合同状态" dictionary="checked"
+				datasource="selectSource" datatrsoption="value" dataoption="key"
+				on-change="xthtzt_change" ng-model="myform.xthtzt"></ht-select>
+	<ht-select  ht-id="czfs" name="出账方式" dictionary="checked" ng-model="myform.czfs"></ht-select>
+	<ht-select  ht-id="bz" name="币种" hide="false" reg-exp="common.require"
+				dictionary="checked" ng-model="myform.bz"></ht-select>
+	<ht-select  ht-id="xhbz" name="循环标志" dictionary="checked" ng-model="myform.xhbz"></ht-select>
+	<ht-input ht-id="xdhtje" edit-type="currency" hide="{{hide}}" name="信贷合同金额" ng-model="myform.xdhtje"></ht-input>
+	<ht-input ht-id="xdhtzck" edit-type="currency"  name="信贷合同总敞口" ng-model="myform.xdhtzck"></ht-input>
+	<ht-input ht-id="xdkyck" edit-type="currency"  name="信贷可用敞口" ng-model="myform.xdkyck"></ht-input>
+	<ht-input ht-id="xdhtsxr" edit-type="date"
+			  name="信贷合同生效日"
+			  min-date="2016-06-04"
+			  max-date="2016-08-22"
+			  high-date-id="xdhtdqr"
+			  ng-model="myform.xdhtsxr"></ht-input>
+	<ht-input ht-id="xdhtdqr" edit-type="date"
+			  name="信贷合同到期日"
+			  lower-date-id="xdhtsxr"
+			  min-date="2016-08-04"
+			  max-date="2016-08-22"
+			  ng-model="myform.xdhtdqr"></ht-input>
+	<ht-input ht-id="zdkhjz" edit-type="currency"  name="最低控货价值" ng-model="myform.zdkhjz"></ht-input>
+	<ht-input ht-id="xhypzjz" edit-type="currency"  name="现货押品总价值" ng-model="myform.xhypzjz"></ht-input>
+	<ht-input ht-id="krzje" edit-type="currency"  name="可融资金额" ng-model="myform.krzje"></ht-input>
+	<ht-input ht-id="bbfxck" edit-type="currency"  name="本笔风险敞口" ng-model="myform.bbfxck"></ht-input>
+	<ht-input ht-id="jggsmc" name="监管公司名称" disable="true" ng-model="myform.jggsmc"></ht-input>
+	<ht-input ht-id="d555" edit-type="number"  name="数值" ng-model="myform.number"></ht-input>
+	<ht-text-area ht-id="xdhth" name="大文本域" disable="{{disable}}" height="70" hide="false" ng-model="myform.textarea">
+	</ht-text-area>
+	<ht-radio ht-id="opt" name="业务项radio" ng-model="myform.opt" disable="true"
+			  datasource="selectSource" datatrsoption="value" dataoption="key">
+	</ht-radio>
+	<ht-checkbox ht-id="opt2" name="业务项checkbox" ng-model="myform.opt2" disable="true"
+				 datasource="selectSource" datatrsoption="value" dataoption="key">
+	</ht-checkbox>
+	<ht-checkbox ht-id="sex3" name="性别" dictionary="sex" hide="true" on-click="onclickk" ng-model="myform.sex3">
+	</ht-checkbox>
+	<ht-radio ht-id="sex4" name="性别2" dictionary="sex"  on-change="onclickk" ng-model="myform.sex4">
+	</ht-radio>
+</ht-form>
+<ht-legend colorId="lawngreen">融资信息</ht-legend>
+<ht-form name ="otherform">
+	<ht-input ht-id="jjh" name="借据号" ng-model="otherform.jjh"></ht-input>
+	<ht-input ht-id="jjje" edit-type="currency"  name="借据金额" ng-model="otherform.jjje"></ht-input>
+	<ht-input ht-id="qxrq" edit-type="date"
+			  name="起息日期"
+			  min-date="2016-08-07"
+			  max-date="2016-08-22"
+			  high-date-id="dqr"
+			  ng-model="otherform.qxrq"></ht-input>
+	<ht-input ht-id="dqr" edit-type="date"
+			  name="到期日"
+			  lower-date-id="qxrq"
+			  min-date="2016-08-07"
+			  max-date="2016-08-22"
+			  ng-model="otherform.dqr"></ht-input>
+	<ht-input ht-id="hkrzzh" name="货款入账账号" ng-model="otherform.hkrzzh"></ht-input>
+	<ht-select  ht-id="rzjg" name="入账机构" dictionary="checked"  ng-model="otherform.rzjg"></ht-select>
+
+</ht-form>
+<ht-button-group class="center">
+	<ht-button class="btn-primary" ht-id="submit" desc-name="提交"></ht-button>
+	<ht-button class="btn-primary" ht-id="submitid" progressbar="true"
+			   disable="{{disable}}"  hide="false" desc-name="保存"></ht-button>
+</ht-button-group>

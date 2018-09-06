@@ -1,0 +1,48 @@
+
+<div style="width: 100%;">
+    <div style="float: left;width: 20%;background-color: #ffffff;height: 800px;">
+        <ht-legend colorId="lawngreen" style="background-color: inherit">预警参数设置分类</ht-legend>
+        <ht-button-group>
+            <ht-button ht-id="addPackage"class="btn-primary">新增</ht-button>
+            <ht-button ht-id="updatePackage" class="btn-primary">修改</ht-button>
+            <ht-button ht-id="deletePackage"class="btn-primary">删除</ht-button>
+        </ht-button-group>
+        <ht-autotree option="autotree"></ht-autotree>
+    </div>
+    <div style="float: left;width: 1%;height: 800px">
+    </div>
+    <div style="float: left;width: 78%;background-color: #ffffff;height: 800px;">
+        <ht-legend colorId="lawngreen">查询条件</ht-legend>
+        <ht-form name ="conditionForm">
+            <ht-input ht-id="warnNo" name="预警编号" ng-model="conditionForm.warnNo"></ht-input>
+            <ht-select ht-id="warnType" name="预警类型" ng-model="conditionForm.warnType" dictionary="warnType"></ht-select>
+            <ht-button-group class="left">
+                <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+                <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+            </ht-button-group>
+        </ht-form>
+
+        <ht-legend>预警列表</ht-legend>
+        <ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+            <ht-button-group>
+                <ht-button ht-id="add" class="btn-primary">新增</ht-button>
+                <ht-button ht-id="update" class="btn-primary">修改</ht-button>
+                <ht-button ht-id="delete" class="btn-primary">删除</ht-button>
+            </ht-button-group>
+
+            <ht-column eg-name="warnNo" zh-name="预警编号" href="true" docolumn="column"></ht-column>
+            <ht-column eg-name="warnName" zh-name="预警名称"></ht-column>
+            <ht-column eg-name="warnType" zh-name="预警类型" dictionary="warnType"></ht-column>
+            <ht-column eg-name="suspendFlag" zh-name="是否可忽略" dictionary="yesOrNo"></ht-column>
+            <ht-column eg-name="suspendDay" zh-name="可忽略天数"></ht-column>
+            <ht-column eg-name="warnLevelLow" zh-name="低级阀值"></ht-column>
+            <ht-column eg-name="warnLevelMidi" zh-name="中级阀值"></ht-column>
+            <ht-column eg-name="warnLevelHigh" zh-name="高级阀值"></ht-column>
+        </ht-table>
+
+        <ht-page conf="conf"></ht-page>
+    </div>
+</div>
+
+

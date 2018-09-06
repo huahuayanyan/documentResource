@@ -1,0 +1,21 @@
+<ht-legend>提货列表</ht-legend>
+<ht-table ht-id="tableDialogId" datasource="datasourceDialog" selected="selectedDialog" docheckbox="true">
+    <!-- <ht-column eg-name="treeId" zh-name=""></ht-column> -->
+    <ht-column eg-name="tradeContcode" zh-name="购销合同编号"></ht-column>
+    <ht-column eg-name="mortgageNo" zh-name="货物编号"></ht-column>
+    <ht-column eg-name="mortgageName" zh-name="货物名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="mortgageUnits" zh-name="单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column eg-name="quantity" zh-name="数量/重量" type="number"></ht-column>
+    <ht-column eg-name="price" zh-name="核定单价" type="currency"></ht-column>
+    <ht-column eg-name="sumPrice" zh-name="总价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="confDialog"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary">保存</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">关闭</ht-button>
+</ht-button-group>
+

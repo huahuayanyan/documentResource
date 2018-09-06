@@ -1,0 +1,14 @@
+
+  <ht-button-group>
+     <ht-button ht-id="homeBack" class="btn-primary" hide="{{homeBackHide}}" desc-name="返回主页"></ht-button>
+    </ht-button-group>
+    
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="warnNo" zh-name="预警编号"></ht-column>
+    <ht-column eg-name="warnName" zh-name="预警名称"></ht-column>
+    <ht-column eg-name="productName" zh-name="业务品种名称"></ht-column>
+    <ht-column eg-name="warnLevelH" zh-name="预警等级高（笔）" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="warnLevelM" zh-name="预警等级中（笔）" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="warnLevelL" zh-name="预警等级低（笔）" href="true" docolumn="column"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>

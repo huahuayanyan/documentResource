@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_BRP_INDUSTRY_TYPES" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.brp.dao.model.BBrpIndustryTypes" >
+    <result column="INDUSTRY_CODE" property="industryCode" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_NAME" property="industryName" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_LEVEL" property="industryLevel" jdbcType="CHAR" />
+    <result column="INDUSTRY_UPLEVEL" property="industryUplevel" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLR" property="lastUpdTlr" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_DATE" property="lastUpdDate" jdbcType="DATE" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+    <result column="TIMESTAMPS" property="timestamps" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    INDUSTRY_CODE, INDUSTRY_NAME, INDUSTRY_LEVEL, INDUSTRY_UPLEVEL, LAST_UPD_TLR, LAST_UPD_DATE, 
+    LAST_UPD_BRCODE, TIMESTAMPS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpIndustryTypesExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_BRP_INDUSTRY_TYPES.Base_Column_List" />
+    from B_BRP_INDUSTRY_TYPES
+    <isParameterPresent >
+      <include refid="B_BRP_INDUSTRY_TYPES.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpIndustryTypes" >
+    select 
+    <include refid="B_BRP_INDUSTRY_TYPES.Base_Column_List" />
+    from B_BRP_INDUSTRY_TYPES
+    where INDUSTRY_CODE = #industryCode:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpIndustryTypes" >
+    delete from B_BRP_INDUSTRY_TYPES
+    where INDUSTRY_CODE = #industryCode:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpIndustryTypesExample" >
+    delete from B_BRP_INDUSTRY_TYPES
+    <include refid="B_BRP_INDUSTRY_TYPES.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpIndustryTypes" >
+    insert into B_BRP_INDUSTRY_TYPES (INDUSTRY_CODE, INDUSTRY_NAME, INDUSTRY_LEVEL, INDUSTRY_UPLEVEL, 
+      LAST_UPD_TLR, LAST_UPD_DATE, LAST_UPD_BRCODE, TIMESTAMPS
+      )
+    values (#industryCode:VARCHAR#, #industryName:VARCHAR#, #industryLevel:CHAR#, #industryUplevel:VARCHAR#, 
+      #lastUpdTlr:VARCHAR#, #lastUpdDate:DATE#, #lastUpdBrcode:VARCHAR#, #timestamps:TIMESTAMP#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpIndustryTypes" >
+    insert into B_BRP_INDUSTRY_TYPES
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="industryCode" >
+        INDUSTRY_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="industryName" >
+        INDUSTRY_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="industryLevel" >
+        INDUSTRY_LEVEL
+      </isNotNull>
+      <isNotNull prepend="," property="industryUplevel" >
+        INDUSTRY_UPLEVEL
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlr" >
+        LAST_UPD_TLR
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        LAST_UPD_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="timestamps" >
+        TIMESTAMPS
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="industryCode" >
+        #industryCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryName" >
+        #industryName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryLevel" >
+        #industryLevel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryUplevel" >
+        #industryUplevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlr" >
+        #lastUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        #lastUpdDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="timestamps" >
+        #timestamps:TIMESTAMP#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpIndustryTypesExample" resultClass="java.lang.Integer" >
+    select count(*) from B_BRP_INDUSTRY_TYPES
+    <include refid="B_BRP_INDUSTRY_TYPES.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_BRP_INDUSTRY_TYPES
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.industryCode" >
+        INDUSTRY_CODE = #record.industryCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryName" >
+        INDUSTRY_NAME = #record.industryName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryLevel" >
+        INDUSTRY_LEVEL = #record.industryLevel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.industryUplevel" >
+        INDUSTRY_UPLEVEL = #record.industryUplevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdTlr" >
+        LAST_UPD_TLR = #record.lastUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdDate" >
+        LAST_UPD_DATE = #record.lastUpdDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lastUpdBrcode" >
+        LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.timestamps" >
+        TIMESTAMPS = #record.timestamps:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_BRP_INDUSTRY_TYPES.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_BRP_INDUSTRY_TYPES
+    set INDUSTRY_CODE = #record.industryCode:VARCHAR#,
+      INDUSTRY_NAME = #record.industryName:VARCHAR#,
+      INDUSTRY_LEVEL = #record.industryLevel:CHAR#,
+      INDUSTRY_UPLEVEL = #record.industryUplevel:VARCHAR#,
+      LAST_UPD_TLR = #record.lastUpdTlr:VARCHAR#,
+      LAST_UPD_DATE = #record.lastUpdDate:DATE#,
+      LAST_UPD_BRCODE = #record.lastUpdBrcode:VARCHAR#,
+      TIMESTAMPS = #record.timestamps:TIMESTAMP#
+    <isParameterPresent >
+      <include refid="B_BRP_INDUSTRY_TYPES.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpIndustryTypes" >
+    update B_BRP_INDUSTRY_TYPES
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="industryName" >
+        INDUSTRY_NAME = #industryName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryLevel" >
+        INDUSTRY_LEVEL = #industryLevel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="industryUplevel" >
+        INDUSTRY_UPLEVEL = #industryUplevel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdTlr" >
+        LAST_UPD_TLR = #lastUpdTlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdDate" >
+        LAST_UPD_DATE = #lastUpdDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="lastUpdBrcode" >
+        LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="timestamps" >
+        TIMESTAMPS = #timestamps:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    where INDUSTRY_CODE = #industryCode:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpIndustryTypes" >
+    update B_BRP_INDUSTRY_TYPES
+    set INDUSTRY_NAME = #industryName:VARCHAR#,
+      INDUSTRY_LEVEL = #industryLevel:CHAR#,
+      INDUSTRY_UPLEVEL = #industryUplevel:VARCHAR#,
+      LAST_UPD_TLR = #lastUpdTlr:VARCHAR#,
+      LAST_UPD_DATE = #lastUpdDate:DATE#,
+      LAST_UPD_BRCODE = #lastUpdBrcode:VARCHAR#,
+      TIMESTAMPS = #timestamps:TIMESTAMP#
+    where INDUSTRY_CODE = #industryCode:VARCHAR#
+  </update>
+</sqlMap>

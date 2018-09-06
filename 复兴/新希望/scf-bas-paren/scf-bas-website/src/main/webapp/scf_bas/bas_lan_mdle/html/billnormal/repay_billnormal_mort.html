@@ -1,0 +1,28 @@
+
+<ht-legend>仓单列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="false">
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="cname" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="address" zh-name="联系地址"></ht-column>
+    <ht-column eg-name="postno" zh-name="邮编"></ht-column>
+    <ht-column eg-name="storageAddress" zh-name="存储地址"></ht-column>
+    <ht-column eg-name="signDate" zh-name="签发日期"></ht-column>
+    <ht-column eg-name="startDate" zh-name="有效起始日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="有效结束日" type="date"></ht-column>
+    <ht-column eg-name="standLose" zh-name="标准损耗"></ht-column>
+    <ht-column eg-name="storageCostEndDate" zh-name="存储费用截止日" type="date"></ht-column>
+
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-legend>仓单下押品列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasourcemort" selected="selectedmort" docheckbox="false">
+    <ht-column eg-name="billcode" zh-name="仓单编号"></ht-column>
+    <ht-column eg-name="mortgageNo" zh-name="押品编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+    <ht-column eg-name="quantity" zh-name="数量" type="currency"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="核定单价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="confmort" style="height: 50px;padding-top: 5px"></ht-page>

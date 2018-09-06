@@ -1,0 +1,21 @@
+
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true" minheit="150px">
+
+    <ht-button-group>
+        <ht-button ht-id="choose" class="btn-primary" disable="{{flowsubmitdisable}}">确定</ht-button>
+        <ht-button ht-id="view" class="btn-primary">查看</ht-button>
+        <ht-button ht-id="close" class="btn-primary">关闭</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="conId" zh-name="担保信息流水号"></ht-column>
+    <ht-column eg-name="conTyp" zh-name="担保合同类型" dictionary="gntyConTyp"></ht-column>
+    <ht-column eg-name="gutyTyp" zh-name="担保类型" dictionary="gutTyp"></ht-column>
+    <ht-column eg-name="gutNm" zh-name="担保客户名称"></ht-column>
+    <ht-column eg-name="gutVal" zh-name="担保金额"></ht-column>
+    <ht-column eg-name="conStat" zh-name="状态" dictionary="appTyp"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+
+
+
+

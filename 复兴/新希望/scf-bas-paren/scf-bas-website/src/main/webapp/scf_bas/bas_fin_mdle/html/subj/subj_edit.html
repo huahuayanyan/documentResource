@@ -1,0 +1,12 @@
+
+<ht-form name="otherform" columns="1">
+    <ht-input name="财报编号" ng-model="otherform.subjId" disable="true"></ht-input>
+    <ht-input name="财报名称" reg-exp="common.require" ng-model="otherform.subjNm" disable="{{disable}}"></ht-input>
+    <ht-select ht-id="delFlg" name="删除标志" ng-model="otherform.delFlg" disable="true" dictionary="deleteFlag" hide="{{hide}}"></ht-select>
+    <ht-text-area name="说明" disable="{{disable}}" height="70" hide="false" ng-model="otherform.rem"></ht-text-area>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hideButton}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

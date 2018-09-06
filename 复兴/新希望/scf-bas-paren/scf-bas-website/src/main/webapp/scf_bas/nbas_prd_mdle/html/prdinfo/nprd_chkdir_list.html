@@ -1,0 +1,31 @@
+<!--风险拦截设置页面-->
+<ht-form name ="baseinfo">
+    <ht-panel>
+        <ht-legend>产品基本信息</ht-legend>
+        <ht-input ht-id="productId"  name="产品代码" ng-model="baseinfo.productId" disable="true"></ht-input>
+        <ht-input ht-id="productName" name="产品名称" ng-model="baseinfo.productName" disable="true"></ht-input>
+    </ht-panel>
+</ht-form>
+
+<ht-legend>风险拦截绑定关系列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="add" class="btn-primary" hide="{{hide}}">新增</ht-button>
+        <ht-button ht-id="update" class="btn-primary" hide="{{hide}}">修改</ht-button>
+        <ht-button ht-id="view" class="btn-primary">查看</ht-button>
+        <ht-button ht-id="delete" class="btn-primary" hide="{{hide}}">删除</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="mdlId" zh-name="拦截模型ID"></ht-column>
+    <ht-column eg-name="mdlNm" zh-name="拦截模型名称" ></ht-column>
+    <ht-column eg-name="invokPhase" zh-name="调用阶段" dictionary="invokPhase"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="former" class="btn-primary" desc-name="上一步"></ht-button>
+    <ht-button ht-id="next" class="btn-primary" desc-name="下一步"></ht-button>
+    <ht-button ht-id="complete" class="btn-primary" desc-name="完成"></ht-button>
+</ht-button-group>
+
+
+

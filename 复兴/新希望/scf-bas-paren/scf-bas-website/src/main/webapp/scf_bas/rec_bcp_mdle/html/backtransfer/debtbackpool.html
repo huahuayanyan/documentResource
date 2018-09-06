@@ -1,0 +1,57 @@
+
+<ht-form name="otherform">
+    <ht-panel>
+    <ht-legend>基本信息</ht-legend>
+    <ht-input ht-id="cnameSeller" name="卖方名称" disable="true" ng-model="otherform.cnameSeller"></ht-input>
+    <ht-input-extent ht-id="cnameBuyer" name="买方名称" extent="buyerContent" on-change="buyerExtent"
+                     reg-exp="common.require" ng-model="otherform.cnameBuyer" disable="{{disable}}"></ht-input-extent>
+    <ht-input ht-id="mastContno" name="池合同号" disable="true" ng-model="otherform.mastContno"></ht-input>
+    <ht-input ht-id="bussTypeName" name="业务品种" disable="true" ng-model="otherform.bussTypeName"></ht-input>
+    <ht-select name="币种" dictionary="curcd" ng-model="otherform.curcd" disable="true"></ht-select>
+    <ht-input ht-id="startDate" name="合同生效日" disable="true" edit-type="date" ng-model="otherform.startDate"></ht-input>
+    <ht-input ht-id="endDate" name="合同到期日" disable="true" edit-type="date" ng-model="otherform.endDate"></ht-input>
+    </ht-panel>
+    <ht-panel>
+    <ht-legend>反转让信息</ht-legend>
+    <ht-input ht-id="insertDate" name="反转让日期" disable="true" edit-type="date" ng-model="otherform.insertDate"></ht-input>
+    <ht-select name="反转让/解押原因" disable="{{disableOther}}" dictionary="rebateReason" reg-exp="common.require"
+               ng-model="otherform.reason" on-change="checkReason"></ht-select>
+    <ht-input ht-id="otherReason" name="其他原因" disable="{{disableReason}}"
+              ng-model="otherform.otherReason" reg-exp="{{regexp}}"></ht-input>
+    <ht-input ht-id="totalNum" name="反转让/解押总份数" disable ="true"  ng-model="otherform.totalNum"></ht-input>
+    <ht-input ht-id="totalAmount" name="反转让/解押总金额" disable ="true" edit-type="currency"
+              ng-model="otherform.totalAmount"></ht-input>
+    </ht-panel>
+</ht-form>
+
+<ht-legend>反转让应收账款列表</ht-legend>
+<ht-button-group >
+    <ht-button ht-id="add" class="btn-primary" hide="{{hide}}">新增</ht-button>
+    <ht-button ht-id="viewdebt" class="btn-primary" hide="{{hide}}">查看</ht-button>
+    <ht-button ht-id="delete" class="btn-primary" hide="{{hide}}">删除</ht-button>
+</ht-button-group>
+<ht-table datasource="datasourcedebt" selected="selecteddebt" docheckbox="true" minheit="10px">
+    <ht-column eg-name="billsNo" zh-name="凭证编号" ></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType" ></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同号" ></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期" type="date"></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="账面金额" type="currency"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="应收账款余额" type="currency"></ht-column>
+    <ht-column eg-name="status" zh-name="状态" dictionary="debtBussStatus"></ht-column>
+    <ht-column eg-name="poolFlag" zh-name="池状态" dictionary="poolFlag"></ht-column>
+</ht-table>
+<ht-page conf="confdebt" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{Write}}" disable="{{savedisable}}">保存</ht-button>
+    <ht-button ht-id="submit" class="btn-primary" hide="{{Write}}" disable="{{disableButton}}">提交</ht-button>
+
+    <ht-button ht-id="pass" class="btn-primary" hide="{{Approve}}" disable="{{passdisable}}">审批通过</ht-button>
+    <ht-button ht-id="BackToModify" class="btn-primary" hide="{{Approve}}" disable="{{BackToModifydisable}}">退回</ht-button>
+
+    <ht-button ht-id="back" class="btn-primary" hide="{{hideButton}}">返回</ht-button>
+</ht-button-group>

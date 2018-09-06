@@ -1,0 +1,786 @@
+{
+    "orgUserService/findOrgUserByPage2": {
+        "scubeHeader": {
+            "transCode": "",
+            "errorCode": "SUC",
+            "errorMsg": "ERROR"
+        },
+        "scubeBody": {
+            "contextData": {
+                "domainVilidate": "",
+                "data": {
+                    "records":[
+                        {
+                            "id": "1",
+                            "userName": "张三",
+                            "password": "1321321321",
+                            "remark": "看电视上课电视上课",
+                            "beginDate": "20160809",
+                            "endDate": "20160809",
+                            "sex": "男",
+                            "remark2": "看电视上课",
+                            "id3": "1",
+                            "userName3": "张三",
+                            "password3": "1321321321",
+                            "remark3": "看电视上课"
+                        },
+                        {
+                            "id": "2",
+                            "userName": "张三",
+                            "password": "1321321321",
+                            "remark": "看电视上课",
+                            "beginDate": "20160809",
+                            "endDate": "20160809",
+                            "sex": "男",
+                            "remark2": "看电视上课",
+                            "id3": "2",
+                            "userName3": "张三",
+                            "password3": "1321321321",
+                            "remark3": "看电视上课"
+                        },
+                        {
+                            "id": "3",
+                            "userName": "张三",
+                            "password": "1321321321",
+                            "remark": "看电视上课",
+                            "beginDate": "20160809",
+                            "endDate": "20160809",
+                            "sex": "男",
+                            "remark2": "看电视上课",
+                            "id3": "3",
+                            "userName3": "张三",
+                            "password3": "1321321321",
+                            "remark3": "看电视上课"
+                        },
+                        {
+                            "id": "4",
+                            "userName": "张三",
+                            "password": "1321321321",
+                            "remark": "看电视上课",
+                            "beginDate": "20160809",
+                            "endDate": "20160809",
+                            "sex": "男",
+                            "remark2": "看电视上课",
+                            "id3": "4",
+                            "userName3": "张三",
+                            "password3": "1321321321",
+                            "remark3": "看电视上课"
+                        },
+                        {
+                            "id": "5",
+                            "userName": "张三",
+                            "password": "1321321321",
+                            "remark": "看电视上课",
+                            "beginDate": "20160809",
+                            "endDate": "20160809",
+                            "sex": "男",
+                            "remark2": "看电视上课",
+                            "id3": "5",
+                            "userName3": "张三",
+                            "password3": "1321321321",
+                            "remark3": "看电视上课"
+                        },
+                        {
+                            "id": "6",
+                            "userName": "张三",
+                            "password": "1321321321",
+                            "remark": "看电视上课",
+                            "beginDate": "20160809",
+                            "endDate": "20160809",
+                            "sex": "男",
+                            "remark2": "看电视上课",
+                            "id3": "6",
+                            "userName3": "张三",
+                            "password3": "1321321321",
+                            "remark3": "看电视上课"
+                        },
+                        {
+                            "id": "7",
+                            "userName": "张三",
+                            "password": "1321321321",
+                            "remark": "看电视上课",
+                            "beginDate": "20160809",
+                            "endDate": "20160809",
+                            "sex": "男",
+                            "remark2": "看电视上课",
+                            "id3": "7",
+                            "userName3": "张三",
+                            "password3": "1321321321",
+                            "remark3": "看电视上课"
+                        }
+                    ],
+                    "totalRecord":"7"
+                }
+            }
+        }
+    },
+    "getTemplate/": {
+        "scubeHeader": {
+            "transCode": "",
+            "errorCode": "SUC",
+            "errorMsg": "ERROR"
+        },
+        "scubeBody": {
+            "contextData": {
+                "domainVilidate": "",
+                "data": {
+                    "bcd":"<ht-button ht-id=\"update\" class=\"btn-primary\">修改</ht-button><ht-button ht-id=\"detail\" class=\"btn-primary\">查看明细</ht-button>"
+                }
+
+            }
+        }
+    },
+    "orgUserService/findOrgUserByPage": {
+        "scubeHeader": {
+            "transCode": "",
+            "errorCode": "SUC",
+            "errorMsg": "ERROR"
+        },
+        "scubeBody": {
+            "contextData": {
+                "domainVilidate": "",
+                "data": {
+                    "records":[
+                        {
+                            "userName":"ruuuuuu",
+                            "jghth":"JGFJ45645643213",
+                            "jggsmc":"杨明监管所",
+                            "ywpz":"现货动态质押",
+                            "htsxrq":"20160821",
+                            "htxxrq":"20160921",
+                            "khjl":"杨建反",
+                            "jbjg":"番禺支行公司业务一部",
+                            "htzt" :"1",
+                            "remark1" :"备注信息1",
+                            "remark2" :"备注信息2",
+                            "remark3":"备注信息3"
+                        },
+                        {
+                            "userName":"ruuuuuu",
+                            "jghth":"JGFJ586783456273568678",
+                            "jggsmc":"杨明监管所",
+                            "ywpz":"现货动态质押",
+                            "htsxrq":"20160821",
+                            "htxxrq":"20160921",
+                            "khjl":"杨建反",
+                            "jbjg":"番禺支行公司业务一部",
+                            "htzt" :"1",
+                            "remark1" :"备注信息1",
+                            "remark2" :"备注信息2",
+                            "remark3":"备注信息3"
+                        },
+                        {
+                            "userName":"ruuuuuu",
+                            "jghth":"JGFJ534632222222213",
+                            "jggsmc":"杨明监管所",
+                            "ywpz":"现货动态质押",
+                            "htsxrq":"20160821",
+                            "htxxrq":"20160921",
+                            "khjl":"杨建反",
+                            "jbjg":"番禺支行公司业务一部",
+                            "htzt" :"1",
+                            "remark1" :"备注信息1",
+                            "remark2" :"备注信息2",
+                            "remark3":"备注信息3"
+                        },
+                        {
+                            "userName":"ruuuuuu",
+                            "jghth":"JGF326568687699",
+                            "jggsmc":"杨明监管所",
+                            "ywpz":"现货动态质押",
+                            "htsxrq":"20160821",
+                            "htxxrq":"20160921",
+                            "khjl":"杨建反",
+                            "jbjg":"番禺支行公司业务一部",
+                            "htzt" :"1",
+                            "remark1" :"备注信息1",
+                            "remark2" :"备注信息2",
+                            "remark3":"备注信息3"
+                        },
+                        {
+                            "userName":"ruuuuuu",
+                            "jghth":"JGFJ489087987",
+                            "jggsmc":"杨明监管所",
+                            "ywpz":"现货动态质押",
+                            "htsxrq":"20160821",
+                            "htxxrq":"20160921",
+                            "khjl":"杨建反",
+                            "jbjg":"番禺支行公司业务一部",
+                            "htzt" :"1",
+                            "remark1" :"备注信息1",
+                            "remark2" :"备注信息2",
+                            "remark3":"备注信息3"
+                        },
+                        {
+                            "userName":"ruuuuuu",
+                            "jghth":"JGFJ436543643",
+                            "jggsmc":"杨明监管所",
+                            "ywpz":"现货动态质押",
+                            "htsxrq":"20160821",
+                            "htxxrq":"20160921",
+                            "khjl":"杨建反",
+                            "jbjg":"番禺支行公司业务一部",
+                            "htzt" :"1",
+                            "remark1" :"备注信息1",
+                            "remark2" :"备注信息2",
+                            "remark3":"备注信息3"
+                        },{
+                            "userName":"ruuuuuu",
+                            "jghth":"JGFJ454633213",
+                            "jggsmc":"杨明监管所",
+                            "ywpz":"现货动态质押",
+                            "htsxrq":"20160821",
+                            "htxxrq":"20160921",
+                            "khjl":"杨建反",
+                            "jbjg":"番禺支行公司业务一部",
+                            "htzt" :"1",
+                            "remark1" :"备注信息1",
+                            "remark2" :"备注信息2",
+                            "remark3":"备注信息3"
+                        },
+                        {
+                            "userName":"ruuuuuu",
+                            "jghth":"JGFJ4564634213",
+                            "jggsmc":"杨明监管所",
+                            "ywpz":"现货动态质押",
+                            "htsxrq":"20160821",
+                            "htxxrq":"20160921",
+                            "khjl":"杨建反",
+                            "jbjg":"番禺支行公司业务一部",
+                            "htzt" :"1",
+                            "remark1" :"备注信息1",
+                            "remark2" :"备注信息2",
+                            "remark3":"备注信息3"
+                        }
+
+                    ],
+                    "totalRecord":"10"
+                            }
+                        }
+                    }
+                },
+    "/treeModel": {
+        "scubeHeader": {
+            "transCode": "",
+            "errorCode": "SUC",
+            "errorMsg": "ERROR",
+            "sessionToken": "12323533EW"
+        },
+        "scubeBody": {
+            "contextData": {
+                "domainVilidate": "",
+                "data": [
+                    {
+                        "treeId": "1000",
+                        "treeName": "客户管理",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"icon-list",
+                        "treeLevel":"1",
+                        "treeParentId":""
+
+                    },
+                    {
+                        "treeId": "1001",
+                        "treeName": "任务管理",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"",
+                        "treeLevel":"1",
+                        "treeParentId":""
+
+                    },
+                    {
+                        "treeId": "10011",
+                        "treeName": "测试菜单2",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"",
+                        "treeLevel":"2",
+                        "treeParentId":"1001"
+                    },
+                    {
+                        "treeId": "100111",
+                        "treeName": "3级菜单",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"",
+                        "treeLevel":"3",
+                        "treeParentId":"10011"
+                    },
+                    {
+                        "treeId": "1002",
+                        "treeName": "公共管理",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"icon-edit",
+                        "treeLevel":"1",
+                        "treeParentId":""
+
+                    },
+                    {
+                        "treeId": "1003",
+                        "treeName": "业务管理",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"icon-list-alt",
+                        "treeLevel":"1",
+                        "treeParentId":""
+
+                    },
+                    {
+                        "treeId": "1004",
+                        "treeName": "系统管理",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"icon-calendar",
+                        "treeLevel":"1",
+                        "treeParentId":""
+
+                    },
+                    {
+                        "treeId": "1005",
+                        "treeName": "预警提示",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"icon-file-alt",
+                        "treeLevel":"1",
+                        "treeParentId":""
+
+                    },
+                    {
+                        "treeId": "10002",
+                        "treeName": "监管合同管理",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"",
+                        "treeLevel":"2",
+                        "treeParentId":"1000"
+
+                    },
+                    {
+                        "treeId": "10003",
+                        "treeName": "放款审批",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"",
+                        "treeLevel":"2",
+                        "treeParentId":"1000"
+                    },
+                    {
+                        "treeId": "10001",
+                        "treeName": "测试菜单",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"",
+                        "treeLevel":"2",
+                        "treeParentId":"1000"
+                    },
+                    {
+                        "treeId": "100001",
+                        "treeName": "3级菜单",
+                        "treePath": "",
+                        "treeUrl":"",
+                        "iconName":"icon-leaf",
+                        "treeLevel":"3",
+                        "treeParentId":"10001"
+                    }
+                ]
+            }
+        }
+    },
+    "/getEcharts": {
+        "scubeHeader": {
+            "transCode": "",
+            "errorCode": "SUC",
+            "errorMsg": "ERROR"
+        },
+        "scubeBody": {
+            "contextData": {
+                "domainVilidate": "",
+                "data":
+                {
+                    "series": [
+                        {
+                            "name": "厂商1",
+                            "value": [
+                                {
+                                    "name": "衬衫",
+                                    "value": 5
+                                },
+                                {
+                                    "name": "羊毛衫",
+                                    "value": 10
+                                },
+                                {
+                                    "name": "雪纺衫",
+                                    "value": 4
+                                },
+                                {
+                                    "name": "裤子",
+                                    "value": 7
+                                },
+                                {
+                                    "name": "袜子",
+                                    "value": 5
+                                },
+                                {
+                                    "name": "高跟鞋",
+                                    "value": 10
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "select": {
+    "scubeHeader": {
+      "transCode": "",
+      "errorCode": "SUC",
+      "errorMsg": "ERROR"
+    },
+    "scubeBody": {
+      "contextData": {
+        "domainVilidate": "",
+        "data": [
+          {
+            "options": "testInformation-01"
+          },
+          {
+            "options": "testInformation-02"
+          },
+          {
+            "options": "testInformation-03"
+          },
+          {
+            "options": "testInformation-04"
+          },
+          {
+            "options": "testInformation-05"
+          },
+          {
+            "options": "testInformation-06"
+          },
+          {
+            "options": "testInformation-07"
+          }
+        ]
+      }
+    }
+  },
+    "guide":{
+    "scubeHeader": {
+      "transCode": "",
+      "errorCode": "SUC",
+      "errorMsg": "ERROR"
+    },
+    "scubeBody": {
+      "contextData": {
+        "domainVilidate": "",
+        "data": {
+          "first": "1",
+          "text": "一",
+          "other": [
+            {
+              "number": 2,
+              "text": "二",
+              "src": "../../scube_ui/images/time-line.png"
+            },
+            {
+              "number": 3,
+              "text": "三",
+              "src": "../../scube_ui/images/time-line.png"
+            },
+            {
+              "number": 4,
+              "text": "四",
+              "src": "../../scube_ui/images/time-line.png"
+            },
+            {
+              "number": 5,
+              "text": "五",
+              "src": "../../scube_ui/images/time-line.png"
+            }
+          ]
+        }
+      }
+    }
+  },
+    "displayTableOrTree/jquery":{
+        "scubeHeader": {
+            "transCode": "",
+            "errorCode": "SUC",
+            "errorMsg": "ERROR"
+        },
+        "scubeBody": {
+            "contextData": {
+                "domainVilidate": "",
+                "data":{
+                    "records":[
+                        {
+                            "jghth":"JGFJ45645643213",
+                            "jggsmc":"一级菜单A",
+                            "ywpz":"acd",
+                            "treeId": "1000",
+                            "treeName": "一级菜单A",
+                            "treeLevel":"1",
+                            "treeParentId":"0"
+                        },
+                        {
+                            "jghth":"JGFJ434554",
+                            "jggsmc":"一级菜单B",
+                            "ywpz":"aaaa",
+                            "treeId": "1001",
+                            "treeName": "一级菜单B",
+                            "treeLevel":"1",
+                            "treeParentId":"0"
+
+                        },
+                        {
+                            "jghth":"JGFhrthgf",
+                            "jggsmc":"二级菜单B",
+                            "ywpz":"dfhdfg",
+                            "treeId": "10011",
+                            "treeName": "二级菜单B",
+                            "treeLevel":"2",
+                            "treeParentId":"1001"
+                        },
+                        {
+                            "jghth":"JGF4373678",
+                            "jggsmc":"文本",
+                            "ywpz":"uuuuu",
+                            "treeId": "100111",
+                            "treeName": "文本",
+                            "treeLevel":"3",
+                            "treeParentId":"10011"
+                        },
+                        {
+                            "jghth":"JGFggd5464",
+                            "jggsmc":"文本",
+                            "ywpz":"uu7777",
+                            "treeId": "1002",
+                            "treeName": "文本",
+                            "treeLevel":"1",
+                            "treeParentId":"0"
+
+                        },
+                        {
+                            "jghth":"JGF3463654",
+                            "jggsmc":"文本1",
+                            "ywpz":"tttt",
+                            "treeId": "1003",
+                            "treeName": "文本",
+                            "treeLevel":"1",
+                            "treeParentId":"0"
+
+                        },
+                        {
+                            "jghth":"JGF88888",
+                            "jggsmc":"文本1",
+                            "ywpz":"gfgh444567989",
+                            "treeId": "1004",
+                            "treeName": "文本",
+                            "treeLevel":"1",
+                            "treeParentId":"0"
+
+                        },
+                        {
+                            "jghth":"JGF4244445",
+                            "jggsmc":"文本1",
+                            "ywpz":"fjghfhjgj",
+                            "treeId": "1005",
+                            "treeName": "文本",
+                            "treeLevel":"1",
+                            "treeParentId":"0"
+
+                        },
+                        {
+                            "jghth":"JGFtgjgfh757",
+                            "jggsmc":"文本2",
+                            "ywpz":"fghty575",
+                            "treeId": "10002",
+                            "treeName": "文本",
+                            "treeLevel":"2",
+                            "treeParentId":"1000"
+
+                        },
+                        {
+                            "jghth":"ete43564646",
+                            "jggsmc":"文本2",
+                            "ywpz":"gdf544",
+                            "treeId": "10003",
+                            "treeName": "文本",
+                            "treeLevel":"2",
+                            "treeParentId":"1000"
+                        },
+                        {
+                            "jghth":"df54445",
+                            "jggsmc":"二级菜单A",
+                            "ywpz":"ettttt43",
+                            "treeName": "二级菜单A",
+                            "treeId": "10001",
+                            "treeLevel":"2",
+                            "treeParentId":"1000"
+                        },
+                        {
+                            "jghth":"4534534",
+                            "jggsmc":"文本3",
+                            "ywpz":"ggff",
+                            "treeId": "100001",
+                            "treeName": "文本",
+                            "treeLevel":"3",
+                            "treeParentId":"10001"
+                        }
+                    ],
+                    "totalRecord":"11"
+                }
+
+            }
+        }
+    },
+    "tree":{
+        "scubeHeader": {
+            "transCode": "",
+            "errorCode": "SUC",
+            "errorMsg": "ERROR"
+        },
+        "scubeBody": {
+            "contextData": {
+                "domainVilidate": "",
+                "data":[
+                    {
+                        "treeId": "1000",
+                        "treeName": "一级菜单A",
+                        "treeLevel":"1",
+                        "treeParentId":"0"
+                    },
+                    {
+                        "treeId": "1001",
+                        "treeName": "一级菜单B",
+                        "treeLevel":"1",
+                        "treeParentId":"0"
+
+                    },
+                    {
+                        "treeId": "10011",
+                        "treeName": "二级菜单B",
+                        "treeLevel":"2",
+                        "treeParentId":"1001"
+                    },
+                    {
+                        "treeId": "100111",
+                        "treeName": "文本",
+                        "treeLevel":"3",
+                        "treeParentId":"10011"
+                    },
+                    {
+                        "treeId": "1002",
+                        "treeName": "文本",
+                        "treeLevel":"1",
+                        "treeParentId":"0"
+
+                    },
+                    {
+                        "treeId": "1003",
+                        "treeName": "文本",
+                        "treeLevel":"1",
+                        "treeParentId":"0"
+
+                    },
+                    {
+                        "treeId": "1004",
+                        "treeName": "文本",
+                        "treeLevel":"1",
+                        "treeParentId":"0"
+
+                    },
+                    {
+                        "treeId": "1005",
+                        "treeName": "文本",
+                        "treeLevel":"1",
+                        "treeParentId":"0"
+
+                    },
+                    {
+                        "treeId": "10002",
+                        "treeName": "文本",
+                        "treeLevel":"2",
+                        "treeParentId":"1000"
+
+                    },
+                    {
+                        "treeId": "10003",
+                        "treeName": "文本",
+                        "treeLevel":"2",
+                        "treeParentId":"1000"
+                    },
+                    {
+                        "treeId": "10001",
+                        "treeName": "二级菜单A",
+                        "treeLevel":"2",
+                        "treeParentId":"1000"
+                    },
+                    {
+                        "treeId": "100001",
+                        "treeName": "文本",
+                        "treeLevel":"3",
+                        "treeParentId":"10001"
+                    }
+                ]
+            }
+        }
+    },
+    "/autoTree":{
+        "scubeHeader": {
+            "transCode": "",
+            "errorCode": "SUC",
+            "errorMsg": "ERROR"
+        },
+        "scubeBody": {
+            "contextData": {
+                "domainVilidate": "",
+                "data":[
+                    {
+                        "treeId": "1000",
+                        "treeName": "一级菜单A",
+                        "treeLevel":"1",
+                        "treeParentId":"0",
+                        "isChecked":false
+                    },
+                    {
+                        "treeId": "2000",
+                        "treeName": "一级菜单B",
+                        "treeLevel":"1",
+                        "treeParentId":"0",
+                        "isChecked":false
+                    },
+                    {
+                        "treeId": "1001",
+                        "treeName": "二级菜单A",
+                        "treeLevel":"2",
+                        "treeParentId":"1000",
+                        "isChecked":true
+
+                    },
+                    {
+                        "treeId": "1002",
+                        "treeName": "三级菜单A",
+                        "treeLevel":"3",
+                        "treeParentId":"1001",
+                        "isChecked":false
+
+                    },
+                    {
+                        "treeId": "2001",
+                        "treeName": "二级菜单B",
+                        "treeLevel":"2",
+                        "treeParentId":"2000",
+                        "isChecked":false
+                    }
+                ]
+            }
+        }
+    }
+}

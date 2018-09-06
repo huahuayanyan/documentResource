@@ -1,0 +1,37 @@
+
+<ht-form name="otherform">
+    <ht-legend>应收账款信息</ht-legend>
+
+    <ht-input ht-id="cnameSeller" name="融资企业" disable="true" reg-exp="common.require" ng-model="otherform.cnameSeller"></ht-input>
+    <ht-input ht-id="cnameBuyer" name="贸易对手" disable ="true"  reg-exp="common.require" ng-model="otherform.cnameBuyer"></ht-input>
+    <ht-input ht-id="mastContno" name="业务合同号" disable="true" reg-exp="common.require" ng-model="otherform.mastContno"></ht-input>
+    <ht-select ht-id="bussType" name="业务品种" dictionary="vidBusTyp" ng-model="otherform.bussType" disable="true"></ht-select>
+    <ht-input ht-id="aging" name="账期" reg-exp="common.require,common.number" disable="true" ng-model="otherform.aging"></ht-input>
+
+    <ht-input ht-id="gracePeriod" name="宽限期" reg-exp="common.require,common.number" disable="true"  ng-model="otherform.gracePeriod"></ht-input>
+    <ht-text-area ht-id="memo" name="备注" ng-model="otherform.memo" disable="true" style="resize: none"></ht-text-area>
+
+</ht-form>
+<ht-legend>应收账款单据信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="progress" class="btn-primary">历程</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="billsNo" zh-name="凭证编号"></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型" dictionary="billsType"></ht-column>
+    <ht-column eg-name="billsAmountView" zh-name="票面金额" type="currency"></ht-column>
+    <ht-column eg-name="billsAmount" zh-name="有效金额" type="currency"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="应收账款余额" type="currency"></ht-column>
+    <ht-column eg-name="remainingUseableAmount" zh-name="可融资余额" type="currency"></ht-column><!--可用融资余额-->
+    <ht-column eg-name="billsDate" zh-name="账款日期" type="date"></ht-column>
+    <ht-column eg-name="aging" zh-name="账期"></ht-column>
+    <ht-column eg-name="gracePeriod" zh-name="宽限期"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日"  type="date"></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同"></ht-column>
+    <ht-column eg-name="status" zh-name="状态" dictionary="debtBussStatus"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="back" class="btn-primary">返回</ht-button>
+</ht-button-group>

@@ -1,0 +1,45 @@
+
+<div  style="position:absolute;z-index:12;float:right;top:12px;right:12px;">
+        <ht-button ht-id="back" class="btn-primary" desc-name="返回"></ht-button>
+</div>
+
+<ht-legend>任务基本信息</ht-legend>
+<ht-form name="taskform">
+        <ht-input name="流程名称" ng-model="taskform.processTemplateName" disable="true"></ht-input>
+        <ht-input name="申请发起时间" ng-model="taskform.startTaskDate" edit-type="date" disable="true"></ht-input>
+        <ht-input ht-id="startTlrcdName" name="经办人" ng-model="taskform.startTlrcdName" disable="true"></ht-input>
+        <ht-input ht-id="startBrcodeName" name="经办机构" ng-model="taskform.startBrcodeName" disable="true"></ht-input>
+</ht-form>
+<ht-tabs id="cash">
+        <ht-pane title="放款申请"  ui-sref="mtgdetail.cashdetail">
+        </ht-pane>
+        <ht-pane title="保证金列表"  ui-sref="mtgdetail.acct">
+        </ht-pane>
+        <ht-pane title="押品清单"  ui-sref="mtgdetail.yp">
+        </ht-pane>
+        <ht-pane title="抵质押合同查询"  ui-sref="mtgdetail.gntycon" >
+        </ht-pane>
+        <ht-pane title="核库"  ui-sref="mtgdetail.hk" >
+        </ht-pane>
+        <ht-pane title="信贷合同"  ui-sref="mtgdetail.lncon">
+        </ht-pane>
+</ht-tabs>
+<ht-tabs id="bill">
+        <ht-pane title="放款申请"  ui-sref="mtgdetail.billdetail">
+        </ht-pane>
+        <ht-pane title="票据信息"  ui-sref="mtgdetail.bill">
+        </ht-pane>
+        <ht-pane title="保证金列表"  ui-sref="mtgdetail.acct">
+        </ht-pane>
+        <ht-pane title="押品清单"  ui-sref="mtgdetail.yp">
+        </ht-pane>
+        <ht-pane title="抵质押合同查询"  ui-sref="mtgdetail.gntycon" >
+        </ht-pane>
+        <ht-pane title="核库"  ui-sref="mtgdetail.hk" >
+        </ht-pane>
+        <ht-pane title="信贷合同"  ui-sref="mtgdetail.lncon">
+        </ht-pane>
+</ht-tabs>
+
+
+

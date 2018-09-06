@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_BCP_APPLI_BUSS_DTL" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.rec.bcp.dao.model.RBcpAppliBussDtl" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="DEBT_ID" property="debtId" jdbcType="VARCHAR" />
+    <result column="APPLY_TYPE" property="applyType" jdbcType="CHAR" />
+    <result column="CUSTCD_SALLER" property="custcdSaller" jdbcType="VARCHAR" />
+    <result column="CNAME_BUYER" property="cnameBuyer" jdbcType="VARCHAR" />
+    <result column="CUSTCD_BUYER" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="CNAME_SELLER" property="cnameSeller" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="INSERT_DATE" property="insertDate" jdbcType="CHAR" />
+    <result column="AGING" property="aging" jdbcType="VARCHAR" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="BILLS_NO" property="billsNo" jdbcType="VARCHAR" />
+    <result column="BILLS_TYPE" property="billsType" jdbcType="CHAR" />
+    <result column="BILLS_DATE" property="billsDate" jdbcType="CHAR" />
+    <result column="DEBT_END" property="debtEnd" jdbcType="CHAR" />
+    <result column="BILLS_AMOUNT" property="billsAmount" jdbcType="DECIMAL" />
+    <result column="BILLS_AMOUNT_VIEW" property="billsAmountView" jdbcType="DECIMAL" />
+    <result column="REMAINING_AMOUNT" property="remainingAmount" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="LOAN_AMOUNT" property="loanAmount" jdbcType="DECIMAL" />
+    <result column="PURCHASE_DATE" property="purchaseDate" jdbcType="CHAR" />
+    <result column="LOAN_REMAINING_AMOUNT" property="loanRemainingAmount" jdbcType="DECIMAL" />
+    <result column="REMAINING_USEABLE_AMOUNT" property="remainingUseableAmount" jdbcType="DECIMAL" />
+    <result column="RATE_COLLECT_AMOUNT" property="rateCollectAmount" jdbcType="DECIMAL" />
+    <result column="OWN_RATE_COLLECT_AMOUNT" property="ownRateCollectAmount" jdbcType="DECIMAL" />
+    <result column="LOAN_END_DATE" property="loanEndDate" jdbcType="CHAR" />
+    <result column="ASSURE_PERCENT" property="assurePercent" jdbcType="DECIMAL" />
+    <result column="ASSURE_PAY_DATE" property="assurePayDate" jdbcType="CHAR" />
+    <result column="REBATE_AMOUNT" property="rebateAmount" jdbcType="DECIMAL" />
+    <result column="BUY_BACK_AMOUNT" property="buyBackAmount" jdbcType="DECIMAL" />
+    <result column="PAY_AMOUNT" property="payAmount" jdbcType="DECIMAL" />
+    <result column="REMOVE_AMOUNT" property="removeAmount" jdbcType="DECIMAL" />
+    <result column="CASH_REMAINING_AMOUNT" property="cashRemainingAmount" jdbcType="DECIMAL" />
+    <result column="FLAW_FLAG" property="flawFlag" jdbcType="CHAR" />
+    <result column="FLAW_REASON" property="flawReason" jdbcType="VARCHAR" />
+    <result column="ISSUE_FLAG" property="issueFlag" jdbcType="CHAR" />
+    <result column="ISSUE_REASON" property="issueReason" jdbcType="VARCHAR" />
+    <result column="OVERDUE_FLAG" property="overdueFlag" jdbcType="CHAR" />
+    <result column="OVERDUE_REASON" property="overdueReason" jdbcType="VARCHAR" />
+    <result column="BAD_FLAG" property="badFlag" jdbcType="CHAR" />
+    <result column="BAD_REASON" property="badReason" jdbcType="VARCHAR" />
+    <result column="OTHER_REASON" property="otherReason" jdbcType="VARCHAR" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="POOL_FLAG" property="poolFlag" jdbcType="VARCHAR" />
+    <result column="OVERDUE_AMOUNT" property="overdueAmount" jdbcType="DECIMAL" />
+    <result column="PLEDGE_STATUS" property="pledgeStatus" jdbcType="VARCHAR" />
+    <result column="OVERDUE_STATUS" property="overdueStatus" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="RETURN_STATUS" property="returnStatus" jdbcType="CHAR" />
+    <result column="PLEDGE_ACTIVE_DATE" property="pledgeActiveDate" jdbcType="CHAR" />
+    <result column="UNPLEDGE_ACTIVE_DATE" property="unpledgeActiveDate" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="PRESS_COUNT" property="pressCount" jdbcType="DECIMAL" />
+    <result column="WARN_COUNT" property="warnCount" jdbcType="DECIMAL" />
+    <result column="BILLS_PERIOD" property="billsPeriod" jdbcType="CHAR" />
+    <result column="BEGIN_DATE" property="beginDate" jdbcType="CHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="CHAR" />
+    <result column="PAYDATE" property="paydate" jdbcType="CHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+    <result column="MONEY" property="money" jdbcType="DECIMAL" />
+    <result column="BAIL_REMAINING_AMOUNT" property="bailRemainingAmount" jdbcType="DECIMAL" />
+    <result column="OPEN_AMOUNT" property="openAmount" jdbcType="DECIMAL" />
+    <result column="BAIL_ACCOUNT" property="bailAccount" jdbcType="VARCHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="ADD_BAIL_AMOUNT" property="addBailAmount" jdbcType="DECIMAL" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="BUSS_CONTCODE" property="bussContcode" jdbcType="VARCHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    DEBET_NO,ID, APPNO, DEBT_ID, APPLY_TYPE, CUSTCD_SALLER, CNAME_BUYER, CUSTCD_BUYER, CNAME_SELLER, 
+    MAST_CONTNO, INSERT_DATE, AGING, BUSS_TYPE, BILLS_NO, BILLS_TYPE, BILLS_DATE, 
+    DEBT_END, BILLS_AMOUNT, BILLS_AMOUNT_VIEW, REMAINING_AMOUNT, CURCD, LOAN_PERCENT, 
+    LOAN_AMOUNT, PURCHASE_DATE, LOAN_REMAINING_AMOUNT, REMAINING_USEABLE_AMOUNT, RATE_COLLECT_AMOUNT, 
+    OWN_RATE_COLLECT_AMOUNT, LOAN_END_DATE, ASSURE_PERCENT, ASSURE_PAY_DATE, REBATE_AMOUNT, 
+    BUY_BACK_AMOUNT, PAY_AMOUNT, REMOVE_AMOUNT, CASH_REMAINING_AMOUNT, FLAW_FLAG, FLAW_REASON, 
+    ISSUE_FLAG, ISSUE_REASON, OVERDUE_FLAG, OVERDUE_REASON, BAD_FLAG, BAD_REASON, OTHER_REASON, 
+    REASON, POOL_FLAG, OVERDUE_AMOUNT, PLEDGE_STATUS, OVERDUE_STATUS, STATUS, RETURN_STATUS, 
+    PLEDGE_ACTIVE_DATE, UNPLEDGE_ACTIVE_DATE, MEMO, PRESS_COUNT, WARN_COUNT, BILLS_PERIOD, 
+    BEGIN_DATE, END_DATE, PAYDATE, COMMON_DATE, MONEY, BAIL_REMAINING_AMOUNT, OPEN_AMOUNT, 
+    BAIL_ACCOUNT, BAIL_AMOUNT, ADD_BAIL_AMOUNT, LOAN_WAY, BUSS_CONTCODE, TLRCD, CRT_TIME, 
+    BRCODE, LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.rec.bcp.dao.model.RBcpAppliBussDtlExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="EXT_BCP_APPLI_BUSS_DTL.Base_Column_List" />
+    from R_BCP_APPLI_BUSS_DTL
+    <isParameterPresent >
+      <include refid="EXT_BCP_APPLI_BUSS_DTL.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+
+
+
+
+ 
+</sqlMap>

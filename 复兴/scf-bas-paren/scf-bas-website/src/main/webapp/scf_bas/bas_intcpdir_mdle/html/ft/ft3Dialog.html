@@ -1,0 +1,18 @@
+
+<ht-form name="fourthform">
+    <ht-legend>拦截方案信息</ht-legend>
+    <ht-select  ht-id="chkItId" name="拦截项编号" datasource="selectChkPlIds" datatrsoption="value" dataoption="value"
+                ng-model="fourthform.chkItId" on-change="setClazzName" reg-exp="common.require" disable="{{disable}}"></ht-select>
+    <ht-input name="拦截项名" ng-model="fourthform.nm" reg-exp="common.require" disable="{{disable}}"></ht-input>
+    <ht-input name="拦截模型ID" disable="true" ng-model="fourthform.mdlId" reg-exp="common.require" disable="{{disable}}"></ht-input>
+    <ht-input name="排序号" ng-model="fourthform.ord" reg-exp="common.require" disable="{{disable}}"></ht-input>
+    <ht-select name="处理方式" ng-model="fourthform.deal"  dictionary="dealStat"  reg-exp="common.require"
+               disable="{{disable}}"></ht-select>
+    <ht-select name="启用标志"   ng-model="fourthform.stat"    dictionary="intStat"   reg-exp="common.require"
+               disable="{{disable}}"></ht-select>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" class="btn-primary" hide="{{hide}}">确定</ht-button>
+    <ht-button ht-id="closeThisDialog" class="btn-primary">取消</ht-button>
+</ht-button-group>

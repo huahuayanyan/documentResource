@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <property name="default_pattern" value="%d [%t - %X{traceNo}] %-5level %c{1} - %m%n" />
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="com.huateng.base.logTrace.logback.mdc.trace.encoder.TraceNoPatternLayoutEncoder">
+            <charset>UTF-8</charset>
+            <pattern>${default_pattern}</pattern>
+        </encoder>
+    </appender>
+	
+	<logger name="java.sql" additivity="false">  
+        <level value ="DEBUG"/>   
+        <appender-ref ref="STDOUT" />   
+    </logger>
+    
+    <logger name="org.springframework.jdbc" additivity="false">  
+        <level value ="DEBUG"/>   
+        <appender-ref ref="STDOUT" />   
+    </logger>
+	
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

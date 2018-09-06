@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_BRP_NOTICE_MODEL" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.brp.dao.model.BBrpNoticeModel" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+    <result column="FILE_EXT" property="fileExt" jdbcType="VARCHAR" />
+    <result column="UPLOAD_TIME" property="uploadTime" jdbcType="TIMESTAMP" />
+    <result column="UPLOAD_TLRNO" property="uploadTlrno" jdbcType="VARCHAR" />
+    <result column="FILE_DATA" property="fileData" typeHandler="org.springframework.orm.ibatis.support.BlobByteArrayTypeHandler" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, NOTICE_TYPE, URL, FILE_NAME, FILE_EXT, UPLOAD_TIME, UPLOAD_TLRNO, FILE_DATA
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpNoticeModelExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_BRP_NOTICE_MODEL.Base_Column_List" />
+    from B_BRP_NOTICE_Model
+    <isParameterPresent >
+      <include refid="B_BRP_NOTICE_MODEL.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  
+  <insert id="insert" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpNoticeModel" >
+    insert into B_BRP_NOTICE_MODEL (ID, NOTICE_TYPE, FILE_NAME, FILE_EXT, URL, 
+      UPLOAD_TIME, UPLOAD_TLRNO, FILE_DATA
+      )
+    values (#id:VARCHAR#, #noticeType:VARCHAR#, #fileName:VARCHAR#, #fileExt:VARCHAR#, #url:VARCHAR#, 
+      #uploadTime:TIMESTAMP#, #uploadTlrno:VARCHAR#, #fileData:handler=org.springframework.orm.ibatis.support.BlobByteArrayTypeHandler#
+      )
+  </insert>
+    <select id="selectByNoticeType" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpNoticeModel" >
+    select 
+    <include refid="B_BRP_NOTICE_MODEL.Base_Column_List" />
+    from B_BRP_NOTICE_MODEL
+    where NOTICE_TYPE = #noticeType:VARCHAR#
+  </select>
+ <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpNoticeModel" >
+    update B_BRP_NOTICE_MODEL
+    set FILE_NAME = #fileName:VARCHAR#,
+      FILE_EXT = #fileExt:VARCHAR#,
+      UPLOAD_TIME = #uploadTime:TIMESTAMP#,
+      UPLOAD_TLRNO = #uploadTlrno:VARCHAR#,
+      FILE_DATA = #fileData:handler=org.springframework.orm.ibatis.support.BlobByteArrayTypeHandler#
+     where ID = #id:VARCHAR#
+  </update> 
+    <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpNoticeModel" >
+    delete from B_BRP_NOTICE_MODEL
+    where ID = #id:VARCHAR#
+  </delete>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.brp.dao.model.BBrpNoticeModel" >
+    select 
+    <include refid="B_BRP_NOTICE_MODEL.Base_Column_List" />
+    from B_BRP_NOTICE_MODEL
+    where ID = #id:VARCHAR#
+  </select>
+</sqlMap>

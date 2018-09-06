@@ -1,0 +1,29 @@
+<ht-legend colorId="lawngreen">普通非标准仓单信息详情</ht-legend>
+<ht-form name ="baseinfo">
+    <ht-input ht-id="billcode" name="仓单号" ng-model="baseinfo.billcode" disable="true"></ht-input>
+    <ht-input ht-id="slaveContno" name="担保合同号" ng-model="baseinfo.slaveContno" disable="true"></ht-input>
+    <ht-input ht-id="cname" name="出质人名称" ng-model="baseinfo.cname" disable="true"></ht-input>
+    <ht-input ht-id="tlrname" name="经办人名称" ng-model="baseinfo.tlrname" disable="true"></ht-input>
+</ht-form>
+
+<ht-legend>普通非标准仓单下的货物列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="viewmort" class="btn-primary">押品信息</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="mortgageNo" zh-name="押品编号"></ht-column>
+    <ht-column eg-name="productName" zh-name="货物名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="quantity" zh-name="库存数量" type="currency"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="核定价" type="currency"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf" style="height: 50px;padding-top: 5px"></ht-page>
+
+<ht-button-group align="center">
+    <ht-button ht-id="back" class="btn-primary" desc-name="返回"></ht-button>
+</ht-button-group>
+
+
+

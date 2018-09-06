@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_DCR_CHK_DIR" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.dcr.model.BDcrChkDir" >
+    <result column="CHK_DIR_ID" property="chkDirId" jdbcType="VARCHAR" />
+    <result column="LIN_ID" property="linId" jdbcType="VARCHAR" />
+    <result column="TYP_ID" property="typId" jdbcType="VARCHAR" />
+    <result column="RLT_TYP" property="rltTyp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    CHK_DIR_ID, LIN_ID, TYP_ID, RLT_TYP
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDirExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_DCR_CHK_DIR.Base_Column_List" />
+    from B_DCR_CHK_DIR
+    <isParameterPresent >
+      <include refid="B_DCR_CHK_DIR.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDir" >
+    select 
+    <include refid="B_DCR_CHK_DIR.Base_Column_List" />
+    from B_DCR_CHK_DIR
+    where CHK_DIR_ID = #chkDirId:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDir" >
+    delete from B_DCR_CHK_DIR
+    where CHK_DIR_ID = #chkDirId:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDirExample" >
+    delete from B_DCR_CHK_DIR
+    <include refid="B_DCR_CHK_DIR.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDir" >
+    insert into B_DCR_CHK_DIR (CHK_DIR_ID, LIN_ID, TYP_ID, RLT_TYP)
+    values (#chkDirId:VARCHAR#, #linId:VARCHAR#, #typId:VARCHAR#, #rltTyp:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDir" >
+    insert into B_DCR_CHK_DIR
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="chkDirId" >
+        CHK_DIR_ID
+      </isNotNull>
+      <isNotNull prepend="," property="linId" >
+        LIN_ID
+      </isNotNull>
+      <isNotNull prepend="," property="typId" >
+        TYP_ID
+      </isNotNull>
+      <isNotNull prepend="," property="rltTyp" >
+        RLT_TYP
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="chkDirId" >
+        #chkDirId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="linId" >
+        #linId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="typId" >
+        #typId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rltTyp" >
+        #rltTyp:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDirExample" resultClass="java.lang.Integer" >
+    select count(*) from B_DCR_CHK_DIR
+    <include refid="B_DCR_CHK_DIR.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_DCR_CHK_DIR
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.chkDirId" >
+        CHK_DIR_ID = #record.chkDirId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.linId" >
+        LIN_ID = #record.linId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.typId" >
+        TYP_ID = #record.typId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rltTyp" >
+        RLT_TYP = #record.rltTyp:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_DCR_CHK_DIR.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_DCR_CHK_DIR
+    set CHK_DIR_ID = #record.chkDirId:VARCHAR#,
+      LIN_ID = #record.linId:VARCHAR#,
+      TYP_ID = #record.typId:VARCHAR#,
+      RLT_TYP = #record.rltTyp:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_DCR_CHK_DIR.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDir" >
+    update B_DCR_CHK_DIR
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="linId" >
+        LIN_ID = #linId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="typId" >
+        TYP_ID = #typId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rltTyp" >
+        RLT_TYP = #rltTyp:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where CHK_DIR_ID = #chkDirId:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.dcr.model.BDcrChkDir" >
+    update B_DCR_CHK_DIR
+    set LIN_ID = #linId:VARCHAR#,
+      TYP_ID = #typId:VARCHAR#,
+      RLT_TYP = #rltTyp:VARCHAR#
+    where CHK_DIR_ID = #chkDirId:VARCHAR#
+  </update>
+</sqlMap>

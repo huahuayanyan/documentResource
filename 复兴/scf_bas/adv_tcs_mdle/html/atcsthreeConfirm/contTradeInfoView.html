@@ -1,0 +1,47 @@
+<!--<div ui-view="viewName2"></div>-->
+
+<ht-form name="contform">
+    <ht-legend>购销合同基本信息</ht-legend>
+    <ht-input name="购销合同号" ng-model="contform.tradeContcode" disable="true"></ht-input>
+    <ht-input-extent ht-id="productId" name="业务品种" reg-exp="common.require"  extent="productNameContent" disable="true"
+                     on-change="productNamedooextent" ng-model="contform.productName">
+    </ht-input-extent>
+    <ht-input-extent ht-id="cname" name="买方名称" reg-exp="common.require"  extent="cnameContent" disable="true"
+                     on-change="cnamedooextent" ng-model="contform.cname">
+    </ht-input-extent>
+    <ht-input-extent ht-id="coreNm" name="卖方名称" reg-exp="common.require"  extent="coreNmContent" disable="true"
+                     on-change="coreNmdooextent" ng-model="contform.coreNm">
+    </ht-input-extent>
+    <ht-input name="担保提货协议号" ng-model="contform.protocolNo" disable="true"></ht-input>
+    <ht-select ht-id='curcd' name="合同币种" dictionary="curcd" disable="true" ng-model="contform.curcd"></ht-select>
+    <ht-input ht-id="amt" name="合同金额" ng-model="contform.amt" edit-type="currency"disable="true"></ht-input>
+    <ht-input ht-id="startDate" edit-type="date" name="合同生效日" ng-model="contform.startDate" disable="true"></ht-input>
+    <ht-input ht-id="endDate" edit-type="date" name="合同到期日" ng-model="contform.endDate" disable="true"></ht-input>
+    <ht-input ht-id="totAmt" name="累计出账金额" ng-model="contform.totAmt" edit-type="currency" disable="true"></ht-input>
+    <ht-input ht-id="costMoney" name="合同其他费用(除贷款外)" ng-model="contform.costMoney" edit-type="currency" disable="true"></ht-input>
+
+    <ht-legend>备注</ht-legend>
+    <ht-text-area ht-id="memo" name="备注" height="70" hide="false" ng-model="contform.memo">
+</ht-form>
+<ht-legend>采购商品信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="false">
+    <ht-column eg-name="mortgageName" zh-name="货物名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="mortgageUnits" zh-name="单位" dictionary="mortgageUnits"></ht-column>
+    <ht-column eg-name="quantity" zh-name="数量/重量" type="currency"></ht-column>
+    <ht-column eg-name="price" zh-name="单价" type="currency"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="closeThisDialog"  class="btn-primary" >返回</ht-button>
+</ht-button-group>
+<!--<ht--position batchNo="1" bindName="abc"/>-->
+
+
+
+

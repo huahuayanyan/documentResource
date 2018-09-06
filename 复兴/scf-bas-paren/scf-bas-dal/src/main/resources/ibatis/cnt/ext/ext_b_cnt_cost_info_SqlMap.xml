@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_B_CNT_COST_INFO" >
+<typeAlias alias="BCntCostInfo" type="com.huateng.scf.bas.cnt.dao.model.BCntCostInfo"></typeAlias>
+  <select id="findCostInfoByContno" resultMap="B_CNT_COST_INFO.BaseResultMap" parameterClass="BCntCostInfo">
+  	select T1.* from B_CNT_COST_INFO  T1
+  	 <isParameterPresent >
+	    where 1=1
+	    <isNotEmpty prepend="and" property="relaNo">
+	    T1.RELA_NO=#relaNo:VARCHAR#
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="relaType">
+	    T1.RELA_TYPE=#relaType:VARCHAR#
+	    </isNotEmpty>
+    </isParameterPresent>
+  </select>
+</sqlMap>

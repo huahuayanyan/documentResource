@@ -1,0 +1,97 @@
+<style type="text/css">
+  /*  form > div {
+        font-size:14px !important;
+    }*/
+  pre {
+      display: block;
+      padding: 0px;
+      margin: 0 0 0px;
+      word-break: break-all;
+      word-wrap: break-word;
+      white-space: pre;
+      /*white-space: pre-wrap;*/
+      border: 0;
+      background-color: transparent;
+      font-size: 13px;
+      line-height: 20px;
+  }
+  .table {
+      margin-bottom: 0;
+      border: 0px #dddddd solid;
+  }
+
+label {
+ width: 100%;
+ margin-bottom: 1px;
+}
+.inputContent
+{
+    width: 27.5%;
+    z-index: 1000;
+    margin-left: 17.5%;
+    position: absolute;
+    overflow: auto;
+    border:1px solid #1f82da;
+    background-color: #fff;
+    }
+/*  .form {
+      padding: 20px 20px 10px;
+      background: #fff;
+      margin-bottom: 8px;
+      /!*border-radius: 5px;*!/
+      -webkit-box-shadow: 3px 3px 3px #ccc;
+      -moz-box-shadow: 3px 3px 3px #ccc;
+      box-shadow: 3px 3px 3px #ccc;}*/
+  .form_label{  display: inline-block;  width:100%;padding-left: 5%;
+      text-align: left;font-size: 12px;vertical-align: middle; }
+  .span {
+      display: inline-block;
+      width: 39%;
+      padding-left: 10%;
+      text-align: left;
+      font-size: 12px;
+      vertical-align: middle;
+  }
+  .input {
+      width: 60%;
+      height: 26px;
+      padding-left: 14px;
+      font-weight: normal;
+      background-color: #fff;
+      color: #333333;
+      border: 1px solid #e3e3e3;
+      font-size: 12px;
+  }
+  .td_xh{
+  	width:20px;
+  }
+  .td_city{
+  	width:30px;
+  }
+  .td_amt{
+  	width:200px;
+  }
+</style>
+<div></div>
+
+<div>
+    <div id="custProChart"  style=" float:left;width:75%;height:450px;"></div>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/echarts.js"></script>
+    <div style=" float:right;width:25%;height:450px;">
+        <ht-panel> 
+            <ht-legend>TOP 10</ht-legend>
+            <table class="table">
+            	<tr ng-repeat="finAmtTop in finAmtTopList">
+            		<td class="td_xh">{{$index+1}}</td>
+            		<td class="td_city">{{finAmtTop.regionName}}</td>
+            		<td class="td_amt">{{finAmtTop.lnciAmtStr}}</td>
+            	</tr>
+            </table>
+        </ht-panel> 
+    </div>
+</div>
+
+<div>
+
+

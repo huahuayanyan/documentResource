@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EXT_NREC_NOTICE_QRY" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.nte.dao.model.BNteNoticeBase" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="NUM" property="num" jdbcType="VARCHAR" />
+    <result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_CODE" property="protocolCode" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+    <result column="SLAVE_CONTCODE" property="slaveContcode" jdbcType="VARCHAR" />
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_CHANGE_TYPE" property="mortgageChangeType" jdbcType="CHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="MONI_OF_DATE" property="moniOfDate" jdbcType="CHAR" />
+    <result column="APPLI_DATE" property="appliDate" jdbcType="CHAR" />
+    <result column="MONI_OF_NAME" property="moniOfName" jdbcType="VARCHAR" />
+    <result column="TLRN" property="tlrn" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+    <result column="PLEDGE_MODE" property="pledgeMode" jdbcType="CHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="COMMON_AMT" property="commonAmt" jdbcType="DECIMAL" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="COMMON_NUM" property="commonNum" jdbcType="VARCHAR" />
+    <result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+    <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+    <result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+    <result column="OTHER_CUST_NAME" property="otherCustName" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_BRCODE" property="depositBrcode" jdbcType="VARCHAR" />
+    <result column="RATIO" property="ratio" jdbcType="DECIMAL" />
+    <result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+    <result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+    <result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+    <result column="EXT1_AMOUNT" property="ext1Amount" jdbcType="DECIMAL" />
+    <result column="EXT2_AMOUNT" property="ext2Amount" jdbcType="DECIMAL" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="PAYEE" property="payee" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_BRNAME" property="depositBrname" jdbcType="VARCHAR" />
+    <result column="LINKMAN" property="linkman" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="TONS" property="tons" jdbcType="DECIMAL" />
+    <result column="AMT" property="amt" jdbcType="DECIMAL" />
+    <result column="DELIVERY_QUANTITY" property="deliveryQuantity" jdbcType="DECIMAL" />
+    <result column="DELIVERY_AMT" property="deliveryAmt" jdbcType="DECIMAL" />
+    <result column="BALANCE_AMT" property="balanceAmt" jdbcType="DECIMAL" />
+    <result column="PRICE_DROP_RATE" property="priceDropRate" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, APPNO, NUM, MONITOR_PROTOCOL_NO, PROTOCOL_CODE, SLAVE_CONTNO, SLAVE_CONTCODE, 
+    CUSTCD, MONI_OF_CUSTCD, NOTICE_TYPE, MORTGAGE_CHANGE_TYPE, BRCODE, MONI_OF_DATE, 
+    APPLI_DATE, MONI_OF_NAME, TLRN, STATUS, BAIL_AMOUNT, PLEDGE_MODE, MAST_CONTNO, COMMON_AMT, 
+    ORDER_NO, COMMON_NUM, MAST_CONTCODE, CUST_NAME, OTHER_CUSTCD, OTHER_CUST_NAME, ACCOUNT_NAME, 
+    ACCOUNT_NO, DEPOSIT_BRCODE, RATIO, TRADE_CONTNO, DEBET_NO, DEBET_ID, PROTOCOL_NO, 
+    SIGN_DATE, COMMON_DATE, EXT1_AMOUNT, EXT2_AMOUNT, EXT1, EXT2, BUSS_TYPE, PAYEE, REMARK, 
+    DEPOSIT_BRNAME, LINKMAN, TELEPHONE, FAX, TONS, AMT, DELIVERY_QUANTITY, DELIVERY_AMT, 
+    BALANCE_AMT, PRICE_DROP_RATE
+  </sql>
+
+  <!-- 通知书查询 -->
+  <select id="countFactoringNoticeCommon" resultClass="java.lang.Integer" parameterClass="java.util.Map" >
+    select count(ID)
+    from B_NTE_NOTICE_BASE
+    where SIGN_DATE is not null
+	<isNotEmpty prepend="and" property="sallerName" >
+    	CUSTCD in(select CUSTCD from B_CRM_BASE_INFO M 
+    		where (M.CNAME like '%' || #sallerName# || '%'
+    			or M.CUSTCD like '%' || #sallerName# || '%'
+    		))
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="mastContno" >
+		MAST_CONTNO like '%$mastContno$%' 
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="bussType" >
+		BUSS_TYPE = #bussType:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="noticeType" >
+		NOTICE_TYPE = #noticeType:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty property="noticeTypeSet" prepend="and">
+		NOTICE_TYPE in
+		<iterate conjunction="," open="(" close=")" property="noticeTypeSet">
+			#noticeTypeSet[]#
+		</iterate>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="noticeStatus" >
+		STATUS = #noticeStatus:VARCHAR#
+	</isNotEmpty>		    
+	<isNotEmpty prepend="and" property="brcode" >
+		BRCODE = #brcode:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startQf" >
+		<![CDATA[SIGN_DATE >= #startQf:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endQf" >
+		<![CDATA[SIGN_DATE <= #endQf:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startHz" >
+		<![CDATA[COMMON_DATE >= #startHz:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endHz" >
+		<![CDATA[COMMON_DATE <= #endHz:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="tlrNoList" > 
+        TLRN in 
+        <iterate property="tlrNoList" conjunction="," open="(" close=")" >
+   		 #tlrNoList[]#
+   		</iterate> 
+    </isNotNull>
+    <isNotNull prepend="and" property="brNoList" > 
+        BRCODE in 
+        <iterate property="brNoList" conjunction="," open="(" close=")" >
+   		 #brNoList[]#
+   		</iterate> 
+    </isNotNull>
+  </select>
+  <select id="selectFactoringNoticeCommon" resultMap="BaseResultMap" parameterClass="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from B_NTE_NOTICE_BASE
+    where SIGN_DATE is not null
+	<isNotEmpty prepend="and" property="sallerName" >
+    	CUSTCD in(select CUSTCD from B_CRM_BASE_INFO M 
+    		where (M.CNAME like '%' || #sallerName# || '%'
+    			or M.CUSTCD like '%' || #sallerName# || '%'
+    		))
+    </isNotEmpty>
+    <isNotEmpty prepend="and" property="mastContno" >
+		MAST_CONTNO like '%$mastContno$%' 
+	</isNotEmpty>
+    <isNotEmpty prepend="and" property="bussType" >
+		BUSS_TYPE = #bussType:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="noticeType" >
+		NOTICE_TYPE = #noticeType:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty property="noticeTypeSet" prepend="and">
+		NOTICE_TYPE in
+		<iterate conjunction="," open="(" close=")" property="noticeTypeSet">
+			#noticeTypeSet[]#
+		</iterate>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="noticeStatus" >
+		STATUS = #noticeStatus:VARCHAR#
+	</isNotEmpty>		    
+	<isNotEmpty prepend="and" property="brcode" >
+		BRCODE = #brcode:VARCHAR#
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startQf" >
+		<![CDATA[SIGN_DATE >= #startQf:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endQf" >
+		<![CDATA[SIGN_DATE <= #endQf:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startHz" >
+		<![CDATA[COMMON_DATE >= #startHz:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endHz" >
+		<![CDATA[COMMON_DATE <= #endHz:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotNull prepend="and" property="tlrNoList" > 
+        TLRN in 
+        <iterate property="tlrNoList" conjunction="," open="(" close=")" >
+   		 #tlrNoList[]#
+   		</iterate> 
+    </isNotNull>
+    <isNotNull prepend="and" property="brNoList" > 
+        BRCODE in 
+        <iterate property="brNoList" conjunction="," open="(" close=")" >
+   		 #brNoList[]#
+   		</iterate> 
+    </isNotNull>
+	order by SIGN_DATE desc
+  </select>
+
+</sqlMap>

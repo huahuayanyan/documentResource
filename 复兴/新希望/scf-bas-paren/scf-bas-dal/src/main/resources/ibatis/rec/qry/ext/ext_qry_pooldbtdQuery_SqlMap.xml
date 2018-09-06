@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<!-- ext_pool_dbtdQuery-->
+
+<sqlMap namespace="EXT_QRY_POOLDBTDQUERY" >
+  
+  <resultMap id="DebtInfoByPersonMap" class="com.huateng.scf.rec.bcp.dao.model.DebtBillsInfoVO">
+    <result column="cname_buyer" property="cnameBuyer" jdbcType="VARCHAR" />
+    <result column="cname_seller" property="cnameSeller" jdbcType="VARCHAR" />
+    <result column="bills_no" property="billsNo" jdbcType="VARCHAR" />
+    <result column="buss_contcode" property="bussContcode" jdbcType="VARCHAR" />
+    <result column="bills_type" property="billsType" jdbcType="VARCHAR" />
+    <result column="bills_date" property="billsDate" jdbcType="VARCHAR" />
+    <result column="debt_end" property="debtEnd" jdbcType="VARCHAR" />
+    <result column="deadline" property="deadline" jdbcType="VARCHAR" />
+    <result column="bills_amount_view" property="billsAmountView" jdbcType="DECIMAL" />
+    <result column="bills_amount" property="billsAmount" jdbcType="DECIMAL" />
+    <result column="remaining_amount" property="remainingAmount" jdbcType="DECIMAL" />
+    <result column="debet_no" property="debetNo" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="VARCHAR" />
+    <result column="end_date" property="endDate" jdbcType="VARCHAR" />
+    <result column="lnci_bal" property="lnciBal" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="mgrno" property="mgrno" jdbcType="VARCHAR" />
+    <result column="brcode" property="brcode" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="debet_id" property="debetId" jdbcType="VARCHAR" />
+    <result column="issue_times" property="issueTimes" jdbcType="DECIMAL" />
+    <result column="pool_flag" property="poolFlag" jdbcType="VARCHAR" />
+    
+    <result column="buss_type" property="bussType" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="VARCHAR" />
+    <result column="purchase_date" property="purchaseDate" jdbcType="VARCHAR" />
+    <result column="aging" property="aging" jdbcType="DECIMAL" />
+    <result column="loan_percent" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="loan_remaining_amount" property="loanRemainingAmount" jdbcType="DECIMAL" />
+    <result column="issue_flag" property="issueFlag" jdbcType="VARCHAR" />
+    <result column="issue_reason" property="issueReason" jdbcType="VARCHAR" />
+    <result column="overdue_status" property="overdueStatus" jdbcType="VARCHAR" />
+    <result column="tlrcd" property="tlrNo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+ <!-- 应收账款查询 -->
+  <select id="selectDebtInfoByPerson" resultMap="DebtInfoByPersonMap"  parameterClass="java.util.Map" >
+	select dbi.cname_buyer,dbi.cname_seller,dbi.bills_no,dbi.buss_contcode,dbi.bills_type,dbi.bills_date,dbi.debt_end,
+	dbi.deadline,dbi.bills_amount_view,dbi.bills_amount,dbi.remaining_amount,dbi.debet_no,lbi.start_date,lbi.end_date,
+	lbi.lnci_bal,dbi.status,tbpd.mgrno,tbpd.brcode,dbi.id,lbi.debet_id,dbi.issue_times,dbi.pool_flag,dbi.buss_type,
+	dbi.insert_date,dbi.purchase_date,dbi.aging,dbi.loan_percent,dbi.loan_remaining_amount,dbi.issue_flag,dbi.issue_reason,
+	dbi.overdue_status,dbi.overdue_reason,tbpd.tlrcd
+	from R_BCP_DEBT_BASE_INFO dbi
+	left join B_CNT_DEBT_INFO tbpd on dbi.mast_contno = tbpd.debt_contno
+	left join B_LAN_LNCI_BASE lbi on dbi.debet_no = lbi.debet_no
+	where dbi.status !='00' and 1 = 1  
+		    <isNotEmpty prepend="and" property="custcdSaller_Q" > 
+				dbi.cname_Seller like '%'|| #custcdSaller_Q:VARCHAR#||'%'  
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="custcdBuyer_Q" > 
+				dbi.cname_buyer like '%'|| #custcdBuyer_Q:VARCHAR#||'%'  
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="mastContno" > 
+				dbi.mast_Contno = #mastContno:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="bussType_Q" > 
+				dbi.buss_type = #bussType_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="billsType_Q" > 
+				dbi.bills_type = #billsType_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="billsNo_Q" > 
+				dbi.bills_No = #billsNo_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="start_Q" > 
+			<![CDATA[ dbi.bills_Date >= #start_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="end_Q" > 
+		    <![CDATA[ dbi.bills_Date <= #end_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="debtEnd_from_Q" > 
+		    <![CDATA[ dbi.debt_End >= #debtEnd_from_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="debtEnd_to_Q" > 
+		    <![CDATA[ dbi.debt_End <= #debtEnd_to_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="status_Q" > 
+				dbi.status = #status_Q:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="LoanWay_Q" > 
+				dbi.loan_way = #LoanWay_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="brcode" > 
+				tbpd.brcode = #brcode:VARCHAR#
+			</isNotEmpty>
+
+	       <isNotEmpty prepend="and" property="factType_Q" >
+	       	<isEqual property="factType_Q" compareValue ="1">
+              tbpd.FACT_TYPE in ("1","2","6")
+            </isEqual>   
+	       	<isEqual property="factType_Q" compareValue ="2">
+              tbpd.FACT_TYPE in ("7","8","9")
+            </isEqual>   
+           	<isEqual property="factType_Q" compareValue ="3">
+              tbpd.FACT_TYPE = "3"
+            </isEqual>  
+	       	<isEqual property="factType_Q" compareValue ="4">
+              tbpd.FACT_TYPE = "4"
+            </isEqual>   
+	       	<isEqual property="factType_Q" compareValue ="5">
+              tbpd.FACT_TYPE = "5"
+            </isEqual>   
+      	   </isNotEmpty> 
+  </select>
+  
+  <select id="selectDebtCountByPerson" resultClass="java.lang.Integer"  parameterClass="java.util.Map" >
+  	select count(bills_no) from(
+	select dbi.cname_buyer,dbi.cname_seller,dbi.bills_no,dbi.buss_contcode,dbi.bills_type,dbi.bills_date,dbi.debt_end,
+	dbi.deadline,dbi.bills_amount_view,dbi.bills_amount,dbi.remaining_amount,dbi.debet_no,lbi.start_date,lbi.end_date,
+	lbi.lnci_bal,dbi.status,tbpd.mgrno,tbpd.brcode,dbi.id,lbi.debet_id,dbi.issue_times,dbi.pool_flag,dbi.buss_type,
+	dbi.insert_date,dbi.purchase_date,dbi.aging,dbi.loan_percent,dbi.loan_remaining_amount,dbi.issue_flag,dbi.issue_reason,
+	dbi.overdue_status,dbi.overdue_reason,tbpd.tlrcd
+	from R_BCP_DEBT_BASE_INFO dbi
+	left join B_CNT_DEBT_INFO tbpd on dbi.mast_contno = tbpd.debt_contno
+	left join B_LAN_LNCI_BASE lbi on dbi.debet_no = lbi.debet_no
+	where dbi.status !='00' and 1 = 1  
+		    <isNotEmpty prepend="and" property="custcdSaller_Q" > 
+				dbi.cname_Seller like '%'|| #custcdSaller_Q:VARCHAR#||'%'  
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="custcdBuyer_Q" > 
+				dbi.cname_buyer like '%'|| #custcdBuyer_Q:VARCHAR#||'%'  
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="mastContno" > 
+				dbi.mast_Contno = #mastContno:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="bussType_Q" > 
+				dbi.buss_type = #bussType_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="billsType_Q" > 
+				dbi.bills_type = #billsType_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="billsNo_Q" > 
+				dbi.bills_No = #billsNo_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="start_Q" > 
+			<![CDATA[ dbi.bills_Date >= #start_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="end_Q" > 
+		    <![CDATA[ dbi.bills_Date <= #end_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="debtEnd_from_Q" > 
+		    <![CDATA[ dbi.debt_End >= #debtEnd_from_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="debtEnd_to_Q" > 
+		    <![CDATA[ dbi.debt_End <= #debtEnd_to_Q:VARCHAR#]]>
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="status_Q" > 
+				dbi.status = #status_Q:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="LoanWay_Q" > 
+				dbi.loan_way = #LoanWay_Q:VARCHAR#
+			</isNotEmpty>
+		    <isNotEmpty prepend="and" property="brcode" > 
+				tbpd.brcode = #brcode:VARCHAR#
+			</isNotEmpty>
+
+	       <isNotEmpty prepend="and" property="factType_Q" >
+	       	<isEqual property="factType_Q" compareValue ="1">
+              tbpd.FACT_TYPE in ("1","2","6")
+            </isEqual>   
+	       	<isEqual property="factType_Q" compareValue ="2">
+              tbpd.FACT_TYPE in ("7","8","9")
+            </isEqual>   
+           	<isEqual property="factType_Q" compareValue ="3">
+              tbpd.FACT_TYPE = "3"
+            </isEqual>  
+	       	<isEqual property="factType_Q" compareValue ="4">
+              tbpd.FACT_TYPE = "4"
+            </isEqual>   
+	       	<isEqual property="factType_Q" compareValue ="5">
+              tbpd.FACT_TYPE = "5"
+            </isEqual>   
+      	   </isNotEmpty> 
+      	   )
+  </select>
+  
+  <resultMap id="InvoiceCourseInfoMap" class="com.huateng.scf.rec.bcp.dao.model.DebtBussDtlVO">
+    <result column="appno" property="appno" jdbcType="VARCHAR" />
+    <result column="mast_contno" property="mastContno" jdbcType="VARCHAR" />
+    <result column="custcd_saller" property="custcdSaller"  jdbcType="VARCHAR" />
+    <result column="custcd_buyer" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="bills_no"  property="billsNo" jdbcType="VARCHAR" />
+    <result column="curcd"  property="curcd" jdbcType="VARCHAR" />
+    <result column="apply_type" property="applyType"  jdbcType="VARCHAR" />
+    <result column="bills_type" property="billsType" jdbcType="VARCHAR" />
+    <result column="buss_type" property="bussType" jdbcType="VARCHAR" />
+    <result column="cname_buyer" property="cnameBuyer" jdbcType="VARCHAR" />
+    <result column="cname_seller" property="cnameSeller" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="bills_amount" property="billsAmount" jdbcType="DECIMAL" />
+    <result column="pay_amount" property="payAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  
+   <!-- 应收账款历程信息 -->
+  <select id="selectInvoiceCourseInfo" resultMap="InvoiceCourseInfoMap"  parameterClass="java.util.Map" >
+		select a.appno,	a.mast_contno, b.product_id,a.custcd_saller,a.cname_buyer,a.custcd_buyer,a.cname_seller, a.bills_no,a.curcd,a.apply_type,a.bills_type,
+		a.buss_type，a.money, a.pay_amount,a.bills_amount,c.tlrcd,c.brcode
+		 from R_BCP_DEBT_BUSS_DTL a, B_BRP_PRD_FACTORING b, B_CNT_DEBT_INFO c	
+		 where 1 = 1 	
+		 and a.mast_contno = c.debt_contno	
+		 and b.product_id = c.supply_chain_pd_id
+		<isNotEmpty prepend="and" property="id_Q" > 
+			a.debt_id = #id_Q:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="billsNo_Q" > 
+			a.bills_no = #billsNo_Q:VARCHAR#
+		</isNotEmpty>
+	<!--<isNotEmpty prepend="and" property="applyType_Q" >
+	       	<isEqual property="applyType_Q" compareValue ="1">
+              tbpd.FACT_TYPE in ("1","2","6")
+            </isEqual>   
+	       	<isEqual property="applyType_Q" compareValue ="2">
+              tbpd.FACT_TYPE in ("7","8","9")
+            </isEqual>   
+           	<isEqual property="applyType_Q" compareValue ="3">
+              tbpd.FACT_TYPE = "3"
+            </isEqual>  
+	       	<isEqual property="applyType_Q" compareValue ="4">
+              tbpd.FACT_TYPE = "4"
+            </isEqual>   
+	       	<isEqual property="applyType_Q" compareValue ="5">
+              tbpd.FACT_TYPE = "5"
+            </isEqual>   
+      	</isNotEmpty>  -->
+		order by a.id desc
+  </select> 
+   <!-- 应收账款历程信息条目数-->
+  <select id="selectInvoiceCourseCount" resultClass="java.lang.Integer"  parameterClass="java.util.Map" >
+  		select count(mast_contno) from
+		(		select a.appno,	a.mast_contno, b.product_id,a.custcd_saller,a.cname_buyer,a.custcd_buyer,a.cname_seller, a.bills_no,a.curcd,a.apply_type,a.bills_type,
+		a.buss_type，a.money, a.pay_amount,a.bills_amount,c.tlrcd,c.brcode
+		 from R_BCP_DEBT_BUSS_DTL a, B_BRP_PRD_FACTORING b, B_CNT_DEBT_INFO c	
+		 where 1 = 1 	
+		 and a.mast_contno = c.debt_contno	
+		 and b.product_id = c.supply_chain_pd_id
+		<isNotEmpty prepend="and" property="id_Q" > 
+			a.debt_id = #id_Q:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="billsNo_Q" > 
+			a.bills_no = #billsNo_Q:VARCHAR#
+		</isNotEmpty>
+		)
+	<!--<isNotEmpty prepend="and" property="applyType_Q" >
+	       	<isEqual property="applyType_Q" compareValue ="1">
+              tbpd.FACT_TYPE in ("1","2","6")
+            </isEqual>   
+	       	<isEqual property="applyType_Q" compareValue ="2">
+              tbpd.FACT_TYPE in ("7","8","9")
+            </isEqual>   
+           	<isEqual property="applyType_Q" compareValue ="3">
+              tbpd.FACT_TYPE = "3"
+            </isEqual>  
+	       	<isEqual property="applyType_Q" compareValue ="4">
+              tbpd.FACT_TYPE = "4"
+            </isEqual>   
+	       	<isEqual property="applyType_Q" compareValue ="5">
+              tbpd.FACT_TYPE = "5"
+            </isEqual>   
+      	</isNotEmpty>  -->
+		
+  </select> 
+   
+</sqlMap>

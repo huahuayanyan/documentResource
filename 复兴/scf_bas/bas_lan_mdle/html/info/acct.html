@@ -1,0 +1,24 @@
+
+<!--<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="accountNo" name="保证金帐号" ng-model="conditionForm.accountNo"></ht-input>
+    <ht-button-group >
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>-->
+
+<ht-legend>保证金信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+    <ht-column eg-name="accountNo" zh-name="保证金帐号" ></ht-column>
+    <ht-column eg-name="bailFrozenAmt" zh-name="冻结保证金金额" type="currency"></ht-column>
+    <ht-column eg-name="accountName" zh-name="保证金帐号名称" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+    <ht-input ht-id="bussContno" name="池合同号" ng-model="conditionForm.bussContno"></ht-input>
+    <ht-input ht-id="sellerName" name="卖方名称" ng-model="conditionForm.sellerName"></ht-input>
+    <ht-input ht-id="startYj" name="预警日期从" ng-model="conditionForm.startYj" edit-type="date"></ht-input>
+    <ht-input ht-id="endYj" name="预警日期到" ng-model="conditionForm.endYj" edit-type="date"></ht-input>
+    <ht-button-group >
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+        <ht-button ht-id="homeBack" class="btn-primary" hide="{{homeBackHide}}" desc-name="返回主页"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>敞口无法覆盖预警列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="bussContno" zh-name="池合同号" ></ht-column>
+    <ht-column eg-name="productId" zh-name="业务品种" dictionary="vidBusTyp"></ht-column>
+    <ht-column eg-name="sellerName" zh-name="卖方名称"></ht-column>
+    <ht-column eg-name="debtAmt" zh-name="池应收账款余额" type="currency"></ht-column>
+    <ht-column eg-name="loanPercent" zh-name="融资比例(%)" ></ht-column>
+    <ht-column eg-name="bailAmt" zh-name="池保证金余额" type="currency"></ht-column>
+    <ht-column eg-name="riskAmt" zh-name="池敞口余额" type="currency"></ht-column>
+    <ht-column eg-name="overflowAmt" zh-name="敞口暴露金额" type="currency"></ht-column>
+    <ht-column eg-name="warnDate" zh-name="预警日期" ></ht-column>
+    <ht-column eg-name="khjl" zh-name="客户经理" ></ht-column>
+    <ht-column eg-name="jbjg" zh-name="经办机构" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+

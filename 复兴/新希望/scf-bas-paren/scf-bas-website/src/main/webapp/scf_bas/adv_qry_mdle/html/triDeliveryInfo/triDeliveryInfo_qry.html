@@ -1,0 +1,43 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="custName" name="买方名称" ng-model="conditionForm.custName"></ht-input>
+    <ht-input ht-id="otherCustName" name="卖方名称" ng-model="conditionForm.otherCustName"></ht-input>
+    <ht-input ht-id="buyBackName" name="承担方名称" ng-model="conditionForm.buyBackName"></ht-input>
+    <ht-input ht-id="debetId" name="银承协议号/借据号" ng-model="conditionForm.debetId"></ht-input>
+    <ht-input ht-id="insertDateFrom" high-date-id="insertDateTo" name="提货日 从" ng-model="conditionForm.insertDateFrom"
+              edit-type="date" ></ht-input>
+    <ht-input ht-id="insertDateTo" lower-date-id="insertDateFrom" name="提货日 到" ng-model="conditionForm.insertDateTo"
+              edit-type="date" ></ht-input>
+    <ht-input ht-id="startDateFrom" high-date-id="startDateTo" name="出账日 从" ng-model="conditionForm.startDateFrom"
+              edit-type="date" ></ht-input>
+    <ht-input ht-id="startDateTo" lower-date-id="startDateFrom" name="出账日 到" ng-model="conditionForm.startDateTo"
+              edit-type="date" ></ht-input>
+    <ht-input-extent
+            name='经办机构' ht-id ='treeName' extent='content' on-change="dooextent"
+            checkedHiden="true" readonly="true" ng-model='conditionForm.treeName'></ht-input-extent>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>提货信息列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="mastContno" zh-name="信贷合同号"></ht-column>
+    <ht-column eg-name="debetId" zh-name="银承协议号/借据号"></ht-column>
+    <ht-column eg-name="custcd" zh-name="买方名称"></ht-column>
+    <ht-column eg-name="coreCustcd" zh-name="卖方名称"></ht-column>
+    <ht-column eg-name="fouCd" zh-name="承担方名称"></ht-column>
+    <ht-column eg-name="productName" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="insertDate" zh-name="提货日" type="date"></ht-column>
+    <ht-column eg-name="currDeliveryAmt" zh-name="提货金额" type="currency"></ht-column>
+    <ht-column eg-name="startDate" zh-name="出账日" type="date"></ht-column>
+    <ht-column eg-name="endDate" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="lnciAmt" zh-name="出账金额" type="currency"></ht-column>
+    <ht-column eg-name="openAmount" zh-name="敞口余额" type="currency"></ht-column>
+    <ht-column eg-name="tlrName" zh-name="客户经理"></ht-column>
+    <ht-column eg-name="brcodeName" zh-name="经办机构"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->

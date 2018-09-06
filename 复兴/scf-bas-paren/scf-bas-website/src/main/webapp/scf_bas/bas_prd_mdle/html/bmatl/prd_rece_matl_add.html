@@ -1,0 +1,16 @@
+
+<ht-form name="otherform">
+    <ht-legend>应收材料信息</ht-legend>
+    <ht-input ht-id="receMatlName" name="应收材料名称" disable="{{disable}}" reg-exp="common.require"  ng-model="otherform.receMatlName"></ht-input>
+    <ht-select ht-id="receMatlType" name="应收材料类型" disable="{{disable}}"reg-exp="common.require" dictionary="receMatlType"  ng-model="otherform.receMatlType"></ht-select>
+    <ht-input ht-id="origNum" name="原件份数" disable="{{disable}}"reg-exp="common.require"  ng-model="otherform.origNum"></ht-input>
+    <ht-input ht-id="copyOrigNum" name="复印件份数"  disable="{{disable}}" reg-exp="common.require"  ng-model="otherform.copyOrigNum"></ht-input>
+ <ht-radio ht-id="isNeedFlag" name="是否必需" disable="{{disable}}"reg-exp="common.require"  dictionary="isNeedFlag" ng-model="otherform.isNeedFlag" ></ht-radio>
+   </ht-form>
+<!-- hide1，当查看的时候，确定键隐藏。-->
+<ht-button-group class="center">
+    <ht-button ht-id="confirm" hide="{{hide}}" class="btn-primary">确定</ht-button>
+    <ht-button ht-id="closeThisDialog"class="btn-primary">取消</ht-button>
+</ht-button-group>
+
+

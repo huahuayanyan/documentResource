@@ -1,0 +1,46 @@
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name ="conditionForm">
+
+    <ht-button-group><ht-button ht-id="submit2" desc-name="更多查询条件"></ht-button></ht-button-group>
+    <ht-input  ht-id="recId" name="记录流水ID" ng-model="conditionForm.recId"></ht-input>
+    <ht-input ht-id="rltNo" name="关联流水号" ng-model="conditionForm.rltNo"></ht-input>
+    <ht-input ht-id="chkPlId" name="拦截方案ID" ng-model="conditionForm.chkPlId"></ht-input>
+    <ht-input ht-id="chkItId" name="拦截项编号" ng-model="conditionForm.chkItId"></ht-input>
+    <ht-input ht-id="nm" name="拦截项名" ng-model="conditionForm.nm"></ht-input>
+    <ht-input ht-id="ord" name="排序号" ng-model="conditionForm.ord"></ht-input>
+    <ht-input ht-id="deal" name="处理方式" ng-model="conditionForm.deal"></ht-input>
+    <ht-input ht-id="rem" name="结果描述" ng-model="conditionForm.rem"></ht-input>
+    <ht-input ht-id="stat" name="执行结果" ng-model="conditionForm.stat"></ht-input>
+    <!--<ht-input ht-id="clazz"  name="类名" ng-model="conditionForm.clazz"></ht-input>-->
+    <ht-button-group class="center">
+        <ht-button ht-id="submit"  class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort"  class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>拦截记录列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+
+<!--    <ht-button-group>
+        <ht-button ht-id="add">新增</ht-button>
+        <ht-button ht-id="delete">删除</ht-button>
+        <ht-button ht-id="update">修改</ht-button>
+    </ht-button-group>-->
+
+    <ht-column eg-name="recId" zh-name="记录流水ID"  href="true" docolumn="column_click"></ht-column>
+    <ht-column eg-name="rltNo" zh-name="关联流水号"></ht-column>
+    <ht-column eg-name="chkPlId" zh-name="拦截方案ID"></ht-column>
+    <ht-column eg-name="chkItId" zh-name="拦截项编号"></ht-column>
+    <ht-column eg-name="nm" zh-name="拦截项名"></ht-column>
+    <ht-column eg-name="ord" zh-name="排序号"></ht-column>
+    <ht-column eg-name="deal" zh-name="处理方式"></ht-column>
+    <ht-column eg-name="rem" zh-name="结果描述"></ht-column>
+    <ht-column eg-name="stat" zh-name="执行结果"></ht-column>
+
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->
+
+
+
+

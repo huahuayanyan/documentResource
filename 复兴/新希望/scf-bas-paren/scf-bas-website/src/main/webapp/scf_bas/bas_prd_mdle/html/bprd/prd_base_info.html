@@ -1,0 +1,62 @@
+
+<ht-form name="prdBaseForm">
+    <ht-legend>出账方式</ht-legend>
+    <ht-checkbox ht-id="loanWay" name="出账方式" disable="{{disable}}" reg-exp="common.require" dictionary="loanWay"
+                  ng-model="prdBaseForm.loanWay"></ht-checkbox>
+</ht-form>
+<!--------------------行业信息---------------------->
+<ht-form name="industryForm">
+    <ht-legend>行业准入</ht-legend>
+    <ht-radio ht-id="isUseAccessFlag" name="是否使用准入" disable="{{disable}}" reg-exp="common.require" dictionary="productChecked"
+                 ng-model="prdBaseForm.isUseAccessFlag"></ht-radio>
+    <ht-text-area ht-id="industryTypeName" name="行业信息" disable="true"   ng-model="industryForm.industryTypeName"></ht-text-area>
+    <ht-button-group class="center" >
+        <ht-button ht-id="choose" disable="{{disable}}" class="btn-primary" desc-name="选择行业"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<!--------------------交易结构---------------------->
+<ht-legend>交易结构</ht-legend>
+<ht-radio ht-id="traStrue" name="交易结构" disable="{{disable}}" reg-exp="common.require" dictionary="traStrue"
+             ng-model="prdBaseForm.traStrue"></ht-radio>
+
+<ht-radio ht-id="finModel" name="融资模式" disable="{{disable}}" reg-exp="common.require" dictionary="finModel"
+             ng-model="prdBaseForm.finModel"></ht-radio>
+
+<!--------------------费用信息---------------------->
+<ht-legend>费用信息</ht-legend>
+<ht-table ht-id="costTable" datasource="costDatasource" selected="costSelected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="costAdd" class="btn-primary">新增</ht-button>
+        <ht-button ht-id="costDelete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="costCode" zh-name="费用代码"></ht-column>
+    <ht-column eg-name="costName" zh-name="费用名称" ></ht-column>
+    <ht-column eg-name="costPhase" zh-name="费用收取阶段" dictionary="costPhase"></ht-column>
+
+</ht-table>
+<ht-page conf="costConf"></ht-page>
+
+<!--------------------风险信息---------------------->
+<ht-legend>风险信息</ht-legend>
+<ht-table ht-id="warnTable" datasource="warnDatasource" selected="warnSelected" docheckbox="true">
+
+    <ht-button-group>
+        <ht-button ht-id="warnAdd"  class="btn-primary">新增</ht-button>
+        <ht-button ht-id="warnDelete" class="btn-primary">删除</ht-button>
+    </ht-button-group>
+
+    <ht-column eg-name="warnNo" zh-name="预警编号" ></ht-column>
+    <ht-column eg-name="warnName" zh-name="预警名称" ></ht-column>
+</ht-table>
+<ht-page conf="warnConf"></ht-page>
+
+<ht-button-group class="center">
+    <ht-button ht-id="former"  class="btn-primary" desc-name="上一步"></ht-button>
+    <ht-button ht-id="next"  class="btn-primary" desc-name="下一步"></ht-button>
+    <ht-button ht-id="complete"  hide="{{hide}}"class="btn-primary" desc-name="完成"></ht-button>
+</ht-button-group>
+
+

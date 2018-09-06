@@ -1,0 +1,18 @@
+<ht-legend>库存对账清单</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selectedMtg" docheckbox="true">
+    <ht-column eg-name="MORTGAGE_NAME" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="MORTGAGELEVELONENAME" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="MORTGAGELEVELTWONAME" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="MANUFACTURE_DATE" zh-name="出厂日期" type="date"></ht-column>
+    <ht-column eg-name="QUANTITY" zh-name="数量/质量" ></ht-column>
+    <ht-column eg-name="MORTGAGE_MODEL" zh-name="规格/型号" ></ht-column>
+    <ht-column eg-name="CONFIRM_PRICE" zh-name="核定单价" ></ht-column>
+    <ht-column eg-name="CURCD" zh-name="币种"  dictionary="curcd"></ht-column>
+    <ht-column eg-name="TOT_PRICE" zh-name="总价" type="currency"></ht-column>
+    <ht-column eg-name="WAREHOUSE" zh-name="仓库名称" ></ht-column>
+    <ht-column eg-name="WAREHOUSE_ADDRESS" zh-name="仓库地址" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<div class="ngdialogbutton" style="text-align: center;padding:5px 0;border-top: 1px solid #ddd; ">
+    <button  ng-click="closeThisDialog()" class="btn-primary">关闭</button>
+</div>

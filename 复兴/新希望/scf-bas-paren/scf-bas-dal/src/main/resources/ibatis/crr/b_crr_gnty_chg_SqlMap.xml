@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRR_GNTY_CHG" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crr.dao.model.BCrrGntyChg" >
+    <result column="SERIALNO" property="serialno" jdbcType="VARCHAR" />
+    <result column="GNTY_ID" property="gntyId" jdbcType="VARCHAR" />
+    <result column="CHG_DT" property="chgDt" jdbcType="VARCHAR" />
+    <result column="CHG_TYP" property="chgTyp" jdbcType="VARCHAR" />
+    <result column="CHG_REASON" property="chgReason" jdbcType="VARCHAR" />
+    <result column="OLD_EVAL_ORG_ID" property="oldEvalOrgId" jdbcType="VARCHAR" />
+    <result column="OLD_EVAL_ORG_NM" property="oldEvalOrgNm" jdbcType="VARCHAR" />
+    <result column="OLD_EVAL_NET_VAL" property="oldEvalNetVal" jdbcType="DECIMAL" />
+    <result column="OLD_CONFIRM_VAL" property="oldConfirmVal" jdbcType="DECIMAL" />
+    <result column="OLD_OWNER_ID" property="oldOwnerId" jdbcType="VARCHAR" />
+    <result column="OLD_OWNER_NM" property="oldOwnerNm" jdbcType="VARCHAR" />
+    <result column="OLD_INFO" property="oldInfo" jdbcType="VARCHAR" />
+    <result column="NEW_EVAL_ORG_ID" property="newEvalOrgId" jdbcType="VARCHAR" />
+    <result column="NEW_EVAL_ORG_NM" property="newEvalOrgNm" jdbcType="VARCHAR" />
+    <result column="NEW_EVAL_NET_VAL" property="newEvalNetVal" jdbcType="DECIMAL" />
+    <result column="NEW_CONFIRM_VAL" property="newConfirmVal" jdbcType="DECIMAL" />
+    <result column="NEW_OWN_ERID" property="newOwnErid" jdbcType="VARCHAR" />
+    <result column="NEW_OWNER_NM" property="newOwnerNm" jdbcType="VARCHAR" />
+    <result column="NEW_INFO" property="newInfo" jdbcType="VARCHAR" />
+    <result column="OPT_ORG_ID" property="optOrgId" jdbcType="VARCHAR" />
+    <result column="OPT_USER_ID" property="optUserId" jdbcType="VARCHAR" />
+    <result column="BR_CD" property="brCd" jdbcType="VARCHAR" />
+    <result column="TLR" property="tlr" jdbcType="VARCHAR" />
+    <result column="INP_DT" property="inpDt" jdbcType="VARCHAR" />
+    <result column="LST_UPD_DT" property="lstUpdDt" jdbcType="VARCHAR" />
+    <result column="REM" property="rem" jdbcType="VARCHAR" />
+    <result column="OLD_CERT_TYP" property="oldCertTyp" jdbcType="VARCHAR" />
+    <result column="OLD_CERT_ID" property="oldCertId" jdbcType="VARCHAR" />
+    <result column="OLD_CERT_LN_NO" property="oldCertLnNo" jdbcType="VARCHAR" />
+    <result column="NEW_CERT_TYP" property="newCertTyp" jdbcType="VARCHAR" />
+    <result column="NEW_CERT_ID" property="newCertId" jdbcType="VARCHAR" />
+    <result column="NEW_CERT_LN_NO" property="newCertLnNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    SERIALNO, GNTY_ID, CHG_DT, CHG_TYP, CHG_REASON, OLD_EVAL_ORG_ID, OLD_EVAL_ORG_NM, 
+    OLD_EVAL_NET_VAL, OLD_CONFIRM_VAL, OLD_OWNER_ID, OLD_OWNER_NM, OLD_INFO, NEW_EVAL_ORG_ID, 
+    NEW_EVAL_ORG_NM, NEW_EVAL_NET_VAL, NEW_CONFIRM_VAL, NEW_OWN_ERID, NEW_OWNER_NM, NEW_INFO, 
+    OPT_ORG_ID, OPT_USER_ID, BR_CD, TLR, INP_DT, LST_UPD_DT, REM, OLD_CERT_TYP, OLD_CERT_ID, 
+    OLD_CERT_LN_NO, NEW_CERT_TYP, NEW_CERT_ID, NEW_CERT_LN_NO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyChgExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRR_GNTY_CHG.Base_Column_List" />
+    from B_CRR_GNTY_CHG
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_CHG.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyChg" >
+    select 
+    <include refid="B_CRR_GNTY_CHG.Base_Column_List" />
+    from B_CRR_GNTY_CHG
+    where SERIALNO = #serialno:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyChg" >
+    delete from B_CRR_GNTY_CHG
+    where SERIALNO = #serialno:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyChgExample" >
+    delete from B_CRR_GNTY_CHG
+    <include refid="B_CRR_GNTY_CHG.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyChg" >
+    insert into B_CRR_GNTY_CHG (SERIALNO, GNTY_ID, CHG_DT, CHG_TYP, 
+      CHG_REASON, OLD_EVAL_ORG_ID, OLD_EVAL_ORG_NM, OLD_EVAL_NET_VAL, 
+      OLD_CONFIRM_VAL, OLD_OWNER_ID, OLD_OWNER_NM, OLD_INFO, 
+      NEW_EVAL_ORG_ID, NEW_EVAL_ORG_NM, NEW_EVAL_NET_VAL, NEW_CONFIRM_VAL, 
+      NEW_OWN_ERID, NEW_OWNER_NM, NEW_INFO, OPT_ORG_ID, 
+      OPT_USER_ID, BR_CD, TLR, INP_DT, LST_UPD_DT, 
+      REM, OLD_CERT_TYP, OLD_CERT_ID, OLD_CERT_LN_NO, 
+      NEW_CERT_TYP, NEW_CERT_ID, NEW_CERT_LN_NO)
+    values (#serialno:VARCHAR#, #gntyId:VARCHAR#, #chgDt:VARCHAR#, #chgTyp:VARCHAR#, 
+      #chgReason:VARCHAR#, #oldEvalOrgId:VARCHAR#, #oldEvalOrgNm:VARCHAR#, #oldEvalNetVal:DECIMAL#, 
+      #oldConfirmVal:DECIMAL#, #oldOwnerId:VARCHAR#, #oldOwnerNm:VARCHAR#, #oldInfo:VARCHAR#, 
+      #newEvalOrgId:VARCHAR#, #newEvalOrgNm:VARCHAR#, #newEvalNetVal:DECIMAL#, #newConfirmVal:DECIMAL#, 
+      #newOwnErid:VARCHAR#, #newOwnerNm:VARCHAR#, #newInfo:VARCHAR#, #optOrgId:VARCHAR#, 
+      #optUserId:VARCHAR#, #brCd:VARCHAR#, #tlr:VARCHAR#, #inpDt:VARCHAR#, #lstUpdDt:VARCHAR#, 
+      #rem:VARCHAR#, #oldCertTyp:VARCHAR#, #oldCertId:VARCHAR#, #oldCertLnNo:VARCHAR#, 
+      #newCertTyp:VARCHAR#, #newCertId:VARCHAR#, #newCertLnNo:VARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyChg" >
+    insert into B_CRR_GNTY_CHG
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="serialno" >
+        SERIALNO
+      </isNotNull>
+      <isNotNull prepend="," property="gntyId" >
+        GNTY_ID
+      </isNotNull>
+      <isNotNull prepend="," property="chgDt" >
+        CHG_DT
+      </isNotNull>
+      <isNotNull prepend="," property="chgTyp" >
+        CHG_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="chgReason" >
+        CHG_REASON
+      </isNotNull>
+      <isNotNull prepend="," property="oldEvalOrgId" >
+        OLD_EVAL_ORG_ID
+      </isNotNull>
+      <isNotNull prepend="," property="oldEvalOrgNm" >
+        OLD_EVAL_ORG_NM
+      </isNotNull>
+      <isNotNull prepend="," property="oldEvalNetVal" >
+        OLD_EVAL_NET_VAL
+      </isNotNull>
+      <isNotNull prepend="," property="oldConfirmVal" >
+        OLD_CONFIRM_VAL
+      </isNotNull>
+      <isNotNull prepend="," property="oldOwnerId" >
+        OLD_OWNER_ID
+      </isNotNull>
+      <isNotNull prepend="," property="oldOwnerNm" >
+        OLD_OWNER_NM
+      </isNotNull>
+      <isNotNull prepend="," property="oldInfo" >
+        OLD_INFO
+      </isNotNull>
+      <isNotNull prepend="," property="newEvalOrgId" >
+        NEW_EVAL_ORG_ID
+      </isNotNull>
+      <isNotNull prepend="," property="newEvalOrgNm" >
+        NEW_EVAL_ORG_NM
+      </isNotNull>
+      <isNotNull prepend="," property="newEvalNetVal" >
+        NEW_EVAL_NET_VAL
+      </isNotNull>
+      <isNotNull prepend="," property="newConfirmVal" >
+        NEW_CONFIRM_VAL
+      </isNotNull>
+      <isNotNull prepend="," property="newOwnErid" >
+        NEW_OWN_ERID
+      </isNotNull>
+      <isNotNull prepend="," property="newOwnerNm" >
+        NEW_OWNER_NM
+      </isNotNull>
+      <isNotNull prepend="," property="newInfo" >
+        NEW_INFO
+      </isNotNull>
+      <isNotNull prepend="," property="optOrgId" >
+        OPT_ORG_ID
+      </isNotNull>
+      <isNotNull prepend="," property="optUserId" >
+        OPT_USER_ID
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD
+      </isNotNull>
+      <isNotNull prepend="," property="tlr" >
+        TLR
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        REM
+      </isNotNull>
+      <isNotNull prepend="," property="oldCertTyp" >
+        OLD_CERT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="oldCertId" >
+        OLD_CERT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="oldCertLnNo" >
+        OLD_CERT_LN_NO
+      </isNotNull>
+      <isNotNull prepend="," property="newCertTyp" >
+        NEW_CERT_TYP
+      </isNotNull>
+      <isNotNull prepend="," property="newCertId" >
+        NEW_CERT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="newCertLnNo" >
+        NEW_CERT_LN_NO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="serialno" >
+        #serialno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gntyId" >
+        #gntyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chgDt" >
+        #chgDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chgTyp" >
+        #chgTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chgReason" >
+        #chgReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldEvalOrgId" >
+        #oldEvalOrgId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldEvalOrgNm" >
+        #oldEvalOrgNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldEvalNetVal" >
+        #oldEvalNetVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="oldConfirmVal" >
+        #oldConfirmVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="oldOwnerId" >
+        #oldOwnerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldOwnerNm" >
+        #oldOwnerNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldInfo" >
+        #oldInfo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newEvalOrgId" >
+        #newEvalOrgId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newEvalOrgNm" >
+        #newEvalOrgNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newEvalNetVal" >
+        #newEvalNetVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="newConfirmVal" >
+        #newConfirmVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="newOwnErid" >
+        #newOwnErid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newOwnerNm" >
+        #newOwnerNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newInfo" >
+        #newInfo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="optOrgId" >
+        #optOrgId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="optUserId" >
+        #optUserId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlr" >
+        #tlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        #rem:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldCertTyp" >
+        #oldCertTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldCertId" >
+        #oldCertId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldCertLnNo" >
+        #oldCertLnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newCertTyp" >
+        #newCertTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newCertId" >
+        #newCertId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newCertLnNo" >
+        #newCertLnNo:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyChgExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CRR_GNTY_CHG
+    <include refid="B_CRR_GNTY_CHG.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CRR_GNTY_CHG
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.serialno" >
+        SERIALNO = #record.serialno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.gntyId" >
+        GNTY_ID = #record.gntyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.chgDt" >
+        CHG_DT = #record.chgDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.chgTyp" >
+        CHG_TYP = #record.chgTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.chgReason" >
+        CHG_REASON = #record.chgReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldEvalOrgId" >
+        OLD_EVAL_ORG_ID = #record.oldEvalOrgId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldEvalOrgNm" >
+        OLD_EVAL_ORG_NM = #record.oldEvalOrgNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldEvalNetVal" >
+        OLD_EVAL_NET_VAL = #record.oldEvalNetVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldConfirmVal" >
+        OLD_CONFIRM_VAL = #record.oldConfirmVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldOwnerId" >
+        OLD_OWNER_ID = #record.oldOwnerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldOwnerNm" >
+        OLD_OWNER_NM = #record.oldOwnerNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldInfo" >
+        OLD_INFO = #record.oldInfo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.newEvalOrgId" >
+        NEW_EVAL_ORG_ID = #record.newEvalOrgId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.newEvalOrgNm" >
+        NEW_EVAL_ORG_NM = #record.newEvalOrgNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.newEvalNetVal" >
+        NEW_EVAL_NET_VAL = #record.newEvalNetVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.newConfirmVal" >
+        NEW_CONFIRM_VAL = #record.newConfirmVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.newOwnErid" >
+        NEW_OWN_ERID = #record.newOwnErid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.newOwnerNm" >
+        NEW_OWNER_NM = #record.newOwnerNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.newInfo" >
+        NEW_INFO = #record.newInfo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optOrgId" >
+        OPT_ORG_ID = #record.optOrgId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optUserId" >
+        OPT_USER_ID = #record.optUserId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brCd" >
+        BR_CD = #record.brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlr" >
+        TLR = #record.tlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.inpDt" >
+        INP_DT = #record.inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lstUpdDt" >
+        LST_UPD_DT = #record.lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rem" >
+        REM = #record.rem:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldCertTyp" >
+        OLD_CERT_TYP = #record.oldCertTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldCertId" >
+        OLD_CERT_ID = #record.oldCertId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oldCertLnNo" >
+        OLD_CERT_LN_NO = #record.oldCertLnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.newCertTyp" >
+        NEW_CERT_TYP = #record.newCertTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.newCertId" >
+        NEW_CERT_ID = #record.newCertId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.newCertLnNo" >
+        NEW_CERT_LN_NO = #record.newCertLnNo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_CHG.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CRR_GNTY_CHG
+    set SERIALNO = #record.serialno:VARCHAR#,
+      GNTY_ID = #record.gntyId:VARCHAR#,
+      CHG_DT = #record.chgDt:VARCHAR#,
+      CHG_TYP = #record.chgTyp:VARCHAR#,
+      CHG_REASON = #record.chgReason:VARCHAR#,
+      OLD_EVAL_ORG_ID = #record.oldEvalOrgId:VARCHAR#,
+      OLD_EVAL_ORG_NM = #record.oldEvalOrgNm:VARCHAR#,
+      OLD_EVAL_NET_VAL = #record.oldEvalNetVal:DECIMAL#,
+      OLD_CONFIRM_VAL = #record.oldConfirmVal:DECIMAL#,
+      OLD_OWNER_ID = #record.oldOwnerId:VARCHAR#,
+      OLD_OWNER_NM = #record.oldOwnerNm:VARCHAR#,
+      OLD_INFO = #record.oldInfo:VARCHAR#,
+      NEW_EVAL_ORG_ID = #record.newEvalOrgId:VARCHAR#,
+      NEW_EVAL_ORG_NM = #record.newEvalOrgNm:VARCHAR#,
+      NEW_EVAL_NET_VAL = #record.newEvalNetVal:DECIMAL#,
+      NEW_CONFIRM_VAL = #record.newConfirmVal:DECIMAL#,
+      NEW_OWN_ERID = #record.newOwnErid:VARCHAR#,
+      NEW_OWNER_NM = #record.newOwnerNm:VARCHAR#,
+      NEW_INFO = #record.newInfo:VARCHAR#,
+      OPT_ORG_ID = #record.optOrgId:VARCHAR#,
+      OPT_USER_ID = #record.optUserId:VARCHAR#,
+      BR_CD = #record.brCd:VARCHAR#,
+      TLR = #record.tlr:VARCHAR#,
+      INP_DT = #record.inpDt:VARCHAR#,
+      LST_UPD_DT = #record.lstUpdDt:VARCHAR#,
+      REM = #record.rem:VARCHAR#,
+      OLD_CERT_TYP = #record.oldCertTyp:VARCHAR#,
+      OLD_CERT_ID = #record.oldCertId:VARCHAR#,
+      OLD_CERT_LN_NO = #record.oldCertLnNo:VARCHAR#,
+      NEW_CERT_TYP = #record.newCertTyp:VARCHAR#,
+      NEW_CERT_ID = #record.newCertId:VARCHAR#,
+      NEW_CERT_LN_NO = #record.newCertLnNo:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_CRR_GNTY_CHG.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyChg" >
+    update B_CRR_GNTY_CHG
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="gntyId" >
+        GNTY_ID = #gntyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chgDt" >
+        CHG_DT = #chgDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chgTyp" >
+        CHG_TYP = #chgTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="chgReason" >
+        CHG_REASON = #chgReason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldEvalOrgId" >
+        OLD_EVAL_ORG_ID = #oldEvalOrgId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldEvalOrgNm" >
+        OLD_EVAL_ORG_NM = #oldEvalOrgNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldEvalNetVal" >
+        OLD_EVAL_NET_VAL = #oldEvalNetVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="oldConfirmVal" >
+        OLD_CONFIRM_VAL = #oldConfirmVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="oldOwnerId" >
+        OLD_OWNER_ID = #oldOwnerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldOwnerNm" >
+        OLD_OWNER_NM = #oldOwnerNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldInfo" >
+        OLD_INFO = #oldInfo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newEvalOrgId" >
+        NEW_EVAL_ORG_ID = #newEvalOrgId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newEvalOrgNm" >
+        NEW_EVAL_ORG_NM = #newEvalOrgNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newEvalNetVal" >
+        NEW_EVAL_NET_VAL = #newEvalNetVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="newConfirmVal" >
+        NEW_CONFIRM_VAL = #newConfirmVal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="newOwnErid" >
+        NEW_OWN_ERID = #newOwnErid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newOwnerNm" >
+        NEW_OWNER_NM = #newOwnerNm:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newInfo" >
+        NEW_INFO = #newInfo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="optOrgId" >
+        OPT_ORG_ID = #optOrgId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="optUserId" >
+        OPT_USER_ID = #optUserId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brCd" >
+        BR_CD = #brCd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tlr" >
+        TLR = #tlr:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="inpDt" >
+        INP_DT = #inpDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lstUpdDt" >
+        LST_UPD_DT = #lstUpdDt:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rem" >
+        REM = #rem:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldCertTyp" >
+        OLD_CERT_TYP = #oldCertTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldCertId" >
+        OLD_CERT_ID = #oldCertId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oldCertLnNo" >
+        OLD_CERT_LN_NO = #oldCertLnNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newCertTyp" >
+        NEW_CERT_TYP = #newCertTyp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newCertId" >
+        NEW_CERT_ID = #newCertId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="newCertLnNo" >
+        NEW_CERT_LN_NO = #newCertLnNo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where SERIALNO = #serialno:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.crr.dao.model.BCrrGntyChg" >
+    update B_CRR_GNTY_CHG
+    set GNTY_ID = #gntyId:VARCHAR#,
+      CHG_DT = #chgDt:VARCHAR#,
+      CHG_TYP = #chgTyp:VARCHAR#,
+      CHG_REASON = #chgReason:VARCHAR#,
+      OLD_EVAL_ORG_ID = #oldEvalOrgId:VARCHAR#,
+      OLD_EVAL_ORG_NM = #oldEvalOrgNm:VARCHAR#,
+      OLD_EVAL_NET_VAL = #oldEvalNetVal:DECIMAL#,
+      OLD_CONFIRM_VAL = #oldConfirmVal:DECIMAL#,
+      OLD_OWNER_ID = #oldOwnerId:VARCHAR#,
+      OLD_OWNER_NM = #oldOwnerNm:VARCHAR#,
+      OLD_INFO = #oldInfo:VARCHAR#,
+      NEW_EVAL_ORG_ID = #newEvalOrgId:VARCHAR#,
+      NEW_EVAL_ORG_NM = #newEvalOrgNm:VARCHAR#,
+      NEW_EVAL_NET_VAL = #newEvalNetVal:DECIMAL#,
+      NEW_CONFIRM_VAL = #newConfirmVal:DECIMAL#,
+      NEW_OWN_ERID = #newOwnErid:VARCHAR#,
+      NEW_OWNER_NM = #newOwnerNm:VARCHAR#,
+      NEW_INFO = #newInfo:VARCHAR#,
+      OPT_ORG_ID = #optOrgId:VARCHAR#,
+      OPT_USER_ID = #optUserId:VARCHAR#,
+      BR_CD = #brCd:VARCHAR#,
+      TLR = #tlr:VARCHAR#,
+      INP_DT = #inpDt:VARCHAR#,
+      LST_UPD_DT = #lstUpdDt:VARCHAR#,
+      REM = #rem:VARCHAR#,
+      OLD_CERT_TYP = #oldCertTyp:VARCHAR#,
+      OLD_CERT_ID = #oldCertId:VARCHAR#,
+      OLD_CERT_LN_NO = #oldCertLnNo:VARCHAR#,
+      NEW_CERT_TYP = #newCertTyp:VARCHAR#,
+      NEW_CERT_ID = #newCertId:VARCHAR#,
+      NEW_CERT_LN_NO = #newCertLnNo:VARCHAR#
+    where SERIALNO = #serialno:VARCHAR#
+  </update>
+</sqlMap>

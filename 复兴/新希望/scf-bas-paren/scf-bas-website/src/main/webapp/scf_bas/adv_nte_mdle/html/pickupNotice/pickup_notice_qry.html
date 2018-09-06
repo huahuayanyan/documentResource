@@ -1,0 +1,37 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="custName" name="出质人名称" ng-model="conditionForm.custName"></ht-input>
+    <ht-input ht-id="slaveContcode" name="抵/质押合同号" ng-model="conditionForm.slaveContcode"></ht-input>
+    <br/>
+    <ht-select ht-id="bussType" name="业务品种"  ng-model="conditionForm.bussType" disable="true"
+               datasource="productSource" dataOption="key" dataTrsOption="value" ></ht-select>
+    <ht-select ht-id="noticeType" name="通知书类型"  ng-model="conditionForm.noticeType" disable="true"
+               datasource="selectSource" datatrsoption="value" dataoption="key"></ht-select>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>提货通知书列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-button-group>
+        <ht-button class="btn-primary" ht-id="view">查看</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="num" zh-name="通知书编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="noticeType" zh-name="通知书类型" dictionary="nteType"   ></ht-column>
+    <ht-column eg-name="status" zh-name="通知书状态" dictionary="noticeStatus"></ht-column>
+    <ht-column eg-name="signDate" zh-name="签发日期" type="date"></ht-column>
+    <ht-column eg-name="protocolCode" zh-name="监管合同号"></ht-column>
+    <!--<ht-column eg-name="debetId" zh-name="借据号/承兑协议号"></ht-column>-->
+    <ht-column eg-name="slaveContcode" zh-name="抵质押合同号"></ht-column>
+    <ht-column eg-name="custName" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="moniOfName" zh-name="监管公司名称"></ht-column>
+    <ht-column eg-name="commonAmt" zh-name="提货金额" type="currency"></ht-column>
+    <ht-column eg-name="commonDate" zh-name="回执日期" type="date"></ht-column>
+    <ht-column eg-name="tlrName" zh-name="客户经理"></ht-column>
+    <ht-column eg-name="brName" zh-name="经办机构"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->

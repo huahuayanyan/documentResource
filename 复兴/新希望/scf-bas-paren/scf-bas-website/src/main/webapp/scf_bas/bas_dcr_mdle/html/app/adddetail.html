@@ -1,0 +1,9 @@
+<ht-form name="addForm"  columns="1">
+    <ht-input ht-id="chkDirId"  name="检查目录ID" ng-model="addForm.chkDirId"  reg-exp="common.require" disable="true" ></ht-input>
+    <ht-select ht-id="rltNm"  name="限定数值"   dictionary="{{rltTypDictionary}}"  ng-model="addForm.rltNm"  hide="{{rltNmhide}}"   reg-exp="common.require"></ht-select> 
+    <ht-input ht-id="rltVl" name="限定字典值" ng-model="addForm.rltVl"      edit-type="currency"   reg-exp="common.require"  hide="{{rltVlhide}}" ></ht-input>
+</ht-form>
+<ht-button-group align="center">
+    <ht-button ht-id="confirm" desc-name="确认" class="btn-primary"></ht-button>
+    <ht-button ht-id="cancel" desc-name="取消" class="btn-primary"></ht-button>
+</ht-button-group>

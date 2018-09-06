@@ -1,0 +1,41 @@
+<ht-legend>出质入库申请内容</ht-legend>
+<ht-form>
+    <ht-input ht-id="conId" name="抵/质押合同号" disable="true" ng-model="qualityApplyInfo.conId"></ht-input>
+    <ht-input ht-id="secName" name="出质人名称" disable="true" ng-model="qualityApplyInfo.secName"></ht-input>
+    <ht-input ht-id="prtclNo" name="监管合同号" disable="true" ng-model="qualityApplyInfo.prtclNo"></ht-input>
+    <ht-input ht-id="thrName" name="监管公司名称" disable="true" ng-model="qualityApplyInfo.thrName"></ht-input>
+    <ht-select ht-id="productId" name="业务品种" disable="true" datasource="productSource" dataOption="code" dataTrsOption="codeName"  ng-model="qualityApplyInfo.productId"></ht-select>
+    <ht-select ht-id="moniType" name="货押模式" disable="true" dictionary="moniType" ng-model="qualityApplyInfo.moniType"></ht-select>
+</ht-form>
+<ht-legend>本次申请入库信息</ht-legend>
+<ht-form>
+    <ht-input ht-id="mortgageAmount" name="已入库押品总价值" disable="true" edit-type="currency" ng-model="qualityApplyInfo.mortgageAmount"></ht-input>
+    <ht-input ht-id="ration" name="抵/质押率(%)" disable="true" ng-model="qualityApplyInfo.ration"></ht-input>
+    <ht-input ht-id="openAmount" name="敞口余额" disable="true" edit-type="currency" ng-model="qualityApplyInfo.openAmount"></ht-input>
+    <ht-input ht-id="amount" name="本次申请入库押品总价值" disable="true" edit-type="currency" ng-model="qualityApplyInfo.amount"></ht-input>
+    <ht-input ht-id="lowPriceNew" disable="true" name="最低控货价值" edit-type="currency" ng-model="qualityApplyInfo.lowPriceNew"></ht-input>
+</ht-form>
+<ht-legend>入库押品列表</ht-legend>
+<ht-button-group>
+    <!--<ht-button ht-id="detail" class="btn-primary">查看</ht-button>-->
+    <!--<ht-button ht-id="add" class="btn-primary">新增</ht-button>-->
+    <!--<ht-button ht-id="delete" class="btn-primary">删除</ht-button>-->
+    <ht-button ht-id="enterDetailCheck" class="btn-primary">已入库押品详情查看</ht-button>
+    <ht-button ht-id="check" class="btn-primary">核价</ht-button>
+</ht-button-group>
+<ht-table datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="mortgageName" zh-name="押品名称"></ht-column>
+    <ht-column eg-name="mortgageLevelOneName" zh-name="押品一级"></ht-column>
+    <ht-column eg-name="mortgageLevelTwoName" zh-name="押品二级"></ht-column>
+    <ht-column eg-name="mortgageModel" zh-name="规格/型号"></ht-column>
+    <ht-column eg-name="weightAll" zh-name="数量/重量"></ht-column>
+    <ht-column eg-name="originalPrice" zh-name="买入单价" type="currency"></ht-column>
+    <ht-column eg-name="confirmPrice" zh-name="核定单价" type="currency"></ht-column>
+    <ht-column eg-name="totPrice" zh-name="总价" type="currency"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="submit" disable="{{disable}}" class="btn-primary">提交</ht-button>
+    <!--<ht-button ht-id="back" class="btn-primary">退回</ht-button>-->
+    <!--<ht-button ht-id="cancel" class="btn-primary">返回</ht-button>-->
+</ht-button-group>

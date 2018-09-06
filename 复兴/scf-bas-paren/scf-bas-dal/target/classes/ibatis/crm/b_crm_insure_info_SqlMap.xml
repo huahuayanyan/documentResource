@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CRM_INSURE_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.crm.dao.model.BCrmInsureInfo" >
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CUSTNO" property="custno" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="CUST_STATUS" property="custStatus" jdbcType="CHAR" />
+    <result column="INDUSTRY_TYPE" property="industryType" jdbcType="VARCHAR" />
+    <result column="CONTACT_ADDR" property="contactAddr" jdbcType="VARCHAR" /> 
+    <result column="REG_ADDR" property="regAddr" jdbcType="VARCHAR" /> 
+  </resultMap>
+  
+   <resultMap id="BaseInfoResultMap" class="com.huateng.scf.bas.crm.dao.model.BCrmBaseInfo" >
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="CUSTNO" property="custno" jdbcType="VARCHAR" />
+    <result column="CUST_TYPE" property="custType" jdbcType="CHAR" />
+    <result column="IDTYPE" property="idtype" jdbcType="VARCHAR" />
+    <result column="IDNO" property="idno" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="ENAME" property="ename" jdbcType="VARCHAR" />
+    <result column="ALIAS_NAME" property="aliasName" jdbcType="VARCHAR" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="SOC_CREDIT_NO" property="socCreditNo" jdbcType="VARCHAR" />
+    <result column="LICENSE_NO" property="licenseNo" jdbcType="VARCHAR" />
+    <result column="LICENSE_DATE" property="licenseDate" jdbcType="CHAR" />
+    <result column="OPEN_DATE" property="openDate" jdbcType="CHAR" />
+    <result column="CORE_OPEN_DATE" property="coreOpenDate" jdbcType="CHAR" />
+    <result column="CUST_STATUS" property="custStatus" jdbcType="CHAR" />
+    <result column="MGRNO" property="mgrno" jdbcType="VARCHAR" />
+    <result column="CORE_FLAG" property="coreFlag" jdbcType="CHAR" />
+    <result column="MONI_FLAG" property="moniFlag" jdbcType="CHAR" />
+    <result column="FUTURES_FLAG" property="futuresFlag" jdbcType="CHAR" />
+    <result column="FLC_FLAG" property="flcFlag" jdbcType="CHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="CHAR" />
+    <result column="CREDIT_FLAG" property="creditFlag" jdbcType="CHAR" />
+    <result column="BLACK_FLAG" property="blackFlag" jdbcType="CHAR" />
+    <result column="INSURE_FLAG" property="insureFlag" jdbcType="CHAR" />
+    <result column="FACTOR_FLAG" property="factorFlag" jdbcType="CHAR" />
+    <result column="CCMS_CUSTCD" property="ccmsCustcd" jdbcType="VARCHAR" />
+    <result column="IMPORTANT_FLAG" property="importantFlag" jdbcType="CHAR" />
+    <result column="COMMERCIAL_FALG" property="commercialFalg" jdbcType="CHAR" />
+    <result column="OVERSEAS_FLAG" property="overseasFlag" jdbcType="CHAR" />
+    <result column="BANKS_CUST_FLAG" property="banksCustFlag" jdbcType="CHAR" />
+    <result column="EF_BUYER_FLAG" property="efBuyerFlag" jdbcType="CHAR" />
+    <result column="IF_SELLER_FLAG" property="ifSellerFlag" jdbcType="CHAR" />
+    <result column="IS_BANK" property="isBank" jdbcType="CHAR" />
+    <result column="FCI_CODE" property="fciCode" jdbcType="VARCHAR" />
+    <result column="IS_INTL" property="isIntl" jdbcType="CHAR" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TLRCD" property="lastUpdTlrcd" jdbcType="VARCHAR" />
+    <result column="LAST_UPD_TIME" property="lastUpdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPD_BRCODE" property="lastUpdBrcode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+    <resultMap id="EntInfoResultMap" class="com.huateng.scf.bas.crm.dao.model.BCrmEntInfo" >
+    <result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="LEGAL" property="legal" jdbcType="VARCHAR" />
+    <result column="ENAME" property="ename" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_TYPE" property="enterpriseType" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_TYPE" property="industryType" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_SCOPE" property="enterpriseScope" jdbcType="VARCHAR" />
+    <result column="MAIN_BUSSINESS" property="mainBussiness" jdbcType="VARCHAR" />
+    <result column="CONTACT_ADDR" property="contactAddr" jdbcType="VARCHAR" />
+    <result column="REG_ADDR" property="regAddr" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="CHAR" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="CONTACT_TEL" property="contactTel" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="CREDIT_LEVEL" property="creditLevel" jdbcType="VARCHAR" />
+    <result column="EVALUATE_DATE" property="evaluateDate" jdbcType="CHAR" />
+    <result column="BASE_ACT_BANK" property="baseActBank" jdbcType="VARCHAR" />
+    <result column="BASE_ACTNO" property="baseActno" jdbcType="VARCHAR" />
+    <result column="ACT_BRCODE" property="actBrcode" jdbcType="VARCHAR" />
+    <result column="ACTNO" property="actno" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CUST_TYPE" property="custType" jdbcType="VARCHAR" />
+    <result column="REG_CAPITAL" property="regCapital" jdbcType="DECIMAL" />
+    <result column="CAPITAL" property="capital" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="CUST_ROLE" property="custRole" jdbcType="CHAR" />
+    <result column="BUSINESS_SCOPE" property="businessScope" jdbcType="CHAR" />
+    <result column="INDUSTRY_OUTLOOK" property="industryOutlook" jdbcType="CHAR" />
+    <result column="EMPLOYEE_NUMBER" property="employeeNumber" jdbcType="DECIMAL" />
+    <result column="TURNOVER" property="turnover" jdbcType="DECIMAL" />
+    <result column="BUSINESS_DURATION" property="businessDuration" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_DURATION" property="accountDuration" jdbcType="DECIMAL" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="BOUNDARY" property="boundary" jdbcType="CHAR" />
+    <result column="CUST_LEVEL" property="custLevel" jdbcType="VARCHAR" />
+    <result column="CORE_LEVEL" property="coreLevel" jdbcType="VARCHAR" />
+    <result column="SUPPLY_POSITION" property="supplyPosition" jdbcType="VARCHAR" />
+    <result column="IS_MARKET_CORP" property="isMarketCorp" jdbcType="VARCHAR" />
+    <result column="ESTABLISH_DATE" property="establishDate" jdbcType="CHAR" />
+    <result column="COUN_CODE" property="counCode" jdbcType="CHAR" />
+    <result column="REG_ORG" property="regOrg" jdbcType="VARCHAR" />
+    <result column="STREET" property="street" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="EN_ADDR" property="enAddr" jdbcType="VARCHAR" />
+    <result column="CONTACT_EN_NAME" property="contactEnName" jdbcType="VARCHAR" />
+    <result column="PAY_ROUTE" property="payRoute" jdbcType="VARCHAR" />
+    <result column="SERVICES" property="services" jdbcType="VARCHAR" />
+    <result column="APPENDIX" property="appendix" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="CORE_NETWORK_NAME" property="coreNetworkName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  
+  <sql id="BaseInfo_Column_List" >
+    CUSTCD, CUSTNO, CUST_TYPE, IDTYPE, IDNO, CNAME, ENAME, ALIAS_NAME, ORG_CODE, SOC_CREDIT_NO, 
+    LICENSE_NO, LICENSE_DATE, OPEN_DATE, CORE_OPEN_DATE, CUST_STATUS, MGRNO, CORE_FLAG, 
+    MONI_FLAG, FUTURES_FLAG, FLC_FLAG, CREATE_DATE, CREDIT_FLAG, BLACK_FLAG, INSURE_FLAG, 
+    FACTOR_FLAG, CCMS_CUSTCD, IMPORTANT_FLAG, COMMERCIAL_FALG, OVERSEAS_FLAG, BANKS_CUST_FLAG, 
+    EF_BUYER_FLAG, IF_SELLER_FLAG, IS_BANK, FCI_CODE, IS_INTL, TLRCD, CRT_TIME, BRCODE, 
+    LAST_UPD_TLRCD, LAST_UPD_TIME, LAST_UPD_BRCODE
+  </sql>
+  
+  <sql id="EntInfo_Column_List" >
+    CUSTCD, ORG_CODE, LEGAL, ENAME, ENTERPRISE_TYPE, INDUSTRY_TYPE, ENTERPRISE_SCOPE, 
+    MAIN_BUSSINESS, CONTACT_ADDR, REG_ADDR, POST_CODE, CONTACT_NAME, CONTACT_TEL, FAX, 
+    CREDIT_LEVEL, EVALUATE_DATE, BASE_ACT_BANK, BASE_ACTNO, ACT_BRCODE, ACTNO, DESCRIPTION, 
+    CUST_TYPE, REG_CAPITAL, CAPITAL, CURCD, CUST_ROLE, BUSINESS_SCOPE, INDUSTRY_OUTLOOK, 
+    EMPLOYEE_NUMBER, TURNOVER, BUSINESS_DURATION, ACCOUNT_DURATION, AREA, BOUNDARY, CUST_LEVEL, 
+    CORE_LEVEL, SUPPLY_POSITION, IS_MARKET_CORP, ESTABLISH_DATE, COUN_CODE, REG_ORG, 
+    STREET, CITY, EN_ADDR, CONTACT_EN_NAME, PAY_ROUTE, SERVICES, APPENDIX, EMAIL, CORE_NETWORK_NAME
+  </sql>
+
+  <!--根据参数查找保险公司信息  -->
+  <select id="selectInsureCustomerByParams" resultMap="B_CRM_INSURE_INFO.BaseResultMap" parameterClass="java.util.HashMap" >
+	select distinct tcbi.CUSTCD,tcbi.CUSTNO,tcbi.CNAME,tcbi.ORG_CODE,tcei.INDUSTRY_TYPE,
+	tcei.CONTACT_ADDR,tcei.REG_ADDR,tcbi.CUST_STATUS from B_CRM_ENT_INFO tcei ,B_CRM_BASE_INFO tcbi 
+	where tcbi.custcd=tcei.custcd
+	<isNotNull prepend="and" property="custType" >
+      tcbi.cust_type = #custType:VARCHAR#
+    </isNotNull>
+	<isNotNull prepend="and" property="insureFlag" >
+      tcbi.insure_flag = #insureFlag:VARCHAR#
+    </isNotNull>
+	<isNotNull prepend="and" property="factorFlag" >
+      tcbi.factor_flag = #factorFlag:VARCHAR#
+    </isNotNull>
+	<isNotNull prepend="and" property="overseasFlag" >
+      tcbi.overseas_flag = #overseasFlag:VARCHAR#
+    </isNotNull>
+    <isNotNull prepend="and" property="custno" >
+      tcbi.custno = #custno:VARCHAR#
+    </isNotNull>
+    <isNotNull prepend="and" property="custcd" >
+      tcbi.custcd = #custcd:VARCHAR#
+    </isNotNull>
+    <isNotNull prepend="and" property="cname" >
+      tcbi.cname like '%'||#cname:VARCHAR#||'%'
+    </isNotNull>
+    <isNotNull prepend="and" property="custStatus" >
+      tcbi.cust_status = #custStatus:VARCHAR#
+    </isNotNull>
+  </select>
+  
+  <!--根据参数查找公司信息条目数  -->
+  <select id="selectInsureCustomerCount" resultClass="java.lang.Integer" parameterClass="java.util.HashMap" >
+  	select count(CUSTCD) from (
+		select distinct tcbi.CUSTCD,tcbi.CUSTNO,tcbi.CNAME,tcbi.ORG_CODE,tcei.INDUSTRY_TYPE,
+		tcei.CONTACT_ADDR,tcei.REG_ADDR,tcbi.CUST_STATUS from B_CRM_ENT_INFO tcei ,B_CRM_BASE_INFO tcbi 
+		where tcbi.custcd=tcei.custcd
+		<isNotNull prepend="and" property="custType" >
+	      tcbi.cust_type = #custType:VARCHAR#
+	    </isNotNull>
+		<isNotNull prepend="and" property="insureFlag" >
+	      tcbi.insure_flag = #insureFlag:VARCHAR#
+	    </isNotNull>
+		<isNotNull prepend="and" property="factorFlag" >
+	      tcbi.factor_flag = #factorFlag:VARCHAR#
+	    </isNotNull>
+		<isNotNull prepend="and" property="overseasFlag" >
+	      tcbi.overseas_flag = #overseasFlag:VARCHAR#
+	    </isNotNull>
+	    <isNotNull prepend="and" property="custno" >
+	      tcbi.custno = #custno_Q:VARCHAR#
+	    </isNotNull>
+	    <isNotNull prepend="and" property="cname" >
+	      tcbi.cname like '%'||#cname_Q:VARCHAR#||'%'
+	    </isNotNull>
+	    <isNotNull prepend="and" property="custStatus" >
+	      tcbi.cust_status = #custStatus:VARCHAR#
+	    </isNotNull>
+    )
+  </select>
+  
+    <!--根据参数查找公司信息-->
+  <select id="selectBCrmBaseInfoByParams" resultClass="java.lang.Integer" parameterClass="java.util.HashMap" >
+  	select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRM_BASE_INFO.Base_Column_List" />
+    from B_CRM_ENT_INFO tcei ,B_CRM_BASE_INFO tcbi
+	where tcbi.custcd=tcei.custcd 
+	<isNotNull prepend="and" property="custType" >
+      tcbi.cust_type = #custType:VARCHAR#
+    </isNotNull>
+	<isNotNull prepend="and" property="insureFlag" >
+      tcbi.insure_flag = #insureFlag:VARCHAR#
+    </isNotNull>
+    <isNotNull prepend="and" property="custno" >
+      tcbi.custno = #custno_Q:VARCHAR#
+    </isNotNull>
+    <isNotNull prepend="and" property="cname" >
+      tcbi.cname like '%'||#cname_Q:VARCHAR#||'%'
+    </isNotNull>
+    <isNotNull prepend="and" property="custStatus" >
+      tcbi.cust_status = #custStatus:VARCHAR#
+    </isNotNull>
+  </select>
+  
+  <!--根据参数查找公司信息条目数-->
+  <select id="selectBCrmBaseInfoCount" resultClass="java.lang.Integer" parameterClass="java.util.HashMap" >
+  	select count(CUSTCD) from (
+	  	select
+	    <isParameterPresent >
+	      <isEqual property="distinct" compareValue="true" >
+	        distinct
+	      </isEqual>
+	    </isParameterPresent>
+	    <include refid="B_CRM_BASE_INFO.Base_Column_List" />
+	    from B_CRM_ENT_INFO tcei ,B_CRM_BASE_INFO tcbi
+		where tcbi.custcd=tcei.custcd 
+		<isNotNull prepend="and" property="custType" >
+	      tcbi.cust_type = #custType:VARCHAR#
+	    </isNotNull>
+		<isNotNull prepend="and" property="insureFlag" >
+	      tcbi.insure_flag = #insureFlag:VARCHAR#
+	    </isNotNull>
+	    <isNotNull prepend="and" property="custno" >
+	      tcbi.custno = #custno_Q:VARCHAR#
+	    </isNotNull>
+	    <isNotNull prepend="and" property="cname" >
+	      tcbi.cname like '%'||#cname_Q:VARCHAR#||'%'
+	    </isNotNull>
+	    <isNotNull prepend="and" property="custStatus" >
+	      tcbi.cust_status = #custStatus:VARCHAR#
+	    </isNotNull>
+	)
+  </select>
+  
+  
+    <!--根据参数查找公司信息-->
+  <select id="selectBCrmEntInfoByParams" resultClass="java.lang.Integer" parameterClass="java.util.HashMap" >
+  	select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CRM_ENT_INFO.Base_Column_List" />
+    from B_CRM_ENT_INFO tcei ,B_CRM_BASE_INFO tcbi
+	where tcbi.custcd=tcei.custcd 
+	<isNotNull prepend="and" property="custType" >
+      tcbi.cust_type = #custType:VARCHAR#
+    </isNotNull>
+	<isNotNull prepend="and" property="insureFlag" >
+      tcbi.insure_flag = #insureFlag:VARCHAR#
+    </isNotNull>
+    <isNotNull prepend="and" property="custno" >
+      tcbi.custno = #custno_Q:VARCHAR#
+    </isNotNull>
+    <isNotNull prepend="and" property="cname" >
+      tcbi.cname like '%'||#cname_Q:VARCHAR#||'%'
+    </isNotNull>
+    <isNotNull prepend="and" property="custStatus" >
+      tcbi.cust_status = #custStatus:VARCHAR#
+    </isNotNull>
+  </select>
+  
+  <!--根据参数查找公司信息条目数-->
+  <select id="selectBCrmEntInfoCount" resultClass="java.lang.Integer" parameterClass="java.util.HashMap" >
+  	select count(CUSTCD) from (
+	  	select
+	    <isParameterPresent >
+	      <isEqual property="distinct" compareValue="true" >
+	        distinct
+	      </isEqual>
+	    </isParameterPresent>
+	    <include refid="B_CRM_ENT_INFO.Base_Column_List" />
+	    from B_CRM_ENT_INFO tcei ,B_CRM_BASE_INFO tcbi
+		where tcbi.custcd=tcei.custcd 
+		<isNotNull prepend="and" property="custType" >
+	      tcbi.cust_type = #custType:VARCHAR#
+	    </isNotNull>
+		<isNotNull prepend="and" property="insureFlag" >
+	      tcbi.insure_flag = #insureFlag:VARCHAR#
+	    </isNotNull>
+	    <isNotNull prepend="and" property="custno" >
+	      tcbi.custno = #custno_Q:VARCHAR#
+	    </isNotNull>
+	    <isNotNull prepend="and" property="cname" >
+	      tcbi.cname like '%'||#cname_Q:VARCHAR#||'%'
+	    </isNotNull>
+	    <isNotNull prepend="and" property="custStatus" >
+	      tcbi.cust_status = #custStatus:VARCHAR#
+	    </isNotNull>
+	)
+  </select>
+
+</sqlMap>

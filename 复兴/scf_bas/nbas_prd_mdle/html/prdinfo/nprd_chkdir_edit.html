@@ -1,0 +1,14 @@
+<!--产品费用修改页面-->
+<ht-form name ="mdlform">
+    <ht-input ht-id="mdlId" name="拦截模型ID" ng-model="mdlform.mdlId" disable="true"></ht-input>
+    <ht-input ht-id="mdlNm"  name="拦截模型名称" ng-model="mdlform.mdlNm" disable="true"></ht-input>
+    <ht-select ht-id="invokPhase" name="调用阶段" ng-model="mdlform.invokPhase" reg-exp="common.require" dictionary="invokPhase"></ht-select>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save"  class="btn-primary" desc-name="确定"></ht-button>
+    <ht-button ht-id="back"  class="btn-primary" desc-name="返回"></ht-button>
+</ht-button-group>
+
+
+

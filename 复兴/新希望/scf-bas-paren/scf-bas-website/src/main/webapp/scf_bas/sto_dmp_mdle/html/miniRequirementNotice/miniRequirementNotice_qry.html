@@ -1,0 +1,45 @@
+
+<ht-legend colorId="lawngreen">查询条件</ht-legend>
+<ht-form name="conditionForm">
+    <ht-input ht-id="custName" name="出质人名称" ng-model="conditionForm.custName"></ht-input>
+    <ht-input ht-id="slaveContno" name="抵/质押合同号" ng-model="conditionForm.slaveContno"></ht-input>
+    <ht-select ht-id="supplyChainPdId" name="业务品种" ng-model="conditionForm.supplyChainPdId"
+              datasource="selectSource" datatrsoption="value" dataoption="key" disable="true"></ht-select>
+    <ht-select ht-id="noticeType" name="通知书类型" ng-model="conditionForm.noticeType"
+               dictionary="nteType" disable="true"></ht-select>
+    <ht-select ht-id="status" name="通知书状态" ng-model="conditionForm.status" dictionary="noticeStatus"></ht-select>
+    <ht-input-extent name='经办机构' ht-id ='brName' extent='content' on-change="dooextent"
+                     checkedHiden="true" ng-model='conditionForm.brName'></ht-input-extent>
+    <ht-input ht-id="dateFrom" name="签发日期 从" ng-model="conditionForm.dateFrom"
+              edit-type="date" ></ht-input>
+    <ht-input ht-id="dateTo" name="签发日期 到" ng-model="conditionForm.dateTo"
+              edit-type="date" ></ht-input>
+    <ht-input ht-id="cDateFrom" name="回执日期 从" ng-model="conditionForm.cDateFrom"
+              edit-type="date" ></ht-input>
+    <ht-input ht-id="cDateTo" name="回执日期 到" ng-model="conditionForm.cDateTo"
+              edit-type="date" ></ht-input>
+    <ht-button-group class="left">
+        <ht-button ht-id="submit" class="btn-primary" desc-name="查询"></ht-button>
+        <ht-button ht-id="rebort" class="btn-primary" desc-name="重置"></ht-button>
+    </ht-button-group>
+</ht-form>
+
+<ht-legend>质物最低控货价值通知书列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="true">
+    <ht-column eg-name="NUM" zh-name="通知书编号"></ht-column>
+    <ht-column eg-name="NOTICE_TYPE" zh-name="通知书类型" dictionary="nteType"></ht-column>
+    <ht-column eg-name="STATUS" zh-name="通知书状态" dictionary="noticeStatus"></ht-column>
+    <ht-column eg-name="SIGN_DATE" zh-name="签发日期" type="date"></ht-column>
+    <ht-column eg-name="COMMON_DATE" zh-name="回执日期" type="date"></ht-column>
+    <ht-column eg-name="SLAVE_CONTNO" zh-name="抵/质押合同号"></ht-column>
+    <ht-column eg-name="MONITOR_PROTOCOL_NO" zh-name="监管合同号"></ht-column>
+    <ht-column eg-name="CNAME" zh-name="出质人名称"></ht-column>
+    <ht-column eg-name="MONI_OF_NAME" zh-name="监管公司名称"></ht-column>
+    <ht-column eg-name="PRODUCT_NAME" zh-name="业务品种"></ht-column>
+    <ht-column eg-name="ext1Amount" zh-name="原质物最低控货价值" type="currency"></ht-column>
+    <ht-column eg-name="ext2Amount" zh-name="现质物最低控货价值" type="currency"></ht-column>
+    <ht-column eg-name="TLR_NM" zh-name="客户经理" ></ht-column>
+    <ht-column eg-name="BRNAME" zh-name="经办机构"></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<!--<ht--position batchNo="1" bindName="abc"/>-->

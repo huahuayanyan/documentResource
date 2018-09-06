@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_NTE_NOTICE_QRY_VO">
+	<resultMap id="QueryResultMap" class="com.huateng.scf.bas.nte.dao.model.NoticeQryVO">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="APPNO" property="appno" jdbcType="VARCHAR" />
+		<result column="NUM" property="num" jdbcType="VARCHAR" />
+		<result column="MONITOR_PROTOCOL_NO" property="monitorProtocolNo"
+			jdbcType="VARCHAR" />
+		<result column="PROTOCOL_CODE" property="protocolCode"
+			jdbcType="VARCHAR" />
+		<result column="SLAVE_CONTNO" property="slaveContno" jdbcType="VARCHAR" />
+		<result column="SLAVE_CONTCODE" property="slaveContcode"
+			jdbcType="VARCHAR" />
+		<result column="CUSTCD" property="custcd" jdbcType="VARCHAR" />
+		<result column="MONI_OF_CUSTCD" property="moniOfCustcd"
+			jdbcType="VARCHAR" />
+		<result column="NOTICE_TYPE" property="noticeType" jdbcType="VARCHAR" />
+		<result column="MORTGAGE_CHANGE_TYPE" property="mortgageChangeType"
+			jdbcType="CHAR" />
+		<result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+		<result column="MONI_OF_DATE" property="moniOfDate" jdbcType="CHAR" />
+		<result column="APPLI_DATE" property="appliDate" jdbcType="CHAR" />
+		<result column="MONI_OF_NAME" property="moniOfName" jdbcType="VARCHAR" />
+		<result column="TLRN" property="tlrn" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="CHAR" />
+		<result column="BAIL_AMOUNT" property="bailAmount" jdbcType="DECIMAL" />
+		<result column="PLEDGE_MODE" property="pledgeMode" jdbcType="CHAR" />
+		<result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+		<result column="COMMON_AMT" property="commonAmt" jdbcType="DECIMAL" />
+		<result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+		<result column="COMMON_NUM" property="commonNum" jdbcType="VARCHAR" />
+		<result column="MAST_CONTCODE" property="mastContcode"
+			jdbcType="VARCHAR" />
+		<result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+		<result column="OTHER_CUSTCD" property="otherCustcd" jdbcType="VARCHAR" />
+		<result column="OTHER_CUST_NAME" property="otherCustName"
+			jdbcType="VARCHAR" />
+		<result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+		<result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+		<result column="DEPOSIT_BRCODE" property="depositBrcode"
+			jdbcType="VARCHAR" />
+		<result column="RATIO" property="ratio" jdbcType="DECIMAL" />
+		<result column="TRADE_CONTNO" property="tradeContno" jdbcType="VARCHAR" />
+		<result column="DEBET_NO" property="debetNo" jdbcType="VARCHAR" />
+		<result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+		<result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+		<result column="SIGN_DATE" property="signDate" jdbcType="CHAR" />
+		<result column="COMMON_DATE" property="commonDate" jdbcType="CHAR" />
+		<result column="EXT1_AMOUNT" property="ext1Amount" jdbcType="DECIMAL" />
+		<result column="EXT2_AMOUNT" property="ext2Amount" jdbcType="DECIMAL" />
+		<result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+		<result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+		<result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+		<result column="PAYEE" property="payee" jdbcType="VARCHAR" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="DEPOSIT_BRNAME" property="depositBrname"
+			jdbcType="VARCHAR" />
+		<result column="LINKMAN" property="linkman" jdbcType="VARCHAR" />
+		<result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+		<result column="FAX" property="fax" jdbcType="VARCHAR" />
+		<result column="TONS" property="tons" jdbcType="DECIMAL" />
+		<result column="AMT" property="amt" jdbcType="DECIMAL" />
+		<result column="DELIVERY_QUANTITY" property="deliveryQuantity"
+			jdbcType="DECIMAL" />
+		<result column="DELIVERY_AMT" property="deliveryAmt" jdbcType="DECIMAL" />
+		<result column="BALANCE_AMT" property="balanceAmt" jdbcType="DECIMAL" />
+		<result column="PRICE_DROP_RATE" property="priceDropRate"
+			jdbcType="DECIMAL" />
+		<result column="LNCI_TYPE" property="lnciType" jdbcType="CHAR" />
+		<result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+		<result column="CONFIRM_STATUS" property="confirmStatus"
+			jdbcType="CHAR" />
+	</resultMap>
+
+	<sql id="Contions_Clause">
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="noticeType">
+				tnbi.notice_type=#noticeType:VARCHAR#
+			</isNotEmpty>
+			<isEmpty prepend="and" property="noticeType">
+				(tnbi.notice_type = '75' or
+				tnbi.notice_type = '78')
+			</isEmpty>
+			<isNotEmpty prepend="and" property="bussType">
+				tnbi.buss_type =
+				#bussType:VARCHAR#
+			</isNotEmpty>
+			<isNotNull prepend="and" property="arrBr" >
+				tnbi.brcode in 
+			    <iterate conjunction="," open="(" close=")" property="arrBr">
+			 	      #arrBr[]#
+			 	</iterate>
+	        </isNotNull>
+			<isNotEmpty prepend="and" property="confirmStatus">
+				tlbi.confirm_status =
+				#confirmStatus:CHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="debetId">
+				tnbi.debet_id like
+				'%$debetId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="custName">
+				tnbi.cust_name like
+				'%$custName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="otherCustName">
+				tnbi.other_cust_name like
+				'%$otherCustName$%'
+			</isNotEmpty>
+
+			<isNotEmpty prepend="" property="signDateFrom">
+				<isNotEmpty prepend="and" property="signDateTo">
+			 <![CDATA[tnbi.sign_date >= #signDateFrom:CHAR# and tnbi.sign_date <= #signDateTo:CHAR# ]]>
+				</isNotEmpty>
+				<isEmpty prepend="and" property="signDateTo">
+			 <![CDATA[tnbi.sign_date >= #signDateFrom:CHAR# ]]>
+				</isEmpty>
+			</isNotEmpty>
+			
+			<isEmpty prepend="" property="signDateFrom">
+				<isNotEmpty prepend="and" property="signDateTo">
+			 <![CDATA[tnbi.sign_date <= #signDateTo:CHAR# ]]>
+				</isNotEmpty>
+			</isEmpty>
+			
+			<isNotEmpty prepend="" property="commonDateFrom">
+				<isNotEmpty prepend="and" property="commonDateTo">
+			 <![CDATA[tnbi.common_date >= #commonDateFrom:CHAR# and tnbi.common_date <= #commonDateTo:CHAR# ]]>
+				</isNotEmpty>
+				<isEmpty prepend="and" property="commonDateTo">
+			 <![CDATA[tnbi.common_date >= #commonDateFrom:CHAR# ]]>
+				</isEmpty>
+			</isNotEmpty>
+			
+			<isEmpty prepend="" property="commonDateFrom">
+				<isNotEmpty prepend="and" property="commonDateTo">
+			 <![CDATA[tnbi.common_date <= #commonDateTo:CHAR# ]]>
+				</isNotEmpty>
+			</isEmpty>
+			
+		</dynamic>
+	</sql>
+
+	<select id="queryNoticeQryVO" parameterClass="java.util.Map"
+		resultMap="QueryResultMap">
+		select tnbi.*,tlbi.lnci_type,tlbi.lnci_amt,tlbi.confirm_status
+		from
+		B_LAN_LNCI_BASE tlbi, B_NTE_NOTICE_BASE tnbi
+		where tlbi.debet_no =
+		tnbi.debet_no
+		<isNotParameterPresent>
+			and (tnbi.notice_type = '75' or
+			tnbi.notice_type = '78')
+		</isNotParameterPresent>
+		<include refid="B_NTE_NOTICE_QRY_VO.Contions_Clause" />
+		order by tnbi.num desc, tnbi.sign_Date desc
+
+	</select>
+</sqlMap>

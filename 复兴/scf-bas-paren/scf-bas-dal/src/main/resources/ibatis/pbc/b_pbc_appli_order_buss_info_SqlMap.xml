@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_PBC_APPLI_ORDER_BUSS_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.pbc.dao.model.BPbcAppliOrderBussInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPNO" property="appno" jdbcType="VARCHAR" />
+    <result column="CUSTCD_BUYER" property="custcdBuyer" jdbcType="VARCHAR" />
+    <result column="CUSTCD_SELLER" property="custcdSeller" jdbcType="VARCHAR" />
+    <result column="APPLY_TYPE" property="applyType" jdbcType="VARCHAR" />
+    <result column="ORDER_CONTNO" property="orderContno" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="INSERT_DATE" property="insertDate" jdbcType="DATE" />
+    <result column="BILLS_NUM" property="billsNum" jdbcType="DECIMAL" />
+    <result column="TOTAL_AMOUNT" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="BUSS_TYPE" property="bussType" jdbcType="VARCHAR" />
+    <result column="LOAN_WAY" property="loanWay" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="CURCD" property="curcd" jdbcType="CHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="BUSS_DATE" property="bussDate" jdbcType="DATE" />
+    <result column="TLRCD" property="tlrcd" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="ORDER_DEBET_NO" property="orderDebetNo" jdbcType="VARCHAR" />
+    <result column="BALANCE_RISK_AMT" property="balanceRiskAmt" jdbcType="DECIMAL" />
+    <result column="RISK_AMT" property="riskAmt" jdbcType="DECIMAL" />
+    <result column="BUSS_WAY" property="bussWay" jdbcType="VARCHAR" />
+    <result column="BILLS_TTL_AMOUNT" property="billsTtlAmount" jdbcType="DECIMAL" />
+    <result column="AVALIABLE_AMT" property="avaliableAmt" jdbcType="DECIMAL" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="TRANSACTION_NO" property="transactionNo" jdbcType="VARCHAR" />
+    <result column="ASSIGN_RULE" property="assignRule" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="RETURN_ACCOUNT" property="returnAccount" jdbcType="VARCHAR" />
+    <result column="RETURN_ACCOUNT_BALANCE" property="returnAccountBalance" jdbcType="DECIMAL" />
+    <result column="TO_SALLER_FLAG" property="toSallerFlag" jdbcType="CHAR" />
+    <result column="OVER_AMOUNT" property="overAmount" jdbcType="DECIMAL" />
+    <result column="REPAY_AMOUNT" property="repayAmount" jdbcType="DECIMAL" />
+    <result column="RETURN_USAGE" property="returnUsage" jdbcType="CHAR" />
+    <result column="CLEAR_WAY" property="clearWay" jdbcType="CHAR" />
+    <result column="PAYER" property="payer" jdbcType="VARCHAR" />
+    <result column="PAYER_ACCT_NO" property="payerAcctNo" jdbcType="VARCHAR" />
+    <result column="PAYER_BANK" property="payerBank" jdbcType="VARCHAR" />
+    <result column="TRANSFER_AMT" property="transferAmt" jdbcType="DECIMAL" />
+    <result column="TRANSACTION_DATE" property="transactionDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, APPNO, CUSTCD_BUYER, CUSTCD_SELLER, APPLY_TYPE, ORDER_CONTNO, MAST_CONTNO, INSERT_DATE, 
+    BILLS_NUM, TOTAL_AMOUNT, BUSS_TYPE, LOAN_WAY, AMOUNT, CURCD, MEMO, BUSS_DATE, TLRCD, 
+    BRCODE, ORDER_DEBET_NO, BALANCE_RISK_AMT, RISK_AMT, BUSS_WAY, BILLS_TTL_AMOUNT, AVALIABLE_AMT, 
+    REASON, TRANSACTION_NO, ASSIGN_RULE, ACCOUNT_NO, RETURN_ACCOUNT, RETURN_ACCOUNT_BALANCE, 
+    TO_SALLER_FLAG, OVER_AMOUNT, REPAY_AMOUNT, RETURN_USAGE, CLEAR_WAY, PAYER, PAYER_ACCT_NO, 
+    PAYER_BANK, TRANSFER_AMT, TRANSACTION_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliOrderBussInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_PBC_APPLI_ORDER_BUSS_INFO.Base_Column_List" />
+    from B_PBC_APPLI_ORDER_BUSS_INFO
+    <isParameterPresent >
+      <include refid="B_PBC_APPLI_ORDER_BUSS_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliOrderBussInfo" >
+    select 
+    <include refid="B_PBC_APPLI_ORDER_BUSS_INFO.Base_Column_List" />
+    from B_PBC_APPLI_ORDER_BUSS_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliOrderBussInfo" >
+    delete from B_PBC_APPLI_ORDER_BUSS_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliOrderBussInfoExample" >
+    delete from B_PBC_APPLI_ORDER_BUSS_INFO
+    <include refid="B_PBC_APPLI_ORDER_BUSS_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliOrderBussInfo" >
+    insert into B_PBC_APPLI_ORDER_BUSS_INFO (ID, APPNO, CUSTCD_BUYER, CUSTCD_SELLER, 
+      APPLY_TYPE, ORDER_CONTNO, MAST_CONTNO, INSERT_DATE, 
+      BILLS_NUM, TOTAL_AMOUNT, BUSS_TYPE, LOAN_WAY, 
+      AMOUNT, CURCD, MEMO, BUSS_DATE, TLRCD, 
+      BRCODE, ORDER_DEBET_NO, BALANCE_RISK_AMT, RISK_AMT, 
+      BUSS_WAY, BILLS_TTL_AMOUNT, AVALIABLE_AMT, REASON, 
+      TRANSACTION_NO, ASSIGN_RULE, ACCOUNT_NO, RETURN_ACCOUNT, 
+      RETURN_ACCOUNT_BALANCE, TO_SALLER_FLAG, OVER_AMOUNT, REPAY_AMOUNT, 
+      RETURN_USAGE, CLEAR_WAY, PAYER, PAYER_ACCT_NO, PAYER_BANK, 
+      TRANSFER_AMT, TRANSACTION_DATE)
+    values (#id:VARCHAR#, #appno:VARCHAR#, #custcdBuyer:VARCHAR#, #custcdSeller:VARCHAR#, 
+      #applyType:VARCHAR#, #orderContno:VARCHAR#, #mastContno:VARCHAR#, #insertDate:DATE#, 
+      #billsNum:DECIMAL#, #totalAmount:DECIMAL#, #bussType:VARCHAR#, #loanWay:VARCHAR#, 
+      #amount:DECIMAL#, #curcd:CHAR#, #memo:VARCHAR#, #bussDate:DATE#, #tlrcd:VARCHAR#, 
+      #brcode:VARCHAR#, #orderDebetNo:VARCHAR#, #balanceRiskAmt:DECIMAL#, #riskAmt:DECIMAL#, 
+      #bussWay:VARCHAR#, #billsTtlAmount:DECIMAL#, #avaliableAmt:DECIMAL#, #reason:VARCHAR#, 
+      #transactionNo:VARCHAR#, #assignRule:VARCHAR#, #accountNo:VARCHAR#, #returnAccount:VARCHAR#, 
+      #returnAccountBalance:DECIMAL#, #toSallerFlag:CHAR#, #overAmount:DECIMAL#, #repayAmount:DECIMAL#, 
+      #returnUsage:CHAR#, #clearWay:CHAR#, #payer:VARCHAR#, #payerAcctNo:VARCHAR#, #payerBank:VARCHAR#, 
+      #transferAmt:DECIMAL#, #transactionDate:DATE#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliOrderBussInfo" >
+    insert into B_PBC_APPLI_ORDER_BUSS_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        CUSTCD_BUYER
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSeller" >
+        CUSTCD_SELLER
+      </isNotNull>
+      <isNotNull prepend="," property="applyType" >
+        APPLY_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="orderContno" >
+        ORDER_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        INSERT_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="billsNum" >
+        BILLS_NUM
+      </isNotNull>
+      <isNotNull prepend="," property="totalAmount" >
+        TOTAL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        BUSS_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO
+      </isNotNull>
+      <isNotNull prepend="," property="bussDate" >
+        BUSS_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE
+      </isNotNull>
+      <isNotNull prepend="," property="orderDebetNo" >
+        ORDER_DEBET_NO
+      </isNotNull>
+      <isNotNull prepend="," property="balanceRiskAmt" >
+        BALANCE_RISK_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        RISK_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="bussWay" >
+        BUSS_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="billsTtlAmount" >
+        BILLS_TTL_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="avaliableAmt" >
+        AVALIABLE_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        REASON
+      </isNotNull>
+      <isNotNull prepend="," property="transactionNo" >
+        TRANSACTION_NO
+      </isNotNull>
+      <isNotNull prepend="," property="assignRule" >
+        ASSIGN_RULE
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccount" >
+        RETURN_ACCOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccountBalance" >
+        RETURN_ACCOUNT_BALANCE
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerFlag" >
+        TO_SALLER_FLAG
+      </isNotNull>
+      <isNotNull prepend="," property="overAmount" >
+        OVER_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="repayAmount" >
+        REPAY_AMOUNT
+      </isNotNull>
+      <isNotNull prepend="," property="returnUsage" >
+        RETURN_USAGE
+      </isNotNull>
+      <isNotNull prepend="," property="clearWay" >
+        CLEAR_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="payer" >
+        PAYER
+      </isNotNull>
+      <isNotNull prepend="," property="payerAcctNo" >
+        PAYER_ACCT_NO
+      </isNotNull>
+      <isNotNull prepend="," property="payerBank" >
+        PAYER_BANK
+      </isNotNull>
+      <isNotNull prepend="," property="transferAmt" >
+        TRANSFER_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="transactionDate" >
+        TRANSACTION_DATE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appno" >
+        #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        #custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSeller" >
+        #custcdSeller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyType" >
+        #applyType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orderContno" >
+        #orderContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        #insertDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="billsNum" >
+        #billsNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalAmount" >
+        #totalAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        #bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        #amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bussDate" >
+        #bussDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orderDebetNo" >
+        #orderDebetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="balanceRiskAmt" >
+        #balanceRiskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        #riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussWay" >
+        #bussWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsTtlAmount" >
+        #billsTtlAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="avaliableAmt" >
+        #avaliableAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        #reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="transactionNo" >
+        #transactionNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="assignRule" >
+        #assignRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccount" >
+        #returnAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccountBalance" >
+        #returnAccountBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerFlag" >
+        #toSallerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="overAmount" >
+        #overAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="repayAmount" >
+        #repayAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnUsage" >
+        #returnUsage:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="clearWay" >
+        #clearWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payer" >
+        #payer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payerAcctNo" >
+        #payerAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payerBank" >
+        #payerBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="transferAmt" >
+        #transferAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="transactionDate" >
+        #transactionDate:DATE#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliOrderBussInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_PBC_APPLI_ORDER_BUSS_INFO
+    <include refid="B_PBC_APPLI_ORDER_BUSS_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_PBC_APPLI_ORDER_BUSS_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.appno" >
+        APPNO = #record.appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcdBuyer" >
+        CUSTCD_BUYER = #record.custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.custcdSeller" >
+        CUSTCD_SELLER = #record.custcdSeller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.applyType" >
+        APPLY_TYPE = #record.applyType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.orderContno" >
+        ORDER_CONTNO = #record.orderContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.insertDate" >
+        INSERT_DATE = #record.insertDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billsNum" >
+        BILLS_NUM = #record.billsNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalAmount" >
+        TOTAL_AMOUNT = #record.totalAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bussType" >
+        BUSS_TYPE = #record.bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanWay" >
+        LOAN_WAY = #record.loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.amount" >
+        AMOUNT = #record.amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.curcd" >
+        CURCD = #record.curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.memo" >
+        MEMO = #record.memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bussDate" >
+        BUSS_DATE = #record.bussDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tlrcd" >
+        TLRCD = #record.tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brcode" >
+        BRCODE = #record.brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.orderDebetNo" >
+        ORDER_DEBET_NO = #record.orderDebetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.balanceRiskAmt" >
+        BALANCE_RISK_AMT = #record.balanceRiskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.riskAmt" >
+        RISK_AMT = #record.riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bussWay" >
+        BUSS_WAY = #record.bussWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.billsTtlAmount" >
+        BILLS_TTL_AMOUNT = #record.billsTtlAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.avaliableAmt" >
+        AVALIABLE_AMT = #record.avaliableAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.reason" >
+        REASON = #record.reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.transactionNo" >
+        TRANSACTION_NO = #record.transactionNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.assignRule" >
+        ASSIGN_RULE = #record.assignRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.accountNo" >
+        ACCOUNT_NO = #record.accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnAccount" >
+        RETURN_ACCOUNT = #record.returnAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnAccountBalance" >
+        RETURN_ACCOUNT_BALANCE = #record.returnAccountBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.toSallerFlag" >
+        TO_SALLER_FLAG = #record.toSallerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overAmount" >
+        OVER_AMOUNT = #record.overAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.repayAmount" >
+        REPAY_AMOUNT = #record.repayAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.returnUsage" >
+        RETURN_USAGE = #record.returnUsage:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.clearWay" >
+        CLEAR_WAY = #record.clearWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payer" >
+        PAYER = #record.payer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payerAcctNo" >
+        PAYER_ACCT_NO = #record.payerAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payerBank" >
+        PAYER_BANK = #record.payerBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.transferAmt" >
+        TRANSFER_AMT = #record.transferAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.transactionDate" >
+        TRANSACTION_DATE = #record.transactionDate:DATE#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_PBC_APPLI_ORDER_BUSS_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_PBC_APPLI_ORDER_BUSS_INFO
+    set ID = #record.id:VARCHAR#,
+      APPNO = #record.appno:VARCHAR#,
+      CUSTCD_BUYER = #record.custcdBuyer:VARCHAR#,
+      CUSTCD_SELLER = #record.custcdSeller:VARCHAR#,
+      APPLY_TYPE = #record.applyType:VARCHAR#,
+      ORDER_CONTNO = #record.orderContno:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      INSERT_DATE = #record.insertDate:DATE#,
+      BILLS_NUM = #record.billsNum:DECIMAL#,
+      TOTAL_AMOUNT = #record.totalAmount:DECIMAL#,
+      BUSS_TYPE = #record.bussType:VARCHAR#,
+      LOAN_WAY = #record.loanWay:VARCHAR#,
+      AMOUNT = #record.amount:DECIMAL#,
+      CURCD = #record.curcd:CHAR#,
+      MEMO = #record.memo:VARCHAR#,
+      BUSS_DATE = #record.bussDate:DATE#,
+      TLRCD = #record.tlrcd:VARCHAR#,
+      BRCODE = #record.brcode:VARCHAR#,
+      ORDER_DEBET_NO = #record.orderDebetNo:VARCHAR#,
+      BALANCE_RISK_AMT = #record.balanceRiskAmt:DECIMAL#,
+      RISK_AMT = #record.riskAmt:DECIMAL#,
+      BUSS_WAY = #record.bussWay:VARCHAR#,
+      BILLS_TTL_AMOUNT = #record.billsTtlAmount:DECIMAL#,
+      AVALIABLE_AMT = #record.avaliableAmt:DECIMAL#,
+      REASON = #record.reason:VARCHAR#,
+      TRANSACTION_NO = #record.transactionNo:VARCHAR#,
+      ASSIGN_RULE = #record.assignRule:VARCHAR#,
+      ACCOUNT_NO = #record.accountNo:VARCHAR#,
+      RETURN_ACCOUNT = #record.returnAccount:VARCHAR#,
+      RETURN_ACCOUNT_BALANCE = #record.returnAccountBalance:DECIMAL#,
+      TO_SALLER_FLAG = #record.toSallerFlag:CHAR#,
+      OVER_AMOUNT = #record.overAmount:DECIMAL#,
+      REPAY_AMOUNT = #record.repayAmount:DECIMAL#,
+      RETURN_USAGE = #record.returnUsage:CHAR#,
+      CLEAR_WAY = #record.clearWay:CHAR#,
+      PAYER = #record.payer:VARCHAR#,
+      PAYER_ACCT_NO = #record.payerAcctNo:VARCHAR#,
+      PAYER_BANK = #record.payerBank:VARCHAR#,
+      TRANSFER_AMT = #record.transferAmt:DECIMAL#,
+      TRANSACTION_DATE = #record.transactionDate:DATE#
+    <isParameterPresent >
+      <include refid="B_PBC_APPLI_ORDER_BUSS_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliOrderBussInfo" >
+    update B_PBC_APPLI_ORDER_BUSS_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="appno" >
+        APPNO = #appno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdBuyer" >
+        CUSTCD_BUYER = #custcdBuyer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="custcdSeller" >
+        CUSTCD_SELLER = #custcdSeller:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="applyType" >
+        APPLY_TYPE = #applyType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orderContno" >
+        ORDER_CONTNO = #orderContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="insertDate" >
+        INSERT_DATE = #insertDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="billsNum" >
+        BILLS_NUM = #billsNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalAmount" >
+        TOTAL_AMOUNT = #totalAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussType" >
+        BUSS_TYPE = #bussType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanWay" >
+        LOAN_WAY = #loanWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        AMOUNT = #amount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="curcd" >
+        CURCD = #curcd:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="memo" >
+        MEMO = #memo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bussDate" >
+        BUSS_DATE = #bussDate:DATE#
+      </isNotNull>
+      <isNotNull prepend="," property="tlrcd" >
+        TLRCD = #tlrcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brcode" >
+        BRCODE = #brcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orderDebetNo" >
+        ORDER_DEBET_NO = #orderDebetNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="balanceRiskAmt" >
+        BALANCE_RISK_AMT = #balanceRiskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        RISK_AMT = #riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussWay" >
+        BUSS_WAY = #bussWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="billsTtlAmount" >
+        BILLS_TTL_AMOUNT = #billsTtlAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="avaliableAmt" >
+        AVALIABLE_AMT = #avaliableAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="reason" >
+        REASON = #reason:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="transactionNo" >
+        TRANSACTION_NO = #transactionNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="assignRule" >
+        ASSIGN_RULE = #assignRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountNo" >
+        ACCOUNT_NO = #accountNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccount" >
+        RETURN_ACCOUNT = #returnAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="returnAccountBalance" >
+        RETURN_ACCOUNT_BALANCE = #returnAccountBalance:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="toSallerFlag" >
+        TO_SALLER_FLAG = #toSallerFlag:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="overAmount" >
+        OVER_AMOUNT = #overAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="repayAmount" >
+        REPAY_AMOUNT = #repayAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="returnUsage" >
+        RETURN_USAGE = #returnUsage:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="clearWay" >
+        CLEAR_WAY = #clearWay:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payer" >
+        PAYER = #payer:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payerAcctNo" >
+        PAYER_ACCT_NO = #payerAcctNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payerBank" >
+        PAYER_BANK = #payerBank:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="transferAmt" >
+        TRANSFER_AMT = #transferAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="transactionDate" >
+        TRANSACTION_DATE = #transactionDate:DATE#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.pbc.dao.model.BPbcAppliOrderBussInfo" >
+    update B_PBC_APPLI_ORDER_BUSS_INFO
+    set APPNO = #appno:VARCHAR#,
+      CUSTCD_BUYER = #custcdBuyer:VARCHAR#,
+      CUSTCD_SELLER = #custcdSeller:VARCHAR#,
+      APPLY_TYPE = #applyType:VARCHAR#,
+      ORDER_CONTNO = #orderContno:VARCHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      INSERT_DATE = #insertDate:DATE#,
+      BILLS_NUM = #billsNum:DECIMAL#,
+      TOTAL_AMOUNT = #totalAmount:DECIMAL#,
+      BUSS_TYPE = #bussType:VARCHAR#,
+      LOAN_WAY = #loanWay:VARCHAR#,
+      AMOUNT = #amount:DECIMAL#,
+      CURCD = #curcd:CHAR#,
+      MEMO = #memo:VARCHAR#,
+      BUSS_DATE = #bussDate:DATE#,
+      TLRCD = #tlrcd:VARCHAR#,
+      BRCODE = #brcode:VARCHAR#,
+      ORDER_DEBET_NO = #orderDebetNo:VARCHAR#,
+      BALANCE_RISK_AMT = #balanceRiskAmt:DECIMAL#,
+      RISK_AMT = #riskAmt:DECIMAL#,
+      BUSS_WAY = #bussWay:VARCHAR#,
+      BILLS_TTL_AMOUNT = #billsTtlAmount:DECIMAL#,
+      AVALIABLE_AMT = #avaliableAmt:DECIMAL#,
+      REASON = #reason:VARCHAR#,
+      TRANSACTION_NO = #transactionNo:VARCHAR#,
+      ASSIGN_RULE = #assignRule:VARCHAR#,
+      ACCOUNT_NO = #accountNo:VARCHAR#,
+      RETURN_ACCOUNT = #returnAccount:VARCHAR#,
+      RETURN_ACCOUNT_BALANCE = #returnAccountBalance:DECIMAL#,
+      TO_SALLER_FLAG = #toSallerFlag:CHAR#,
+      OVER_AMOUNT = #overAmount:DECIMAL#,
+      REPAY_AMOUNT = #repayAmount:DECIMAL#,
+      RETURN_USAGE = #returnUsage:CHAR#,
+      CLEAR_WAY = #clearWay:CHAR#,
+      PAYER = #payer:VARCHAR#,
+      PAYER_ACCT_NO = #payerAcctNo:VARCHAR#,
+      PAYER_BANK = #payerBank:VARCHAR#,
+      TRANSFER_AMT = #transferAmt:DECIMAL#,
+      TRANSACTION_DATE = #transactionDate:DATE#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

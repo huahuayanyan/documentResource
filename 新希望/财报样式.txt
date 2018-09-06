@@ -1,0 +1,22 @@
+资产负债表
+[{"name":"资产","style":"width:150px;"}, {"name":"年初余额(单位:元)"},{"name":"期末数(单位:元)"},{"name":"负债及股东权益","style":"width:150px;"},{"name":"年初余额(单位:元)"},{"name":"期末数(单位:元)"}]
+
+
+损益表
+[{"name":"项目","style":"width:150px;"}, {"name":"期末数(单位:元)"},{"name":"本年累计发生额(单位:元)"}]
+
+
+财务指标
+[{"name":"项目","style":"width:150px;"}, {"name":"指标"}]
+
+
+现金流量
+[{"name":"项目","style":"width:150px;"}, {"name":"本期发生额(单位:元)"}]
+
+
+
+新增模型 b_fin_cnfg_cl
+新增科目 b_fin_cnfg_subj
+		 b_fin_cnfg_def
+查询客户财务信息时 新增 b_fin_cust_dir(客户财报目录表)  b_fin_cust_ds(客户财报数据表)
+

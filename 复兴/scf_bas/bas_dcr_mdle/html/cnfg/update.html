@@ -1,0 +1,10 @@
+<ht-form name="updateForm">
+    <ht-input ht-id="typId" name="检查类型ID" ng-model="updateForm.typId"  disable="true"></ht-input>
+    <ht-input ht-id="typNm" name="检查类型说明" ng-model="updateForm.typNm"  reg-exp="common.require"></ht-input>
+    <ht-input ht-id="chkExpr" name="检查器类名" ng-model="updateForm.chkExpr" ></ht-input>
+    <ht-select  ht-id="rltTyp"  name="检查对象"  ng-model="updateForm.rltTyp"  dictionary="selectChkRltTyp" ></ht-select>   
+</ht-form>
+<ht-button-group align="center">
+    <ht-button ht-id="confirm" desc-name="确认" class="btn-primary"></ht-button>
+    <ht-button ht-id="cancel" desc-name="取消" class="btn-primary"></ht-button>
+</ht-button-group>

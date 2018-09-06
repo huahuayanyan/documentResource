@@ -1,0 +1,19 @@
+
+<ht-form name ="mortgageInfo">
+    <ht-input ht-id="mortgageNo" name="押品编号" disable="true" ng-model="mortgageInfo.mortgageNo"></ht-input>
+    <ht-input ht-id="mortgageName" name="押品名称" disable="{{disable}}" reg-exp="common.require" ng-model="mortgageInfo.mortgageName"></ht-input>
+    <ht-select ht-id="mortgageLevelOne" name="押品一级" disable="{{disable}}" reg-exp="common.require" on-change="mortgageLevelOneName" datasource="mortgageLevelOneSource" dataOption="code" dataTrsOption="codeName"  ng-model="mortgageInfo.mortgageLevelOne"></ht-select>
+    <ht-select ht-id="mortgageLevelTwo" name="押品二级" disable="{{disable}}" reg-exp="common.require"on-change="mortgageLevelTwoName" datasource="mortgageLevelTwoSource" dataOption="code" dataTrsOption="codeName" ng-model="mortgageInfo.mortgageLevelTwo"></ht-select>
+    <ht-input ht-id="mortgageModel" name="规格/型号" disable="{{disable}}" ng-model="mortgageInfo.mortgageModel"></ht-input>
+    <ht-select ht-id="mortgageUnits" name="单位" disable="{{disable}}" dictionary="mortgageUnits" ng-model="mortgageInfo.mortgageUnits"></ht-select>
+    <ht-input ht-id="confirmPrice" name="核定单价" disable="{{disable}}" reg-exp="common.require" ng-model="mortgageInfo.confirmPrice" edit-type="currency"></ht-input>
+    <ht-input ht-id="quantity" name="数量/重量" disable="{{disable}}" reg-exp="common.require" ng-model="mortgageInfo.quantity" edit-type="currency"></ht-input>
+    <ht-input ht-id="balQuantity" reg-exp="common.require" name="提货数量/重量" disable="{{addQuantityDisable}}" ng-model="mortgageInfo.balQuantity" edit-type="currency" hide="{{addQuantityHide}}"></ht-input>
+    <ht-input ht-id="documentNo" name="提货凭证号" disable="true" ng-model="mortgageInfo.documentNo"></ht-input>
+    <ht-text-area ht-id="memo" name="备注" disable="true" ng-model="mortgageInfo.memo"></ht-text-area>
+</ht-form>
+
+<ht-button-group class="center">
+    <ht-button ht-id="save" class="btn-primary" hide="{{saveHide}}">确定</ht-button>
+    <ht-button ht-id="close" class="btn-primary">返回</ht-button>
+</ht-button-group>

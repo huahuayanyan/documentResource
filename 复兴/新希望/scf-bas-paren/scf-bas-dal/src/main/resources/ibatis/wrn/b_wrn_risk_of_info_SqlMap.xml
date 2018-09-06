@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_WRN_RISK_OF_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="DECIMAL" />
+    <result column="BUSS_CONTNO" property="bussContno" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="SELLER_CUSTCD" property="sellerCustcd" jdbcType="VARCHAR" />
+    <result column="SELLER_NAME" property="sellerName" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+    <result column="LOAN_APPNO" property="loanAppno" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+    <result column="LNCI_BAL" property="lnciBal" jdbcType="DECIMAL" />
+    <result column="DEBT_AMT" property="debtAmt" jdbcType="DECIMAL" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="BAIL_AMT" property="bailAmt" jdbcType="DECIMAL" />
+    <result column="CASH_EQT_AMT" property="cashEqtAmt" jdbcType="DECIMAL" />
+    <result column="RISK_AMT" property="riskAmt" jdbcType="DECIMAL" />
+    <result column="OVERFLOW_AMT" property="overflowAmt" jdbcType="DECIMAL" />
+    <result column="RATIO" property="ratio" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="BaseResultMapDetail" class="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfoDetail" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WARN_ID" property="warnId" jdbcType="DECIMAL" />
+    <result column="BUSS_CONTNO" property="bussContno" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="SELLER_CUSTCD" property="sellerCustcd" jdbcType="VARCHAR" />
+    <result column="SELLER_NAME" property="sellerName" jdbcType="VARCHAR" />
+    <result column="MAST_CONTNO" property="mastContno" jdbcType="VARCHAR" />
+    <result column="MAST_CONTCODE" property="mastContcode" jdbcType="VARCHAR" />
+    <result column="LOAN_APPNO" property="loanAppno" jdbcType="VARCHAR" />
+    <result column="DEBET_ID" property="debetId" jdbcType="VARCHAR" />
+    <result column="LNCI_AMT" property="lnciAmt" jdbcType="DECIMAL" />
+    <result column="LNCI_BAL" property="lnciBal" jdbcType="DECIMAL" />
+    <result column="DEBT_AMT" property="debtAmt" jdbcType="DECIMAL" />
+    <result column="LOAN_PERCENT" property="loanPercent" jdbcType="DECIMAL" />
+    <result column="BAIL_AMT" property="bailAmt" jdbcType="DECIMAL" />
+    <result column="CASH_EQT_AMT" property="cashEqtAmt" jdbcType="DECIMAL" />
+    <result column="RISK_AMT" property="riskAmt" jdbcType="DECIMAL" />
+    <result column="OVERFLOW_AMT" property="overflowAmt" jdbcType="DECIMAL" />
+    <result column="RATIO" property="ratio" jdbcType="DECIMAL" />
+    <result column="WARN_DATE" property="warnDate" jdbcType="VARCHAR" />
+    <result column="BRCODE" property="brcode" jdbcType="VARCHAR" />
+    <result column="CUST_MANAGER" property="custManager" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, WARN_ID, BUSS_CONTNO, PRODUCT_ID, SELLER_CUSTCD, SELLER_NAME, MAST_CONTNO, MAST_CONTCODE, 
+    LOAN_APPNO, DEBET_ID, LNCI_AMT, LNCI_BAL, DEBT_AMT, LOAN_PERCENT, BAIL_AMT, CASH_EQT_AMT, 
+    RISK_AMT, OVERFLOW_AMT, RATIO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_WRN_RISK_OF_INFO.Base_Column_List" />
+    from B_WRN_RISK_OF_INFO
+    <isParameterPresent >
+      <include refid="B_WRN_RISK_OF_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfo" >
+    select 
+    <include refid="B_WRN_RISK_OF_INFO.Base_Column_List" />
+    from B_WRN_RISK_OF_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <!-- 获取敞口无法覆盖预警 -->
+  <select id="getUnableCoverOpenAmtWarnInfo" resultMap="BaseResultMapDetail" parameterClass="java.util.Map" >
+    select 
+    a.WARN_DATE,a.BRCODE,a.CUST_MANAGER,b.*
+    from B_WRN_BASE_INFO a,B_WRN_RISK_OF_INFO b,B_CRM_BASE_INFO c
+    where a.ID = b.WARN_ID and b.SELLER_CUSTCD = c.CUSTCD
+    and a.PARAM_ID in(#p1#,#p2#,#p3#)
+    <isNotEmpty prepend="and" property="bussContno" >
+		<![CDATA[b.BUSS_CONTNO like '%' || #bussContno:VARCHAR# || '%']]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="sellerName" >
+		<![CDATA[b.SELLER_NAME like '%' || #sellerName# || '%']]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="startYj" >
+		<![CDATA[a.WARN_DATE >= #startYj:VARCHAR#]]>
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="endYj" >
+		<![CDATA[a.WARN_DATE <= #endYj:VARCHAR#]]>
+	</isNotEmpty>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfo" >
+    delete from B_WRN_RISK_OF_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfoExample" >
+    delete from B_WRN_RISK_OF_INFO
+    <include refid="B_WRN_RISK_OF_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfo" >
+    insert into B_WRN_RISK_OF_INFO (ID, WARN_ID, BUSS_CONTNO, PRODUCT_ID, 
+      SELLER_CUSTCD, SELLER_NAME, MAST_CONTNO, MAST_CONTCODE, 
+      LOAN_APPNO, DEBET_ID, LNCI_AMT, LNCI_BAL, DEBT_AMT, 
+      LOAN_PERCENT, BAIL_AMT, CASH_EQT_AMT, RISK_AMT, 
+      OVERFLOW_AMT, RATIO)
+    values (#id:VARCHAR#, #warnId:DECIMAL#, #bussContno:VARCHAR#, #productId:VARCHAR#, 
+      #sellerCustcd:VARCHAR#, #sellerName:VARCHAR#, #mastContno:VARCHAR#, #mastContcode:VARCHAR#, 
+      #loanAppno:VARCHAR#, #debetId:VARCHAR#, #lnciAmt:DECIMAL#, #lnciBal:DECIMAL#, #debtAmt:DECIMAL#, 
+      #loanPercent:DECIMAL#, #bailAmt:DECIMAL#, #cashEqtAmt:DECIMAL#, #riskAmt:DECIMAL#, 
+      #overflowAmt:DECIMAL#, #ratio:DECIMAL#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfo" >
+    insert into B_WRN_RISK_OF_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID
+      </isNotNull>
+      <isNotNull prepend="," property="bussContno" >
+        BUSS_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID
+      </isNotNull>
+      <isNotNull prepend="," property="sellerCustcd" >
+        SELLER_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="sellerName" >
+        SELLER_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        MAST_CONTCODE
+      </isNotNull>
+      <isNotNull prepend="," property="loanAppno" >
+        LOAN_APPNO
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        DEBET_ID
+      </isNotNull>
+      <isNotNull prepend="," property="lnciAmt" >
+        LNCI_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="lnciBal" >
+        LNCI_BAL
+      </isNotNull>
+      <isNotNull prepend="," property="debtAmt" >
+        DEBT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="loanPercent" >
+        LOAN_PERCENT
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmt" >
+        BAIL_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="cashEqtAmt" >
+        CASH_EQT_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        RISK_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="overflowAmt" >
+        OVERFLOW_AMT
+      </isNotNull>
+      <isNotNull prepend="," property="ratio" >
+        RATIO
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warnId" >
+        #warnId:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussContno" >
+        #bussContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        #productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellerCustcd" >
+        #sellerCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellerName" >
+        #sellerName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        #mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanAppno" >
+        #loanAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        #debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lnciAmt" >
+        #lnciAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnciBal" >
+        #lnciBal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="debtAmt" >
+        #debtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="loanPercent" >
+        #loanPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmt" >
+        #bailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cashEqtAmt" >
+        #cashEqtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        #riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overflowAmt" >
+        #overflowAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ratio" >
+        #ratio:DECIMAL#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_WRN_RISK_OF_INFO
+    <include refid="B_WRN_RISK_OF_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_WRN_RISK_OF_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warnId" >
+        WARN_ID = #record.warnId:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bussContno" >
+        BUSS_CONTNO = #record.bussContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.productId" >
+        PRODUCT_ID = #record.productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sellerCustcd" >
+        SELLER_CUSTCD = #record.sellerCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sellerName" >
+        SELLER_NAME = #record.sellerName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContno" >
+        MAST_CONTNO = #record.mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mastContcode" >
+        MAST_CONTCODE = #record.mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanAppno" >
+        LOAN_APPNO = #record.loanAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debetId" >
+        DEBET_ID = #record.debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lnciAmt" >
+        LNCI_AMT = #record.lnciAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lnciBal" >
+        LNCI_BAL = #record.lnciBal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.debtAmt" >
+        DEBT_AMT = #record.debtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.loanPercent" >
+        LOAN_PERCENT = #record.loanPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bailAmt" >
+        BAIL_AMT = #record.bailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cashEqtAmt" >
+        CASH_EQT_AMT = #record.cashEqtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.riskAmt" >
+        RISK_AMT = #record.riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overflowAmt" >
+        OVERFLOW_AMT = #record.overflowAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ratio" >
+        RATIO = #record.ratio:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_WRN_RISK_OF_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_WRN_RISK_OF_INFO
+    set ID = #record.id:VARCHAR#,
+      WARN_ID = #record.warnId:DECIMAL#,
+      BUSS_CONTNO = #record.bussContno:VARCHAR#,
+      PRODUCT_ID = #record.productId:VARCHAR#,
+      SELLER_CUSTCD = #record.sellerCustcd:VARCHAR#,
+      SELLER_NAME = #record.sellerName:VARCHAR#,
+      MAST_CONTNO = #record.mastContno:VARCHAR#,
+      MAST_CONTCODE = #record.mastContcode:VARCHAR#,
+      LOAN_APPNO = #record.loanAppno:VARCHAR#,
+      DEBET_ID = #record.debetId:VARCHAR#,
+      LNCI_AMT = #record.lnciAmt:DECIMAL#,
+      LNCI_BAL = #record.lnciBal:DECIMAL#,
+      DEBT_AMT = #record.debtAmt:DECIMAL#,
+      LOAN_PERCENT = #record.loanPercent:DECIMAL#,
+      BAIL_AMT = #record.bailAmt:DECIMAL#,
+      CASH_EQT_AMT = #record.cashEqtAmt:DECIMAL#,
+      RISK_AMT = #record.riskAmt:DECIMAL#,
+      OVERFLOW_AMT = #record.overflowAmt:DECIMAL#,
+      RATIO = #record.ratio:DECIMAL#
+    <isParameterPresent >
+      <include refid="B_WRN_RISK_OF_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfo" >
+    update B_WRN_RISK_OF_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="warnId" >
+        WARN_ID = #warnId:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bussContno" >
+        BUSS_CONTNO = #bussContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="productId" >
+        PRODUCT_ID = #productId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellerCustcd" >
+        SELLER_CUSTCD = #sellerCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellerName" >
+        SELLER_NAME = #sellerName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContno" >
+        MAST_CONTNO = #mastContno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mastContcode" >
+        MAST_CONTCODE = #mastContcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="loanAppno" >
+        LOAN_APPNO = #loanAppno:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="debetId" >
+        DEBET_ID = #debetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lnciAmt" >
+        LNCI_AMT = #lnciAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lnciBal" >
+        LNCI_BAL = #lnciBal:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="debtAmt" >
+        DEBT_AMT = #debtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="loanPercent" >
+        LOAN_PERCENT = #loanPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="bailAmt" >
+        BAIL_AMT = #bailAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cashEqtAmt" >
+        CASH_EQT_AMT = #cashEqtAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="riskAmt" >
+        RISK_AMT = #riskAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overflowAmt" >
+        OVERFLOW_AMT = #overflowAmt:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ratio" >
+        RATIO = #ratio:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.rec.wrn.dao.model.BWrnRiskOfInfo" >
+    update B_WRN_RISK_OF_INFO
+    set WARN_ID = #warnId:DECIMAL#,
+      BUSS_CONTNO = #bussContno:VARCHAR#,
+      PRODUCT_ID = #productId:VARCHAR#,
+      SELLER_CUSTCD = #sellerCustcd:VARCHAR#,
+      SELLER_NAME = #sellerName:VARCHAR#,
+      MAST_CONTNO = #mastContno:VARCHAR#,
+      MAST_CONTCODE = #mastContcode:VARCHAR#,
+      LOAN_APPNO = #loanAppno:VARCHAR#,
+      DEBET_ID = #debetId:VARCHAR#,
+      LNCI_AMT = #lnciAmt:DECIMAL#,
+      LNCI_BAL = #lnciBal:DECIMAL#,
+      DEBT_AMT = #debtAmt:DECIMAL#,
+      LOAN_PERCENT = #loanPercent:DECIMAL#,
+      BAIL_AMT = #bailAmt:DECIMAL#,
+      CASH_EQT_AMT = #cashEqtAmt:DECIMAL#,
+      RISK_AMT = #riskAmt:DECIMAL#,
+      OVERFLOW_AMT = #overflowAmt:DECIMAL#,
+      RATIO = #ratio:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>

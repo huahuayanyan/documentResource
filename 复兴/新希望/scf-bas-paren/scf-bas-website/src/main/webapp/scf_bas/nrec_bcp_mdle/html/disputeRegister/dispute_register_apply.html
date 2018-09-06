@@ -1,0 +1,62 @@
+<!--<ht-form name="otherformX">-->
+    <!--<ht-legend>任务基本信息</ht-legend>-->
+    <!--<ht-input id="processTemplateName" name="流程名称" ng-model="otherformX.processTemplateName" disable="true"></ht-input>-->
+    <!--<ht-input id="startTaskDate" name="申请发起时间"ng-model="otherformX.startTaskDate" edit-type="date" disable="true"></ht-input>-->
+    <!--<ht-input id="startTlrcdName" name="经办人" ng-model="otherformX.startTlrcdName" disable="true"></ht-input>-->
+    <!--<ht-input id="startBrcodeName" name="经办机构"ng-model="otherformX.startBrcodeName" disable="true"></ht-input>-->
+<!--</ht-form>-->
+<ht-form name="otherform">
+    <ht-legend>基本信息</ht-legend>
+    <ht-panel>
+        <ht-input ht-id="cname" name="融资客户" ng-model="otherform.cname" disable="true"></ht-input>
+        <ht-input ht-id="cnameBuyer" name="贸易对手" ng-model="otherform.cnameBuyer" disable="true"></ht-input>
+        <ht-input ht-id="mastContno" name="业务合同号" disable="true" ng-model="otherform.mastContno"></ht-input>
+        <ht-input ht-id="supplyChainPdName" name="业务品种" disable="true" ng-model="otherform.supplyChainPdName"></ht-input>
+        <ht-input ht-id="startDate" edit-type="date" name="合同生效日" high-date-id="endDate" disable="true"
+                  ng-model="otherform.startDate" ></ht-input>
+        <ht-input ht-id="endDate" edit-type="date" name="合同到期日" lower-date-id="startDate"  disable="true"
+                  ng-model="otherform.endDate"></ht-input>
+        <ht-input ht-id="poolUseableAmount" name="池可融资总余额" disable="true" hide="{{pool}}" edit-type="currency" ng-model="otherform.poolUseableAmount"></ht-input>
+        <!--<ht-input ht-id="totalDebtRemainAmount" name="池应收账款余额" disable="true" hide="{{pool}}" edit-type="currency" ng-model="otherform.totalDebtRemainAmount"></ht-input>-->
+        <ht-input ht-id="poolRiskAmt" name="池敞口余额" disable="true" hide="{{pool}}" edit-type="currency" ng-model="otherform.poolRiskAmt"></ht-input>
+    </ht-panel>
+    <ht-panel>
+        <ht-legend>争议信息</ht-legend>
+        <ht-input ht-id="insertDate" name="争议日期"   disable="true" ng-model="otherform.insertDate" edit-type="date" ></ht-input>
+        <ht-input ht-id="debtNum" name="争议总份数" ng-model="otherform.debtNum" disable="true"></ht-input>
+        <ht-input ht-id="amount" name="争议总金额" ng-model="otherform.amount"edit-type="currency"  disable="true"></ht-input>
+        <ht-text-area ht-id="memo" name="其他信息备注" height="40" disable="{{hide}}" ng-model="otherform.memo"></ht-text-area>
+    </ht-panel>
+</ht-form>
+
+<ht-legend>争议应收账款列表</ht-legend>
+<ht-table ht-id="disputeInvoiceTab" datasource="bcpDatasource" selected="bcpSelected" docheckbox="true">
+    <ht-button-group>
+        <ht-button ht-id="addDebt" hide="{{hide}}"  class="btn-primary">添加</ht-button>
+        <ht-button ht-id="editDispute" hide="{{hide}}"  class="btn-primary">编辑</ht-button>
+        <ht-button ht-id="delDebt"  hide="{{hide}}"  class="btn-primary">删除</ht-button>
+        <ht-button ht-id="progress"  class="btn-primary">历程</ht-button>
+    </ht-button-group>
+    <ht-column eg-name="billsNo" zh-name="凭证编号"href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="billsType" zh-name="凭证类型"dictionary="billsType"></ht-column>
+    <ht-column eg-name="bussContcode" zh-name="商务合同号" ></ht-column>
+    <ht-column eg-name="billsDate" zh-name="应收账款日期" type="date"></ht-column>
+    <ht-column eg-name="debtEnd" zh-name="到期日" type="date"></ht-column>
+    <ht-column eg-name="deadline" zh-name="最迟付款日" type="date"></ht-column>
+    <ht-column eg-name="curcd" zh-name="币种" dictionary="curcd"></ht-column>
+    <ht-column eg-name="remainingAmount" zh-name="应收账款余额" type="currency"></ht-column>
+    <ht-column eg-name="issueFlag" zh-name="争议状态" dictionary="issueFlag"></ht-column>
+    <ht-column eg-name="money" zh-name="争议金额" type="currency"></ht-column>
+    <ht-column eg-name="issueReason" zh-name="争议原因" dictionary="issueReason"></ht-column>
+</ht-table>
+<ht-page conf="bcpConf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="save" hide="{{hide}}" class="btn-primary" >保存</ht-button>
+    <ht-button ht-id="submit" hide="{{hide}}" disable="{{submit}}" class="btn-primary">提交</ht-button>
+    <ht-button ht-id="back" hide="{{hide1}}" class="btn-primary" >返回</ht-button>
+</ht-button-group>
+<!--<ht--position batchNo="1" bindName="abc"/>-->
+
+
+
+

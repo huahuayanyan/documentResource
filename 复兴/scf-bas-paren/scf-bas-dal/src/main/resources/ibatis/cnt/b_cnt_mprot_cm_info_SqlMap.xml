@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_CNT_MPROT_CM_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.cnt.dao.model.BCntMprotCmInfo" >
+    <result column="PROTOCOL_NO" property="protocolNo" jdbcType="VARCHAR" />
+    <result column="MONI_OF_CUSTCD" property="moniOfCustcd" jdbcType="VARCHAR" />
+    <result column="GROUPED" property="grouped" jdbcType="CHAR" />
+    <result column="GROUPED_MEMBER" property="groupedMember" jdbcType="CHAR" />
+    <result column="LOW_PRICE" property="lowPrice" jdbcType="DECIMAL" />
+    <result column="LOW_PRICE_NEW" property="lowPriceNew" jdbcType="DECIMAL" />
+    <result column="MONI_WAREHOUSE_TYPE" property="moniWarehouseType" jdbcType="CHAR" />
+    <result column="MONI_AREA_TYPE" property="moniAreaType" jdbcType="CHAR" />
+    <result column="LOGISTICS_MONI_CONDITION" property="logisticsMoniCondition" jdbcType="VARCHAR" />
+    <result column="WAREHOUSEDRESS" property="warehousedress" jdbcType="VARCHAR" />
+    <result column="MORTGAGE_PAY_TYPE" property="mortgagePayType" jdbcType="CHAR" />
+    <result column="SPECIAL_WAREHOUSE_CONDITION" property="specialWarehouseCondition" jdbcType="VARCHAR" />
+    <result column="COST_BEAR" property="costBear" jdbcType="VARCHAR" />
+    <result column="COST_STANDARD" property="costStandard" jdbcType="VARCHAR" />
+    <result column="MONI_COST" property="moniCost" jdbcType="DECIMAL" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="PAY_TIME" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="MONI_NAME" property="moniName" jdbcType="VARCHAR" />
+    <result column="MONI_TEL" property="moniTel" jdbcType="VARCHAR" />
+    <result column="MONI_PROTOCOL_TYPE" property="moniProtocolType" jdbcType="CHAR" />
+    <result column="IS_HIGHEST_LIMIT" property="isHighestLimit" jdbcType="CHAR" />
+    <result column="MONI_PRICE_MODEL" property="moniPriceModel" jdbcType="CHAR" />
+    <result column="MONI_MODEL" property="moniModel" jdbcType="CHAR" />
+    <result column="DEALLINE_RATE" property="deallineRate" jdbcType="DECIMAL" />
+    <result column="WAREHOUSE_TYPE" property="warehouseType" jdbcType="CHAR" />
+    <result column="WAREHOUSE_HIRE_PROTOCOL" property="warehouseHireProtocol" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_HIRE_START_DATE" property="warehouseHireStartDate" jdbcType="CHAR" />
+    <result column="WAREHOUSE_HIRE_END_DATE" property="warehouseHireEndDate" jdbcType="CHAR" />
+    <result column="OTHER_DES" property="otherDes" jdbcType="VARCHAR" />
+    <result column="NOTICE_TYPE" property="noticeType" jdbcType="CHAR" />
+    <result column="SE_HIGHEST_PERCENT" property="seHighestPercent" jdbcType="DECIMAL" />
+    <result column="IS_PLEDGE" property="isPledge" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    PROTOCOL_NO, MONI_OF_CUSTCD, GROUPED, GROUPED_MEMBER, LOW_PRICE, LOW_PRICE_NEW, MONI_WAREHOUSE_TYPE, 
+    MONI_AREA_TYPE, LOGISTICS_MONI_CONDITION, WAREHOUSEDRESS, MORTGAGE_PAY_TYPE, SPECIAL_WAREHOUSE_CONDITION, 
+    COST_BEAR, COST_STANDARD, MONI_COST, PAY_WAY, PAY_TIME, MONI_NAME, MONI_TEL, MONI_PROTOCOL_TYPE, 
+    IS_HIGHEST_LIMIT, MONI_PRICE_MODEL, MONI_MODEL, DEALLINE_RATE, WAREHOUSE_TYPE, WAREHOUSE_HIRE_PROTOCOL, 
+    WAREHOUSE_HIRE_START_DATE, WAREHOUSE_HIRE_END_DATE, OTHER_DES, NOTICE_TYPE, SE_HIGHEST_PERCENT, 
+    IS_PLEDGE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotCmInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_CNT_MPROT_CM_INFO.Base_Column_List" />
+    from B_CNT_MPROT_CM_INFO
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_CM_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotCmInfo" >
+    select 
+    <include refid="B_CNT_MPROT_CM_INFO.Base_Column_List" />
+    from B_CNT_MPROT_CM_INFO
+    where PROTOCOL_NO = #protocolNo:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotCmInfo" >
+    delete from B_CNT_MPROT_CM_INFO
+    where PROTOCOL_NO = #protocolNo:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotCmInfoExample" >
+    delete from B_CNT_MPROT_CM_INFO
+    <include refid="B_CNT_MPROT_CM_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotCmInfo" >
+    insert into B_CNT_MPROT_CM_INFO (PROTOCOL_NO, MONI_OF_CUSTCD, GROUPED, GROUPED_MEMBER, 
+      LOW_PRICE, LOW_PRICE_NEW, MONI_WAREHOUSE_TYPE, MONI_AREA_TYPE, 
+      LOGISTICS_MONI_CONDITION, WAREHOUSEDRESS, MORTGAGE_PAY_TYPE, 
+      SPECIAL_WAREHOUSE_CONDITION, COST_BEAR, COST_STANDARD, 
+      MONI_COST, PAY_WAY, PAY_TIME, MONI_NAME, 
+      MONI_TEL, MONI_PROTOCOL_TYPE, IS_HIGHEST_LIMIT, MONI_PRICE_MODEL, 
+      MONI_MODEL, DEALLINE_RATE, WAREHOUSE_TYPE, WAREHOUSE_HIRE_PROTOCOL, 
+      WAREHOUSE_HIRE_START_DATE, WAREHOUSE_HIRE_END_DATE, OTHER_DES, 
+      NOTICE_TYPE, SE_HIGHEST_PERCENT, IS_PLEDGE)
+    values (#protocolNo:VARCHAR#, #moniOfCustcd:VARCHAR#, #grouped:CHAR#, #groupedMember:CHAR#, 
+      #lowPrice:DECIMAL#, #lowPriceNew:DECIMAL#, #moniWarehouseType:CHAR#, #moniAreaType:CHAR#, 
+      #logisticsMoniCondition:VARCHAR#, #warehousedress:VARCHAR#, #mortgagePayType:CHAR#, 
+      #specialWarehouseCondition:VARCHAR#, #costBear:VARCHAR#, #costStandard:VARCHAR#, 
+      #moniCost:DECIMAL#, #payWay:VARCHAR#, #payTime:TIMESTAMP#, #moniName:VARCHAR#, 
+      #moniTel:VARCHAR#, #moniProtocolType:CHAR#, #isHighestLimit:CHAR#, #moniPriceModel:CHAR#, 
+      #moniModel:CHAR#, #deallineRate:DECIMAL#, #warehouseType:CHAR#, #warehouseHireProtocol:VARCHAR#, 
+      #warehouseHireStartDate:CHAR#, #warehouseHireEndDate:CHAR#, #otherDes:VARCHAR#, 
+      #noticeType:CHAR#, #seHighestPercent:DECIMAL#, #isPledge:CHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotCmInfo" >
+    insert into B_CNT_MPROT_CM_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="protocolNo" >
+        PROTOCOL_NO
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        MONI_OF_CUSTCD
+      </isNotNull>
+      <isNotNull prepend="," property="grouped" >
+        GROUPED
+      </isNotNull>
+      <isNotNull prepend="," property="groupedMember" >
+        GROUPED_MEMBER
+      </isNotNull>
+      <isNotNull prepend="," property="lowPrice" >
+        LOW_PRICE
+      </isNotNull>
+      <isNotNull prepend="," property="lowPriceNew" >
+        LOW_PRICE_NEW
+      </isNotNull>
+      <isNotNull prepend="," property="moniWarehouseType" >
+        MONI_WAREHOUSE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="moniAreaType" >
+        MONI_AREA_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="logisticsMoniCondition" >
+        LOGISTICS_MONI_CONDITION
+      </isNotNull>
+      <isNotNull prepend="," property="warehousedress" >
+        WAREHOUSEDRESS
+      </isNotNull>
+      <isNotNull prepend="," property="mortgagePayType" >
+        MORTGAGE_PAY_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="specialWarehouseCondition" >
+        SPECIAL_WAREHOUSE_CONDITION
+      </isNotNull>
+      <isNotNull prepend="," property="costBear" >
+        COST_BEAR
+      </isNotNull>
+      <isNotNull prepend="," property="costStandard" >
+        COST_STANDARD
+      </isNotNull>
+      <isNotNull prepend="," property="moniCost" >
+        MONI_COST
+      </isNotNull>
+      <isNotNull prepend="," property="payWay" >
+        PAY_WAY
+      </isNotNull>
+      <isNotNull prepend="," property="payTime" >
+        PAY_TIME
+      </isNotNull>
+      <isNotNull prepend="," property="moniName" >
+        MONI_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="moniTel" >
+        MONI_TEL
+      </isNotNull>
+      <isNotNull prepend="," property="moniProtocolType" >
+        MONI_PROTOCOL_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="isHighestLimit" >
+        IS_HIGHEST_LIMIT
+      </isNotNull>
+      <isNotNull prepend="," property="moniPriceModel" >
+        MONI_PRICE_MODEL
+      </isNotNull>
+      <isNotNull prepend="," property="moniModel" >
+        MONI_MODEL
+      </isNotNull>
+      <isNotNull prepend="," property="deallineRate" >
+        DEALLINE_RATE
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseType" >
+        WAREHOUSE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseHireProtocol" >
+        WAREHOUSE_HIRE_PROTOCOL
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseHireStartDate" >
+        WAREHOUSE_HIRE_START_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseHireEndDate" >
+        WAREHOUSE_HIRE_END_DATE
+      </isNotNull>
+      <isNotNull prepend="," property="otherDes" >
+        OTHER_DES
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        NOTICE_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="seHighestPercent" >
+        SE_HIGHEST_PERCENT
+      </isNotNull>
+      <isNotNull prepend="," property="isPledge" >
+        IS_PLEDGE
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="protocolNo" >
+        #protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniOfCustcd" >
+        #moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="grouped" >
+        #grouped:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="groupedMember" >
+        #groupedMember:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPrice" >
+        #lowPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPriceNew" >
+        #lowPriceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="moniWarehouseType" >
+        #moniWarehouseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniAreaType" >
+        #moniAreaType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="logisticsMoniCondition" >
+        #logisticsMoniCondition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehousedress" >
+        #warehousedress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgagePayType" >
+        #mortgagePayType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="specialWarehouseCondition" >
+        #specialWarehouseCondition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costBear" >
+        #costBear:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costStandard" >
+        #costStandard:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCost" >
+        #moniCost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="payWay" >
+        #payWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payTime" >
+        #payTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="moniName" >
+        #moniName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniTel" >
+        #moniTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniProtocolType" >
+        #moniProtocolType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isHighestLimit" >
+        #isHighestLimit:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniPriceModel" >
+        #moniPriceModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniModel" >
+        #moniModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deallineRate" >
+        #deallineRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseType" >
+        #warehouseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseHireProtocol" >
+        #warehouseHireProtocol:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseHireStartDate" >
+        #warehouseHireStartDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseHireEndDate" >
+        #warehouseHireEndDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherDes" >
+        #otherDes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        #noticeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="seHighestPercent" >
+        #seHighestPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="isPledge" >
+        #isPledge:CHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotCmInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_CNT_MPROT_CM_INFO
+    <include refid="B_CNT_MPROT_CM_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_CNT_MPROT_CM_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.protocolNo" >
+        PROTOCOL_NO = #record.protocolNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniOfCustcd" >
+        MONI_OF_CUSTCD = #record.moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.grouped" >
+        GROUPED = #record.grouped:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.groupedMember" >
+        GROUPED_MEMBER = #record.groupedMember:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lowPrice" >
+        LOW_PRICE = #record.lowPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lowPriceNew" >
+        LOW_PRICE_NEW = #record.lowPriceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniWarehouseType" >
+        MONI_WAREHOUSE_TYPE = #record.moniWarehouseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniAreaType" >
+        MONI_AREA_TYPE = #record.moniAreaType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.logisticsMoniCondition" >
+        LOGISTICS_MONI_CONDITION = #record.logisticsMoniCondition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehousedress" >
+        WAREHOUSEDRESS = #record.warehousedress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mortgagePayType" >
+        MORTGAGE_PAY_TYPE = #record.mortgagePayType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.specialWarehouseCondition" >
+        SPECIAL_WAREHOUSE_CONDITION = #record.specialWarehouseCondition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costBear" >
+        COST_BEAR = #record.costBear:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.costStandard" >
+        COST_STANDARD = #record.costStandard:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniCost" >
+        MONI_COST = #record.moniCost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payWay" >
+        PAY_WAY = #record.payWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.payTime" >
+        PAY_TIME = #record.payTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniName" >
+        MONI_NAME = #record.moniName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniTel" >
+        MONI_TEL = #record.moniTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniProtocolType" >
+        MONI_PROTOCOL_TYPE = #record.moniProtocolType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isHighestLimit" >
+        IS_HIGHEST_LIMIT = #record.isHighestLimit:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniPriceModel" >
+        MONI_PRICE_MODEL = #record.moniPriceModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.moniModel" >
+        MONI_MODEL = #record.moniModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deallineRate" >
+        DEALLINE_RATE = #record.deallineRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseType" >
+        WAREHOUSE_TYPE = #record.warehouseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseHireProtocol" >
+        WAREHOUSE_HIRE_PROTOCOL = #record.warehouseHireProtocol:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseHireStartDate" >
+        WAREHOUSE_HIRE_START_DATE = #record.warehouseHireStartDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.warehouseHireEndDate" >
+        WAREHOUSE_HIRE_END_DATE = #record.warehouseHireEndDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.otherDes" >
+        OTHER_DES = #record.otherDes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.noticeType" >
+        NOTICE_TYPE = #record.noticeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.seHighestPercent" >
+        SE_HIGHEST_PERCENT = #record.seHighestPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isPledge" >
+        IS_PLEDGE = #record.isPledge:CHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_CM_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_CNT_MPROT_CM_INFO
+    set PROTOCOL_NO = #record.protocolNo:VARCHAR#,
+      MONI_OF_CUSTCD = #record.moniOfCustcd:VARCHAR#,
+      GROUPED = #record.grouped:CHAR#,
+      GROUPED_MEMBER = #record.groupedMember:CHAR#,
+      LOW_PRICE = #record.lowPrice:DECIMAL#,
+      LOW_PRICE_NEW = #record.lowPriceNew:DECIMAL#,
+      MONI_WAREHOUSE_TYPE = #record.moniWarehouseType:CHAR#,
+      MONI_AREA_TYPE = #record.moniAreaType:CHAR#,
+      LOGISTICS_MONI_CONDITION = #record.logisticsMoniCondition:VARCHAR#,
+      WAREHOUSEDRESS = #record.warehousedress:VARCHAR#,
+      MORTGAGE_PAY_TYPE = #record.mortgagePayType:CHAR#,
+      SPECIAL_WAREHOUSE_CONDITION = #record.specialWarehouseCondition:VARCHAR#,
+      COST_BEAR = #record.costBear:VARCHAR#,
+      COST_STANDARD = #record.costStandard:VARCHAR#,
+      MONI_COST = #record.moniCost:DECIMAL#,
+      PAY_WAY = #record.payWay:VARCHAR#,
+      PAY_TIME = #record.payTime:TIMESTAMP#,
+      MONI_NAME = #record.moniName:VARCHAR#,
+      MONI_TEL = #record.moniTel:VARCHAR#,
+      MONI_PROTOCOL_TYPE = #record.moniProtocolType:CHAR#,
+      IS_HIGHEST_LIMIT = #record.isHighestLimit:CHAR#,
+      MONI_PRICE_MODEL = #record.moniPriceModel:CHAR#,
+      MONI_MODEL = #record.moniModel:CHAR#,
+      DEALLINE_RATE = #record.deallineRate:DECIMAL#,
+      WAREHOUSE_TYPE = #record.warehouseType:CHAR#,
+      WAREHOUSE_HIRE_PROTOCOL = #record.warehouseHireProtocol:VARCHAR#,
+      WAREHOUSE_HIRE_START_DATE = #record.warehouseHireStartDate:CHAR#,
+      WAREHOUSE_HIRE_END_DATE = #record.warehouseHireEndDate:CHAR#,
+      OTHER_DES = #record.otherDes:VARCHAR#,
+      NOTICE_TYPE = #record.noticeType:CHAR#,
+      SE_HIGHEST_PERCENT = #record.seHighestPercent:DECIMAL#,
+      IS_PLEDGE = #record.isPledge:CHAR#
+    <isParameterPresent >
+      <include refid="B_CNT_MPROT_CM_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotCmInfo" >
+    update B_CNT_MPROT_CM_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="moniOfCustcd" >
+        MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="grouped" >
+        GROUPED = #grouped:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="groupedMember" >
+        GROUPED_MEMBER = #groupedMember:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPrice" >
+        LOW_PRICE = #lowPrice:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowPriceNew" >
+        LOW_PRICE_NEW = #lowPriceNew:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="moniWarehouseType" >
+        MONI_WAREHOUSE_TYPE = #moniWarehouseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniAreaType" >
+        MONI_AREA_TYPE = #moniAreaType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="logisticsMoniCondition" >
+        LOGISTICS_MONI_CONDITION = #logisticsMoniCondition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehousedress" >
+        WAREHOUSEDRESS = #warehousedress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mortgagePayType" >
+        MORTGAGE_PAY_TYPE = #mortgagePayType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="specialWarehouseCondition" >
+        SPECIAL_WAREHOUSE_CONDITION = #specialWarehouseCondition:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costBear" >
+        COST_BEAR = #costBear:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costStandard" >
+        COST_STANDARD = #costStandard:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniCost" >
+        MONI_COST = #moniCost:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="payWay" >
+        PAY_WAY = #payWay:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="payTime" >
+        PAY_TIME = #payTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="moniName" >
+        MONI_NAME = #moniName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniTel" >
+        MONI_TEL = #moniTel:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniProtocolType" >
+        MONI_PROTOCOL_TYPE = #moniProtocolType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isHighestLimit" >
+        IS_HIGHEST_LIMIT = #isHighestLimit:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniPriceModel" >
+        MONI_PRICE_MODEL = #moniPriceModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="moniModel" >
+        MONI_MODEL = #moniModel:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deallineRate" >
+        DEALLINE_RATE = #deallineRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseType" >
+        WAREHOUSE_TYPE = #warehouseType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseHireProtocol" >
+        WAREHOUSE_HIRE_PROTOCOL = #warehouseHireProtocol:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseHireStartDate" >
+        WAREHOUSE_HIRE_START_DATE = #warehouseHireStartDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="warehouseHireEndDate" >
+        WAREHOUSE_HIRE_END_DATE = #warehouseHireEndDate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="otherDes" >
+        OTHER_DES = #otherDes:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="noticeType" >
+        NOTICE_TYPE = #noticeType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="seHighestPercent" >
+        SE_HIGHEST_PERCENT = #seHighestPercent:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="isPledge" >
+        IS_PLEDGE = #isPledge:CHAR#
+      </isNotNull>
+    </dynamic>
+    where PROTOCOL_NO = #protocolNo:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.cnt.dao.model.BCntMprotCmInfo" >
+    update B_CNT_MPROT_CM_INFO
+    set MONI_OF_CUSTCD = #moniOfCustcd:VARCHAR#,
+      GROUPED = #grouped:CHAR#,
+      GROUPED_MEMBER = #groupedMember:CHAR#,
+      LOW_PRICE = #lowPrice:DECIMAL#,
+      LOW_PRICE_NEW = #lowPriceNew:DECIMAL#,
+      MONI_WAREHOUSE_TYPE = #moniWarehouseType:CHAR#,
+      MONI_AREA_TYPE = #moniAreaType:CHAR#,
+      LOGISTICS_MONI_CONDITION = #logisticsMoniCondition:VARCHAR#,
+      WAREHOUSEDRESS = #warehousedress:VARCHAR#,
+      MORTGAGE_PAY_TYPE = #mortgagePayType:CHAR#,
+      SPECIAL_WAREHOUSE_CONDITION = #specialWarehouseCondition:VARCHAR#,
+      COST_BEAR = #costBear:VARCHAR#,
+      COST_STANDARD = #costStandard:VARCHAR#,
+      MONI_COST = #moniCost:DECIMAL#,
+      PAY_WAY = #payWay:VARCHAR#,
+      PAY_TIME = #payTime:TIMESTAMP#,
+      MONI_NAME = #moniName:VARCHAR#,
+      MONI_TEL = #moniTel:VARCHAR#,
+      MONI_PROTOCOL_TYPE = #moniProtocolType:CHAR#,
+      IS_HIGHEST_LIMIT = #isHighestLimit:CHAR#,
+      MONI_PRICE_MODEL = #moniPriceModel:CHAR#,
+      MONI_MODEL = #moniModel:CHAR#,
+      DEALLINE_RATE = #deallineRate:DECIMAL#,
+      WAREHOUSE_TYPE = #warehouseType:CHAR#,
+      WAREHOUSE_HIRE_PROTOCOL = #warehouseHireProtocol:VARCHAR#,
+      WAREHOUSE_HIRE_START_DATE = #warehouseHireStartDate:CHAR#,
+      WAREHOUSE_HIRE_END_DATE = #warehouseHireEndDate:CHAR#,
+      OTHER_DES = #otherDes:VARCHAR#,
+      NOTICE_TYPE = #noticeType:CHAR#,
+      SE_HIGHEST_PERCENT = #seHighestPercent:DECIMAL#,
+      IS_PLEDGE = #isPledge:CHAR#
+    where PROTOCOL_NO = #protocolNo:VARCHAR#
+  </update>
+</sqlMap>

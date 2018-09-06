@@ -1,0 +1,22 @@
+<!--风险拦截模型详情页面-->
+<ht-form name="otherform">
+    <ht-legend>拦截模型信息</ht-legend>
+    <ht-input name="拦截模型ID" disable="true"  ng-model="otherform.mdlId" reg-exp="common.require"  ></ht-input>
+    <ht-input name="拦截模型名" disable="true" ng-model="otherform.mdlNm" reg-exp="common.require"></ht-input>
+</ht-form>
+<ht-legend>拦截方案列表</ht-legend>
+<ht-table ht-id="tableId" datasource="datasource" selected="selected" docheckbox="false">
+    <ht-column eg-name="chkPlId" zh-name="拦截方案ID"></ht-column>
+    <ht-column eg-name="chkItId" zh-name="拦截项编号" href="true" docolumn="column"></ht-column>
+    <ht-column eg-name="nm" zh-name="拦截项名"></ht-column>
+    <ht-column eg-name="mdlId" zh-name="拦截模型ID"></ht-column>
+    <ht-column eg-name="ord" zh-name="排序号"></ht-column>
+    <ht-column eg-name="deal" zh-name="处理方式"  dictionary="dealStat" ></ht-column>
+    <ht-column eg-name="stat" zh-name="启用标志"  dictionary="intStat" ></ht-column>
+</ht-table>
+<ht-page conf="conf"></ht-page>
+<ht-button-group class="center">
+    <ht-button ht-id="back"class="btn-primary">返回</ht-button>
+</ht-button-group>
+
+

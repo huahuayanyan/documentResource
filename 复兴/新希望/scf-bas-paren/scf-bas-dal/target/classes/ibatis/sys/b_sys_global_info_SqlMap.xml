@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="B_SYS_GLOBAL_INFO" >
+  <resultMap id="BaseResultMap" class="com.huateng.scf.bas.sys.dao.model.BSysGlobalInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="SYS_CODE" property="sysCode" jdbcType="VARCHAR" />
+    <result column="SYSTEM_NAME" property="systemName" jdbcType="VARCHAR" />
+    <result column="TBSDY" property="tbsdy" jdbcType="CHAR" />
+    <result column="BHDATE" property="bhdate" jdbcType="CHAR" />
+    <result column="LBHDATE" property="lbhdate" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="SYSTEM_TYPE" property="systemType" jdbcType="CHAR" />
+    <result column="TIMESTAMPS" property="timestamps" jdbcType="TIMESTAMP" />
+    <result column="MISCFLGS" property="miscflgs" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$ #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SYS_CODE, SYSTEM_NAME, TBSDY, BHDATE, LBHDATE, STATUS, SYSTEM_TYPE, TIMESTAMPS, 
+    MISCFLGS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysGlobalInfoExample" >
+    select
+    <isParameterPresent >
+      <isEqual property="distinct" compareValue="true" >
+        distinct
+      </isEqual>
+    </isParameterPresent>
+    <include refid="B_SYS_GLOBAL_INFO.Base_Column_List" />
+    from B_SYS_GLOBAL_INFO
+    <isParameterPresent >
+      <include refid="B_SYS_GLOBAL_INFO.Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysGlobalInfo" >
+    select 
+    <include refid="B_SYS_GLOBAL_INFO.Base_Column_List" />
+    from B_SYS_GLOBAL_INFO
+    where ID = #id:VARCHAR#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysGlobalInfo" >
+    delete from B_SYS_GLOBAL_INFO
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="deleteByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysGlobalInfoExample" >
+    delete from B_SYS_GLOBAL_INFO
+    <include refid="B_SYS_GLOBAL_INFO.Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysGlobalInfo" >
+    insert into B_SYS_GLOBAL_INFO (ID, SYS_CODE, SYSTEM_NAME, TBSDY, BHDATE, 
+      LBHDATE, STATUS, SYSTEM_TYPE, TIMESTAMPS, MISCFLGS
+      )
+    values (#id:VARCHAR#, #sysCode:VARCHAR#, #systemName:VARCHAR#, #tbsdy:CHAR#, #bhdate:CHAR#, 
+      #lbhdate:CHAR#, #status:CHAR#, #systemType:CHAR#, #timestamps:TIMESTAMP#, #miscflgs:VARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysGlobalInfo" >
+    insert into B_SYS_GLOBAL_INFO
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        ID
+      </isNotNull>
+      <isNotNull prepend="," property="sysCode" >
+        SYS_CODE
+      </isNotNull>
+      <isNotNull prepend="," property="systemName" >
+        SYSTEM_NAME
+      </isNotNull>
+      <isNotNull prepend="," property="tbsdy" >
+        TBSDY
+      </isNotNull>
+      <isNotNull prepend="," property="bhdate" >
+        BHDATE
+      </isNotNull>
+      <isNotNull prepend="," property="lbhdate" >
+        LBHDATE
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS
+      </isNotNull>
+      <isNotNull prepend="," property="systemType" >
+        SYSTEM_TYPE
+      </isNotNull>
+      <isNotNull prepend="," property="timestamps" >
+        TIMESTAMPS
+      </isNotNull>
+      <isNotNull prepend="," property="miscflgs" >
+        MISCFLGS
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sysCode" >
+        #sysCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="systemName" >
+        #systemName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tbsdy" >
+        #tbsdy:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bhdate" >
+        #bhdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lbhdate" >
+        #lbhdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="systemType" >
+        #systemType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="timestamps" >
+        #timestamps:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="miscflgs" >
+        #miscflgs:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="countByExample" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysGlobalInfoExample" resultClass="java.lang.Integer" >
+    select count(*) from B_SYS_GLOBAL_INFO
+    <include refid="B_SYS_GLOBAL_INFO.Example_Where_Clause" />
+  </select>
+  <update id="updateByExampleSelective" >
+    update B_SYS_GLOBAL_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sysCode" >
+        SYS_CODE = #record.sysCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.systemName" >
+        SYSTEM_NAME = #record.systemName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.tbsdy" >
+        TBSDY = #record.tbsdy:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bhdate" >
+        BHDATE = #record.bhdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lbhdate" >
+        LBHDATE = #record.lbhdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status" >
+        STATUS = #record.status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.systemType" >
+        SYSTEM_TYPE = #record.systemType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.timestamps" >
+        TIMESTAMPS = #record.timestamps:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.miscflgs" >
+        MISCFLGS = #record.miscflgs:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="B_SYS_GLOBAL_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByExample" >
+    update B_SYS_GLOBAL_INFO
+    set ID = #record.id:VARCHAR#,
+      SYS_CODE = #record.sysCode:VARCHAR#,
+      SYSTEM_NAME = #record.systemName:VARCHAR#,
+      TBSDY = #record.tbsdy:CHAR#,
+      BHDATE = #record.bhdate:CHAR#,
+      LBHDATE = #record.lbhdate:CHAR#,
+      STATUS = #record.status:CHAR#,
+      SYSTEM_TYPE = #record.systemType:CHAR#,
+      TIMESTAMPS = #record.timestamps:TIMESTAMP#,
+      MISCFLGS = #record.miscflgs:VARCHAR#
+    <isParameterPresent >
+      <include refid="B_SYS_GLOBAL_INFO.Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysGlobalInfo" >
+    update B_SYS_GLOBAL_INFO
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="sysCode" >
+        SYS_CODE = #sysCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="systemName" >
+        SYSTEM_NAME = #systemName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tbsdy" >
+        TBSDY = #tbsdy:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bhdate" >
+        BHDATE = #bhdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lbhdate" >
+        LBHDATE = #lbhdate:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="systemType" >
+        SYSTEM_TYPE = #systemType:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="timestamps" >
+        TIMESTAMPS = #timestamps:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="miscflgs" >
+        MISCFLGS = #miscflgs:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.huateng.scf.bas.sys.dao.model.BSysGlobalInfo" >
+    update B_SYS_GLOBAL_INFO
+    set SYS_CODE = #sysCode:VARCHAR#,
+      SYSTEM_NAME = #systemName:VARCHAR#,
+      TBSDY = #tbsdy:CHAR#,
+      BHDATE = #bhdate:CHAR#,
+      LBHDATE = #lbhdate:CHAR#,
+      STATUS = #status:CHAR#,
+      SYSTEM_TYPE = #systemType:CHAR#,
+      TIMESTAMPS = #timestamps:TIMESTAMP#,
+      MISCFLGS = #miscflgs:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+</sqlMap>
