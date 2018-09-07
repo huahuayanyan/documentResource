@@ -14,7 +14,7 @@ ccms
 1、主机文件 日期 
 跑入主机文件之前 
 		tbl_ccms_conf_gl_global 中的 batch_date 时间改为 主机文件中的时间前一天 
-		tbl_ccms_conf_gl_lock 中 lock_flag 置为N
+		tbl_ccms_conf_gl_lock 中 lock_flag 置为 N
 	
 
 2、任务(跑批执行之前主机文件要存在)
