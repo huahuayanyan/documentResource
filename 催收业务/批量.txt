@@ -1,0 +1,39 @@
+批量 对应数据库 tbl_ccms_conf_bt_task_def task_id
+
+10.191.6.2 
+ccms 
+ccms
+
+主机文件
+	loan_user_info_20180903
+	loan_user_info_qyq_20180903
+	loan_user_info_tjn_20180903
+	xjd_overdue_list20180903_10001(账户)
+	xjd_repaynotify_list20180903_10001(交易账户)
+
+1、主机文件 日期 
+跑入主机文件之前 
+		tbl_ccms_conf_gl_global 中的 batch_date 时间改为 主机文件中的时间前一天 
+		tbl_ccms_conf_gl_lock 中 lock_flag 置为N
+	
+
+2、任务(跑批执行之前主机文件要存在)
+批量全部执行
+tbl_ccms_conf_bt_task_def
+		关门任务 
+			is_valid  置为Y
+			is_finish 置为N
+		其他任务状态不管	
+		sh /apps/server/ccmsbatch/bin/shell/startBatch.sh AUTOMOREMASTER 3
+
+
+批量单个执行
+运行哪个任务 is_finish  置N
+sh /apps/server/ccmsbatch/bin/shell/startBatch.sh SINGLE task_id
+
+
+批量日志文件
+/apps/logs/autoBatch.log
+
+主机文件存放路径
+/apps/server/ccmsbatchfile/input/issueA/
